@@ -589,8 +589,8 @@ function cmVariants(card){
   const out=[];
   const v = card.variants||{};
   const normalLabel = v.normal===false && v.holo ? "Holo" : "Normale";
-  if(cm.trend!=null||cm.avg!=null) out.push({key:"", label:normalLabel});
-  if(cm["trend-holo"]!=null||cm["avg-holo"]!=null) out.push({key:"-holo", label: (v.reverse ? "Reverse" : "Holo")});
+  if(cmVal(cm,"trend","")||cmVal(cm,"avg","")) out.push({key:"", label:normalLabel});
+  if(cmVal(cm,"trend","-holo")||cmVal(cm,"avg","-holo")) out.push({key:"-holo", label: (v.reverse || normalLabel==="Holo") ? "Reverse" : "Holo"});
   return out;
 }
 function cmVal(cm,k,suf){ const x = cm?.[k+suf]; return typeof x==="number" && x>0 ? x : null; }

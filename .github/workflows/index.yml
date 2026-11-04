@@ -1,0 +1,26 @@
+name: Index des cartes
+on:
+  workflow_dispatch:
+  push:
+    paths: ["tools/**", ".github/workflows/index.yml"]
+  schedule:
+    - cron: "17 4 * * 1"
+permissions:
+  contents: write
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: npm i --no-save puppeteer-core@22.15.0
+      - run: node tools/build-index.mjs
+      - name: Publier l'index
+        run: |
+          git config user.name "cote-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add cards-index.json
+          git diff --cached --quiet || (git commit -m "Index des cartes mis à jour" && git pull --rebase && git push)

@@ -304,7 +304,7 @@ input,select{font:inherit;color:var(--fg)}
     <button class="banner netbar" id="netBar" hidden></button>
     <div class="status" id="status">Cadre la carte entière dans le rectangle</div>
     <div class="live" id="live" aria-live="polite">
-      <span class="lv" data-k="card"><i></i>Carte</span><span class="lv" data-k="dist"><i></i>Distance</span><span class="lv" data-k="blur"><i></i>Netteté</span><span class="lv" data-k="light"><i></i>Lumière</span><span class="lv" data-k="glare"><i></i>Reflets</span><span class="lv" data-k="num"><i></i>Numéro</span><span class="lv" data-k="id"><i></i>Identifiée</span>
+      <span class="lv" data-k="card"><i></i>Carte</span><span class="lv" data-k="dist"><i></i>Distance</span><span class="lv" data-k="blur"><i></i>Netteté</span><span class="lv" data-k="light"><i></i>Lumière</span><span class="lv" data-k="glare"><i></i>Reflets</span><span class="lv" data-k="num"><i></i>Image</span><span class="lv" data-k="id"><i></i>Identifiée</span>
     </div>
     <div class="scan-bottom">
       <button class="round" id="importBtn" aria-label="Importer une photo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.8"/><path d="m21 15-5-5L5 21"/></svg></button>
@@ -582,6 +582,7 @@ async function getCard(id){
     const r = await getJSON(`${PT}/cards/${encodeURIComponent(id.slice(3))}`); return r?.data ? ptMap(r.data) : null;
   }
   let card = await getJSON(`${API}/${LANG}/cards/${encodeURIComponent(id)}`);
+  if(!card && LANG!=="en") card = await getJSON(`${API}/en/cards/${encodeURIComponent(id)}`);
   if(card && !hasPrice(card.pricing) && LANG!=="en"){
     // les prix sont parfois seulement exposés sur la fiche anglaise
     const en = await getJSON(`${API}/en/cards/${encodeURIComponent(id)}`).catch(()=>null);
@@ -1005,12 +1006,167 @@ function numCandidates(text, sets){
 }
 const bestNumber = (text, sets) => { const c = numCandidates(text, sets)[0]; return c ? {num:c.num, total:c.total} : null; };
 
+/* Empreinte visuelle d'une carte : pHash 64 bits de la carte entière et de l'illustration (identique dans l'app et l'index) */
+const CARDSIG = (()=>{
+  const N = 32, M = 96;
+  const big = document.createElement("canvas"); big.width = M; big.height = M;
+  const bg = big.getContext("2d", {willReadFrequently:true});
+  const sm = document.createElement("canvas"); sm.width = N; sm.height = N;
+  const sg = sm.getContext("2d", {willReadFrequently:true});
+  const COS = new Float64Array(8*N);
+  for(let u=0; u<8; u++) for(let x=0; x<N; x++) COS[u*N+x] = Math.cos((2*x+1)*u*Math.PI/(2*N));
+  const ART = [.08, .11, .84, .42];
+  function phash(src, x, y, w, h){
+    bg.imageSmoothingEnabled = true; bg.imageSmoothingQuality = "high";
+    bg.clearRect(0,0,M,M); bg.drawImage(src, x, y, w, h, 0, 0, M, M);
+    sg.imageSmoothingEnabled = true; sg.imageSmoothingQuality = "high";
+    sg.clearRect(0,0,N,N); sg.drawImage(big, 0, 0, M, M, 0, 0, N, N);
+    const d = sg.getImageData(0,0,N,N).data, L = new Float64Array(N*N);
+    for(let i=0, j=0; j<N*N; i+=4, j++) L[j] = .299*d[i] + .587*d[i+1] + .114*d[i+2];
+    const T = new Float64Array(8*N);
+    for(let u=0; u<8; u++) for(let yy=0; yy<N; yy++){ let s=0; const r=yy*N, c=u*N; for(let xx=0; xx<N; xx++) s += COS[c+xx]*L[r+xx]; T[u*N+yy] = s; }
+    const D = new Float64Array(64);
+    for(let v=0; v<8; v++) for(let u=0; u<8; u++){ let s=0; for(let yy=0; yy<N; yy++) s += COS[v*N+yy]*T[u*N+yy]; D[v*8+u] = s; }
+    const vals = Array.from(D).slice(1).sort((a,b)=>a-b), med = (vals[30]+vals[31])/2;
+    let a = 0, b = 0;
+    for(let k=1; k<64; k++) if(D[k] > med){ if(k<32) a |= (1<<k); else b |= (1<<(k-32)); }
+    return [a>>>0, b>>>0];
+  }
+  const hex = h => h[0].toString(16).padStart(8,"0") + h[1].toString(16).padStart(8,"0");
+  function sig(src, x, y, w, h){
+    return {full: phash(src, x, y, w, h), art: phash(src, x+w*ART[0], y+h*ART[1], w*ART[2], h*ART[3])};
+  }
+  function pop(n){ n = n - ((n>>>1) & 0x55555555); n = (n & 0x33333333) + ((n>>>2) & 0x33333333); return (((n + (n>>>4)) & 0x0F0F0F0F) * 0x01010101) >>> 24; }
+  const dist = (p, q) => pop(p[0]^q[0]) + pop(p[1]^q[1]);
+  const parse = s => [parseInt(s.slice(0,8),16)>>>0, parseInt(s.slice(8,16),16)>>>0];
+  return {sig, hex, dist, parse, pop};
+})();
+
+/* ---------- Reconnaissance par l'image : empreintes de ~22 000 cartes (cards-index.json, mis à jour chaque semaine) ---------- */
+let INDEX = null, indexP = null;
+const POP16 = new Uint8Array(65536); for(let i=1;i<65536;i++) POP16[i] = POP16[i>>1] + (i&1);
+function loadIndex(){
+  if(INDEX) return Promise.resolve(INDEX);
+  if(!indexP) indexP = fetchT("cards-index.json", 30000).then(r=>{ if(!r.ok) throw new NetError("http",`index des cartes : ${r.status}`,"cards-index.json"); return r.json(); }).then(j=>{
+    const n = j.cards.length, H = new Uint32Array(n*4), ids = new Array(n), names = new Array(n);
+    j.cards.forEach(([id,name,h],i)=>{ ids[i]=id; names[i]=name; for(let k=0;k<4;k++) H[i*4+k] = parseInt(h.slice(k*8,k*8+8),16)>>>0; });
+    INDEX = {n, H, ids, names, series:j.series||{}, built:j.built}; return INDEX;
+  }).catch(e=>{ indexP = null; throw e; });
+  return indexP;
+}
+function boxesAround(b){
+  const out = [];
+  for(const sc of [.9,.97,1.04]) for(const dx of [-.05,0,.05]) for(const dy of [-.04,0,.04]){
+    const w = b.w*sc, h = b.h*sc; out.push({x:b.x+(b.w-w)/2+dx*b.w, y:b.y+(b.h-h)/2+dy*b.h, w, h});
+  }
+  return out;
+}
+const artDist = (I,i,j) => { const a=I.H[i*4]^I.H[j*4], b=I.H[i*4+1]^I.H[j*4+1]; return POP16[a&65535]+POP16[a>>>16]+POP16[b&65535]+POP16[b>>>16]; };
+/* compare l'image visée à toutes les cartes ; plusieurs cadrages sont essayés pour absorber un mauvais alignement */
+function matchImage(src, bases){
+  const I = INDEX, H = I.H, n = I.n, sigs = [], bx = [];
+  for(const b of bases) if(b && b.w>20 && b.h>20) for(const x of boxesAround(b)){ const g = CARDSIG.sig(src, x.x, x.y, x.w, x.h); sigs.push([g.art[0],g.art[1],g.full[0],g.full[1]]); bx.push(x); }
+  const best = new Uint8Array(n); let d1 = 255, t0 = -1;
+  for(let i=0;i<n;i++){
+    const o = i*4, a0 = H[o], a1 = H[o+1], f0 = H[o+2], f1 = H[o+3]; let m = 255;
+    for(let k=0;k<sigs.length;k++){
+      const s = sigs[k]; let x = s[0]^a0, y = s[1]^a1, z = s[2]^f0, w = s[3]^f1;
+      const d = POP16[x&65535]+POP16[x>>>16]+POP16[y&65535]+POP16[y>>>16]+POP16[z&65535]+POP16[z>>>16]+POP16[w&65535]+POP16[w>>>16];
+      if(d<m) m = d;
+    }
+    best[i] = m; if(m<d1){ d1 = m; t0 = i; }
+  }
+  const cand = []; for(let i=0;i<n;i++) if(best[i] <= d1+18) cand.push(i);
+  cand.sort((a,b)=>best[a]-best[b]);
+  let d2 = d1+19;
+  for(const i of cand){ if(i!==t0 && artDist(I,i,t0) > 10){ d2 = best[i]; break; } }
+  const group = cand.filter(i => best[i] <= d1+4 && artDist(I,i,t0) <= 10);
+  const margin = d2-d1;
+  return {t0, id:I.ids[t0], name:I.names[t0], d1, d2, margin, group, top:cand.slice(0,12), best, cand, bx, ok: d1<=24 && margin>=6};
+}
+/* cas serré : on compare en couleur la photo aux images des meilleures candidates */
+const TW = 24, TH = 33, tcv = document.createElement("canvas"); tcv.width = TW; tcv.height = TH;
+const tctx = tcv.getContext("2d", {willReadFrequently:true});
+function colorThumb(src, x, y, w, h){
+  tctx.imageSmoothingEnabled = true; tctx.imageSmoothingQuality = "high"; tctx.drawImage(src, x, y, w, h, 0, 0, TW, TH);
+  const d = tctx.getImageData(0,0,TW,TH).data, v = [new Float32Array(TW*TH), new Float32Array(TW*TH), new Float32Array(TW*TH)];
+  for(let i=0,k=0;k<TW*TH;i+=4,k++){ v[0][k]=d[i]; v[1][k]=d[i+1]; v[2][k]=d[i+2]; }
+  for(const a of v){ let m=0; for(const x of a) m+=x; m/=a.length; let q=0; for(let k=0;k<a.length;k++){ a[k]-=m; q+=a[k]*a[k]; } q=Math.sqrt(q)||1; for(let k=0;k<a.length;k++) a[k]/=q; }
+  return v;
+}
+const ncc3 = (p, q) => { let t=0; for(let c=0;c<3;c++){ let s=0; const a=p[c], b=q[c]; for(let k=0;k<a.length;k++) s+=a[k]*b[k]; t+=s; } return t/3; };
+const refThumbs = new Map();
+function refThumb(i){
+  if(!refThumbs.has(i)){
+    const c = idxCard(i);
+    const p = fetchT(c.image+"/low.webp", 10000).then(r=>{ if(!r.ok) throw new Error(r.status); return r.blob(); }).then(b=>createImageBitmap(b)).then(bm=>colorThumb(bm,0,0,bm.width,bm.height));
+    p.catch(()=>refThumbs.delete(i)); refThumbs.set(i, p);
+  }
+  return refThumbs.get(i);
+}
+async function verifyMatch(src, M){
+  if(M.ok || M.d1>36 || !M.cand.length) return M;
+  const reps = [];
+  for(const i of M.cand){ if(M.best[i] > M.d1+14) break; if(reps.every(r=>artDist(INDEX,r,i)>10)) reps.push(i); if(reps.length>=8) break; }
+  if(reps.length<1) return M;
+  const pt = M.bx.map(x=>colorThumb(src, x.x, x.y, x.w, x.h));
+  const sc = [];
+  for(const i of reps){ const rt = await refThumb(i).catch(()=>null); if(!rt) continue; let m=-1; for(const t of pt){ const v=ncc3(t,rt); if(v>m) m=v; } sc.push({i, v:m}); }
+  sc.sort((a,b)=>b.v-a.v);
+  M.color = sc.slice(0,2).map(x=>x.v);
+  if(sc.length && sc[0].v>=.72 && (sc.length<2 || sc[0].v-sc[1].v>=.08)){
+    const t = sc[0].i;
+    Object.assign(M, {ok:true, byColor:true, t0:t, id:INDEX.ids[t], name:INDEX.names[t], group:M.cand.filter(i=>M.best[i]<=M.best[t]+4 && artDist(INDEX,i,t)<=10)});
+  }
+  return M;
+}
+const setIdOfIdx = i => { const id = INDEX.ids[i]; return id.slice(0, id.lastIndexOf("-")); };
+const localOfIdx = i => { const id = INDEX.ids[i]; return id.slice(id.lastIndexOf("-")+1); };
+const numKey = v => String(v).toUpperCase().replace(/^([A-Z]*)0+(?=\d)/,"$1");
+function idxCard(i){
+  const setId = setIdOfIdx(i), loc = localOfIdx(i), serie = INDEX.series[setId];
+  return {id:INDEX.ids[i], name:INDEX.names[i], localId:loc, setId, set:{}, image: serie ? `https://assets.tcgdex.net/en/${serie}/${setId}/${loc}` : null};
+}
+/* carte reconnue : si la même illustration existe dans plusieurs séries, le numéro départage */
+async function resolveMatch(src, box, M){
+  let pick = M.t0, how = "image", uncertain = null, numText = "";
+  const setsIn = new Set(M.group.map(setIdOfIdx));
+  if(M.group.length>1 && setsIn.size>1){
+    try{
+      const w = await getWorker(), SETS = await getSets(LANG).catch(()=>({}));
+      for(const z of [[0,.865,.56,.135,true,11],[.44,.865,.56,.135,true,11]]){
+        const cv = crop(src, box.x, box.y, box.w, box.h, z[0], z[1], z[2], z[3], 2.6, z[4]);
+        await w.setParameters({tessedit_pageseg_mode:String(z[5]), tessedit_char_whitelist:"0123456789/TGRCSVHIL|"});
+        const t = (await withTimeout(w.recognize(cv,{},{text:true}), 15000, "lecture trop longue")).data.text || "";
+        numText = t.replace(/\s+/g," ").trim();
+        const cands = numCandidates(t, SETS);
+        const hit = M.group.find(i => cands.some(c => numKey(localOfIdx(i))===numKey(c.num) && (!c.total || !/^\d+$/.test(c.total) || [SETS[setIdOfIdx(i)]?.off, SETS[setIdOfIdx(i)]?.tot].includes(+c.total))));
+        if(hit!=null){ pick = hit; how = "image + numéro"; break; }
+      }
+    }catch(e){}
+    if(how==="image") uncertain = `Cette illustration existe dans ${setsIn.size} séries ; le numéro n'a pas pu départager. Vérifie la série, ou choisis la bonne carte plus bas.`;
+  }
+  return {pick, how, uncertain, numText};
+}
+/* ouvre la fiche d'une carte reconnue par l'image */
+async function openMatched(src, box, M, q, C, thumbR){
+  const r = await resolveMatch(src, box, M);
+  const id = INDEX.ids[r.pick];
+  const alts = [...new Set([...M.group, ...M.top])].filter(i=>i!==r.pick).map(idxCard);
+  const D = {t:Date.now(), image:true, q, attempts:[{zone:`image · écart ${M.d1} / 128, marge ${M.margin}${M.byColor?`, confirmée en couleur (${Math.round(M.color[0]*100)} %)`:""}`, bin:false, text:`${M.name}${r.numText?` · numéro lu « ${r.numText.slice(0,24)} »`:""}`, conf:Math.max(0,Math.round(100-M.d1*2)), ok:true}],
+    parsed:null, name:INDEX.names[r.pick], nameRaw:"", nameConf:0, words:[], search:{lang:"index", byNumber:0, byName:0, totalMatch:false, errors:[]},
+    uncertain:r.uncertain, reasons:r.uncertain?[r.uncertain]:[], result:{id, name:INDEX.names[r.pick]}, how:r.how};
+  try{ D.thumb = cardThumb(src, thumbR, C); }catch(e){}
+  lastDiag = D; $("#lastChip").classList.add("show");
+  return {id, alts, D};
+}
+
 /* ---------- Scan automatique : contrôle en direct, capture quand tout est vert ---------- */
-let AUTO = store.get("auto", true), autoTimer = null, autoBusy = false, okStreak = 0, autoTries = 0, sheetClosedAt = 0, lastAutoId = null, autoNoNum = 0;
+let AUTO = store.get("auto", true), autoTimer = null, autoBusy = false, okStreak = 0, autoTries = 0, sheetClosedAt = 0, lastAutoId = null, autoNoNum = 0, autoImgTries = 0, lastTop = -1;
 const lookupCache = new Map();
 const liveEl = $("#live"), autoChip = $("#autoChip");
 function setLive(k, st){ const el = liveEl.querySelector(`[data-k="${k}"]`); if(el) el.className = "lv"+(st&&st!=="idle"?" "+st:""); }
-function autoReset(){ okStreak = 0; autoTries = 0; autoNoNum = 0; ["card","dist","blur","light","glare","num","id"].forEach(k=>setLive(k,"idle")); frame.classList.remove("good"); }
+function autoReset(){ okStreak = 0; autoTries = 0; autoNoNum = 0; autoImgTries = 0; lastTop = -1; ["card","dist","blur","light","glare","num","id"].forEach(k=>setLive(k,"idle")); frame.classList.remove("good"); }
 function setAutoUI(){ autoChip.classList.toggle("on", AUTO); autoChip.setAttribute("aria-pressed", AUTO); liveEl.hidden = !AUTO; }
 autoChip.onclick = ()=>{ AUTO = !AUTO; store.set("auto", AUTO); setAutoUI(); autoReset(); status.textContent = AUTO ? "Vise la carte : le scan se lance tout seul" : "Cadre la carte puis touche le bouton jaune"; toast(AUTO ? "Scan automatique activé" : "Scan manuel"); if(AUTO) autoSchedule(300); };
 setAutoUI();
@@ -1061,6 +1217,35 @@ async function autoTick(){
     okStreak++;
     frame.classList.toggle("good", !bad);
     if(okStreak < 2){ status.textContent = bad ? LIVE_TIPS[bad] : "Ne bouge plus…"; return; }
+
+    // 1) reconnaissance par l'image (insensible au flou)
+    const IDX = await loadIndex().catch(()=>null);
+    if(IDX){
+      setLive("num","work");
+      const C0 = detectCard(S.c, 0, 0, S.c.width, S.c.height);
+      const M = await verifyMatch(S.c, matchImage(S.c, [S.F, C0.found ? C0 : null]));
+      autoImgTries++;
+      if(M.ok){
+        if(busy || $("#sheet").classList.contains("open")) return;
+        if(M.id===lastAutoId && Date.now()-sheetClosedAt < 8000){ setLive("num","ok"); setLive("id","ok"); status.textContent = "Carte déjà affichée : passe à la suivante"; return; }
+        setLive("num","ok"); setLive("id","work"); status.textContent = `Reconnue : ${M.name}…`;
+        const box = C0.found ? C0 : S.F;
+        const R = await openMatched(S.c, box, M, q, C0, {x:0,y:0,w:S.c.width,h:S.c.height});
+        if(busy || $("#sheet").classList.contains("open")) return;
+        setLive("id","ok"); frame.classList.add("good"); lastAutoId = R.id;
+        const vr = video.getBoundingClientRect(), vw = video.videoWidth, vh = video.videoHeight, sc = Math.max(vr.width/vw, vr.height/vh);
+        still.width = vr.width; still.height = vr.height; still.getContext("2d").drawImage(video,(vr.width-vw*sc)/2,(vr.height-vh*sc)/2,vw*sc,vh*sc);
+        still.hidden = false; video.hidden = true;
+        navigator.vibrate?.(R.D.uncertain ? [30] : [10,40,10]);
+        status.textContent = `Trouvée : ${R.D.name}`;
+        await new Promise(r=>setTimeout(r,300));
+        await showCard(R.id, R.alts, R.D);
+        return;
+      }
+      setLive("num", M.d1<=34 ? "warn" : "fail"); setLive("id","idle");
+      // le numéro n'est tenté qu'une fois sur quatre, en secours
+      if(autoImgTries % 4 !== 0){ status.textContent = bad ? LIVE_TIPS[bad] : "Carte pas encore reconnue : garde-la bien dans le cadre"; return; }
+    }
 
     // moteur de lecture (téléchargé une seule fois)
     if(!worker) status.textContent = "Préparation de la lecture…";
@@ -1155,6 +1340,20 @@ async function processCard(src,sx,sy,sw,sh){
     const C = detectCard(src,R.x,R.y,R.w,R.h);
     D.card = C;
     try{ D.thumb = cardThumb(src,R,C); }catch(e){}
+    // reconnaissance par l'image d'abord
+    status.textContent = "Reconnaissance de l'image…";
+    const IDX = await loadIndex().catch(()=>null);
+    if(IDX){
+      const M = await verifyMatch(src, matchImage(src, [{x:sx,y:sy,w:sw,h:sh}, C.found ? C : null]));
+      if(M.ok){
+        const RM = await openMatched(src, C.found ? C : {x:sx,y:sy,w:sw,h:sh}, M, D.q, C, R);
+        status.textContent = "Trouvée";
+        navigator.vibrate?.(RM.D.uncertain?[30]:[10,40,10]);
+        await showCard(RM.id, RM.alts, RM.D);
+        return;
+      }
+      D.imageMiss = `meilleure correspondance « ${M.name} », écart ${M.d1} / 128, marge ${M.margin} : pas assez sûr`;
+    }
     const frameRatio = C.h / sh;
     D.q.checks.unshift({k:"frame", label:"Carte repérée",
       state: !C.found ? "warn" : frameRatio<.62 ? "warn" : "ok",
@@ -1310,7 +1509,9 @@ function renderDiag(D){
     checks.push({label:"Nom lu", state: (norm(D.name).length>=3 || D.words?.length)?(D.nameConf<55?"warn":"ok"):"fail",
       val: D.name||"—", tip: (D.nameRaw?`Texte brut « ${D.nameRaw.slice(0,50)} », confiance ${D.nameConf} %.`:"Aucun texte reconnu dans la zone du nom.") + (D.words?.length?` Mots reconnus sur la carte : ${D.words.slice(0,8).join(", ")}.`:"")});
   }
-  if(D.search){
+  if(D.imageMiss) checks.push({label:"Reconnaissance de l'image", state:"warn", val:"—", tip:`Pas de correspondance sûre (${D.imageMiss}). La lecture du numéro a pris le relais.`});
+  if(D.image) checks.push({label:"Reconnaissance de l'image", state:D.uncertain?"warn":"ok", val:D.how, tip:D.attempts[0]?.zone || ""});
+  if(D.search && !D.image){
     const sm=D.search;
     checks.push({label:"Base de cartes", state: D.code==="api"?"fail":D.failed?"fail":D.uncertain?"warn":"ok",
       val: (sm.lang||"").toUpperCase(),
@@ -1629,7 +1830,7 @@ renderCol(); selectTab("extView");
 getSets(LANG).catch(()=>{});
 checkHealth().catch(()=>{});
 
-window.__cote = {detectCard, findCards, parseNumber, showCard, processCard, analyzeQuality, renderDiag, openHealth, checkHealth, selectTab, openSet, showExtHome, EX};
+window.__cote = {verifyMatch, detectCard, findCards, parseNumber, showCard, processCard, analyzeQuality, renderDiag, openHealth, checkHealth, selectTab, openSet, showExtHome, EX, loadIndex, matchImage, CARDSIG, numCandidates};
 })();
 </script>
 </body>

@@ -1,0 +1,543 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Cote">
+<title>Cote Pokémon</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://api.tcgdex.net">
+<link rel="preconnect" href="https://assets.tcgdex.net">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<style>
+/* Mise en page : une colonne "classeur" — liste d'extensions groupées par série, puis grille 3 colonnes de cartes avec leur cote */
+:root{
+  --bg:#EDEFF4; --surface:#FFFFFF; --ink:#141A2B; --muted:#5E6782; --line:#D9DDE7;
+  --accent:#E3350D; --accent-ink:#FFFFFF; --gold:#B57A00; --gold-bg:#FFF3D1;
+  --chip:#F2F4F8; --shade:rgba(10,14,28,.45);
+  --f-display:"Archivo",system-ui,-apple-system,sans-serif;
+  --f-body:"Archivo",system-ui,-apple-system,sans-serif;
+  --f-num:"JetBrains Mono",ui-monospace,"SF Mono",Menlo,monospace;
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0D111D; --surface:#161B2B; --ink:#EEF0F7; --muted:#8D96B2; --line:#262D43;
+  --accent:#FF5B37; --accent-ink:#140804; --gold:#F2B630; --gold-bg:#2D2410;
+  --chip:#1D2335; --shade:rgba(0,0,0,.6); color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0D111D; --surface:#161B2B; --ink:#EEF0F7; --muted:#8D96B2; --line:#262D43;
+  --accent:#FF5B37; --accent-ink:#140804; --gold:#F2B630; --gold-bg:#2D2410;
+  --chip:#1D2335; --shade:rgba(0,0,0,.6); color-scheme:dark}
+
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.45 var(--f-body);
+  -webkit-font-smoothing:antialiased;-webkit-tap-highlight-color:transparent}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:30;background:var(--bg)}
+button{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.wrap{max-width:820px;margin:0 auto;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));
+  padding-bottom:calc(32px + env(safe-area-inset-bottom,0px))}
+
+/* En-tête */
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--bg);
+  padding-top:calc(10px + env(safe-area-inset-top,0px));margin-top:calc(-1 * env(safe-area-inset-top,0px))}
+.bar{display:flex;align-items:center;gap:10px;min-height:44px}
+.brand{display:flex;align-items:baseline;gap:8px;flex:1;min-width:0}
+.brand h1{margin:0;font:800 30px/1 var(--f-display);letter-spacing:-.02em}
+.brand h1 b{color:var(--accent)}
+.brand small{color:var(--muted);font-size:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.seg{display:inline-flex;background:var(--chip);border-radius:10px;padding:3px;gap:2px}
+.seg button{border:0;background:transparent;padding:6px 9px;border-radius:8px;font-weight:600;font-size:13px;color:var(--muted);cursor:pointer;min-width:34px}
+.seg button[aria-pressed="true"]{background:var(--surface);color:var(--ink);box-shadow:0 1px 2px rgba(0,0,0,.12)}
+.search{margin:10px 0 12px;position:relative}
+.search input{width:100%;border:1px solid var(--line);background:var(--surface);color:var(--ink);
+  border-radius:12px;padding:11px 12px 11px 38px;font:inherit;font-size:16px}
+.search svg{position:absolute;left:12px;top:50%;transform:translateY(-50%);color:var(--muted)}
+.back{border:0;background:var(--chip);border-radius:10px;height:36px;padding:0 12px 0 8px;display:inline-flex;align-items:center;gap:4px;font-weight:600;cursor:pointer}
+
+/* Liste des extensions */
+.serie{margin-top:18px}
+.serie h2{margin:0 0 8px;font:600 11px/1 var(--f-body);text-transform:uppercase;letter-spacing:.12em;color:var(--muted);display:flex;justify-content:space-between}
+.sets{background:var(--surface);border-radius:14px;overflow:hidden}
+.set{display:flex;align-items:center;gap:12px;width:100%;border:0;background:transparent;text-align:left;
+  padding:10px 12px;cursor:pointer;border-top:1px solid var(--line);min-height:62px}
+.set:first-child{border-top:0}
+.set:active{background:var(--chip)}
+.logo{width:76px;height:40px;flex:none;display:grid;place-items:center}
+.logo img{max-width:76px;max-height:40px;object-fit:contain}
+.logo .ph{font:700 11px/1 var(--f-num);color:var(--muted);background:var(--chip);border-radius:6px;padding:6px}
+.set .t{flex:1;min-width:0}
+.set .n{font-weight:600;display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.set .c{font-size:12px;color:var(--muted);font-family:var(--f-num)}
+.set .chev{color:var(--muted);flex:none}
+
+/* Vue extension */
+.sethead{display:flex;gap:14px;align-items:center;margin:6px 0 12px}
+.sethead .logo{width:110px;height:56px}
+.sethead .logo img{max-width:110px;max-height:56px}
+.sethead h2{margin:0;font:800 22px/1.1 var(--f-display);letter-spacing:-.01em;text-wrap:balance}
+.sethead p{margin:4px 0 0;color:var(--muted);font-size:13px}
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px}
+.stat{background:var(--surface);border-radius:12px;padding:10px 12px}
+.stat span{display:block;font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:var(--muted)}
+.stat strong{font:700 19px/1.3 var(--f-num);font-variant-numeric:tabular-nums}
+.progress{height:3px;background:var(--line);border-radius:3px;overflow:hidden;margin:0 0 10px}
+.progress i{display:block;height:100%;width:0;background:var(--accent);transition:width .25s}
+.tools{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:12px}
+.tools .search{flex:1;min-width:160px;margin:0}
+
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+@media (min-width:600px){.grid{grid-template-columns:repeat(4,minmax(0,1fr))}}
+@media (min-width:780px){.grid{grid-template-columns:repeat(5,minmax(0,1fr))}}
+.card{border:0;background:transparent;padding:0;text-align:left;cursor:pointer;display:flex;flex-direction:column;gap:5px;min-width:0}
+.card .img{aspect-ratio:63/88;max-width:100%;border-radius:6px;background:var(--chip);overflow:hidden;position:relative}
+.card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.card .noimg{position:absolute;inset:0;display:grid;place-items:center;padding:6px;text-align:center;font-size:11px;color:var(--muted)}
+.card .rank{position:absolute;top:4px;left:4px;background:var(--gold);color:var(--bg);font:700 10px/1 var(--f-num);padding:3px 5px;border-radius:5px}
+.card .meta{display:flex;justify-content:space-between;align-items:center;gap:4px;min-width:0}
+.card .num{font:500 10px/1 var(--f-num);color:var(--muted);white-space:nowrap}
+.price{font:700 12px/1 var(--f-num);font-variant-numeric:tabular-nums;background:var(--chip);border-radius:6px;padding:4px 6px;white-space:nowrap}
+.price.top{background:var(--gold-bg);color:var(--gold)}
+.price.alt{color:var(--muted);font-weight:500}
+.price.wait{color:var(--muted)}
+.card .nm{font-size:11px;line-height:1.2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:var(--muted)}
+
+/* États */
+.state{background:var(--surface);border-radius:14px;padding:22px 16px;text-align:center;color:var(--muted);margin-top:16px}
+.state strong{display:block;color:var(--ink);margin-bottom:4px}
+.btn{border:0;background:var(--accent);color:var(--accent-ink);font-weight:600;border-radius:10px;padding:10px 16px;margin-top:12px;cursor:pointer}
+.sk{background:var(--chip);border-radius:6px;animation:pulse 1.2s ease-in-out infinite}
+@keyframes pulse{50%{opacity:.5}}
+@media (prefers-reduced-motion:reduce){.sk{animation:none}.progress i{transition:none}}
+.foot{margin-top:24px;font-size:11px;color:var(--muted);text-align:center;line-height:1.6}
+
+/* Fiche carte */
+.sheet{position:fixed;inset:0;z-index:50;background:var(--shade);display:flex;align-items:flex-end;justify-content:center}
+.panel{background:var(--surface);width:100%;max-width:560px;max-height:92%;overflow:auto;border-radius:18px 18px 0 0;
+  padding:14px max(16px,env(safe-area-inset-right,0px)) calc(20px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px));
+  animation:up .22s ease-out}
+@keyframes up{from{transform:translateY(30px);opacity:.6}}
+@media (prefers-reduced-motion:reduce){.panel{animation:none}}
+.grab{width:40px;height:4px;border-radius:2px;background:var(--line);margin:0 auto 12px}
+.ptop{display:grid;grid-template-columns:42% 1fr;gap:14px;align-items:start}
+.ptop img{width:100%;border-radius:8px;display:block}
+.ptop h3{margin:0;font:800 20px/1.15 var(--f-display);text-wrap:balance}
+.ptop .sub{color:var(--muted);font-size:13px;margin-top:4px}
+.big{margin-top:12px}
+.big span{font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:var(--muted)}
+.big strong{display:block;font:700 28px/1.1 var(--f-num);color:var(--accent);font-variant-numeric:tabular-nums}
+.mk{margin-top:16px}
+.mk h4{margin:0 0 6px;font:600 12px/1 var(--f-body);text-transform:uppercase;letter-spacing:.1em;color:var(--muted);display:flex;justify-content:space-between;gap:8px}
+.mk h4 em{font-style:normal;text-transform:none;letter-spacing:0;font-weight:400}
+.rows{border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.row{display:flex;justify-content:space-between;gap:10px;padding:8px 10px;border-top:1px solid var(--line);font-size:14px}
+.row:first-child{border-top:0}
+.row b{font:600 14px/1.4 var(--f-num);font-variant-numeric:tabular-nums}
+.links{display:flex;gap:8px;margin-top:16px;flex-wrap:wrap}
+.links a{flex:1;min-width:140px;text-align:center;text-decoration:none;color:var(--ink);background:var(--chip);border-radius:10px;padding:11px;font-weight:600;font-size:14px}
+.close{display:block;width:100%;margin-top:10px;border:0;background:transparent;color:var(--muted);padding:10px;cursor:pointer}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header id="hdr"></header>
+  <main id="main"></main>
+  <p class="foot">Données et prix : TCGdex (Cardmarket en €, mis à jour chaque jour · TCGplayer en $, mis à jour plusieurs fois par jour).<br>Prix indicatifs pour une carte non gradée.</p>
+</div>
+<div id="sheet" class="sheet" hidden></div>
+
+<script>
+"use strict";
+const API = "https://api.tcgdex.net/v2";
+const HOUR = 3600e3, DAY = 24 * HOUR;
+const $ = (s, el = document) => el.querySelector(s);
+const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+
+/* ---------- stockage local (facultatif) ---------- */
+function pref(k, v){ try{ if(v === undefined) return localStorage.getItem("cote." + k); localStorage.setItem("cote." + k, v); }catch(e){ return null; } }
+function cget(k, ttl){ try{ const r = JSON.parse(localStorage.getItem("cote.c." + k)); if(r && Date.now() - r.t < ttl) return r.v; }catch(e){} return null; }
+function cset(k, v){
+  try{ localStorage.setItem("cote.c." + k, JSON.stringify({t: Date.now(), v})); }
+  catch(e){ try{ Object.keys(localStorage).filter(x => x.startsWith("cote.c.p.")).forEach(x => localStorage.removeItem(x)); }catch(_){} }
+}
+
+const S = {
+  lang: pref("lang") || "fr",
+  cur: pref("cur") || "EUR",
+  series: null, q: "", gen: 0,
+  set: null, cards: [], prices: {}, rarity: {}, sort: pref("sort") || "num", cq: "",
+  listScroll: 0
+};
+
+async function getJSON(url){
+  const ctl = new AbortController(); const to = setTimeout(() => ctl.abort(), 15000);
+  let r;
+  try{ r = await fetch(url, {signal: ctl.signal}); }
+  catch(e){ const err = new Error(e.name === "AbortError" ? "délai dépassé" : (e.message || "réseau")); err.kind = "net"; throw err; }
+  finally{ clearTimeout(to); }
+  if(!r.ok){ const err = new Error("HTTP " + r.status); err.kind = "http"; throw err; }
+  return r.json();
+}
+async function pool(items, n, fn){
+  let i = 0;
+  await Promise.all(Array.from({length: Math.min(n, items.length)}, async () => {
+    while(i < items.length){ const it = items[i++]; try{ await fn(it); }catch(e){} }
+  }));
+}
+
+/* ---------- prix ---------- */
+const pos = v => (typeof v === "number" && v > 0) ? v : null;
+function priceOf(p, cur){
+  if(!p) return null;
+  if(cur === "EUR"){
+    const c = p.cm; if(!c) return null;
+    return pos(c.trend) ?? pos(c.avg) ?? pos(c["trend-holo"]) ?? pos(c["avg-holo"]) ?? pos(c.avg30);
+  }
+  const t = p.tp; if(!t) return null;
+  const order = ["holofoil","holo","normal","reverse-holofoil","reverse","1stEditionHolofoil","1stEditionNormal"];
+  const keys = order.concat(Object.keys(t).filter(k => !order.includes(k)));
+  for(const k of keys){ const v = t[k]; if(v && typeof v === "object"){ const m = pos(v.marketPrice) ?? pos(v.midPrice); if(m) return m; } }
+  return null;
+}
+function fmt(v, cur){
+  if(v == null) return "—";
+  return new Intl.NumberFormat("fr-FR", {style:"currency", currency:cur, currencyDisplay:"narrowSymbol", minimumFractionDigits: v >= 1000 ? 0 : 2, maximumFractionDigits: v >= 1000 ? 0 : 2}).format(v);
+}
+function display(id){
+  const p = S.prices[id];
+  if(p === undefined) return {txt:"…", cls:"wait", v:null};
+  const v = priceOf(p, S.cur);
+  if(v != null) return {txt: fmt(v, S.cur), cls:"", v};
+  const other = S.cur === "EUR" ? "USD" : "EUR";
+  const o = priceOf(p, other);
+  if(o != null) return {txt: fmt(o, other), cls:"alt", v:null};
+  return {txt:"—", cls:"alt", v:null};
+}
+
+/* ---------- en-tête ---------- */
+function header(){
+  const h = $("#hdr");
+  const toggles = `
+    <div class="seg" role="group" aria-label="Langue">
+      <button data-lang="fr" aria-pressed="${S.lang==="fr"}">FR</button>
+      <button data-lang="en" aria-pressed="${S.lang==="en"}">EN</button>
+    </div>
+    <div class="seg" role="group" aria-label="Devise">
+      <button data-cur="EUR" aria-pressed="${S.cur==="EUR"}">€</button>
+      <button data-cur="USD" aria-pressed="${S.cur==="USD"}">$</button>
+    </div>`;
+  if(!S.set){
+    h.innerHTML = `<div class="bar"><div class="brand"><h1>Co<b>t</b>e</h1><small>Extensions Pokémon</small></div>${toggles}</div>
+      <label class="search"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+      <input id="q" type="search" placeholder="Rechercher une extension" value="${esc(S.q)}" autocomplete="off"></label>`;
+    $("#q").addEventListener("input", e => { S.q = e.target.value; renderList(); });
+  } else {
+    h.innerHTML = `<div class="bar"><button class="back" id="back"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="m15 18-6-6 6-6"/></svg>Extensions</button><div style="flex:1"></div>${toggles}</div>`;
+    $("#back").addEventListener("click", () => { if(history.length > 1 && location.hash) history.back(); else go(""); });
+  }
+  h.querySelectorAll("[data-lang]").forEach(b => b.onclick = () => setLang(b.dataset.lang));
+  h.querySelectorAll("[data-cur]").forEach(b => b.onclick = () => setCur(b.dataset.cur));
+}
+function setLang(l){
+  if(l === S.lang) return;
+  S.lang = l; pref("lang", l); S.series = null; document.documentElement.lang = l;
+  route();
+}
+function setCur(c){
+  if(c === S.cur) return;
+  S.cur = c; pref("cur", c); header();
+  if(S.set){ renderCards(); renderStats(); }
+}
+
+/* ---------- liste des extensions ---------- */
+async function loadSeries(){
+  const key = "series." + S.lang;
+  let data = cget(key, DAY);
+  if(!data){
+    const list = await getJSON(`${API}/${S.lang}/series`);
+    const out = [];
+    await pool(list.filter(s => s.id !== "tcgp"), 6, async s => {
+      const d = await getJSON(`${API}/${S.lang}/series/${encodeURIComponent(s.id)}`);
+      const sets = (d.sets || []).map(x => ({
+        id: x.id, name: x.name, logo: x.logo || null, symbol: x.symbol || null,
+        count: x.cardCount ? (x.cardCount.official || x.cardCount.total || 0) : 0
+      }));
+      if(sets.length) out.push({id: s.id, name: s.name, idx: list.indexOf(s), date: d.releaseDate || "", sets: sets.reverse()});
+    });
+    out.sort((a, b) => (b.date && a.date) ? b.date.localeCompare(a.date) : b.idx - a.idx);
+    if(!out.length){
+      /* plan B : liste à plat des extensions */
+      const flat = await getJSON(`${API}/${S.lang}/sets`);
+      const sets = flat.filter(x => !/^(A\d|P-A)/.test(x.id)).map(x => ({id:x.id, name:x.name, logo:x.logo||null, symbol:x.symbol||null,
+        count: x.cardCount ? (x.cardCount.official || x.cardCount.total || 0) : 0})).reverse();
+      if(!sets.length) throw new Error("liste vide");
+      out.push({id:"all", name:"Toutes les extensions", idx:0, date:"", sets});
+    }
+    data = out; cset(key, data);
+  }
+  S.series = data;
+}
+function logoHTML(s){
+  const src = s.logo ? s.logo + ".webp" : (s.symbol ? s.symbol + ".webp" : null);
+  const ph = `<span class="ph">${esc((s.name || s.id).split(/\s+/).map(w => w[0]).join("").slice(0, 4).toUpperCase())}</span>`;
+  return `<span class="logo">${src ? `<img src="${esc(src)}" alt="" loading="lazy" onerror="this.outerHTML='${ph.replace(/'/g,"&#39;").replace(/"/g,"&quot;")}'">` : ph}</span>`;
+}
+async function showList(){
+  S.set = null; S.gen++;
+  header();
+  const m = $("#main");
+  if(!S.series){
+    m.innerHTML = `<div class="serie"><h2><span class="sk" style="width:120px;height:11px"></span></h2><div class="sets">${
+      Array.from({length:7}, () => `<div class="set"><span class="logo"><span class="sk" style="width:70px;height:30px"></span></span><span class="t"><span class="sk" style="display:block;width:60%;height:14px"></span></span></div>`).join("")}</div></div>`;
+    try{ await loadSeries(); }
+    catch(e){
+      if(e.kind === "net") m.innerHTML = errorBox(NET_MSG, "Réessayer", null, e);
+      else if(S.lang !== "en") m.innerHTML = errorBox("Les extensions en français ne répondent pas.", "Afficher en anglais", "en", e);
+      else m.innerHTML = errorBox("Le serveur des cartes a renvoyé une erreur.", "Réessayer", null, e);
+      return;
+    }
+    if(S.set) return;
+  }
+  renderList();
+  requestAnimationFrame(() => window.scrollTo(0, S.listScroll));
+}
+function renderList(){
+  const q = S.q.trim().toLowerCase();
+  const html = S.series.map(se => {
+    const sets = q ? se.sets.filter(s => (s.name + " " + s.id + " " + se.name).toLowerCase().includes(q)) : se.sets;
+    if(!sets.length) return "";
+    return `<section class="serie"><h2><span>${esc(se.name)}</span><span>${sets.length}</span></h2><div class="sets">${
+      sets.map(s => `<button class="set" data-set="${esc(s.id)}">${logoHTML(s)}<span class="t"><span class="n">${esc(s.name)}</span><span class="c">${s.count ? s.count + " cartes" : esc(s.id)}</span></span>
+        <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m9 18 6-6-6-6"/></svg></button>`).join("")
+    }</div></section>`;
+  }).join("");
+  $("#main").innerHTML = html || `<div class="state"><strong>Aucune extension trouvée</strong>Essaie un autre nom, par exemple « Écarlate » ou « 151 ».</div>`;
+  $("#main").querySelectorAll("[data-set]").forEach(b => b.onclick = () => { S.listScroll = window.scrollY; go("set/" + encodeURIComponent(b.dataset.set)); });
+}
+const NET_MSG = "L'app n'arrive pas à joindre le serveur des cartes. Si tu l'as ouverte depuis l'aperçu de l'app Claude, c'est normal : l'aperçu bloque l'accès à internet. Ouvre-la dans Safari depuis son lien.";
+function errorBox(msg, label, lang, err){
+  setTimeout(() => {
+    const b = $("#retry"); if(!b) return;
+    b.onclick = () => { if(lang) setLang(lang); else route(); };
+  });
+  return `<div class="state"><strong>Chargement impossible</strong>${esc(msg)}${err ? `<br><small style="font-family:var(--f-num);font-size:11px">Détail : ${esc(err.message)}</small>` : ""}<br><button class="btn" id="retry">${esc(label)}</button></div>`;
+}
+
+/* ---------- vue d'une extension ---------- */
+async function showSet(id){
+  const gen = ++S.gen;
+  S.set = {id, name: id}; S.cards = []; S.cq = "";
+  header(); window.scrollTo(0, 0);
+  const m = $("#main");
+  m.innerHTML = `<div class="sethead"><span class="logo"><span class="sk" style="width:100px;height:44px"></span></span><div style="flex:1"><span class="sk" style="display:block;width:70%;height:20px"></span></div></div>
+    <div class="grid">${Array.from({length:12}, () => `<div class="card"><div class="img sk"></div></div>`).join("")}</div>`;
+  let set;
+  try{
+    const key = "set." + S.lang + "." + id;
+    set = cget(key, DAY);
+    if(!set){ set = await getJSON(`${API}/${S.lang}/sets/${encodeURIComponent(id)}`); cset(key, {id:set.id, name:set.name, logo:set.logo, symbol:set.symbol, releaseDate:set.releaseDate, serie:set.serie, cardCount:set.cardCount, cards:set.cards}); }
+  }catch(e){
+    if(gen !== S.gen) return;
+    if(e.kind === "net"){ m.innerHTML = errorBox(NET_MSG, "Réessayer", null, e); return; }
+    m.innerHTML = errorBox(S.lang === "fr" ? "Cette extension n'est peut-être pas disponible en français." : "Vérifie ta connexion.", S.lang === "fr" ? "Afficher en anglais" : "Réessayer", S.lang === "fr" ? "en" : null);
+    return;
+  }
+  if(gen !== S.gen) return;
+  if(S.lang !== "en" && (set.cards || []).some(c => !c.image)){
+    try{
+      const en = await getJSON(`${API}/en/sets/${encodeURIComponent(id)}`);
+      const m2 = new Map((en.cards || []).map(c => [c.id, c]));
+      set.cards.forEach(c => { if(!c.image && m2.get(c.id) && m2.get(c.id).image) c.image = m2.get(c.id).image; });
+      if(!set.logo && en.logo) set.logo = en.logo;
+    }catch(e){}
+    if(gen !== S.gen) return;
+  }
+  S.set = set; S.cards = set.cards || [];
+  S.cards.forEach(c => { const p = cget("p." + c.id, 6 * HOUR); if(p) S.prices[c.id] = p; });
+  const date = set.releaseDate ? new Date(set.releaseDate).toLocaleDateString("fr-FR", {day:"numeric", month:"long", year:"numeric"}) : "";
+  m.innerHTML = `
+    <div class="sethead">${logoHTML(set)}<div style="min-width:0"><h2>${esc(set.name)}</h2><p>${esc([set.serie && set.serie.name, date].filter(Boolean).join(" · "))}</p></div></div>
+    <div class="stats">
+      <div class="stat"><span>Valeur de l'extension</span><strong id="total">…</strong></div>
+      <div class="stat"><span>Carte la plus chère</span><strong id="best">…</strong></div>
+    </div>
+    <div class="progress" id="prog"><i></i></div>
+    <div class="tools">
+      <label class="search"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        <input id="cq" type="search" placeholder="Filtrer les cartes" autocomplete="off"></label>
+      <div class="seg" role="group" aria-label="Tri">
+        <button data-sort="num" aria-pressed="${S.sort==="num"}">N°</button>
+        <button data-sort="price" aria-pressed="${S.sort==="price"}">Prix ↓</button>
+      </div>
+    </div>
+    <div class="grid" id="grid"></div>`;
+  $("#cq").addEventListener("input", e => { S.cq = e.target.value; renderCards(); });
+  m.querySelectorAll("[data-sort]").forEach(b => b.onclick = () => {
+    S.sort = b.dataset.sort; pref("sort", S.sort);
+    m.querySelectorAll("[data-sort]").forEach(x => x.setAttribute("aria-pressed", x === b));
+    renderCards();
+  });
+  if(!S.cards.length){ $("#grid").outerHTML = `<div class="state"><strong>Pas encore de cartes</strong>TCGdex n'a pas encore la liste de cette extension.</div>`; return; }
+  renderCards(); renderStats();
+  loadPrices(gen);
+}
+async function loadPrices(gen){
+  const todo = S.cards.filter(c => S.prices[c.id] === undefined);
+  let dirty = false, timer = null;
+  const flush = () => { timer = null; if(gen !== S.gen) return; if(dirty){ dirty = false; S.sort === "price" ? renderCards() : patchCards(); renderStats(); } };
+  await pool(todo, 8, async c => {
+    if(gen !== S.gen) return;
+    let d = await getJSON(`${API}/${S.lang}/cards/${encodeURIComponent(c.id)}`).catch(() => ({}));
+    if(!d.pricing && S.lang !== "en") d = await getJSON(`${API}/en/cards/${encodeURIComponent(c.id)}`).catch(() => ({}));
+    if(d.rarity) S.rarity[c.id] = d.rarity;
+    const pr = d.pricing || {};
+    const p = {cm: pr.cardmarket || null, tp: pr.tcgplayer || null};
+    S.prices[c.id] = p; cset("p." + c.id, p);
+    dirty = true; if(!timer) timer = setTimeout(flush, 250);
+  });
+  if(timer) clearTimeout(timer);
+  dirty = true; flush();
+}
+function sortedCards(){
+  let list = S.cards.slice();
+  const q = S.cq.trim().toLowerCase();
+  if(q) list = list.filter(c => (c.name + " " + c.localId).toLowerCase().includes(q));
+  const n = c => { const x = parseInt(c.localId, 10); return isNaN(x) ? 1e9 : x; };
+  if(S.sort === "price") list.sort((a, b) => (display(b.id).v ?? -1) - (display(a.id).v ?? -1) || n(a) - n(b));
+  else list.sort((a, b) => n(a) - n(b) || String(a.localId).localeCompare(String(b.localId)));
+  return list;
+}
+function topIds(){
+  return S.cards.map(c => [c.id, display(c.id).v]).filter(x => x[1] != null).sort((a, b) => b[1] - a[1]).slice(0, 3).map(x => x[0]);
+}
+function renderCards(){
+  const g = $("#grid"); if(!g) return;
+  const top = topIds();
+  const list = sortedCards();
+  if(!list.length){ g.innerHTML = `<div class="state" style="grid-column:1/-1"><strong>Aucune carte</strong>Aucune carte ne correspond à « ${esc(S.cq)} ».</div>`; return; }
+  g.innerHTML = list.map(c => {
+    const d = display(c.id), r = top.indexOf(c.id);
+    return `<button class="card" data-card="${esc(c.id)}" aria-label="${esc(c.name)}, ${esc(d.txt)}">
+      <div class="img"><span class="noimg">${esc(c.name)}</span>${c.image ? `<img src="${esc(c.image)}/low.webp" alt="" loading="lazy" onerror="this.remove()">` : ""}${r >= 0 ? `<span class="rank">#${r + 1}</span>` : ""}</div>
+      <div class="nm">${esc(c.name)}</div>
+      <div class="meta"><span class="num">${esc(c.localId)}</span><span class="price ${d.cls} ${r >= 0 ? "top" : ""}">${esc(d.txt)}</span></div>
+    </button>`;
+  }).join("");
+  g.querySelectorAll("[data-card]").forEach(b => b.onclick = () => openCard(b.dataset.card));
+}
+function patchCards(){
+  const g = $("#grid"); if(!g) return;
+  const top = topIds();
+  g.querySelectorAll("[data-card]").forEach(b => {
+    const id = b.dataset.card, d = display(id), r = top.indexOf(id);
+    const el = $(".price", b); el.textContent = d.txt; el.className = "price " + d.cls + (r >= 0 ? " top" : "");
+    const img = $(".img", b); const old = $(".rank", img); if(old) old.remove();
+    if(r >= 0) img.insertAdjacentHTML("beforeend", `<span class="rank">#${r + 1}</span>`);
+  });
+}
+function renderStats(){
+  const t = $("#total"), b = $("#best"), pr = $("#prog i"); if(!t) return;
+  let sum = 0, best = null, done = 0;
+  S.cards.forEach(c => {
+    if(S.prices[c.id] !== undefined) done++;
+    const v = display(c.id).v; if(v != null){ sum += v; if(!best || v > best.v) best = {v, c}; }
+  });
+  t.textContent = done ? fmt(sum, S.cur) : "…";
+  b.textContent = best ? fmt(best.v, S.cur) : (done === S.cards.length ? "—" : "…");
+  b.title = best ? best.c.name : "";
+  pr.style.width = (S.cards.length ? done / S.cards.length * 100 : 100) + "%";
+  $("#prog").hidden = done === S.cards.length;
+}
+
+/* ---------- fiche carte ---------- */
+async function openCard(id){
+  const c = S.cards.find(x => x.id === id); if(!c) return;
+  const sh = $("#sheet");
+  const p = S.prices[id];
+  const big = display(id);
+  const row = (k, v, cur) => pos(v) ? `<div class="row"><span>${k}</span><b>${fmt(v, cur)}</b></div>` : "";
+  const day = s => s ? new Date(s).toLocaleDateString("fr-FR", {day:"numeric", month:"short"}) : "";
+  let cm = "", tp = "";
+  if(p && p.cm){
+    const x = p.cm;
+    const rows = row("Tendance", x.trend, "EUR") + row("Prix moyen", x.avg, "EUR") + row("Plus bas", x.low, "EUR") +
+      row("Moyenne 7 jours", x.avg7, "EUR") + row("Moyenne 30 jours", x.avg30, "EUR") +
+      row("Tendance holo", x["trend-holo"], "EUR") + row("Moyenne holo", x["avg-holo"], "EUR") + row("Plus bas holo", x["low-holo"], "EUR");
+    if(rows) cm = `<div class="mk"><h4>Cardmarket <em>${esc(day(x.updated))}</em></h4><div class="rows">${rows}</div></div>`;
+  }
+  if(p && p.tp){
+    const names = {normal:"Normale", holofoil:"Holo", holo:"Holo", reverse:"Reverse", "reverse-holofoil":"Reverse holo", "1stEditionHolofoil":"1re édition holo", "1stEditionNormal":"1re édition"};
+    const rows = Object.keys(p.tp).filter(k => p.tp[k] && typeof p.tp[k] === "object").map(k => {
+      const v = p.tp[k]; const m = pos(v.marketPrice) ?? pos(v.midPrice);
+      return m ? `<div class="row"><span>${esc(names[k] || k)}${pos(v.lowPrice) ? ` <small style="color:var(--muted)">dès ${fmt(v.lowPrice, "USD")}</small>` : ""}</span><b>${fmt(m, "USD")}</b></div>` : "";
+    }).join("");
+    if(rows) tp = `<div class="mk"><h4>TCGplayer <em>${esc(day(p.tp.updated))}</em></h4><div class="rows">${rows}</div></div>`;
+  }
+  const none = (!cm && !tp) ? `<div class="state" style="margin-top:14px"><strong>${p === undefined ? "Prix en cours de chargement" : "Pas de prix disponible"}</strong>${p === undefined ? "Réessaie dans un instant." : "Cette carte n'a pas de vente récente référencée sur Cardmarket ou TCGplayer."}</div>` : "";
+  const q = encodeURIComponent(c.name + " " + (S.set.name || ""));
+  sh.innerHTML = `<div class="panel" role="dialog" aria-modal="true" aria-label="${esc(c.name)}">
+    <div class="grab"></div>
+    <div class="ptop">
+      ${c.image ? `<img src="${esc(c.image)}/high.webp" alt="${esc(c.name)}" onerror="this.src='${esc(c.image)}/low.webp'">` : `<div class="card"><div class="img"><span class="noimg">${esc(c.name)}</span></div></div>`}
+      <div style="min-width:0">
+        <h3>${esc(c.name)}</h3>
+        <div class="sub">${esc(S.set.name)} · n° ${esc(c.localId)}${S.set.cardCount && S.set.cardCount.official ? "/" + S.set.cardCount.official : ""}</div>
+        <div class="sub" id="rar">${esc(S.rarity[id] || "")}</div>
+        <div class="big"><span>Prix du marché</span><strong>${esc(big.txt)}</strong></div>
+      </div>
+    </div>
+    ${cm}${tp}${none}
+    <div class="links">
+      <a href="https://www.cardmarket.com/${S.lang === "fr" ? "fr" : "en"}/Pokemon/Products/Search?searchString=${encodeURIComponent(c.name)}" target="_blank" rel="noopener">Voir sur Cardmarket</a>
+      <a href="https://www.tcgplayer.com/search/pokemon/product?q=${q}" target="_blank" rel="noopener">Voir sur TCGplayer</a>
+    </div>
+    <button class="close" id="closeSheet">Fermer</button>
+  </div>`;
+  sh.hidden = false; document.body.style.overflow = "hidden";
+  $("#closeSheet").onclick = closeCard;
+  sh.onclick = e => { if(e.target === sh) closeCard(); };
+  getJSON(`${API}/${S.lang}/cards/${encodeURIComponent(id)}`).then(d => {
+    const r = $("#rar"); if(r && !sh.hidden) r.textContent = [d.rarity, d.illustrator && "Illus. " + d.illustrator].filter(Boolean).join(" · ");
+  }).catch(() => {});
+}
+function closeCard(){ const sh = $("#sheet"); sh.hidden = true; sh.innerHTML = ""; document.body.style.overflow = ""; }
+document.addEventListener("keydown", e => { if(e.key === "Escape") closeCard(); });
+
+/* ---------- navigation ---------- */
+function go(h){ location.hash = h ? "#/" + h : ""; if(!h) route(); }
+function route(){
+  closeCard();
+  const h = location.hash.replace(/^#\/?/, "");
+  if(h.startsWith("set/")) showSet(decodeURIComponent(h.slice(4)));
+  else showList();
+}
+window.addEventListener("hashchange", route);
+
+/* ---------- icône écran d'accueil ---------- */
+(function icon(){
+  try{
+    const c = document.createElement("canvas"); c.width = c.height = 180;
+    const x = c.getContext("2d");
+    x.fillStyle = "#141A2B"; x.fillRect(0, 0, 180, 180);
+    x.fillStyle = "#E3350D"; x.beginPath(); x.arc(90, 90, 62, Math.PI, 0); x.fill();
+    x.fillStyle = "#FFFFFF"; x.beginPath(); x.arc(90, 90, 62, 0, Math.PI); x.fill();
+    x.fillStyle = "#141A2B"; x.fillRect(28, 84, 124, 12);
+    x.beginPath(); x.arc(90, 90, 22, 0, 2 * Math.PI); x.fill();
+    x.fillStyle = "#FFFFFF"; x.beginPath(); x.arc(90, 90, 12, 0, 2 * Math.PI); x.fill();
+    const l = document.createElement("link"); l.rel = "apple-touch-icon"; l.href = c.toDataURL("image/png");
+    document.head.appendChild(l);
+  }catch(e){}
+})();
+
+document.documentElement.lang = S.lang;
+route();
+</script>
+</body>
+</html>

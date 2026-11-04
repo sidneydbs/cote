@@ -44,6 +44,17 @@ input,select{font:inherit;color:var(--fg)}
 .frame .zone span{position:absolute;top:-15px;left:0;font:600 10px/1 var(--f-mono);letter-spacing:.08em;color:var(--border-yellow);text-transform:uppercase}
 .frame .z-name{top:3.5%;height:8%}
 .frame .z-num{bottom:2%;height:6.5%}
+.frame.good::before{border-color:var(--up);box-shadow:0 0 0 2px rgba(61,220,151,.35)}
+.live{position:absolute;left:0;right:0;z-index:3;display:flex;flex-wrap:wrap;justify-content:center;gap:5px;padding:0 max(10px,env(safe-area-inset-right,0px)) 0 max(10px,env(safe-area-inset-left,0px));pointer-events:none}
+.lv{display:inline-flex;align-items:center;gap:5px;padding:5px 9px;border-radius:999px;background:rgba(23,26,33,.84);border:1px solid var(--line);font-size:11.5px;font-weight:600;color:var(--muted);backdrop-filter:blur(8px)}
+.lv i{width:8px;height:8px;border-radius:50%;background:#4a4f5c;flex:none}
+.lv.ok{color:var(--fg)}.lv.ok i{background:var(--up)}
+.lv.warn i{background:var(--border-yellow)}
+.lv.fail{color:#ffd0d0}.lv.fail i{background:var(--down)}
+.lv.work i{background:var(--border-yellow);animation:pulse .8s ease-in-out infinite}
+@keyframes pulse{50%{opacity:.35}}
+@media (max-width:440px){.scan-top:has(.lastchip.show) .brand{display:none}.scan-top .chip{padding:7px 10px}}
+.chip.on{background:var(--border-yellow);color:#1a1408;border-color:var(--border-yellow)}
 .frame.busy::after{content:"";position:absolute;left:0;right:0;height:3px;top:0;background:linear-gradient(90deg,transparent,var(--border-yellow),transparent);animation:sweep 1.4s ease-in-out infinite;border-radius:3px}
 @keyframes sweep{0%{top:2%}50%{top:96%}100%{top:2%}}
 .scan-top{position:absolute;top:0;left:0;right:0;padding:calc(var(--safe-t) + 12px) max(16px,env(safe-area-inset-right,0px)) 12px max(16px,env(safe-area-inset-left,0px));display:flex;align-items:center;gap:10px;z-index:3}
@@ -286,11 +297,15 @@ input,select{font:inherit;color:var(--fg)}
       <div class="brand">COTE<b>·</b>SCAN</div>
       <div class="spacer"></div>
       <button class="chip" id="healthChip" aria-label="État de la connexion"><span class="hdot" id="hdot"></span>État</button>
-      <button class="chip lastchip" id="lastChip" aria-label="Voir la dernière lecture">Dernière lecture</button>
+      <button class="chip lastchip" id="lastChip" aria-label="Voir la dernière lecture">Dernière</button>
+      <button class="chip on" id="autoChip" aria-pressed="true" aria-label="Scan automatique">Auto</button>
       <button class="chip" id="langChip" aria-label="Langue des cartes">FR</button>
     </div>
     <button class="banner netbar" id="netBar" hidden></button>
     <div class="status" id="status">Cadre la carte entière dans le rectangle</div>
+    <div class="live" id="live" aria-live="polite">
+      <span class="lv" data-k="card"><i></i>Carte</span><span class="lv" data-k="dist"><i></i>Distance</span><span class="lv" data-k="blur"><i></i>Netteté</span><span class="lv" data-k="light"><i></i>Lumière</span><span class="lv" data-k="glare"><i></i>Reflets</span><span class="lv" data-k="num"><i></i>Numéro</span><span class="lv" data-k="id"><i></i>Identifiée</span>
+    </div>
     <div class="scan-bottom">
       <button class="round" id="importBtn" aria-label="Importer une photo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.8"/><path d="m21 15-5-5L5 21"/></svg></button>
       <button class="shutter" id="shutter" aria-label="Scanner la carte"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7V5a2 2 0 0 1 2-2h2M17 3h2a2 2 0 0 1 2 2v2M21 17v2a2 2 0 0 1-2 2h-2M7 21H5a2 2 0 0 1-2-2v-2"/><path d="M7 12h10"/></svg></button>
@@ -770,13 +785,13 @@ const video=$("#video"), still=$("#still"), frame=$("#frame"), status=$("#status
 let stream=null, track=null, torchOn=false, busy=false, camStarted=false;
 function layoutFrame(){
   const v=$("#scanView").getBoundingClientRect();
-  const topPad = 70, botPad = 130;
+  const topPad = 70, botPad = 196;
   const availH = v.height - topPad - botPad, availW = v.width*0.84;
   let h = Math.min(availH, availW*88/63); let w = h*63/88;
   const x=(v.width-w)/2, y=topPad + (availH-h)/2;
   Object.assign(frame.style,{left:x+"px",top:y+"px",width:w+"px",height:h+"px"});
   status.style.top = (y+h+10)+"px";
-  if(y+h+40 > v.height-botPad+20) status.style.top = (y-28)+"px";
+  $("#live").style.top = (y+h+36)+"px";
 }
 addEventListener("resize",layoutFrame);
 async function startCamera(){
@@ -789,10 +804,11 @@ async function startCamera(){
     if(caps.torch){ const t=$("#torchBtn"); t.disabled=false; t.style.opacity=1; }
     if(caps.focusMode?.includes("continuous")) track.applyConstraints({advanced:[{focusMode:"continuous"}]}).catch(()=>{});
     $("#nocam").hidden = true; video.hidden=false; still.hidden=true;
+    autoSchedule(700);
   }catch(e){ noCamera(e.name==="NotAllowedError" ? "Accès caméra refusé. Autorise-le dans les réglages de Safari, ou prends une photo." : "Caméra indisponible. Prends une photo à la place."); }
 }
 function noCamera(msg){ $("#nocam").hidden=false; $("#nocamMsg").textContent=msg; }
-function resumeCamera(){ still.hidden=true; if(stream) video.hidden=false; frame.classList.remove("busy"); status.textContent="Cadre la carte entière dans le rectangle"; }
+function resumeCamera(){ still.hidden=true; if(stream) video.hidden=false; frame.classList.remove("busy"); status.textContent = AUTO ? "Vise la carte : le scan se lance tout seul" : "Cadre la carte entière dans le rectangle"; autoReset(); sheetClosedAt = Date.now(); autoSchedule(500); }
 $("#retryCam").onclick = startCamera;
 $("#torchBtn").onclick = async ()=>{ if(!track) return; torchOn=!torchOn; try{ await track.applyConstraints({advanced:[{torch:torchOn}]}); $("#torchBtn").classList.toggle("on",torchOn); }catch(e){ torchOn=false; } };
 $("#photoBtn").onclick = ()=>$("#fileIn").click();
@@ -806,8 +822,9 @@ for(const id of ["#fileIn","#fileIn2"]) $(id).onchange = async e=>{
 };
 function loadImage(file){ return new Promise((res,rej)=>{ const i=new Image(); i.onload=()=>res(i); i.onerror=rej; i.src=URL.createObjectURL(file); }); }
 
-$("#shutter").onclick = ()=>{
+$("#shutter").onclick = async ()=>{
   if(busy) return;
+  busy = true; while(autoBusy) await new Promise(r=>setTimeout(r,40)); busy = false;
   if(!stream || !video.videoWidth){ $("#fileIn").click(); return; }
   const vr=video.getBoundingClientRect(), fr=frame.getBoundingClientRect();
   const vw=video.videoWidth, vh=video.videoHeight, sc=Math.max(vr.width/vw, vr.height/vh);
@@ -960,6 +977,164 @@ function worstQuality(q, keys){
   return q.checks.filter(c=>keys.includes(c.k)).sort((a,b)=>STATE_RANK[b.state]-STATE_RANK[a.state])[0];
 }
 
+
+/* ---------- Numéros : lecture tolérante, validée par le nombre de cartes des séries ---------- */
+function numCandidates(text, sets){
+  const totals = new Set();
+  for(const s of Object.values(sets||{})){ if(s.off) totals.add(+s.off); if(s.tot) totals.add(+s.tot); }
+  const out = [], seen = new Set();
+  const add = (n, t, how) => {
+    n = String(n).toUpperCase(); t = t==null ? null : String(t).toUpperCase();
+    const k = n+"/"+t; if(seen.has(k)) return;
+    const nn = parseInt(n.replace(/^[A-Z]+/,""),10), tn = t && /^\d+$/.test(t) ? parseInt(t,10) : null;
+    if(how!=="strict"){
+      if(tn==null) return;                       // sans barre, le total doit exister
+      if(totals.size && !totals.has(tn)) return; // … et correspondre à une vraie série
+      if(!(nn>=1 && nn<=tn*2.2)) return;
+    }
+    seen.add(k); out.push({num:n, total:t, how});
+  };
+  const strict = parseNumber(text); if(strict) add(strict.num, strict.total, "strict");
+  const base = (text||"").toUpperCase().replace(/O/g,"0").replace(/\s+/g," ");
+  for(const t of [base, base.replace(/[IL|](?=\d)/g,"1")]){
+    const re = /(?<![A-Z0-9])((?:TG|GG)?\d{1,3})\s*[\/\\|IL!]?\s*((?:TG|GG)?\d{2,3})(?![0-9])/g;
+    let m; while((m = re.exec(t))){ add(m[1], m[2], "souple"); re.lastIndex = m.index + 1; }
+  }
+  // un total valide avant tout
+  return out.sort((a,b)=>(a.how==="strict"?0:1)-(b.how==="strict"?0:1));
+}
+const bestNumber = (text, sets) => { const c = numCandidates(text, sets)[0]; return c ? {num:c.num, total:c.total} : null; };
+
+/* ---------- Scan automatique : contrôle en direct, capture quand tout est vert ---------- */
+let AUTO = store.get("auto", true), autoTimer = null, autoBusy = false, okStreak = 0, autoTries = 0, sheetClosedAt = 0, lastAutoId = null, autoNoNum = 0;
+const lookupCache = new Map();
+const liveEl = $("#live"), autoChip = $("#autoChip");
+function setLive(k, st){ const el = liveEl.querySelector(`[data-k="${k}"]`); if(el) el.className = "lv"+(st&&st!=="idle"?" "+st:""); }
+function autoReset(){ okStreak = 0; autoTries = 0; autoNoNum = 0; ["card","dist","blur","light","glare","num","id"].forEach(k=>setLive(k,"idle")); frame.classList.remove("good"); }
+function setAutoUI(){ autoChip.classList.toggle("on", AUTO); autoChip.setAttribute("aria-pressed", AUTO); liveEl.hidden = !AUTO; }
+autoChip.onclick = ()=>{ AUTO = !AUTO; store.set("auto", AUTO); setAutoUI(); autoReset(); status.textContent = AUTO ? "Vise la carte : le scan se lance tout seul" : "Cadre la carte puis touche le bouton jaune"; toast(AUTO ? "Scan automatique activé" : "Scan manuel"); if(AUTO) autoSchedule(300); };
+setAutoUI();
+function autoSchedule(ms=260){ clearTimeout(autoTimer); autoTimer = setTimeout(autoTick, ms); }
+function frameRect(){
+  const vr=video.getBoundingClientRect(), fr=frame.getBoundingClientRect();
+  const vw=video.videoWidth, vh=video.videoHeight, sc=Math.max(vr.width/vw, vr.height/vh);
+  const ox=(vr.width-vw*sc)/2, oy=(vr.height-vh*sc)/2;
+  return {sx:(fr.left-vr.left-ox)/sc, sy:(fr.top-vr.top-oy)/sc, sw:fr.width/sc, sh:fr.height/sc};
+}
+/* image fixe de la zone visée (un peu élargie), pour que toutes les lectures portent sur la même image */
+function snapFrame(){
+  const {sx,sy,sw,sh} = frameRect(), vw = video.videoWidth, vh = video.videoHeight;
+  const mX = sw*.08, mY = sh*.06;
+  const x = Math.max(0,sx-mX), y = Math.max(0,sy-mY), w = Math.min(vw,sx+sw+mX)-x, h = Math.min(vh,sy+sh+mY)-y;
+  const k = Math.min(1, 1500/h), c = document.createElement("canvas");
+  c.width = Math.max(1,Math.round(w*k)); c.height = Math.max(1,Math.round(h*k));
+  c.getContext("2d").drawImage(video, x, y, w, h, 0, 0, c.width, c.height);
+  return {c, F:{x:(sx-x)*k, y:(sy-y)*k, w:sw*k, h:sh*k}};
+}
+const LIVE_TIPS = {
+  card:"Place une carte dans le rectangle",
+  dist:"Rapproche-toi : la carte doit remplir le rectangle",
+  light:"Lumière insuffisante ou trop forte",
+  glare:"Reflet sur le texte : incline un peu la carte",
+  blur:"Ne bouge plus, mise au point…"
+};
+function lookupNum(c){
+  const key = LANG+"|"+c.num+"/"+c.total;
+  if(!lookupCache.has(key)){ const p = findCards({num:c.num, total:c.total}); lookupCache.set(key, p); p.catch(()=>lookupCache.delete(key)); }
+  return lookupCache.get(key);
+}
+async function autoTick(){
+  autoTimer = null;
+  const sheetOpen = $("#sheet").classList.contains("open");
+  if(!AUTO || !stream || !video.videoWidth || busy || autoBusy || $("#scanView").hidden || sheetOpen || document.hidden){ autoSchedule(500); return; }
+  autoBusy = true;
+  try{
+    const S = snapFrame();
+    const q = analyzeQuality(S.c, S.F.x, S.F.y, S.F.w, S.F.h);
+    if(q.card.std < 14) q.checks.find(c=>c.k==="card").state = "fail";   // image uniforme : pas de carte
+    const st = k => q.checks.find(c=>c.k===k)?.state || "idle";
+    for(const k of ["card","dist","blur","light","glare"]) setLive(k, st(k));
+    // seule l'absence de carte bloque : la lecture du numéro est le vrai juge, les autres points servent de conseils
+    const order = ["card","dist","light","glare","blur"];
+    const bad = order.find(k=>st(k)==="fail");
+    if(bad==="card" || bad==="dist"){ okStreak = 0; setLive("num","idle"); setLive("id","idle"); frame.classList.remove("good"); status.textContent = LIVE_TIPS[bad]; return; }
+    okStreak++;
+    frame.classList.toggle("good", !bad);
+    if(okStreak < 2){ status.textContent = bad ? LIVE_TIPS[bad] : "Ne bouge plus…"; return; }
+
+    // moteur de lecture (téléchargé une seule fois)
+    if(!worker) status.textContent = "Préparation de la lecture…";
+    const w = await getWorker();
+    const SETS = await getSets(LANG).catch(()=>({}));
+    const C = detectCard(S.c, 0, 0, S.c.width, S.c.height);
+    const boxes = C.found ? [C, S.F] : [S.F];
+    const zones = [[0,.865,.56,.135,true,11],[.44,.865,.56,.135,true,11],[0,.86,1,.14,false,6],[0,.865,.56,.135,false,11]];
+    const box = boxes[autoTries % boxes.length], z = zones[Math.floor(autoTries / boxes.length) % zones.length];
+    autoTries++;
+    setLive("num","work"); status.textContent = "Lecture du numéro…";
+    const cv = crop(S.c, box.x, box.y, box.w, box.h, z[0], z[1], z[2], z[3], 2.6, z[4]);
+    await w.setParameters({tessedit_pageseg_mode:String(z[5]), tessedit_char_whitelist:"0123456789/TGRCSVHIL|"});
+    const data = (await withTimeout(w.recognize(cv,{},{text:true}), 20000, "lecture trop longue")).data;
+    (window.__autoLog ||= []).push({text:data.text, conf:Math.round(data.confidence||0), zone:z.join(","), found:C.found}); if(window.__autoLog.length>12) window.__autoLog.shift();
+    if(busy || $("#sheet").classList.contains("open")) return;
+    const cands = numCandidates(data.text||"", SETS);
+    if(!cands.length){
+      autoNoNum++; setLive("num","fail"); setLive("id","idle");
+      status.textContent = bad ? LIVE_TIPS[bad] : autoNoNum>6 ? "Numéro illisible : vérifie qu'il n'est caché ni par un doigt ni par un reflet" : "Numéro pas encore lu, garde la carte immobile";
+      return;
+    }
+    setLive("num","ok");
+    setLive("id","work"); status.textContent = `Numéro ${cands[0].num}/${cands[0].total} — recherche…`;
+    let hit = null, list = null;
+    for(const c of cands.slice(0,3)){
+      const l = await lookupNum(c).catch(()=>[]);
+      const good = l.filter(x=>x.totalOk);
+      if(good.length){ hit = c; list = l; break; }
+    }
+    if(busy || $("#sheet").classList.contains("open")) return;
+    if(!hit){ setLive("id","fail"); status.textContent = `Numéro ${cands[0].num}/${cands[0].total} lu, aucune carte correspondante : nouvel essai`; return; }
+
+    // plusieurs séries de même taille : le nom départage
+    let good = list.filter(x=>x.totalOk), name = "", nameImg = null, nameConf = 0;
+    if(good.length > 1){
+      status.textContent = "Lecture du nom…";
+      const ncv = crop(S.c, box.x, box.y, box.w, box.h, .04, .025, .7, .09, 2.5, false);
+      await w.setParameters({tessedit_pageseg_mode:"7", tessedit_char_whitelist:""});
+      const nd = (await withTimeout(w.recognize(ncv,{},{text:true}), 20000, "lecture trop longue")).data;
+      name = (nd.text||"").replace(/[^A-Za-zÀ-ÿ'’\- ]/g," ").replace(/\s+/g," ").trim(); nameConf = Math.round(nd.confidence||0);
+      nameImg = ncv.toDataURL("image/jpeg",.8);
+      good = good.map(x=>({...x, nameSim: nameScore({name}, x.name) ?? 0})).sort((a,b)=>b.nameSim-a.nameSim);
+    }
+    const best = good[0];
+    if(busy || $("#sheet").classList.contains("open")) return;
+    // même carte que celle qu'on vient de fermer : on attend qu'on en change
+    if(best.id===lastAutoId && Date.now()-sheetClosedAt < 8000){ setLive("id","ok"); status.textContent = "Carte déjà affichée : passe à la suivante"; return; }
+
+    setLive("id","ok"); frame.classList.add("good");
+    const uncertain = good.length>1 && (best.nameSim??0) < .5 ? `${good.length} séries comptent ${hit.total} cartes avec ce numéro ; le nom n'a pas permis de trancher.` : null;
+    const D = {t:Date.now(), auto:true, q, attempts:[{zone:`auto · essai ${autoTries}`, bin:z[4], text:(data.text||"").replace(/\s+/g," ").trim(), conf:Math.round(data.confidence||0), ok:true}],
+      parsed:{num:hit.num, total:hit.total}, numConf:Math.round(data.confidence||0), numImg:cv.toDataURL("image/png"),
+      name: name || best.name, nameRaw:name, nameConf, nameImg, words:[], search:list.meta, uncertain, reasons:uncertain?[uncertain]:[], result:{id:best.id, name:best.name}};
+    try{ D.thumb = cardThumb(S.c, {x:0,y:0,w:S.c.width,h:S.c.height}, C); }catch(e){}
+    lastDiag = D; lastAutoId = best.id; $("#lastChip").classList.add("show");
+    // fige l'image et ouvre la fiche
+    const vr = video.getBoundingClientRect(), vw = video.videoWidth, vh = video.videoHeight, sc = Math.max(vr.width/vw, vr.height/vh);
+    still.width = vr.width; still.height = vr.height; still.getContext("2d").drawImage(video,(vr.width-vw*sc)/2,(vr.height-vh*sc)/2,vw*sc,vh*sc);
+    still.hidden = false; video.hidden = true;
+    navigator.vibrate?.(uncertain ? [30] : [10,40,10]);
+    status.textContent = `Trouvée : ${best.name}`;
+    await new Promise(r=>setTimeout(r,350));
+    await showCard(best.id, list, D);
+  }catch(e){
+    if(e instanceof NetError || /moteur|script de lecture/.test(e.message||"")){ status.textContent = "Lecture automatique indisponible : touche État pour voir pourquoi"; autoSchedule(4000); return; }
+    status.textContent = "Nouvel essai…";
+  }finally{
+    autoBusy = false;
+    if(!$("#sheet").classList.contains("open")) autoSchedule();
+  }
+}
+document.addEventListener("visibilitychange", ()=>{ if(!document.hidden) autoSchedule(400); });
+
 /* ---------- Analyse complète ---------- */
 let lastDiag = null;
 async function processCard(src,sx,sy,sw,sh){
@@ -970,6 +1145,7 @@ async function processCard(src,sx,sy,sw,sh){
   const mX = sw*.08, mY = sh*.06;
   const R = {x:Math.max(0,sx-mX), y:Math.max(0,sy-mY)}; R.w = Math.min(SW, sx+sw+mX)-R.x; R.h = Math.min(SH, sy+sh+mY)-R.y;
   try{
+    const SETS = await getSets(LANG).catch(()=>({}));
     D.q = analyzeQuality(src,sx,sy,sw,sh);
     if(D.q.checks.find(c=>c.k==="card").state==="fail"){
       try{ D.thumb = cardThumb(src,R,{found:false,x:sx,y:sy,w:sw,h:sh}); }catch(e){}
@@ -1003,6 +1179,7 @@ async function processCard(src,sx,sy,sw,sh){
     let p=null;
     const zonesOn = (X,label) => [
       [`${label} · bas gauche`, X, [0,.885,.52,.11], 11, true],
+      [`${label} · bas droite`, X, [.44,.885,.56,.11], 11, true],
       [`${label} · bas gauche`, X, [0,.885,.52,.11], 11, false],
       [`${label} · bas de carte`, X, [0,.87,1,.13], 11, true],
       [`${label} · bas de carte`, X, [0,.87,1,.13], 6, false],
@@ -1015,7 +1192,7 @@ async function processCard(src,sx,sy,sw,sh){
       const txt = (data.text||"").replace(/\s+/g," ").trim();
       // le numéro peut être coupé en morceaux : on teste chaque ligne et le texte entier
       const lines = (data.text||"").split(/\n+/);
-      const parsed = lines.map(parseNumber).find(Boolean) || parseNumber(txt);
+      const parsed = lines.map(l=>bestNumber(l,SETS)).find(Boolean) || bestNumber(txt,SETS);
       D.attempts.push({zone:zn, bin, text:txt, conf:Math.round(data.confidence||0), ok:!!parsed});
       if(!D.numImg || parsed) D.numImg = cv.toDataURL("image/png");
       if(parsed){ p=parsed; D.numConf=Math.round(data.confidence||0); break; }
@@ -1044,7 +1221,7 @@ async function processCard(src,sx,sy,sw,sh){
       const fw = goodWords(ws);
       words.push(...fw);
       D.fullText = (fd.text||"").replace(/\s+/g," ").trim().slice(0,160);
-      if(!p){ const lines=(fd.text||"").split(/\n+/); p = lines.map(parseNumber).find(Boolean) || null; if(p){ D.numConf=Math.round(fd.confidence||0); D.attempts.push({zone:"toute la carte", bin:false, text:p.num+"/"+(p.total||""), conf:D.numConf, ok:true}); } }
+      if(!p){ const lines=(fd.text||"").split(/\n+/); p = lines.map(l=>bestNumber(l,SETS)).find(Boolean) || null; if(p){ D.numConf=Math.round(fd.confidence||0); D.attempts.push({zone:"toute la carte", bin:false, text:p.num+"/"+(p.total||""), conf:D.numConf, ok:true}); } }
       // nom probable : mot le plus haut et le plus grand du quart supérieur
       if(!name){
         const top = ws.filter(x=>(x.confidence??0)>=55 && x.bbox && x.bbox.y1 < full.height*.22 && /[A-Za-zÀ-ÿ]{4,}/.test(x.text) && !STOP.has(norm(x.text).replace(/ /g,"")));
@@ -1432,13 +1609,13 @@ function selectTab(v){
   if(v==="colView") renderCol();
   if(v==="extView" && !EX.inited){ EX.inited = true; showExtHome(); }
   if(v==="scanView"){
-    requestAnimationFrame(layoutFrame);
+    requestAnimationFrame(layoutFrame); autoSchedule(500);
     if(!camStarted){ camStarted = true; startCamera(); setTimeout(()=>{ getWorker().then(()=>{ if(!busy) status.textContent="Cadre la carte entière dans le rectangle"; }).catch(()=>{}); }, 800); }
   }
 }
 document.querySelectorAll(".tab").forEach(t=>t.onclick=()=>selectTab(t.dataset.v));
 const langChip=$("#langChip");
-function setLangUI(){ const t = LANG==="fr" ? "Cartes FR" : "Cartes EN"; langChip.textContent = t; $("#extLang").textContent = t; }
+function setLangUI(){ langChip.textContent = LANG==="fr" ? "FR" : "EN"; $("#extLang").textContent = LANG==="fr" ? "Cartes FR" : "Cartes EN"; }
 function toggleLang(){
   LANG = LANG==="fr"?"en":"fr"; store.set("lang",LANG); setLangUI(); toast(LANG==="fr"?"Base française":"Base anglaise"); getSets(LANG).catch(()=>{});
   EX.series = null; EX.prices = {};

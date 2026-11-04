@@ -18,10 +18,10 @@ const out = await page.evaluate(async (sigSrc, API) => {
   const pocket = id => /^(P-A|[AB]\d+[a-z]?)-/.test(id);
   const cards = list.filter(c => c.image && !pocket(c.id));
   const res = []; let i = 0, fail = 0, done = 0;
-  await Promise.all(Array.from({length: 16}, async () => {
+  await Promise.all(Array.from({length: 8}, async () => {
     while (i < cards.length) {
       const c = cards[i++];
-      for (let t = 0; t < 3; t++) {
+      for (let t = 0; t < 5; t++) {
         try {
           const r = await fetch(c.image + "/low.webp");
           if (!r.ok) throw new Error("HTTP " + r.status);
@@ -30,7 +30,7 @@ const out = await page.evaluate(async (sigSrc, API) => {
           const parts = c.image.split("/");
           res.push([c.id, c.name, parts[parts.length - 3], S.hex(s.art) + S.hex(s.full)]);
           break;
-        } catch (e) { if (t === 2) fail++; else await new Promise(r => setTimeout(r, 800)); }
+        } catch (e) { if (t === 4) fail++; else await new Promise(r => setTimeout(r, 1500 * (t + 1))); }
       }
       if (++done % 1000 === 0) console.log(`${done} / ${cards.length}`);
     }

@@ -174,6 +174,9 @@ input,select{font:inherit;color:var(--fg)}
 .colhead{display:flex;align-items:center;gap:12px;width:100%;padding:10px 12px;text-align:left}
 .colhead .t{flex:1;min-width:0}
 .colhead .n{display:block;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.colhead .d{display:block;font:500 11.5px/1.4 var(--f-mono);color:var(--muted);margin-top:1px}
+.colhead .d:empty{display:none}
+.serie h2 .sdate{font-style:normal;opacity:.75;text-transform:none;letter-spacing:0}
 .colhead .c{display:block;font:500 11.5px/1.4 var(--f-mono);color:var(--muted);margin-top:2px}
 .colhead .v{font:700 13px/1 var(--f-mono);font-variant-numeric:tabular-nums;white-space:nowrap}
 .colhead .chev{width:18px;height:18px;color:var(--muted);flex:none;transition:transform .2s}
@@ -894,6 +897,8 @@ function colSetCards(id){
   p.then(v=>{ if(!v) COLV.sets.delete(id); });
   COLV.sets.set(id, p); return p;
 }
+const fmtDay = d => new Date(d).toLocaleDateString("fr-FR",{day:"2-digit",month:"2-digit",year:"numeric"});
+const fmtMonth = d => new Date(d).toLocaleDateString("fr-FR",{month:"short",year:"numeric"});
 const colNum = x => { const n = parseInt(x,10); return isNaN(n) ? 1e9 : n; };
 function colTile(c, own){
   const q = own?.qty || 0;
@@ -922,10 +927,12 @@ async function renderCol(){
   const rest = [...by.keys()].filter(k=>!seen.has(k));
   if(rest.length) groups.push({name:"Autres", sets:rest.map(id=>({id, name:by.get(id)[0].set||id}))});
   const q = norm(COLV.q);
-  list.innerHTML = groups.map(g=>`<section class="serie"><h2><span>${esc(g.name)}</span><span>${g.sets.reduce((a,s)=>a+by.get(s.id).length,0)}</span></h2>${
+  const SD = store.get("setDates", {}), serDate = {};
+  for(const se of EX.series||[]) serDate[se.name] = se.date;
+  list.innerHTML = groups.map(g=>`<section class="serie"><h2><span>${esc(g.name)}${serDate[g.name]?` <em class="sdate">· depuis ${esc(fmtMonth(serDate[g.name]))}</em>`:""}</span><span>${g.sets.reduce((a,s)=>a+by.get(s.id).length,0)}</span></h2>${
     g.sets.map(s=>{
       const own = by.get(s.id), val = own.reduce((a,x)=>a+(x.price||0)*x.qty,0), open = COLV.open[s.id] !== false;
-      return `<div class="colset${open?" open":""}" data-set="${esc(s.id)}"><button class="colhead" aria-expanded="${open}">${logoHTML(s)}<span class="t"><span class="n">${esc(s.name)}</span><span class="c" data-cnt>${own.length}${s.count?" / "+s.count:""} carte${own.length>1?"s":""}</span></span><span class="v">${val?esc(eurS(val)):""}</span>${CHEV}</button><div class="prog"><i style="width:${s.count?Math.min(100,own.length/s.count*100):0}%"></i></div><div class="cgrid"></div></div>`;
+      return `<div class="colset${open?" open":""}" data-set="${esc(s.id)}"><button class="colhead" aria-expanded="${open}">${logoHTML(s)}<span class="t"><span class="n">${esc(s.name)}</span><span class="d" data-date="${esc(s.id)}">${SD[s.id]?"Sortie "+esc(fmtDay(SD[s.id])):""}</span><span class="c" data-cnt>${own.length}${s.count?" / "+s.count:""} carte${own.length>1?"s":""}</span></span><span class="v">${val?esc(eurS(val)):""}</span>${CHEV}</button><div class="prog"><i style="width:${s.count?Math.min(100,own.length/s.count*100):0}%"></i></div><div class="cgrid"></div></div>`;
     }).join("")}</section>`).join("");
   list.querySelectorAll(".colhead").forEach(h=>h.onclick=()=>{
     const box = h.parentElement, id = box.dataset.set, open = !box.classList.contains("open");
@@ -934,6 +941,12 @@ async function renderCol(){
     if(open && !box.querySelector(".cgrid").childElementCount) fillColSet(box, by.get(id), gen);
   });
   for(const box of list.querySelectorAll(".colset")){
+    const id = box.dataset.set;
+    if(!SD[id]) colSetCards(id).then(set=>{
+      if(!set?.releaseDate) return;
+      const m = store.get("setDates", {}); m[id] = set.releaseDate; store.set("setDates", m);
+      const el = box.querySelector("[data-date]"); if(el) el.textContent = "Sortie " + fmtDay(set.releaseDate);
+    }).catch(()=>{});
     if(q){ // avec un filtre, on ne garde que les extensions qui ont des cartes correspondantes
       const hit = by.get(box.dataset.set).some(x=>norm(x.name+" "+x.num).includes(q));
       if(!hit && !COLV.pdx){ box.hidden = true; continue; }

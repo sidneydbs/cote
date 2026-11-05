@@ -22,10 +22,16 @@ const altImgs = (id, loc) => {
 };
 // pokemontcg.io renvoie un dos de carte PNG 640×892 au lieu d'une 404 : on l'écarte
 const isPlaceholder = b => b.length > 24 && b.readUInt32BE(12) === 0x49484452 && b.readUInt32BE(16) === 640 && b.readUInt32BE(20) === 892;
+const lastStatus = {};
 const sleep = ms => new Promise(r => setTimeout(r, ms));
-async function getBytes(url) {
-  for (let t = 0; t < 4; t++) {
-    try { const r = await fetch(url, {signal: AbortSignal.timeout(15000)}); if (r.ok) return Buffer.from(await r.arrayBuffer()); if (r.status === 404) return null; } catch (e) {}
+async function getBytes(url, tries = 4) {
+  for (let t = 0; t < tries; t++) {
+    try {
+      const r = await fetch(url, {signal: AbortSignal.timeout(15000), headers: {"user-agent": "Mozilla/5.0 (cote-index)"}});
+      if (r.ok) return Buffer.from(await r.arrayBuffer());
+      lastStatus[url] = r.status;
+      if (r.status === 404 || r.status === 403) return null;
+    } catch (e) { lastStatus[url] = String(e.name || e); }
     await sleep(1000 * (t + 1));
   }
   return null;
@@ -50,21 +56,33 @@ await page.evaluate(src => { window.S = new Function(src + "\nreturn CARDSIG;")(
 // toutes les images sont téléchargées côté Node, puis empreintes calculées dans Chrome
 const rows = [], series = {}; let fail = 0, alt = 0, i = 0;
 const jobs = list.map(c => ({c, urls: [...(c.image ? [c.image + "/low.webp"] : []), ...altImgs(c.id, c.localId)]})).filter(j => j.urls.length);
-const queue = [];
+const queue = [], retry = [];
+async function fetchJob(j, tries = 4) {
+  for (let u = 0; u < j.urls.length; u++) {
+    const x = await getBytes(j.urls[u], tries);
+    if (x && !isPlaceholder(x)) { j.isAlt = u > 0 || !j.c.image; return x; }
+  }
+  return null;
+}
 await Promise.all(Array.from({length: 12}, async () => {
   while (i < jobs.length) {
     const j = jobs[i++];
-    let b = null;
-    for (let u = 0; u < j.urls.length && !b; u++) {
-      const x = await getBytes(j.urls[u]);
-      if (x && !isPlaceholder(x)) { b = x; j.isAlt = u > 0 || !j.c.image; }
-    }
-    if (!b) { fail++; continue; }
+    const b = await fetchJob(j);
+    if (!b) { retry.push(j); continue; }
     queue.push({j, b64: b.toString("base64")});
     if (queue.length >= 100) await flush();
     if ((i % 2000) === 0) console.log(`${i} / ${jobs.length}`);
   }
 }));
+// seconde passe, lente, pour les images refusées pendant la rafale (CDN qui limite le débit)
+console.log(`${retry.length} images à retenter`);
+for (const j of retry) {
+  await sleep(250);
+  const b = await fetchJob(j, 6);
+  if (!b) { fail++; if (fail <= 15) console.log("échec", j.c.id, j.urls.map(u => u.split("/").pop() + "=" + (lastStatus[u] ?? "?")).join(" ")); continue; }
+  queue.push({j, b64: b.toString("base64")});
+  if (queue.length >= 100) await flush();
+}
 await flush();
 async function flush() {
   const batch = queue.splice(0, queue.length); if (!batch.length) return;

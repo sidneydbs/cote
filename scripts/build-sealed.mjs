@@ -45,6 +45,10 @@ const isCard = p => (p.extendedData || []).some(e => e.name === "Number" || e.na
 // Pokémon (anglais) et Pokémon Japon
 const CATS = [{id: 3, lg: "EN"}, {id: 85, lg: "JP"}];
 const items = [];
+// cartes japonaises à l'unité : une liste des extensions + un fichier par extension (jp/<groupId>.json)
+const jpSets = [];
+fs.mkdirSync("jp", {recursive: true});
+const ext = (p, k) => (p.extendedData || []).find(e => e.name === k)?.value || "";
 for (const cat of CATS) {
   const base = `https://tcgcsv.com/tcgplayer/${cat.id}`;
   const groups = (await getJSON(`${base}/groups`))?.results || [];
@@ -53,10 +57,21 @@ for (const cat of CATS) {
   for (const g of groups) {
     const prods = (await getJSON(`${base}/${g.groupId}/products`))?.results || []; await sleep(110);
     const sealed = prods.filter(p => !isCard(p)).map(p => ({p, t: typeOf(p.name)})).filter(x => x.t);
-    if (!sealed.length) continue;
+    const jpCards = cat.lg === "JP" ? prods.filter(isCard) : [];
+    if (!sealed.length && !jpCards.length) continue;
     const prices = (await getJSON(`${base}/${g.groupId}/prices`))?.results || []; await sleep(110);
     const byId = new Map();
     for (const r of prices) { const cur = byId.get(r.productId); if (!cur || (r.subTypeName === "Normal" && cur.subTypeName !== "Normal")) byId.set(r.productId, r); }
+    if (jpCards.length) {
+      // toutes les variantes de prix d'une carte (Normal, Holofoil…) : on garde la plus chère comme cote de référence
+      const best = new Map();
+      for (const r of prices) { const m = r.marketPrice ?? r.midPrice ?? r.lowPrice; if (m == null) continue; const cur = best.get(r.productId); if (!cur || m > (cur.marketPrice ?? cur.midPrice ?? cur.lowPrice)) best.set(r.productId, r); }
+      const cards = jpCards.map(p => { const r = best.get(p.productId); return {i: p.productId, n: p.cleanName || p.name, no: ext(p, "Number"), r: ext(p, "Rarity"), img: p.imageUrl || "", url: p.url || "",
+        m: r ? (r.marketPrice ?? r.midPrice ?? r.lowPrice) : null, l: r?.lowPrice ?? null, h: r?.highPrice ?? null, v: r && r.subTypeName !== "Normal" ? r.subTypeName : undefined}; });
+      const priced = cards.filter(c => c.m != null);
+      fs.writeFileSync(`jp/${g.groupId}.json`, JSON.stringify({g: g.groupId, n: g.name, a: g.abbreviation || "", d: (g.publishedOn || "").slice(0, 10), cards}));
+      jpSets.push({g: g.groupId, n: g.name, a: g.abbreviation || "", d: (g.publishedOn || "").slice(0, 10), c: cards.length, p: priced.length, top: priced.sort((a, b) => b.m - a.m)[0]?.m ?? null, img: (priced[0] || cards[0])?.img || ""});
+    }
     for (const {p, t} of sealed) {
       const r = byId.get(p.productId); const m = r?.marketPrice ?? r?.midPrice ?? r?.lowPrice ?? null;
       if (!m) continue;
@@ -89,6 +104,8 @@ const ago = n => { const t = new Date(Date.parse(day) - n * 864e5).toISOString()
 const ref = {c1: ago(1), c7: ago(7), c30: ago(30)};
 for (const x of items) for (const [k, d] of Object.entries(ref)) { const v = d && hist.days[d][x.i]; if (v) x[k] = v; }
 
+if (jpSets.length) fs.writeFileSync("jp/index.json", JSON.stringify({built: new Date().toISOString(), usdEur, sets: jpSets.sort((a, b) => (b.d || "").localeCompare(a.d || ""))}));
+console.log(`cartes japonaises : ${jpSets.length} extensions, ${jpSets.reduce((a, x) => a + x.c, 0)} cartes`);
 fs.writeFileSync("sealed.json", JSON.stringify({v: 1, built: new Date().toISOString(), source: "TCGplayer via TCGCSV", currency: "USD", usdEur, items}));
 fs.writeFileSync("sealed-history.json", JSON.stringify(hist));
 console.log(`sealed.json : ${items.length} produits · historique ${kept.length} jour(s)`);

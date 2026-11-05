@@ -15,7 +15,9 @@ const altImgs = (id, loc) => {
     const c = typeof e === "string" ? e : e.c;
     let k = (typeof e === "object" && e.m && e.m[loc]) || loc;
     if (/^\d+$/.test(k)) k = String(k).padStart(3, "0");
+    // CDN d'abord, puis l'origine (le cache du CDN peut garder une vieille 404 pour les images récentes)
     out.push(`https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/tpci/${c}/${c}_${k}_R_EN_SM.png`);
+    out.push(`https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/${c}/${c}_${k}_R_EN_SM.png`);
   }
   if (SRC.pt[set]) out.push(`https://images.pokemontcg.io/${SRC.pt[set]}/${loc}.png`);
   return out;

@@ -114,6 +114,14 @@ input,select{font:inherit;color:var(--fg)}
 .delta.down{color:var(--down);background:rgba(255,107,107,.12)}
 .delta.flat{color:var(--muted);background:var(--panel-2)}
 .psub{color:var(--muted);font-size:12.5px}
+.colpnl{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin:6px 0 2px}
+.pnlbig{font:800 16px/1.2 var(--f-mono);font-variant-numeric:tabular-nums}
+.pnlbig.up,.tpnl.up{color:var(--up)}.pnlbig.down,.tpnl.down{color:var(--down)}.pnlbig.flat,.tpnl.flat{color:var(--muted)}
+.tpnl{font:700 10.5px/1.2 var(--f-mono);font-variant-numeric:tabular-nums;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.buyrow{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:0 0 12px;font-size:13px;color:var(--muted)}
+.buyin{display:inline-flex;align-items:center;gap:4px;color:var(--fg)}
+.buyin input{width:86px;background:var(--panel-2);border:1px solid var(--line);border-radius:9px;padding:8px 10px;font:600 16px var(--f-mono);color:var(--fg);text-align:right}
+.buyrow .tpnl{font-size:13px}
 .colmove{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;margin:6px 0 10px}
 .colmove:empty{display:none}
 .mv{border-radius:10px;padding:7px 8px;background:var(--panel-2);display:flex;flex-direction:column;gap:2px;min-width:0}
@@ -419,6 +427,7 @@ input,select{font:inherit;color:var(--fg)}
       <div class="total">
         <div class="plabel">Valeur totale · tendance Cardmarket</div>
         <div class="pmain"><div class="pbig" id="colTotal">0,00<small>€</small></div></div>
+        <div class="colpnl" id="colPnl"></div>
         <div class="colmove" id="colMove"></div>
         <div class="psub" id="colMeta">0 carte</div>
         <div id="colSpark"></div>
@@ -846,7 +855,8 @@ function renderCard(){
       </div>
     </div>
     <div class="price">${priceHTML}${links}</div>
-    ${inCol?`<div class="colqty"><button id="colMinus" aria-label="Retirer un exemplaire">−</button><span>Dans ta collection : <b style="color:var(--fg)">×${inCol.qty}</b></span><button id="colPlus" aria-label="Ajouter un exemplaire">+</button></div>`:""}
+    ${inCol?`<div class="colqty"><button id="colMinus" aria-label="Retirer un exemplaire">−</button><span>Dans ta collection : <b style="color:var(--fg)">×${inCol.qty}</b></span><button id="colPlus" aria-label="Ajouter un exemplaire">+</button></div>
+    <div class="buyrow"><label for="buyIn">Prix d'achat (par carte)</label><span class="buyin"><input id="buyIn" type="text" inputmode="decimal" value="${inCol.buy!=null?String(Math.round(inCol.buy*100)/100).replace(".",","):""}" placeholder="0,00"> €</span>${(()=>{ const p = pnlOf(inCol); return p ? `<b class="tpnl ${pnlCls(p)}">PnL ${esc(pnlTxt(p))}</b>` : ""; })()}</div>`:""}
     <div class="addrow">
       <button class="btn btn-y" id="addCol">${inCol?"Ajouter un exemplaire ("+inCol.qty+")":"Ajouter à ma collection"}</button>
       <button class="btn btn-g" id="rescan">Scanner une autre</button>
@@ -865,6 +875,11 @@ function renderCard(){
   $("#addCol").onclick = ()=>{ addToCol(c); renderCard(); toast("Ajoutée à ta collection"); };
   $("#colMinus") && ($("#colMinus").onclick = ()=>{ setColQty(c.id,-1); renderCard(); toast("Exemplaire retiré"); });
   $("#colPlus") && ($("#colPlus").onclick = ()=>{ setColQty(c.id,1); renderCard(); });
+  $("#buyIn") && ($("#buyIn").onchange = e=>{
+    const v = parseFloat(String(e.target.value).replace(/\s/g,"").replace(",",".")); if(isNaN(v) || v<0) return;
+    const col = getCol(), x = col.find(y=>y.id===c.id); if(!x) return;
+    x.buy = v; store.set("col", col); renderCol(); renderCard(); toast("Prix d'achat enregistré");
+  });
   $("#rescan").onclick = ()=>{ closeSheet(); selectTab("scanView"); };
   $("#sheetBody").scrollTop = 0;
 }
@@ -875,8 +890,8 @@ const getCol = () => store.get("col",[]);
 function addToCol(c){
   const col = getCol(); const ex = col.find(x=>x.id===c.id);
   const mi = marketInfo(c) || {};
-  if(ex){ ex.qty++; if(mi.p) Object.assign(ex, {price:mi.p, a1:mi.a1, a7:mi.a7, a30:mi.a30, pt:Date.now()}); ex.t=Date.now(); }
-  else col.unshift({id:c.id, name:c.name, set:c.set?.name||"", num:c.localId, img:img(c,"low"), price:mi.p ?? mainPrice(c), a1:mi.a1, a7:mi.a7, a30:mi.a30, pt:Date.now(), qty:1, t:Date.now()});
+  if(ex){ const p = mi.p ?? ex.price; if(ex.buy!=null && p!=null) ex.buy = (ex.buy*ex.qty + p)/(ex.qty+1); ex.qty++; if(mi.p) Object.assign(ex, {price:mi.p, a1:mi.a1, a7:mi.a7, a30:mi.a30, pt:Date.now()}); ex.t=Date.now(); }
+  else { const p = mi.p ?? mainPrice(c); col.unshift({id:c.id, name:c.name, set:c.set?.name||"", num:c.localId, img:img(c,"low"), price:p, buy:p, a1:mi.a1, a7:mi.a7, a30:mi.a30, pt:Date.now(), qty:1, t:Date.now()}); }
   store.set("col",col); renderCol();
 }
 const COLV = {pdx: store.get("colPdx", true), q:"", open: store.get("colOpen", {}), gen:0, sets:new Map()};
@@ -897,6 +912,10 @@ function colSetCards(id){
   p.then(v=>{ if(!v) COLV.sets.delete(id); });
   COLV.sets.set(id, p); return p;
 }
+/* PnL : valeur actuelle − prix d'achat (le prix d'achat vaut la cote du jour de l'ajout, modifiable sur la fiche) */
+const pnlOf = x => (x.price!=null && x.buy!=null) ? {v:(x.price-x.buy)*x.qty, pc: x.buy ? (x.price-x.buy)/x.buy*100 : 0} : null;
+const pnlCls = p => !p || Math.abs(p.v) < .005 ? "flat" : p.v > 0 ? "up" : "down";
+const pnlTxt = (p, pct=true) => { if(!p) return ""; const sg = p.v>0?"+":p.v<0?"−":""; return `${sg}${eurN(Math.abs(p.v))} €${pct?` · ${sg}${Math.abs(p.pc).toFixed(1).replace(".",",")} %`:""}`; };
 const fmtDay = d => new Date(d).toLocaleDateString("fr-FR",{day:"2-digit",month:"2-digit",year:"numeric"});
 const fmtMonth = d => new Date(d).toLocaleDateString("fr-FR",{month:"short",year:"numeric"});
 const colNum = x => { const n = parseInt(x,10); return isNaN(n) ? 1e9 : n; };
@@ -905,12 +924,15 @@ function colTile(c, own){
   const pic = imgTag(c, "low", 'alt="" loading="lazy"') || (own && colImg(own) ? `<img src="${esc(colImg(own))}" alt="" loading="lazy">` : "");
   const tr = own?.price && own.a7 ? (own.price-own.a7)/own.a7 : 0, tc = tr > .03 ? " up" : tr < -.03 ? " down" : "";
   const px = own ? (own.price ? `<span class="px${tc}" title="${tc?`${tr>0?"+":""}${(tr*100).toFixed(0)} % sur 7 jours`:""}">${tc===" up"?"▲ ":tc===" down"?"▼ ":""}${esc(eurS(own.price))}</span>` : `<span class="px none">—</span>`) : "";
-  return `<button class="ctile ${own?"have":"miss"}" data-id="${esc(c.id)}" aria-label="${esc(c.name)} ${esc(c.localId)}${own?", possédée":", manquante"}"><span class="im"><span class="nm0">${esc(c.name)}</span>${pic}${q>1?`<span class="qx">×${q}</span>`:""}${own&&COLV.pdx?`<span class="own">✓</span>`:""}</span><span class="nm">${esc(c.name)}</span><span class="mt"><span class="no">${esc(c.localId)}</span>${px}</span></button>`;
+  return `<button class="ctile ${own?"have":"miss"}" data-id="${esc(c.id)}" aria-label="${esc(c.name)} ${esc(c.localId)}${own?", possédée":", manquante"}"><span class="im"><span class="nm0">${esc(c.name)}</span>${pic}${q>1?`<span class="qx">×${q}</span>`:""}${own&&COLV.pdx?`<span class="own">✓</span>`:""}</span><span class="nm">${esc(c.name)}</span><span class="mt"><span class="no">${esc(c.localId)}</span>${px}</span>${own?(()=>{ const p = pnlOf(own); return p ? `<span class="tpnl ${pnlCls(p)}" title="PnL : ${esc(pnlTxt(p))} (achat ${esc(eurS(own.buy))})">${esc(pnlTxt(p))}</span>` : ""; })():""}</button>`;
 }
 async function renderCol(){
   const col = getCol(), list = $("#colList"), gen = ++COLV.gen;
+  if(col.some(x=>x.buy==null && x.price!=null)){ col.forEach(x=>{ if(x.buy==null && x.price!=null) x.buy = x.price; }); store.set("col", col); }
   const total = col.reduce((s,x)=>s+(x.price||0)*x.qty,0), n = col.reduce((s,x)=>s+x.qty,0);
   $("#colTotal").innerHTML = `${eur(total)}<small>€</small>`;
+  const cost = col.reduce((a,x)=>a+(x.buy ?? x.price ?? 0)*x.qty,0), tp = {v: total-cost, pc: cost ? (total-cost)/cost*100 : 0};
+  $("#colPnl").innerHTML = col.length ? `<span class="pnlbig ${pnlCls(tp)}">${pnlCls(tp)==="up"?"▲":pnlCls(tp)==="down"?"▼":"■"} PnL ${pnlTxt(tp)}</span><span class="psub">investi ${eurN(cost)} €</span>` : "";
   const mk = colMarket(col), pxT = store.get("colPxT",0);
   $("#colMove").innerHTML = col.length ? mk.d.map(deltaChip).join("") : "";
   $("#colSpark").innerHTML = col.length ? colSpark() : "";

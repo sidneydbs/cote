@@ -189,6 +189,33 @@ input,select{font:inherit;color:var(--fg)}
 .colqty{display:flex;align-items:center;justify-content:center;gap:10px;margin:-4px 0 10px;font-size:13px;color:var(--muted)}
 .colqty button{width:32px;height:32px;border-radius:9px;background:var(--panel-2);border:1px solid var(--line);font-weight:800;font-size:16px;color:var(--fg)}
 
+
+/* ---------- Produits scellés ---------- */
+.exmode{display:flex;width:100%;margin:2px 0 12px}
+.exmode button{flex:1}
+#sealedBox .seg button{flex:1}
+.schips{display:flex;gap:6px;overflow-x:auto;padding-bottom:2px;scrollbar-width:none}
+.schips::-webkit-scrollbar{display:none}
+.schips button{flex:none;padding:8px 12px;border-radius:999px;background:var(--panel);border:1px solid var(--line);font-weight:600;font-size:13px;color:var(--muted);min-height:36px}
+.schips button[aria-pressed="true"]{background:var(--fg);color:var(--ink);border-color:var(--fg)}
+.slist{display:flex;flex-direction:column;gap:8px}
+.sitem{display:grid;grid-template-columns:64px 1fr auto;gap:12px;align-items:center;padding:8px 10px 8px 8px;background:var(--panel);border:1px solid var(--line);border-radius:14px;text-align:left;width:100%}
+.sitem .im{width:64px;height:64px;border-radius:10px;background:#fff;display:grid;place-items:center;overflow:hidden}
+.sitem .im img{max-width:100%;max-height:100%;object-fit:contain}
+.sitem div{min-width:0}
+.sitem b{display:block;font-size:14px;line-height:1.25;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.sitem span{display:block;font-size:12px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-top:2px}
+.sitem .rp{text-align:right;font:700 15px/1.1 var(--f-mono);white-space:nowrap}
+.sitem .rp small{display:block;font:600 11.5px/1.4 var(--f-mono);color:var(--muted)}
+.sitem .rp small.up{color:var(--up)}.sitem .rp small.down{color:var(--down)}
+.stype{display:inline-block;font:700 10px/1 var(--f-mono);letter-spacing:.06em;padding:3px 5px;border-radius:5px;background:var(--panel-2);color:var(--fg);margin-right:4px;vertical-align:1px}
+.shero{background:#fff;border-radius:16px;display:grid;place-items:center;padding:14px;margin-bottom:14px}
+.shero img{max-width:100%;max-height:240px;object-fit:contain}
+.gradegrid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.gradebtn{display:flex;flex-direction:column;gap:3px;padding:12px;border-radius:12px;background:var(--panel-2);border:1px solid var(--line);color:var(--fg);text-decoration:none}
+.gradebtn b{font:800 15px/1 var(--f-mono)}
+.gradebtn span{font-size:12px;color:var(--muted)}
+
 /* ---------- Recherche / Collection ---------- */
 .h1{font:800 30px/1 var(--f-display);font-stretch:125%;margin:0 0 4px}
 .lede{color:var(--muted);margin:0 0 18px;line-height:1.45}
@@ -312,8 +339,18 @@ input,select{font:inherit;color:var(--fg)}
       <div id="extHome">
         <div class="ext-head"><h1 class="h1">Extensions</h1><button class="chip" id="extLang" aria-label="Langue des cartes">Cartes FR</button></div>
         <p class="lede">Dex Scan · toutes les séries Pokémon et la cote Cardmarket de chaque carte.</p>
+        <div class="seg exmode" role="group" aria-label="Type de produits"><button data-mode="cards" aria-pressed="true">Cartes</button><button data-mode="sealed" aria-pressed="false">Scellés</button></div>
+        <div id="cardsBox">
         <label class="ext-search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><input id="extQ" type="search" placeholder="Rechercher une extension (ex. 151)" autocomplete="off" aria-label="Rechercher une extension"></label>
         <div id="extList"></div>
+        </div>
+        <div id="sealedBox" hidden>
+          <label class="ext-search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><input id="sealQ" type="search" placeholder="Rechercher (ex. 151, Évolutions, Dracaufeu)" autocomplete="off" aria-label="Rechercher un produit scellé"></label>
+          <div class="schips" id="sealTypes"></div>
+          <div class="tools" style="margin-top:8px"><div class="seg" role="group" aria-label="Tri" style="width:100%;display:flex"><button data-ss="recent">Récents</button><button data-ss="price">Prix ↓</button><button data-ss="up">Hausse</button><button data-ss="down">Baisse</button></div></div>
+          <p class="psub" id="sealMeta" style="margin:0 0 10px"></p>
+          <div id="sealList"></div>
+        </div>
       </div>
       <div id="extSet" hidden></div>
     </div>
@@ -773,6 +810,8 @@ function renderCard(){
     <a href="https://www.ebay.fr/sch/i.html?_nkw=${qName}&LH_Sold=1&LH_Complete=1" target="_blank" rel="noopener">${ico.ext}Ventes eBay réalisées</a>
   </div>`;
 
+  const gq = g => encodeURIComponent(`${c.name} ${c.localId}${off?"/"+off:""} ${g}`);
+  const graded = `<div class="section"><h4>Cartes gradées · ventes eBay réalisées</h4><div class="gradegrid">${["PSA 10","PSA 9","CollectAura 10","CollectAura 9.5"].map(g=>`<a class="gradebtn" href="https://www.ebay.fr/sch/i.html?_nkw=${gq(g)}&LH_Sold=1&LH_Complete=1&_sop=13" target="_blank" rel="noopener"><b>${esc(g)}</b><span>Voir les ventes terminées</span></a>`).join("")}</div><p class="fine" style="margin-top:8px">Aucune base de prix gratuite ne suit les cartes gradées en euros, ni CollectAura : ces boutons ouvrent les dernières ventes conclues sur eBay pour cette note.</p></div>`;
   const attacks = (c.attacks||[]).map(a=>`<div class="attack"><div class="attack-h"><span class="cost">${(a.cost||[]).map(t=>`<span class="dot" title="${esc(t)}" style="background:${tcol(t)}"></span>`).join("")}</span><strong>${esc(a.name)}</strong>${a.damage?`<span class="dmg">${esc(a.damage)}</span>`:""}</div>${a.effect?`<p>${esc(a.effect)}</p>`:""}</div>`).join("");
   const abil = (c.abilities||[]).map(a=>`<div class="attack"><div class="attack-h"><span class="tag">${esc(a.type||"Talent")}</span><strong>${esc(a.name)}</strong></div>${a.effect?`<p>${esc(a.effect)}</p>`:""}</div>`).join("");
   const effect = c.effect ? `<div class="attack"><p style="margin:0">${esc(c.effect)}</p></div>` : "";
@@ -810,6 +849,7 @@ function renderCard(){
       <button class="btn btn-g" id="rescan">Scanner une autre</button>
     </div>
     ${tpHTML}
+    ${graded}
     ${altHTML}
     ${(abil||attacks||effect)?`<div class="section"><h4>${c.category==="Pokémon"||c.category==="Pokemon"?"Talents et attaques":"Effet"}</h4>${abil}${attacks}${effect}</div>`:""}
     ${facts?`<div class="section"><h4>Infos de la carte</h4><dl class="facts">${facts}</dl></div>`:""}
@@ -990,6 +1030,81 @@ function colSpark(){
   const up = vs[vs.length-1] >= vs[0];
   return `<svg class="colspark" viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" role="img" aria-label="Évolution de ta collection sur ${h.length} jours"><polyline points="${pts}" fill="none" stroke="${up?"var(--up)":"var(--down)"}" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" vector-effect="non-scaling-stroke"/></svg><div class="psub" style="display:flex;justify-content:space-between"><span>${esc(new Date(h[0].d).toLocaleDateString("fr-FR",{day:"numeric",month:"short"}))}</span><span>Ta collection, ${h.length} jours</span><span>aujourd'hui</span></div>`;
 }
+
+
+/* ---------------- Produits scellés (TCGplayer via TCGCSV, mis à jour chaque jour par GitHub) ---------------- */
+const SEALED = {data:null, p:null, t:store.get("sealT","all"), q:"", sort:store.get("sealSort","recent"), n:60};
+const STYPES = [["all","Tous"],["etb","ETB"],["upc","UPC"],["display","Displays"],["bundle","Bundles"],["booster","Boosters"],["coffret","Coffrets"],["deck","Decks"]];
+const STYPE_LBL = Object.fromEntries(STYPES);
+function loadSealed(){
+  if(SEALED.p) return SEALED.p;
+  SEALED.p = fetchT("sealed.json?h="+Math.floor(Date.now()/36e5), 30000).then(r=>{ if(!r.ok) throw new NetError("http",`prix des scellés : ${r.status}`,"sealed.json"); return r.json(); })
+    .then(j=>{ SEALED.data = j; return j; }).catch(e=>{ SEALED.p = null; throw e; });
+  return SEALED.p;
+}
+const sEur = v => v==null ? null : v * (SEALED.data?.usdEur || 1);
+const sCur = () => SEALED.data?.usdEur ? "€" : "$";
+const sFmt = v => v==null ? "—" : `${eurN(sEur(v))} ${sCur()}`;
+const sPct = (x,k) => x[k] ? (x.m - x[k]) / x[k] * 100 : null;
+function sDelta(p, lbl){
+  if(p==null) return "";
+  const cls = Math.abs(p) < .05 ? "" : p > 0 ? "up" : "down";
+  return `<small class="${cls}">${p>0?"▲ +":p<0?"▼ −":""}${Math.abs(p).toFixed(1).replace(".",",")} %${lbl?" "+lbl:""}</small>`;
+}
+function setExMode(m){
+  store.set("exMode", m);
+  document.querySelectorAll(".exmode button").forEach(b=>b.setAttribute("aria-pressed", b.dataset.mode===m));
+  $("#cardsBox").hidden = m!=="cards"; $("#sealedBox").hidden = m!=="sealed";
+  if(m==="sealed") renderSealed();
+}
+document.querySelectorAll(".exmode button").forEach(b=>b.onclick=()=>setExMode(b.dataset.mode));
+$("#sealTypes").innerHTML = STYPES.map(([k,l])=>`<button data-st="${k}" aria-pressed="${SEALED.t===k}">${l}</button>`).join("");
+$("#sealTypes").querySelectorAll("button").forEach(b=>b.onclick=()=>{ SEALED.t=b.dataset.st; store.set("sealT",SEALED.t); SEALED.n=60; $("#sealTypes").querySelectorAll("button").forEach(x=>x.setAttribute("aria-pressed", x===b)); renderSealed(); });
+document.querySelectorAll("[data-ss]").forEach(b=>{ b.setAttribute("aria-pressed", b.dataset.ss===SEALED.sort); b.onclick=()=>{ SEALED.sort=b.dataset.ss; store.set("sealSort",SEALED.sort); SEALED.n=60; document.querySelectorAll("[data-ss]").forEach(x=>x.setAttribute("aria-pressed", x===b)); renderSealed(); }; });
+let sealQT=null; $("#sealQ").addEventListener("input", e=>{ SEALED.q=e.target.value; SEALED.n=60; clearTimeout(sealQT); sealQT=setTimeout(renderSealed,150); });
+async function renderSealed(){
+  const el = $("#sealList");
+  if(!SEALED.data){
+    el.innerHTML = `<div class="empty"><span class="loader"></span> Chargement des prix du marché…</div>`;
+    try{ await loadSealed(); }catch(e){ const x = e instanceof NetError ? explainNet(e) : {title:"Prix indisponibles", text:e.message}; el.innerHTML = `<div class="empty"><b style="color:var(--fg)">${esc(x.title)}</b><br>${esc(x.text)}<br><br><button class="btn btn-y" id="sealRetry">Réessayer</button></div>`; $("#sealRetry").onclick=renderSealed; return; }
+  }
+  const D = SEALED.data, q = norm(SEALED.q);
+  let l = D.items.filter(x => (SEALED.t==="all" || x.t===SEALED.t) && (!q || norm(x.n+" "+x.g).includes(q)));
+  const k7 = x => sPct(x,"c7") ?? sPct(x,"c1") ?? 0;
+  if(SEALED.sort==="price") l.sort((a,b)=>b.m-a.m);
+  else if(SEALED.sort==="up") l = l.filter(x=>x.c7||x.c1).sort((a,b)=>k7(b)-k7(a));
+  else if(SEALED.sort==="down") l = l.filter(x=>x.c7||x.c1).sort((a,b)=>k7(a)-k7(b));
+  else l.sort((a,b)=>(b.d||"").localeCompare(a.d||"") || b.m-a.m);
+  const built = D.built ? ago(D.built) : "";
+  $("#sealMeta").textContent = `${l.length} produit${l.length>1?"s":""} · marché US (TCGplayer)${D.usdEur?`, en € au taux du jour`:""}${built?" · "+built:""}`;
+  if(!l.length){ el.innerHTML = `<div class="empty">${(SEALED.sort==="up"||SEALED.sort==="down") ? "Les variations apparaissent après le premier jour de suivi des prix." : "Aucun produit ne correspond."}</div>`; return; }
+  el.innerHTML = `<div class="slist">${l.slice(0,SEALED.n).map(x=>`<button class="sitem" data-sid="${x.i}"><span class="im">${x.img?`<img src="${esc(x.img)}" alt="" loading="lazy" onerror="this.remove()">`:""}</span><div><b>${esc(x.n)}</b><span><i class="stype">${esc(STYPE_LBL[x.t]||x.t)}</i>${esc(x.g)}</span></div><div class="rp">${esc(sFmt(x.m))}${sDelta(sPct(x,"c7"),"7 j") || sDelta(sPct(x,"c1"),"24 h")}</div></button>`).join("")}</div>${l.length>SEALED.n?`<button class="btn btn-g" id="sealMore" style="width:100%;margin-top:10px">Voir plus (${l.length-SEALED.n} restants)</button>`:""}`;
+  el.querySelectorAll(".sitem").forEach(b=>b.onclick=()=>showSealed(+b.dataset.sid));
+  $("#sealMore") && ($("#sealMore").onclick = ()=>{ SEALED.n += 60; renderSealed(); });
+}
+function showSealed(id){
+  const x = SEALED.data?.items.find(y=>y.i===id); if(!x) return;
+  const ch = [["24 h","c1"],["7 jours","c7"],["30 jours","c30"]].map(([l,k])=>{ const p = sPct(x,k); if(p==null) return ""; const cls = Math.abs(p)<.05?"flat":p>0?"up":"down"; const dv = sEur(x.m - x[k]); return `<div class="mv ${cls}"><span class="l">${l}</span><b>${p>0?"▲":p<0?"▼":"■"} ${dv>0?"+":dv<0?"−":""}${eurN(Math.abs(dv))} ${sCur()}</b><span>${p>0?"+":p<0?"−":""}${Math.abs(p).toFixed(1).replace(".",",")} %</span></div>`; }).join("");
+  const qn = encodeURIComponent(x.n);
+  $("#sheetBody").innerHTML = `
+    ${x.img?`<div class="shero"><img src="${esc(x.img.replace(/_200w\.jpg$/,"_400w.jpg"))}" alt="" onerror="this.src='${esc(x.img)}'"></div>`:""}
+    <div class="ctitle"><h2 style="margin:0">${esc(x.n)}</h2></div>
+    <p class="psub" style="margin:4px 0 0"><i class="stype">${esc(STYPE_LBL[x.t]||x.t)}</i>${esc(x.g)}${x.d?" · sortie "+esc(new Date(x.d).toLocaleDateString("fr-FR",{month:"long",year:"numeric"})):""}</p>
+    <div class="price">
+      <div class="plabel"><span>Prix du marché · TCGplayer</span>${SEALED.data.built?`<span>MAJ ${esc(ago(SEALED.data.built))}</span>`:""}</div>
+      <div class="pmain"><div class="pbig">${esc(eurN(sEur(x.m)))}<small>${sCur()}</small></div></div>
+      <div class="psub">${SEALED.data.usdEur?`${usd(x.m)} aux États-Unis · 1 $ = ${String(SEALED.data.usdEur.toFixed(4)).replace(".",",")} €`:""}${x.l!=null?` · annonces de ${esc(sFmt(x.l))} à ${esc(sFmt(x.h))}`:""}</div>
+      ${ch?`<div class="colmove" style="margin-top:12px">${ch}</div>`:`<p class="psub" style="margin-top:10px">Les variations sur 24 h, 7 et 30 jours s'affichent après le premier jour de suivi.</p>`}
+      <div class="links">
+        ${x.url?`<a href="${esc(x.url)}" target="_blank" rel="noopener">${ico.ext}Voir sur TCGplayer</a>`:""}
+        <a href="https://www.cardmarket.com/fr/Pokemon/Products/Search?searchString=${qn}" target="_blank" rel="noopener">${ico.ext}Chercher sur Cardmarket</a>
+        <a href="https://www.ebay.fr/sch/i.html?_nkw=${qn}&LH_Sold=1&LH_Complete=1&_sop=13" target="_blank" rel="noopener">${ico.ext}Ventes eBay réalisées</a>
+      </div>
+    </div>
+    <p class="fine">Prix de la version anglaise sur le marché américain (TCGplayer, via TCGCSV), convertis en euros au taux de la BCE. La version française peut avoir une cote différente : compare avec Cardmarket.</p>`;
+  openSheet(); $("#sheetBody").scrollTop = 0;
+}
+setExMode(store.get("exMode","cards"));
 
 /* ---------------- Recherche manuelle ---------------- */
 function renderResults(list, el){

@@ -11,8 +11,9 @@
 <link rel="icon" href="icon.png">
 <title>Dex Scan</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anybody:wdth,wght@75..150,500..900&family=Rethink+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap">
-<script src="https://cdn.jsdelivr.net/npm/tesseract.js@5.1.1/dist/tesseract.min.js"></script>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://api.tcgdex.net" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Anybody:wdth,wght@75..150,500..900&family=Rethink+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap" onload="this.onload=null;this.rel='stylesheet'">
 <style>
 /* Layout : app plein écran à 5 onglets (Scanner, Collection = accueil, Extensions, Recherche, Alertes), fiche carte en feuille qui remonte, barre d'onglets en bas */
 :root{
@@ -343,6 +344,11 @@ input,select{font:inherit;color:var(--fg)}
 .setrow .t{flex:1;min-width:0}
 .setrow .n{display:block;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .setrow .c{display:block;font:500 12px/1.4 var(--f-mono);color:var(--muted)}
+.upc .sets{border-color:rgba(123,47,247,.45);background:linear-gradient(180deg,rgba(123,47,247,.10),transparent 70%),var(--panel)}
+.upc h2 span:first-child{color:#B98CFF}
+.ubadge{flex:none;font:700 11px/1 var(--f-mono);padding:6px 8px;border-radius:8px;background:rgba(123,47,247,.18);color:#D7B8FF;white-space:nowrap}
+.ubadge.rum{background:var(--panel-2);color:var(--muted)}
+.slogo .pball{width:34px;height:34px}
 .backbtn{display:inline-flex;align-items:center;gap:4px;padding:8px 12px 8px 8px;border-radius:10px;background:var(--panel-2);border:1px solid var(--line);font-weight:600;font-size:14px}
 .backbtn svg{width:18px;height:18px}
 .sethead{display:flex;gap:14px;align-items:center;margin:16px 0 14px}
@@ -405,6 +411,13 @@ input,select{font:inherit;color:var(--fg)}
 <body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="pb" viewBox="0 0 100 100"><defs><linearGradient id="pbV" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#C08CFF"/><stop offset=".5" stop-color="#7B2FF7"/><stop offset="1" stop-color="#3E0E92"/></linearGradient><radialGradient id="pbB" cx=".38" cy=".75" r=".75"><stop offset="0" stop-color="#2B2735"/><stop offset="1" stop-color="#09080D"/></radialGradient><radialGradient id="pbC" cx=".4" cy=".35" r=".7"><stop offset="0" stop-color="#F1E6FF"/><stop offset=".55" stop-color="#B98CFF"/><stop offset="1" stop-color="#7B2FF7"/></radialGradient></defs><path d="M3 50a47 47 0 0 1 94 0z" fill="url(#pbV)"/><path d="M3 50a47 47 0 0 0 94 0z" fill="url(#pbB)"/><rect x="3" y="45.5" width="94" height="9" fill="#09080D"/><circle cx="50" cy="50" r="47" fill="none" stroke="#09080D" stroke-width="4"/><circle cx="50" cy="50" r="15.5" fill="#09080D"/><circle cx="50" cy="50" r="10" fill="url(#pbC)" stroke="#7B2FF7" stroke-width="2"/><path d="M19 33a35 35 0 0 1 17-15" fill="none" stroke="#fff" stroke-opacity=".38" stroke-width="4" stroke-linecap="round"/></symbol></svg>
 <div class="splash" id="splash" aria-hidden="true"><div class="half top"><svg class="ball" viewBox="0 0 100 100"><use href="#pb"/></svg></div><div class="half bot"><svg class="ball" viewBox="0 0 100 100"><use href="#pb"/></svg></div><i class="glow"></i></div>
+<script>setTimeout(function(){ if(window.__booted) return;
+  var b=document.createElement("div"); b.setAttribute("role","alert");
+  b.style.cssText="position:fixed;left:16px;right:16px;bottom:calc(env(safe-area-inset-bottom,0px) + 90px);z-index:10000;background:#20242D;color:#EEF0F4;border:1px solid #7B2FF7;border-radius:14px;padding:14px 16px;font:15px/1.4 system-ui,sans-serif;box-shadow:0 10px 30px rgba(0,0,0,.5)";
+  b.innerHTML="<b>Dex Scan n'a pas démarré correctement.</b><br>Souvent un réseau lent ou une version en cache. <button style='margin-top:10px;display:block;width:100%;padding:10px;border-radius:10px;border:0;background:#7B2FF7;color:#fff;font-weight:700'>Recharger l'app</button>";
+  b.querySelector("button").onclick=function(){ location.replace(location.pathname+"?r="+Date.now()); };
+  document.body.appendChild(b);
+}, 9000);</script>
 <script>(function(){var s=document.getElementById("splash"),rm=matchMedia("(prefers-reduced-motion: reduce)").matches;
 setTimeout(function(){s.classList.add("open")},rm?350:1000);setTimeout(function(){s.remove()},rm?800:1800);})();</script>
 <div class="app">
@@ -500,7 +513,7 @@ setTimeout(function(){s.classList.add("open")},rm?350:1000);setTimeout(function(
   <!-- ===== COLLECTION ===== -->
   <section class="view" id="colView" hidden>
     <div class="scroll">
-      <div class="homebar"><svg class="pball" viewBox="0 0 100 100" aria-hidden="true"><use href="#pb"/></svg><span class="brand">DEX<b>·</b>SCAN</span><span class="ver">v21</span></div>
+      <div class="homebar"><svg class="pball" viewBox="0 0 100 100" aria-hidden="true"><use href="#pb"/></svg><span class="brand">DEX<b>·</b>SCAN</span><span class="ver">v22</span></div>
       <h1 class="h1">Collection</h1>
       <p class="lede">Tes cartes rangées par série et par extension, dans l'ordre des numéros. Le mode Pokédex montre aussi celles qui te manquent, en grisé.</p>
       <div class="total">
@@ -544,6 +557,7 @@ setTimeout(function(){s.classList.add("open")},rm?350:1000);setTimeout(function(
 <script>
 (() => {
 "use strict";
+const APP_VER = "22";
 const API = "https://api.tcgdex.net/v2";
 const $ = s => document.querySelector(s);
 const store = {
@@ -815,7 +829,7 @@ async function showCard(id, alts, diag=null){
   }
 }
 /* ---------- Images de secours : TCGdex FR -> TCGdex EN -> pokemontcg.io -> Limitless ---------- */
-const SRC = {"pt":{"base1":"base1","base2":"base2","basep":"basep","base3":"base3","base4":"base4","base5":"base5","gym1":"gym1","gym2":"gym2","neo1":"neo1","neo2":"neo2","si1":"si1","neo3":"neo3","neo4":"neo4","lc":"base6","ecard1":"ecard1","bog":"bp","ecard2":"ecard2","ecard3":"ecard3","ex1":"ex1","ex2":"ex2","np":"np","ex3":"ex3","ex4":"ex4","ex5":"ex5","tk-ex-latia":"tk1a","tk-ex-latio":"tk1b","ex6":"ex6","pop1":"pop1","ex7":"ex7","ex8":"ex8","ex9":"ex9","pop2":"pop2","ex10":"ex10","ex11":"ex11","ex12":"ex12","tk-ex-p":"tk2a","tk-ex-m":"tk2b","pop3":"pop3","ex13":"ex13","pop4":"pop4","ex14":"ex14","ex15":"ex15","ex16":"ex16","pop5":"pop5","dpp":"dpp","dp1":"dp1","dp2":"dp2","pop6":"pop6","dp3":"dp3","dp4":"dp4","pop7":"pop7","dp5":"dp5","dp6":"dp6","pop8":"pop8","dp7":"dp7","pl1":"pl1","pop9":"pop9","pl2":"pl2","pl3":"pl3","pl4":"pl4","ru1":"ru1","hgss1":"hgss1","hgssp":"hsp","hgss2":"hgss2","hgss3":"hgss3","hgss4":"hgss4","col1":"col1","bw1":"bw1","bwp":"bwp","2011bw":"mcd11","bw2":"bw2","bw3":"bw3","bw4":"bw4","bw5":"bw5","2012bw":"mcd12","bw6":"bw6","dv1":"dv1","bw7":"bw7","bw8":"bw8","bw9":"bw9","bw10":"bw10","xyp":"xyp","bw11":"bw11","xy0":"xy0","xy1":"xy1","xy2":"xy2","2014xy":"mcd14","xy3":"xy3","xy4":"xy4","xy5":"xy5","dc1":"dc1","xy6":"xy6","xy7":"xy7","xy8":"xy8","2015xy":"mcd15","xy9":"xy9","g1":"g1","xy10":"xy10","xy11":"xy11","2016xy":"mcd16","xy12":"xy12","smp":"smp","sm1":"sm1","sm2":"sm2","2017sm":"mcd17","sm3":"sm3","sm3.5":"sm35","sm4":"sm4","sm5":"sm5","sm6":"sm6","sm7":"sm7","sm7.5":"sm75","2018sm":"mcd18","sm8":"sm8","sm9":"sm9","det1":"det1","sm10":"sm10","sm11":"sm11","sm115":"sm115","sma":"sma","2019sm":"mcd19","sm12":"sm12","swshp":"swshp","swsh1":"swsh1","swsh2":"swsh2","swsh3":"swsh3","fut2020":"fut20","swsh3.5":"swsh35","swsh4":"swsh4","2021swsh":"mcd21","swsh4.5sv":"swsh45sv","swsh4.5":"swsh45","swsh5":"swsh5","swsh6":"swsh6","swsh7":"swsh7","cel25":"cel25","cel25cc":"cel25c","swsh8":"swsh8","swsh9tg":"swsh9tg","swsh9":"swsh9","swsh10tg":"swsh10tg","swsh10":"swsh10","swsh10.5":"pgo","2022swsh":"mcd22","swsh11":"swsh11","swsh11tg":"swsh11tg","swsh12tg":"swsh12tg","swsh12":"swsh12","swsh12.5gg":"swsh12pt5gg","swsh12.5":"swsh12pt5","sv01":"sv1","sve":"sve","sv02":"sv2","sv03":"sv3","sv03.5":"sv3pt5","sv04":"sv4","sv04.5":"sv4pt5","sv05":"sv5","sv06":"sv6","sv06.5":"sv6pt5","sv07":"sv7","sv08":"sv8","sv08.5":"sv8pt5","sv09":"sv9","sv10":"sv10","sv10.5w":"rsv10pt5","sv10.5b":"zsv10pt5","me01":"me1","me02":"me2","me02.5":"me2pt5","me03":"me3","me04":"me4","me05":"me5","svp":"svp"},"ll":{"mep":"MEP","mee":"MEE","30th":"30C","30th-c":{"c":"30C","m":{"001":"CC2","002":"CC8","003":"CC11","004":"CC20","005":"CC3","006":"CC9","007":"CC5","008":"CC25","009":"CC22","010":"CC13","011":"CC14","012":"CC27","013":"CC24","014":"CC1","015":"CC4","016":"CC19","017":"CC23","018":"CC15","019":"CC16","020":"CC17","021":"CC18","022":"CC12","023":"CC21","024":"CC6","025":"CC10","026":"CC28","027":"CC29","028":"CC26","029":"CC7","030":"CC30"}}},"logo":{"2011bw":"@p/mcd11/logo.png","2012bw":"@p/mcd12/logo.png","2014xy":"@p/mcd14/logo.png","2015xy":"@p/mcd15/logo.png","2016xy":"@p/mcd16/logo.png","2017sm":"@p/mcd17/logo.png","2018sm":"@p/mcd18/logo.png","2019sm":"@p/mcd19/logo.png","2021swsh":"@p/mcd21/logo.png","2022swsh":"@p/mcd22/logo.png","30th":"https://images.scrydex.com/pokemon/me55-logo/logo","30th-c":"https://images.scrydex.com/pokemon/me55c-logo/logo","base1":"@t/en/base/base1/logo.webp","base4":"@t/en/base/base4/logo.webp","basep":"@t/en/base/basep/logo.webp","bog":"@p/bp/logo.png","bw11":"@t/en/bw/bw11/logo.webp","bwp":"@t/en/bw/bwp/logo.webp","cel25cc":"@p/cel25c/logo.png","dpp":"@t/en/dp/dpp/logo.webp","ecard3":"@t/en/ecard/ecard3/logo.webp","ex7":"@t/en/ex/ex7/logo.webp","fut2020":"@t/en/swsh/fut2020/logo.webp","gym1":"@t/en/gym/gym1/logo.webp","gym2":"@t/en/gym/gym2/logo.webp","hgssp":"@t/en/hgss/hgssp/logo.webp","lc":"@t/en/lc/lc/logo.webp","np":"@t/en/pop/np/logo.webp","pl4":"@t/en/pl/pl4/logo.webp","pop1":"@t/en/pop/pop1/logo.webp","pop2":"@t/en/pop/pop2/logo.webp","pop3":"@t/en/pop/pop3/logo.webp","pop4":"@t/en/pop/pop4/logo.webp","pop5":"@t/en/pop/pop5/logo.webp","pop6":"@t/en/pop/pop6/logo.webp","pop7":"@t/en/pop/pop7/logo.webp","pop8":"@t/en/pop/pop8/logo.webp","pop9":"@t/en/pop/pop9/logo.webp","ru1":"@t/en/pl/ru1/logo.webp","si1":"@t/en/neo/si1/logo.webp","sm3.5":"@t/fr/sm/sm3.5/logo.webp","sm7.5":"@t/fr/sm/sm7.5/logo.webp","sma":"@p/sma/logo.png","smp":"@t/en/sm/smp/logo.webp","sp":"@t/univ/ecard/sp/symbol.webp","sv05":"@t/fr/sv/sv05/logo.webp","sve":"@p/sve/logo.png","svp":"@p/svp/logo.png","swsh10tg":"@p/swsh10tg/logo.png","swsh11tg":"@p/swsh11tg/logo.png","swsh12.5gg":"@p/swsh12pt5gg/logo.png","swsh12tg":"@p/swsh12tg/logo.png","swsh4.5sv":"@p/swsh45sv/logo.png","swsh9tg":"@p/swsh9tg/logo.png","tk-dp-l":"@t/univ/tk/tk-dp-l/symbol.webp","tk-dp-m":"@t/univ/tk/tk-dp-m/symbol.webp","tk-ex-latia":"@p/tk1a/logo.png","tk-ex-latio":"@p/tk1b/logo.png","tk-ex-m":"@p/tk2b/logo.png","tk-ex-p":"@p/tk2a/logo.png","tk-hs-g":"@t/univ/tk/tk-hs-g/symbol.webp","tk-hs-r":"@t/univ/tk/tk-hs-r/symbol.webp","tk-sm-l":"@t/univ/tk/tk-sm-l/symbol.webp","tk-sm-r":"@t/univ/tk/tk-sm-r/symbol.webp","tk-xy-b":"@t/univ/tk/tk-xy-b/symbol.webp","tk-xy-latia":"@t/univ/tk/tk-xy-latia/symbol.webp","tk-xy-latio":"@t/univ/tk/tk-xy-latio/symbol.webp","tk-xy-n":"@t/univ/tk/tk-xy-n/symbol.webp","tk-xy-p":"@t/univ/tk/tk-xy-p/symbol.webp","tk-xy-su":"@t/univ/tk/tk-xy-su/symbol.webp","tk-xy-sy":"@t/univ/tk/tk-xy-sy/symbol.webp","tk-xy-w":"@t/univ/tk/tk-xy-w/symbol.webp","xyp":"@t/en/xy/xyp/logo.webp","mep":"https://images.scrydex.com/pokemon/mep-logo/logo","mee":"https://images.scrydex.com/pokemon/mee-logo/logo"}};
+const SRC = {"pt":{"base1":"base1","base2":"base2","basep":"basep","base3":"base3","base4":"base4","base5":"base5","gym1":"gym1","gym2":"gym2","neo1":"neo1","neo2":"neo2","si1":"si1","neo3":"neo3","neo4":"neo4","lc":"base6","ecard1":"ecard1","bog":"bp","ecard2":"ecard2","ecard3":"ecard3","ex1":"ex1","ex2":"ex2","np":"np","ex3":"ex3","ex4":"ex4","ex5":"ex5","tk-ex-latia":"tk1a","tk-ex-latio":"tk1b","ex6":"ex6","pop1":"pop1","ex7":"ex7","ex8":"ex8","ex9":"ex9","pop2":"pop2","ex10":"ex10","ex11":"ex11","ex12":"ex12","tk-ex-p":"tk2a","tk-ex-m":"tk2b","pop3":"pop3","ex13":"ex13","pop4":"pop4","ex14":"ex14","ex15":"ex15","ex16":"ex16","pop5":"pop5","dpp":"dpp","dp1":"dp1","dp2":"dp2","pop6":"pop6","dp3":"dp3","dp4":"dp4","pop7":"pop7","dp5":"dp5","dp6":"dp6","pop8":"pop8","dp7":"dp7","pl1":"pl1","pop9":"pop9","pl2":"pl2","pl3":"pl3","pl4":"pl4","ru1":"ru1","hgss1":"hgss1","hgssp":"hsp","hgss2":"hgss2","hgss3":"hgss3","hgss4":"hgss4","col1":"col1","bw1":"bw1","bwp":"bwp","2011bw":"mcd11","bw2":"bw2","bw3":"bw3","bw4":"bw4","bw5":"bw5","2012bw":"mcd12","bw6":"bw6","dv1":"dv1","bw7":"bw7","bw8":"bw8","bw9":"bw9","bw10":"bw10","xyp":"xyp","bw11":"bw11","xy0":"xy0","xy1":"xy1","xy2":"xy2","2014xy":"mcd14","xy3":"xy3","xy4":"xy4","xy5":"xy5","dc1":"dc1","xy6":"xy6","xy7":"xy7","xy8":"xy8","2015xy":"mcd15","xy9":"xy9","g1":"g1","xy10":"xy10","xy11":"xy11","2016xy":"mcd16","xy12":"xy12","smp":"smp","sm1":"sm1","sm2":"sm2","2017sm":"mcd17","sm3":"sm3","sm3.5":"sm35","sm4":"sm4","sm5":"sm5","sm6":"sm6","sm7":"sm7","sm7.5":"sm75","2018sm":"mcd18","sm8":"sm8","sm9":"sm9","det1":"det1","sm10":"sm10","sm11":"sm11","sm115":"sm115","sma":"sma","2019sm":"mcd19","sm12":"sm12","swshp":"swshp","swsh1":"swsh1","swsh2":"swsh2","swsh3":"swsh3","fut2020":"fut20","swsh3.5":"swsh35","swsh4":"swsh4","2021swsh":"mcd21","swsh4.5sv":"swsh45sv","swsh4.5":"swsh45","swsh5":"swsh5","swsh6":"swsh6","swsh7":"swsh7","cel25":"cel25","cel25cc":"cel25c","swsh8":"swsh8","swsh9tg":"swsh9tg","swsh9":"swsh9","swsh10tg":"swsh10tg","swsh10":"swsh10","swsh10.5":"pgo","2022swsh":"mcd22","swsh11":"swsh11","swsh11tg":"swsh11tg","swsh12tg":"swsh12tg","swsh12":"swsh12","swsh12.5gg":"swsh12pt5gg","swsh12.5":"swsh12pt5","sv01":"sv1","sve":"sve","sv02":"sv2","sv03":"sv3","sv03.5":"sv3pt5","sv04":"sv4","sv04.5":"sv4pt5","sv05":"sv5","sv06":"sv6","sv06.5":"sv6pt5","sv07":"sv7","sv08":"sv8","sv08.5":"sv8pt5","sv09":"sv9","sv10":"sv10","sv10.5w":"rsv10pt5","sv10.5b":"zsv10pt5","me01":"me1","me02":"me2","me02.5":"me2pt5","me03":"me3","me04":"me4","me05":"me5","svp":"svp"},"ll":{"mep":"MEP","mee":"MEE","30th":"30C","30th-c":{"c":"30C","m":{"001":"CC2","002":"CC8","003":"CC11","004":"CC20","005":"CC3","006":"CC9","007":"CC5","008":"CC25","009":"CC22","010":"CC13","011":"CC14","012":"CC27","013":"CC24","014":"CC1","015":"CC4","016":"CC19","017":"CC23","018":"CC15","019":"CC16","020":"CC17","021":"CC18","022":"CC12","023":"CC21","024":"CC6","025":"CC10","026":"CC28","027":"CC29","028":"CC26","029":"CC7","030":"CC30"}}},"logo":{"2011bw":"@p/mcd11/logo.png","2012bw":"@p/mcd12/logo.png","2014xy":"@p/mcd14/logo.png","2015xy":"@p/mcd15/logo.png","2016xy":"@p/mcd16/logo.png","2017sm":"@p/mcd17/logo.png","2018sm":"@p/mcd18/logo.png","2019sm":"@p/mcd19/logo.png","2021swsh":"@p/mcd21/logo.png","2022swsh":"@p/mcd22/logo.png","30th":"https://images.scrydex.com/pokemon/me55-logo/logo","30th-c":"https://images.scrydex.com/pokemon/me55c-logo/logo","base1":"@t/en/base/base1/logo.webp","base4":"@t/en/base/base4/logo.webp","basep":"@t/en/base/basep/logo.webp","bog":"@p/bp/logo.png","bw11":"@t/en/bw/bw11/logo.webp","bwp":"@t/en/bw/bwp/logo.webp","cel25cc":"@p/cel25c/logo.png","dpp":"@t/en/dp/dpp/logo.webp","ecard3":"@t/en/ecard/ecard3/logo.webp","ex7":"@t/en/ex/ex7/logo.webp","fut2020":"@t/en/swsh/fut2020/logo.webp","gym1":"@t/en/gym/gym1/logo.webp","gym2":"@t/en/gym/gym2/logo.webp","hgssp":"@t/en/hgss/hgssp/logo.webp","lc":"@t/en/lc/lc/logo.webp","np":"@t/en/pop/np/logo.webp","pl4":"@t/en/pl/pl4/logo.webp","pop1":"@t/en/pop/pop1/logo.webp","pop2":"@t/en/pop/pop2/logo.webp","pop3":"@t/en/pop/pop3/logo.webp","pop4":"@t/en/pop/pop4/logo.webp","pop5":"@t/en/pop/pop5/logo.webp","pop6":"@t/en/pop/pop6/logo.webp","pop7":"@t/en/pop/pop7/logo.webp","pop8":"@t/en/pop/pop8/logo.webp","pop9":"@t/en/pop/pop9/logo.webp","ru1":"@t/en/pl/ru1/logo.webp","si1":"@t/en/neo/si1/logo.webp","sm3.5":"@t/fr/sm/sm3.5/logo.webp","sm7.5":"@t/fr/sm/sm7.5/logo.webp","sma":"@p/sma/logo.png","smp":"@t/en/sm/smp/logo.webp","sp":"@t/univ/ecard/sp/symbol.webp","sv05":"@t/fr/sv/sv05/logo.webp","sve":"@p/sve/logo.png","svp":"@p/svp/logo.png","swsh10tg":"@p/swsh10tg/logo.png","swsh11tg":"@p/swsh11tg/logo.png","swsh12.5gg":"@p/swsh12pt5gg/logo.png","swsh12tg":"@p/swsh12tg/logo.png","swsh4.5sv":"@p/swsh45sv/logo.png","swsh9tg":"@p/swsh9tg/logo.png","tk-dp-l":"@t/univ/tk/tk-dp-l/symbol.webp","tk-dp-m":"@t/univ/tk/tk-dp-m/symbol.webp","tk-ex-latia":"@p/tk1a/logo.png","tk-ex-latio":"@p/tk1b/logo.png","tk-ex-m":"@p/tk2b/logo.png","tk-ex-p":"@p/tk2a/logo.png","tk-hs-g":"@t/univ/tk/tk-hs-g/symbol.webp","tk-hs-r":"@t/univ/tk/tk-hs-r/symbol.webp","tk-sm-l":"@t/univ/tk/tk-sm-l/symbol.webp","tk-sm-r":"@t/univ/tk/tk-sm-r/symbol.webp","tk-xy-b":"@t/univ/tk/tk-xy-b/symbol.webp","tk-xy-latia":"@t/univ/tk/tk-xy-latia/symbol.webp","tk-xy-latio":"@t/univ/tk/tk-xy-latio/symbol.webp","tk-xy-n":"@t/univ/tk/tk-xy-n/symbol.webp","tk-xy-p":"@t/univ/tk/tk-xy-p/symbol.webp","tk-xy-su":"@t/univ/tk/tk-xy-su/symbol.webp","tk-xy-sy":"@t/univ/tk/tk-xy-sy/symbol.webp","tk-xy-w":"@t/univ/tk/tk-xy-w/symbol.webp","xyp":"@t/en/xy/xyp/logo.webp","mep":"https://images.scrydex.com/pokemon/mep-logo/logo","mee":"https://images.scrydex.com/pokemon/mee-logo/logo","2018sm-fr":"https://images.scrydex.com/pokemon/mcd18-logo/logo","2019sm-fr":"https://images.scrydex.com/pokemon/mcd19-logo/logo","2023sv":"https://images.scrydex.com/pokemon/mcd23-logo/logo","2024sv":"https://images.scrydex.com/pokemon/mcd24-logo/logo","2013bw":"@p/mcd12/logo.png","exu":"https://images.scrydex.com/pokemon/ex10-logo/logo","rc":"https://images.scrydex.com/pokemon/bw11-logo/logo","xya":"https://images.scrydex.com/pokemon/xy1-logo/logo"},"sx":{"2011bw":"mcd11","2012bw":"mcd12","2014xy":"mcd14","2015xy":"mcd15","2016xy":"mcd16","2017sm":"mcd17","2018sm":"mcd18","2019sm":"mcd19","2021swsh":"mcd21","2022swsh":"mcd22","2023sv":"mcd23","2024sv":"mcd24","sve":"sve","svp":"svp","swshp":"swshp","smp":"smp","hgssp":"hsp","ecard2":"ecard2","ecard3":"ecard3","pop6":"pop6","bog":"bp","mep":"mep","mee":"mee","exu":"ex10","tk-ex-latia":"tk1a","tk-ex-latio":"tk1b","tk-ex-p":"tk2a","tk-ex-m":"tk2b","cel25cc":{"c":"cel25c","m":{"CC001":"2_A","CC002":"4_A","CC003":"15_A1","CC004":"73_A","CC005":"8_A","CC006":"15_A2","CC007":"15_A3","CC008":"24_A","CC009":"20_A","CC010":"66_A","CC011":"9_A","CC012":"86_A","CC013":"88_A","CC014":"93_A","CC015":"17_A","CC016":"15_A4","CC017":"109_A","CC018":"145_A","CC019":"107_A","CC020":"113_A","CC021":"114_A","CC022":"54_A","CC023":"97_A","CC024":"76_A","CC025":"60_A"}}}};
 const srcUrl = u => u.replace(/^@t\//,"https://assets.tcgdex.net/").replace(/^@p\//,"https://images.pokemontcg.io/");
 function llUrl(set, loc, q){
   const e = SRC.ll[set]; if(!e) return "";
@@ -824,11 +838,16 @@ function llUrl(set, loc, q){
   if(/^\d+$/.test(k)) k = String(k).padStart(3,"0");
   return `https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/tpci/${c}/${c}_${k}_R_EN_${q==="high"?"LG":"SM"}.png`;
 }
+// numéro au format scrydex : « 001 » → « 1 », « SWSH050 » → « SWSH50 »
+function sxNum(l){ const m = String(l).match(/^([A-Za-z]*)0*(\d+)([a-z]?)$/); return m ? m[1]+m[2]+m[3] : l; }
 function altImgs(id, localId, q="low"){
   if(!id) return [];
   const set = id.slice(0, id.lastIndexOf("-")), loc = localId ?? id.slice(id.lastIndexOf("-")+1);
   const out = [];
   if(SRC.ll[set]){ const u = llUrl(set, loc, q); out.push(u, u.replace(".nyc3.cdn.", ".nyc3.")); }
+  const sx = SRC.sx?.[set];
+  if(sx){ const c = typeof sx==="string" ? sx : sx.c; const k = (typeof sx==="object" && sx.m?.[loc]) || sxNum(loc);
+    out.push(`https://images.scrydex.com/pokemon/${c}-${k}/${q==="high"?"large":"small"}`); }
   if(SRC.pt[set]) out.push(`https://images.pokemontcg.io/${SRC.pt[set]}/${loc}${q==="high"?"_hires":""}.png`);
   return out;
 }
@@ -841,11 +860,11 @@ function imgChain(c, q="low"){
   return [...new Set(out)];
 }
 // pokemontcg.io renvoie un dos de carte 640×892 au lieu d'une erreur quand l'image n'existe pas
-window.__imgChk = el => { if(el.naturalWidth===640 && el.naturalHeight===892 && /pokemontcg\.io/.test(el.src)) __imgNext(el); };
+window.__imgChk = el => { if(el.naturalWidth===640 && el.naturalHeight===892 && /pokemontcg\.io|scrydex\.com/.test(el.src)) __imgNext(el); };
 window.__imgNext = el => { const l = (el.dataset.alt||"").split("|").filter(Boolean); if(l.length){ el.dataset.alt = l.slice(1).join("|"); el.src = l[0]; } else if(el.dataset.ini!=null){ const x=document.createElement("span"); x.className="ini"; x.textContent=el.dataset.ini; el.replaceWith(x); } else el.remove(); };
 function imgTag(c, q, attrs=""){
   const l = imgChain(c, q); if(!l.length) return "";
-  return `<img src="${esc(l[0])}" data-alt="${esc(l.slice(1).join("|"))}" onerror="__imgNext(this)" onload="__imgChk(this)" ${attrs}>`;
+  return `<img src="${esc(l[0])}" data-alt="${esc(l.slice(1).join("|"))}" onerror="__imgNext(this)" onload="__imgChk(this)" decoding="async" ${attrs}>`;
 }
 function logoChain(s){
   const out = [];
@@ -1448,8 +1467,19 @@ $("#shutter").onclick = async ()=>{
 let worker=null;
 let workerP=null;
 const withTimeout = (p,ms,msg) => Promise.race([p, new Promise((_,rej)=>setTimeout(()=>rej(new Error(msg)),ms))]);
+// le moteur de lecture (≈ 60 Ko de script + 10 Mo de données) ne bloque plus l'ouverture : il se charge en arrière-plan
+let tessP = null;
+function loadTess(){
+  if(window.Tesseract) return Promise.resolve();
+  return tessP || (tessP = new Promise((res, rej)=>{
+    const sc = document.createElement("script"); sc.src = "https://cdn.jsdelivr.net/npm/tesseract.js@5.1.1/dist/tesseract.min.js"; sc.async = true;
+    sc.onload = ()=>res(); sc.onerror = ()=>{ tessP = null; sc.remove(); rej(new Error("script")); };
+    document.head.appendChild(sc);
+  }));
+}
 async function getWorker(){
   if(worker) return worker;
+  await withTimeout(loadTess(), 20000, "script").catch(()=>{});
   if(!window.Tesseract) throw new NetError(ENV.hosted&&!ENV.framed?"blocked":"blocked","le script de lecture (cdn.jsdelivr.net) n'a pas pu se charger","https://cdn.jsdelivr.net/");
   if(!workerP){
     status.textContent = "Téléchargement du moteur de lecture (1re fois seulement)…";
@@ -2189,6 +2219,7 @@ async function probe(url){
   catch(e){ return {ok:false, err:e}; }
 }
 async function checkHealth(){
+  if(!window.Tesseract) await withTimeout(loadTess(), 12000, "script").catch(()=>{});
   const [tcgdex, ptcg] = await Promise.all([probe(`${API}/fr/series`), probe(`${PT}/sets/sv1`)]);
   health = {t:Date.now(), env:ENV, online:navigator.onLine!==false, tcgdex, ptcg, ocr: worker?"ready": window.Tesseract?"script":"missing", cam: !!(navigator.mediaDevices?.getUserMedia)};
   const anyDb = tcgdex.ok || ptcg.ok;
@@ -2268,7 +2299,7 @@ function extErr(e){
 function bindErr(retry){ $("#extRetry") && ($("#extRetry").onclick = retry); $("#extHealth") && ($("#extHealth").onclick = ()=>openHealth()); }
 async function loadSeries(){
   const key = "series:"+LANG, c = store.get(key,null);
-  if(c && Date.now()-c.t < 864e5 && c.d?.length){ EX.series = c.d; return; }
+  if(c && Date.now()-c.t < 6*36e5 && c.d?.length){ EX.series = c.d; return; }   // 6 h : une nouvelle extension apparaît vite
   const url = `${API}/${LANG}/series`;
   const list = await getJSON(url) || [];
   const out = []; let firstErr = null;
@@ -2294,9 +2325,48 @@ async function showExtHome(){
   renderExtList();
   requestAnimationFrame(()=>{ extScroll.scrollTop = EX.homeScroll; });
 }
+/* ---------- Extensions à venir (upcoming.json, mis à jour sans changer l'app) ---------- */
+const UPC_DEFAULT = [
+  {id:"me06", name:"Méga-Évolution — Règne Delta", en:"Delta Reign", code:"ME06", date:"2026-11-06", status:"officiel", src:"https://www.pokebip.com/news/7489/jcc-pokemon-nouvelle-extension-mega-evolution-regne-delta", note:"Boosters, Coffrets Dresseur d'élite et collections. Avant-premières en boutique depuis le 24 octobre."},
+  {id:"flo", name:"Flowing Fists (nom FR à venir)", en:"Flowing Fists", code:"FLO", date:"2027-02-05", status:"rumeur", src:"https://pokennoisseur.ca/tools/release-calendar", note:"Extension anglaise autour de Méga-Lucario Z-ex, date annoncée par des revendeurs, pas encore officielle."}
+];
+let UPC = store.get("upcoming", null)?.d || UPC_DEFAULT;
+fetch("upcoming.json?h="+Math.floor(Date.now()/36e5)).then(r=>r.ok?r.json():null).then(j=>{
+  if(Array.isArray(j?.sets)){ UPC = j.sets; store.set("upcoming",{t:Date.now(), d:j.sets}); if(EX.series && !EX.set) renderExtList(); }
+}).catch(()=>{});
+const PB_ICO = `<span class="slogo"><svg class="pball" viewBox="0 0 100 100" aria-hidden="true"><use href="#pb"/></svg></span>`;
+function upcomingList(){
+  const known = new Set(), names = new Set();
+  for(const se of EX.series||[]) for(const s of se.sets){ known.add(String(s.id).toLowerCase()); names.add(norm(s.name)); }
+  const today = new Date().toISOString().slice(0,10);
+  return UPC.filter(u=>!known.has(String(u.id).toLowerCase()) && !names.has(norm(u.name)) && !(u.until && u.until < today))
+            .sort((a,b)=>String(a.date).localeCompare(String(b.date)));
+}
+function upcBadge(u){
+  const d = Math.round((new Date(u.date+"T00:00:00") - new Date(new Date().toISOString().slice(0,10)+"T00:00:00"))/864e5);
+  if(u.status==="rumeur") return `<span class="ubadge rum">Rumeur</span>`;
+  return `<span class="ubadge">${d>1?"J-"+d:d===1?"Demain":d===0?"Aujourd'hui":"Sortie"}</span>`;
+}
+function showUpcoming(id){
+  const u = UPC.find(x=>x.id===id); if(!u) return;
+  $("#sheetTitle").textContent = "Extension à venir";
+  $("#sheetBody").innerHTML = `<div class="diag-head"><div class="diag-ico" style="background:rgba(123,47,247,.18);color:#D7B8FF">★</div><div><h2 class="diag-title">${esc(u.name)}</h2><p class="diag-ad">${esc([u.en&&u.en!==u.name?u.en:"", u.code].filter(Boolean).join(" · "))}</p></div></div>
+    <p class="lede" style="margin-top:12px"><b>Sortie ${u.status==="rumeur"?"annoncée (non officielle)":"officielle"} : ${esc(fmtDay(u.date))}</b></p>
+    ${u.note?`<p class="lede">${esc(u.note)}</p>`:""}
+    <p class="lede">Les cartes et leurs cotes apparaîtront ici automatiquement dès que la base de cartes les publie, en général quelques jours après la sortie.</p>
+    ${u.src?`<a class="btn btn-g" href="${esc(u.src)}" target="_blank" rel="noopener" style="margin-top:8px;display:inline-flex;text-decoration:none">Voir l'annonce</a>`:""}`;
+  openSheet();
+}
+function upcomingHTML(q){
+  const l = upcomingList().filter(u=>!q || norm(u.name+" "+(u.en||"")+" "+(u.code||"")).includes(q));
+  if(!l.length) return "";
+  return `<section class="serie upc"><h2><span>À venir</span><span>${l.length}</span></h2><div class="sets">${
+    l.map(u=>`<button class="setrow" data-upc="${esc(u.id)}">${PB_ICO}<span class="t"><span class="n">${esc(u.name)}</span><span class="c">${esc((u.status==="rumeur"?"Prévue ":"Sortie ")+fmtDay(u.date))}${u.code?" · "+esc(u.code):""}</span></span>${upcBadge(u)}</button>`).join("")
+  }</div></section>`;
+}
 function renderExtList(){
   const q = norm(EX.q);
-  const html = EX.series.map(se=>{
+  const html = upcomingHTML(q) + EX.series.map(se=>{
     const sets = q ? se.sets.filter(s=>norm(s.name+" "+s.id+" "+se.name).includes(q)) : se.sets;
     if(!sets.length) return "";
     return `<section class="serie"><h2><span>${esc(se.name)}</span><span>${sets.length}</span></h2><div class="sets">${
@@ -2305,6 +2375,7 @@ function renderExtList(){
   }).join("");
   extList.innerHTML = html || `<div class="empty">Aucune extension trouvée.<br>Essaie « 151 » ou « Écarlate ».</div>`;
   extList.querySelectorAll("[data-set]").forEach(b=>b.onclick=()=>{ EX.homeScroll = extScroll.scrollTop; openSet(b.dataset.set); });
+  extList.querySelectorAll("[data-upc]").forEach(b=>b.onclick=()=>showUpcoming(b.dataset.upc));
 }
 $("#extQ").addEventListener("input", e=>{ EX.q = e.target.value; if(EX.series) renderExtList(); });
 const BACK = `<button class="backbtn" id="exBack"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="m15 18-6-6 6-6"/></svg>Extensions</button>`;
@@ -2443,6 +2514,8 @@ $("#extLang").onclick = toggleLang;
 setLangUI();
 
 selectTab("colView");
+window.__booted = true;
+setTimeout(()=>loadTess().catch(()=>{}), 2500);   // prépare le scan sans ralentir l'ouverture
 // glisser depuis le bord gauche de la Collection : scanner ; glisser vers la gauche dans le scanner : retour à la Collection
 (function(){ let x0=null,y0=0,from=null;
   document.addEventListener("touchstart",e=>{ const t=e.touches[0]; if(e.touches.length!==1){x0=null;return;}
@@ -2453,6 +2526,32 @@ selectTab("colView");
 })();
 getSets(LANG).catch(()=>{});
 checkHealth().catch(()=>{});
+
+/* ---------------- Mise à jour automatique ----------------
+   version.json (publié avec chaque version) est relu à l'ouverture, au retour dans l'app et toutes les 30 min.
+   Version plus récente : l'app se recharge toute seule à la première occasion calme (pas de scan en cours, pas de fiche ouverte),
+   par une adresse neuve (?v=…) pour contourner le cache de l'iPhone. */
+let updPending = null, updLastCheck = 0;
+async function checkUpdate(force=false){
+  if(!ENV.hosted || ENV.framed) return;
+  if(!force && Date.now()-updLastCheck < 5*60e3) return;
+  updLastCheck = Date.now();
+  const j = await fetch("version.json?t="+Date.now(), {cache:"no-store"}).then(r=>r.ok?r.json():null).catch(()=>null);
+  if(!j || !j.v || +j.v <= +APP_VER) return;
+  updPending = String(j.v); applyUpdate();
+}
+function applyUpdate(){
+  if(!updPending) return;
+  if(busy || autoBusy || $("#sheet").classList.contains("open") || (!$("#scanView").hidden && stream)){ setTimeout(applyUpdate, 4000); return; }
+  const key = "upd:"+updPending;
+  try{ if(sessionStorage.getItem(key)) return; sessionStorage.setItem(key,"1"); }catch(e){}
+  toast(`Mise à jour de Dex Scan (v${updPending})…`);
+  setTimeout(()=>{ const u = new URL(location.href); u.searchParams.set("v", updPending); location.replace(u.pathname + u.search); }, 900);
+}
+(function(){ const u = new URL(location.href); if(u.searchParams.has("v")){ u.searchParams.delete("v"); history.replaceState(null, "", u.pathname + (u.search||"") + u.hash); } })();
+setTimeout(()=>checkUpdate(true), 4000);
+setInterval(()=>{ if(!document.hidden) checkUpdate(); }, 30*60e3);
+document.addEventListener("visibilitychange", ()=>{ if(!document.hidden) checkUpdate(); });
 
 window.__cote = {verifyMatch, detectCard, findCards, parseNumber, showCard, processCard, analyzeQuality, renderDiag, openHealth, checkHealth, selectTab, openSet, showExtHome, EX, loadIndex, matchImage, CARDSIG, numCandidates};
 })();

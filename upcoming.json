@@ -1,0 +1,26 @@
+{
+ "maj": "2026-11-05",
+ "sets": [
+  {
+   "id": "me06",
+   "name": "Méga-Évolution — Règne Delta",
+   "en": "Delta Reign",
+   "code": "ME06",
+   "date": "2026-11-06",
+   "status": "officiel",
+   "until": "2027-01-31",
+   "src": "https://www.pokebip.com/news/7489/jcc-pokemon-nouvelle-extension-mega-evolution-regne-delta",
+   "note": "Boosters, Coffrets Dresseur d'élite et collections. Avant-premières en boutique depuis le 24 octobre."
+  },
+  {
+   "id": "flo",
+   "name": "Flowing Fists (nom FR à venir)",
+   "en": "Flowing Fists",
+   "code": "FLO",
+   "date": "2027-02-05",
+   "status": "rumeur",
+   "src": "https://pokennoisseur.ca/tools/release-calendar",
+   "note": "Extension anglaise autour de Méga-Lucario Z-ex, date annoncée par des revendeurs, pas encore officielle."
+  }
+ ]
+}

@@ -500,7 +500,7 @@ setTimeout(function(){s.classList.add("open")},rm?350:1000);setTimeout(function(
   <!-- ===== COLLECTION ===== -->
   <section class="view" id="colView" hidden>
     <div class="scroll">
-      <div class="homebar"><svg class="pball" viewBox="0 0 100 100" aria-hidden="true"><use href="#pb"/></svg><span class="brand">DEX<b>·</b>SCAN</span><span class="ver">v20</span></div>
+      <div class="homebar"><svg class="pball" viewBox="0 0 100 100" aria-hidden="true"><use href="#pb"/></svg><span class="brand">DEX<b>·</b>SCAN</span><span class="ver">v21</span></div>
       <h1 class="h1">Collection</h1>
       <p class="lede">Tes cartes rangées par série et par extension, dans l'ordre des numéros. Le mode Pokédex montre aussi celles qui te manquent, en grisé.</p>
       <div class="total">
@@ -2189,7 +2189,7 @@ async function probe(url){
   catch(e){ return {ok:false, err:e}; }
 }
 async function checkHealth(){
-  const [tcgdex, ptcg] = await Promise.all([probe(`${API}/fr/series`), probe(`${PT}/sets?pageSize=1`)]);
+  const [tcgdex, ptcg] = await Promise.all([probe(`${API}/fr/series`), probe(`${PT}/sets/sv1`)]);
   health = {t:Date.now(), env:ENV, online:navigator.onLine!==false, tcgdex, ptcg, ocr: worker?"ready": window.Tesseract?"script":"missing", cam: !!(navigator.mediaDevices?.getUserMedia)};
   const anyDb = tcgdex.ok || ptcg.ok;
   const state = !anyDb || health.ocr==="missing" ? "fail" : (!tcgdex.ok || !ptcg.ok || !ENV.secure) ? "warn" : "ok";
@@ -2208,15 +2208,18 @@ async function openHealth(){
   openSheet();
   const h = await checkHealth();
   const row = (label,state,val,tip)=>`<div class="check"><span class="pill ${state}">${({ok:"✓",warn:"!",fail:"✕"})[state]}</span><div><b>${esc(label)}</b><span>${esc(tip)}</span></div><span class="val">${esc(val)}</span></div>`;
-  const src = (r,name,role)=> r.ok ? row(name,"ok",r.ms+" ms",role+" : répond normalement.")
+  // une seule base en échec alors que l'autre répond : c'est son serveur, pas ton téléphone ni ton réseau
+  const serverDown = (r,other)=> !r.ok && other.ok && ENV.hosted && !ENV.framed;
+  const src = (r,name,role,other)=> r.ok ? row(name,"ok",r.ms+" ms",role+" : répond normalement.")
+    : serverDown(r,other) ? row(name,"warn","en panne", `${role} : le serveur ${hostOf(r.err?.url||"")} est en panne ou surchargé en ce moment. Ça vient de lui, pas de ton téléphone ni de ton réseau. L'app continue avec l'autre base.`)
     : row(name,"fail","—", role+" : "+(r.err?.kind==="blocked"&&(!ENV.hosted||ENV.framed) ? "bloquée par le mode d'ouverture de la page." : explainNet(r.err).text));
   const openedIn = !ENV.hosted ? `fichier local (${ENV.proto.replace(":","")})` : ENV.framed ? `aperçu intégré (${ENV.host})` : ENV.host;
   const envState = ENV.hosted && !ENV.framed && ENV.secure ? "ok" : "fail";
   const rows = [
     row("Ouverture de la page", envState, ENV.proto==="https:"?"https":ENV.proto.replace(":",""), envState==="ok"?`Ouverte depuis ${openedIn}.`:`Ouverte en ${openedIn}. Dans ce mode, la caméra et/ou Internet sont souvent bloqués.`),
     row("Connexion internet", h.online?"ok":"fail", h.online?"en ligne":"hors ligne", h.online?"Le téléphone indique être connecté.":"Active le Wi-Fi ou les données mobiles."),
-    src(h.tcgdex,"Base TCGdex","Source principale (cartes FR, cotes Cardmarket)"),
-    src(h.ptcg,"Base pokemontcg.io","Source de secours (cartes EN, cotes Cardmarket)"),
+    src(h.tcgdex,"Base TCGdex","Source principale (cartes FR, cotes Cardmarket)",h.ptcg),
+    src(h.ptcg,"Base pokemontcg.io","Source de secours (cartes EN, cotes Cardmarket)",h.tcgdex),
     row("Moteur de lecture", h.ocr==="missing"?"fail":"ok", h.ocr==="ready"?"prêt":h.ocr==="script"?"chargé":"absent",
         h.ocr==="missing"?"Le script de lecture (cdn.jsdelivr.net) n'a pas pu se télécharger : le scan est impossible.":"Se télécharge au premier scan (environ 10 Mo), puis reste en cache."),
     row("Caméra en direct", h.cam?"ok":"warn", h.cam?"disponible":"indisponible", h.cam?"Le navigateur autorise la caméra.":"Seule la prise de photo marchera. La caméra en direct demande une page https ouverte dans Safari.")

@@ -651,7 +651,7 @@ function altImgs(id, localId, q="low"){
   if(!id) return [];
   const set = id.slice(0, id.lastIndexOf("-")), loc = localId ?? id.slice(id.lastIndexOf("-")+1);
   const out = [];
-  if(SRC.ll[set]) out.push(llUrl(set, loc, q));
+  if(SRC.ll[set]){ const u = llUrl(set, loc, q); out.push(u, u.replace(".nyc3.cdn.", ".nyc3.")); }
   if(SRC.pt[set]) out.push(`https://images.pokemontcg.io/${SRC.pt[set]}/${loc}${q==="high"?"_hires":""}.png`);
   return out;
 }

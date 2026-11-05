@@ -637,8 +637,38 @@ async function showCard(id, alts, diag=null){
     $("#sheetBody").innerHTML = `<div class="empty"><b style="color:var(--fg)">${esc(x.title)}</b><br>${esc(x.text)}</div>`;
   }
 }
-function img(card, q="high"){ if(card?._img) return card._img[q]||card._img.high||""; return card?.image ? `${card.image}/${q}.webp` : ""; }
-const setPic = (set,k) => set?.["_"+k] || (set?.[k] ? set[k]+".webp" : "");
+/* ---------- Images de secours : TCGdex FR -> TCGdex EN -> pokemontcg.io -> Limitless ---------- */
+const SRC = {"pt":{"base1":"base1","base2":"base2","basep":"basep","base3":"base3","base4":"base4","base5":"base5","gym1":"gym1","gym2":"gym2","neo1":"neo1","neo2":"neo2","si1":"si1","neo3":"neo3","neo4":"neo4","lc":"base6","ecard1":"ecard1","bog":"bp","ecard2":"ecard2","ecard3":"ecard3","ex1":"ex1","ex2":"ex2","np":"np","ex3":"ex3","ex4":"ex4","ex5":"ex5","tk-ex-latia":"tk1a","tk-ex-latio":"tk1b","ex6":"ex6","pop1":"pop1","ex7":"ex7","ex8":"ex8","ex9":"ex9","pop2":"pop2","ex10":"ex10","ex11":"ex11","ex12":"ex12","tk-ex-p":"tk2a","tk-ex-m":"tk2b","pop3":"pop3","ex13":"ex13","pop4":"pop4","ex14":"ex14","ex15":"ex15","ex16":"ex16","pop5":"pop5","dpp":"dpp","dp1":"dp1","dp2":"dp2","pop6":"pop6","dp3":"dp3","dp4":"dp4","pop7":"pop7","dp5":"dp5","dp6":"dp6","pop8":"pop8","dp7":"dp7","pl1":"pl1","pop9":"pop9","pl2":"pl2","pl3":"pl3","pl4":"pl4","ru1":"ru1","hgss1":"hgss1","hgssp":"hsp","hgss2":"hgss2","hgss3":"hgss3","hgss4":"hgss4","col1":"col1","bw1":"bw1","bwp":"bwp","2011bw":"mcd11","bw2":"bw2","bw3":"bw3","bw4":"bw4","bw5":"bw5","2012bw":"mcd12","bw6":"bw6","dv1":"dv1","bw7":"bw7","bw8":"bw8","bw9":"bw9","bw10":"bw10","xyp":"xyp","bw11":"bw11","xy0":"xy0","xy1":"xy1","xy2":"xy2","2014xy":"mcd14","xy3":"xy3","xy4":"xy4","xy5":"xy5","dc1":"dc1","xy6":"xy6","xy7":"xy7","xy8":"xy8","2015xy":"mcd15","xy9":"xy9","g1":"g1","xy10":"xy10","xy11":"xy11","2016xy":"mcd16","xy12":"xy12","smp":"smp","sm1":"sm1","sm2":"sm2","2017sm":"mcd17","sm3":"sm3","sm3.5":"sm35","sm4":"sm4","sm5":"sm5","sm6":"sm6","sm7":"sm7","sm7.5":"sm75","2018sm":"mcd18","sm8":"sm8","sm9":"sm9","det1":"det1","sm10":"sm10","sm11":"sm11","sm115":"sm115","sma":"sma","2019sm":"mcd19","sm12":"sm12","swshp":"swshp","swsh1":"swsh1","swsh2":"swsh2","swsh3":"swsh3","fut2020":"fut20","swsh3.5":"swsh35","swsh4":"swsh4","2021swsh":"mcd21","swsh4.5sv":"swsh45sv","swsh4.5":"swsh45","swsh5":"swsh5","swsh6":"swsh6","swsh7":"swsh7","cel25":"cel25","cel25cc":"cel25c","swsh8":"swsh8","swsh9tg":"swsh9tg","swsh9":"swsh9","swsh10tg":"swsh10tg","swsh10":"swsh10","swsh10.5":"pgo","2022swsh":"mcd22","swsh11":"swsh11","swsh11tg":"swsh11tg","swsh12tg":"swsh12tg","swsh12":"swsh12","swsh12.5gg":"swsh12pt5gg","swsh12.5":"swsh12pt5","sv01":"sv1","sve":"sve","sv02":"sv2","sv03":"sv3","sv03.5":"sv3pt5","sv04":"sv4","sv04.5":"sv4pt5","sv05":"sv5","sv06":"sv6","sv06.5":"sv6pt5","sv07":"sv7","sv08":"sv8","sv08.5":"sv8pt5","sv09":"sv9","sv10":"sv10","sv10.5w":"rsv10pt5","sv10.5b":"zsv10pt5","me01":"me1","me02":"me2","me02.5":"me2pt5","me03":"me3","me04":"me4","me05":"me5","30th-c":"me55c","30th":"me55","svp":"svp"},"ll":{"mep":"MEP"},"logo":{"2011bw":"@p/mcd11/logo.png","2012bw":"@p/mcd12/logo.png","2014xy":"@p/mcd14/logo.png","2015xy":"@p/mcd15/logo.png","2016xy":"@p/mcd16/logo.png","2017sm":"@p/mcd17/logo.png","2018sm":"@p/mcd18/logo.png","2019sm":"@p/mcd19/logo.png","2021swsh":"@p/mcd21/logo.png","2022swsh":"@p/mcd22/logo.png","30th":"https://images.scrydex.com/pokemon/me55-logo/logo","30th-c":"https://images.scrydex.com/pokemon/me55c-logo/logo","base1":"@t/en/base/base1/logo.webp","base4":"@t/en/base/base4/logo.webp","basep":"@t/en/base/basep/logo.webp","bog":"@p/bp/logo.png","bw11":"@t/en/bw/bw11/logo.webp","bwp":"@t/en/bw/bwp/logo.webp","cel25cc":"@p/cel25c/logo.png","dpp":"@t/en/dp/dpp/logo.webp","ecard3":"@t/en/ecard/ecard3/logo.webp","ex7":"@t/en/ex/ex7/logo.webp","fut2020":"@t/en/swsh/fut2020/logo.webp","gym1":"@t/en/gym/gym1/logo.webp","gym2":"@t/en/gym/gym2/logo.webp","hgssp":"@t/en/hgss/hgssp/logo.webp","lc":"@t/en/lc/lc/logo.webp","np":"@t/en/pop/np/logo.webp","pl4":"@t/en/pl/pl4/logo.webp","pop1":"@t/en/pop/pop1/logo.webp","pop2":"@t/en/pop/pop2/logo.webp","pop3":"@t/en/pop/pop3/logo.webp","pop4":"@t/en/pop/pop4/logo.webp","pop5":"@t/en/pop/pop5/logo.webp","pop6":"@t/en/pop/pop6/logo.webp","pop7":"@t/en/pop/pop7/logo.webp","pop8":"@t/en/pop/pop8/logo.webp","pop9":"@t/en/pop/pop9/logo.webp","ru1":"@t/en/pl/ru1/logo.webp","si1":"@t/en/neo/si1/logo.webp","sm3.5":"@t/fr/sm/sm3.5/logo.webp","sm7.5":"@t/fr/sm/sm7.5/logo.webp","sma":"@p/sma/logo.png","smp":"@t/en/sm/smp/logo.webp","sp":"@t/univ/ecard/sp/symbol.webp","sv05":"@t/fr/sv/sv05/logo.webp","sve":"@p/sve/logo.png","svp":"@p/svp/logo.png","swsh10tg":"@p/swsh10tg/logo.png","swsh11tg":"@p/swsh11tg/logo.png","swsh12.5gg":"@p/swsh12pt5gg/logo.png","swsh12tg":"@p/swsh12tg/logo.png","swsh4.5sv":"@p/swsh45sv/logo.png","swsh9tg":"@p/swsh9tg/logo.png","tk-dp-l":"@t/univ/tk/tk-dp-l/symbol.webp","tk-dp-m":"@t/univ/tk/tk-dp-m/symbol.webp","tk-ex-latia":"@p/tk1a/logo.png","tk-ex-latio":"@p/tk1b/logo.png","tk-ex-m":"@p/tk2b/logo.png","tk-ex-p":"@p/tk2a/logo.png","tk-hs-g":"@t/univ/tk/tk-hs-g/symbol.webp","tk-hs-r":"@t/univ/tk/tk-hs-r/symbol.webp","tk-sm-l":"@t/univ/tk/tk-sm-l/symbol.webp","tk-sm-r":"@t/univ/tk/tk-sm-r/symbol.webp","tk-xy-b":"@t/univ/tk/tk-xy-b/symbol.webp","tk-xy-latia":"@t/univ/tk/tk-xy-latia/symbol.webp","tk-xy-latio":"@t/univ/tk/tk-xy-latio/symbol.webp","tk-xy-n":"@t/univ/tk/tk-xy-n/symbol.webp","tk-xy-p":"@t/univ/tk/tk-xy-p/symbol.webp","tk-xy-su":"@t/univ/tk/tk-xy-su/symbol.webp","tk-xy-sy":"@t/univ/tk/tk-xy-sy/symbol.webp","tk-xy-w":"@t/univ/tk/tk-xy-w/symbol.webp","xyp":"@t/en/xy/xyp/logo.webp"}};
+const srcUrl = u => u.replace(/^@t\//,"https://assets.tcgdex.net/").replace(/^@p\//,"https://images.pokemontcg.io/");
+function altImg(id, localId, q="low"){
+  if(!id) return "";
+  const set = id.slice(0, id.lastIndexOf("-")), loc = localId ?? id.slice(id.lastIndexOf("-")+1);
+  if(SRC.pt[set]) return `https://images.pokemontcg.io/${SRC.pt[set]}/${loc}${q==="high"?"_hires":""}.png`;
+  if(SRC.ll[set]){ const c = SRC.ll[set]; return `https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/tpci/${c}/${c}_${String(loc).padStart(3,"0")}_R_EN_${q==="high"?"LG":"SM"}.png`; }
+  return "";
+}
+function imgChain(c, q="low"){
+  const out = [];
+  if(c?._img){ const u = c._img[q]||c._img.high; if(u) out.push(u); }
+  if(c?.image){ out.push(`${c.image}/${q}.webp`); if(c.image.includes("/fr/")) out.push(`${c.image.replace("/fr/","/en/")}/${q}.webp`); }
+  const a = altImg(c?.id, c?.localId, q); if(a) out.push(a);
+  return [...new Set(out)];
+}
+window.__imgNext = el => { const l = (el.dataset.alt||"").split("|").filter(Boolean); if(l.length){ el.dataset.alt = l.slice(1).join("|"); el.src = l[0]; } else if(el.dataset.ini!=null){ const x=document.createElement("span"); x.className="ini"; x.textContent=el.dataset.ini; el.replaceWith(x); } else el.remove(); };
+function imgTag(c, q, attrs=""){
+  const l = imgChain(c, q); if(!l.length) return "";
+  return `<img src="${esc(l[0])}" data-alt="${esc(l.slice(1).join("|"))}" onerror="__imgNext(this)" ${attrs}>`;
+}
+function logoChain(s){
+  const out = [];
+  if(s?.logo) out.push(s.logo+".webp");
+  if(s?.id && SRC.logo[s.id]) out.push(srcUrl(SRC.logo[s.id]));
+  if(s?.id && SRC.pt[s.id]) out.push(`https://images.pokemontcg.io/${SRC.pt[s.id]}/logo.png`);
+  if(s?.symbol) out.push(s.symbol+".webp");
+  return [...new Set(out)];
+}
+function img(card, q="high"){ return imgChain(card, q)[0] || ""; }
+const setPic = (set,k) => set?.["_"+k] || (k==="logo" ? (logoChain(set)[0]||"") : (set?.[k] ? set[k]+".webp" : ""));
 
 function renderCard(){
   const c = current, cm = c.pricing?.cardmarket, tp = c.pricing?.tcgplayer;
@@ -699,14 +729,14 @@ function renderCard(){
   ].filter(f=>f[1]!=null&&f[1]!=="").map(([k,v])=>`<div class="fact"><dt>${k}</dt><dd>${esc(v)}</dd></div>`).join("");
 
   const alts = currentAlts.filter(a=>a.id!==c.id).slice(0,12);
-  const altHTML = alts.length ? `<div class="section"><h4>Pas la bonne carte ? Autres correspondances</h4><div class="alts">${alts.map(a=>`<button class="alt" data-id="${esc(a.id)}">${img(a,"low")?`<img loading="lazy" src="${img(a,"low")}" alt="">`:`<span class="ph"></span>`}<b>${esc(a.name)}</b><span>${esc(a.set?.name||a.setId)} · ${esc(a.localId)}</span></button>`).join("")}</div></div>` : "";
+  const altHTML = alts.length ? `<div class="section"><h4>Pas la bonne carte ? Autres correspondances</h4><div class="alts">${alts.map(a=>`<button class="alt" data-id="${esc(a.id)}">${imgTag(a,"low",'loading="lazy" alt=""') || `<span class="ph"></span>`}<b>${esc(a.name)}</b><span>${esc(a.set?.name||a.setId)} · ${esc(a.localId)}</span></button>`).join("")}</div></div>` : "";
 
   const inCol = getCol().find(x=>x.id===c.id);
   const dg = currentDiag;
   const banner = dg && dg.uncertain ? `<button class="banner" id="seeDiag"><span class="pill warn">!</span><span><b>Correspondance incertaine.</b> ${esc(dg.uncertain)} <u>Voir la lecture</u></span></button>` : "";
   $("#sheetBody").innerHTML = `${banner}
     <div class="hero">
-      <div class="cardimg">${img(c)?`<img src="${img(c)}" alt="${esc(c.name)}">`:""}</div>
+      <div class="cardimg">${imgTag(c, "high", `alt="${esc(c.name)}"`)}</div>
       <div class="hero-meta">
         <h2 class="cname">${esc(c.name)}</h2>
         <div class="setline">${setPic(c.set,"symbol")?`<img src="${setPic(c.set,"symbol")}" alt="">`:""}<span>${esc(c.set?.name||"")}</span></div>
@@ -741,7 +771,7 @@ const getCol = () => store.get("col",[]);
 function addToCol(c){
   const col = getCol(); const ex = col.find(x=>x.id===c.id);
   if(ex){ ex.qty++; ex.price = mainPrice(c) ?? ex.price; ex.t=Date.now(); }
-  else col.unshift({id:c.id, name:c.name, set:c.set?.name||"", num:c.localId, img:c._img?c._img.low:(c.image||""), price:mainPrice(c), qty:1, t:Date.now()});
+  else col.unshift({id:c.id, name:c.name, set:c.set?.name||"", num:c.localId, img:img(c,"low"), price:mainPrice(c), qty:1, t:Date.now()});
   store.set("col",col); renderCol();
 }
 function renderCol(){
@@ -768,7 +798,7 @@ $("#refreshCol").onclick = async ()=>{
 /* ---------------- Recherche manuelle ---------------- */
 function renderResults(list, el){
   if(!list.length){ el.innerHTML=`<div class="empty">Aucune carte trouvée. Vérifie l'orthographe ou essaie seulement le numéro (ex. 025/165).</div>`; return; }
-  el.innerHTML = list.slice(0,30).map(c=>`<button class="ritem" data-id="${esc(c.id)}">${img(c,"low")?`<img loading="lazy" src="${img(c,"low")}" alt="">`:`<span class="ph"></span>`}<div><b>${esc(c.name)}</b><span>${esc(c.set?.name||c.setId)}${c.meta?"":""}</span></div><div class="rp" style="font-size:12px">${esc(c.localId)}${c.set?.off?"/"+c.set.off:""}</div></button>`).join("");
+  el.innerHTML = list.slice(0,30).map(c=>`<button class="ritem" data-id="${esc(c.id)}">${imgTag(c,"low",'loading="lazy" alt=""') || `<span class="ph"></span>`}<div><b>${esc(c.name)}</b><span>${esc(c.set?.name||c.setId)}${c.meta?"":""}</span></div><div class="rp" style="font-size:12px">${esc(c.localId)}${c.set?.off?"/"+c.set.off:""}</div></button>`).join("");
   el.querySelectorAll(".ritem").forEach(b=>b.onclick=()=>showCard(b.dataset.id, list));
 }
 $("#searchForm").onsubmit = async e=>{
@@ -1644,9 +1674,9 @@ const extScroll=$("#extScroll"), extList=$("#extList"), extSet=$("#extSet"), ext
 const CHEV = `<svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="m9 18 6-6-6-6"/></svg>`;
 const initials = s => (s.name||s.id||"?").split(/\s+/).map(w=>w[0]||"").join("").slice(0,4).toUpperCase();
 function logoHTML(s){
-  const src = s.logo ? s.logo+".webp" : s.symbol ? s.symbol+".webp" : "";
-  if(!src) return `<span class="slogo"><span class="ini">${esc(initials(s))}</span></span>`;
-  return `<span class="slogo"><img src="${esc(src)}" alt="" loading="lazy" data-ini="${esc(initials(s))}" onerror="const x=document.createElement('span');x.className='ini';x.textContent=this.dataset.ini;this.replaceWith(x)"></span>`;
+  const l = logoChain(s);
+  if(!l.length) return `<span class="slogo"><span class="ini">${esc(initials(s))}</span></span>`;
+  return `<span class="slogo"><img src="${esc(l[0])}" alt="" loading="lazy" data-alt="${esc(l.slice(1).join("|"))}" data-ini="${esc(initials(s))}" onerror="__imgNext(this)"></span>`;
 }
 function extErr(e){
   const x = e instanceof NetError ? explainNet(e) : {title:"Chargement impossible", text:e?.message||"erreur inconnue"};
@@ -1775,7 +1805,7 @@ function renderTiles(){
   if(!list.length){ g.innerHTML = `<div class="empty" style="grid-column:1/-1">Aucune carte ne correspond à « ${esc(EX.cq)} ».</div>`; return; }
   g.innerHTML = list.map(c=>{
     const r = top.indexOf(c.id), p = pxBadge(c.id, r);
-    return `<button class="ctile" data-id="${esc(c.id)}" aria-label="${esc(c.name)}, ${esc(p.txt)}"><span class="im"><span class="nm0">${esc(c.name)}</span>${c.image?`<img src="${esc(c.image)}/low.webp" alt="" loading="lazy" onerror="this.remove()">`:""}${r>=0?`<span class="rk">#${r+1}</span>`:""}</span><span class="nm">${esc(c.name)}</span><span class="mt"><span class="no">${esc(c.localId)}</span><span class="px ${p.cls}">${esc(p.txt)}</span></span></button>`;
+    return `<button class="ctile" data-id="${esc(c.id)}" aria-label="${esc(c.name)}, ${esc(p.txt)}"><span class="im"><span class="nm0">${esc(c.name)}</span>${imgTag(c, "low", 'alt="" loading="lazy"')}${r>=0?`<span class="rk">#${r+1}</span>`:""}</span><span class="nm">${esc(c.name)}</span><span class="mt"><span class="no">${esc(c.localId)}</span><span class="px ${p.cls}">${esc(p.txt)}</span></span></button>`;
   }).join("");
   g.querySelectorAll(".ctile").forEach(b=>b.onclick=()=>showCard(b.dataset.id, []));
 }

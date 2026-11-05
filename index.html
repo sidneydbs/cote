@@ -380,6 +380,7 @@ input,select{font:inherit;color:var(--fg)}
 .pball{width:26px;height:26px;flex:none;display:inline-block;vertical-align:middle}
 .homebar{display:flex;align-items:center;gap:9px;margin:0 0 14px}
 .homebar .brand{font-size:17px}
+.homebar .ver{margin-left:auto;font:600 11px/1 var(--f-mono);color:var(--muted);border:1px solid var(--line);border-radius:6px;padding:4px 6px}
 .homebar .brand b,.scan-top .brand b{color:#9B5CFF}
 .scan-top .brand{display:flex;align-items:center;gap:7px}
 .splash{position:fixed;inset:0;z-index:9999;pointer-events:none}
@@ -499,7 +500,7 @@ setTimeout(function(){s.classList.add("open")},rm?350:1000);setTimeout(function(
   <!-- ===== COLLECTION ===== -->
   <section class="view" id="colView" hidden>
     <div class="scroll">
-      <div class="homebar"><svg class="pball" viewBox="0 0 100 100" aria-hidden="true"><use href="#pb"/></svg><span class="brand">DEX<b>·</b>SCAN</span></div>
+      <div class="homebar"><svg class="pball" viewBox="0 0 100 100" aria-hidden="true"><use href="#pb"/></svg><span class="brand">DEX<b>·</b>SCAN</span><span class="ver">v20</span></div>
       <h1 class="h1">Collection</h1>
       <p class="lede">Tes cartes rangées par série et par extension, dans l'ordre des numéros. Le mode Pokédex montre aussi celles qui te manquent, en grisé.</p>
       <div class="total">
@@ -1387,10 +1388,13 @@ function layoutFrame(){
 }
 addEventListener("resize",layoutFrame);
 let camGen=0;
+window.addEventListener("pagehide", ()=>stopCamera());
 function stopCamera(){
   camGen++; clearTimeout(autoTimer);
   if(stream){ stream.getTracks().forEach(t=>t.stop()); }
-  stream=null; track=null; video.srcObject=null;
+  try{ video.pause(); }catch(e){}
+  if(video.srcObject){ try{ video.srcObject.getTracks().forEach(t=>t.stop()); }catch(e){} }
+  stream=null; track=null; video.srcObject=null; video.removeAttribute("src"); try{ video.load(); }catch(e){}
   if(torchOn){ torchOn=false; $("#torchBtn").classList.remove("on"); }
 }
 async function startCamera(){
@@ -1921,7 +1925,8 @@ async function autoTick(){
   }
 }
 document.addEventListener("visibilitychange", ()=>{
-  if(document.hidden){ stopCamera(); return; }                       // app en arrière-plan : caméra coupée
+  if(document.hidden){ stopCamera(); return; }
+                         // app en arrière-plan : caméra coupée
   if(!$("#scanView").hidden){ if(!stream) startCamera(); autoSchedule(400); }
 });
 

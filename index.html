@@ -1386,10 +1386,21 @@ function layoutFrame(){
   $("#live").style.top = (y+h+36)+"px";
 }
 addEventListener("resize",layoutFrame);
+let camGen=0;
+function stopCamera(){
+  camGen++; clearTimeout(autoTimer);
+  if(stream){ stream.getTracks().forEach(t=>t.stop()); }
+  stream=null; track=null; video.srcObject=null;
+  if(torchOn){ torchOn=false; $("#torchBtn").classList.remove("on"); }
+}
 async function startCamera(){
+  const gen=++camGen;
   if(!navigator.mediaDevices?.getUserMedia){ return noCamera("La caméra en direct demande une page en HTTPS. Ouvre l'app depuis son adresse en ligne, ou prends une photo."); }
   try{
-    stream = await navigator.mediaDevices.getUserMedia({video:{facingMode:{ideal:"environment"},width:{ideal:2560},height:{ideal:1440}},audio:false});
+    const st = await navigator.mediaDevices.getUserMedia({video:{facingMode:{ideal:"environment"},width:{ideal:2560},height:{ideal:1440}},audio:false});
+    if(gen!==camGen || $("#scanView").hidden || document.hidden){ st.getTracks().forEach(t=>t.stop()); return; }   // onglet quitté pendant l'ouverture
+    if(stream) stream.getTracks().forEach(t=>t.stop());
+    stream = st;
     video.srcObject = stream; await video.play().catch(()=>{});
     track = stream.getVideoTracks()[0];
     const caps = track.getCapabilities?.() || {};
@@ -1909,7 +1920,10 @@ async function autoTick(){
     if(!$("#sheet").classList.contains("open")) autoSchedule();
   }
 }
-document.addEventListener("visibilitychange", ()=>{ if(!document.hidden) autoSchedule(400); });
+document.addEventListener("visibilitychange", ()=>{
+  if(document.hidden){ stopCamera(); return; }                       // app en arrière-plan : caméra coupée
+  if(!$("#scanView").hidden){ if(!stream) startCamera(); autoSchedule(400); }
+});
 
 /* ---------- Analyse complète ---------- */
 let lastDiag = null;
@@ -2398,12 +2412,14 @@ function renderExStats(){
 function selectTab(v){
   document.querySelectorAll(".tab").forEach(t=>t.setAttribute("aria-selected", t.dataset.v===v));
   for(const id of ["extView","scanView","searchView","colView","alertView"]) document.getElementById(id).hidden = id!==v;
+  if(v!=="scanView") stopCamera();   // on quitte le scanner : la caméra se coupe
   if(v==="colView") renderCol();
   if(v==="alertView") openAlerts(); else closeAlerts();
   if(v==="extView" && !EX.inited){ EX.inited = true; showExtHome(); }
   if(v==="scanView"){
     requestAnimationFrame(layoutFrame); autoSchedule(500);
-    if(!camStarted){ camStarted = true; startCamera(); setTimeout(()=>{ getWorker().then(()=>{ if(!busy) status.textContent="Cadre la carte entière dans le rectangle"; }).catch(()=>{}); }, 800); }
+    if(!stream) startCamera();
+    if(!camStarted){ camStarted = true; setTimeout(()=>{ getWorker().then(()=>{ if(!busy) status.textContent="Cadre la carte entière dans le rectangle"; }).catch(()=>{}); }, 800); }
   }
 }
 document.querySelectorAll(".tab").forEach(t=>t.onclick=()=>selectTab(t.dataset.v));

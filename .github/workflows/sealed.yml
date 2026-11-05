@@ -1,0 +1,30 @@
+name: Prix des produits scellés
+on:
+  workflow_dispatch:
+  push:
+    paths: ["scripts/build-sealed.mjs", ".github/workflows/sealed.yml"]
+  schedule:
+    - cron: "41 6 * * *"
+permissions:
+  contents: write
+  pages: write
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: node scripts/build-sealed.mjs
+      - name: Publier les prix
+        run: |
+          git config user.name "cote-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add sealed.json sealed-history.json
+          git diff --cached --quiet || (git commit -m "Prix des produits scellés mis à jour" && git pull --rebase && git push)
+      - name: Republier le site
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh api -X POST repos/${{ github.repository }}/pages/builds || true

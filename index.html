@@ -114,6 +114,15 @@ input,select{font:inherit;color:var(--fg)}
 .delta.down{color:var(--down);background:rgba(255,107,107,.12)}
 .delta.flat{color:var(--muted);background:var(--panel-2)}
 .psub{color:var(--muted);font-size:12.5px}
+.colmove{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;margin:6px 0 10px}
+.colmove:empty{display:none}
+.mv{border-radius:10px;padding:7px 8px;background:var(--panel-2);display:flex;flex-direction:column;gap:2px;min-width:0}
+.mv .l{font:600 10.5px/1 var(--f-mono);color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+.mv b{font:700 13px/1.2 var(--f-mono);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mv span:last-child{font:600 11.5px/1 var(--f-mono)}
+.mv.up b,.mv.up span:last-child{color:var(--up)}.mv.down b,.mv.down span:last-child{color:var(--down)}.mv.flat b{color:var(--muted)}
+.colspark{display:block;width:100%;height:46px;margin-top:10px}
+.ctile .px.up{color:var(--up)}.ctile .px.down{color:var(--down)}
 .variant-tabs{display:flex;gap:6px;margin-top:14px;flex-wrap:wrap}
 .vt{padding:7px 12px;border-radius:9px;background:var(--panel-2);border:1px solid var(--line);font-size:12.5px;font-weight:600;color:var(--muted)}
 .vt[aria-pressed="true"]{background:var(--border-yellow);color:#1a1408;border-color:var(--border-yellow)}
@@ -370,8 +379,11 @@ input,select{font:inherit;color:var(--fg)}
       <div class="total">
         <div class="plabel">Valeur totale · tendance Cardmarket</div>
         <div class="pmain"><div class="pbig" id="colTotal">0,00<small>€</small></div></div>
+        <div class="colmove" id="colMove"></div>
         <div class="psub" id="colMeta">0 carte</div>
-        <div class="addrow"><button class="btn btn-g" id="refreshCol"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 12a9 9 0 1 1-3-6.7L21 8"/><path d="M21 3v5h-5"/></svg>Actualiser les prix</button></div>
+        <div id="colSpark"></div>
+        <div class="psub" id="colUpd" style="margin-top:6px"></div>
+        <div class="addrow"><button class="btn btn-g" id="refreshCol"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 12a9 9 0 1 1-3-6.7L21 8"/><path d="M21 3v5h-5"/></svg>Actualiser les cotes</button></div>
       </div>
       <div class="coltools">
         <input id="colQ" type="search" placeholder="Filtrer (nom ou numéro)" autocomplete="off" aria-label="Filtrer la collection">
@@ -639,6 +651,12 @@ function cmVariants(card){
   return out;
 }
 function cmVal(cm,k,suf){ const x = cm?.[k+suf]; return typeof x==="number" && x>0 ? x : null; }
+/* cote + moyennes Cardmarket (1, 7, 30 jours) de la variante principale */
+function marketInfo(card){
+  const cm = card?.pricing?.cardmarket; const vs = cmVariants(card); if(!cm||!vs.length) return null;
+  const s = vs[0].key;
+  return {p: cmVal(cm,"trend",s) ?? cmVal(cm,"avg",s) ?? cmVal(cm,"avg7",s), a1: cmVal(cm,"avg1",s), a7: cmVal(cm,"avg7",s), a30: cmVal(cm,"avg30",s), u: cm.updated || null};
+}
 function mainPrice(card){
   const cm = card?.pricing?.cardmarket; const vs = cmVariants(card); if(!cm||!vs.length) return null;
   const s = vs[0].key; return cmVal(cm,"trend",s) ?? cmVal(cm,"avg",s) ?? cmVal(cm,"avg7",s);
@@ -813,8 +831,9 @@ const ico = { ext:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" st
 const getCol = () => store.get("col",[]);
 function addToCol(c){
   const col = getCol(); const ex = col.find(x=>x.id===c.id);
-  if(ex){ ex.qty++; ex.price = mainPrice(c) ?? ex.price; ex.t=Date.now(); }
-  else col.unshift({id:c.id, name:c.name, set:c.set?.name||"", num:c.localId, img:img(c,"low"), price:mainPrice(c), qty:1, t:Date.now()});
+  const mi = marketInfo(c) || {};
+  if(ex){ ex.qty++; if(mi.p) Object.assign(ex, {price:mi.p, a1:mi.a1, a7:mi.a7, a30:mi.a30, pt:Date.now()}); ex.t=Date.now(); }
+  else col.unshift({id:c.id, name:c.name, set:c.set?.name||"", num:c.localId, img:img(c,"low"), price:mi.p ?? mainPrice(c), a1:mi.a1, a7:mi.a7, a30:mi.a30, pt:Date.now(), qty:1, t:Date.now()});
   store.set("col",col); renderCol();
 }
 const COLV = {pdx: store.get("colPdx", true), q:"", open: store.get("colOpen", {}), gen:0, sets:new Map()};
@@ -839,13 +858,19 @@ const colNum = x => { const n = parseInt(x,10); return isNaN(n) ? 1e9 : n; };
 function colTile(c, own){
   const q = own?.qty || 0;
   const pic = imgTag(c, "low", 'alt="" loading="lazy"') || (own && colImg(own) ? `<img src="${esc(colImg(own))}" alt="" loading="lazy">` : "");
-  const px = own ? (own.price ? `<span class="px">${esc(eurS(own.price))}</span>` : `<span class="px none">—</span>`) : "";
+  const tr = own?.price && own.a7 ? (own.price-own.a7)/own.a7 : 0, tc = tr > .03 ? " up" : tr < -.03 ? " down" : "";
+  const px = own ? (own.price ? `<span class="px${tc}" title="${tc?`${tr>0?"+":""}${(tr*100).toFixed(0)} % sur 7 jours`:""}">${tc===" up"?"▲ ":tc===" down"?"▼ ":""}${esc(eurS(own.price))}</span>` : `<span class="px none">—</span>`) : "";
   return `<button class="ctile ${own?"have":"miss"}" data-id="${esc(c.id)}" aria-label="${esc(c.name)} ${esc(c.localId)}${own?", possédée":", manquante"}"><span class="im"><span class="nm0">${esc(c.name)}</span>${pic}${q>1?`<span class="qx">×${q}</span>`:""}${own&&COLV.pdx?`<span class="own">✓</span>`:""}</span><span class="nm">${esc(c.name)}</span><span class="mt"><span class="no">${esc(c.localId)}</span>${px}</span></button>`;
 }
 async function renderCol(){
   const col = getCol(), list = $("#colList"), gen = ++COLV.gen;
   const total = col.reduce((s,x)=>s+(x.price||0)*x.qty,0), n = col.reduce((s,x)=>s+x.qty,0);
   $("#colTotal").innerHTML = `${eur(total)}<small>€</small>`;
+  const mk = colMarket(col), pxT = store.get("colPxT",0);
+  $("#colMove").innerHTML = col.length ? mk.d.map(deltaChip).join("") : "";
+  $("#colSpark").innerHTML = col.length ? colSpark() : "";
+  $("#colUpd").textContent = col.length ? (COLPX.busy ? "Mise à jour des cotes…" : pxT ? `Cotes Cardmarket relues ${ago(pxT)} · suivi automatique` : "Cotes en cours de lecture…") : "";
+  if(col.length && !COLPX.busy && colStale() && !$("#colView").hidden) setTimeout(()=>refreshColPrices(), 50);
   const by = new Map(); for(const x of col){ const k = setIdOf(x.id); if(!by.has(k)) by.set(k,[]); by.get(k).push(x); }
   $("#colMeta").textContent = `${n} carte${n>1?"s":""} · ${col.length} référence${col.length>1?"s":""} · ${by.size} extension${by.size>1?"s":""}`;
   $("#colPdx").setAttribute("aria-pressed", COLV.pdx);
@@ -911,12 +936,60 @@ function setColQty(id, d){
   col[i].qty += d; if(col[i].qty<=0) col.splice(i,1);
   store.set("col", col); renderCol();
 }
-$("#refreshCol").onclick = async ()=>{
-  const b=$("#refreshCol"); b.disabled=true; b.innerHTML=`<span class="loader"></span> Actualisation…`;
-  const col = getCol(); cache.clear();
-  for(const x of col){ try{ const c=await getCard(x.id); const p=mainPrice(c); if(p) x.price=p; }catch(e){} }
-  store.set("col",col); renderCol(); b.disabled=false; b.innerHTML="Actualiser les prix"; toast("Prix mis à jour");
-};
+/* ---------- Valeur qui suit le marché ----------
+   Les cotes de la collection sont relues toutes les 2 h (à l'ouverture de l'onglet, au retour dans l'app,
+   et toutes les 30 min tant qu'il reste ouvert). La variation vient des moyennes Cardmarket sur 1, 7 et 30 jours. */
+const COLPX = {busy:false, every: 2*3600e3};
+async function refreshColPrices(manual=false){
+  if(COLPX.busy) return; const ids = [...new Set(getCol().map(x=>x.id))]; if(!ids.length) return;
+  COLPX.busy = true; const b=$("#refreshCol"); b.disabled=true;
+  let done = 0; const upd = new Map();
+  const show = ()=>{ b.innerHTML = `<span class="loader"></span> Cotes du marché… ${done}/${ids.length}`; };
+  show();
+  await pool(ids, 6, async id=>{
+    try{
+      // relit la fiche sans le cache de la session
+      for(const k of [...cache.keys()]) if(k.includes("/cards/"+encodeURIComponent(id))) cache.delete(k);
+      const c = await getCard(id); const mi = marketInfo(c);
+      if(mi?.p) upd.set(id, mi);
+    }catch(e){}
+    done++; show();
+  });
+  const col = getCol(), now = Date.now();
+  for(const x of col){ const mi = upd.get(x.id); if(mi) Object.assign(x, {price:mi.p, a1:mi.a1, a7:mi.a7, a30:mi.a30, pt:now}); }
+  store.set("col", col); store.set("colPxT", now);
+  // historique quotidien de la valeur totale (pour la courbe)
+  const total = col.reduce((a,x)=>a+(x.price||0)*x.qty,0), day = new Date().toISOString().slice(0,10);
+  const h = store.get("colHist",[]).filter(e=>e.d!==day); h.push({d:day, v:Math.round(total*100)/100}); store.set("colHist", h.slice(-90));
+  COLPX.busy = false; b.disabled=false; b.innerHTML = REFRESH_LBL;
+  renderCol();
+  if(manual) toast(`Cotes mises à jour (${upd.size}/${ids.length} cartes)`);
+}
+const REFRESH_LBL = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 12a9 9 0 1 1-3-6.7L21 8"/><path d="M21 3v5h-5"/></svg>Actualiser les cotes`;
+const colStale = () => Date.now() - store.get("colPxT",0) > COLPX.every;
+$("#refreshCol").onclick = ()=>refreshColPrices(true);
+document.addEventListener("visibilitychange", ()=>{ if(!document.hidden && !$("#colView").hidden && colStale()) refreshColPrices(); });
+setInterval(()=>{ if(!document.hidden && !$("#colView").hidden && colStale()) refreshColPrices(); }, 30*60e3);
+
+/* variation de la valeur totale d'après les moyennes du marché */
+function colMarket(col){
+  const now = col.reduce((a,x)=>a+(x.price||0)*x.qty,0);
+  const past = k => col.reduce((a,x)=>a+((x[k] ?? x.price) || 0)*x.qty,0);
+  const has = k => col.some(x=>x[k]!=null);
+  return {now, d:[["24 h","a1"],["7 j","a7"],["30 j","a30"]].filter(([,k])=>has(k)).map(([l,k])=>{ const p = past(k); return {l, v: now-p, pc: p ? (now-p)/p*100 : 0}; })};
+}
+function deltaChip(d){
+  const cls = Math.abs(d.pc) < .05 ? "flat" : d.v > 0 ? "up" : "down";
+  const sign = d.v > 0 ? "+" : d.v < 0 ? "−" : "";
+  return `<div class="mv ${cls}" title="Variation de la valeur sur ${d.l}"><span class="l">${d.l}</span><b>${cls==="up"?"▲":cls==="down"?"▼":"■"} ${sign}${eurN(Math.abs(d.v))} €</b><span>${sign}${Math.abs(d.pc).toFixed(1).replace(".",",")} %</span></div>`;
+}
+function colSpark(){
+  const h = store.get("colHist",[]); if(h.length < 2) return "";
+  const vs = h.map(e=>e.v), mn = Math.min(...vs), mx = Math.max(...vs), W = 300, H = 46;
+  const pts = vs.map((v,i)=>`${(i/(vs.length-1)*W).toFixed(1)},${(H-4-(mx>mn?(v-mn)/(mx-mn):.5)*(H-8)).toFixed(1)}`).join(" ");
+  const up = vs[vs.length-1] >= vs[0];
+  return `<svg class="colspark" viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" role="img" aria-label="Évolution de ta collection sur ${h.length} jours"><polyline points="${pts}" fill="none" stroke="${up?"var(--up)":"var(--down)"}" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" vector-effect="non-scaling-stroke"/></svg><div class="psub" style="display:flex;justify-content:space-between"><span>${esc(new Date(h[0].d).toLocaleDateString("fr-FR",{day:"numeric",month:"short"}))}</span><span>Ta collection, ${h.length} jours</span><span>aujourd'hui</span></div>`;
+}
 
 /* ---------------- Recherche manuelle ---------------- */
 function renderResults(list, el){

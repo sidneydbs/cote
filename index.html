@@ -155,6 +155,31 @@ input,select{font:inherit;color:var(--fg)}
 .addrow .btn{flex:1}
 .fine{font-size:11.5px;color:var(--muted);line-height:1.5;margin-top:18px}
 
+
+/* ---------- Collection façon Pokédex ---------- */
+.coltools{display:flex;gap:8px;align-items:center;margin:0 0 4px}
+.coltools input{flex:1;min-width:0;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:11px 13px;font-size:16px}
+.coltools .chip{background:var(--panel);padding:10px 13px;font-size:13px}
+.coltools .chip[aria-pressed="true"]{background:var(--border-yellow);color:#1a1408;border-color:var(--border-yellow)}
+.colset{background:var(--panel);border:1px solid var(--line);border-radius:14px;margin-bottom:10px;overflow:hidden}
+.colhead{display:flex;align-items:center;gap:12px;width:100%;padding:10px 12px;text-align:left}
+.colhead .t{flex:1;min-width:0}
+.colhead .n{display:block;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.colhead .c{display:block;font:500 11.5px/1.4 var(--f-mono);color:var(--muted);margin-top:2px}
+.colhead .v{font:700 13px/1 var(--f-mono);font-variant-numeric:tabular-nums;white-space:nowrap}
+.colhead .chev{width:18px;height:18px;color:var(--muted);flex:none;transition:transform .2s}
+.colset.open .colhead .chev{transform:rotate(90deg)}
+.colset .prog{margin:0 12px 10px}
+.colset .cgrid{padding:0 12px 14px}
+.colset:not(.open) .cgrid{display:none}
+.ctile.miss .im img{filter:grayscale(1) brightness(.5);opacity:.35}
+.ctile.miss .nm,.ctile.miss .no{opacity:.55}
+.ctile.miss .im{outline:1px dashed var(--line);outline-offset:-1px}
+.ctile .qx{position:absolute;top:4px;right:4px;background:var(--fg);color:var(--ink);font:700 10px/1 var(--f-mono);padding:3px 5px;border-radius:5px}
+.ctile .own{position:absolute;bottom:4px;right:4px;width:16px;height:16px;border-radius:50%;background:var(--up);color:#06281a;display:grid;place-items:center;font:900 10px/1 var(--f-body)}
+.colqty{display:flex;align-items:center;justify-content:center;gap:10px;margin:-4px 0 10px;font-size:13px;color:var(--muted)}
+.colqty button{width:32px;height:32px;border-radius:9px;background:var(--panel-2);border:1px solid var(--line);font-weight:800;font-size:16px;color:var(--fg)}
+
 /* ---------- Recherche / Collection ---------- */
 .h1{font:800 30px/1 var(--f-display);font-stretch:125%;margin:0 0 4px}
 .lede{color:var(--muted);margin:0 0 18px;line-height:1.45}
@@ -341,14 +366,18 @@ input,select{font:inherit;color:var(--fg)}
   <section class="view" id="colView" hidden>
     <div class="scroll">
       <h1 class="h1">Collection</h1>
-      <p class="lede">Les cartes que tu as ajoutées, valorisées à la cote Cardmarket.</p>
+      <p class="lede">Tes cartes rangées par série et par extension, dans l'ordre des numéros. Le mode Pokédex montre aussi celles qui te manquent, en grisé.</p>
       <div class="total">
         <div class="plabel">Valeur totale · tendance Cardmarket</div>
         <div class="pmain"><div class="pbig" id="colTotal">0,00<small>€</small></div></div>
         <div class="psub" id="colMeta">0 carte</div>
         <div class="addrow"><button class="btn btn-g" id="refreshCol"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 12a9 9 0 1 1-3-6.7L21 8"/><path d="M21 3v5h-5"/></svg>Actualiser les prix</button></div>
       </div>
-      <div class="results" id="colList"></div>
+      <div class="coltools">
+        <input id="colQ" type="search" placeholder="Filtrer (nom ou numéro)" autocomplete="off" aria-label="Filtrer la collection">
+        <button class="chip" id="colPdx" aria-pressed="true" title="Afficher aussi les cartes qui te manquent">Pokédex</button>
+      </div>
+      <div id="colList"></div>
     </div>
   </section>
 
@@ -757,6 +786,7 @@ function renderCard(){
       </div>
     </div>
     <div class="price">${priceHTML}${links}</div>
+    ${inCol?`<div class="colqty"><button id="colMinus" aria-label="Retirer un exemplaire">−</button><span>Dans ta collection : <b style="color:var(--fg)">×${inCol.qty}</b></span><button id="colPlus" aria-label="Ajouter un exemplaire">+</button></div>`:""}
     <div class="addrow">
       <button class="btn btn-y" id="addCol">${inCol?"Ajouter un exemplaire ("+inCol.qty+")":"Ajouter à ma collection"}</button>
       <button class="btn btn-g" id="rescan">Scanner une autre</button>
@@ -772,6 +802,8 @@ function renderCard(){
   $("#sheetBody").querySelectorAll(".vt").forEach(b=>b.onclick=()=>{ currentVariant=+b.dataset.vi; renderCard(); });
   $("#sheetBody").querySelectorAll(".alt").forEach(b=>b.onclick=()=>showCard(b.dataset.id));
   $("#addCol").onclick = ()=>{ addToCol(c); renderCard(); toast("Ajoutée à ta collection"); };
+  $("#colMinus") && ($("#colMinus").onclick = ()=>{ setColQty(c.id,-1); renderCard(); toast("Exemplaire retiré"); });
+  $("#colPlus") && ($("#colPlus").onclick = ()=>{ setColQty(c.id,1); renderCard(); });
   $("#rescan").onclick = ()=>{ closeSheet(); selectTab("scanView"); };
   $("#sheetBody").scrollTop = 0;
 }
@@ -785,19 +817,99 @@ function addToCol(c){
   else col.unshift({id:c.id, name:c.name, set:c.set?.name||"", num:c.localId, img:img(c,"low"), price:mainPrice(c), qty:1, t:Date.now()});
   store.set("col",col); renderCol();
 }
-function renderCol(){
-  const col = getCol(), list=$("#colList");
+const COLV = {pdx: store.get("colPdx", true), q:"", open: store.get("colOpen", {}), gen:0, sets:new Map()};
+const colImg = x => x.img ? (/^https?:.*\.(png|jpe?g|webp)$/i.test(x.img) ? x.img : x.img+"/low.webp") : "";
+/* liste complète d'une extension (images anglaises si la version française n'en a pas) */
+function colSetCards(id){
+  if(COLV.sets.has(id)) return COLV.sets.get(id);
+  const p = (async()=>{
+    const set = await getJSON(`${API}/${LANG}/sets/${encodeURIComponent(id)}`).catch(()=>null)
+             || (LANG!=="en" ? await getJSON(`${API}/en/sets/${encodeURIComponent(id)}`).catch(()=>null) : null);
+    if(!set) return null;
+    if(LANG!=="en" && (set.cards||[]).some(c=>!c.image)){
+      const en = await getJSON(`${API}/en/sets/${encodeURIComponent(id)}`).catch(()=>null);
+      if(en){ const m = new Map((en.cards||[]).map(c=>[c.id,c])); set.cards.forEach(c=>{ if(!c.image && m.get(c.id)?.image) c.image = m.get(c.id).image; }); }
+    }
+    return set;
+  })();
+  p.then(v=>{ if(!v) COLV.sets.delete(id); });
+  COLV.sets.set(id, p); return p;
+}
+const colNum = x => { const n = parseInt(x,10); return isNaN(n) ? 1e9 : n; };
+function colTile(c, own){
+  const q = own?.qty || 0;
+  const pic = imgTag(c, "low", 'alt="" loading="lazy"') || (own && colImg(own) ? `<img src="${esc(colImg(own))}" alt="" loading="lazy">` : "");
+  const px = own ? (own.price ? `<span class="px">${esc(eurS(own.price))}</span>` : `<span class="px none">—</span>`) : "";
+  return `<button class="ctile ${own?"have":"miss"}" data-id="${esc(c.id)}" aria-label="${esc(c.name)} ${esc(c.localId)}${own?", possédée":", manquante"}"><span class="im"><span class="nm0">${esc(c.name)}</span>${pic}${q>1?`<span class="qx">×${q}</span>`:""}${own&&COLV.pdx?`<span class="own">✓</span>`:""}</span><span class="nm">${esc(c.name)}</span><span class="mt"><span class="no">${esc(c.localId)}</span>${px}</span></button>`;
+}
+async function renderCol(){
+  const col = getCol(), list = $("#colList"), gen = ++COLV.gen;
   const total = col.reduce((s,x)=>s+(x.price||0)*x.qty,0), n = col.reduce((s,x)=>s+x.qty,0);
   $("#colTotal").innerHTML = `${eur(total)}<small>€</small>`;
-  $("#colMeta").textContent = `${n} carte${n>1?"s":""} · ${col.length} référence${col.length>1?"s":""}`;
-  if(!col.length){ list.innerHTML = `<div class="empty">Ta collection est vide.<br>Scanne une carte puis touche « Ajouter à ma collection ».</div>`; return; }
-  list.innerHTML = col.map((x,i)=>`<div class="ritem" data-id="${esc(x.id)}">
-    ${x.img?`<img loading="lazy" src="${/^https?:.*\.(png|jpe?g|webp)$/i.test(x.img)?x.img:x.img+"/low.webp"}" alt="">`:`<span class="ph"></span>`}
-    <div><b>${esc(x.name)}</b><span>${esc(x.set)} · ${esc(x.num)}</span>
-      <span class="qty" style="margin-top:6px"><button data-q="-1" data-i="${i}" aria-label="Retirer un">−</button><b style="min-width:22px;text-align:center">${x.qty}</b><button data-q="1" data-i="${i}" aria-label="Ajouter un">+</button></span></div>
-    <div class="rp">${x.price?eur(x.price)+" €":"—"}<small>${x.qty>1?"× "+x.qty+" = "+eur((x.price||0)*x.qty)+" €":"l'unité"}</small></div></div>`).join("");
-  list.querySelectorAll(".qty button").forEach(b=>b.onclick=e=>{ e.stopPropagation(); const col=getCol(); const it=col[+b.dataset.i]; it.qty+=+b.dataset.q; if(it.qty<=0) col.splice(+b.dataset.i,1); store.set("col",col); renderCol(); });
-  list.querySelectorAll(".ritem").forEach(r=>r.onclick=()=>showCard(r.dataset.id,[]));
+  const by = new Map(); for(const x of col){ const k = setIdOf(x.id); if(!by.has(k)) by.set(k,[]); by.get(k).push(x); }
+  $("#colMeta").textContent = `${n} carte${n>1?"s":""} · ${col.length} référence${col.length>1?"s":""} · ${by.size} extension${by.size>1?"s":""}`;
+  $("#colPdx").setAttribute("aria-pressed", COLV.pdx);
+  if(!col.length){ list.innerHTML = `<div class="empty">Ta collection est vide.<br>Scanne une carte ou ouvre une extension, puis touche « Ajouter à ma collection ».</div>`; return; }
+  if(!EX.series){ list.innerHTML = `<div class="empty"><span class="loader"></span> Rangement par série…</div>`; try{ await loadSeries(); }catch(e){} if(gen!==COLV.gen) return; }
+  // ordre : séries de la plus récente à la plus ancienne, comme l'onglet Extensions
+  const groups = [], seen = new Set();
+  for(const se of EX.series||[]){ const ss = se.sets.filter(s=>by.has(s.id)); if(ss.length){ groups.push({name:se.name, sets:ss}); ss.forEach(s=>seen.add(s.id)); } }
+  const rest = [...by.keys()].filter(k=>!seen.has(k));
+  if(rest.length) groups.push({name:"Autres", sets:rest.map(id=>({id, name:by.get(id)[0].set||id}))});
+  const q = norm(COLV.q);
+  list.innerHTML = groups.map(g=>`<section class="serie"><h2><span>${esc(g.name)}</span><span>${g.sets.reduce((a,s)=>a+by.get(s.id).length,0)}</span></h2>${
+    g.sets.map(s=>{
+      const own = by.get(s.id), val = own.reduce((a,x)=>a+(x.price||0)*x.qty,0), open = COLV.open[s.id] !== false;
+      return `<div class="colset${open?" open":""}" data-set="${esc(s.id)}"><button class="colhead" aria-expanded="${open}">${logoHTML(s)}<span class="t"><span class="n">${esc(s.name)}</span><span class="c" data-cnt>${own.length}${s.count?" / "+s.count:""} carte${own.length>1?"s":""}</span></span><span class="v">${val?esc(eurS(val)):""}</span>${CHEV}</button><div class="prog"><i style="width:${s.count?Math.min(100,own.length/s.count*100):0}%"></i></div><div class="cgrid"></div></div>`;
+    }).join("")}</section>`).join("");
+  list.querySelectorAll(".colhead").forEach(h=>h.onclick=()=>{
+    const box = h.parentElement, id = box.dataset.set, open = !box.classList.contains("open");
+    box.classList.toggle("open", open); h.setAttribute("aria-expanded", open);
+    COLV.open[id] = open; store.set("colOpen", COLV.open);
+    if(open && !box.querySelector(".cgrid").childElementCount) fillColSet(box, by.get(id), gen);
+  });
+  for(const box of list.querySelectorAll(".colset")){
+    if(q){ // avec un filtre, on ne garde que les extensions qui ont des cartes correspondantes
+      const hit = by.get(box.dataset.set).some(x=>norm(x.name+" "+x.num).includes(q));
+      if(!hit && !COLV.pdx){ box.hidden = true; continue; }
+    }
+    if(box.classList.contains("open") || q){ if(q) box.classList.add("open"); fillColSet(box, by.get(box.dataset.set), gen); }
+  }
+}
+async function fillColSet(box, own, gen){
+  const grid = box.querySelector(".cgrid"), id = box.dataset.set, q = norm(COLV.q);
+  const ownById = new Map(own.map(x=>[x.id,x]));
+  const mine = own.map(x=>({id:x.id, localId:x.num, name:x.name}));
+  const draw = cards=>{
+    if(gen!==COLV.gen) return;
+    let l = cards.filter(c=>!isPocket(c.id));
+    if(q) l = l.filter(c=>norm(c.name+" "+c.localId).includes(q));
+    l.sort((a,b)=>colNum(a.localId)-colNum(b.localId) || String(a.localId).localeCompare(String(b.localId)));
+    box.hidden = !!q && !l.length;
+    const sec = box.closest(".serie"); if(sec) sec.hidden = [...sec.querySelectorAll(".colset")].every(x=>x.hidden);
+    grid.innerHTML = l.map(c=>colTile(c, ownById.get(c.id))).join("");
+    grid.querySelectorAll(".ctile").forEach(b=>b.onclick=()=>showCard(b.dataset.id, []));
+  };
+  if(!COLV.pdx){ draw(mine); return; }
+  grid.innerHTML = `<div class="empty" style="grid-column:1/-1;padding:14px"><span class="loader"></span></div>`;
+  const set = await colSetCards(id);
+  if(gen!==COLV.gen) return;
+  if(!set?.cards?.length){ draw(mine); return; }
+  const all = set.cards.slice(), ids = new Set(all.map(c=>c.id));
+  for(const m of mine) if(!ids.has(m.id)) all.push(m);   // carte possédée absente de la liste officielle
+  const cnt = box.querySelector("[data-cnt]"), total = set.cardCount?.official || set.cardCount?.total || set.cards.length;
+  const have = all.filter(c=>ownById.has(c.id)).length;
+  if(cnt) cnt.textContent = `${have} / ${total} carte${total>1?"s":""} · ${Math.round(have/total*100)} %`;
+  box.querySelector(".prog i").style.width = Math.min(100, have/total*100)+"%";
+  draw(all);
+}
+$("#colPdx").onclick = ()=>{ COLV.pdx = !COLV.pdx; store.set("colPdx", COLV.pdx); renderCol(); };
+let colQT = null;
+$("#colQ").addEventListener("input", e=>{ COLV.q = e.target.value; clearTimeout(colQT); colQT = setTimeout(renderCol, 200); });
+function setColQty(id, d){
+  const col = getCol(), i = col.findIndex(x=>x.id===id); if(i<0) return;
+  col[i].qty += d; if(col[i].qty<=0) col.splice(i,1);
+  store.set("col", col); renderCol();
 }
 $("#refreshCol").onclick = async ()=>{
   const b=$("#refreshCol"); b.disabled=true; b.innerHTML=`<span class="loader"></span> Actualisation…`;

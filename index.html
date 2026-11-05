@@ -182,6 +182,16 @@ input,select{font:inherit;color:var(--fg)}
 .coltools input{flex:1;min-width:0;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:11px 13px;font-size:16px}
 .coltools .chip{background:var(--panel);padding:10px 13px;font-size:13px}
 .coltools .chip[aria-pressed="true"]{background:var(--border-yellow);color:var(--on-acc);border-color:var(--border-yellow)}
+#colFltN:not(:empty){margin-left:5px;font-weight:800}
+.fltform{display:grid;gap:14px}
+.lkh{margin:14px 0 6px;font:600 11px/1.2 var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.fltform h4{margin:0 0 6px;font:600 11px/1.2 var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.fltform .seg{display:flex;width:100%}.fltform .seg button{flex:1}
+.fltform select,.fltform input{font:500 16px/1.2 var(--f-body);color:var(--fg);background:var(--panel-2);border:1px solid var(--line);border-radius:10px;padding:11px 12px;width:100%}
+.fltform .two{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.fltbar{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 2px}
+.fltbar button{font:600 12px/1 var(--f-body);padding:7px 10px;border-radius:999px;border:1px solid color-mix(in srgb,var(--border-yellow) 50%,transparent);background:color-mix(in srgb,var(--border-yellow) 14%,transparent);color:var(--fg)}
+.fltbar button::after{content:" ✕";opacity:.6}
 .colset{background:var(--panel);border:1px solid var(--line);border-radius:14px;margin-bottom:10px;overflow:hidden}
 .colhead{display:flex;align-items:center;gap:12px;width:100%;padding:10px 12px;text-align:left}
 .colhead .t{flex:1;min-width:0}
@@ -207,7 +217,14 @@ input,select{font:inherit;color:var(--fg)}
 
 /* ---------- Produits scellés ---------- */
 .exmode{display:flex;width:100%;margin:2px 0 12px}
-.exmode button{flex:1}
+.exmode button{flex:1;padding-left:4px;padding-right:4px}
+.jpset{display:flex;gap:12px;align-items:center;width:100%;text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);background:none;color:var(--fg)}
+.jpset:last-child{border-bottom:0}
+.jpset .im{width:44px;height:60px;border-radius:5px;overflow:hidden;background:var(--panel-2);flex:none}.jpset .im img{width:100%;height:100%;object-fit:cover}
+.jpset .t{flex:1;min-width:0}.jpset .n{display:block;font-weight:700;font-size:14.5px}.jpset .c{display:block;font:500 12px/1.4 var(--f-mono);color:var(--muted)}
+.jpset .rp{font:700 13px/1.2 var(--f-mono);text-align:right;color:var(--muted)}.jpset .rp b{display:block;color:var(--fg)}
+.jpcard .px{font:700 12px/1 var(--f-mono)}
+.jpcard .rr{display:block;font:500 10.5px/1.2 var(--f-mono);color:var(--muted);margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 #sealedBox .seg button{flex:1}
 .schips{display:flex;gap:6px;overflow-x:auto;padding-bottom:2px;scrollbar-width:none}
 .schips::-webkit-scrollbar{display:none}
@@ -227,6 +244,18 @@ input,select{font:inherit;color:var(--fg)}
 .shero{background:#fff;border-radius:16px;display:grid;place-items:center;padding:14px;margin-bottom:14px}
 .shero img{max-width:100%;max-height:240px;object-fit:contain}
 .gradegrid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.lookbtn{display:flex;gap:12px;align-items:center;width:100%;text-align:left;padding:14px;margin:0 0 12px;border-radius:14px;border:1px solid color-mix(in srgb,var(--border-yellow) 45%,transparent);background:linear-gradient(135deg,color-mix(in srgb,var(--border-yellow) 16%,transparent),transparent 70%),var(--panel);color:var(--fg)}
+.lookbtn svg{width:26px;height:26px;flex:none;color:var(--border-yellow)}
+.lookbtn b{display:block;font-size:15.5px}.lookbtn small{display:block;color:var(--muted);font-size:12.5px;margin-top:2px}
+.gchips{display:flex;flex-wrap:wrap;gap:6px}
+.gchips button{font:700 13px/1 var(--f-mono);padding:9px 11px;border-radius:9px;border:1px solid var(--line);background:var(--panel-2);color:var(--fg)}
+.gchips button[aria-pressed="true"]{background:var(--border-yellow);color:var(--on-acc);border-color:var(--border-yellow)}
+.lkres{display:grid;gap:8px;margin-top:12px}
+.lkres a{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:13px 14px;border-radius:12px;background:var(--panel-2);border:1px solid var(--line);color:var(--fg);text-decoration:none;font-weight:600}
+.lkres a small{display:block;color:var(--muted);font-weight:400;font-size:12px;margin-top:2px}
+.lkres a svg{width:16px;height:16px;flex:none;color:var(--muted)}
+.lkcalc{margin-top:14px;padding:12px 14px;border-radius:12px;border:1px dashed var(--line)}
+.lkcalc input{font:500 16px/1.2 var(--f-body);color:var(--fg);background:var(--panel-2);border:1px solid var(--line);border-radius:10px;padding:10px 12px;width:100%;margin-top:6px}
 .grhead{display:flex;gap:14px;align-items:center;margin-bottom:14px}.grhead img{width:72px;border-radius:6px;flex:none}
 .grform{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .grform label{display:flex;flex-direction:column;gap:6px;font:600 11px/1.2 var(--f-mono);letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
@@ -485,7 +514,7 @@ input,select{font:inherit;color:var(--fg)}
 </head>
 <body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="pb" viewBox="0 0 100 100"><defs><linearGradient id="pbV" x1="0" y1="0" x2="1" y2="1"><stop offset="0" style="stop-color:var(--pb1)"/><stop offset=".5" style="stop-color:var(--pb2)"/><stop offset="1" style="stop-color:var(--pb3)"/></linearGradient><radialGradient id="pbB" cx=".38" cy=".75" r=".75"><stop offset="0" style="stop-color:var(--pbb1)"/><stop offset="1" style="stop-color:var(--pbb2)"/></radialGradient><radialGradient id="pbC" cx=".4" cy=".35" r=".7"><stop offset="0" style="stop-color:var(--pbc1)"/><stop offset=".55" style="stop-color:var(--pbc2)"/><stop offset="1" style="stop-color:var(--pbc3)"/></radialGradient></defs><path d="M3 50a47 47 0 0 1 94 0z" fill="url(#pbV)"/><path d="M3 50a47 47 0 0 0 94 0z" fill="url(#pbB)"/><rect x="3" y="45.5" width="94" height="9" fill="#09080D"/><circle cx="50" cy="50" r="47" fill="none" stroke="#09080D" stroke-width="4"/><circle cx="50" cy="50" r="15.5" fill="#09080D"/><circle cx="50" cy="50" r="10" fill="url(#pbC)" style="stroke:var(--pb2)" stroke-width="2"/><path d="M19 33a35 35 0 0 1 17-15" fill="none" stroke="#fff" stroke-opacity=".38" stroke-width="4" stroke-linecap="round"/></symbol></svg>
-<script>window.__APPV="30";</script>
+<script>window.__APPV="31";</script>
 <div class="splash" id="splash" aria-hidden="true"><i class="hole"></i><i class="halo"></i><div class="bw"><svg class="b" viewBox="0 0 100 100"><use href="#pb"/></svg><svg class="t" viewBox="0 0 100 100"><use href="#pb"/></svg></div><i class="glow"></i></div>
 <script>setTimeout(function(){ if(window.__booted) return;
   var b=document.createElement("div"); b.setAttribute("role","alert");
@@ -523,7 +552,7 @@ input,select{font:inherit;color:var(--fg)}
       <div id="extHome">
         <div class="ext-head"><h1 class="h1">Extensions</h1><button class="chip" id="extLang" aria-label="Langue des cartes">Cartes FR</button></div>
         <p class="lede">Dex Scan · toutes les séries Pokémon et la cote Cardmarket de chaque carte.</p>
-        <div class="seg exmode" role="group" aria-label="Type de produits"><button data-mode="cards" aria-pressed="true">Cartes</button><button data-mode="sealed" aria-pressed="false">Scellés</button><button data-mode="graded" aria-pressed="false">Gradées</button></div>
+        <div class="seg exmode" role="group" aria-label="Type de produits"><button data-mode="cards" aria-pressed="true">Cartes</button><button data-mode="sealed" aria-pressed="false">Scellés</button><button data-mode="graded" aria-pressed="false">Gradées</button><button data-mode="jp" aria-pressed="false">Japon</button></div>
         <div id="cardsBox">
         <label class="ext-search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><input id="extQ" type="search" placeholder="Rechercher une extension (ex. 151)" autocomplete="off" aria-label="Rechercher une extension"></label>
         <div id="extList"></div>
@@ -536,7 +565,13 @@ input,select{font:inherit;color:var(--fg)}
           <p class="psub" id="sealMeta" style="margin:0 0 10px"></p>
           <div id="sealList"></div>
         </div>
+        <div id="jpBox" hidden>
+          <label class="ext-search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><input id="jpQ" type="search" placeholder="Extension ou carte japonaise (ex. Mega Brave, Charizard)" autocomplete="off" aria-label="Rechercher dans les cartes japonaises"></label>
+          <p class="psub" id="jpMeta" style="margin:0 0 10px"></p>
+          <div id="jpList"></div>
+        </div>
         <div id="gradedBox" hidden>
+          <button class="lookbtn" id="grLook"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><span><b>Cote d'une carte gradée</b><small>Ventes réalisées par société et par note, même sans posséder la carte</small></span></button>
           <div class="total" style="margin-bottom:12px">
             <div class="plabel"><span>Mes cartes gradées</span><span id="grCount"></span></div>
             <div class="pmain"><div class="pbig" id="grTotal">0,00<small>€</small></div></div>
@@ -620,7 +655,7 @@ input,select{font:inherit;color:var(--fg)}
   <!-- ===== COLLECTION ===== -->
   <section class="view" id="colView" hidden>
     <div class="scroll">
-      <div class="homebar"><svg class="pball" viewBox="0 0 100 100" aria-hidden="true"><use href="#pb"/></svg><span class="brand">DEX<b>·</b>SCAN</span><button class="thbtn" id="themeBtn" aria-label="Changer de thème"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.6-.9 1.2-1.8-.5-1.1.2-2.2 1.4-2.2H17a4 4 0 0 0 4-4c0-5.5-4-10-9-10z"/><circle cx="7.5" cy="11" r="1.2"/><circle cx="10" cy="7" r="1.2"/><circle cx="15" cy="7" r="1.2"/></svg></button><span class="ver">v30</span></div>
+      <div class="homebar"><svg class="pball" viewBox="0 0 100 100" aria-hidden="true"><use href="#pb"/></svg><span class="brand">DEX<b>·</b>SCAN</span><button class="thbtn" id="themeBtn" aria-label="Changer de thème"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.6-.9 1.2-1.8-.5-1.1.2-2.2 1.4-2.2H17a4 4 0 0 0 4-4c0-5.5-4-10-9-10z"/><circle cx="7.5" cy="11" r="1.2"/><circle cx="10" cy="7" r="1.2"/><circle cx="15" cy="7" r="1.2"/></svg></button><span class="ver">v31</span></div>
       <h1 class="h1">Collection</h1>
       <p class="lede">Tes cartes rangées par série et par extension, dans l'ordre des numéros. Le mode Pokédex montre aussi celles qui te manquent, en grisé.</p>
       <div class="total" id="wallet">
@@ -637,7 +672,9 @@ input,select{font:inherit;color:var(--fg)}
       <div class="coltools">
         <input id="colQ" type="search" placeholder="Filtrer (nom ou numéro)" autocomplete="off" aria-label="Filtrer la collection">
         <button class="chip" id="colPdx" aria-pressed="true" title="Afficher aussi les cartes qui te manquent">Pokédex</button>
+        <button class="chip" id="colFlt" aria-pressed="false" title="Filtres et tri"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" style="vertical-align:-3px"><path d="M4 6h16M7 12h10M10 18h4"/></svg><span id="colFltN"></span></button>
       </div>
+      <div class="fltbar" id="colFltBar"></div>
       <div id="colList"></div>
     </div>
   </section>
@@ -1057,7 +1094,7 @@ function renderCard(){
   </div>`;
 
   const gq = g => encodeURIComponent(`${c.name} ${c.localId}${off?"/"+off:""} ${g}`);
-  const graded = `<div class="section"><h4>Cartes gradées · ventes eBay réalisées</h4><div class="gradegrid">${["PSA 10","PSA 9","CollectAura 10","CollectAura 9.5"].map(g=>`<a class="gradebtn" href="https://www.ebay.fr/sch/i.html?_nkw=${gq(g)}&LH_Sold=1&LH_Complete=1&_sop=13" target="_blank" rel="noopener"><b>${esc(g)}</b><span>Voir les ventes terminées</span></a>`).join("")}</div><p class="fine" style="margin-top:8px">Aucune base de prix gratuite ne suit les cartes gradées en euros, ni CollectAura : ces boutons ouvrent les dernières ventes conclues sur eBay pour cette note.</p><button class="btn btn-g" id="grFromCard" style="width:100%;margin-top:10px">Ajouter à mes cartes gradées</button></div>`;
+  const graded = `<div class="section"><h4>Cartes gradées · ventes eBay réalisées</h4><div class="gradegrid">${["PSA 10","PSA 9","CollectAura 10","CollectAura 9.5"].map(g=>`<a class="gradebtn" href="https://www.ebay.fr/sch/i.html?_nkw=${gq(g)}&LH_Sold=1&LH_Complete=1&_sop=13" target="_blank" rel="noopener"><b>${esc(g)}</b><span>Voir les ventes terminées</span></a>`).join("")}</div><p class="fine" style="margin-top:8px">Aucune base de prix gratuite ne suit les cartes gradées en euros, ni CollectAura : ces boutons ouvrent les dernières ventes conclues sur eBay pour cette note.</p><div class="addrow" style="margin-top:10px"><button class="btn btn-g" id="grLookCard">Toutes les notes</button><button class="btn btn-g" id="grFromCard">Ajouter en gradée</button></div></div>`;
   const attacks = (c.attacks||[]).map(a=>`<div class="attack"><div class="attack-h"><span class="cost">${(a.cost||[]).map(t=>`<span class="dot" title="${esc(t)}" style="background:${tcol(t)}"></span>`).join("")}</span><strong>${esc(a.name)}</strong>${a.damage?`<span class="dmg">${esc(a.damage)}</span>`:""}</div>${a.effect?`<p>${esc(a.effect)}</p>`:""}</div>`).join("");
   const abil = (c.abilities||[]).map(a=>`<div class="attack"><div class="attack-h"><span class="tag">${esc(a.type||"Talent")}</span><strong>${esc(a.name)}</strong></div>${a.effect?`<p>${esc(a.effect)}</p>`:""}</div>`).join("");
   const effect = c.effect ? `<div class="attack"><p style="margin:0">${esc(c.effect)}</p></div>` : "";
@@ -1108,6 +1145,7 @@ function renderCard(){
   $("#sheetBody").querySelectorAll(".alt").forEach(b=>b.onclick=()=>showCard(b.dataset.id));
   $("#addCol").onclick = ()=>{ addToCol(c); renderCard(); toast("Ajoutée à ta collection"); };
   $("#grFromCard") && ($("#grFromCard").onclick = ()=>gradedForm(c));
+  $("#grLookCard") && ($("#grLookCard").onclick = ()=>gradedLookup(c));
   $("#colMinus") && ($("#colMinus").onclick = ()=>{ setColQty(c.id,-1); renderCard(); toast("Exemplaire retiré"); });
   $("#colPlus") && ($("#colPlus").onclick = ()=>{ setColQty(c.id,1); renderCard(); });
   $("#buyIn") && ($("#buyIn").onchange = e=>{
@@ -1130,6 +1168,66 @@ function addToCol(c){
   store.set("col",col); renderCol();
 }
 const COLV = {pdx: store.get("colPdx", true), q:"", open: store.get("colOpen", {}), gen:0, sets:new Map()};
+/* ---------- Filtres du Pokédex : afficher, rareté, type, catégorie, prix, tri ---------- */
+const CF = Object.assign({show:"all", rarity:"", type:"", cat:"", pmin:null, pmax:null, sort:"num"}, store.get("colFlt", {}));
+const CF_IDS = new Map();   // "rarity:Commune" -> Set d'identifiants (chargé une fois depuis la base de cartes)
+const cfActive = () => (CF.show!=="all") + !!CF.rarity + !!CF.type + !!CF.cat + (CF.pmin!=null || CF.pmax!=null) + (CF.sort!=="num");
+const cfNarrow = () => CF.show!=="all" || CF.rarity || CF.type || CF.cat || CF.pmin!=null || CF.pmax!=null;
+async function cfLoad(){
+  const want = [["rarity",CF.rarity],["types",CF.type],["category",CF.cat]].filter(([,v])=>v);
+  await Promise.all(want.map(async ([k,v])=>{ const key = `${LANG}:${k}:${v}`; if(CF_IDS.has(key)) return;
+    const l = await getJSON(`${API}/${LANG}/cards?${k}=eq:${encodeURIComponent(v)}`).catch(()=>null) || [];
+    CF_IDS.set(key, new Set(l.map(c=>c.id))); }));
+}
+function cfMatch(c, own){
+  if(CF.show==="own" && !own) return false;
+  if(CF.show==="miss" && own) return false;
+  for(const [k,v] of [["rarity",CF.rarity],["types",CF.type],["category",CF.cat]]){ if(!v) continue; const s = CF_IDS.get(`${LANG}:${k}:${v}`); if(s && !s.has(c.id)) return false; }
+  if(CF.pmin!=null || CF.pmax!=null){ const p = own?.price; if(p==null) return false; if(CF.pmin!=null && p < CF.pmin) return false; if(CF.pmax!=null && p > CF.pmax) return false; }
+  return true;
+}
+function cfSort(l, ownById){
+  const o = c=>ownById.get(c.id);
+  if(CF.sort==="value") l.sort((a,b)=>((o(b)?.price||0)*(o(b)?.qty||0))-((o(a)?.price||0)*(o(a)?.qty||0)) || colNum(a.localId)-colNum(b.localId));
+  else if(CF.sort==="gain") l.sort((a,b)=>(pnlOf(o(b)||{})?.v ?? -1e9)-(pnlOf(o(a)||{})?.v ?? -1e9));
+  else if(CF.sort==="loss") l.sort((a,b)=>(pnlOf(o(a)||{})?.v ?? 1e9)-(pnlOf(o(b)||{})?.v ?? 1e9));
+  else if(CF.sort==="recent") l.sort((a,b)=>(o(b)?.t||0)-(o(a)?.t||0));
+  return l;
+}
+function cfBar(){
+  const parts = [];
+  if(CF.show!=="all") parts.push(["show", CF.show==="own"?"Possédées":"Manquantes"]);
+  if(CF.rarity) parts.push(["rarity", CF.rarity]); if(CF.type) parts.push(["type", CF.type]); if(CF.cat) parts.push(["cat", CF.cat]);
+  if(CF.pmin!=null || CF.pmax!=null) parts.push(["price", CF.pmin!=null && CF.pmax!=null ? `${eurN(CF.pmin)} – ${eurN(CF.pmax)} €` : CF.pmin!=null ? `≥ ${eurN(CF.pmin)} €` : `≤ ${eurN(CF.pmax)} €`]);
+  if(CF.sort!=="num") parts.push(["sort", {value:"Tri : valeur",gain:"Tri : gains",loss:"Tri : pertes",recent:"Tri : ajout récent"}[CF.sort]]);
+  $("#colFltBar").innerHTML = parts.map(([k,l])=>`<button data-cfx="${k}">${esc(l)}</button>`).join("");
+  $("#colFltBar").querySelectorAll("[data-cfx]").forEach(b=>b.onclick=()=>{ const k = b.dataset.cfx;
+    if(k==="price"){ CF.pmin=null; CF.pmax=null; } else if(k==="show") CF.show="all"; else if(k==="sort") CF.sort="num"; else CF[k]="";
+    store.set("colFlt", CF); renderCol(); });
+  const n = cfActive(); $("#colFltN").textContent = n ? n : ""; $("#colFlt").setAttribute("aria-pressed", n>0);
+}
+async function openColFilters(){
+  $("#sheetTitle").textContent = "Filtres du Pokédex";
+  $("#sheetBody").innerHTML = `<div class="empty"><span class="loader"></span></div>`; openSheet();
+  const [rar, typ, cat] = await Promise.all(["rarities","types","categories"].map(k=>getJSON(`${API}/${LANG}/${k}`).catch(()=>[])));
+  const opt = (l, v, all) => `<option value="">${all}</option>` + (l||[]).map(x=>`<option ${x===v?"selected":""}>${esc(x)}</option>`).join("");
+  const seg = (k, l) => `<div class="seg" role="group">${l.map(([v,t])=>`<button data-${k}="${v}" aria-pressed="${CF[k==="fs"?"show":"sort"]===v}">${t}</button>`).join("")}</div>`;
+  $("#sheetBody").innerHTML = `<div class="fltform">
+    <div><h4>Afficher</h4>${seg("fs",[["all","Toutes"],["own","Possédées"],["miss","Manquantes"]])}${!COLV.pdx?`<p class="fine" style="margin:6px 0 0">« Manquantes » demande le mode Pokédex.</p>`:""}</div>
+    <div class="two"><div><h4>Rareté</h4><select id="cfR">${opt(rar, CF.rarity, "Toutes")}</select></div><div><h4>Type</h4><select id="cfT">${opt(typ, CF.type, "Tous")}</select></div></div>
+    <div><h4>Catégorie</h4><select id="cfC">${opt(cat, CF.cat, "Toutes")}</select></div>
+    <div><h4>Cote (cartes possédées)</h4><div class="two"><input id="cfMin" inputmode="decimal" placeholder="Min €" value="${CF.pmin??""}"><input id="cfMax" inputmode="decimal" placeholder="Max €" value="${CF.pmax??""}"></div></div>
+    <div><h4>Trier par</h4><select id="cfS">${[["num","Numéro"],["value","Valeur (la plus haute)"],["gain","Gains (les plus forts)"],["loss","Pertes (les plus fortes)"],["recent","Ajout le plus récent"]].map(([v,t])=>`<option value="${v}" ${CF.sort===v?"selected":""}>${t}</option>`).join("")}</select></div>
+    <div class="addrow"><button class="btn btn-y" id="cfOk">Appliquer</button><button class="btn btn-g" id="cfReset">Tout effacer</button></div>
+  </div>`;
+  let show = CF.show;
+  $("#sheetBody").querySelectorAll("[data-fs]").forEach(b=>b.onclick=()=>{ show = b.dataset.fs; $("#sheetBody").querySelectorAll("[data-fs]").forEach(x=>x.setAttribute("aria-pressed", x===b)); });
+  const num = v => { const n = parseFloat(String(v).replace(",",".")); return isFinite(n) ? n : null; };
+  $("#cfOk").onclick = ()=>{ Object.assign(CF, {show, rarity:$("#cfR").value, type:$("#cfT").value, cat:$("#cfC").value, pmin:num($("#cfMin").value), pmax:num($("#cfMax").value), sort:$("#cfS").value});
+    if(CF.show==="miss" && !COLV.pdx){ COLV.pdx = true; store.set("colPdx", true); }
+    store.set("colFlt", CF); closeSheet(); renderCol(); };
+  $("#cfReset").onclick = ()=>{ Object.assign(CF, {show:"all", rarity:"", type:"", cat:"", pmin:null, pmax:null, sort:"num"}); store.set("colFlt", CF); closeSheet(); renderCol(); };
+}
 const colImg = x => x.img ? (/^https?:.*\.(png|jpe?g|webp)$/i.test(x.img) ? x.img : x.img+"/low.webp") : "";
 /* liste complète d'une extension (images anglaises si la version française n'en a pas) */
 function colSetCards(id){
@@ -1181,6 +1279,9 @@ async function renderCol(){
   const rest = [...by.keys()].filter(k=>!seen.has(k));
   if(rest.length) groups.push({name:"Autres", sets:rest.map(id=>({id, name:by.get(id)[0].set||id}))});
   const q = norm(COLV.q);
+  cfBar();
+  if(CF.rarity || CF.type || CF.cat){ try{ await cfLoad(); }catch(e){} if(gen!==COLV.gen) return; }
+  const narrow = cfNarrow();
   const SD = store.get("setDates", {}), serDate = {};
   for(const se of EX.series||[]) serDate[se.name] = se.date;
   list.innerHTML = groups.map(g=>`<section class="serie"><h2><span>${esc(g.name)}${serDate[g.name]?` <em class="sdate">· depuis ${esc(fmtMonth(serDate[g.name]))}</em>`:""}</span><span>${g.sets.reduce((a,s)=>a+by.get(s.id).length,0)}</span></h2>${
@@ -1205,7 +1306,7 @@ async function renderCol(){
       const hit = by.get(box.dataset.set).some(x=>norm(x.name+" "+x.num).includes(q));
       if(!hit && !COLV.pdx){ box.hidden = true; continue; }
     }
-    if(box.classList.contains("open") || q){ if(q) box.classList.add("open"); fillColSet(box, by.get(box.dataset.set), gen); }
+    if(box.classList.contains("open") || q || narrow){ if(q || narrow) box.classList.add("open"); fillColSet(box, by.get(box.dataset.set), gen); }
   }
 }
 async function fillColSet(box, own, gen){
@@ -1216,8 +1317,10 @@ async function fillColSet(box, own, gen){
     if(gen!==COLV.gen) return;
     let l = cards.filter(c=>!isPocket(c.id));
     if(q) l = l.filter(c=>norm(c.name+" "+c.localId).includes(q));
+    if(cfNarrow()) l = l.filter(c=>cfMatch(c, ownById.get(c.id)));
     l.sort((a,b)=>colNum(a.localId)-colNum(b.localId) || String(a.localId).localeCompare(String(b.localId)));
-    box.hidden = !!q && !l.length;
+    cfSort(l, ownById);
+    box.hidden = (!!q || cfNarrow()) && !l.length;
     const sec = box.closest(".serie"); if(sec) sec.hidden = [...sec.querySelectorAll(".colset")].every(x=>x.hidden);
     grid.innerHTML = l.map(c=>colTile(c, ownById.get(c.id))).join("");
     grid.querySelectorAll(".ctile").forEach(b=>b.onclick=()=>showCard(b.dataset.id, []));
@@ -1235,6 +1338,7 @@ async function fillColSet(box, own, gen){
   box.querySelector(".prog i").style.width = Math.min(100, have/total*100)+"%";
   draw(all);
 }
+$("#colFlt").onclick = openColFilters;
 $("#colPdx").onclick = ()=>{ COLV.pdx = !COLV.pdx; store.set("colPdx", COLV.pdx); renderCol(); };
 let colQT = null;
 $("#colQ").addEventListener("input", e=>{ COLV.q = e.target.value; clearTimeout(colQT); colQT = setTimeout(renderCol, 200); });
@@ -1406,7 +1510,8 @@ function sDelta(p, lbl){
 function setExMode(m){
   store.set("exMode", m);
   document.querySelectorAll(".exmode button").forEach(b=>b.setAttribute("aria-pressed", b.dataset.mode===m));
-  $("#cardsBox").hidden = m!=="cards"; $("#sealedBox").hidden = m!=="sealed"; $("#gradedBox").hidden = m!=="graded";
+  $("#cardsBox").hidden = m!=="cards"; $("#sealedBox").hidden = m!=="sealed"; $("#gradedBox").hidden = m!=="graded"; $("#jpBox").hidden = m!=="jp";
+  if(m==="jp") renderJP();
   if(m==="sealed") renderSealed();
   if(m==="graded") renderGraded();
 }
@@ -1522,8 +1627,8 @@ function gradedForm(c, edit=false){
   $("#grDel") && ($("#grDel").onclick = ()=>{ setGraded(getGraded().filter(y=>y.uid!==x.uid)); closeSheet(); toast("Carte gradée supprimée"); renderGraded(); });
   openSheet(); $("#sheetBody").scrollTop = 0;
 }
-function gradedSearch(){
-  $("#sheetTitle").textContent = "Quelle carte est gradée ?";
+function gradedSearch(lookup=false){
+  $("#sheetTitle").textContent = lookup ? "Cote d'une carte gradée" : "Quelle carte est gradée ?";
   $("#sheetBody").innerHTML = `<label class="ext-search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><input id="grQ" type="search" placeholder="Nom de la carte (ex. Dracaufeu)" autocomplete="off"></label><div id="grRes" style="margin-top:10px"></div>`;
   openSheet(); setTimeout(()=>$("#grQ").focus(), 250);
   let t = null, gen = 0;
@@ -1532,11 +1637,116 @@ function gradedSearch(){
       try{ const r = (await getJSON(`${API}/${LANG}/cards?name=${encodeURIComponent(q)}`) || []).filter(c=>!isPocket(c.id)).slice(0,60);
         if(my!==gen) return;
         $("#grRes").innerHTML = r.length ? `<div class="cgrid">${r.map(c=>`<button class="ctile have" data-gid="${esc(c.id)}"><span class="im">${imgTag(c,"low",`alt="" loading="lazy"`)}</span><span class="cn">${esc(c.name)} · ${esc(c.localId)}</span></button>`).join("")}</div>` : `<div class="empty">Aucune carte trouvée.</div>`;
-        $("#grRes").querySelectorAll("[data-gid]").forEach(b=>b.onclick=async ()=>{ const c = await getCard(b.dataset.gid).catch(()=>null); if(c) gradedForm(c); });
+        $("#grRes").querySelectorAll("[data-gid]").forEach(b=>b.onclick=async ()=>{ const c = await getCard(b.dataset.gid).catch(()=>null); if(c) (lookup ? gradedLookup(c) : gradedForm(c)); });
       }catch(err){ if(my===gen) $("#grRes").innerHTML = `<div class="empty">Recherche impossible pour l'instant.</div>`; }
     }, 300); };
 }
-$("#grAdd").onclick = gradedSearch;
+$("#grAdd").onclick = ()=>gradedSearch(false);
+/* ---------- Cote d'une carte gradée : ventes réalisées par société et note, sans posséder la carte ---------- */
+const EBAY_SITES = [["ebay.fr","eBay France"],["ebay.de","eBay Allemagne"],["ebay.co.uk","eBay Royaume-Uni"],["ebay.com","eBay États-Unis"]];
+function gradedLookup(c){
+  const st = {gr:"PSA", note:"10"};
+  const mi = marketInfo(c) || {}, raw = mi.p ?? mainPrice(c);
+  const off = c.set?.cardCount?.official;
+  $("#sheetTitle").textContent = "Cote d'une carte gradée";
+  const draw = ()=>{
+    const g = grBy(st.gr), lbl = g.k==="CA" ? "CollectAura" : g.k==="AUT" ? "" : g.k, n = st.note.replace(/^(Pristine|Gem Mint|Black Label) /,"");
+    const qn = encodeURIComponent(`${c.name} ${c.localId}${off?"/"+off:""} ${lbl} ${n}`.replace(/\s+/g," ").trim());
+    const qEn = c._en ? encodeURIComponent(`${c._en} ${c.localId}${off?"/"+off:""} ${lbl} ${n}`.replace(/\s+/g," ").trim()) : qn;
+    $("#sheetBody").innerHTML = `
+      <div class="grhead">${imgTag(c, "low", `alt=""`)}<div><h2 style="margin:0 0 4px">${esc(c.name)}</h2><p class="psub" style="margin:0">${esc(c.set?.name||"")}${c.localId?" · n° "+esc(c.localId)+(off?"/"+off:""):""}</p>${raw!=null?`<p class="psub" style="margin:6px 0 0">Carte non gradée : <b style="color:var(--fg)">${esc(eurN(raw))} €</b> (Cardmarket)</p>`:""}</div></div>
+      <h4 class="lkh">Société</h4><div class="gchips" id="lkG">${GRADERS.filter(x=>x.k!=="AUT").map(x=>`<button data-g="${x.k}" aria-pressed="${x.k===st.gr}">${esc(x.k==="CA"?"CollectAura":x.k==="BGS"?"Beckett":x.k)}</button>`).join("")}</div>
+      <h4 class="lkh">Note</h4><div class="gchips" id="lkN">${g.grades.map(x=>`<button data-n="${esc(x)}" aria-pressed="${x===st.note}">${esc(x)}</button>`).join("")}</div>
+      <div class="lkres">
+        ${EBAY_SITES.map(([d,l],i)=>`<a href="https://www.${d}/sch/i.html?_nkw=${i===0?qn:qEn}&LH_Sold=1&LH_Complete=1&_sop=13" target="_blank" rel="noopener"><span>Ventes réalisées · ${esc(l)}<small>${esc(g.n)} ${esc(st.note)} · les plus récentes d'abord</small></span>${ico.ext}</a>`).join("")}
+        <a href="https://www.cardmarket.com/fr/Pokemon/Products/Search?searchString=${encodeURIComponent(c.name)}" target="_blank" rel="noopener"><span>Cardmarket<small>Certaines annonces précisent la gradation dans les commentaires</small></span>${ico.ext}</a>
+        ${g.site?`<a href="${g.site}" target="_blank" rel="noopener"><span>Population ${esc(g.n)}<small>Combien d'exemplaires existent avec chaque note</small></span>${ico.ext}</a>`:""}
+      </div>
+      ${raw!=null?`<div class="lkcalc"><b>Comparer avec la carte brute</b><input id="lkP" inputmode="decimal" placeholder="Prix de vente vu pour ${esc(g.n)} ${esc(st.note)} (€)"><p class="psub" id="lkOut" style="margin:8px 0 0">Saisis un prix relevé pour voir le surcoût de la note.</p></div>`:""}
+      <button class="btn btn-g" id="lkAdd" style="width:100%;margin-top:12px">J'ai cette carte gradée : l'ajouter</button>
+      <p class="fine">Les prix de vente des cartes gradées ne sont pas publiés gratuitement : ces liens ouvrent directement les ventes conclues pour cette carte et cette note exacte.</p>`;
+    $("#lkG").querySelectorAll("[data-g]").forEach(b=>b.onclick=()=>{ st.gr = b.dataset.g; st.note = grBy(st.gr).grades[0]; draw(); });
+    $("#lkN").querySelectorAll("[data-n]").forEach(b=>b.onclick=()=>{ st.note = b.dataset.n; draw(); });
+    $("#lkP") && ($("#lkP").oninput = e=>{ const v = parseFloat(e.target.value.replace(",",".")); $("#lkOut").innerHTML = isFinite(v) && raw ? `Soit <b style="color:var(--fg)">×${(v/raw).toFixed(1).replace(".",",")}</b> la cote brute (${v>=raw?"+":"−"}${esc(eurN(Math.abs(v-raw)))} €).` : "Saisis un prix relevé pour voir le surcoût de la note."; });
+    $("#lkAdd").onclick = ()=>{ gradedForm(c); setTimeout(()=>{ const s1=$("#grG"), s2=$("#grN"); if(s1){ s1.value = st.gr; s1.dispatchEvent(new Event("change")); } if(s2){ s2.value = st.note; s2.dispatchEvent(new Event("change")); } }, 0); };
+  };
+  draw(); openSheet(); $("#sheetBody").scrollTop = 0;
+  // nom anglais (les ventes hors de France sont en anglais)
+  if(LANG!=="en") getJSON(`${API}/en/cards/${encodeURIComponent(c.id)}`).then(e=>{ if(e?.name){ c._en = e.name; draw(); } }).catch(()=>{});
+}
+$("#grLook").onclick = ()=>gradedSearch(true);
+
+
+/* ---------------- Cartes japonaises (TCGplayer Japon via TCGCSV, mis à jour chaque jour) ---------------- */
+const JP = {idx:null, p:null, sets:new Map(), open:null, sort:"num", q:""};
+const jpEur = v => v==null ? null : v * (JP.idx?.usdEur || 1);
+const jpFmt = v => v==null ? "—" : `${eurN(jpEur(v))} ${JP.idx?.usdEur ? "€" : "$"}`;
+function jpLoad(){ return JP.p || (JP.p = fetchT("jp/index.json?h="+Math.floor(Date.now()/36e5), 30000).then(r=>{ if(!r.ok) throw new NetError("http", `cartes japonaises : ${r.status}`, "jp/index.json"); return r.json(); }).then(j=>{ JP.idx = j; return j; }).catch(e=>{ JP.p = null; throw e; })); }
+function jpSet(g){ if(!JP.sets.has(g)) JP.sets.set(g, fetchT(`jp/${g}.json?h=`+Math.floor(Date.now()/36e5), 30000).then(r=>r.ok?r.json():null).catch(()=>null)); return JP.sets.get(g); }
+const jpNum = c => { const n = parseInt(String(c.no||"").split("/")[0].replace(/\D/g,""),10); return isNaN(n) ? 1e9 : n; };
+async function renderJP(){
+  const el = $("#jpList");
+  if(!JP.idx){
+    el.innerHTML = `<div class="empty"><span class="loader"></span> Chargement des cartes japonaises…</div>`;
+    try{ await jpLoad(); }catch(e){ el.innerHTML = `<div class="empty"><b style="color:var(--fg)">Cartes japonaises bientôt disponibles</b><br>La première liste est en cours de préparation. Réessaie dans quelques minutes.</div>`; return; }
+  }
+  if(JP.open) return renderJPSet(JP.open);
+  const q = norm(JP.q), D = JP.idx;
+  let sets = D.sets.filter(x=>!q || norm(x.n+" "+x.a).includes(q));
+  $("#jpMeta").textContent = `${D.sets.length} extensions · ${D.sets.reduce((a,x)=>a+x.c,0).toLocaleString("fr-FR")} cartes · marché US (TCGplayer)${D.usdEur?", en €":""} · ${ago(D.built)}`;
+  // recherche d'une carte précise dans les 12 extensions les plus récentes correspondantes
+  let cardHits = "";
+  if(q.length >= 3){
+    const recent = D.sets.slice(0, 40);
+    const all = (await Promise.all(recent.map(x=>jpSet(x.g)))).filter(Boolean);
+    const hits = []; for(const s of all) for(const c of s.cards) if(norm(c.n).includes(q)) hits.push({...c, set:s});
+    hits.sort((a,b)=>(b.m||0)-(a.m||0));
+    if(hits.length) cardHits = `<section class="serie"><h2><span>Cartes trouvées</span><span>${hits.length}</span></h2><div class="cgrid" style="padding:4px 0 10px">${hits.slice(0,60).map(jpTile).join("")}</div></section>`;
+  }
+  el.innerHTML = cardHits + (sets.length ? `<section class="serie"><h2><span>Extensions japonaises</span><span>${sets.length}</span></h2><div class="sets">${sets.map(x=>`<button class="jpset" data-jg="${x.g}"><span class="im">${x.img?`<img src="${esc(x.img)}" alt="" loading="lazy" onerror="this.remove()">`:""}</span><span class="t"><span class="n">${esc(x.n)}</span><span class="c">${esc([x.a, x.d?fmtMonth(x.d):"", x.c+" cartes"].filter(Boolean).join(" · "))}</span></span><span class="rp">${x.top!=null?`<b>${esc(jpFmt(x.top))}</b>la plus chère`:""}</span></button>`).join("")}</div></section>` : (cardHits ? "" : `<div class="empty">Aucune extension ne correspond.</div>`));
+  el.querySelectorAll("[data-jg]").forEach(b=>b.onclick=()=>{ JP.open = +b.dataset.jg; renderJPSet(JP.open); extScroll.scrollTop = 0; });
+  el.querySelectorAll("[data-jc]").forEach(b=>b.onclick=()=>jpCardSheet(b));
+}
+function jpTile(c){
+  return `<button class="ctile have jpcard" data-jc="${c.i}" data-jg2="${c.set?.g||JP.open}"><span class="im"><span class="nm0">${esc(c.n)}</span>${c.img?`<img src="${esc(c.img)}" alt="" loading="lazy" onerror="this.remove()">`:""}</span><span class="cn">${esc(c.no||"")} ${c.m!=null?`<span class="px">${esc(jpFmt(c.m))}</span>`:""}</span><span class="rr">${esc(c.n)}${c.r?" · "+esc(c.r):""}</span></button>`;
+}
+async function renderJPSet(g){
+  const el = $("#jpList"); el.innerHTML = `<div class="empty"><span class="loader"></span></div>`;
+  const s = await jpSet(g); if(!s){ el.innerHTML = `<div class="empty">Extension indisponible.</div>`; return; }
+  let l = s.cards.slice(); const q = norm(JP.q); if(q) l = l.filter(c=>norm(c.n+" "+c.no+" "+c.r).includes(q) || norm(s.n).includes(q));
+  if(JP.sort==="price") l.sort((a,b)=>(b.m||0)-(a.m||0)); else l.sort((a,b)=>jpNum(a)-jpNum(b));
+  const tot = s.cards.reduce((a,c)=>a+(c.m||0),0);
+  el.innerHTML = `<button class="backbtn" id="jpBack"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>Extensions japonaises</button>
+    <div class="sethead" style="margin-top:10px"><div style="min-width:0"><h2>${esc(s.n)}</h2><p>${esc([s.a, s.d?fmtDay(s.d):"", s.cards.length+" cartes"].filter(Boolean).join(" · "))}</p></div></div>
+    <div class="total" style="margin-bottom:10px"><div class="plabel"><span>Valeur de l'extension</span><span>TCGplayer Japon</span></div><div class="pmain"><div class="pbig">${esc(eurN(jpEur(tot)))}<small>${JP.idx?.usdEur?"€":"$"}</small></div></div><div class="psub">Une carte de chaque, au prix du marché américain</div></div>
+    <div class="seg" style="display:flex;margin-bottom:10px"><button data-js="num" aria-pressed="${JP.sort==="num"}" style="flex:1">N°</button><button data-js="price" aria-pressed="${JP.sort==="price"}" style="flex:1">Prix ↓</button></div>
+    <div class="cgrid">${l.map(c=>jpTile({...c, set:s})).join("")}</div>`;
+  $("#jpBack").onclick = ()=>{ JP.open = null; renderJP(); };
+  el.querySelectorAll("[data-js]").forEach(b=>b.onclick=()=>{ JP.sort = b.dataset.js; renderJPSet(g); });
+  el.querySelectorAll("[data-jc]").forEach(b=>b.onclick=()=>jpCardSheet(b));
+}
+async function jpCardSheet(b){
+  const s = await jpSet(+b.dataset.jg2); const c = s?.cards.find(x=>x.i===+b.dataset.jc); if(!c) return;
+  const q = encodeURIComponent(`${c.n} ${c.no||""} japanese`.trim());
+  $("#sheetTitle").textContent = "Carte japonaise";
+  $("#sheetBody").innerHTML = `
+    ${c.img?`<div class="shero"><img src="${esc(c.img.replace(/_200w\.jpg$/,"_400w.jpg"))}" alt="" onerror="this.src='${esc(c.img)}'"></div>`:""}
+    <div class="ctitle"><h2 style="margin:0">${esc(c.n)}</h2></div>
+    <p class="psub" style="margin:4px 0 0"><i class="stype">JP</i>${esc(s.n)}${c.no?" · n° "+esc(c.no):""}${c.r?" · "+esc(c.r):""}${c.v?" · "+esc(c.v):""}</p>
+    <div class="price">
+      <div class="plabel"><span>Prix du marché · TCGplayer Japon</span>${JP.idx?.built?`<span>MAJ ${esc(ago(JP.idx.built))}</span>`:""}</div>
+      <div class="pmain"><div class="pbig">${c.m!=null?esc(eurN(jpEur(c.m))):"—"}<small>${JP.idx?.usdEur?"€":"$"}</small></div></div>
+      <div class="psub">${c.l!=null?`Annonces de ${esc(jpFmt(c.l))} à ${esc(jpFmt(c.h))}`:"Pas encore de prix pour cette carte."}</div>
+      <div class="links">
+        ${c.url?`<a href="${esc(c.url)}" target="_blank" rel="noopener">${ico.ext}Voir sur TCGplayer</a>`:""}
+        <a href="https://www.ebay.fr/sch/i.html?_nkw=${q}&LH_Sold=1&LH_Complete=1&_sop=13" target="_blank" rel="noopener">${ico.ext}Ventes eBay réalisées</a>
+        <a href="https://www.cardmarket.com/fr/Pokemon/Products/Search?searchString=${encodeURIComponent(c.n)}" target="_blank" rel="noopener">${ico.ext}Cardmarket</a>
+      </div>
+    </div>
+    <p class="fine">Prix de la carte japonaise sur le marché américain (TCGplayer, via TCGCSV), convertis en euros au taux de la BCE. Les boutiques japonaises ne publient pas leurs prix gratuitement.</p>`;
+  openSheet(); $("#sheetBody").scrollTop = 0;
+}
+let jpQT = null; $("#jpQ").addEventListener("input", e=>{ JP.q = e.target.value; clearTimeout(jpQT); jpQT = setTimeout(renderJP, 250); });
 setExMode(store.get("exMode","cards"));
 
 

@@ -467,6 +467,49 @@ input,select{font:inherit;color:var(--fg)}
 @keyframes pbGlow{0%{opacity:0;transform:scale(.6)}40%{opacity:1;transform:scale(1.4)}100%{opacity:0;transform:scale(5)}}
 @media (prefers-reduced-motion:reduce){.splash .bw,.splash .glow{animation:none}.splash .hole,.splash .bw svg{transition:none}.splash{transition:opacity .3s}.splash.open{opacity:0}}
 
+/* ---------- Cartes d'extension : avancement, raretés ---------- */
+:root{--g1:#C23BD6;--g2:#4E9BFF}
+:root[data-theme="feu"]{--g1:#E8361C;--g2:#FFB347}
+:root[data-theme="eau"]{--g1:#1478D4;--g2:#7FE3FF}
+:root[data-theme="electrik"]{--g1:#F28A1A;--g2:#FFE98A}
+:root[data-theme="plante"]{--g1:#1E6B2E;--g2:#7BD389}
+:root[data-theme="kanto"]{--g1:#A8240A;--g2:#FF6A4D}
+.scards{display:block}
+.scard{display:block;width:100%;text-align:left;margin:0 0 18px;color:var(--fg)}
+.sch h3{margin:0;font:800 21px/1.15 var(--f-body);letter-spacing:-.01em;overflow-wrap:anywhere}
+.sch p{margin:3px 0 9px;color:var(--muted);font-size:13.5px}
+.scp{position:relative;border:1px solid color-mix(in srgb,var(--fg) 16%,transparent);border-radius:18px;padding:14px 14px 14px;background:radial-gradient(130% 100% at 0% 0%,color-mix(in srgb,var(--g1) 16%,transparent),transparent 62%),linear-gradient(165deg,var(--panel),color-mix(in srgb,var(--ink) 70%,var(--panel)))}
+.scard:active .scp{transform:scale(.99)}
+.sctop{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;min-height:62px}
+.sctop .slogo{width:132px;height:64px;place-items:center start}
+.sctop .slogo img{max-width:132px;max-height:64px}
+.scr{display:flex;flex-direction:column;align-items:flex-end;gap:10px;min-width:0}
+.scmin{width:32px;height:32px;border-radius:10px;background:var(--soft);color:var(--ink);display:grid;place-items:center;flex:none}
+.scmin svg{width:16px;height:16px}
+.scc{font:700 19px/1 var(--f-mono);font-variant-numeric:tabular-nums;white-space:nowrap}
+.scc small{font-size:.66em;color:var(--muted);font-weight:600}
+.scc .sep{display:inline-block;width:1.5px;height:1.05em;background:currentColor;opacity:.8;margin:0 9px;vertical-align:-3px}
+.scv{font:600 12px/1 var(--f-mono);color:var(--muted);white-space:nowrap}
+.scv b{color:var(--fg)}
+.scbar{display:flex;align-items:center;gap:12px;margin-top:12px}
+.scsym{flex:none;min-width:48px;height:36px;padding:4px 7px;border-radius:10px;background:#ECEDF1;border:2px solid #A3A8B3;box-shadow:inset 0 0 0 2px #fff;display:grid;place-items:center;font:800 11px/1 var(--f-mono);color:#141414;letter-spacing:.02em}
+.scsym img{max-width:36px;max-height:22px;object-fit:contain}
+.scbar .sbar{flex:1;height:11px;border-radius:99px;background:color-mix(in srgb,var(--fg) 20%,transparent);overflow:hidden}
+.scbar .sbar>i{display:block;height:100%;min-width:0;border-radius:99px;background:linear-gradient(90deg,var(--g1),var(--g2));transition:width .45s}
+.scrar{display:grid;grid-template-columns:repeat(auto-fit,minmax(34px,1fr));gap:14px 2px;margin-top:18px}
+.rc{display:flex;flex-direction:column;align-items:center;gap:7px;font:700 13.5px/1 var(--f-body);letter-spacing:-.03em;white-space:nowrap;font-variant-numeric:tabular-nums;color:var(--fg);padding:4px 0;border-radius:10px}
+.rc i{height:22px;display:grid;place-items:center}
+.rc svg{height:21px;width:auto;overflow:visible}
+.rc small{font-size:.72em;color:var(--muted);font-weight:600}
+.rc.full b{color:var(--up)}
+.rc[aria-pressed="true"]{background:color-mix(in srgb,var(--border-yellow) 22%,transparent);box-shadow:inset 0 0 0 1.5px var(--border-yellow)}
+.scard.min .scrar{display:none}
+.scnote{margin-top:12px;font-size:12px;color:var(--muted)}
+.colset.scard{background:none;border:0;border-radius:0;overflow:visible}
+.colset.scard .cgrid{padding:12px 0 0}
+.scdet{margin:14px 0 6px}
+.scdet .sch h3{font-size:24px}
+
 /* ---------- Thèmes ---------- */
 :root{--on-acc:#1a1408;--soft:#c4c8d1;--t-fill:#0B0910;--t-stroke:#C08CFF;--t-shadow:#4A12A8;--pb1:#C08CFF;--pb2:#7B2FF7;--pb3:#3E0E92;--pbb1:#2B2735;--pbb2:#09080D;--pbc1:#F1E6FF;--pbc2:#B98CFF;--pbc3:#7B2FF7;--sp1:#2A1450}
 :root[data-theme="spectre"]{--ink:#0E0B14;--panel:#1A1524;--panel-2:#241D31;--line:#2E2540;--fg:#F1EAFF;--muted:#9C90B3;--border-yellow:#9B5CFF;--border-deep:#6A2FD0;--on-acc:#FFFFFF;--t-fill:#0B0910;--t-stroke:#C08CFF;--t-shadow:#4A12A8;--pb1:#C08CFF;--pb2:#7B2FF7;--pb3:#3E0E92;--pbb1:#2B2735;--pbb2:#09080D;--pbc1:#F1E6FF;--pbc2:#B98CFF;--pbc3:#7B2FF7;--soft:#CFC6DF;--sp1:#2A1450;}
@@ -514,7 +557,7 @@ input,select{font:inherit;color:var(--fg)}
 </head>
 <body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="pb" viewBox="0 0 100 100"><defs><linearGradient id="pbV" x1="0" y1="0" x2="1" y2="1"><stop offset="0" style="stop-color:var(--pb1)"/><stop offset=".5" style="stop-color:var(--pb2)"/><stop offset="1" style="stop-color:var(--pb3)"/></linearGradient><radialGradient id="pbB" cx=".38" cy=".75" r=".75"><stop offset="0" style="stop-color:var(--pbb1)"/><stop offset="1" style="stop-color:var(--pbb2)"/></radialGradient><radialGradient id="pbC" cx=".4" cy=".35" r=".7"><stop offset="0" style="stop-color:var(--pbc1)"/><stop offset=".55" style="stop-color:var(--pbc2)"/><stop offset="1" style="stop-color:var(--pbc3)"/></radialGradient></defs><path d="M3 50a47 47 0 0 1 94 0z" fill="url(#pbV)"/><path d="M3 50a47 47 0 0 0 94 0z" fill="url(#pbB)"/><rect x="3" y="45.5" width="94" height="9" fill="#09080D"/><circle cx="50" cy="50" r="47" fill="none" stroke="#09080D" stroke-width="4"/><circle cx="50" cy="50" r="15.5" fill="#09080D"/><circle cx="50" cy="50" r="10" fill="url(#pbC)" style="stroke:var(--pb2)" stroke-width="2"/><path d="M19 33a35 35 0 0 1 17-15" fill="none" stroke="#fff" stroke-opacity=".38" stroke-width="4" stroke-linecap="round"/></symbol></svg>
-<script>window.__APPV="32";</script>
+<script>window.__APPV="33";</script>
 <div class="splash" id="splash" aria-hidden="true"><i class="hole"></i><i class="halo"></i><div class="bw"><svg class="b" viewBox="0 0 100 100"><use href="#pb"/></svg><svg class="t" viewBox="0 0 100 100"><use href="#pb"/></svg></div><i class="glow"></i></div>
 <script>setTimeout(function(){ if(window.__booted) return;
   var b=document.createElement("div"); b.setAttribute("role","alert");
@@ -655,7 +698,7 @@ input,select{font:inherit;color:var(--fg)}
   <!-- ===== COLLECTION ===== -->
   <section class="view" id="colView" hidden>
     <div class="scroll">
-      <div class="homebar"><svg class="pball" viewBox="0 0 100 100" aria-hidden="true"><use href="#pb"/></svg><span class="brand">DEX<b>·</b>SCAN</span><button class="thbtn" id="themeBtn" aria-label="Changer de thème"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.6-.9 1.2-1.8-.5-1.1.2-2.2 1.4-2.2H17a4 4 0 0 0 4-4c0-5.5-4-10-9-10z"/><circle cx="7.5" cy="11" r="1.2"/><circle cx="10" cy="7" r="1.2"/><circle cx="15" cy="7" r="1.2"/></svg></button><span class="ver">v32</span></div>
+      <div class="homebar"><svg class="pball" viewBox="0 0 100 100" aria-hidden="true"><use href="#pb"/></svg><span class="brand">DEX<b>·</b>SCAN</span><button class="thbtn" id="themeBtn" aria-label="Changer de thème"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.6-.9 1.2-1.8-.5-1.1.2-2.2 1.4-2.2H17a4 4 0 0 0 4-4c0-5.5-4-10-9-10z"/><circle cx="7.5" cy="11" r="1.2"/><circle cx="10" cy="7" r="1.2"/><circle cx="15" cy="7" r="1.2"/></svg></button><span class="ver">v33</span></div>
       <h1 class="h1">Collection</h1>
       <p class="lede">Tes cartes rangées par série et par extension, dans l'ordre des numéros. Le mode Pokédex montre aussi celles qui te manquent, en grisé.</p>
       <div class="total" id="wallet">
@@ -1282,25 +1325,28 @@ async function renderCol(){
   cfBar();
   if(CF.rarity || CF.type || CF.cat){ try{ await cfLoad(); }catch(e){} if(gen!==COLV.gen) return; }
   const narrow = cfNarrow();
-  const SD = store.get("setDates", {}), serDate = {};
+  const SD = store.get("setDates", {}), serDate = {}, OWNI = ownIndex();
+  if(!RAR.d) loadRar().then(d=>{ if(d && gen===COLV.gen && !$("#colView").hidden) renderCol(); });
   for(const se of EX.series||[]) serDate[se.name] = se.date;
   list.innerHTML = groups.map(g=>`<section class="serie"><h2><span>${esc(g.name)}${serDate[g.name]?` <em class="sdate">· depuis ${esc(fmtMonth(serDate[g.name]))}</em>`:""}</span><span>${g.sets.reduce((a,s)=>a+by.get(s.id).length,0)}</span></h2>${
     g.sets.map(s=>{
       const own = by.get(s.id), val = own.reduce((a,x)=>a+(x.price||0)*x.qty,0), open = COLV.open[s.id] !== false;
-      return `<div class="colset${open?" open":""}" data-set="${esc(s.id)}"><button class="colhead" aria-expanded="${open}">${logoHTML(s)}<span class="t"><span class="n">${esc(s.name)}</span><span class="d" data-date="${esc(s.id)}">${SD[s.id]?"Sortie "+esc(fmtDay(SD[s.id])):""}</span><span class="c" data-cnt>${own.length}${s.count?" / "+s.count:""} carte${own.length>1?"s":""}</span></span><span class="v">${val?esc(eurS(val)):""}</span>${CHEV}</button><div class="prog"><i style="width:${s.count?Math.min(100,own.length/s.count*100):0}%"></i></div><div class="cgrid"></div></div>`;
+      return setCardHTML(s, {own: OWNI.get(s.id), cls:"colset"+(open?" open":""), plus:!open, value: val?eurS(val):"", attrs:` role="button" tabindex="0" aria-expanded="${open}"`, inner:`<div class="cgrid"></div>`});
     }).join("")}</section>`).join("");
-  list.querySelectorAll(".colhead").forEach(h=>h.onclick=()=>{
-    const box = h.parentElement, id = box.dataset.set, open = !box.classList.contains("open");
+  list.querySelectorAll(".colset").forEach(box=>box.onclick=e=>{
+    if(e.target.closest(".cgrid")) return;
+    const h = box, id = box.dataset.set, open = !box.classList.contains("open");
     box.classList.toggle("open", open); h.setAttribute("aria-expanded", open);
+    const m = box.querySelector("[data-min]"); if(m){ m.innerHTML = open?MIN_SVG:PLUS_SVG; m.setAttribute("aria-label", open?"Replier":"Déplier"); }
     COLV.open[id] = open; store.set("colOpen", COLV.open);
     if(open && !box.querySelector(".cgrid").childElementCount) fillColSet(box, by.get(id), gen);
   });
   for(const box of list.querySelectorAll(".colset")){
     const id = box.dataset.set;
-    if(!SD[id]) colSetCards(id).then(set=>{
+    if(!SD[id] && !rarInfo(id)?.date) colSetCards(id).then(set=>{
       if(!set?.releaseDate) return;
       const m = store.get("setDates", {}); m[id] = set.releaseDate; store.set("setDates", m);
-      const el = box.querySelector("[data-date]"); if(el) el.textContent = "Sortie " + fmtDay(set.releaseDate);
+      const el = box.querySelector("[data-date]"); if(el) el.textContent = "Date de sortie : " + fmtDay(set.releaseDate);
     }).catch(()=>{});
     if(q){ // avec un filtre, on ne garde que les extensions qui ont des cartes correspondantes
       const hit = by.get(box.dataset.set).some(x=>norm(x.name+" "+x.num).includes(q));
@@ -1334,8 +1380,7 @@ async function fillColSet(box, own, gen){
   for(const m of mine) if(!ids.has(m.id)) all.push(m);   // carte possédée absente de la liste officielle
   const cnt = box.querySelector("[data-cnt]"), total = set.cardCount?.official || set.cardCount?.total || set.cards.length;
   const have = all.filter(c=>ownById.has(c.id)).length;
-  if(cnt) cnt.textContent = `${have} / ${total} carte${total>1?"s":""} · ${Math.round(have/total*100)} %`;
-  box.querySelector(".prog i").style.width = Math.min(100, have/total*100)+"%";
+  if(cnt && !rarInfo(id)){ const pc = Math.min(100, Math.floor(have/total*100)); cnt.innerHTML = `<b>${have}</b><small>/${total}</small><span class="sep"></span><b>${pc}%</b>`; box.querySelector(".sbar>i").style.width = pc+"%"; }
   draw(all);
 }
 $("#colFlt").onclick = openColFilters;
@@ -2724,6 +2769,108 @@ function logoHTML(s){
   if(!l.length) return `<span class="slogo"><span class="ini">${esc(initials(s))}</span></span>`;
   return `<span class="slogo"><img src="${esc(l[0])}" alt="" loading="lazy" data-alt="${esc(l.slice(1).join("|"))}" data-ini="${esc(initials(s))}" onerror="__imgNext(this)" onload="__imgChk(this)"></span>`;
 }
+/* ---------- Raretés par extension (rarities.json, reconstruit chaque jour) ----------
+   Pour chaque extension : date de sortie, nombre de cartes, numéros des cartes par rareté. */
+const RAR = {d: store.get("rar", null)?.d || null, p:null};
+function loadRar(){
+  if(RAR.p) return RAR.p;
+  const c = store.get("rar", null);
+  if(c?.d && Date.now()-c.t < 12*36e5) return RAR.p = Promise.resolve(c.d);
+  RAR.p = fetch("rarities.json?h="+Math.floor(Date.now()/36e5)).then(r=>r.ok?r.json():null).then(j=>{
+    if(j?.S){ RAR.d = j; try{ store.set("rar",{t:Date.now(), d:j}); }catch(e){} }
+    return RAR.d;
+  }).catch(()=>RAR.d);
+  return RAR.p;
+}
+// rang, pictogramme et nom affiché de chaque rareté
+const STAR = "M10 1.2l2.6 5.6 6.1.7-4.5 4.2 1.2 6L10 14.7 4.6 17.7l1.2-6L1.3 7.5l6.1-.7z";
+function starSVG(fill, n=1, o={}){
+  const s = n===1 ? [[0,0,1]] : n===2 ? [[-4.5,-3,.78],[4.5,3,.78]] : [[-7,2,.66],[0,-4,.66],[7,2,.66]];
+  const w = n===1 ? 20 : n===2 ? 30 : 34, off = (w-20)/2;
+  const st = o.stroke ? `stroke:${o.stroke};stroke-width:1.6;stroke-linejoin:round;` : "";
+  const sp = o.spark ? `<path d="M${w-3} 1v6M${w-6} 4h6" style="stroke:${o.spark};stroke-width:1.6;stroke-linecap:round"/>` : "";
+  return `<svg viewBox="0 0 ${w} 20" aria-hidden="true">${s.map(([x,y,k])=>`<path d="${STAR}" transform="translate(${off+x+10*(1-k)} ${y+10*(1-k)}) scale(${k})" style="fill:${fill};${st}"/>`).join("")}${sp}</svg>`;
+}
+const RC_FG = "var(--fg)", RC_GOLD = "#F5C542", RC_SILV = "#C9D2DE", RC_PINK = "#FF5FA2", RC_CYAN = "#6FE3FF";
+const RTYPES = [
+  [/mega hyper/,            13, ()=>starSVG("url(#rcRain)",1,{stroke:"#fff"})],
+  [/hyper|secret|rainbow|arc en ciel|\bgold\b|\bor\b/, 12, ()=>starSVG(RC_GOLD,3)],
+  [/illustration speciale|special illustration/, 11, ()=>starSVG(RC_GOLD,2)],
+  [/chromatique ultra|shiny ultra|brillant ultra/, 10, ()=>starSVG(RC_CYAN,2,{spark:RC_CYAN})],
+  [/illustration/,           9, ()=>starSVG(RC_GOLD,1)],
+  [/chromatique|shiny|brillant/, 8, ()=>starSVG(RC_CYAN,1,{spark:RC_CYAN})],
+  [/ace|high tech/,          7.5, ()=>starSVG(RC_PINK,1)],
+  [/radieu|radiant|magnifique|amazing/, 7, ()=>starSVG("url(#rcRain)",1)],
+  [/ultra|full art/,         6, ()=>starSVG(RC_SILV,2)],
+  [/double/,                 5, ()=>starSVG("var(--ink)",2,{stroke:RC_FG})],
+  [/prime|legend|lv x|break|noir blanc|black white|couronne|crown|classic|collection classique/, 6.5, ()=>starSVG(RC_SILV,1,{spark:RC_FG})],
+  [/holo/,                   4, ()=>starSVG(RC_FG,1,{spark:RC_FG})],
+  [/^rare$/,                 3, ()=>starSVG(RC_FG,1)],
+  [/peu commune|uncommon/,   2, ()=>`<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 2.5 17.5 10 10 17.5 2.5 10z" style="fill:${RC_FG}"/></svg>`],
+  [/commune?$|^common/,      1, ()=>`<svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="7" style="fill:${RC_FG}"/></svg>`],
+  [/promo/,                 14, ()=>`<svg viewBox="0 0 20 20" aria-hidden="true"><text x="10" y="15" text-anchor="middle" style="fill:${RC_FG};font:900 14px sans-serif">P</text></svg>`],
+  [/sans|none|aucune/,      15, ()=>`<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M5 10h10" style="stroke:var(--muted);stroke-width:2.4;stroke-linecap:round"/></svg>`],
+];
+function rarMeta(name){
+  const n = norm(name);
+  for(const [re, rank, ico] of RTYPES) if(re.test(n)) return {rank, ico: ico()};
+  return {rank: 6.8, ico: starSVG("none",1,{stroke:RC_FG})};
+}
+if(!document.getElementById("rcDefs")) document.body.insertAdjacentHTML("beforeend", `<svg id="rcDefs" width="0" height="0" style="position:absolute" aria-hidden="true"><defs><linearGradient id="rcRain" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FF5F8F"/><stop offset=".35" stop-color="#FFD25F"/><stop offset=".65" stop-color="#5FE3A1"/><stop offset="1" stop-color="#6F8BFF"/></linearGradient></defs></svg>`);
+const _rarCache = new Map();
+function rarInfo(id){
+  const key = id + "|" + (RAR.d?.built || "");
+  if(_rarCache.has(key)) return _rarCache.get(key);
+  let out = null;
+  const e = RAR.d?.S?.[id];
+  if(e){
+    const groups = e.g.map(([ri, l])=>{ const name = RAR.d.R[ri]; return {name, ...rarMeta(name), ids: new Set(String(l).split(",").filter(Boolean))}; });
+    out = {date:e.d, abbr:e.a, total: groups.reduce((a,g)=>a+g.ids.size,0) || e.t, groups};
+  }else if(typeof LOCAL_SETS!=="undefined" && LOCAL_SETS[id]){
+    const s = LOCAL_SETS[id], m = new Map();
+    for(const c of s.cards){ const r = c.rarity||"Sans rareté"; if(!m.has(r)) m.set(r, new Set()); m.get(r).add(c.localId); }
+    out = {date:s.releaseDate, abbr:id.toUpperCase(), total:s.cards.length, groups:[...m].map(([name, ids])=>({name, ...rarMeta(name), ids}))};
+  }
+  if(out) out.groups.sort((a,b)=>a.rank-b.rank || a.name.localeCompare(b.name));
+  _rarCache.set(key, out); return out;
+}
+const rarOfCard = (setId, localId) => rarInfo(setId)?.groups.find(g=>g.ids.has(String(localId)))?.name || null;
+// cartes possédées : setId → Set(numéros)
+function ownIndex(){
+  const m = new Map();
+  for(const x of getCol()){ const s = setIdOf(x.id), n = x.id.slice(x.id.lastIndexOf("-")+1); if(!m.has(s)) m.set(s, new Set()); m.get(s).add(n); }
+  return m;
+}
+const MIN_SVG = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M6 12h12"/></svg>`;
+const PLUS_SVG = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M6 12h12M12 6v12"/></svg>`;
+const SCMIN = store.get("scMin", {});
+// carte d'extension : nom, date, logo, symbole, possédées / total, %, barre, détail par rareté
+function setStats(s, own){
+  const ri = rarInfo(s.id), mine = own || new Set();
+  const total = ri?.total || s.count || s.cardCount?.total || 0;
+  const have = ri ? [...mine].filter(n=>ri.groups.some(g=>g.ids.has(n))).length : mine.size;
+  return {ri, total, have, pc: total ? Math.min(100, Math.floor(have/total*100)) : 0};
+}
+function setCardHTML(s, o={}){
+  const st = setStats(s, o.own), ri = st.ri;
+  const date = ri?.date || s.releaseDate || store.get("setDates",{})[s.id] || "";
+  const sym = setPic(s, "symbol") || (s.symbol ? s.symbol+".webp" : "");
+  const abbr = ri?.abbr || s.abbreviation?.official || "";
+  const tag = o.tag || "div", min = o.min;
+  const chips = ri ? ri.groups.map(g=>{
+    const h = o.own ? [...g.ids].filter(n=>o.own.has(n)).length : 0;
+    return `<${o.filter?"button":"span"} class="rc${h&&h===g.ids.size?" full":""}" data-rar="${esc(g.name)}" title="${esc(g.name)}"${o.filter?` aria-pressed="${o.filter===g.name}"`:""}><i>${g.ico}</i><span><b>${h}</b><small>/${g.ids.size}</small></span></${o.filter?"button":"span"}>`;
+  }).join("") : "";
+  return `<${tag} class="scard${min?" min":""}${o.cls?" "+o.cls:""}" data-set="${esc(s.id)}"${o.attrs||""}>
+    <div class="sch"><h3>${esc(s.name)}</h3><p data-date="${esc(s.id)}">${date?"Date de sortie : "+esc(fmtDay(date)):"&nbsp;"}</p></div>
+    <div class="scp">
+      <div class="sctop">${logoHTML(s)}<div class="scr">${o.noMin?"":`<span class="scmin" role="button" tabindex="0" aria-label="${(min||o.plus)?"Déplier":"Replier"}" data-min>${(min||o.plus)?PLUS_SVG:MIN_SVG}</span>`}<span class="scc" data-cnt><b>${st.have}</b><small>/${st.total||"?"}</small><span class="sep"></span><b>${st.pc}%</b></span>${o.value?`<span class="scv">Valeur <b>${esc(o.value)}</b></span>`:""}</div></div>
+      <div class="scbar"><span class="scsym">${sym?`<img src="${esc(sym)}" alt="" loading="lazy" onerror="this.replaceWith(document.createTextNode('${esc((abbr||s.id).toUpperCase().slice(0,5))}'))">`:esc((abbr||s.id).toUpperCase().slice(0,5))}</span><span class="sbar"><i style="width:${st.pc}%"></i></span></div>
+      ${chips?`<div class="scrar">${chips}</div>`:(!RAR.d && !o.noRar)?`<div class="scnote">Détail par rareté en cours de chargement…</div>`:""}
+      ${o.inner||""}
+    </div>
+  </${tag}>`;
+}
 function extErr(e){
   const x = e instanceof NetError ? explainNet(e) : {title:"Chargement impossible", text:e?.message||"erreur inconnue"};
   return `<div class="empty"><b style="color:var(--fg)">${esc(x.title)}</b><br>${esc(x.text)}<br><br><button class="btn btn-y" id="extRetry">Réessayer</button> <button class="btn btn-g" id="extHealth">État de la connexion</button></div>`;
@@ -2797,16 +2944,21 @@ function upcomingHTML(q){
   }</div></section>`;
 }
 function renderExtList(){
-  const q = norm(EX.q);
+  const q = norm(EX.q), OWN = ownIndex();
+  if(!RAR.d) loadRar().then(d=>{ if(d && EX.series && !EX.set && !extHome.hidden) renderExtList(); });
   const html = upcomingHTML(q) + EX.series.map(se=>{
     const sets = q ? se.sets.filter(s=>norm(s.name+" "+s.id+" "+se.name).includes(q)) : se.sets;
     if(!sets.length) return "";
-    return `<section class="serie"><h2><span>${esc(se.name)}</span><span>${sets.length}</span></h2><div class="sets">${
-      sets.map(s=>`<button class="setrow" data-set="${esc(s.id)}">${logoHTML(s)}<span class="t"><span class="n">${esc(s.name)}</span><span class="c">${s.count ? s.count+" cartes" : esc(s.id)}</span></span>${CHEV}</button>`).join("")
+    return `<section class="serie"><h2><span>${esc(se.name)}</span><span>${sets.length}</span></h2><div class="scards">${
+      sets.map(s=>setCardHTML(s, {own: OWN.get(s.id), min: !!SCMIN[s.id], attrs:` role="button" tabindex="0"`})).join("")
     }</div></section>`;
   }).join("");
   extList.innerHTML = html || `<div class="empty">Aucune extension trouvée.<br>Essaie « 151 » ou « Écarlate ».</div>`;
-  extList.querySelectorAll("[data-set]").forEach(b=>b.onclick=()=>{ EX.homeScroll = extScroll.scrollTop; openSet(b.dataset.set); });
+  extList.querySelectorAll("[data-set]").forEach(b=>b.onclick=e=>{
+    const m = e.target.closest("[data-min]");
+    if(m){ e.stopPropagation(); const id = b.dataset.set, v = !b.classList.contains("min"); b.classList.toggle("min", v); m.innerHTML = v?PLUS_SVG:MIN_SVG; m.setAttribute("aria-label", v?"Déplier":"Replier"); if(v) SCMIN[id]=1; else delete SCMIN[id]; store.set("scMin", SCMIN); return; }
+    EX.homeScroll = extScroll.scrollTop; openSet(b.dataset.set);
+  });
   extList.querySelectorAll("[data-upc]").forEach(b=>b.onclick=()=>showUpcoming(b.dataset.upc));
 }
 $("#extQ").addEventListener("input", e=>{ EX.q = e.target.value; if(EX.series) renderExtList(); });
@@ -2831,10 +2983,10 @@ async function openSet(id){
     extSet.innerHTML = BACK + extErr(e); bindBack(); bindErr(()=>openSet(id)); return;
   }
   if(gen!==EX.gen) return;
-  EX.set = set; EX.cards = (set.cards||[]).filter(c=>!isPocket(c.id));
+  EX.set = set; EX.cards = (set.cards||[]).filter(c=>!isPocket(c.id)); EX.rar = null;
   const date = set.releaseDate ? new Date(set.releaseDate).toLocaleDateString("fr-FR",{day:"numeric",month:"long",year:"numeric"}) : "";
   extSet.innerHTML = `${BACK}
-    <div class="sethead">${logoHTML(set)}<div style="min-width:0"><h2>${esc(set.name)}</h2><p>${esc([set.serie?.name, date, EX.cards.length ? EX.cards.length+" cartes" : ""].filter(Boolean).join(" · "))}</p></div></div>
+    <div id="exCard">${exCardHTML()}</div>
     ${set._local?`<div class="note" style="margin:0 0 12px;padding:12px 14px;border-radius:12px;border:1px solid color-mix(in srgb,var(--border-yellow) 45%,transparent);background:color-mix(in srgb,var(--border-yellow) 10%,var(--panel));font-size:13.5px;line-height:1.45">Nouvelle extension : la liste officielle des ${set.cardCount.total} cartes est là (${set.cardCount.official} + ${set.cardCount.total-set.cardCount.official} secrètes). Les photos et les cotes Cardmarket s'afficheront automatiquement dès que la base de cartes les publie, en général quelques jours après la sortie. Tu peux déjà ajouter tes cartes à ta Collection.</div>`:""}
     <div class="total">
       <div class="plabel"><span>Valeur de l'extension</span><span>Tendance Cardmarket</span></div>
@@ -2849,6 +3001,8 @@ async function openSet(id){
     <div class="cgrid" id="cgrid"></div>`;
   bindBack();
   $("#exQ").addEventListener("input", e=>{ EX.cq = e.target.value; renderTiles(); });
+  bindExCard();
+  if(!RAR.d) loadRar().then(d=>{ if(d && gen===EX.gen){ $("#exCard").innerHTML = exCardHTML(); bindExCard(); } });
   extSet.querySelectorAll("[data-sort]").forEach(b=>b.onclick=()=>{
     EX.sort = b.dataset.sort; store.set("sort",EX.sort);
     extSet.querySelectorAll("[data-sort]").forEach(x=>x.setAttribute("aria-pressed", x===b));
@@ -2874,8 +3028,21 @@ async function loadExPrices(gen){
   clearTimeout(timer); flush();
 }
 const numOf = c => { const x = parseInt(c.localId,10); return isNaN(x) ? 1e9 : x; };
+function exCardHTML(){
+  const s = EX.set; if(!s?.id) return "";
+  return setCardHTML(s, {own: ownIndex().get(s.id), noMin:true, filter: EX.rar||"·", cls:"scdet"});
+}
+function bindExCard(){
+  $("#exCard")?.querySelectorAll("[data-rar]").forEach(b=>b.onclick=()=>{
+    EX.rar = EX.rar===b.dataset.rar ? null : b.dataset.rar;
+    $("#exCard").querySelectorAll("[data-rar]").forEach(x=>x.setAttribute("aria-pressed", x.dataset.rar===EX.rar));
+    renderTiles();
+    if(EX.rar) toast(EX.rar);
+  });
+}
 function exSorted(){
   let list = EX.cards.slice();
+  if(EX.rar){ const g = rarInfo(EX.set.id)?.groups.find(x=>x.name===EX.rar); if(g) list = list.filter(c=>g.ids.has(String(c.localId))); }
   const q = norm(EX.cq); if(q) list = list.filter(c=>norm(c.name+" "+c.localId).includes(q));
   if(EX.sort==="price") list.sort((a,b)=>(EX.prices[b.id]??-1)-(EX.prices[a.id]??-1) || numOf(a)-numOf(b));
   else list.sort((a,b)=>numOf(a)-numOf(b) || String(a.localId).localeCompare(String(b.localId)));

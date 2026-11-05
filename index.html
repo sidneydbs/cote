@@ -227,6 +227,11 @@ input,select{font:inherit;color:var(--fg)}
 .shero{background:#fff;border-radius:16px;display:grid;place-items:center;padding:14px;margin-bottom:14px}
 .shero img{max-width:100%;max-height:240px;object-fit:contain}
 .gradegrid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.grhead{display:flex;gap:14px;align-items:center;margin-bottom:14px}.grhead img{width:72px;border-radius:6px;flex:none}
+.grform{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.grform label{display:flex;flex-direction:column;gap:6px;font:600 11px/1.2 var(--f-mono);letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.grform select,.grform input{font:500 16px/1.2 var(--f-body);color:var(--fg);background:var(--panel-2);border:1px solid var(--line);border-radius:10px;padding:11px 12px;width:100%;text-transform:none;letter-spacing:0}
+#gradedBox .sitem .im img{object-fit:contain}
 .gradebtn{display:flex;flex-direction:column;gap:3px;padding:12px;border-radius:12px;background:var(--panel-2);border:1px solid var(--line);color:var(--fg);text-decoration:none}
 .gradebtn b{font:800 15px/1 var(--f-mono)}
 .gradebtn span{font-size:12px;color:var(--muted)}
@@ -480,7 +485,7 @@ input,select{font:inherit;color:var(--fg)}
 </head>
 <body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="pb" viewBox="0 0 100 100"><defs><linearGradient id="pbV" x1="0" y1="0" x2="1" y2="1"><stop offset="0" style="stop-color:var(--pb1)"/><stop offset=".5" style="stop-color:var(--pb2)"/><stop offset="1" style="stop-color:var(--pb3)"/></linearGradient><radialGradient id="pbB" cx=".38" cy=".75" r=".75"><stop offset="0" style="stop-color:var(--pbb1)"/><stop offset="1" style="stop-color:var(--pbb2)"/></radialGradient><radialGradient id="pbC" cx=".4" cy=".35" r=".7"><stop offset="0" style="stop-color:var(--pbc1)"/><stop offset=".55" style="stop-color:var(--pbc2)"/><stop offset="1" style="stop-color:var(--pbc3)"/></radialGradient></defs><path d="M3 50a47 47 0 0 1 94 0z" fill="url(#pbV)"/><path d="M3 50a47 47 0 0 0 94 0z" fill="url(#pbB)"/><rect x="3" y="45.5" width="94" height="9" fill="#09080D"/><circle cx="50" cy="50" r="47" fill="none" stroke="#09080D" stroke-width="4"/><circle cx="50" cy="50" r="15.5" fill="#09080D"/><circle cx="50" cy="50" r="10" fill="url(#pbC)" style="stroke:var(--pb2)" stroke-width="2"/><path d="M19 33a35 35 0 0 1 17-15" fill="none" stroke="#fff" stroke-opacity=".38" stroke-width="4" stroke-linecap="round"/></symbol></svg>
-<script>window.__APPV="29";</script>
+<script>window.__APPV="30";</script>
 <div class="splash" id="splash" aria-hidden="true"><i class="hole"></i><i class="halo"></i><div class="bw"><svg class="b" viewBox="0 0 100 100"><use href="#pb"/></svg><svg class="t" viewBox="0 0 100 100"><use href="#pb"/></svg></div><i class="glow"></i></div>
 <script>setTimeout(function(){ if(window.__booted) return;
   var b=document.createElement("div"); b.setAttribute("role","alert");
@@ -518,7 +523,7 @@ input,select{font:inherit;color:var(--fg)}
       <div id="extHome">
         <div class="ext-head"><h1 class="h1">Extensions</h1><button class="chip" id="extLang" aria-label="Langue des cartes">Cartes FR</button></div>
         <p class="lede">Dex Scan · toutes les séries Pokémon et la cote Cardmarket de chaque carte.</p>
-        <div class="seg exmode" role="group" aria-label="Type de produits"><button data-mode="cards" aria-pressed="true">Cartes</button><button data-mode="sealed" aria-pressed="false">Scellés</button></div>
+        <div class="seg exmode" role="group" aria-label="Type de produits"><button data-mode="cards" aria-pressed="true">Cartes</button><button data-mode="sealed" aria-pressed="false">Scellés</button><button data-mode="graded" aria-pressed="false">Gradées</button></div>
         <div id="cardsBox">
         <label class="ext-search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><input id="extQ" type="search" placeholder="Rechercher une extension (ex. 151)" autocomplete="off" aria-label="Rechercher une extension"></label>
         <div id="extList"></div>
@@ -526,9 +531,21 @@ input,select{font:inherit;color:var(--fg)}
         <div id="sealedBox" hidden>
           <label class="ext-search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><input id="sealQ" type="search" placeholder="Rechercher (ex. 151, Évolutions, Dracaufeu)" autocomplete="off" aria-label="Rechercher un produit scellé"></label>
           <div class="schips" id="sealTypes"></div>
+          <div class="schips" id="sealLang" style="margin-top:6px"><button data-sl="all">Toutes langues</button><button data-sl="EN">Anglais</button><button data-sl="JP">Japonais</button></div>
           <div class="tools" style="margin-top:8px"><div class="seg" role="group" aria-label="Tri" style="width:100%;display:flex"><button data-ss="recent">Récents</button><button data-ss="price">Prix ↓</button><button data-ss="up">Hausse</button><button data-ss="down">Baisse</button></div></div>
           <p class="psub" id="sealMeta" style="margin:0 0 10px"></p>
           <div id="sealList"></div>
+        </div>
+        <div id="gradedBox" hidden>
+          <div class="total" style="margin-bottom:12px">
+            <div class="plabel"><span>Mes cartes gradées</span><span id="grCount"></span></div>
+            <div class="pmain"><div class="pbig" id="grTotal">0,00<small>€</small></div></div>
+            <div class="wchg" id="grPnl"></div>
+            <div class="addrow"><button class="btn btn-y" id="grAdd">+ Ajouter une carte gradée</button></div>
+          </div>
+          <div id="grList"></div>
+          <div class="section" style="margin-top:16px"><h4>Sociétés de gradation</h4><div class="gradegrid" id="grGuide"></div>
+          <p class="fine" style="margin-top:8px">Aucune base gratuite ne publie la cote des cartes gradées en euros. Indique la valeur que tu estimes (ventes eBay réalisées, Cardmarket, Vinted) : le PnL est calculé à partir de ton prix d'achat.</p></div>
         </div>
       </div>
       <div id="extSet" hidden></div>
@@ -603,7 +620,7 @@ input,select{font:inherit;color:var(--fg)}
   <!-- ===== COLLECTION ===== -->
   <section class="view" id="colView" hidden>
     <div class="scroll">
-      <div class="homebar"><svg class="pball" viewBox="0 0 100 100" aria-hidden="true"><use href="#pb"/></svg><span class="brand">DEX<b>·</b>SCAN</span><button class="thbtn" id="themeBtn" aria-label="Changer de thème"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.6-.9 1.2-1.8-.5-1.1.2-2.2 1.4-2.2H17a4 4 0 0 0 4-4c0-5.5-4-10-9-10z"/><circle cx="7.5" cy="11" r="1.2"/><circle cx="10" cy="7" r="1.2"/><circle cx="15" cy="7" r="1.2"/></svg></button><span class="ver">v29</span></div>
+      <div class="homebar"><svg class="pball" viewBox="0 0 100 100" aria-hidden="true"><use href="#pb"/></svg><span class="brand">DEX<b>·</b>SCAN</span><button class="thbtn" id="themeBtn" aria-label="Changer de thème"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.6-.9 1.2-1.8-.5-1.1.2-2.2 1.4-2.2H17a4 4 0 0 0 4-4c0-5.5-4-10-9-10z"/><circle cx="7.5" cy="11" r="1.2"/><circle cx="10" cy="7" r="1.2"/><circle cx="15" cy="7" r="1.2"/></svg></button><span class="ver">v30</span></div>
       <h1 class="h1">Collection</h1>
       <p class="lede">Tes cartes rangées par série et par extension, dans l'ordre des numéros. Le mode Pokédex montre aussi celles qui te manquent, en grisé.</p>
       <div class="total" id="wallet">
@@ -1040,7 +1057,7 @@ function renderCard(){
   </div>`;
 
   const gq = g => encodeURIComponent(`${c.name} ${c.localId}${off?"/"+off:""} ${g}`);
-  const graded = `<div class="section"><h4>Cartes gradées · ventes eBay réalisées</h4><div class="gradegrid">${["PSA 10","PSA 9","CollectAura 10","CollectAura 9.5"].map(g=>`<a class="gradebtn" href="https://www.ebay.fr/sch/i.html?_nkw=${gq(g)}&LH_Sold=1&LH_Complete=1&_sop=13" target="_blank" rel="noopener"><b>${esc(g)}</b><span>Voir les ventes terminées</span></a>`).join("")}</div><p class="fine" style="margin-top:8px">Aucune base de prix gratuite ne suit les cartes gradées en euros, ni CollectAura : ces boutons ouvrent les dernières ventes conclues sur eBay pour cette note.</p></div>`;
+  const graded = `<div class="section"><h4>Cartes gradées · ventes eBay réalisées</h4><div class="gradegrid">${["PSA 10","PSA 9","CollectAura 10","CollectAura 9.5"].map(g=>`<a class="gradebtn" href="https://www.ebay.fr/sch/i.html?_nkw=${gq(g)}&LH_Sold=1&LH_Complete=1&_sop=13" target="_blank" rel="noopener"><b>${esc(g)}</b><span>Voir les ventes terminées</span></a>`).join("")}</div><p class="fine" style="margin-top:8px">Aucune base de prix gratuite ne suit les cartes gradées en euros, ni CollectAura : ces boutons ouvrent les dernières ventes conclues sur eBay pour cette note.</p><button class="btn btn-g" id="grFromCard" style="width:100%;margin-top:10px">Ajouter à mes cartes gradées</button></div>`;
   const attacks = (c.attacks||[]).map(a=>`<div class="attack"><div class="attack-h"><span class="cost">${(a.cost||[]).map(t=>`<span class="dot" title="${esc(t)}" style="background:${tcol(t)}"></span>`).join("")}</span><strong>${esc(a.name)}</strong>${a.damage?`<span class="dmg">${esc(a.damage)}</span>`:""}</div>${a.effect?`<p>${esc(a.effect)}</p>`:""}</div>`).join("");
   const abil = (c.abilities||[]).map(a=>`<div class="attack"><div class="attack-h"><span class="tag">${esc(a.type||"Talent")}</span><strong>${esc(a.name)}</strong></div>${a.effect?`<p>${esc(a.effect)}</p>`:""}</div>`).join("");
   const effect = c.effect ? `<div class="attack"><p style="margin:0">${esc(c.effect)}</p></div>` : "";
@@ -1090,6 +1107,7 @@ function renderCard(){
   $("#sheetBody").querySelectorAll(".vt").forEach(b=>b.onclick=()=>{ currentVariant=+b.dataset.vi; renderCard(); });
   $("#sheetBody").querySelectorAll(".alt").forEach(b=>b.onclick=()=>showCard(b.dataset.id));
   $("#addCol").onclick = ()=>{ addToCol(c); renderCard(); toast("Ajoutée à ta collection"); };
+  $("#grFromCard") && ($("#grFromCard").onclick = ()=>gradedForm(c));
   $("#colMinus") && ($("#colMinus").onclick = ()=>{ setColQty(c.id,-1); renderCard(); toast("Exemplaire retiré"); });
   $("#colPlus") && ($("#colPlus").onclick = ()=>{ setColQty(c.id,1); renderCard(); });
   $("#buyIn") && ($("#buyIn").onchange = e=>{
@@ -1367,7 +1385,8 @@ function colSpark(){
 
 /* ---------------- Produits scellés (TCGplayer via TCGCSV, mis à jour chaque jour par GitHub) ---------------- */
 const SEALED = {data:null, p:null, t:store.get("sealT","all"), q:"", sort:store.get("sealSort","recent"), n:60};
-const STYPES = [["all","Tous"],["etb","ETB"],["upc","UPC"],["display","Displays"],["bundle","Bundles"],["booster","Boosters"],["coffret","Coffrets"],["deck","Decks"]];
+const STYPES = [["all","Tous"],["etb","ETB"],["upc","UPC"],["display","Displays"],["minitindisp","Displays mini tins"],["minitin","Mini tins"],["tin","Pokébox / tins"],["bundle","Bundles"],["blister","Tripacks / blisters"],["booster","Boosters"],["premium","Coffrets premium"],["coffret","Coffrets"],["bnb","Avant-premières"],["deck","Decks"],["case","Cartons"],["accessoire","Accessoires"],["goodies","Goodies"]];
+SEALED.lg = store.get("sealLg","all");
 const STYPE_LBL = Object.fromEntries(STYPES);
 function loadSealed(){
   if(SEALED.p) return SEALED.p;
@@ -1387,13 +1406,15 @@ function sDelta(p, lbl){
 function setExMode(m){
   store.set("exMode", m);
   document.querySelectorAll(".exmode button").forEach(b=>b.setAttribute("aria-pressed", b.dataset.mode===m));
-  $("#cardsBox").hidden = m!=="cards"; $("#sealedBox").hidden = m!=="sealed";
+  $("#cardsBox").hidden = m!=="cards"; $("#sealedBox").hidden = m!=="sealed"; $("#gradedBox").hidden = m!=="graded";
   if(m==="sealed") renderSealed();
+  if(m==="graded") renderGraded();
 }
 document.querySelectorAll(".exmode button").forEach(b=>b.onclick=()=>setExMode(b.dataset.mode));
 $("#sealTypes").innerHTML = STYPES.map(([k,l])=>`<button data-st="${k}" aria-pressed="${SEALED.t===k}">${l}</button>`).join("");
 $("#sealTypes").querySelectorAll("button").forEach(b=>b.onclick=()=>{ SEALED.t=b.dataset.st; store.set("sealT",SEALED.t); SEALED.n=60; $("#sealTypes").querySelectorAll("button").forEach(x=>x.setAttribute("aria-pressed", x===b)); renderSealed(); });
 document.querySelectorAll("[data-ss]").forEach(b=>{ b.setAttribute("aria-pressed", b.dataset.ss===SEALED.sort); b.onclick=()=>{ SEALED.sort=b.dataset.ss; store.set("sealSort",SEALED.sort); SEALED.n=60; document.querySelectorAll("[data-ss]").forEach(x=>x.setAttribute("aria-pressed", x===b)); renderSealed(); }; });
+document.querySelectorAll("[data-sl]").forEach(b=>{ b.setAttribute("aria-pressed", b.dataset.sl===SEALED.lg); b.onclick=()=>{ SEALED.lg=b.dataset.sl; store.set("sealLg",SEALED.lg); SEALED.n=60; document.querySelectorAll("[data-sl]").forEach(x=>x.setAttribute("aria-pressed",x===b)); renderSealed(); }; });
 let sealQT=null; $("#sealQ").addEventListener("input", e=>{ SEALED.q=e.target.value; SEALED.n=60; clearTimeout(sealQT); sealQT=setTimeout(renderSealed,150); });
 async function renderSealed(){
   const el = $("#sealList");
@@ -1402,7 +1423,9 @@ async function renderSealed(){
     try{ await loadSealed(); }catch(e){ const x = e instanceof NetError ? explainNet(e) : {title:"Prix indisponibles", text:e.message}; el.innerHTML = `<div class="empty"><b style="color:var(--fg)">${esc(x.title)}</b><br>${esc(x.text)}<br><br><button class="btn btn-y" id="sealRetry">Réessayer</button></div>`; $("#sealRetry").onclick=renderSealed; return; }
   }
   const D = SEALED.data, q = norm(SEALED.q);
-  let l = D.items.filter(x => (SEALED.t==="all" || x.t===SEALED.t) && (!q || norm(x.n+" "+x.g).includes(q)));
+  let l = D.items.filter(x => (SEALED.t==="all" || x.t===SEALED.t) && (SEALED.lg==="all" || (x.lg||"EN")===SEALED.lg) && (!q || norm(x.n+" "+x.g).includes(q)));
+  // n'affiche que les types présents dans les données
+  if(!SEALED.typesDone){ SEALED.typesDone = true; const have = new Set(D.items.map(x=>x.t)); $("#sealTypes").querySelectorAll("button").forEach(b=>{ if(b.dataset.st!=="all" && !have.has(b.dataset.st)) b.hidden = true; }); if(!D.items.some(x=>x.lg==="JP")) $("#sealLang").hidden = true; }
   const k7 = x => sPct(x,"c7") ?? sPct(x,"c1") ?? 0;
   if(SEALED.sort==="price") l.sort((a,b)=>b.m-a.m);
   else if(SEALED.sort==="up") l = l.filter(x=>x.c7||x.c1).sort((a,b)=>k7(b)-k7(a));
@@ -1411,7 +1434,7 @@ async function renderSealed(){
   const built = D.built ? ago(D.built) : "";
   $("#sealMeta").textContent = `${l.length} produit${l.length>1?"s":""} · marché US (TCGplayer)${D.usdEur?`, en € au taux du jour`:""}${built?" · "+built:""}`;
   if(!l.length){ el.innerHTML = `<div class="empty">${(SEALED.sort==="up"||SEALED.sort==="down") ? "Les variations apparaissent après le premier jour de suivi des prix." : "Aucun produit ne correspond."}</div>`; return; }
-  el.innerHTML = `<div class="slist">${l.slice(0,SEALED.n).map(x=>`<button class="sitem" data-sid="${x.i}"><span class="im">${x.img?`<img src="${esc(x.img)}" alt="" loading="lazy" onerror="this.remove()">`:""}</span><div><b>${esc(x.n)}</b><span><i class="stype">${esc(STYPE_LBL[x.t]||x.t)}</i>${esc(x.g)}</span></div><div class="rp">${esc(sFmt(x.m))}${sDelta(sPct(x,"c7"),"7 j") || sDelta(sPct(x,"c1"),"24 h")}</div></button>`).join("")}</div>${l.length>SEALED.n?`<button class="btn btn-g" id="sealMore" style="width:100%;margin-top:10px">Voir plus (${l.length-SEALED.n} restants)</button>`:""}`;
+  el.innerHTML = `<div class="slist">${l.slice(0,SEALED.n).map(x=>`<button class="sitem" data-sid="${x.i}"><span class="im">${x.img?`<img src="${esc(x.img)}" alt="" loading="lazy" onerror="this.remove()">`:""}</span><div><b>${esc(x.n)}</b><span><i class="stype">${esc(STYPE_LBL[x.t]||x.t)}</i>${x.lg==="JP"?'<i class="stype">JP</i>':""}${esc(x.g)}</span></div><div class="rp">${esc(sFmt(x.m))}${sDelta(sPct(x,"c7"),"7 j") || sDelta(sPct(x,"c1"),"24 h")}</div></button>`).join("")}</div>${l.length>SEALED.n?`<button class="btn btn-g" id="sealMore" style="width:100%;margin-top:10px">Voir plus (${l.length-SEALED.n} restants)</button>`:""}`;
   el.querySelectorAll(".sitem").forEach(b=>b.onclick=()=>showSealed(+b.dataset.sid));
   $("#sealMore") && ($("#sealMore").onclick = ()=>{ SEALED.n += 60; renderSealed(); });
 }
@@ -1422,7 +1445,7 @@ function showSealed(id){
   $("#sheetBody").innerHTML = `
     ${x.img?`<div class="shero"><img src="${esc(x.img.replace(/_200w\.jpg$/,"_400w.jpg"))}" alt="" onerror="this.src='${esc(x.img)}'"></div>`:""}
     <div class="ctitle"><h2 style="margin:0">${esc(x.n)}</h2></div>
-    <p class="psub" style="margin:4px 0 0"><i class="stype">${esc(STYPE_LBL[x.t]||x.t)}</i>${esc(x.g)}${x.d?" · sortie "+esc(new Date(x.d).toLocaleDateString("fr-FR",{month:"long",year:"numeric"})):""}</p>
+    <p class="psub" style="margin:4px 0 0"><i class="stype">${esc(STYPE_LBL[x.t]||x.t)}</i>${x.lg==="JP"?'<i class="stype">Japonais</i>':""}${esc(x.g)}${x.d?" · sortie "+esc(new Date(x.d).toLocaleDateString("fr-FR",{month:"long",year:"numeric"})):""}</p>
     <div class="price">
       <div class="plabel"><span>Prix du marché · TCGplayer</span>${SEALED.data.built?`<span>MAJ ${esc(ago(SEALED.data.built))}</span>`:""}</div>
       <div class="pmain"><div class="pbig">${esc(eurN(sEur(x.m)))}<small>${sCur()}</small></div></div>
@@ -1434,9 +1457,86 @@ function showSealed(id){
         <a href="https://www.ebay.fr/sch/i.html?_nkw=${qn}&LH_Sold=1&LH_Complete=1&_sop=13" target="_blank" rel="noopener">${ico.ext}Ventes eBay réalisées</a>
       </div>
     </div>
-    <p class="fine">Prix de la version anglaise sur le marché américain (TCGplayer, via TCGCSV), convertis en euros au taux de la BCE. La version française peut avoir une cote différente : compare avec Cardmarket.</p>`;
+    ${x.mid!=null||x.dl!=null?`<p class="psub" style="margin-top:8px">${x.mid!=null?`Prix médian des annonces : ${esc(sFmt(x.mid))}`:""}${x.mid!=null&&x.dl!=null?" · ":""}${x.dl!=null?`Moins cher en vente directe : ${esc(sFmt(x.dl))}`:""}</p>`:""}
+    <p class="fine">Prix de la version ${x.lg==="JP"?"japonaise":"anglaise"} sur le marché américain (TCGplayer, via TCGCSV), convertis en euros au taux de la BCE. La version française peut avoir une cote différente : compare avec Cardmarket.</p>`;
   openSheet(); $("#sheetBody").scrollTop = 0;
 }
+
+/* ---------------- Cartes gradées (PSA, CGC, Beckett, PCA, CollectAura, SGC…) ---------------- */
+const GRADERS = [
+  {k:"PSA", n:"PSA", grades:["10","9","8","7","6","5","4","3","2","1"], cert:c=>`https://www.psacard.com/cert/${encodeURIComponent(c)}`, site:"https://www.psacard.com/pop", d:"La référence mondiale, la plus forte cote à la revente"},
+  {k:"CGC", n:"CGC", grades:["Pristine 10","Gem Mint 10","9.5","9","8.5","8","7.5","7"], cert:c=>`https://www.cgccards.com/certlookup/${encodeURIComponent(c)}/`, site:"https://www.cgccards.com/population-report/", d:"Notes au demi-point, étiquette Pristine"},
+  {k:"BGS", n:"Beckett (BGS)", grades:["Black Label 10","Pristine 10","9.5","9","8.5","8"], cert:null, site:"https://www.beckett.com/grading/pop-report", d:"Sous-notes détaillées, le Black Label est très recherché"},
+  {k:"PCA", n:"PCA", grades:["10","9.5","9","8.5","8","7"], cert:null, site:"https://www.pcagrading.com", d:"Société française, très présente en Europe"},
+  {k:"CA", n:"CollectAura", grades:["10","9.5","9","8.5","8"], cert:null, site:"https://www.collectaura.com", d:"Gradation européenne récente"},
+  {k:"SGC", n:"SGC", grades:["10","9.5","9","8.5","8"], cert:null, site:"https://gosgc.com/pop-report", d:"Étiquette noire, apprécié des collectionneurs"},
+  {k:"AUT", n:"Autre", grades:["10","9.5","9","8.5","8","7","6"], cert:null, site:"", d:""}
+];
+const grBy = k => GRADERS.find(g=>g.k===k) || GRADERS[GRADERS.length-1];
+const getGraded = () => store.get("graded", []);
+const setGraded = l => store.set("graded", l);
+const grEbay = (x, g, n) => `https://www.ebay.fr/sch/i.html?_nkw=${encodeURIComponent(`${x.name} ${x.localId||""} ${g.k==="CA"?"CollectAura":g.k==="AUT"?"":g.k} ${n.replace(/^(Pristine|Gem Mint|Black Label) /,"")}`.trim())}&LH_Sold=1&LH_Complete=1&_sop=13`;
+const num = v => { const n = parseFloat(String(v||"").replace(",",".").replace(/[^\d.]/g,"")); return isFinite(n) ? n : null; };
+$("#grGuide").innerHTML = GRADERS.filter(g=>g.site).map(g=>`<a class="gradebtn" href="${g.site}" target="_blank" rel="noopener"><b>${esc(g.n)}</b><span>${esc(g.d)}</span></a>`).join("");
+function renderGraded(){
+  const l = getGraded(), el = $("#grList");
+  const tot = l.reduce((a,x)=>a+(x.val ?? x.buy ?? 0),0), cost = l.reduce((a,x)=>a+(x.buy||0),0), withBoth = l.filter(x=>x.val!=null && x.buy!=null);
+  $("#grTotal").innerHTML = `${eurN(tot)}<small>€</small>`;
+  $("#grCount").textContent = l.length ? `${l.length} carte${l.length>1?"s":""}` : "";
+  if(withBoth.length){ const v = withBoth.reduce((a,x)=>a+x.val-x.buy,0), b = withBoth.reduce((a,x)=>a+x.buy,0); const p = {v, pc: b ? v/b*100 : 0};
+    $("#grPnl").innerHTML = `<span class="${pnlCls(p)}">${p.v>0?"▲":p.v<0?"▼":"■"} ${pnlTxt(p)}</span><em>PnL · investi ${eurN(cost)} €</em>`; } else $("#grPnl").innerHTML = "";
+  if(!l.length){ el.innerHTML = `<div class="empty">Aucune carte gradée pour l'instant.<br>Touche « Ajouter une carte gradée », ou ouvre une carte et choisis « Ajouter à mes cartes gradées ».</div>`; return; }
+  el.innerHTML = `<div class="slist">${l.slice().sort((a,b)=>(b.val??b.buy??0)-(a.val??a.buy??0)).map(x=>{
+    const g = grBy(x.gr), p = (x.val!=null && x.buy!=null) ? {v:x.val-x.buy, pc: x.buy ? (x.val-x.buy)/x.buy*100 : 0} : null;
+    return `<button class="sitem" data-gu="${esc(x.uid)}"><span class="im">${imgTag({id:x.id, localId:x.localId, image:x.image}, "low", `alt="" loading="lazy"`)}</span><div><b>${esc(x.name)}</b><span><i class="stype">${esc(g.k==="AUT"?(x.grOther||"Gradée"):g.k==="CA"?"CollectAura":g.k)} ${esc(x.note)}</i>${esc(x.setName||"")}${x.localId?" · "+esc(x.localId):""}</span></div><div class="rp">${x.val!=null?esc(eurN(x.val))+" €":x.buy!=null?esc(eurN(x.buy))+" €":"—"}${p?`<small class="${pnlCls(p)==="flat"?"":pnlCls(p)}">${pnlTxt(p,true)}</small>`:""}</div></button>`;
+  }).join("")}</div>`;
+  el.querySelectorAll("[data-gu]").forEach(b=>b.onclick=()=>{ const x = getGraded().find(y=>y.uid===b.dataset.gu); if(x) gradedForm(x, true); });
+}
+function gradedForm(c, edit=false){
+  const x = edit ? c : {uid: Date.now().toString(36)+Math.random().toString(36).slice(2,6), id:c.id, localId:c.localId, name:c.name, image:c.image||null, setName:c.set?.name||"", gr:"PSA", note:"10", cert:"", buy:null, val:null, added:Date.now()};
+  $("#sheetTitle").textContent = edit ? "Carte gradée" : "Ajouter une carte gradée";
+  const opts = () => grBy(x.gr).grades.map(n=>`<option ${n===x.note?"selected":""}>${esc(n)}</option>`).join("");
+  $("#sheetBody").innerHTML = `
+    <div class="grhead">${imgTag({id:x.id, localId:x.localId, image:x.image}, "low", `alt=""`)}<div><h2 style="margin:0 0 4px">${esc(x.name)}</h2><p class="psub" style="margin:0">${esc(x.setName||"")}${x.localId?" · n° "+esc(x.localId):""}</p></div></div>
+    <div class="grform">
+      <label>Société<select id="grG">${GRADERS.map(g=>`<option value="${g.k}" ${g.k===x.gr?"selected":""}>${esc(g.n)}</option>`).join("")}</select></label>
+      <label>Note<select id="grN">${opts()}</select></label>
+      <label id="grOthL" ${x.gr==="AUT"?"":"hidden"}>Nom de la société<input id="grOth" type="text" value="${esc(x.grOther||"")}" placeholder="ex. Ace, TAG"></label>
+      <label>N° de certificat (facultatif)<input id="grC" type="text" inputmode="numeric" value="${esc(x.cert||"")}" placeholder="ex. 84512367"></label>
+      <label>Prix d'achat (€)<input id="grB" type="text" inputmode="decimal" value="${x.buy!=null?String(x.buy).replace(".",","):""}" placeholder="ex. 120"></label>
+      <label>Valeur estimée (€)<input id="grV" type="text" inputmode="decimal" value="${x.val!=null?String(x.val).replace(".",","):""}" placeholder="d'après les ventes récentes"></label>
+    </div>
+    <div class="links" id="grLinks"></div>
+    <div class="addrow"><button class="btn btn-y" id="grSave">${edit?"Enregistrer":"Ajouter à mes cartes gradées"}</button>${edit?`<button class="btn btn-g" id="grDel">Supprimer</button>`:""}</div>
+    <p class="fine">Astuce : ouvre les ventes eBay réalisées pour cette note, puis reporte un prix moyen dans « Valeur estimée ». Le PnL se met à jour tout seul.</p>`;
+  const links = ()=>{ const g = grBy($("#grG").value), n = $("#grN").value, cert = $("#grC").value.trim();
+    $("#grLinks").innerHTML = `<a href="${grEbay(x,g,n)}" target="_blank" rel="noopener">${ico.ext}Ventes eBay ${esc(g.k==="AUT"?"":g.n)} ${esc(n)}</a><a href="https://www.cardmarket.com/fr/Pokemon/Products/Search?searchString=${encodeURIComponent(x.name)}" target="_blank" rel="noopener">${ico.ext}Cardmarket</a>${cert && g.cert?`<a href="${g.cert(cert)}" target="_blank" rel="noopener">${ico.ext}Vérifier le certificat ${esc(g.k)}</a>`:""}`; };
+  $("#grG").onchange = ()=>{ x.gr = $("#grG").value; x.note = grBy(x.gr).grades[0]; $("#grN").innerHTML = opts(); $("#grOthL").hidden = x.gr!=="AUT"; links(); };
+  $("#grN").onchange = ()=>{ x.note = $("#grN").value; links(); };
+  $("#grC").oninput = links; links();
+  $("#grSave").onclick = ()=>{
+    Object.assign(x, {gr:$("#grG").value, note:$("#grN").value, cert:$("#grC").value.trim(), buy:num($("#grB").value), val:num($("#grV").value), grOther: $("#grOth").value.trim()||undefined});
+    const l = getGraded(), i = l.findIndex(y=>y.uid===x.uid); if(i>=0) l[i] = x; else l.push(x); setGraded(l);
+    closeSheet(); toast(edit?"Carte gradée mise à jour":"Ajoutée à tes cartes gradées"); renderGraded();
+  };
+  $("#grDel") && ($("#grDel").onclick = ()=>{ setGraded(getGraded().filter(y=>y.uid!==x.uid)); closeSheet(); toast("Carte gradée supprimée"); renderGraded(); });
+  openSheet(); $("#sheetBody").scrollTop = 0;
+}
+function gradedSearch(){
+  $("#sheetTitle").textContent = "Quelle carte est gradée ?";
+  $("#sheetBody").innerHTML = `<label class="ext-search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><input id="grQ" type="search" placeholder="Nom de la carte (ex. Dracaufeu)" autocomplete="off"></label><div id="grRes" style="margin-top:10px"></div>`;
+  openSheet(); setTimeout(()=>$("#grQ").focus(), 250);
+  let t = null, gen = 0;
+  $("#grQ").oninput = e=>{ clearTimeout(t); const q = e.target.value.trim(); if(q.length < 2){ $("#grRes").innerHTML = ""; return; }
+    t = setTimeout(async ()=>{ const my = ++gen; $("#grRes").innerHTML = `<div class="empty"><span class="loader"></span></div>`;
+      try{ const r = (await getJSON(`${API}/${LANG}/cards?name=${encodeURIComponent(q)}`) || []).filter(c=>!isPocket(c.id)).slice(0,60);
+        if(my!==gen) return;
+        $("#grRes").innerHTML = r.length ? `<div class="cgrid">${r.map(c=>`<button class="ctile have" data-gid="${esc(c.id)}"><span class="im">${imgTag(c,"low",`alt="" loading="lazy"`)}</span><span class="cn">${esc(c.name)} · ${esc(c.localId)}</span></button>`).join("")}</div>` : `<div class="empty">Aucune carte trouvée.</div>`;
+        $("#grRes").querySelectorAll("[data-gid]").forEach(b=>b.onclick=async ()=>{ const c = await getCard(b.dataset.gid).catch(()=>null); if(c) gradedForm(c); });
+      }catch(err){ if(my===gen) $("#grRes").innerHTML = `<div class="empty">Recherche impossible pour l'instant.</div>`; }
+    }, 300); };
+}
+$("#grAdd").onclick = gradedSearch;
 setExMode(store.get("exMode","cards"));
 
 

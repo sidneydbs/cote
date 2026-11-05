@@ -40,6 +40,8 @@ async function getBytes(url, tries = 4) {
 }
 
 const list = (await (await fetch(API, {signal: AbortSignal.timeout(60000), headers: {"cache-control": "no-cache"}})).json()).filter(c => !pocket(c.id));
+// cartes récentes que le cache de TCGdex vu depuis GitHub ne connaît pas encore (tools/sources.json → extra)
+{ const have = new Set(list.map(c => c.id)); for (const [id, localId, name] of SRC.extra || []) if (!have.has(id)) list.push({id, localId, name}); }
 console.log("liste :", list.length, "cartes ;", Object.keys(SRC.ll).map(k => k + "=" + list.filter(c => c.id.startsWith(k + "-")).length).join(" "));
 // la liste globale de TCGdex oublie certaines cartes (ex. Mew R/G/B du 30e) : on complète avec les sets à source de secours
 {

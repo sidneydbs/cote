@@ -39,13 +39,15 @@ async function getBytes(url, tries = 4) {
   return null;
 }
 
-const list = (await (await fetch(API, {signal: AbortSignal.timeout(60000)})).json()).filter(c => !pocket(c.id));
+const bust = () => (API.includes("?") ? "&" : "?") + "_=" + Date.now();
+const list = (await (await fetch(API + bust(), {signal: AbortSignal.timeout(60000), headers: {"cache-control": "no-cache"}})).json()).filter(c => !pocket(c.id));
 // la liste globale de TCGdex oublie certaines cartes (ex. Mew R/G/B du 30e) : on complète avec les sets à source de secours
 {
   const have = new Set(list.map(c => c.id));
   for (const set of Object.keys(SRC.ll)) {
     try {
-      const j = await (await fetch(API.replace(/\/cards$/, "/sets/") + set, {signal: AbortSignal.timeout(30000)})).json();
+      const j = await (await fetch(API.replace(/\/cards$/, "/sets/") + set + bust(), {signal: AbortSignal.timeout(30000), headers: {"cache-control": "no-cache"}})).json();
+      console.log(`set ${set} : ${(j.cards || []).length} cartes, ${(j.cards || []).filter(c => !have.has(c.id)).length} ajoutées`);
       for (const c of j.cards || []) if (!have.has(c.id)) { list.push(c); have.add(c.id); }
     } catch (e) {}
   }

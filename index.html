@@ -7,12 +7,14 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="Dex Scan">
 <meta name="theme-color" content="#0E1014">
+<link rel="apple-touch-icon" href="icon.png">
+<link rel="icon" href="icon.png">
 <title>Dex Scan</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anybody:wdth,wght@75..150,500..900&family=Rethink+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap">
 <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5.1.1/dist/tesseract.min.js"></script>
 <style>
-/* Layout : app plein écran à 4 onglets (Extensions, Scanner, Recherche, Collection), fiche carte en feuille qui remonte, barre d'onglets en bas */
+/* Layout : app plein écran à 5 onglets (Scanner, Collection = accueil, Extensions, Recherche, Alertes), fiche carte en feuille qui remonte, barre d'onglets en bas */
 :root{
   --ink:#0E1014; --panel:#171A21; --panel-2:#20242D; --line:#2C313C;
   --fg:#EEF0F4; --muted:#8C93A3; --border-yellow:#F2C230; --border-deep:#C9941A;
@@ -373,9 +375,37 @@ input,select{font:inherit;color:var(--fg)}
 @keyframes pulse{50%{opacity:.5}}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 @media (max-width:360px){.pbig{font-size:44px}.hero{grid-template-columns:40% 1fr}}
+
+/* ---------- Logo Poké Ball noir et violet + ouverture de l'app ---------- */
+.pball{width:26px;height:26px;flex:none;display:inline-block;vertical-align:middle}
+.homebar{display:flex;align-items:center;gap:9px;margin:0 0 14px}
+.homebar .brand{font-size:17px}
+.homebar .brand b,.scan-top .brand b{color:#9B5CFF}
+.scan-top .brand{display:flex;align-items:center;gap:7px}
+.splash{position:fixed;inset:0;z-index:9999;pointer-events:none}
+.splash .half{position:absolute;left:0;right:0;height:50%;overflow:hidden;background:#0B0910;pointer-events:auto;
+  transition:transform .7s cubic-bezier(.75,0,.2,1);will-change:transform}
+.splash .top{top:0;background:radial-gradient(120% 90% at 50% 100%,#2A1450 0%,#0B0910 62%)}
+.splash .bot{bottom:0;background:radial-gradient(120% 90% at 50% 0%,#2A1450 0%,#0B0910 62%)}
+.splash .ball{position:absolute;left:50%;width:140px;height:140px;margin-left:-70px;animation:pbIn .5s cubic-bezier(.2,1.5,.45,1) both,pbWob .42s .5s ease-in-out both}
+.splash .top .ball{bottom:-70px}
+.splash .bot .ball{top:-70px}
+.splash .glow{position:fixed;left:50%;top:50%;width:46px;height:46px;margin:-23px 0 0 -23px;border-radius:50%;pointer-events:none;
+  background:radial-gradient(circle,#fff 0%,#D7B8FF 35%,rgba(123,47,247,.0) 70%);opacity:0;animation:pbGlow .5s .78s ease-out both;z-index:2}
+.splash.open .top{transform:translateY(-100%)}
+.splash.open .bot{transform:translateY(100%)}
+.splash.open .half{pointer-events:none}
+@keyframes pbIn{from{transform:scale(.3);opacity:0}to{transform:scale(1);opacity:1}}
+@keyframes pbWob{0%,100%{transform:rotate(0)}25%{transform:rotate(-9deg)}60%{transform:rotate(7deg)}}
+@keyframes pbGlow{0%{opacity:0;transform:scale(.6)}40%{opacity:1;transform:scale(1.4)}100%{opacity:0;transform:scale(5)}}
+@media (prefers-reduced-motion:reduce){.splash .ball,.splash .glow{animation:none}.splash .half{transition:opacity .3s}.splash.open .half{transform:none;opacity:0}}
 </style>
 </head>
 <body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="pb" viewBox="0 0 100 100"><defs><linearGradient id="pbV" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#C08CFF"/><stop offset=".5" stop-color="#7B2FF7"/><stop offset="1" stop-color="#3E0E92"/></linearGradient><radialGradient id="pbB" cx=".38" cy=".75" r=".75"><stop offset="0" stop-color="#2B2735"/><stop offset="1" stop-color="#09080D"/></radialGradient><radialGradient id="pbC" cx=".4" cy=".35" r=".7"><stop offset="0" stop-color="#F1E6FF"/><stop offset=".55" stop-color="#B98CFF"/><stop offset="1" stop-color="#7B2FF7"/></radialGradient></defs><path d="M3 50a47 47 0 0 1 94 0z" fill="url(#pbV)"/><path d="M3 50a47 47 0 0 0 94 0z" fill="url(#pbB)"/><rect x="3" y="45.5" width="94" height="9" fill="#09080D"/><circle cx="50" cy="50" r="47" fill="none" stroke="#09080D" stroke-width="4"/><circle cx="50" cy="50" r="15.5" fill="#09080D"/><circle cx="50" cy="50" r="10" fill="url(#pbC)" stroke="#7B2FF7" stroke-width="2"/><path d="M19 33a35 35 0 0 1 17-15" fill="none" stroke="#fff" stroke-opacity=".38" stroke-width="4" stroke-linecap="round"/></symbol></svg>
+<div class="splash" id="splash" aria-hidden="true"><div class="half top"><svg class="ball" viewBox="0 0 100 100"><use href="#pb"/></svg></div><div class="half bot"><svg class="ball" viewBox="0 0 100 100"><use href="#pb"/></svg></div><i class="glow"></i></div>
+<script>(function(){var s=document.getElementById("splash"),rm=matchMedia("(prefers-reduced-motion: reduce)").matches;
+setTimeout(function(){s.classList.add("open")},rm?350:1000);setTimeout(function(){s.remove()},rm?800:1800);})();</script>
 <div class="app">
 
   <!-- ===== EXTENSIONS ===== -->
@@ -410,7 +440,7 @@ input,select{font:inherit;color:var(--fg)}
       <div class="zone z-num"><span>Numéro · ex. 025/165</span></div>
     </div></div>
     <div class="scan-top">
-      <div class="brand">DEX<b>·</b>SCAN</div>
+      <div class="brand"><svg class="pball" viewBox="0 0 100 100" aria-hidden="true"><use href="#pb"/></svg><span>DEX<b>·</b>SCAN</span></div>
       <div class="spacer"></div>
       <button class="chip" id="healthChip" aria-label="État de la connexion"><span class="hdot" id="hdot"></span>État</button>
       <button class="chip lastchip" id="lastChip" aria-label="Voir la dernière lecture">Dernière</button>
@@ -469,6 +499,7 @@ input,select{font:inherit;color:var(--fg)}
   <!-- ===== COLLECTION ===== -->
   <section class="view" id="colView" hidden>
     <div class="scroll">
+      <div class="homebar"><svg class="pball" viewBox="0 0 100 100" aria-hidden="true"><use href="#pb"/></svg><span class="brand">DEX<b>·</b>SCAN</span></div>
       <h1 class="h1">Collection</h1>
       <p class="lede">Tes cartes rangées par série et par extension, dans l'ordre des numéros. Le mode Pokédex montre aussi celles qui te manquent, en grisé.</p>
       <div class="total">
@@ -491,10 +522,10 @@ input,select{font:inherit;color:var(--fg)}
   </section>
 
   <nav class="tabs" role="tablist">
-    <button class="tab" role="tab" aria-selected="true" data-v="extView"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>Extensions</button>
     <button class="tab" role="tab" aria-selected="false" data-v="scanView"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7V5a2 2 0 0 1 2-2h2M17 3h2a2 2 0 0 1 2 2v2M21 17v2a2 2 0 0 1-2 2h-2M7 21H5a2 2 0 0 1-2-2v-2"/><rect x="8" y="6" width="8" height="12" rx="1.5"/></svg>Scanner</button>
+    <button class="tab" role="tab" aria-selected="true" data-v="colView"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="7" height="10" rx="1.2"/><rect x="14" y="4" width="7" height="10" rx="1.2"/><path d="M3 18h18M3 21h18"/></svg>Collection</button>
+    <button class="tab" role="tab" aria-selected="false" data-v="extView"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>Extensions</button>
     <button class="tab" role="tab" aria-selected="false" data-v="searchView"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>Recherche</button>
-    <button class="tab" role="tab" aria-selected="false" data-v="colView"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="7" height="10" rx="1.2"/><rect x="14" y="4" width="7" height="10" rx="1.2"/><path d="M3 18h18M3 21h18"/></svg>Collection</button>
     <button class="tab" role="tab" aria-selected="false" data-v="alertView"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg>Alertes<i class="tbadge" id="alertBadge" hidden></i></button>
   </nav>
 </div>
@@ -2387,7 +2418,15 @@ langChip.onclick = toggleLang;
 $("#extLang").onclick = toggleLang;
 setLangUI();
 
-renderCol(); selectTab("extView");
+selectTab("colView");
+// glisser depuis le bord gauche de la Collection : scanner ; glisser vers la gauche dans le scanner : retour à la Collection
+(function(){ let x0=null,y0=0,from=null;
+  document.addEventListener("touchstart",e=>{ const t=e.touches[0]; if(e.touches.length!==1){x0=null;return;}
+    if(!$("#colView").hidden && t.clientX<32){ x0=t.clientX; y0=t.clientY; from="col"; }
+    else if(!$("#scanView").hidden && !e.target.closest("button")){ x0=t.clientX; y0=t.clientY; from="scan"; } else x0=null; },{passive:true});
+  document.addEventListener("touchend",e=>{ if(x0==null) return; const t=e.changedTouches[0], dx=t.clientX-x0, dy=Math.abs(t.clientY-y0); x0=null;
+    if(dy>70) return; if(from==="col" && dx>70) selectTab("scanView"); else if(from==="scan" && dx<-70) selectTab("colView"); },{passive:true});
+})();
 getSets(LANG).catch(()=>{});
 checkHealth().catch(()=>{});
 

@@ -227,6 +227,27 @@ input,select{font:inherit;color:var(--fg)}
 .gradebtn b{font:800 15px/1 var(--f-mono)}
 .gradebtn span{font-size:12px;color:var(--muted)}
 
+
+/* ---------- Wallet ---------- */
+#wDate{font:600 11px/1 var(--f-mono);color:var(--muted)}
+.wchg{font:700 15px/1.3 var(--f-mono);font-variant-numeric:tabular-nums;margin-top:6px}
+.wchg .up{color:var(--up)}.wchg .down{color:var(--down)}.wchg .flat{color:var(--muted)}
+.wchg i{font-style:normal;font-weight:600}
+.wchg em{font:500 12.5px/1 var(--f-body);color:var(--muted);font-style:normal;margin-left:4px}
+.wchart{margin:14px -4px 0;touch-action:none;user-select:none;-webkit-user-select:none}
+.wchart svg{display:block;width:100%;height:130px;cursor:crosshair}
+.wnote{font-size:11px;color:var(--muted);margin-top:4px;text-align:right}
+.wper{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:4px;margin-top:10px;background:var(--panel-2);border-radius:12px;padding:4px}
+.wper button{min-height:36px;border-radius:9px;font:700 12.5px/1 var(--f-mono);color:var(--muted)}
+.wper button[aria-pressed="true"]{background:var(--fg);color:var(--ink)}
+.wstats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;margin-top:12px}
+.wstats div{background:var(--panel-2);border-radius:10px;padding:8px 10px;min-width:0}
+.wstats div.wide{grid-column:1/-1;display:flex;justify-content:space-between;align-items:center;gap:10px}
+.wstats span{display:block;font:600 10.5px/1.2 var(--f-mono);color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+.wstats b{display:block;font:700 13.5px/1.3 var(--f-mono);font-variant-numeric:tabular-nums;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-top:3px}
+.wstats div.wide b{margin-top:0}
+.wstats b.up{color:var(--up)}.wstats b.down{color:var(--down)}
+
 /* ---------- Recherche / Collection ---------- */
 .h1{font:800 30px/1 var(--f-display);font-stretch:125%;margin:0 0 4px}
 .lede{color:var(--muted);margin:0 0 18px;line-height:1.45}
@@ -425,13 +446,14 @@ input,select{font:inherit;color:var(--fg)}
       <h1 class="h1">Collection</h1>
       <p class="lede">Tes cartes rangées par série et par extension, dans l'ordre des numéros. Le mode Pokédex montre aussi celles qui te manquent, en grisé.</p>
       <div class="total">
-        <div class="plabel">Valeur totale · tendance Cardmarket</div>
+        <div class="plabel"><span id="wLabel">Valeur de la collection</span><span id="wDate"></span></div>
         <div class="pmain"><div class="pbig" id="colTotal">0,00<small>€</small></div></div>
-        <div class="colpnl" id="colPnl"></div>
-        <div class="colmove" id="colMove"></div>
-        <div class="psub" id="colMeta">0 carte</div>
-        <div id="colSpark"></div>
-        <div class="psub" id="colUpd" style="margin-top:6px"></div>
+        <div class="wchg" id="wChg"></div>
+        <div class="wchart" id="wChart" aria-label="Évolution de la valeur de ta collection"></div>
+        <div class="wper" role="group" aria-label="Période"><button data-wp="1">24 H</button><button data-wp="7">7 J</button><button data-wp="30">30 J</button><button data-wp="all">Tout</button></div>
+        <div class="wstats" id="wStats"></div>
+        <div class="psub" id="colMeta" style="margin-top:10px">0 carte</div>
+        <div class="psub" id="colUpd" style="margin-top:4px"></div>
         <div class="addrow"><button class="btn btn-g" id="refreshCol"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 12a9 9 0 1 1-3-6.7L21 8"/><path d="M21 3v5h-5"/></svg>Actualiser les cotes</button></div>
       </div>
       <div class="coltools">
@@ -931,11 +953,8 @@ async function renderCol(){
   if(col.some(x=>x.buy==null && x.price!=null)){ col.forEach(x=>{ if(x.buy==null && x.price!=null) x.buy = x.price; }); store.set("col", col); }
   const total = col.reduce((s,x)=>s+(x.price||0)*x.qty,0), n = col.reduce((s,x)=>s+x.qty,0);
   $("#colTotal").innerHTML = `${eur(total)}<small>€</small>`;
-  const cost = col.reduce((a,x)=>a+(x.buy ?? x.price ?? 0)*x.qty,0), tp = {v: total-cost, pc: cost ? (total-cost)/cost*100 : 0};
-  $("#colPnl").innerHTML = col.length ? `<span class="pnlbig ${pnlCls(tp)}">${pnlCls(tp)==="up"?"▲":pnlCls(tp)==="down"?"▼":"■"} PnL ${pnlTxt(tp)}</span><span class="psub">investi ${eurN(cost)} €</span>` : "";
-  const mk = colMarket(col), pxT = store.get("colPxT",0);
-  $("#colMove").innerHTML = col.length ? mk.d.map(deltaChip).join("") : "";
-  $("#colSpark").innerHTML = col.length ? colSpark() : "";
+  renderWallet(col);
+  const pxT = store.get("colPxT",0);
   $("#colUpd").textContent = col.length ? (COLPX.busy ? "Mise à jour des cotes…" : pxT ? `Cotes Cardmarket relues ${ago(pxT)} · suivi automatique` : "Cotes en cours de lecture…") : "";
   if(col.length && !COLPX.busy && colStale() && !$("#colView").hidden) setTimeout(()=>refreshColPrices(), 50);
   const by = new Map(); for(const x of col){ const k = setIdOf(x.id); if(!by.has(k)) by.set(k,[]); by.get(k).push(x); }
@@ -1036,6 +1055,8 @@ async function refreshColPrices(manual=false){
   // historique quotidien de la valeur totale (pour la courbe)
   const total = col.reduce((a,x)=>a+(x.price||0)*x.qty,0), day = new Date().toISOString().slice(0,10);
   const h = store.get("colHist",[]).filter(e=>e.d!==day); h.push({d:day, v:Math.round(total*100)/100}); store.set("colHist", h.slice(-90));
+  const ph = store.get("colPxHist",{}); ph[day] = Object.fromEntries(col.filter(x=>x.price!=null).map(x=>[x.id, Math.round(x.price*100)/100]));
+  for(const d of Object.keys(ph).sort().slice(0,-365)) delete ph[d]; store.set("colPxHist", ph);
   COLPX.busy = false; b.disabled=false; b.innerHTML = REFRESH_LBL;
   renderCol();
   if(manual) toast(`Cotes mises à jour (${upd.size}/${ids.length} cartes)`);
@@ -1045,6 +1066,88 @@ const colStale = () => Date.now() - store.get("colPxT",0) > COLPX.every;
 $("#refreshCol").onclick = ()=>refreshColPrices(true);
 document.addEventListener("visibilitychange", ()=>{ if(!document.hidden && !$("#colView").hidden && colStale()) refreshColPrices(); });
 setInterval(()=>{ if(!document.hidden && !$("#colView").hidden && colStale()) refreshColPrices(); }, 30*60e3);
+
+
+/* ---------- En-tête façon wallet crypto : solde, PnL par période, courbe que l'on parcourt au doigt ----------
+   Courbe = valeur des cartes que tu possèdes aujourd'hui, au fil du temps :
+   points estimés à partir des moyennes Cardmarket (il y a 30 j, 7 j, 24 h) puis, jour après jour, les cotes réellement relues. */
+const WAL = {p: store.get("walP","1")};
+function walSeries(col){
+  const now = Date.now(), D = 864e5;
+  const valWith = f => col.reduce((a,x)=>{ const p = f(x); return a + ((p ?? x.price) || 0) * x.qty; }, 0);
+  const pts = [];
+  for(const [n,k] of [[30,"a30"],[7,"a7"],[1,"a1"]]) if(col.some(x=>x[k]!=null)) pts.push({t: now-n*D, v: valWith(x=>x[k]), est:true});
+  const ph = store.get("colPxHist",{});
+  for(const d of Object.keys(ph).sort()){
+    if(d === new Date().toISOString().slice(0,10)) continue;   // le point d'aujourd'hui = la valeur actuelle
+    const t = Date.parse(d+"T12:00:00");
+    pts.push({t, v: valWith(x=>ph[d][x.id])});
+  }
+  pts.push({t: now, v: valWith(()=>null)});
+  pts.sort((a,b)=>a.t-b.t);
+  // un vrai relevé l'emporte sur une estimation proche
+  return pts.filter((p,i)=>!p.est || !pts.some(q=>!q.est && q!==p && q.t < now-6*36e5 && Math.abs(q.t-p.t) < .6*D));
+}
+function walSlice(pts, per){
+  if(per==="all") return pts;
+  const from = Date.now() - (+per)*864e5 - 6*36e5;
+  const l = pts.filter(p=>p.t >= from); return l.length >= 2 ? l : pts.slice(-2);
+}
+function walChange(col, pts, per){
+  const total = col.reduce((a,x)=>a+(x.price||0)*x.qty,0);
+  if(per==="all"){ const cost = col.reduce((a,x)=>a+(x.buy ?? x.price ?? 0)*x.qty,0); return {v: total-cost, pc: cost ? (total-cost)/cost*100 : 0, lbl:"depuis l'achat"}; }
+  const l = walSlice(pts, per), base = l[0].v;
+  return {v: total-base, pc: base ? (total-base)/base*100 : 0, lbl: per==="1" ? "aujourd'hui" : `sur ${per} jours`};
+}
+function chgHTML(c){
+  const cls = pnlCls(c), sg = c.v>0?"+":c.v<0?"−":"";
+  return `<span class="${cls}">${cls==="up"?"▲":cls==="down"?"▼":"■"} ${sg}${eurN(Math.abs(c.v))} € <i>(${sg}${Math.abs(c.pc).toFixed(2).replace(".",",")} %)</i></span> <em>${esc(c.lbl)}</em>`;
+}
+function renderWallet(col){
+  const box = $("#wChart");
+  document.querySelectorAll("[data-wp]").forEach(b=>b.setAttribute("aria-pressed", b.dataset.wp===WAL.p));
+  if(!col.length){ $("#wChg").innerHTML=""; box.innerHTML=""; $("#wStats").innerHTML=""; $("#wDate").textContent=""; return; }
+  const pts = walSeries(col), per = WAL.p, l = walSlice(pts, per), c = walChange(col, pts, per);
+  const total = col.reduce((a,x)=>a+(x.price||0)*x.qty,0);
+  $("#wChg").innerHTML = chgHTML(c); $("#wDate").textContent = "";
+  // courbe
+  const W = 340, H = 120, P = 6, vs = l.map(p=>p.v), mn = Math.min(...vs), mx = Math.max(...vs), t0 = l[0].t, t1 = l[l.length-1].t;
+  const X = t => P + (t1>t0 ? (t-t0)/(t1-t0) : 1) * (W-2*P), Y = v => H-P - (mx>mn ? (v-mn)/(mx-mn) : .5) * (H-2*P);
+  const line = l.map(p=>`${X(p.t).toFixed(1)},${Y(p.v).toFixed(1)}`).join(" ");
+  const col_ = c.v >= 0 ? "var(--up)" : "var(--down)", cls = c.v >= 0 ? "up" : "down";
+  box.innerHTML = `<svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" role="img" aria-label="Courbe de la valeur, ${esc(c.lbl)}">
+    <defs><linearGradient id="wg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${cls==="up"?"#2fd18b":"#ff5b5b"}" stop-opacity=".32"/><stop offset="1" stop-color="${cls==="up"?"#2fd18b":"#ff5b5b"}" stop-opacity="0"/></linearGradient></defs>
+    <polygon points="${X(t0).toFixed(1)},${H} ${line} ${X(t1).toFixed(1)},${H}" fill="url(#wg)"/>
+    <polyline points="${line}" fill="none" stroke="${col_}" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round" vector-effect="non-scaling-stroke"/>
+    <line id="wCur" x1="0" x2="0" y1="0" y2="${H}" stroke="var(--muted)" stroke-width="1" stroke-dasharray="3 3" vector-effect="non-scaling-stroke" opacity="0"/>
+    <circle id="wDot" r="4" cx="${X(t1).toFixed(1)}" cy="${Y(l[l.length-1].v).toFixed(1)}" fill="${col_}"/>
+  </svg>${l.some(p=>p.est)?`<div class="wnote">Début de courbe estimé d'après les moyennes Cardmarket</div>`:""}`;
+  // parcours au doigt : le solde affiché suit le point touché, comme dans un wallet
+  const svg = box.querySelector("svg"), cur = box.querySelector("#wCur"), dot = box.querySelector("#wDot");
+  const show = ev=>{
+    const r = svg.getBoundingClientRect(), x = ((ev.touches?.[0]?.clientX ?? ev.clientX) - r.left) / r.width * W;
+    let best = l[0]; for(const p of l) if(Math.abs(X(p.t)-x) < Math.abs(X(best.t)-x)) best = p;
+    cur.setAttribute("x1", X(best.t)); cur.setAttribute("x2", X(best.t)); cur.setAttribute("opacity", 1);
+    dot.setAttribute("cx", X(best.t)); dot.setAttribute("cy", Y(best.v));
+    $("#colTotal").innerHTML = `${eur(best.v)}<small>€</small>`;
+    const d = best.v - l[0].v, pc = l[0].v ? d/l[0].v*100 : 0;
+    $("#wChg").innerHTML = chgHTML({v:d, pc, lbl: best.t >= Date.now()-6e4 ? c.lbl : "depuis le début de la période"});
+    $("#wDate").textContent = new Date(best.t).toLocaleDateString("fr-FR",{day:"numeric",month:"short"}) + (best.est ? " · estimé" : "");
+  };
+  const reset = ()=>{ cur.setAttribute("opacity",0); dot.setAttribute("cx", X(t1)); dot.setAttribute("cy", Y(l[l.length-1].v)); $("#colTotal").innerHTML = `${eur(total)}<small>€</small>`; $("#wChg").innerHTML = chgHTML(c); $("#wDate").textContent = ""; };
+  svg.addEventListener("pointerdown", e=>{ svg.setPointerCapture?.(e.pointerId); show(e); });
+  svg.addEventListener("pointermove", e=>{ if(e.pointerType==="mouse" || e.buttons) show(e); });
+  svg.addEventListener("pointerup", reset); svg.addEventListener("pointerleave", reset); svg.addEventListener("pointercancel", reset);
+  // résumé
+  const cost = col.reduce((a,x)=>a+(x.buy ?? x.price ?? 0)*x.qty,0), tp = {v: total-cost, pc: cost ? (total-cost)/cost*100 : 0};
+  const ranked = col.map(x=>({x, p:pnlOf(x)})).filter(o=>o.p).sort((a,b)=>b.p.v-a.p.v);
+  const best = ranked[0], worst = ranked[ranked.length-1];
+  const cell = (k, v, cls="") => `<div><span>${k}</span><b class="${cls}">${v}</b></div>`;
+  $("#wStats").innerHTML = cell("Investi", `${eurN(cost)} €`) + cell("PnL total", pnlTxt(tp,false), pnlCls(tp)) + cell("PnL %", `${tp.v>0?"+":tp.v<0?"−":""}${Math.abs(tp.pc).toFixed(1).replace(".",",")} %`, pnlCls(tp))
+    + (best && best.p.v > 0 ? `<div class="wide"><span>Meilleure carte</span><b class="up">${esc(best.x.name)} · ${esc(pnlTxt(best.p,false))}</b></div>` : "")
+    + (worst && worst.p.v < 0 ? `<div class="wide"><span>Pire carte</span><b class="down">${esc(worst.x.name)} · ${esc(pnlTxt(worst.p,false))}</b></div>` : "");
+}
+document.querySelectorAll("[data-wp]").forEach(b=>b.onclick=()=>{ WAL.p = b.dataset.wp; store.set("walP", WAL.p); renderWallet(getCol()); });
 
 /* variation de la valeur totale d'après les moyennes du marché */
 function colMarket(col){

@@ -32,6 +32,16 @@ async function getBytes(url) {
 }
 
 const list = (await (await fetch(API, {signal: AbortSignal.timeout(60000)})).json()).filter(c => !pocket(c.id));
+// la liste globale de TCGdex oublie certaines cartes (ex. Mew R/G/B du 30e) : on complète avec les sets à source de secours
+{
+  const have = new Set(list.map(c => c.id));
+  for (const set of Object.keys(SRC.ll)) {
+    try {
+      const j = await (await fetch(API.replace(/\/cards$/, "/sets/") + set, {signal: AbortSignal.timeout(30000)})).json();
+      for (const c of j.cards || []) if (!have.has(c.id)) { list.push(c); have.add(c.id); }
+    } catch (e) {}
+  }
+}
 const browser = await puppeteer.launch({executablePath: process.env.CHROME || "/usr/bin/google-chrome", args: ["--no-sandbox"], protocolTimeout: 0});
 const page = await browser.newPage();
 await page.setContent("<!doctype html><title>index</title>");

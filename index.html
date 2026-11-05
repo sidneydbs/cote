@@ -13,7 +13,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://api.tcgdex.net" crossorigin>
-<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Anybody:wdth,wght@75..150,500..900&family=Rethink+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Anybody:wdth,wght@75..150,500..900&family=Luckiest+Guy&family=Rethink+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap" onload="this.onload=null;this.rel='stylesheet'">
 <style>
 /* Layout : app plein écran à 5 onglets (Scanner, Collection = accueil, Extensions, Recherche, Alertes), fiche carte en feuille qui remonte, barre d'onglets en bas */
 :root{
@@ -266,6 +266,11 @@ input,select{font:inherit;color:var(--fg)}
 
 /* ---------- Recherche / Collection ---------- */
 .h1{font:800 30px/1 var(--f-display);font-stretch:125%;margin:0 0 4px}
+/* Titres « noir néon penché » : lettres noires, contour violet clair, ombre violette, légère inclinaison */
+.h1{font-family:"Luckiest Guy",var(--f-display);font-weight:400;font-stretch:normal;font-size:38px;letter-spacing:.02em;line-height:1.05;
+  color:#0B0910;-webkit-text-stroke:5px #C08CFF;paint-order:stroke fill;
+  display:inline-block;transform:rotate(-3deg);transform-origin:left bottom;margin:6px 0 10px 2px;
+  filter:drop-shadow(3px 4px 0 #4A12A8)}
 .lede{color:var(--muted);margin:0 0 18px;line-height:1.45}
 .field{display:flex;flex-direction:column;gap:6px;margin-bottom:12px}
 .field label{font-size:12px;font-weight:600;color:var(--muted)}
@@ -513,7 +518,7 @@ setTimeout(function(){s.classList.add("open")},rm?350:1000);setTimeout(function(
   <!-- ===== COLLECTION ===== -->
   <section class="view" id="colView" hidden>
     <div class="scroll">
-      <div class="homebar"><svg class="pball" viewBox="0 0 100 100" aria-hidden="true"><use href="#pb"/></svg><span class="brand">DEX<b>·</b>SCAN</span><span class="ver">v22</span></div>
+      <div class="homebar"><svg class="pball" viewBox="0 0 100 100" aria-hidden="true"><use href="#pb"/></svg><span class="brand">DEX<b>·</b>SCAN</span><span class="ver">v23</span></div>
       <h1 class="h1">Collection</h1>
       <p class="lede">Tes cartes rangées par série et par extension, dans l'ordre des numéros. Le mode Pokédex montre aussi celles qui te manquent, en grisé.</p>
       <div class="total">
@@ -557,7 +562,7 @@ setTimeout(function(){s.classList.add("open")},rm?350:1000);setTimeout(function(
 <script>
 (() => {
 "use strict";
-const APP_VER = "22";
+const APP_VER = "23";
 const API = "https://api.tcgdex.net/v2";
 const $ = s => document.querySelector(s);
 const store = {

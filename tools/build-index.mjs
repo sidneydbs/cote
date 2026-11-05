@@ -19,11 +19,19 @@ const altImgs = (id, loc) => {
     out.push(`https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/tpci/${c}/${c}_${k}_R_EN_SM.png`);
     out.push(`https://limitlesstcg.nyc3.digitaloceanspaces.com/tpci/${c}/${c}_${k}_R_EN_SM.png`);
   }
+  const sx = SRC.sx && SRC.sx[set];
+  if (sx) {
+    const c = typeof sx === "string" ? sx : sx.c;
+    const m = String(loc).match(/^([A-Za-z]*)0*(\d+)([a-z]?)$/);
+    const k = (typeof sx === "object" && sx.m && sx.m[loc]) || (m ? m[1] + m[2] + m[3] : loc);
+    out.push(`https://images.scrydex.com/pokemon/${c}-${k}/small`);
+  }
   if (SRC.pt[set]) out.push(`https://images.pokemontcg.io/${SRC.pt[set]}/${loc}.png`);
   return out;
 };
 // pokemontcg.io renvoie un dos de carte PNG 640×892 au lieu d'une 404 : on l'écarte
-const isPlaceholder = b => b.length > 24 && b.readUInt32BE(12) === 0x49484452 && b.readUInt32BE(16) === 640 && b.readUInt32BE(20) === 892;
+// scrydex renvoie une image générique de 45 551 octets quand la carte n'existe pas
+const isPlaceholder = b => b.length === 45551 || (b.length > 24 && b.readUInt32BE(12) === 0x49484452 && b.readUInt32BE(16) === 640 && b.readUInt32BE(20) === 892);
 const lastStatus = {};
 const sleep = ms => new Promise(r => setTimeout(r, ms));
 async function getBytes(url, tries = 4) {

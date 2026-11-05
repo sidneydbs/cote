@@ -40,6 +40,7 @@ async function getBytes(url, tries = 4) {
 }
 
 const list = (await (await fetch(API, {signal: AbortSignal.timeout(60000), headers: {"cache-control": "no-cache"}})).json()).filter(c => !pocket(c.id));
+console.log("liste :", list.length, "cartes ;", Object.keys(SRC.ll).map(k => k + "=" + list.filter(c => c.id.startsWith(k + "-")).length).join(" "));
 // la liste globale de TCGdex oublie certaines cartes (ex. Mew R/G/B du 30e) : on complète avec les sets à source de secours
 {
   const have = new Set(list.map(c => c.id));
@@ -82,7 +83,7 @@ console.log(`${retry.length} images à retenter`);
 for (const j of retry) {
   await sleep(250);
   const b = await fetchJob(j, 6);
-  if (!b) { fail++; if (fail <= 15) console.log("échec", j.c.id, j.urls.map(u => u.split("/").pop() + "=" + (lastStatus[u] ?? "?")).join(" ")); continue; }
+  if (!b) { fail++; if (fail <= 15 || SRC.ll[j.c.id.slice(0, j.c.id.lastIndexOf("-"))]) console.log("échec", j.c.id, j.urls.map(u => u.split("/").pop() + "=" + (lastStatus[u] ?? "?")).join(" ")); continue; }
   queue.push({j, b64: b.toString("base64")});
   if (queue.length >= 100) await flush();
 }

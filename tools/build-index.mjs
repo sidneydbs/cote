@@ -39,14 +39,13 @@ async function getBytes(url, tries = 4) {
   return null;
 }
 
-const bust = () => (API.includes("?") ? "&" : "?") + "_=" + Date.now();
-const list = (await (await fetch(API + bust(), {signal: AbortSignal.timeout(60000), headers: {"cache-control": "no-cache"}})).json()).filter(c => !pocket(c.id));
+const list = (await (await fetch(API, {signal: AbortSignal.timeout(60000), headers: {"cache-control": "no-cache"}})).json()).filter(c => !pocket(c.id));
 // la liste globale de TCGdex oublie certaines cartes (ex. Mew R/G/B du 30e) : on complète avec les sets à source de secours
 {
   const have = new Set(list.map(c => c.id));
   for (const set of Object.keys(SRC.ll)) {
     try {
-      const j = await (await fetch(API.replace(/\/cards$/, "/sets/") + set + bust(), {signal: AbortSignal.timeout(30000), headers: {"cache-control": "no-cache"}})).json();
+      const j = await (await fetch(API.replace(/\/cards$/, "/sets/") + set, {signal: AbortSignal.timeout(30000), headers: {"cache-control": "no-cache"}})).json();
       console.log(`set ${set} : ${(j.cards || []).length} cartes, ${(j.cards || []).filter(c => !have.has(c.id)).length} ajoutées`);
       for (const c of j.cards || []) if (!have.has(c.id)) { list.push(c); have.add(c.id); }
     } catch (e) {}
@@ -111,6 +110,8 @@ async function flush() {
 }
 await browser.close();
 rows.sort((a, b) => a[0].localeCompare(b[0]));
+let prev = 0; try { prev = JSON.parse(fs.readFileSync("cards-index.json", "utf8")).cards.length; } catch (e) {}
+if (rows.length < prev * 0.95) { console.error(`Index trop petit (${rows.length} contre ${prev}), non publié`); process.exit(1); }
 fs.writeFileSync("cards-index.json", JSON.stringify({v: 1, built: new Date().toISOString(), source: "tcgdex en + pokemontcg.io + limitless", series, cards: rows}));
 console.log(`index : ${rows.length} cartes (${alt} via sources de secours) sur ${jobs.length} images, ${fail} échecs ; ${list.length - jobs.length} cartes sans aucune image`);
 if (rows.length < jobs.length * 0.9) { console.error("Trop d'échecs, index non publié"); process.exit(1); }

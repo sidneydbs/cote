@@ -8,12 +8,20 @@ const API = process.env.CARDS_API || "https://api.tcgdex.net/v2/en/cards";
 const sigSrc = fs.readFileSync(new URL("./cardsig.js", import.meta.url), "utf8");
 const SRC = JSON.parse(fs.readFileSync(new URL("./sources.json", import.meta.url), "utf8"));
 const pocket = id => /^(P-A|[AB]\d+[a-z]?)-/.test(id);
-const altImg = (id, loc) => {
-  const set = id.slice(0, id.lastIndexOf("-"));
-  if (SRC.pt[set]) return `https://images.pokemontcg.io/${SRC.pt[set]}/${loc}.png`;
-  if (SRC.ll[set]) { const c = SRC.ll[set]; return `https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/tpci/${c}/${c}_${String(loc).padStart(3, "0")}_R_EN_SM.png`; }
-  return null;
+const altImgs = (id, loc) => {
+  const set = id.slice(0, id.lastIndexOf("-")), out = [];
+  const e = SRC.ll[set];
+  if (e) {
+    const c = typeof e === "string" ? e : e.c;
+    let k = (typeof e === "object" && e.m && e.m[loc]) || loc;
+    if (/^\d+$/.test(k)) k = String(k).padStart(3, "0");
+    out.push(`https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/tpci/${c}/${c}_${k}_R_EN_SM.png`);
+  }
+  if (SRC.pt[set]) out.push(`https://images.pokemontcg.io/${SRC.pt[set]}/${loc}.png`);
+  return out;
 };
+// pokemontcg.io renvoie un dos de carte PNG 640×892 au lieu d'une 404 : on l'écarte
+const isPlaceholder = b => b.length > 24 && b.readUInt32BE(12) === 0x49484452 && b.readUInt32BE(16) === 640 && b.readUInt32BE(20) === 892;
 const sleep = ms => new Promise(r => setTimeout(r, ms));
 async function getBytes(url) {
   for (let t = 0; t < 4; t++) {
@@ -31,12 +39,16 @@ await page.evaluate(src => { window.S = new Function(src + "\nreturn CARDSIG;")(
 
 // toutes les images sont téléchargées côté Node, puis empreintes calculées dans Chrome
 const rows = [], series = {}; let fail = 0, alt = 0, i = 0;
-const jobs = list.map(c => ({c, url: c.image ? c.image + "/low.webp" : altImg(c.id, c.localId), isAlt: !c.image})).filter(j => j.url);
+const jobs = list.map(c => ({c, urls: [...(c.image ? [c.image + "/low.webp"] : []), ...altImgs(c.id, c.localId)]})).filter(j => j.urls.length);
 const queue = [];
 await Promise.all(Array.from({length: 12}, async () => {
   while (i < jobs.length) {
     const j = jobs[i++];
-    const b = await getBytes(j.url);
+    let b = null;
+    for (let u = 0; u < j.urls.length && !b; u++) {
+      const x = await getBytes(j.urls[u]);
+      if (x && !isPlaceholder(x)) { b = x; j.isAlt = u > 0 || !j.c.image; }
+    }
     if (!b) { fail++; continue; }
     queue.push({j, b64: b.toString("base64")});
     if (queue.length >= 100) await flush();

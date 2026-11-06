@@ -559,6 +559,73 @@ input,select{font:inherit;color:var(--fg)}
 @keyframes ftsw{0%,15%{background-position:100% 100%}70%,100%{background-position:0 0}}
 @media (prefers-reduced-motion:reduce){.ctile .im.ft::after{animation:none;opacity:0}.foil{transform:none}}
 
+/* ---------- v36 : brillance WebGL (la photo reste intacte) ---------- */
+.cardimg.glf{position:relative;overflow:hidden;transform:perspective(800px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));will-change:transform;touch-action:pan-y;cursor:zoom-in}
+.glf img,#foilView img{-webkit-user-drag:none;user-select:none;-webkit-user-select:none;pointer-events:none}
+.glfc{position:absolute;inset:0;width:100%;height:100%;mix-blend-mode:screen;pointer-events:none;border-radius:inherit}
+#foilView{position:fixed;inset:0;z-index:300;background:radial-gradient(80% 60% at 50% 40%,color-mix(in srgb,var(--border-yellow) 22%,#120c1c),#06040a 72%);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;padding:20px;opacity:0;pointer-events:none;transition:opacity .22s;touch-action:none}
+#foilView.open{opacity:1;pointer-events:auto}
+#foilView .sc3{perspective:1100px}
+#foilView .c3{position:relative;width:min(80vw,54vh*.716,430px);aspect-ratio:63/88;transform-style:preserve-3d;transform:rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg))}
+#foilView .fc3{position:absolute;inset:0;border-radius:4.6%/3.3%;overflow:hidden;backface-visibility:hidden;-webkit-backface-visibility:hidden}
+#foilView .fr3{transform:translateZ(1.6px)}
+#foilView .fr3 img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+#foilView .bk3{transform:rotateY(180deg) translateZ(1.6px);background:radial-gradient(70% 55% at 50% 42%,color-mix(in srgb,var(--border-yellow) 70%,#000),#150c26 72%,#0b0714);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;box-shadow:inset 0 0 0 7px #24173d,inset 0 0 0 9px color-mix(in srgb,var(--border-yellow) 40%,transparent)}
+#foilView .bk3 b{font:900 26px/1 var(--f-body);letter-spacing:.08em;color:#F1EAFF}
+#foilView .bk3 b i{font-style:normal;color:var(--border-yellow)}
+#foilView .ed3{position:absolute;inset:0;border-radius:4.6%/3.3%;background:#d6d0e2}
+#foilView .sh3{position:absolute;left:12%;right:12%;bottom:-9%;height:6%;border-radius:50%;background:rgba(0,0,0,.6);filter:blur(12px);transform:translateZ(-40px)}
+#foilView .fvt{font:700 15px/1.3 var(--f-body);color:#fff;text-align:center;max-width:90vw}
+#foilView .fvs{font-size:12.5px;color:#bfb3d6;text-align:center;max-width:88vw;line-height:1.45}
+#foilView .fvb{display:flex;gap:10px}
+#foilView .fvb button{padding:11px 16px;border-radius:12px;font:700 14px var(--f-body);background:#2a2238;color:#fff}
+#foilView .fvb .gy{background:var(--border-yellow);color:var(--on-acc)}
+
+/* ---------- v36 : listes d'extensions plus lisibles ---------- */
+.lbar{position:sticky;top:-1px;z-index:6;background:var(--ink);margin:0 -16px;padding:8px 16px 8px;border-bottom:1px solid color-mix(in srgb,var(--fg) 8%,transparent)}
+.lbar .lrow{display:flex;align-items:center;gap:8px}
+.vtog{display:flex;flex:none;background:var(--panel);border:1px solid var(--line);border-radius:11px;padding:3px;gap:2px}
+.vtog button{width:34px;height:30px;border-radius:8px;display:grid;place-items:center;color:var(--muted)}
+.vtog button svg{width:17px;height:17px}
+.vtog button[aria-pressed="true"]{background:var(--border-yellow);color:var(--on-acc)}
+.serchips{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;flex:1;min-width:0;mask-image:linear-gradient(90deg,#000 88%,transparent)}
+.serchips::-webkit-scrollbar{display:none}
+.serchips button,.csort button{flex:none;padding:7px 11px;border-radius:999px;border:1px solid var(--line);background:var(--panel);color:var(--fg);font:600 12.5px/1 var(--f-body);white-space:nowrap}
+.serchips button.on,.csort button[aria-pressed="true"]{background:color-mix(in srgb,var(--border-yellow) 24%,var(--panel));border-color:var(--border-yellow)}
+.csort{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;flex:1;min-width:0}
+.serie h2.sh2{cursor:pointer;align-items:center;padding:6px 0;margin:0 0 6px;scroll-margin-top:60px}
+.serie h2.sh2 .sp{margin-left:auto;font-variant-numeric:tabular-nums;color:var(--fg);opacity:.8}
+.serie h2.sh2 svg{width:14px;height:14px;transition:transform .2s;flex:none}
+.serie.closed h2.sh2 svg{transform:rotate(-90deg)}
+.serie.closed>.srows,.serie.closed>.stiles,.serie.closed>.scards,.serie.closed>.colset{display:none}
+.srows{display:flex;flex-direction:column;gap:8px}
+.srow2{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:6px 12px;padding:10px 12px 10px 10px;border-radius:14px;background:var(--panel);border:1px solid color-mix(in srgb,var(--fg) 10%,transparent);cursor:pointer;position:relative;overflow:hidden}
+.srow2:active{transform:scale(.99)}
+.srow2 .t{min-width:0;display:flex;flex-direction:column;gap:3px}
+.srow2 .t b{font:700 15px/1.2 var(--f-body);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.srow2 .t small{font-size:12px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.srow2 .r{display:flex;flex-direction:column;align-items:flex-end;gap:3px;font-variant-numeric:tabular-nums}
+.srow2 .r .n{font:700 15px/1 var(--f-mono)}
+.srow2 .r .n small{font-size:.7em;color:var(--muted)}
+.srow2 .r .pc{font:700 12px/1 var(--f-mono);color:var(--border-yellow)}
+.srow2 .r .v{font:700 12px/1 var(--f-mono);color:var(--fg);font-style:normal;opacity:.85}
+.srow2 .pb{grid-column:1/-1;height:4px;border-radius:9px;background:color-mix(in srgb,var(--fg) 12%,transparent);overflow:hidden;margin-top:2px}
+.srow2 .pb>i{display:block;height:100%;border-radius:9px;background:linear-gradient(90deg,var(--g1),var(--g2))}
+.srow2.done .pc{color:var(--up)}
+.srow2>.cgrid{grid-column:1/-1;padding:8px 0 2px}
+.srow2.colset:not(.open)>.cgrid{display:none}
+.lg2{width:84px;height:46px;flex:none;display:grid;place-items:center;border-radius:10px;background:radial-gradient(85% 90% at 50% 50%,color-mix(in srgb,var(--fg) 13%,transparent),transparent 75%)}
+.lg2 img{max-width:78px;max-height:42px;object-fit:contain;filter:drop-shadow(0 0 1px rgba(255,255,255,.55)) drop-shadow(0 1px 2px rgba(0,0,0,.4))}
+.lg2 .ini{font:800 13px/1.1 var(--f-body);color:var(--fg);text-align:center;padding:6px 8px;border-radius:9px;background:linear-gradient(135deg,color-mix(in srgb,var(--border-yellow) 45%,var(--panel-2)),var(--panel-2));letter-spacing:.04em}
+.stiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(104px,1fr));gap:10px}
+.stile2{position:relative;display:flex;flex-direction:column;align-items:center;gap:6px;padding:14px 8px 10px;border-radius:14px;background:var(--panel);border:1px solid color-mix(in srgb,var(--fg) 10%,transparent);cursor:pointer;text-align:center;min-width:0}
+.stile2 .lg2{width:100%;height:58px}
+.stile2 .lg2 img{max-width:92%;max-height:54px}
+.stile2 b{font:700 12.5px/1.2 var(--f-body);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;min-height:2.4em}
+.stile2 small{font:600 11px/1 var(--f-mono);color:var(--muted)}
+.stile2 .ring{position:absolute;top:6px;right:6px;width:30px;height:30px;border-radius:50%;background:conic-gradient(var(--border-yellow) calc(var(--p)*1%),color-mix(in srgb,var(--fg) 14%,transparent) 0);display:grid;place-items:center}
+.stile2 .ring span{width:24px;height:24px;border-radius:50%;background:var(--panel);display:grid;place-items:center;font:700 8.5px/1 var(--f-mono)}
+
 /* ---------- Thèmes ---------- */
 :root{--on-acc:#1a1408;--soft:#c4c8d1;--t-fill:#0B0910;--t-stroke:#C08CFF;--t-shadow:#4A12A8;--pb1:#C08CFF;--pb2:#7B2FF7;--pb3:#3E0E92;--pbb1:#2B2735;--pbb2:#09080D;--pbc1:#F1E6FF;--pbc2:#B98CFF;--pbc3:#7B2FF7;--sp1:#2A1450}
 :root[data-theme="spectre"]{--ink:#0E0B14;--panel:#1A1524;--panel-2:#241D31;--line:#2E2540;--fg:#F1EAFF;--muted:#9C90B3;--border-yellow:#9B5CFF;--border-deep:#6A2FD0;--on-acc:#FFFFFF;--t-fill:#0B0910;--t-stroke:#C08CFF;--t-shadow:#4A12A8;--pb1:#C08CFF;--pb2:#7B2FF7;--pb3:#3E0E92;--pbb1:#2B2735;--pbb2:#09080D;--pbc1:#F1E6FF;--pbc2:#B98CFF;--pbc3:#7B2FF7;--soft:#CFC6DF;--sp1:#2A1450;}
@@ -606,7 +673,7 @@ input,select{font:inherit;color:var(--fg)}
 </head>
 <body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="pb" viewBox="0 0 100 100"><defs><linearGradient id="pbV" x1="0" y1="0" x2="1" y2="1"><stop offset="0" style="stop-color:var(--pb1)"/><stop offset=".5" style="stop-color:var(--pb2)"/><stop offset="1" style="stop-color:var(--pb3)"/></linearGradient><radialGradient id="pbB" cx=".38" cy=".75" r=".75"><stop offset="0" style="stop-color:var(--pbb1)"/><stop offset="1" style="stop-color:var(--pbb2)"/></radialGradient><radialGradient id="pbC" cx=".4" cy=".35" r=".7"><stop offset="0" style="stop-color:var(--pbc1)"/><stop offset=".55" style="stop-color:var(--pbc2)"/><stop offset="1" style="stop-color:var(--pbc3)"/></radialGradient></defs><path d="M3 50a47 47 0 0 1 94 0z" fill="url(#pbV)"/><path d="M3 50a47 47 0 0 0 94 0z" fill="url(#pbB)"/><rect x="3" y="45.5" width="94" height="9" fill="#09080D"/><circle cx="50" cy="50" r="47" fill="none" stroke="#09080D" stroke-width="4"/><circle cx="50" cy="50" r="15.5" fill="#09080D"/><circle cx="50" cy="50" r="10" fill="url(#pbC)" style="stroke:var(--pb2)" stroke-width="2"/><path d="M19 33a35 35 0 0 1 17-15" fill="none" stroke="#fff" stroke-opacity=".38" stroke-width="4" stroke-linecap="round"/></symbol></svg>
-<script>window.__APPV="35";</script>
+<script>window.__APPV="36";</script>
 <div class="splash" id="splash" aria-hidden="true"><i class="hole"></i><i class="halo"></i><div class="bw"><svg class="b" viewBox="0 0 100 100"><use href="#pb"/></svg><svg class="t" viewBox="0 0 100 100"><use href="#pb"/></svg></div><i class="glow"></i></div>
 <script>setTimeout(function(){ if(window.__booted) return;
   var b=document.createElement("div"); b.setAttribute("role","alert");
@@ -747,7 +814,7 @@ input,select{font:inherit;color:var(--fg)}
   <!-- ===== COLLECTION ===== -->
   <section class="view" id="colView" hidden>
     <div class="scroll">
-      <div class="homebar"><svg class="pball" viewBox="0 0 100 100" aria-hidden="true"><use href="#pb"/></svg><span class="brand">DEX<b>·</b>SCAN</span><button class="thbtn" id="themeBtn" aria-label="Changer de thème"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.6-.9 1.2-1.8-.5-1.1.2-2.2 1.4-2.2H17a4 4 0 0 0 4-4c0-5.5-4-10-9-10z"/><circle cx="7.5" cy="11" r="1.2"/><circle cx="10" cy="7" r="1.2"/><circle cx="15" cy="7" r="1.2"/></svg></button><span class="ver">v35</span></div>
+      <div class="homebar"><svg class="pball" viewBox="0 0 100 100" aria-hidden="true"><use href="#pb"/></svg><span class="brand">DEX<b>·</b>SCAN</span><button class="thbtn" id="themeBtn" aria-label="Changer de thème"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.6-.9 1.2-1.8-.5-1.1.2-2.2 1.4-2.2H17a4 4 0 0 0 4-4c0-5.5-4-10-9-10z"/><circle cx="7.5" cy="11" r="1.2"/><circle cx="10" cy="7" r="1.2"/><circle cx="15" cy="7" r="1.2"/></svg></button><span class="ver">v36</span></div>
       <h1 class="h1">Collection</h1>
       <p class="lede">Tes cartes rangées par série et par extension, dans l'ordre des numéros. Le mode Pokédex montre aussi celles qui te manquent, en grisé.</p>
       <div class="total" id="wallet">
@@ -1163,108 +1230,144 @@ function foilOf(rarity, setId, name, variants){
 }
 const FOIL_TXT = {starlight:"Holo « Starlight » : éclats d'étoiles dans l'illustration", holo:"Holo : reflets arc-en-ciel dans l'illustration", sheen:"Holo sur toute la carte",
   etched:"Gravure en relief qui s'irise", alt:"Gravure en relief, illustration alternative", sir:"Gravure en relief + paillettes", gold:"Or gravé en relief", rainbow:"Arc-en-ciel en relief", shiny:"Paillettes chromatiques"};
-const FOIL_NEEDS_EDGE = new Set(["etched","alt","sir","gold","rainbow"]);
-// textures générées une fois
-(()=>{
-  const glit = (col,n=520)=>{ const c=document.createElement("canvas"); c.width=c.height=220; const x=c.getContext("2d");
-    for(let i=0;i<n;i++){ x.fillStyle=col||`hsl(${Math.random()*360} 100% ${68+Math.random()*28}%)`; x.globalAlpha=Math.random()*.9+.1; x.beginPath(); x.arc(Math.random()*220,Math.random()*220,Math.random()*1.4+.3,0,7); x.fill(); }
-    return `url(${c.toDataURL()})`; };
-  const r = document.documentElement.style;
-  r.setProperty("--fglit", glit()); r.setProperty("--fglitg", glit("#FFE7A0",380)); r.setProperty("--fglits", glit("#E8F1FF",600));
-  const W=300,H=420,c=document.createElement("canvas"); c.width=W; c.height=H; const x=c.getContext("2d"); x.filter="blur(.7px)";
-  for(let i=0;i<260;i++){ const px=Math.random()*W,py=Math.random()*H,rr=Math.pow(Math.random(),2.2)*13+1.5;
-    const g=x.createRadialGradient(px,py,0,px,py,rr); g.addColorStop(0,"rgba(255,255,255,1)"); g.addColorStop(.35,"rgba(255,255,255,.55)"); g.addColorStop(1,"rgba(255,255,255,0)");
-    x.fillStyle=g; x.beginPath(); x.arc(px,py,rr,0,7); x.fill();
-    if(rr>5){ x.strokeStyle="rgba(255,255,255,.7)"; x.lineWidth=.8; const a=Math.random()*Math.PI; for(let k=0;k<4;k++){ const an=a+k*Math.PI/4,l=rr*(k%2?1.2:2.1); x.beginPath(); x.moveTo(px-Math.cos(an)*l,py-Math.sin(an)*l); x.lineTo(px+Math.cos(an)*l,py+Math.sin(an)*l); x.stroke(); } } }
-  r.setProperty("--fstars", `url(${c.toDataURL()})`);
-})();
-// gravure : contours du dessin, calculés sur une copie de l'image qui autorise la lecture (scrydex, pokemontcg.io)
-const EDGES = new Map();
-function edgeMap(c){
-  if(EDGES.has(c.id)) return EDGES.get(c.id);
-  const set = setIdOf(c.id), loc = c.localId ?? c.id.slice(c.id.lastIndexOf("-")+1);
-  const sxc = {"30th":"me55"}[set] || SRC.pt[set];   // scrydex autorise la lecture des pixels
-  const urls = [...new Set([...(sxc ? [`https://images.scrydex.com/pokemon/${sxc}-${sxNum(loc)}/large`] : []), ...altImgs(c.id, c.localId, "high").filter(u=>!/tcgdex/.test(u))])];
-  const p = (async()=>{
-    for(const u of urls){
-      const r = await new Promise(res=>{ const im=new Image(); im.crossOrigin="anonymous";
-        im.onload=()=>{ if((im.naturalWidth===640 && im.naturalHeight===892) || im.naturalWidth<200) return res(null);
-          const W=300,H=Math.round(W*im.naturalHeight/im.naturalWidth),cv=document.createElement("canvas"); cv.width=W; cv.height=H; const x=cv.getContext("2d"); x.drawImage(im,0,0,W,H);
-          let d; try{ d=x.getImageData(0,0,W,H); }catch(e){ return res(null); }
-          const g=new Float32Array(W*H); for(let i=0;i<W*H;i++) g[i]=d.data[i*4]*.3+d.data[i*4+1]*.59+d.data[i*4+2]*.11;
-          const o=x.createImageData(W,H);
-          for(let y=1;y<H-1;y++) for(let X=1;X<W-1;X++){ const i=y*W+X;
-            const gx=-g[i-W-1]-2*g[i-1]-g[i+W-1]+g[i-W+1]+2*g[i+1]+g[i+W+1], gy=-g[i-W-1]-2*g[i-W]-g[i-W+1]+g[i+W-1]+2*g[i+W]+g[i+W+1];
-            o.data[i*4]=o.data[i*4+1]=o.data[i*4+2]=255; o.data[i*4+3]=Math.max(0,Math.min(255,(Math.hypot(gx,gy)-28)*2.2)); }
-          x.putImageData(o,0,0); res(`url(${cv.toDataURL()})`); };
-        im.onerror=()=>res(null); im.src=u; setTimeout(()=>res(null), 15000); });
-      if(r) return r;
-    }
-    return null;
-  })();
-  EDGES.set(c.id, p); return p;
+const FOIL_K = {starlight:1, holo:2, sheen:3, etched:4, alt:5, sir:6, gold:7, rainbow:8, shiny:9};
+/* La photo n'est jamais modifiée : un calque WebGL ajoute seulement la lumière (mode « screen »), calculée
+   par la puce graphique en pleine résolution à partir d'une copie de la carte qui autorise la lecture des pixels
+   (scrydex, pokemontcg.io) : reliefs gravés, irisation selon l'angle, paillettes, or. */
+const GLFOIL_VS = `attribute vec2 p;varying vec2 v;void main(){v=vec2(p.x*.5+.5,.5-p.y*.5);gl_Position=vec4(p,0.,1.);}`;
+const GLFOIL_FS = `precision highp float;varying vec2 v;uniform sampler2D T;uniform vec2 X;uniform vec2 L;uniform float A;uniform int K;uniform vec4 W;
+float lu(vec2 q){return dot(texture2D(T,q).rgb,vec3(.299,.587,.114));}
+float h(vec2 q){return fract(sin(dot(q,vec2(127.1,311.7)))*43758.5453);}
+vec3 ir(float t){return .5+.5*cos(6.2832*(t+vec3(0.,.33,.67)));}
+void main(){vec2 u=v;
+ float gx=lu(u+vec2(X.x,0.))-lu(u-vec2(X.x,0.))+.5*(lu(u+vec2(2.*X.x,0.))-lu(u-vec2(2.*X.x,0.)));
+ float gy=lu(u+vec2(0.,X.y))-lu(u-vec2(0.,X.y))+.5*(lu(u+vec2(0.,2.*X.y))-lu(u-vec2(0.,2.*X.y)));
+ vec2 g=vec2(gx,gy);float e=length(g);vec3 n=normalize(vec3(-g*5.,1.));
+ vec3 Ld=normalize(vec3(L*1.3,1.));vec3 H=normalize(Ld+vec3(0.,0.,1.));float sp=pow(max(dot(n,H),0.),48.);
+ float d=dot(u-.5,normalize(vec2(1.,1.3)))-(L.x*.55+L.y*.45);float b=exp(-d*d*16.);
+ vec3 c=ir(dot(u,vec2(1.2,.8))*1.4+L.x*.9-L.y*.7+e*2.5);
+ float et=smoothstep(.035,.2,e);
+ vec2 ce=floor(u/X/3.);float g1=step(.987,h(ce))*pow(max(0.,sin(h(ce+7.3)*6.2832+L.x*9.+L.y*7.)),10.);
+ float w=step(W.x,u.x)*step(u.x,W.z)*step(W.y,u.y)*step(u.y,W.w);
+ vec3 o=vec3(0.);
+ if(K==1){vec2 s=u*vec2(46.,64.);vec2 id=floor(s);vec2 f=fract(s)-.5;float hs=h(id);
+   float r=mix(.06,.48,pow(h(id+3.1),3.));float st=step(.8,hs)*smoothstep(r,0.,length(f));
+   float ry=step(.93,hs)*(smoothstep(.05,0.,abs(f.x))+smoothstep(.05,0.,abs(f.y)))*smoothstep(.5,0.,length(f));
+   o=(c*(st+ry*.7)*(.3+b*1.4)+c*b*.1)*w;}
+ else if(K==2){o=c*(.5+.5*sin(u.x*55.+L.x*10.+u.y*8.))*(.12+b*.7)*w;}
+ else if(K==3){o=c*b*.32;}
+ else if(K>=4&&K<=6){o=c*et*(.22+b*1.1)+vec3(sp)*et*.55;if(K==5)o+=c*b*.16;if(K==6)o+=mix(c,vec3(1.),.5)*g1*1.5;}
+ else if(K==7){vec3 gd=mix(vec3(1.,.76,.3),vec3(1.,.97,.86),b);o=gd*et*(.28+b*1.2)+vec3(sp)*et*.6+vec3(1.,.9,.6)*g1*1.3+gd*b*.1;}
+ else if(K==8){o=c*et*(.32+b*1.1)+c*b*.22;}
+ else if(K==9){o=mix(c,vec3(1.),.6)*g1*1.6+c*b*.14;}
+ gl_FragColor=vec4(o*A,1.);}`;
+function glFoil(canvas, k, win){
+  const gl = canvas.getContext("webgl", {premultipliedAlpha:true, antialias:false}); if(!gl) return null;
+  const sh = (t,s)=>{ const x=gl.createShader(t); gl.shaderSource(x,s); gl.compileShader(x); if(!gl.getShaderParameter(x,gl.COMPILE_STATUS)) throw new Error(gl.getShaderInfoLog(x)); return x; };
+  const pr = gl.createProgram(); gl.attachShader(pr, sh(gl.VERTEX_SHADER, GLFOIL_VS)); gl.attachShader(pr, sh(gl.FRAGMENT_SHADER, GLFOIL_FS)); gl.linkProgram(pr); gl.useProgram(pr);
+  const bf = gl.createBuffer(); gl.bindBuffer(gl.ARRAY_BUFFER, bf); gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1,-1,1,-1,-1,1,1,1]), gl.STATIC_DRAW);
+  const lp = gl.getAttribLocation(pr,"p"); gl.enableVertexAttribArray(lp); gl.vertexAttribPointer(lp,2,gl.FLOAT,false,0,0);
+  const U = n=>gl.getUniformLocation(pr,n), uX=U("X"), uL=U("L"), uA=U("A");
+  gl.uniform1i(U("K"), k); gl.uniform4f(U("W"), win[0], win[1], win[2], win[3]);
+  const tex = gl.createTexture(); let ready = false;
+  return {
+    load(img){ gl.bindTexture(gl.TEXTURE_2D, tex); gl.texImage2D(gl.TEXTURE_2D,0,gl.RGBA,gl.RGBA,gl.UNSIGNED_BYTE,img);
+      [gl.TEXTURE_WRAP_S,gl.TEXTURE_WRAP_T].forEach(p=>gl.texParameteri(gl.TEXTURE_2D,p,gl.CLAMP_TO_EDGE));
+      gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MIN_FILTER,gl.LINEAR); gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MAG_FILTER,gl.LINEAR);
+      gl.uniform2f(uX, 1/img.naturalWidth, 1/img.naturalHeight); ready = true; },
+    draw(lx, ly, amt){ if(!ready) return; const dpr=Math.min(2,devicePixelRatio||1), w=Math.round(canvas.clientWidth*dpr), h=Math.round(canvas.clientHeight*dpr);
+      if(!w || !h) return; if(canvas.width!==w || canvas.height!==h){ canvas.width=w; canvas.height=h; }
+      gl.viewport(0,0,w,h); gl.uniform2f(uL,lx,ly); gl.uniform1f(uA,amt); gl.drawArrays(gl.TRIANGLE_STRIP,0,4); },
+    lose(){ try{ gl.getExtension("WEBGL_lose_context")?.loseContext(); }catch(e){} }
+  };
 }
-// cadre de l'illustration (haut, droite, bas, gauche en %) selon l'époque
-const foilWin = setId => WOTC.test(setId||"") ? "inset(10.5% 9% 50.5% 9% round 1%)" : "inset(10.5% 7.5% 47% 7.5% round 1%)";
-function foilize(box, c){
+// copie lisible de la carte (même illustration que la photo affichée)
+const CORS_IMG = new Map();
+function foilSource(c){
+  if(CORS_IMG.has(c.id)) return CORS_IMG.get(c.id);
+  const set = setIdOf(c.id), loc = c.localId ?? c.id.slice(c.id.lastIndexOf("-")+1);
+  const sxc = {"30th":"me55"}[set] || SRC.pt[set];
+  const urls = [...new Set([...(sxc ? [`https://images.scrydex.com/pokemon/${sxc}-${sxNum(loc)}/large`] : []), ...altImgs(c.id, c.localId, "high").filter(u=>!/tcgdex/.test(u))])];
+  const p = new Promise(res=>{ const go = i=>{ if(i>=urls.length) return res(null); const im = new Image(); im.crossOrigin = "anonymous";
+    im.onload = ()=>{ if((im.naturalWidth===640 && im.naturalHeight===892) || im.naturalWidth<200) go(i+1); else res(im); };
+    im.onerror = ()=>go(i+1); im.src = urls[i]; }; go(0); });
+  CORS_IMG.set(c.id, p); return p;
+}
+const foilWinUV = setId => WOTC.test(setId||"") ? [.09,.105,.91,.495] : [.075,.105,.925,.53];
+// pose le calque de lumière sur une image de carte
+function foilize(box, c, opt={}){
   const t = foilOf(c.rarity, setIdOf(c.id), c.name, c.variants); if(!box || !t) return null;
-  box.classList.add("foil","f-"+t); box.style.setProperty("--win", foilWin(setIdOf(c.id)));
-  box.insertAdjacentHTML("beforeend", `<div class="L s2 rbw"></div><div class="L s1${t==="gold"?"":" rbw"}"></div><div class="L s3"></div><div class="L glr"></div>`);
-  if(FOIL_NEEDS_EDGE.has(t)){ box.classList.add("noedge"); edgeMap(c).then(u=>{ if(u){ box.style.setProperty("--edge", u); box.classList.remove("noedge"); } else { box.classList.remove("noedge"); box.classList.replace("f-"+t, "f-sheen"); } }); }
-  FOIL.add(box);
+  box.classList.add("glf");
+  const cv = document.createElement("canvas"); cv.className = "glfc"; box.appendChild(cv);
+  let r = null; try{ r = glFoil(cv, FOIL_K[t], foilWinUV(setIdOf(c.id))); }catch(e){}
+  if(!r){ cv.remove(); return t; }
+  foilSource(c).then(im=>{ if(im) r.load(im); else cv.remove(); });
+  FOIL.add(box, r, opt);
   return t;
 }
-const FOIL = {els:new Set(), gyro:null, on:false, asked:false,
-  add(el){
-    const s = {x:50,y:50,tx:50,ty:50,hold:false,ph:Math.random()*6}; el._f = s;
-    const mv = e=>{ const r=el.getBoundingClientRect(); s.tx=Math.max(0,Math.min(100,(e.clientX-r.left)/r.width*100)); s.ty=Math.max(0,Math.min(100,(e.clientY-r.top)/r.height*100)); };
-    el.addEventListener("pointerdown", e=>{ s.hold=true; s.moved=false; mv(e); });
-    el.addEventListener("pointermove", e=>{ if(s.hold){ s.moved=true; mv(e); } });
-    const up = ()=>{ s.hold=false; }; el.addEventListener("pointerup", up); el.addEventListener("pointercancel", up); el.addEventListener("pointerleave", up);
+const FOIL = {els:new Set(), gyro:null, on:false, gyroOn:false,
+  add(el, r, opt={}){
+    const s = {x:0,y:0,tx:0,ty:0,hold:false,moved:false,ph:Math.random()*6,r,opt}; el._f = s;
+    if(!opt.noTouch){
+      const mv = e=>{ const b=el.getBoundingClientRect(); s.tx=((e.clientX-b.left)/b.width-.5)*2; s.ty=((e.clientY-b.top)/b.height-.5)*2; };
+      el.addEventListener("pointerdown", e=>{ s.hold=true; s.moved=false; s.sx=e.clientX; s.sy=e.clientY; mv(e); });
+      el.addEventListener("pointermove", e=>{ if(s.hold){ if(Math.hypot(e.clientX-s.sx, e.clientY-s.sy)>6) s.moved=true; mv(e); } });
+      const up = ()=>{ s.hold=false; }; el.addEventListener("pointerup", up); el.addEventListener("pointercancel", up); el.addEventListener("pointerleave", up);
+    }
     this.els.add(el); if(!this.on){ this.on=true; requestAnimationFrame(t=>this.tick(t)); }
   },
   tick(t){
     for(const el of this.els){
-      if(!el.isConnected){ this.els.delete(el); continue; }
       const s = el._f;
+      if(!el.isConnected){ s.r.lose(); this.els.delete(el); continue; }
       if(document.hidden || el.closest("#sheet:not(.open)") || el.closest("#foilView:not(.open)")) continue;
-      if(!s.hold){ if(this.gyro){ s.tx=this.gyro.x; s.ty=this.gyro.y; } else { const k=t/1000+s.ph; s.tx=50+Math.sin(k*.9)*32; s.ty=50+Math.cos(k*.7)*26; } }
+      if(s.opt.drive){ const l = s.opt.drive(); s.r.draw(l.x, l.y, l.a); continue; }   // vitrine 3D : la lumière suit la rotation
+      if(!s.hold){ if(this.gyro){ s.tx=this.gyro.x; s.ty=this.gyro.y; } else { const k=t/1000+s.ph; s.tx=Math.sin(k*.8)*.55; s.ty=Math.cos(k*.6)*.45; } }
       s.x += (s.tx-s.x)*.12; s.y += (s.ty-s.y)*.12;
-      const d = Math.hypot(s.x-50,s.y-50)/70;
-      el.style.setProperty("--mx", s.x.toFixed(2)); el.style.setProperty("--my", s.y.toFixed(2));
-      el.style.setProperty("--ry", ((s.x-50)/50*12).toFixed(2)+"deg"); el.style.setProperty("--rx", (-(s.y-50)/50*12).toFixed(2)+"deg");
-      el.style.setProperty("--o", (s.hold?1:.5+d*.55).toFixed(3));
+      el.style.setProperty("--ry", (s.x*10).toFixed(2)+"deg"); el.style.setProperty("--rx", (-s.y*10).toFixed(2)+"deg");
+      s.r.draw(s.x, s.y, Math.min(1, .18+Math.hypot(s.x,s.y)*1.1));
     }
     if(this.els.size) requestAnimationFrame(t=>this.tick(t)); else this.on=false;
   },
   needsAsk(){ return typeof DeviceOrientationEvent!=="undefined" && typeof DeviceOrientationEvent.requestPermission==="function" && !this.gyroOn; },
   startGyro(){
-    const on = ()=>{ if(this.gyroOn) return; this.gyroOn=true; addEventListener("deviceorientation", e=>{ if(e.beta==null) return; this.gyro={x:50+Math.max(-30,Math.min(30,e.gamma))*1.6, y:50+Math.max(-30,Math.min(30,e.beta-45))*1.6}; }); };
+    const on = ()=>{ if(this.gyroOn) return; this.gyroOn=true; addEventListener("deviceorientation", e=>{ if(e.beta==null) return; this.gyro={x:Math.max(-1,Math.min(1,e.gamma/28)), y:Math.max(-1,Math.min(1,(e.beta-45)/28))}; }); };
     if(typeof DeviceOrientationEvent==="undefined") return Promise.resolve(false);
     if(typeof DeviceOrientationEvent.requestPermission==="function") return DeviceOrientationEvent.requestPermission().then(r=>{ if(r==="granted"){ on(); return true; } return false; }).catch(()=>false);
     on(); return Promise.resolve(true);
   }
 };
 if(typeof DeviceOrientationEvent!=="undefined" && typeof DeviceOrientationEvent.requestPermission!=="function") FOIL.startGyro();
-// vitrine plein écran : la carte en grand, la lumière suit l'inclinaison du téléphone
+// vitrine 3D : la carte devient un objet qu'on fait tourner (au doigt ou en inclinant le téléphone), avec son dos
+const V3 = {rx:0, ry:0, trx:0, try:0, drag:null};
 function openFoilView(c){
   let v = $("#foilView");
   if(!v){ v = document.createElement("div"); v.id = "foilView"; document.body.appendChild(v);
-    v.addEventListener("click", e=>{ if(e.target===v || e.target.closest("[data-fvclose]")) v.classList.remove("open"); }); }
+    v.addEventListener("pointerdown", e=>{ if(e.target.closest("button")) return; e.preventDefault(); V3.drag={x:e.clientX, y:e.clientY, ry:V3.try, rx:V3.trx}; });
+    v.addEventListener("pointermove", e=>{ if(!V3.drag) return; V3.try = V3.drag.ry+(e.clientX-V3.drag.x)*.45; V3.trx = Math.max(-40,Math.min(40, V3.drag.rx-(e.clientY-V3.drag.y)*.3)); });
+    ["pointerup","pointercancel"].forEach(k=>v.addEventListener(k, ()=>{ V3.drag=null; }));
+    v.addEventListener("click", e=>{ if(e.target.closest("[data-fvclose]")) v.classList.remove("open"); }); }
   const t = foilOf(c.rarity, setIdOf(c.id), c.name, c.variants);
-  v.innerHTML = `<div class="cardimg" id="fvCard">${imgTag(c, "high", `alt="${esc(c.name)}"`)}</div>
-    <div class="fvt">${esc(c.name)} · ${esc(c.rarity||"")}</div>
-    <div class="fvs">${esc(FOIL_TXT[t]||"")}. Incline ton téléphone ou fais glisser ton doigt sur la carte.</div>
+  V3.rx = V3.ry = V3.trx = V3.try = 0;
+  v.innerHTML = `<div class="sc3"><div class="c3" id="fvC3"><div class="sh3"></div>${[-1.2,-.6,0,.6,1.2].map(z=>`<div class="ed3" style="transform:translateZ(${z}px)"></div>`).join("")}
+      <div class="fc3 fr3" id="fvCard">${imgTag(c, "high", `alt="${esc(c.name)}"`)}</div>
+      <div class="fc3 bk3"><svg viewBox="0 0 100 100" width="34%"><use href="#pb"/></svg><b>DEX<i>·</i>SCAN</b></div></div></div>
+    <div class="fvt">${esc(c.name)}${c.rarity?` · ${esc(c.rarity)}`:""}</div>
+    <div class="fvs">${t?esc(FOIL_TXT[t])+". ":""}Fais tourner la carte au doigt (tu peux la retourner) ou incline ton téléphone.</div>
     <div class="fvb">${FOIL.needsAsk()?`<button class="gy" id="fvGyro">📱 Activer l'inclinaison</button>`:""}<button data-fvclose>Fermer</button></div>`;
-  foilize($("#fvCard"), c);
+  const c3 = $("#fvC3");
+  foilize($("#fvCard"), c, {noTouch:true, drive:()=>{
+    if(!V3.drag && FOIL.gyro){ V3.try = FOIL.gyro.x*35; V3.trx = -FOIL.gyro.y*30; }
+    V3.rx += (V3.trx-V3.rx)*.14; V3.ry += (V3.try-V3.ry)*.14;
+    c3.style.setProperty("--rx", V3.rx.toFixed(2)+"deg"); c3.style.setProperty("--ry", V3.ry.toFixed(2)+"deg");
+    const lx = Math.sin(V3.ry*Math.PI/180), ly = -Math.sin(V3.rx*Math.PI/180);
+    return {x:lx*1.3, y:ly*1.3, a:Math.min(1, .18+Math.hypot(lx,ly)*1.6)};
+  }});
   $("#fvGyro") && ($("#fvGyro").onclick = ()=>FOIL.startGyro().then(ok=>{ if(ok) $("#fvGyro")?.remove(); else toast("Inclinaison refusée par le téléphone"); }));
   requestAnimationFrame(()=>v.classList.add("open"));
 }
-// vignettes : reflet animé léger pour les cartes à relief (rareté connue via rarities.json)
-function tileFoil(c){
-  const r = c.rarity || rarOfCard(setIdOf(c.id), c.localId); const t = foilOf(r, setIdOf(c.id), c.name);
-  return t && !["holo","starlight","sheen"].includes(t) ? ` ft${t==="gold"?" ft-gold":""}` : "";
-}
+// vignettes : aucune retouche, la photo reste nette
+function tileFoil(){ return ""; }
 
 function renderCard(){
   const c = current, cm = c.pricing?.cardmarket, tp = c.pricing?.tcgplayer;
@@ -1334,7 +1437,7 @@ function renderCard(){
   const banner = dg && dg.uncertain ? `<button class="banner" id="seeDiag"><span class="pill warn">!</span><span><b>Correspondance incertaine.</b> ${esc(dg.uncertain)} <u>Voir la lecture</u></span></button>` : "";
   $("#sheetBody").innerHTML = `${banner}
     <div class="hero">
-      <div><div class="cardimg" id="heroImg">${imgTag(c, "high", `alt="${esc(c.name)}"`)}</div>${foilOf(c.rarity, setIdOf(c.id), c.name, c.variants)?`<span class="foilhint">✨ Touche pour voir la brillance</span>`:""}</div>
+      <div><div class="cardimg" id="heroImg">${imgTag(c, "high", `alt="${esc(c.name)}"`)}</div>${foilOf(c.rarity, setIdOf(c.id), c.name, c.variants)?`<span class="foilhint">✨ Touche pour la vitrine 3D</span>`:""}</div>
       <div class="hero-meta">
         <h2 class="cname">${esc(c.name)}</h2>
         <div class="setline">${setPic(c.set,"symbol")?`<img src="${setPic(c.set,"symbol")}" alt="">`:""}<span>${esc(c.set?.name||"")}</span></div>
@@ -1386,7 +1489,8 @@ function addToCol(c){
   else { const p = mi.p ?? mainPrice(c); col.unshift({id:c.id, name:c.name, set:c.set?.name||"", num:c.localId, img:img(c,"low"), price:p, buy:p, a1:mi.a1, a7:mi.a7, a30:mi.a30, pt:Date.now(), qty:1, t:Date.now()}); }
   store.set("col",col); renderCol();
 }
-const COLV = {pdx: store.get("colPdx", true), q:"", open: store.get("colOpen", {}), gen:0, sets:new Map()};
+const COLV = {pdx: store.get("colPdx", true), q:"", open: store.get("colOpen", {}), gen:0, sets:new Map(), view: store.get("colViewMode","compact"), sort: store.get("colSort","serie")};
+const CSORT = [["serie","Par série"],["value","Valeur"],["prog","Avancement"],["recent","Récentes"]];
 /* ---------- Filtres du Pokédex : afficher, rareté, type, catégorie, prix, tri ---------- */
 const CF = Object.assign({show:"all", rarity:"", type:"", cat:"", pmin:null, pmax:null, sort:"num"}, store.get("colFlt", {}));
 const CF_IDS = new Map();   // "rarity:Commune" -> Set d'identifiants (chargé une fois depuis la base de cartes)
@@ -1497,6 +1601,13 @@ async function renderCol(){
   for(const se of EX.series||[]){ const ss = se.sets.filter(s=>by.has(s.id)); if(ss.length){ groups.push({name:se.name, sets:ss}); ss.forEach(s=>seen.add(s.id)); } }
   const rest = [...by.keys()].filter(k=>!seen.has(k));
   if(rest.length) groups.push({name:"Autres", sets:rest.map(id=>({id, name:by.get(id)[0].set||id}))});
+  // tri : par série (défaut), ou toutes les extensions par valeur, avancement ou date de sortie
+  if(COLV.sort!=="serie"){
+    const all = groups.flatMap(g=>g.sets), SDt = store.get("setDates", {}), OW = ownIndex();
+    const val = s=>by.get(s.id).reduce((a,x)=>a+(x.price||0)*x.qty,0), dt = s=>rarInfo(s.id)?.date || s.releaseDate || SDt[s.id] || "";
+    all.sort(COLV.sort==="value" ? (a,b)=>val(b)-val(a) : COLV.sort==="prog" ? (a,b)=>{ const x=setStats(a,OW.get(a.id)), y=setStats(b,OW.get(b.id)); return (y.total?y.have/y.total:0)-(x.total?x.have/x.total:0); } : (a,b)=>dt(b).localeCompare(dt(a)));
+    groups.length = 0; groups.push({name: CSORT.find(x=>x[0]===COLV.sort)[1], sets: all});
+  }
   const q = norm(COLV.q);
   cfBar();
   if(CF.rarity || CF.type || CF.cat){ try{ await cfLoad(); }catch(e){} if(gen!==COLV.gen) return; }
@@ -1504,11 +1615,16 @@ async function renderCol(){
   const SD = store.get("setDates", {}), serDate = {}, OWNI = ownIndex();
   if(!RAR.d) loadRar().then(d=>{ if(d && gen===COLV.gen && !$("#colView").hidden) renderCol(); });
   for(const se of EX.series||[]) serDate[se.name] = se.date;
-  list.innerHTML = groups.map(g=>`<section class="serie"><h2><span>${esc(g.name)}${serDate[g.name]?` <em class="sdate">· depuis ${esc(fmtMonth(serDate[g.name]))}</em>`:""}</span><span>${g.sets.reduce((a,s)=>a+by.get(s.id).length,0)}</span></h2>${
+  const cbar = `<div class="lbar"><div class="lrow"><div class="csort">${CSORT.map(([k,l])=>`<button data-csort="${k}" aria-pressed="${COLV.sort===k}">${l}</button>`).join("")}</div>${vtogHTML(COLV.view, ["compact","detail"])}</div></div>`;
+  list.innerHTML = cbar + groups.map(g=>`<section class="serie"><h2><span>${esc(g.name)}${serDate[g.name]?` <em class="sdate">· depuis ${esc(fmtMonth(serDate[g.name]))}</em>`:""}</span><span>${g.sets.reduce((a,s)=>a+by.get(s.id).length,0)}</span></h2>${
     g.sets.map(s=>{
-      const own = by.get(s.id), val = own.reduce((a,x)=>a+(x.price||0)*x.qty,0), open = COLV.open[s.id] !== false;
+      const own = by.get(s.id), val = own.reduce((a,x)=>a+(x.price||0)*x.qty,0);
+      if(COLV.view==="compact"){ const op = COLV.open[s.id]===true; return setRowHTML(s, OWNI.get(s.id), {cls:"colset"+(op?" open":""), value: val?eurS(val):"", attrs:` aria-expanded="${op}"`, inner:`<div class="cgrid"></div>`}); }
+      const open = COLV.open[s.id] !== false;
       return setCardHTML(s, {own: OWNI.get(s.id), cls:"colset"+(open?" open":""), plus:!open, value: val?eurS(val):"", attrs:` role="button" tabindex="0" aria-expanded="${open}"`, inner:`<div class="cgrid"></div>`});
     }).join("")}</section>`).join("");
+  list.querySelectorAll("[data-csort]").forEach(b=>b.onclick=()=>{ COLV.sort = b.dataset.csort; store.set("colSort", COLV.sort); renderCol(); });
+  list.querySelectorAll("[data-view]").forEach(b=>b.onclick=()=>{ COLV.view = b.dataset.view; store.set("colViewMode", COLV.view); renderCol(); });
   list.querySelectorAll(".colset").forEach(box=>box.onclick=e=>{
     if(e.target.closest(".cgrid")) return;
     const h = box, id = box.dataset.set, open = !box.classList.contains("open");
@@ -1522,7 +1638,7 @@ async function renderCol(){
     if(!SD[id] && !rarInfo(id)?.date) colSetCards(id).then(set=>{
       if(!set?.releaseDate) return;
       const m = store.get("setDates", {}); m[id] = set.releaseDate; store.set("setDates", m);
-      const el = box.querySelector("[data-date]"); if(el) el.textContent = "Date de sortie : " + fmtDay(set.releaseDate);
+      const el = box.querySelector("[data-date]"); if(el) el.textContent = (el.closest(".srow2") ? "" : "Date de sortie : ") + fmtDay(set.releaseDate);
     }).catch(()=>{});
     if(q){ // avec un filtre, on ne garde que les extensions qui ont des cartes correspondantes
       const hit = by.get(box.dataset.set).some(x=>norm(x.name+" "+x.num).includes(q));
@@ -1556,7 +1672,9 @@ async function fillColSet(box, own, gen){
   for(const m of mine) if(!ids.has(m.id)) all.push(m);   // carte possédée absente de la liste officielle
   const cnt = box.querySelector("[data-cnt]"), total = set.cardCount?.official || set.cardCount?.total || set.cards.length;
   const have = all.filter(c=>ownById.has(c.id)).length;
-  if(cnt && !rarInfo(id)){ const pc = Math.min(100, Math.floor(have/total*100)); cnt.innerHTML = `<b>${have}</b><small>/${total}</small><span class="sep"></span><b>${pc}%</b>`; box.querySelector(".sbar>i").style.width = pc+"%"; }
+  if(cnt && !rarInfo(id)){ const pc = Math.min(100, Math.floor(have/total*100)), pcEl = box.querySelector(".r .pc");
+    if(pcEl){ cnt.innerHTML = `<b>${have}</b><small>/${total}</small>`; pcEl.textContent = pc+"%"; box.querySelector(".pb>i").style.width = pc+"%"; }
+    else { cnt.innerHTML = `<b>${have}</b><small>/${total}</small><span class="sep"></span><b>${pc}%</b>`; box.querySelector(".sbar>i").style.width = pc+"%"; } }
   draw(all);
 }
 $("#colFlt").onclick = openColFilters;
@@ -3119,22 +3237,66 @@ function upcomingHTML(q){
     l.map(u=>`<button class="setrow" data-upc="${esc(u.id)}">${PB_ICO}<span class="t"><span class="n">${esc(u.name)}</span><span class="c">${esc((u.status==="rumeur"?"Prévue ":"Sortie ")+fmtDay(u.date))}${u.code?" · "+esc(u.code):""}</span></span>${upcBadge(u)}</button>`).join("")
   }</div></section>`;
 }
+/* ---------- v36 : vues des extensions (compacte, grille, détaillée) ---------- */
+const VIEW_ICO = {
+  compact:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h16"/></svg>`,
+  grid:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="4" y="4" width="7" height="7" rx="1.5"/><rect x="13" y="4" width="7" height="7" rx="1.5"/><rect x="4" y="13" width="7" height="7" rx="1.5"/><rect x="13" y="13" width="7" height="7" rx="1.5"/></svg>`,
+  detail:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><rect x="4" y="4" width="16" height="9" rx="2"/><path d="M4 17h16M4 21h10"/></svg>`};
+const VIEW_LBL = {compact:"Vue compacte", grid:"Vue en grille", detail:"Vue détaillée"};
+const SER_CHEV = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="m6 9 6 6 6-6"/></svg>`;
+EX.view = store.get("extViewMode", "compact");
+const SERCL = store.get("serClosed", {});
+function logo2HTML(s){
+  const sym = setPic(s, "symbol"), l = [...logoChain(s), ...(sym?[sym]:[])];
+  if(!l.length) return `<span class="lg2"><span class="ini">${esc(initials(s))}</span></span>`;
+  return `<span class="lg2"><img src="${esc(l[0])}" alt="" loading="lazy" data-alt="${esc(l.slice(1).join("|"))}" data-ini="${esc(initials(s))}" onerror="__imgNext(this)" onload="__imgChk(this)"></span>`;
+}
+function setRowHTML(s, own, o={}){
+  const st = setStats(s, own), ri = st.ri;
+  const date = ri?.date || s.releaseDate || store.get("setDates",{})[s.id] || "";
+  const sub = [date ? fmtDay(date) : "", ri?.abbr || ""].filter(Boolean).join(" · ");
+  return `<div class="srow2${st.total && st.have>=st.total?" done":""}${o.cls?" "+o.cls:""}" data-set="${esc(s.id)}" role="button" tabindex="0"${o.attrs||""}>
+    ${logo2HTML(s)}<span class="t"><b>${esc(s.name)}</b><small data-date="${esc(s.id)}">${esc(sub)||"&nbsp;"}</small></span>
+    <span class="r">${o.value?`<em class="v">${esc(o.value)}</em>`:""}<span class="n" data-cnt><b>${st.have}</b><small>/${st.total||"?"}</small></span><span class="pc">${st.pc}%</span></span>
+    <i class="pb"><i style="width:${st.pc}%"></i></i>${o.inner||""}</div>`;
+}
+function setTileHTML(s, own){
+  const st = setStats(s, own);
+  return `<div class="stile2" data-set="${esc(s.id)}" role="button" tabindex="0" aria-label="${esc(s.name)}, ${st.pc} %"><span class="ring" style="--p:${st.pc}"><span>${st.pc}%</span></span>${logo2HTML(s)}<b>${esc(s.name)}</b><small>${st.have}/${st.total||"?"}</small></div>`;
+}
+function serStats(sets, OWN){ let h=0, t=0; for(const s of sets){ const st = setStats(s, OWN.get(s.id)); h+=st.have; t+=st.total||0; } return {h, t, pc: t ? Math.floor(h/t*100) : 0}; }
+const serKey = n => "s-"+norm(n).replace(/ /g,"-");
+function vtogHTML(cur, modes){ return `<div class="vtog" role="group" aria-label="Affichage">${modes.map(m=>`<button data-view="${m}" aria-pressed="${cur===m}" aria-label="${VIEW_LBL[m]}" title="${VIEW_LBL[m]}">${VIEW_ICO[m]}</button>`).join("")}</div>`; }
 function renderExtList(){
-  const q = norm(EX.q), OWN = ownIndex();
+  const q = norm(EX.q), OWN = ownIndex(), V = EX.view;
   if(!RAR.d) loadRar().then(d=>{ if(d && EX.series && !EX.set && !extHome.hidden) renderExtList(); });
-  const html = upcomingHTML(q) + EX.series.map(se=>{
-    const sets = q ? se.sets.filter(s=>norm(s.name+" "+s.id+" "+se.name).includes(q)) : se.sets;
-    if(!sets.length) return "";
-    return `<section class="serie"><h2><span>${esc(se.name)}</span><span>${sets.length}</span></h2><div class="scards">${
-      sets.map(s=>setCardHTML(s, {own: OWN.get(s.id), min: !!SCMIN[s.id], attrs:` role="button" tabindex="0"`})).join("")
-    }</div></section>`;
+  const groups = EX.series.map(se=>({se, sets: q ? se.sets.filter(s=>norm(s.name+" "+s.id+" "+se.name).includes(q)) : se.sets})).filter(g=>g.sets.length);
+  const bar = `<div class="lbar"><div class="lrow"><div class="serchips">${groups.map(g=>`<button data-jump="${serKey(g.se.name)}">${esc(g.se.name)}</button>`).join("")}</div>${vtogHTML(V, ["compact","grid","detail"])}</div></div>`;
+  const body = groups.map(({se, sets})=>{
+    const ss = serStats(sets, OWN), closed = !q && SERCL[se.name];
+    const inner = V==="grid" ? `<div class="stiles">${sets.map(s=>setTileHTML(s, OWN.get(s.id))).join("")}</div>`
+      : V==="detail" ? `<div class="scards">${sets.map(s=>setCardHTML(s, {own: OWN.get(s.id), min: !!SCMIN[s.id], attrs:` role="button" tabindex="0"`})).join("")}</div>`
+      : `<div class="srows">${sets.map(s=>setRowHTML(s, OWN.get(s.id))).join("")}</div>`;
+    return `<section class="serie${closed?" closed":""}" id="${serKey(se.name)}"><h2 class="sh2" data-ser="${esc(se.name)}" role="button" aria-expanded="${!closed}">${SER_CHEV}<span>${esc(se.name)} · ${sets.length}</span><span class="sp">${ss.h}/${ss.t} · ${ss.pc}%</span></h2>${inner}</section>`;
   }).join("");
-  extList.innerHTML = html || `<div class="empty">Aucune extension trouvée.<br>Essaie « 151 » ou « Écarlate ».</div>`;
+  extList.innerHTML = groups.length ? bar + upcomingHTML(q) + body : upcomingHTML(q) + `<div class="empty">Aucune extension trouvée.<br>Essaie « 151 » ou « Écarlate ».</div>`;
   extList.querySelectorAll("[data-set]").forEach(b=>b.onclick=e=>{
     const m = e.target.closest("[data-min]");
     if(m){ e.stopPropagation(); const id = b.dataset.set, v = !b.classList.contains("min"); b.classList.toggle("min", v); m.innerHTML = v?PLUS_SVG:MIN_SVG; m.setAttribute("aria-label", v?"Déplier":"Replier"); if(v) SCMIN[id]=1; else delete SCMIN[id]; store.set("scMin", SCMIN); return; }
     EX.homeScroll = extScroll.scrollTop; openSet(b.dataset.set);
   });
+  extList.querySelectorAll("[data-ser]").forEach(h=>h.onclick=()=>{
+    const sec = h.parentElement, c = !sec.classList.contains("closed"); sec.classList.toggle("closed", c); h.setAttribute("aria-expanded", !c);
+    if(c) SERCL[h.dataset.ser] = 1; else delete SERCL[h.dataset.ser]; store.set("serClosed", SERCL);
+  });
+  extList.querySelectorAll("[data-jump]").forEach(b=>b.onclick=()=>{
+    const sec = document.getElementById(b.dataset.jump); if(!sec) return;
+    if(sec.classList.contains("closed")) sec.querySelector("[data-ser]").click();
+    extList.querySelectorAll("[data-jump]").forEach(x=>x.classList.toggle("on", x===b));
+    const bar = extList.querySelector(".lbar");
+    extScroll.scrollTo({top: sec.getBoundingClientRect().top - extScroll.getBoundingClientRect().top + extScroll.scrollTop - (bar?.offsetHeight||0) - 6, behavior:"smooth"});
+  });
+  extList.querySelectorAll("[data-view]").forEach(b=>b.onclick=()=>{ EX.view = b.dataset.view; store.set("extViewMode", EX.view); renderExtList(); });
   extList.querySelectorAll("[data-upc]").forEach(b=>b.onclick=()=>showUpcoming(b.dataset.upc));
 }
 $("#extQ").addEventListener("input", e=>{ EX.q = e.target.value; if(EX.series) renderExtList(); });

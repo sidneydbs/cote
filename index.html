@@ -510,6 +510,53 @@ input,select{font:inherit;color:var(--fg)}
 .scdet{margin:14px 0 6px}
 .scdet .sch h3{font-size:24px}
 
+/* ---------- Brillance des cartes : le traitement de la vraie impression selon la rareté ---------- */
+.foil{--mx:50;--my:50;--rx:0deg;--ry:0deg;--o:.6;position:relative;isolation:isolate;overflow:hidden;transform:perspective(800px) rotateX(var(--rx)) rotateY(var(--ry));will-change:transform;touch-action:pan-y}
+.foil>.L{position:absolute;inset:0;pointer-events:none;border-radius:inherit}
+.foil .glr{z-index:9;background:radial-gradient(circle at calc(var(--mx)*1%) calc(var(--my)*1%),rgba(255,255,255,.75),rgba(255,255,255,.12) 24%,transparent 50%);mix-blend-mode:overlay;opacity:calc(var(--o)*.85)}
+.foil .rbw{background:repeating-linear-gradient(calc(105deg + var(--mx)*.4deg),#ff4d6d 0%,#ffbe3d 5%,#d8ff4d 10%,#3dffd2 15%,#4d8bff 20%,#d14dff 25%,#ff4d6d 30%);background-size:260% 260%;background-position:calc(var(--mx)*1%) calc(var(--my)*1%)}
+/* Starlight (holos 1999-2003) : éclats d'étoiles flous dans le cadre de l'illustration */
+.f-starlight .s1{z-index:3;clip-path:var(--win);mix-blend-mode:color-dodge;opacity:calc(var(--o)*1.05);filter:saturate(1.3);-webkit-mask:var(--fstars) 0 0/100% 100%;mask:var(--fstars) 0 0/100% 100%}
+.f-starlight .s2,.f-holo .s2{z-index:2;clip-path:var(--win);mix-blend-mode:soft-light;opacity:calc(var(--o)*.55)}
+/* Holo (rares holo modernes) : bandes de diffraction dans le cadre de l'illustration */
+.f-holo .s1{z-index:3;clip-path:var(--win);mix-blend-mode:color-dodge;opacity:calc(var(--o)*.55);filter:brightness(.75) contrast(1.3)}
+/* Holo carte entière (V, VMAX, ex…) */
+.f-sheen .s1{z-index:3;mix-blend-mode:color-dodge;opacity:calc(var(--o)*.42);filter:brightness(.75) contrast(1.25)}
+/* Gravure en relief (Full Art, Alternative, Illustration rare) : seules les lignes gravées s'irisent */
+.f-etched .s1,.f-alt .s1,.f-sir .s1,.f-rainbow .s1{z-index:3;mix-blend-mode:color-dodge;opacity:calc(var(--o)*.95);-webkit-mask:var(--edge) 0 0/100% 100%;mask:var(--edge) 0 0/100% 100%}
+.f-etched .s2,.f-alt .s2,.f-sir .s2{z-index:2;mix-blend-mode:soft-light;opacity:calc(var(--o)*.5)}
+.f-alt .s2{opacity:calc(var(--o)*.7)}
+/* Paillettes (Illustration spéciale, Chromatique) */
+.f-sir .s3,.f-shiny .s3{z-index:4;background-image:var(--fglit);background-size:180px 180px;background-position:calc(var(--mx)*-.8px) calc(var(--my)*-.8px);mix-blend-mode:color-dodge;opacity:calc(var(--o)*.85);
+  -webkit-mask:radial-gradient(circle at calc(var(--mx)*1%) calc(var(--my)*1%),#000,rgba(0,0,0,.35) 40%,rgba(0,0,0,.12) 75%);mask:radial-gradient(circle at calc(var(--mx)*1%) calc(var(--my)*1%),#000,rgba(0,0,0,.35) 40%,rgba(0,0,0,.12) 75%)}
+.f-shiny .s3{background-image:var(--fglits);mix-blend-mode:screen}
+.f-shiny .s2{z-index:2;mix-blend-mode:soft-light;opacity:calc(var(--o)*.5)}
+/* Or gravé (Hyper rare) */
+.f-gold .s1{z-index:3;mix-blend-mode:color-dodge;opacity:var(--o);background:linear-gradient(115deg,transparent 25%,#ffd56a 42%,#fff6d8 50%,#ffd56a 58%,transparent 75%);background-size:300% 300%;background-position:calc(var(--mx)*1%) calc(var(--my)*1%);
+  -webkit-mask:var(--edge) 0 0/100% 100%;mask:var(--edge) 0 0/100% 100%}
+.f-gold .s2{z-index:2;mix-blend-mode:overlay;opacity:calc(var(--o)*.8);background:linear-gradient(115deg,transparent 30%,rgba(255,244,200,.9) 50%,transparent 70%);background-size:300% 300%;background-position:calc(var(--mx)*1%) calc(var(--my)*1%)}
+.f-gold .s3{z-index:4;background-image:var(--fglitg);background-size:200px 200px;background-position:calc(var(--mx)*-1px) 0;mix-blend-mode:screen;opacity:calc(var(--o)*.5);
+  -webkit-mask:radial-gradient(circle at calc(var(--mx)*1%) calc(var(--my)*1%),#000,transparent 55%);mask:radial-gradient(circle at calc(var(--mx)*1%) calc(var(--my)*1%),#000,transparent 55%)}
+/* Arc-en-ciel (Secrètes, Magnifiques, Méga Hyper) : reliefs + couleurs vives sur toute la carte */
+.f-rainbow .s2{z-index:2;mix-blend-mode:color;opacity:.38;background:linear-gradient(calc(110deg + var(--mx)*1deg),#ff5f8f,#ffb25f,#ffe45f,#5fe3a1,#5fc8ff,#9b7bff,#ff5f8f);background-size:200% 200%;background-position:calc(var(--mx)*1%) calc(var(--my)*1%)}
+.cardimg.foil{cursor:zoom-in}
+.foilhint{display:block;margin-top:6px;text-align:center;font:600 11px/1.3 var(--f-body);color:var(--muted)}
+/* vitrine plein écran */
+#foilView{position:fixed;inset:0;z-index:300;background:rgba(6,4,10,.94);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;padding:20px;opacity:0;pointer-events:none;transition:opacity .2s}
+#foilView.open{opacity:1;pointer-events:auto}
+#foilView .cardimg{width:min(82vw,52vh*0.716,420px);box-shadow:0 24px 60px rgba(0,0,0,.7)}
+#foilView .fvt{font:700 15px/1.3 var(--f-body);color:#fff;text-align:center;max-width:90vw}
+#foilView .fvs{font-size:12.5px;color:#bfb3d6;text-align:center;max-width:88vw;line-height:1.45}
+#foilView .fvb{display:flex;gap:10px}
+#foilView .fvb button{padding:11px 16px;border-radius:12px;font:700 14px var(--f-body);background:#2a2238;color:#fff}
+#foilView .fvb .gy{background:var(--border-yellow);color:var(--on-acc)}
+/* vignettes : léger reflet animé pour les cartes à relief */
+.ctile .im.ft::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(115deg,transparent 38%,rgba(255,120,200,.55) 44%,rgba(255,240,150,.6) 48%,rgba(120,255,220,.55) 52%,rgba(120,160,255,.5) 56%,transparent 62%);background-size:300% 300%;mix-blend-mode:color-dodge;opacity:.7;animation:ftsw 5s ease-in-out infinite}
+.ctile:nth-child(3n+1) .im.ft::after{animation-delay:-1.6s}.ctile:nth-child(3n+2) .im.ft::after{animation-delay:-3.2s}
+.ctile .im.ft-gold::after{background:linear-gradient(115deg,transparent 38%,rgba(255,220,120,.7) 46%,rgba(255,255,235,.9) 50%,rgba(255,220,120,.7) 54%,transparent 62%);background-size:300% 300%}
+@keyframes ftsw{0%,15%{background-position:100% 100%}70%,100%{background-position:0 0}}
+@media (prefers-reduced-motion:reduce){.ctile .im.ft::after{animation:none;opacity:0}.foil{transform:none}}
+
 /* ---------- Thèmes ---------- */
 :root{--on-acc:#1a1408;--soft:#c4c8d1;--t-fill:#0B0910;--t-stroke:#C08CFF;--t-shadow:#4A12A8;--pb1:#C08CFF;--pb2:#7B2FF7;--pb3:#3E0E92;--pbb1:#2B2735;--pbb2:#09080D;--pbc1:#F1E6FF;--pbc2:#B98CFF;--pbc3:#7B2FF7;--sp1:#2A1450}
 :root[data-theme="spectre"]{--ink:#0E0B14;--panel:#1A1524;--panel-2:#241D31;--line:#2E2540;--fg:#F1EAFF;--muted:#9C90B3;--border-yellow:#9B5CFF;--border-deep:#6A2FD0;--on-acc:#FFFFFF;--t-fill:#0B0910;--t-stroke:#C08CFF;--t-shadow:#4A12A8;--pb1:#C08CFF;--pb2:#7B2FF7;--pb3:#3E0E92;--pbb1:#2B2735;--pbb2:#09080D;--pbc1:#F1E6FF;--pbc2:#B98CFF;--pbc3:#7B2FF7;--soft:#CFC6DF;--sp1:#2A1450;}
@@ -557,7 +604,7 @@ input,select{font:inherit;color:var(--fg)}
 </head>
 <body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="pb" viewBox="0 0 100 100"><defs><linearGradient id="pbV" x1="0" y1="0" x2="1" y2="1"><stop offset="0" style="stop-color:var(--pb1)"/><stop offset=".5" style="stop-color:var(--pb2)"/><stop offset="1" style="stop-color:var(--pb3)"/></linearGradient><radialGradient id="pbB" cx=".38" cy=".75" r=".75"><stop offset="0" style="stop-color:var(--pbb1)"/><stop offset="1" style="stop-color:var(--pbb2)"/></radialGradient><radialGradient id="pbC" cx=".4" cy=".35" r=".7"><stop offset="0" style="stop-color:var(--pbc1)"/><stop offset=".55" style="stop-color:var(--pbc2)"/><stop offset="1" style="stop-color:var(--pbc3)"/></radialGradient></defs><path d="M3 50a47 47 0 0 1 94 0z" fill="url(#pbV)"/><path d="M3 50a47 47 0 0 0 94 0z" fill="url(#pbB)"/><rect x="3" y="45.5" width="94" height="9" fill="#09080D"/><circle cx="50" cy="50" r="47" fill="none" stroke="#09080D" stroke-width="4"/><circle cx="50" cy="50" r="15.5" fill="#09080D"/><circle cx="50" cy="50" r="10" fill="url(#pbC)" style="stroke:var(--pb2)" stroke-width="2"/><path d="M19 33a35 35 0 0 1 17-15" fill="none" stroke="#fff" stroke-opacity=".38" stroke-width="4" stroke-linecap="round"/></symbol></svg>
-<script>window.__APPV="33";</script>
+<script>window.__APPV="34";</script>
 <div class="splash" id="splash" aria-hidden="true"><i class="hole"></i><i class="halo"></i><div class="bw"><svg class="b" viewBox="0 0 100 100"><use href="#pb"/></svg><svg class="t" viewBox="0 0 100 100"><use href="#pb"/></svg></div><i class="glow"></i></div>
 <script>setTimeout(function(){ if(window.__booted) return;
   var b=document.createElement("div"); b.setAttribute("role","alert");
@@ -698,7 +745,7 @@ input,select{font:inherit;color:var(--fg)}
   <!-- ===== COLLECTION ===== -->
   <section class="view" id="colView" hidden>
     <div class="scroll">
-      <div class="homebar"><svg class="pball" viewBox="0 0 100 100" aria-hidden="true"><use href="#pb"/></svg><span class="brand">DEX<b>·</b>SCAN</span><button class="thbtn" id="themeBtn" aria-label="Changer de thème"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.6-.9 1.2-1.8-.5-1.1.2-2.2 1.4-2.2H17a4 4 0 0 0 4-4c0-5.5-4-10-9-10z"/><circle cx="7.5" cy="11" r="1.2"/><circle cx="10" cy="7" r="1.2"/><circle cx="15" cy="7" r="1.2"/></svg></button><span class="ver">v33</span></div>
+      <div class="homebar"><svg class="pball" viewBox="0 0 100 100" aria-hidden="true"><use href="#pb"/></svg><span class="brand">DEX<b>·</b>SCAN</span><button class="thbtn" id="themeBtn" aria-label="Changer de thème"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.6-.9 1.2-1.8-.5-1.1.2-2.2 1.4-2.2H17a4 4 0 0 0 4-4c0-5.5-4-10-9-10z"/><circle cx="7.5" cy="11" r="1.2"/><circle cx="10" cy="7" r="1.2"/><circle cx="15" cy="7" r="1.2"/></svg></button><span class="ver">v34</span></div>
       <h1 class="h1">Collection</h1>
       <p class="lede">Tes cartes rangées par série et par extension, dans l'ordre des numéros. Le mode Pokédex montre aussi celles qui te manquent, en grisé.</p>
       <div class="total" id="wallet">
@@ -1091,6 +1138,130 @@ function logoChain(s){
 function img(card, q="high"){ return imgChain(card, q)[0] || ""; }
 const setPic = (set,k) => set?.["_"+k] || (k==="logo" ? (logoChain(set)[0]||"") : (set?.[k] ? set[k]+".webp" : ""));
 
+/* ---------- Brillance des cartes ----------
+   Chaque carte reçoit le traitement de sa vraie impression, selon sa rareté :
+   Starlight (holos 1999-2003), holo, holo carte entière, gravure en relief (Full Art, Alternative, Illustration rare),
+   gravure + paillettes (Illustration spéciale), or gravé (Hyper rare), arc-en-ciel (Secrètes), paillettes (Chromatiques).
+   La gravure est reconstituée à partir des contours du dessin de la carte. */
+const WOTC = /^(base|gym|neo|lc|si1|ecard|basep|wp|sp|bog)/;
+function foilOf(rarity, setId, name, variants){
+  const n = norm(rarity); if(!n) return null;
+  // carte « Rare » imprimée uniquement en holo (ex. les holos du Set de Base)
+  if(n==="rare" && variants?.holo && !variants?.normal) return WOTC.test(setId||"") ? "starlight" : "holo";
+  if(/mega hyper/.test(n)) return "rainbow";
+  if(/hyper|\bgold\b|\bor\b/.test(n)) return "gold";
+  if(/secret|rainbow|arc en ciel|magnifique|amazing/.test(n)) return "rainbow";
+  if(/illustration speciale|special illustration|chromatique ultra|shiny ultra/.test(n)) return "sir";
+  if(/illustration/.test(n)) return "alt";
+  if(/chromatique|shiny|brillant/.test(n)) return "shiny";
+  if(/ultra|full art|high tech|ace|radieu|radiant/.test(n)) return "etched";
+  if(/double|prime|legend|lv x|\bv\b|vmax|vstar|\bgx\b|\bex\b/.test(n)) return "sheen";
+  if(/holo/.test(n)) return WOTC.test(setId||"") ? "starlight" : "holo";
+  return null;
+}
+const FOIL_TXT = {starlight:"Holo « Starlight » : éclats d'étoiles dans l'illustration", holo:"Holo : reflets arc-en-ciel dans l'illustration", sheen:"Holo sur toute la carte",
+  etched:"Gravure en relief qui s'irise", alt:"Gravure en relief, illustration alternative", sir:"Gravure en relief + paillettes", gold:"Or gravé en relief", rainbow:"Arc-en-ciel en relief", shiny:"Paillettes chromatiques"};
+const FOIL_NEEDS_EDGE = new Set(["etched","alt","sir","gold","rainbow"]);
+// textures générées une fois
+(()=>{
+  const glit = (col,n=520)=>{ const c=document.createElement("canvas"); c.width=c.height=220; const x=c.getContext("2d");
+    for(let i=0;i<n;i++){ x.fillStyle=col||`hsl(${Math.random()*360} 100% ${68+Math.random()*28}%)`; x.globalAlpha=Math.random()*.9+.1; x.beginPath(); x.arc(Math.random()*220,Math.random()*220,Math.random()*1.4+.3,0,7); x.fill(); }
+    return `url(${c.toDataURL()})`; };
+  const r = document.documentElement.style;
+  r.setProperty("--fglit", glit()); r.setProperty("--fglitg", glit("#FFE7A0",380)); r.setProperty("--fglits", glit("#E8F1FF",600));
+  const W=300,H=420,c=document.createElement("canvas"); c.width=W; c.height=H; const x=c.getContext("2d"); x.filter="blur(.7px)";
+  for(let i=0;i<260;i++){ const px=Math.random()*W,py=Math.random()*H,rr=Math.pow(Math.random(),2.2)*13+1.5;
+    const g=x.createRadialGradient(px,py,0,px,py,rr); g.addColorStop(0,"rgba(255,255,255,1)"); g.addColorStop(.35,"rgba(255,255,255,.55)"); g.addColorStop(1,"rgba(255,255,255,0)");
+    x.fillStyle=g; x.beginPath(); x.arc(px,py,rr,0,7); x.fill();
+    if(rr>5){ x.strokeStyle="rgba(255,255,255,.7)"; x.lineWidth=.8; const a=Math.random()*Math.PI; for(let k=0;k<4;k++){ const an=a+k*Math.PI/4,l=rr*(k%2?1.2:2.1); x.beginPath(); x.moveTo(px-Math.cos(an)*l,py-Math.sin(an)*l); x.lineTo(px+Math.cos(an)*l,py+Math.sin(an)*l); x.stroke(); } } }
+  r.setProperty("--fstars", `url(${c.toDataURL()})`);
+})();
+// gravure : contours du dessin, calculés sur une copie de l'image qui autorise la lecture (scrydex, pokemontcg.io)
+const EDGES = new Map();
+function edgeMap(c){
+  if(EDGES.has(c.id)) return EDGES.get(c.id);
+  const urls = altImgs(c.id, c.localId, "high").filter(u=>/scrydex|pokemontcg/.test(u));
+  const p = (async()=>{
+    for(const u of urls){
+      const r = await new Promise(res=>{ const im=new Image(); im.crossOrigin="anonymous";
+        im.onload=()=>{ if((im.naturalWidth===640 && im.naturalHeight===892) || im.naturalWidth<200) return res(null);
+          const W=300,H=Math.round(W*im.naturalHeight/im.naturalWidth),cv=document.createElement("canvas"); cv.width=W; cv.height=H; const x=cv.getContext("2d"); x.drawImage(im,0,0,W,H);
+          let d; try{ d=x.getImageData(0,0,W,H); }catch(e){ return res(null); }
+          const g=new Float32Array(W*H); for(let i=0;i<W*H;i++) g[i]=d.data[i*4]*.3+d.data[i*4+1]*.59+d.data[i*4+2]*.11;
+          const o=x.createImageData(W,H);
+          for(let y=1;y<H-1;y++) for(let X=1;X<W-1;X++){ const i=y*W+X;
+            const gx=-g[i-W-1]-2*g[i-1]-g[i+W-1]+g[i-W+1]+2*g[i+1]+g[i+W+1], gy=-g[i-W-1]-2*g[i-W]-g[i-W+1]+g[i+W-1]+2*g[i+W]+g[i+W+1];
+            o.data[i*4]=o.data[i*4+1]=o.data[i*4+2]=255; o.data[i*4+3]=Math.max(0,Math.min(255,(Math.hypot(gx,gy)-28)*2.2)); }
+          x.putImageData(o,0,0); res(`url(${cv.toDataURL()})`); };
+        im.onerror=()=>res(null); im.src=u; setTimeout(()=>res(null), 15000); });
+      if(r) return r;
+    }
+    return null;
+  })();
+  EDGES.set(c.id, p); return p;
+}
+// cadre de l'illustration (haut, droite, bas, gauche en %) selon l'époque
+const foilWin = setId => WOTC.test(setId||"") ? "inset(10.5% 9% 50.5% 9% round 1%)" : "inset(10.5% 7.5% 47% 7.5% round 1%)";
+function foilize(box, c){
+  const t = foilOf(c.rarity, setIdOf(c.id), c.name, c.variants); if(!box || !t) return null;
+  box.classList.add("foil","f-"+t); box.style.setProperty("--win", foilWin(setIdOf(c.id)));
+  box.insertAdjacentHTML("beforeend", `<div class="L s2 rbw"></div><div class="L s1${t==="gold"?"":" rbw"}"></div><div class="L s3"></div><div class="L glr"></div>`);
+  if(FOIL_NEEDS_EDGE.has(t)) edgeMap(c).then(u=>{ if(u) box.style.setProperty("--edge", u); else box.classList.replace("f-"+t, "f-sheen"); });
+  FOIL.add(box);
+  return t;
+}
+const FOIL = {els:new Set(), gyro:null, on:false, asked:false,
+  add(el){
+    const s = {x:50,y:50,tx:50,ty:50,hold:false,ph:Math.random()*6}; el._f = s;
+    const mv = e=>{ const r=el.getBoundingClientRect(); s.tx=Math.max(0,Math.min(100,(e.clientX-r.left)/r.width*100)); s.ty=Math.max(0,Math.min(100,(e.clientY-r.top)/r.height*100)); };
+    el.addEventListener("pointerdown", e=>{ s.hold=true; s.moved=false; mv(e); });
+    el.addEventListener("pointermove", e=>{ if(s.hold){ s.moved=true; mv(e); } });
+    const up = ()=>{ s.hold=false; }; el.addEventListener("pointerup", up); el.addEventListener("pointercancel", up); el.addEventListener("pointerleave", up);
+    this.els.add(el); if(!this.on){ this.on=true; requestAnimationFrame(t=>this.tick(t)); }
+  },
+  tick(t){
+    for(const el of this.els){
+      if(!el.isConnected){ this.els.delete(el); continue; }
+      const s = el._f;
+      if(document.hidden || el.closest("#sheet:not(.open)") || el.closest("#foilView:not(.open)")) continue;
+      if(!s.hold){ if(this.gyro){ s.tx=this.gyro.x; s.ty=this.gyro.y; } else { const k=t/1000+s.ph; s.tx=50+Math.sin(k*.9)*32; s.ty=50+Math.cos(k*.7)*26; } }
+      s.x += (s.tx-s.x)*.12; s.y += (s.ty-s.y)*.12;
+      const d = Math.hypot(s.x-50,s.y-50)/70;
+      el.style.setProperty("--mx", s.x.toFixed(2)); el.style.setProperty("--my", s.y.toFixed(2));
+      el.style.setProperty("--ry", ((s.x-50)/50*12).toFixed(2)+"deg"); el.style.setProperty("--rx", (-(s.y-50)/50*12).toFixed(2)+"deg");
+      el.style.setProperty("--o", (s.hold?1:.5+d*.55).toFixed(3));
+    }
+    if(this.els.size) requestAnimationFrame(t=>this.tick(t)); else this.on=false;
+  },
+  needsAsk(){ return typeof DeviceOrientationEvent!=="undefined" && typeof DeviceOrientationEvent.requestPermission==="function" && !this.gyroOn; },
+  startGyro(){
+    const on = ()=>{ if(this.gyroOn) return; this.gyroOn=true; addEventListener("deviceorientation", e=>{ if(e.beta==null) return; this.gyro={x:50+Math.max(-30,Math.min(30,e.gamma))*1.6, y:50+Math.max(-30,Math.min(30,e.beta-45))*1.6}; }); };
+    if(typeof DeviceOrientationEvent==="undefined") return Promise.resolve(false);
+    if(typeof DeviceOrientationEvent.requestPermission==="function") return DeviceOrientationEvent.requestPermission().then(r=>{ if(r==="granted"){ on(); return true; } return false; }).catch(()=>false);
+    on(); return Promise.resolve(true);
+  }
+};
+if(typeof DeviceOrientationEvent!=="undefined" && typeof DeviceOrientationEvent.requestPermission!=="function") FOIL.startGyro();
+// vitrine plein écran : la carte en grand, la lumière suit l'inclinaison du téléphone
+function openFoilView(c){
+  let v = $("#foilView");
+  if(!v){ v = document.createElement("div"); v.id = "foilView"; document.body.appendChild(v);
+    v.addEventListener("click", e=>{ if(e.target===v || e.target.closest("[data-fvclose]")) v.classList.remove("open"); }); }
+  const t = foilOf(c.rarity, setIdOf(c.id), c.name, c.variants);
+  v.innerHTML = `<div class="cardimg" id="fvCard">${imgTag(c, "high", `alt="${esc(c.name)}"`)}</div>
+    <div class="fvt">${esc(c.name)} · ${esc(c.rarity||"")}</div>
+    <div class="fvs">${esc(FOIL_TXT[t]||"")}. Incline ton téléphone ou fais glisser ton doigt sur la carte.</div>
+    <div class="fvb">${FOIL.needsAsk()?`<button class="gy" id="fvGyro">📱 Activer l'inclinaison</button>`:""}<button data-fvclose>Fermer</button></div>`;
+  foilize($("#fvCard"), c);
+  $("#fvGyro") && ($("#fvGyro").onclick = ()=>FOIL.startGyro().then(ok=>{ if(ok) $("#fvGyro")?.remove(); else toast("Inclinaison refusée par le téléphone"); }));
+  requestAnimationFrame(()=>v.classList.add("open"));
+}
+// vignettes : reflet animé léger pour les cartes à relief (rareté connue via rarities.json)
+function tileFoil(c){
+  const r = c.rarity || rarOfCard(setIdOf(c.id), c.localId); const t = foilOf(r, setIdOf(c.id), c.name);
+  return t && !["holo","starlight","sheen"].includes(t) ? ` ft${t==="gold"?" ft-gold":""}` : "";
+}
+
 function renderCard(){
   const c = current, cm = c.pricing?.cardmarket, tp = c.pricing?.tcgplayer;
   $("#sheetTitle").textContent = `${c.name} · ${c.set?.name||""}`;
@@ -1159,7 +1330,7 @@ function renderCard(){
   const banner = dg && dg.uncertain ? `<button class="banner" id="seeDiag"><span class="pill warn">!</span><span><b>Correspondance incertaine.</b> ${esc(dg.uncertain)} <u>Voir la lecture</u></span></button>` : "";
   $("#sheetBody").innerHTML = `${banner}
     <div class="hero">
-      <div class="cardimg">${imgTag(c, "high", `alt="${esc(c.name)}"`)}</div>
+      <div><div class="cardimg" id="heroImg">${imgTag(c, "high", `alt="${esc(c.name)}"`)}</div>${foilOf(c.rarity, setIdOf(c.id), c.name, c.variants)?`<span class="foilhint">✨ Touche pour voir la brillance</span>`:""}</div>
       <div class="hero-meta">
         <h2 class="cname">${esc(c.name)}</h2>
         <div class="setline">${setPic(c.set,"symbol")?`<img src="${setPic(c.set,"symbol")}" alt="">`:""}<span>${esc(c.set?.name||"")}</span></div>
@@ -1183,6 +1354,7 @@ function renderCard(){
     ${c.description?`<div class="section"><h4>Pokédex</h4><p class="desc">${esc(c.description)}</p></div>`:""}
     <p class="fine">Données et cotes : ${c._src==="pokemontcg.io"?"pokemontcg.io (source de secours, fiche en anglais)":"TCGdex"} (Cardmarket mis à jour chaque jour, TCGplayer chaque heure). La cote correspond à une carte non gradée en très bon état ; une carte abîmée se vend moins cher, une carte gradée PSA/PCA bien plus cher. Identifiant : ${esc(c.id)}${dg && !dg.uncertain ? ` · <button id="seeDiag" style="text-decoration:underline;font-size:inherit;color:inherit">Voir la lecture du scan</button>` : ""}</p>`;
   $("#seeDiag") && ($("#seeDiag").onclick = ()=>renderDiag(dg));
+  if(foilize($("#heroImg"), c)) $("#heroImg").addEventListener("click", ()=>{ if(!$("#heroImg")._f?.moved) openFoilView(c); });
 
   $("#sheetBody").querySelectorAll(".vt").forEach(b=>b.onclick=()=>{ currentVariant=+b.dataset.vi; renderCard(); });
   $("#sheetBody").querySelectorAll(".alt").forEach(b=>b.onclick=()=>showCard(b.dataset.id));
@@ -1300,7 +1472,7 @@ function colTile(c, own){
   const pic = imgTag(c, "low", 'alt="" loading="lazy"') || (own && colImg(own) ? `<img src="${esc(colImg(own))}" alt="" loading="lazy">` : "");
   const tr = own?.price && own.a7 ? (own.price-own.a7)/own.a7 : 0, tc = tr > .03 ? " up" : tr < -.03 ? " down" : "";
   const px = own ? (own.price ? `<span class="px${tc}" title="${tc?`${tr>0?"+":""}${(tr*100).toFixed(0)} % sur 7 jours`:""}">${tc===" up"?"▲ ":tc===" down"?"▼ ":""}${esc(eurS(own.price))}</span>` : `<span class="px none">—</span>`) : "";
-  return `<button class="ctile ${own?"have":"miss"}" data-id="${esc(c.id)}" aria-label="${esc(c.name)} ${esc(c.localId)}${own?", possédée":", manquante"}"><span class="im"><span class="nm0">${esc(c.name)}</span>${pic}${q>1?`<span class="qx">×${q}</span>`:""}${own&&COLV.pdx?`<span class="own">✓</span>`:""}</span><span class="nm">${esc(c.name)}</span><span class="mt"><span class="no">${esc(c.localId)}</span>${px}</span>${own?(()=>{ const p = pnlOf(own); return p ? `<span class="tpnl ${pnlCls(p)}" title="PnL : ${esc(pnlTxt(p))} (achat ${esc(eurS(own.buy))})">${esc(pnlTxt(p))}</span>` : ""; })():""}</button>`;
+  return `<button class="ctile ${own?"have":"miss"}" data-id="${esc(c.id)}" aria-label="${esc(c.name)} ${esc(c.localId)}${own?", possédée":", manquante"}"><span class="im${tileFoil(c)}"><span class="nm0">${esc(c.name)}</span>${pic}${q>1?`<span class="qx">×${q}</span>`:""}${own&&COLV.pdx?`<span class="own">✓</span>`:""}</span><span class="nm">${esc(c.name)}</span><span class="mt"><span class="no">${esc(c.localId)}</span>${px}</span>${own?(()=>{ const p = pnlOf(own); return p ? `<span class="tpnl ${pnlCls(p)}" title="PnL : ${esc(pnlTxt(p))} (achat ${esc(eurS(own.buy))})">${esc(pnlTxt(p))}</span>` : ""; })():""}</button>`;
 }
 async function renderCol(){
   const col = getCol(), list = $("#colList"), gen = ++COLV.gen;
@@ -3059,7 +3231,7 @@ function renderTiles(){
   if(!list.length){ g.innerHTML = `<div class="empty" style="grid-column:1/-1">Aucune carte ne correspond à « ${esc(EX.cq)} ».</div>`; return; }
   g.innerHTML = list.map(c=>{
     const r = top.indexOf(c.id), p = pxBadge(c.id, r);
-    return `<button class="ctile" data-id="${esc(c.id)}" aria-label="${esc(c.name)}, ${esc(p.txt)}"><span class="im"><span class="nm0">${esc(c.name)}</span>${imgTag(c, "low", 'alt="" loading="lazy"')}${r>=0?`<span class="rk">#${r+1}</span>`:""}</span><span class="nm">${esc(c.name)}</span><span class="mt"><span class="no">${esc(c.localId)}</span><span class="px ${p.cls}">${esc(p.txt)}</span></span></button>`;
+    return `<button class="ctile" data-id="${esc(c.id)}" aria-label="${esc(c.name)}, ${esc(p.txt)}"><span class="im${tileFoil(c)}"><span class="nm0">${esc(c.name)}</span>${imgTag(c, "low", 'alt="" loading="lazy"')}${r>=0?`<span class="rk">#${r+1}</span>`:""}</span><span class="nm">${esc(c.name)}</span><span class="mt"><span class="no">${esc(c.localId)}</span><span class="px ${p.cls}">${esc(p.txt)}</span></span></button>`;
   }).join("");
   g.querySelectorAll(".ctile").forEach(b=>b.onclick=()=>showCard(b.dataset.id, []));
 }

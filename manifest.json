@@ -1,0 +1,19 @@
+{
+  "name": "Dex Scan",
+  "short_name": "Dex Scan",
+  "description": "Cote Cardmarket, scanner et suivi de collection de cartes à collectionner.",
+  "id": "/cote/",
+  "start_url": "/cote/?src=app",
+  "scope": "/cote/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0B0911",
+  "theme_color": "#0E1014",
+  "lang": "fr",
+  "categories": ["utilities", "shopping", "entertainment"],
+  "icons": [
+    {"src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any"},
+    {"src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any"},
+    {"src": "icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable"}
+  ]
+}

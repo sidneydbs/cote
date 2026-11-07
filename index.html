@@ -665,6 +665,19 @@ input,select{font:inherit;color:var(--fg)}
 .csort{mask-image:linear-gradient(90deg,#000 85%,transparent);-webkit-mask-image:linear-gradient(90deg,#000 85%,transparent);padding-right:14px}
 .csort button,.serchips button{padding:7px 10px}
 
+/* ---------- v39 : cartes gradées dans la Collection ---------- */
+.colmode{display:flex;width:100%;margin:4px 0 12px}.colmode button{flex:1;padding:9px 6px;font-weight:700}
+.colmode i{font-style:normal;font:700 11px/1 var(--f-mono);opacity:.75;margin-left:4px}
+.grtot{margin-bottom:12px}
+.grlg{margin:0 0 10px;flex:none}
+.lgtag{font-style:normal;font:700 9.5px/1 var(--f-mono);padding:2px 5px;border-radius:5px;background:color-mix(in srgb,var(--fg) 12%,transparent);color:var(--fg);margin-right:6px}
+.grph{display:grid;place-items:center;width:100%;height:100%;font:800 22px/1 var(--f-body);color:var(--muted);background:var(--panel-2)}
+.grim{display:block;width:84px;flex:none;aspect-ratio:63/88;border-radius:6px;overflow:hidden;background:var(--panel-2)}
+.grim img{width:100%;height:100%;object-fit:cover;display:block}
+.grhead .grphoto{display:inline-flex;margin-top:10px;padding:8px 12px;font-size:13px;cursor:pointer}
+.grlgseg{display:flex;width:100%;margin:0 0 10px}.grlgseg button{flex:1}
+.grman{width:100%;margin-top:12px}
+
 /* ---------- Thèmes ---------- */
 :root{--on-acc:#1a1408;--soft:#c4c8d1;--t-fill:#0B0910;--t-stroke:#C08CFF;--t-shadow:#4A12A8;--pb1:#C08CFF;--pb2:#7B2FF7;--pb3:#3E0E92;--pbb1:#2B2735;--pbb2:#09080D;--pbc1:#F1E6FF;--pbc2:#B98CFF;--pbc3:#7B2FF7;--sp1:#2A1450}
 :root[data-theme="spectre"]{--ink:#0E0B14;--panel:#1A1524;--panel-2:#241D31;--line:#2E2540;--fg:#F1EAFF;--muted:#9C90B3;--border-yellow:#9B5CFF;--border-deep:#6A2FD0;--on-acc:#FFFFFF;--t-fill:#0B0910;--t-stroke:#C08CFF;--t-shadow:#4A12A8;--pb1:#C08CFF;--pb2:#7B2FF7;--pb3:#3E0E92;--pbb1:#2B2735;--pbb2:#09080D;--pbc1:#F1E6FF;--pbc2:#B98CFF;--pbc3:#7B2FF7;--soft:#CFC6DF;--sp1:#2A1450;}
@@ -712,7 +725,7 @@ input,select{font:inherit;color:var(--fg)}
 </head>
 <body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="pb" viewBox="0 0 100 100"><defs><linearGradient id="pbV" x1="0" y1="0" x2="1" y2="1"><stop offset="0" style="stop-color:var(--pb1)"/><stop offset=".5" style="stop-color:var(--pb2)"/><stop offset="1" style="stop-color:var(--pb3)"/></linearGradient><radialGradient id="pbB" cx=".38" cy=".75" r=".75"><stop offset="0" style="stop-color:var(--pbb1)"/><stop offset="1" style="stop-color:var(--pbb2)"/></radialGradient><radialGradient id="pbC" cx=".4" cy=".35" r=".7"><stop offset="0" style="stop-color:var(--pbc1)"/><stop offset=".55" style="stop-color:var(--pbc2)"/><stop offset="1" style="stop-color:var(--pbc3)"/></radialGradient></defs><path d="M3 50a47 47 0 0 1 94 0z" fill="url(#pbV)"/><path d="M3 50a47 47 0 0 0 94 0z" fill="url(#pbB)"/><rect x="3" y="45.5" width="94" height="9" fill="#09080D"/><circle cx="50" cy="50" r="47" fill="none" stroke="#09080D" stroke-width="4"/><circle cx="50" cy="50" r="15.5" fill="#09080D"/><circle cx="50" cy="50" r="10" fill="url(#pbC)" style="stroke:var(--pb2)" stroke-width="2"/><path d="M19 33a35 35 0 0 1 17-15" fill="none" stroke="#fff" stroke-opacity=".38" stroke-width="4" stroke-linecap="round"/></symbol></svg>
-<script>window.__APPV="38";</script>
+<script>window.__APPV="39";</script>
 <div class="splash" id="splash" aria-hidden="true"><i class="hole"></i><i class="halo"></i><div class="bw"><svg class="b" viewBox="0 0 100 100"><use href="#pb"/></svg><svg class="t" viewBox="0 0 100 100"><use href="#pb"/></svg></div><i class="glow"></i></div>
 <script>setTimeout(function(){ if(window.__booted) return;
   var b=document.createElement("div"); b.setAttribute("role","alert");
@@ -856,7 +869,7 @@ input,select{font:inherit;color:var(--fg)}
   <!-- ===== COLLECTION ===== -->
   <section class="view" id="colView" hidden>
     <div class="scroll">
-      <div class="homebar"><svg class="pball" viewBox="0 0 100 100" aria-hidden="true"><use href="#pb"/></svg><span class="brand">DEX<b>·</b>SCAN</span><button class="thbtn" id="themeBtn" aria-label="Changer de thème"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.6-.9 1.2-1.8-.5-1.1.2-2.2 1.4-2.2H17a4 4 0 0 0 4-4c0-5.5-4-10-9-10z"/><circle cx="7.5" cy="11" r="1.2"/><circle cx="10" cy="7" r="1.2"/><circle cx="15" cy="7" r="1.2"/></svg></button><span class="ver">v38</span></div>
+      <div class="homebar"><svg class="pball" viewBox="0 0 100 100" aria-hidden="true"><use href="#pb"/></svg><span class="brand">DEX<b>·</b>SCAN</span><button class="thbtn" id="themeBtn" aria-label="Changer de thème"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.6-.9 1.2-1.8-.5-1.1.2-2.2 1.4-2.2H17a4 4 0 0 0 4-4c0-5.5-4-10-9-10z"/><circle cx="7.5" cy="11" r="1.2"/><circle cx="10" cy="7" r="1.2"/><circle cx="15" cy="7" r="1.2"/></svg></button><span class="ver">v39</span></div>
       <h1 class="h1">Collection</h1>
       <p class="lede">Tes cartes rangées par série et par extension, dans l'ordre des numéros. Le mode Pokédex montre aussi celles qui te manquent, en grisé.</p>
       <div class="total" id="wallet">
@@ -870,7 +883,9 @@ input,select{font:inherit;color:var(--fg)}
         <div class="psub" id="colUpd" style="margin-top:4px"></div>
         <div class="addrow"><button class="btn btn-g" id="refreshCol"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 12a9 9 0 1 1-3-6.7L21 8"/><path d="M21 3v5h-5"/></svg>Actualiser les cotes</button></div>
       </div>
-      <div class="coltools">
+      <div class="seg colmode" role="group" aria-label="Type de cartes"><button data-cm="cards" aria-pressed="true">Cartes</button><button data-cm="graded" aria-pressed="false">Gradées <i id="cmGrN"></i></button></div>
+      <div id="colGraded" hidden></div>
+      <div class="coltools" id="colTools">
         <input id="colQ" type="search" placeholder="Filtrer (nom ou numéro)" autocomplete="off" aria-label="Filtrer la collection">
         <button class="chip" id="colPdx" aria-pressed="true" title="Afficher aussi les cartes qui te manquent">Pokédex</button>
         <button class="chip" id="colFlt" aria-pressed="false" title="Filtres et tri"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" style="vertical-align:-3px"><path d="M4 6h16M7 12h10M10 18h4"/></svg><span id="colFltN"></span></button>
@@ -1961,7 +1976,7 @@ const GRADERS = [
 const grBy = k => GRADERS.find(g=>g.k===k) || GRADERS[GRADERS.length-1];
 const getGraded = () => store.get("graded", []);
 const setGraded = l => store.set("graded", l);
-const grEbay = (x, g, n) => `https://www.ebay.fr/sch/i.html?_nkw=${encodeURIComponent(`${x.name} ${x.localId||""} ${g.k==="CA"?"CollectAura":g.k==="AUT"?"":g.k} ${n.replace(/^(Pristine|Gem Mint|Black Label) /,"")}`.trim())}&LH_Sold=1&LH_Complete=1&_sop=13`;
+const grEbay = (x, g, n) => `https://www.ebay.${x.lg==="EN"?"com":"fr"}/sch/i.html?_nkw=${encodeURIComponent(`${x.name} ${x.localId||""} ${g.k==="CA"?"CollectAura":g.k==="AUT"?"":g.k} ${n.replace(/^(Pristine|Gem Mint|Black Label) /,"")} ${x.lg==="JP"?"japanese":""}`.replace(/\s+/g," ").trim())}&LH_Sold=1&LH_Complete=1&_sop=13`;
 const num = v => { const n = parseFloat(String(v||"").replace(",",".").replace(/[^\d.]/g,"")); return isFinite(n) ? n : null; };
 $("#grGuide").innerHTML = GRADERS.filter(g=>g.site).map(g=>`<a class="gradebtn" href="${g.site}" target="_blank" rel="noopener"><b>${esc(g.n)}</b><span>${esc(g.d)}</span></a>`).join("");
 function renderGraded(){
@@ -1972,19 +1987,63 @@ function renderGraded(){
   if(withBoth.length){ const v = withBoth.reduce((a,x)=>a+x.val-x.buy,0), b = withBoth.reduce((a,x)=>a+x.buy,0); const p = {v, pc: b ? v/b*100 : 0};
     $("#grPnl").innerHTML = `<span class="${pnlCls(p)}">${p.v>0?"▲":p.v<0?"▼":"■"} ${pnlTxt(p)}</span><em>PnL · investi ${eurN(cost)} €</em>`; } else $("#grPnl").innerHTML = "";
   if(!l.length){ el.innerHTML = `<div class="empty">Aucune carte gradée pour l'instant.<br>Touche « Ajouter une carte gradée », ou ouvre une carte et choisis « Ajouter à mes cartes gradées ».</div>`; return; }
-  el.innerHTML = `<div class="slist">${l.slice().sort((a,b)=>(b.val??b.buy??0)-(a.val??a.buy??0)).map(x=>{
-    const g = grBy(x.gr), p = (x.val!=null && x.buy!=null) ? {v:x.val-x.buy, pc: x.buy ? (x.val-x.buy)/x.buy*100 : 0} : null;
-    return `<button class="sitem" data-gu="${esc(x.uid)}"><span class="im">${imgTag({id:x.id, localId:x.localId, image:x.image}, "low", `alt="" loading="lazy"`)}</span><div><b>${esc(x.name)}</b><span><i class="stype">${esc(g.k==="AUT"?(x.grOther||"Gradée"):g.k==="CA"?"CollectAura":g.k)} ${esc(x.note)}</i>${esc(x.setName||"")}${x.localId?" · "+esc(x.localId):""}</span></div><div class="rp">${x.val!=null?esc(eurN(x.val))+" €":x.buy!=null?esc(eurN(x.buy))+" €":"—"}${p?`<small class="${pnlCls(p)==="flat"?"":pnlCls(p)}">${pnlTxt(p,true)}</small>`:""}</div></button>`;
-  }).join("")}</div>`;
+  el.innerHTML = `<div class="slist">${l.slice().sort((a,b)=>(b.val??b.buy??0)-(a.val??a.buy??0)).map(grItemHTML).join("")}</div>`;
   el.querySelectorAll("[data-gu]").forEach(b=>b.onclick=()=>{ const x = getGraded().find(y=>y.uid===b.dataset.gu); if(x) gradedForm(x, true); });
 }
+/* ---------- v39 : cartes gradées dans la Collection, en français, anglais ou japonais ---------- */
+const GR_LG = {FR:"Française", EN:"Anglaise", JP:"Japonaise"};
+const grImg = (x, attrs="") => x.photo ? `<img src="${esc(x.photo)}" ${attrs}>` : x.img ? `<img src="${esc(x.img)}" ${attrs} onerror="this.remove()">` : (x.id && !x.manual ? imgTag({id:x.id, localId:x.localId, image:x.image}, "low", attrs) : `<span class="grph">${esc((x.name||"?").slice(0,1))}</span>`);
+function grItemHTML(x){
+  const g = grBy(x.gr), p = (x.val!=null && x.buy!=null) ? {v:x.val-x.buy, pc: x.buy ? (x.val-x.buy)/x.buy*100 : 0} : null;
+  return `<button class="sitem" data-gu="${esc(x.uid)}"><span class="im">${grImg(x, `alt="" loading="lazy"`)}</span><div><b>${esc(x.name)}</b><span><i class="stype">${esc(g.k==="AUT"?(x.grOther||"Gradée"):g.k==="CA"?"CollectAura":g.k)} ${esc(x.note)}</i><i class="lgtag">${esc(x.lg||"FR")}</i>${esc(x.setName||"")}${x.localId?" · "+esc(x.localId):""}</span></div><div class="rp">${x.val!=null?esc(eurN(x.val))+" €":x.buy!=null?esc(eurN(x.buy))+" €":"—"}${p?`<small class="${pnlCls(p)==="flat"?"":pnlCls(p)}">${pnlTxt(p,true)}</small>`:""}</div></button>`;
+}
+const COLM = {mode: store.get("colMode","cards"), lg: "all"};
+function setColMode(m){
+  COLM.mode = m; store.set("colMode", m);
+  document.querySelectorAll("[data-cm]").forEach(b=>b.setAttribute("aria-pressed", b.dataset.cm===m));
+  const g = m==="graded";
+  ["#colTools","#colFltBar","#colList"].forEach(s=>{ const e=$(s); if(e) e.hidden = g; });
+  $("#colGraded").hidden = !g; if(g) renderColGraded();
+}
+function renderColGraded(){
+  const all = getGraded(), l = COLM.lg==="all" ? all : all.filter(x=>(x.lg||"FR")===COLM.lg), el = $("#colGraded");
+  $("#cmGrN").textContent = all.length ? all.length : "";
+  const tot = l.reduce((a,x)=>a+(x.val ?? x.buy ?? 0),0), cost = l.reduce((a,x)=>a+(x.buy||0),0), both = l.filter(x=>x.val!=null && x.buy!=null);
+  const pv = both.reduce((a,x)=>a+x.val-x.buy,0), pb = both.reduce((a,x)=>a+x.buy,0), p = both.length ? {v:pv, pc: pb ? pv/pb*100 : 0} : null;
+  const cnt = k => all.filter(x=>(x.lg||"FR")===k).length;
+  el.innerHTML = `<div class="total grtot"><div class="plabel"><span>Valeur des cartes gradées</span><span>${l.length} carte${l.length>1?"s":""}</span></div>
+      <div class="pmain"><div class="pbig">${eurN(tot)}<small>€</small></div></div>
+      ${p?`<div class="wchg"><span class="${pnlCls(p)}">${p.v>0?"▲":p.v<0?"▼":"■"} ${pnlTxt(p)}</span><em>PnL · investi ${eurN(cost)} €</em></div>`:`<div class="psub">Indique un prix d'achat et une valeur estimée pour suivre ton PnL.</div>`}
+      <div class="addrow"><button class="btn btn-y" id="cgAdd">+ Ajouter une carte gradée</button></div></div>
+    <div class="csort grlg">${[["all","Toutes",all.length],["FR","Françaises",cnt("FR")],["EN","Anglaises",cnt("EN")],["JP","Japonaises",cnt("JP")]].map(([k,t,n])=>`<button data-glg="${k}" aria-pressed="${COLM.lg===k}">${t}${n?` · ${n}`:""}</button>`).join("")}</div>
+    ${l.length ? `<div class="slist">${l.slice().sort((a,b)=>(b.val??b.buy??0)-(a.val??a.buy??0)).map(grItemHTML).join("")}</div>`
+      : `<div class="empty">${all.length?"Aucune carte gradée dans cette langue.":"Aucune carte gradée pour l'instant.<br>Ajoute tes PSA, CGC, PCA, CollectAura… en français, anglais ou japonais."}</div>`}`;
+  $("#cgAdd").onclick = ()=>gradedSearch(false);
+  el.querySelectorAll("[data-glg]").forEach(b=>b.onclick=()=>{ COLM.lg = b.dataset.glg; renderColGraded(); });
+  el.querySelectorAll("[data-gu]").forEach(b=>b.onclick=()=>{ const x = getGraded().find(y=>y.uid===b.dataset.gu); if(x) gradedForm(x, true); });
+}
+function grRefresh(){ renderGraded(); if(!$("#colGraded").hidden) renderColGraded(); else $("#cmGrN").textContent = getGraded().length || ""; }
+// photo de ta carte (prise avec le téléphone), réduite pour tenir dans l'app
+function grPhoto(file){ return new Promise(res=>{ const r = new FileReader(); r.onload = ()=>{ const im = new Image(); im.onload = ()=>{ const W = 360, H = Math.round(W*im.height/im.width), c = document.createElement("canvas"); c.width = W; c.height = H; c.getContext("2d").drawImage(im,0,0,W,H); res(c.toDataURL("image/jpeg", .78)); }; im.onerror = ()=>res(null); im.src = r.result; }; r.onerror = ()=>res(null); r.readAsDataURL(file); }); }
+const jpNm = c => String(c.n||"").replace(/\s*-\s*[\w/]+$/,"").trim();
+// recherche japonaise dans les extensions récentes (TCGplayer Japon)
+async function jpFind(q){
+  const D = await jpLoad(); const n = norm(q), out = [];
+  const sets = D.sets.slice(0, 80), all = await Promise.all(sets.map(x=>jpSet(x.g)));
+  all.forEach((s,i)=>{ if(!s) return; for(const c of s.cards) if(norm(c.n+" "+c.no).includes(n)) out.push({c, s, g:sets[i].g}); });
+  return out.slice(0, 60);
+}
 function gradedForm(c, edit=false){
-  const x = edit ? c : {uid: Date.now().toString(36)+Math.random().toString(36).slice(2,6), id:c.id, localId:c.localId, name:c.name, image:c.image||null, setName:c.set?.name||"", gr:"PSA", note:"10", cert:"", buy:null, val:null, added:Date.now()};
+  const x = edit ? c : {uid: Date.now().toString(36)+Math.random().toString(36).slice(2,6), id:c.id||null, localId:c.localId||"", name:c.name||"", image:c.image||null, img:c.img||null, setName:c.setName||c.set?.name||"", lg:c.lg||"FR", manual:!!c.manual, gr:"PSA", note:"10", cert:"", buy:null, val:null, added:Date.now()};
   $("#sheetTitle").textContent = edit ? "Carte gradée" : "Ajouter une carte gradée";
   const opts = () => grBy(x.gr).grades.map(n=>`<option ${n===x.note?"selected":""}>${esc(n)}</option>`).join("");
   $("#sheetBody").innerHTML = `
-    <div class="grhead">${imgTag({id:x.id, localId:x.localId, image:x.image}, "low", `alt=""`)}<div><h2 style="margin:0 0 4px">${esc(x.name)}</h2><p class="psub" style="margin:0">${esc(x.setName||"")}${x.localId?" · n° "+esc(x.localId):""}</p></div></div>
+    <div class="grhead"><span class="grim" id="grImW">${grImg(x, `alt=""`)}</span><div><h2 style="margin:0 0 4px">${esc(x.name||"Nouvelle carte")}</h2><p class="psub" style="margin:0">${esc(x.setName||"")}${x.localId?" · n° "+esc(x.localId):""}</p><label class="btn btn-g grphoto">📷 ${x.photo?"Changer la photo":"Ajouter ta photo"}<input id="grP" type="file" accept="image/*" capture="environment" hidden></label></div></div>
     <div class="grform">
+      <label>Langue de la carte<select id="grL">${Object.entries(GR_LG).map(([k,t])=>`<option value="${k}" ${k===(x.lg||"FR")?"selected":""}>${t}</option>`).join("")}</select></label>
+      <label>Nom de la carte<input id="grNm" type="text" value="${esc(x.name||"")}" placeholder="ex. Dracaufeu"></label>
+      <label>Extension<input id="grSt" type="text" value="${esc(x.setName||"")}" placeholder="ex. 151"></label>
+      <label>Numéro<input id="grNo" type="text" value="${esc(x.localId||"")}" placeholder="ex. 199/165"></label>
       <label>Société<select id="grG">${GRADERS.map(g=>`<option value="${g.k}" ${g.k===x.gr?"selected":""}>${esc(g.n)}</option>`).join("")}</select></label>
       <label>Note<select id="grN">${opts()}</select></label>
       <label id="grOthL" ${x.gr==="AUT"?"":"hidden"}>Nom de la société<input id="grOth" type="text" value="${esc(x.grOther||"")}" placeholder="ex. Ace, TAG"></label>
@@ -2001,28 +2060,54 @@ function gradedForm(c, edit=false){
   $("#grN").onchange = ()=>{ x.note = $("#grN").value; links(); };
   $("#grC").oninput = links; links();
   $("#grSave").onclick = ()=>{
-    Object.assign(x, {gr:$("#grG").value, note:$("#grN").value, cert:$("#grC").value.trim(), buy:num($("#grB").value), val:num($("#grV").value), grOther: $("#grOth").value.trim()||undefined});
-    const l = getGraded(), i = l.findIndex(y=>y.uid===x.uid); if(i>=0) l[i] = x; else l.push(x); setGraded(l);
-    closeSheet(); toast(edit?"Carte gradée mise à jour":"Ajoutée à tes cartes gradées"); renderGraded();
+    const nm = $("#grNm").value.trim(); if(!nm){ toast("Indique le nom de la carte"); $("#grNm").focus(); return; }
+    Object.assign(x, {name:nm, setName:$("#grSt").value.trim(), localId:$("#grNo").value.trim(), lg:$("#grL").value, gr:$("#grG").value, note:$("#grN").value, cert:$("#grC").value.trim(), buy:num($("#grB").value), val:num($("#grV").value), grOther: $("#grOth").value.trim()||undefined});
+    const l = getGraded(), i = l.findIndex(y=>y.uid===x.uid); if(i>=0) l[i] = x; else l.push(x);
+    try{ setGraded(l); }catch(e){ x.photo = undefined; setGraded(l); toast("Photo trop lourde, carte enregistrée sans photo"); }
+    closeSheet(); toast(edit?"Carte gradée mise à jour":"Ajoutée à tes cartes gradées"); grRefresh();
   };
-  $("#grDel") && ($("#grDel").onclick = ()=>{ setGraded(getGraded().filter(y=>y.uid!==x.uid)); closeSheet(); toast("Carte gradée supprimée"); renderGraded(); });
+  $("#grDel") && ($("#grDel").onclick = ()=>{ setGraded(getGraded().filter(y=>y.uid!==x.uid)); closeSheet(); toast("Carte gradée supprimée"); grRefresh(); });
+  $("#grP").onchange = async e=>{ const f = e.target.files?.[0]; if(!f) return; const d = await grPhoto(f); if(d){ x.photo = d; $("#grImW").innerHTML = `<img src="${d}" alt="">`; } };
+  $("#grL").onchange = ()=>{ x.lg = $("#grL").value; links(); };
+  $("#grNm").oninput = ()=>{ x.name = $("#grNm").value; links(); };
   openSheet(); $("#sheetBody").scrollTop = 0;
 }
 function gradedSearch(lookup=false){
   $("#sheetTitle").textContent = lookup ? "Cote d'une carte gradée" : "Quelle carte est gradée ?";
-  $("#sheetBody").innerHTML = `<label class="ext-search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><input id="grQ" type="search" placeholder="Nom de la carte (ex. Dracaufeu)" autocomplete="off"></label><div id="grRes" style="margin-top:10px"></div>`;
+  let lg = lookup ? "FR" : (gradedSearch.lg || "FR");
+  const ph = {FR:"Nom en français (ex. Dracaufeu)", EN:"Nom en anglais (ex. Charizard)", JP:"Nom en anglais (ex. Pikachu ex)"};
+  $("#sheetBody").innerHTML = `${lookup?"":`<div class="seg grlgseg" role="group" aria-label="Langue de la carte">${[["FR","Français"],["EN","Anglais"],["JP","Japonais"]].map(([k,t])=>`<button data-glang="${k}" aria-pressed="${k===lg}">${t}</button>`).join("")}</div>`}
+    <label class="ext-search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><input id="grQ" type="search" placeholder="${ph[lg]}" autocomplete="off"></label>
+    <div id="grRes" style="margin-top:10px"></div>${lookup?"":`<button class="btn btn-g grman" id="grMan">Je ne la trouve pas : saisie manuelle</button>`}`;
   openSheet(); setTimeout(()=>$("#grQ").focus(), 250);
   let t = null, gen = 0;
-  $("#grQ").oninput = e=>{ clearTimeout(t); const q = e.target.value.trim(); if(q.length < 2){ $("#grRes").innerHTML = ""; return; }
-    t = setTimeout(async ()=>{ const my = ++gen; $("#grRes").innerHTML = `<div class="empty"><span class="loader"></span></div>`;
-      try{ const r = (await getJSON(`${API}/${LANG}/cards?name=${encodeURIComponent(q)}`) || []).filter(c=>!isPocket(c.id)).slice(0,60);
-        if(my!==gen) return;
+  const run = q=>{ clearTimeout(t); if(q.length < 2){ $("#grRes").innerHTML = ""; return; }
+    t = setTimeout(async ()=>{ if(!$("#grRes")) return; const my = ++gen; $("#grRes").innerHTML = `<div class="empty"><span class="loader"></span></div>`;
+      try{
+        if(lg==="JP"){
+          const r = await jpFind(q); if(my!==gen || !$("#grRes")) return;
+          $("#grRes").innerHTML = r.length ? `<div class="cgrid">${r.map((h,i)=>`<button class="ctile have" data-jx="${i}"><span class="im">${h.c.img?`<img src="${esc(h.c.img)}" alt="" loading="lazy">`:""}</span><span class="cn">${esc(jpNm(h.c))} · ${esc(h.c.no||"")}</span></button>`).join("")}</div>` : `<div class="empty">Aucune carte japonaise trouvée. Les noms japonais sont écrits en anglais (ex. « Pikachu »).</div>`;
+          $("#grRes").querySelectorAll("[data-jx]").forEach(b=>b.onclick=()=>{ const h = r[+b.dataset.jx]; gradedForm({id:`jp-${h.g}-${h.c.i}`, localId:h.c.no||"", name:jpNm(h.c), img:h.c.img||null, setName:h.s.n, lg:"JP"}); });
+          return;
+        }
+        const L = lookup ? LANG : lg.toLowerCase();
+        const r = (await getJSON(`${API}/${L}/cards?name=${encodeURIComponent(q)}`) || []).filter(c=>!isPocket(c.id)).slice(0,60);
+        if(my!==gen || !$("#grRes")) return;
         $("#grRes").innerHTML = r.length ? `<div class="cgrid">${r.map(c=>`<button class="ctile have" data-gid="${esc(c.id)}"><span class="im">${imgTag(c,"low",`alt="" loading="lazy"`)}</span><span class="cn">${esc(c.name)} · ${esc(c.localId)}</span></button>`).join("")}</div>` : `<div class="empty">Aucune carte trouvée.</div>`;
-        $("#grRes").querySelectorAll("[data-gid]").forEach(b=>b.onclick=async ()=>{ const c = await getCard(b.dataset.gid).catch(()=>null); if(c) (lookup ? gradedLookup(c) : gradedForm(c)); });
-      }catch(err){ if(my===gen) $("#grRes").innerHTML = `<div class="empty">Recherche impossible pour l'instant.</div>`; }
+        $("#grRes").querySelectorAll("[data-gid]").forEach(b=>b.onclick=async ()=>{
+          if(lookup){ const c = await getCard(b.dataset.gid).catch(()=>null); if(c) gradedLookup(c); return; }
+          const c = await getJSON(`${API}/${L}/cards/${encodeURIComponent(b.dataset.gid)}`).catch(()=>null) || r.find(x=>x.id===b.dataset.gid);
+          if(c) gradedForm({...c, lg});
+        });
+      }catch(err){ if(my===gen && $("#grRes")) $("#grRes").innerHTML = `<div class="empty">Recherche impossible pour l'instant.</div>`; }
     }, 300); };
+  $("#grQ").oninput = e=>run(e.target.value.trim());
+  $("#sheetBody").querySelectorAll("[data-glang]").forEach(b=>b.onclick=()=>{ lg = gradedSearch.lg = b.dataset.glang; $("#sheetBody").querySelectorAll("[data-glang]").forEach(x=>x.setAttribute("aria-pressed", x===b)); $("#grQ").placeholder = ph[lg]; run($("#grQ").value.trim()); });
+  $("#grMan") && ($("#grMan").onclick = ()=>{ clearTimeout(t); gen++; return gradedForm({manual:true, name:$("#grQ").value.trim(), lg}); });
 }
 $("#grAdd").onclick = ()=>gradedSearch(false);
+document.querySelectorAll("[data-cm]").forEach(b=>b.onclick=()=>setColMode(b.dataset.cm));
+setTimeout(()=>setColMode(COLM.mode), 0);
 /* ---------- Cote d'une carte gradée : ventes réalisées par société et note, sans posséder la carte ---------- */
 const EBAY_SITES = [["ebay.fr","eBay France"],["ebay.de","eBay Allemagne"],["ebay.co.uk","eBay Royaume-Uni"],["ebay.com","eBay États-Unis"]];
 function gradedLookup(c){

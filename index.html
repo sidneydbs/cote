@@ -678,6 +678,13 @@ input,select{font:inherit;color:var(--fg)}
 .grlgseg{display:flex;width:100%;margin:0 0 10px}.grlgseg button{flex:1}
 .grman{width:100%;margin-top:12px}
 
+/* ---------- v40 : mode gradée du scanner ---------- */
+.frame .z-label{display:none}
+.frame.slab .z-name,.frame.slab .z-num{display:none}
+.frame.slab .z-label{display:block;top:2%;height:21%}
+.frame.slab::after{content:"";position:absolute;left:8.5%;right:8.5%;top:28.5%;bottom:5%;border:1.5px dashed color-mix(in srgb,var(--border-yellow) 45%,transparent);border-radius:4px;pointer-events:none}
+#slabChip.on{background:var(--border-yellow);color:var(--on-acc);border-color:var(--border-yellow)}
+
 /* ---------- Thèmes ---------- */
 :root{--on-acc:#1a1408;--soft:#c4c8d1;--t-fill:#0B0910;--t-stroke:#C08CFF;--t-shadow:#4A12A8;--pb1:#C08CFF;--pb2:#7B2FF7;--pb3:#3E0E92;--pbb1:#2B2735;--pbb2:#09080D;--pbc1:#F1E6FF;--pbc2:#B98CFF;--pbc3:#7B2FF7;--sp1:#2A1450}
 :root[data-theme="spectre"]{--ink:#0E0B14;--panel:#1A1524;--panel-2:#241D31;--line:#2E2540;--fg:#F1EAFF;--muted:#9C90B3;--border-yellow:#9B5CFF;--border-deep:#6A2FD0;--on-acc:#FFFFFF;--t-fill:#0B0910;--t-stroke:#C08CFF;--t-shadow:#4A12A8;--pb1:#C08CFF;--pb2:#7B2FF7;--pb3:#3E0E92;--pbb1:#2B2735;--pbb2:#09080D;--pbc1:#F1E6FF;--pbc2:#B98CFF;--pbc3:#7B2FF7;--soft:#CFC6DF;--sp1:#2A1450;}
@@ -725,7 +732,7 @@ input,select{font:inherit;color:var(--fg)}
 </head>
 <body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="pb" viewBox="0 0 100 100"><defs><linearGradient id="pbV" x1="0" y1="0" x2="1" y2="1"><stop offset="0" style="stop-color:var(--pb1)"/><stop offset=".5" style="stop-color:var(--pb2)"/><stop offset="1" style="stop-color:var(--pb3)"/></linearGradient><radialGradient id="pbB" cx=".38" cy=".75" r=".75"><stop offset="0" style="stop-color:var(--pbb1)"/><stop offset="1" style="stop-color:var(--pbb2)"/></radialGradient><radialGradient id="pbC" cx=".4" cy=".35" r=".7"><stop offset="0" style="stop-color:var(--pbc1)"/><stop offset=".55" style="stop-color:var(--pbc2)"/><stop offset="1" style="stop-color:var(--pbc3)"/></radialGradient></defs><path d="M3 50a47 47 0 0 1 94 0z" fill="url(#pbV)"/><path d="M3 50a47 47 0 0 0 94 0z" fill="url(#pbB)"/><rect x="3" y="45.5" width="94" height="9" fill="#09080D"/><circle cx="50" cy="50" r="47" fill="none" stroke="#09080D" stroke-width="4"/><circle cx="50" cy="50" r="15.5" fill="#09080D"/><circle cx="50" cy="50" r="10" fill="url(#pbC)" style="stroke:var(--pb2)" stroke-width="2"/><path d="M19 33a35 35 0 0 1 17-15" fill="none" stroke="#fff" stroke-opacity=".38" stroke-width="4" stroke-linecap="round"/></symbol></svg>
-<script>window.__APPV="39";</script>
+<script>window.__APPV="40";</script>
 <div class="splash" id="splash" aria-hidden="true"><i class="hole"></i><i class="halo"></i><div class="bw"><svg class="b" viewBox="0 0 100 100"><use href="#pb"/></svg><svg class="t" viewBox="0 0 100 100"><use href="#pb"/></svg></div><i class="glow"></i></div>
 <script>setTimeout(function(){ if(window.__booted) return;
   var b=document.createElement("div"); b.setAttribute("role","alert");
@@ -805,6 +812,7 @@ input,select{font:inherit;color:var(--fg)}
     <div class="shade"><div class="frame" id="frame">
       <div class="zone z-name"><span>Nom</span></div>
       <div class="zone z-num"><span>Numéro · ex. 025/165</span></div>
+      <div class="zone z-label"><span>Étiquette : société, note, certificat</span></div>
     </div></div>
     <div class="scanui">
     <div class="scan-top">
@@ -813,6 +821,7 @@ input,select{font:inherit;color:var(--fg)}
       <button class="chip" id="healthChip" aria-label="État de la connexion"><span class="hdot" id="hdot"></span>État</button>
       <button class="chip lastchip" id="lastChip" aria-label="Voir la dernière lecture">Dernière</button>
       <button class="chip on" id="autoChip" aria-pressed="true" aria-label="Scan automatique">Auto</button>
+      <button class="chip" id="slabChip" aria-pressed="false" aria-label="Scanner une carte gradée">Gradée</button>
       <button class="chip" id="langChip" aria-label="Langue des cartes">FR</button>
     </div>
     <button class="banner netbar" id="netBar" hidden></button>
@@ -869,7 +878,7 @@ input,select{font:inherit;color:var(--fg)}
   <!-- ===== COLLECTION ===== -->
   <section class="view" id="colView" hidden>
     <div class="scroll">
-      <div class="homebar"><svg class="pball" viewBox="0 0 100 100" aria-hidden="true"><use href="#pb"/></svg><span class="brand">DEX<b>·</b>SCAN</span><button class="thbtn" id="themeBtn" aria-label="Changer de thème"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.6-.9 1.2-1.8-.5-1.1.2-2.2 1.4-2.2H17a4 4 0 0 0 4-4c0-5.5-4-10-9-10z"/><circle cx="7.5" cy="11" r="1.2"/><circle cx="10" cy="7" r="1.2"/><circle cx="15" cy="7" r="1.2"/></svg></button><span class="ver">v39</span></div>
+      <div class="homebar"><svg class="pball" viewBox="0 0 100 100" aria-hidden="true"><use href="#pb"/></svg><span class="brand">DEX<b>·</b>SCAN</span><button class="thbtn" id="themeBtn" aria-label="Changer de thème"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.6-.9 1.2-1.8-.5-1.1.2-2.2 1.4-2.2H17a4 4 0 0 0 4-4c0-5.5-4-10-9-10z"/><circle cx="7.5" cy="11" r="1.2"/><circle cx="10" cy="7" r="1.2"/><circle cx="15" cy="7" r="1.2"/></svg></button><span class="ver">v40</span></div>
       <h1 class="h1">Collection</h1>
       <p class="lede">Tes cartes rangées par série et par extension, dans l'ordre des numéros. Le mode Pokédex montre aussi celles qui te manquent, en grisé.</p>
       <div class="total" id="wallet">
@@ -2034,7 +2043,7 @@ async function jpFind(q){
   return out.slice(0, 60);
 }
 function gradedForm(c, edit=false){
-  const x = edit ? c : {uid: Date.now().toString(36)+Math.random().toString(36).slice(2,6), id:c.id||null, localId:c.localId||"", name:c.name||"", image:c.image||null, img:c.img||null, setName:c.setName||c.set?.name||"", lg:c.lg||"FR", manual:!!c.manual, gr:"PSA", note:"10", cert:"", buy:null, val:null, added:Date.now()};
+  const x = edit ? c : {uid: Date.now().toString(36)+Math.random().toString(36).slice(2,6), id:c.id||null, localId:c.localId||"", name:c.name||"", image:c.image||null, img:c.img||null, setName:c.setName||c.set?.name||"", lg:c.lg||"FR", manual:!!c.manual, gr:c.gr||"PSA", note:c.note||"10", cert:c.cert||"", photo:c.photo||undefined, buy:null, val:null, added:Date.now()};
   $("#sheetTitle").textContent = edit ? "Carte gradée" : "Ajouter une carte gradée";
   const opts = () => grBy(x.gr).grades.map(n=>`<option ${n===x.note?"selected":""}>${esc(n)}</option>`).join("");
   $("#sheetBody").innerHTML = `
@@ -2297,7 +2306,8 @@ function layoutFrame(){
   const v=$("#scanView").getBoundingClientRect();
   const a=$("#frameArea").getBoundingClientRect();   // zone libre entre la barre du haut et les indications
   const availH = Math.max(80, a.height - 8), availW = Math.min(v.width*0.86, 460);
-  let h = Math.min(availH, availW*88/63); let w = h*63/88;
+  const R = SLAB ? .6 : 63/88;   // boîtier gradé : plus haut que la carte seule
+  let h = Math.min(availH, availW/R); let w = h*R;
   const x=(v.width-w)/2, y=(a.top - v.top) + (a.height - h)/2;
   Object.assign(frame.style,{left:x+"px",top:y+"px",width:w+"px",height:h+"px"});
 }
@@ -2357,10 +2367,75 @@ $("#shutter").onclick = async ()=>{
   still.width=vr.width; still.height=vr.height; still.getContext("2d").drawImage(video,ox,oy,vw*sc,vh*sc);
   still.hidden=false; video.hidden=true;
   navigator.vibrate?.(15);
+  if(SLAB){ await slabScan(sx,sy,sw,sh); still.hidden=true; video.hidden=false; return; }
   processCard(video,sx,sy,sw,sh);
 };
 
 /* ---------------- OCR ---------------- */
+/* ---------- v40 : mode « Gradée » du scanner ----------
+   On cadre le boîtier entier : l'étiquette est lue (société, note, n° de certificat, numéro, langue)
+   et la carte est reconnue à travers le plastique par son image. La fiche de la gradée se remplit toute seule. */
+let SLAB = false;
+const slabChip = $("#slabChip");
+function setSlab(on){
+  SLAB = on; slabChip.classList.toggle("on", on); slabChip.setAttribute("aria-pressed", on);
+  frame.classList.toggle("slab", on); layoutFrame(); autoReset();
+  status.textContent = on ? "Mode gradée : cadre le boîtier entier, étiquette en haut, puis touche le bouton" : (AUTO ? "Vise la carte : le scan se lance tout seul" : "Cadre la carte puis touche le bouton jaune");
+  $("#live").hidden = on || !AUTO;
+}
+slabChip.onclick = ()=>{ setSlab(!SLAB); toast(SLAB ? "Mode carte gradée" : "Mode carte normale"); };
+function parseSlab(raw){
+  const t = " "+String(raw||"").toUpperCase().replace(/[|]/g,"I").replace(/\s+/g," ")+" ";
+  const gr = /\bPSA\b/.test(t) ? "PSA" : /\bCGC\b/.test(t) ? "CGC" : /BECKETT|\bBGS\b/.test(t) ? "BGS" : /\bPCA\b/.test(t) ? "PCA" : /COLLECT ?AURA/.test(t) ? "CA" : /\bSGC\b/.test(t) ? "SGC" : null;
+  let v = (t.match(/(?:GEM\s*-?\s*MI?N?T|GEM\s*MT|PRISTINE|BLACK\s*LABEL|PERFECT|MINT|NM\s*-?\s*MT|NEAR\s*MINT|EX\s*-?\s*MT|VG\s*-?\s*EX|EXCELLENT|GOOD)\s*\+?\s*(10|[1-9](?:\.5)?)\b/)||[])[1] || null;
+  if(!v){ const m = [...t.matchAll(/(?:^|[^#\d.])(10|9\.5|[1-9])(?![\d.])/g)].map(x=>x[1]); v = m.includes("10") ? "10" : m.find(x=>/\.5$/.test(x)) || null; }
+  const cert = ((t.match(/\b\d{7,10}\b/g)||[]).sort((a,b)=>b.length-a.length)[0]) || "";
+  const no = (t.match(/#\s*([A-Z]{0,4}\s?\d{1,4}[A-Z]?)/)||[])[1]?.replace(/\s/g,"") || "";
+  const lg = /JAPAN|\bJPN\b|\bJP\b/.test(t) ? "JP" : /FRENCH|FRAN[CÇ]AIS|\bFR\b/.test(t) ? "FR" : /ENGLISH|\bENG\b/.test(t) ? "EN" : null;
+  let name = ""; const hm = t.match(/#\s*[A-Z]{0,4}\s?\d{1,4}[A-Z]?\s+([A-Z][A-Z' .\-]{2,80})/);
+  if(hm) name = hm[1].replace(/\b(GEM|MT|MINT|NM|PSA|CGC|BGS|PCA|SGC|PRISTINE|PERFECT|BLACK LABEL)\b.*$/,"").replace(/\b(SPECIAL ILLUSTRATION RARE|ILLUSTRATION RARE|HYPER RARE|ULTRA RARE|SECRET RARE|SECRET|FULL ART|ALT(ERNATE)? ART|REVERSE HOLO|HOLO|REV|FOIL|FRENCH|JAPANESE|ENGLISH|FRANCAIS|1ST EDITION|EDITION 1)\b/g,"").replace(/\s+/g," ").trim().slice(0,40);
+  return {gr, v, cert, no, lg, name, raw:String(raw||"").trim()};
+}
+function slabNote(gr, v, raw){
+  const g = grBy(gr||"PSA"), up = String(raw||"").toUpperCase(); if(!v) return g.grades[0];
+  if(v==="10"){ if(gr==="CGC") return /PRISTINE/.test(up) ? "Pristine 10" : "Gem Mint 10"; if(gr==="BGS") return /BLACK/.test(up) ? "Black Label 10" : "Pristine 10"; }
+  return g.grades.includes(v) ? v : (g.grades.find(x=>x.endsWith(" "+v)) || g.grades[0]);
+}
+async function slabScan(sx, sy, sw, sh){
+  busy = true; frame.classList.add("busy");
+  try{
+    // image fixe du boîtier
+    const k = Math.min(1, 1600/sh), c = document.createElement("canvas"); c.width = Math.round(sw*k); c.height = Math.round(sh*k);
+    c.getContext("2d").drawImage(video, sx, sy, sw, sh, 0, 0, c.width, c.height);
+    const W = c.width, H = c.height;
+    status.textContent = "Lecture de l'étiquette…";
+    const labelP = (async()=>{ const w = await getWorker(); await w.setParameters({tessedit_pageseg_mode:"6", tessedit_char_whitelist:""});
+      const cv = crop(c, 0, 0, W, H, .03, .015, .94, .22, 2.2, false);
+      return parseSlab((await withTimeout(w.recognize(cv,{},{text:true}), 20000, "lecture trop longue")).data.text); })().catch(()=>parseSlab(""));
+    const cardP = (async()=>{ const I = await loadIndex(); const box = {x:W*.085, y:H*.285, w:W*.83, h:H*.66};
+      const M = await verifyMatch(c, matchImage(c, [box])); return M.ok ? M : null; })().catch(()=>null);
+    const [L, M] = await Promise.all([labelP, cardP]);
+    // photo du boîtier pour ta fiche
+    const pc = document.createElement("canvas"); pc.width = 360; pc.height = Math.round(360*H/W); pc.getContext("2d").drawImage(c, 0, 0, pc.width, pc.height);
+    const photo = pc.toDataURL("image/jpeg", .78);
+    let card = null;
+    if(M){
+      let pick = M.t0;
+      if(L.no && M.group.length>1){ const h = M.group.find(i=>numKey(localOfIdx(i))===numKey(L.no)); if(h!=null) pick = h; }
+      card = await getCard(INDEX.ids[pick]).catch(()=>idxCard(pick));
+    }
+    navigator.vibrate?.(card ? [20,40,20] : 40);
+    const lg = L.lg || (LANG==="en" ? "EN" : "FR");
+    const pre = card ? {...card, lg} : {manual:true, name: L.name ? L.name.toLowerCase().replace(/\b\w/g,m=>m.toUpperCase()) : "", localId: L.no, lg};
+    Object.assign(pre, {gr: L.gr || "PSA", note: slabNote(L.gr, L.v, L.raw), cert: L.cert, photo});
+    status.textContent = card ? "Carte gradée reconnue : vérifie la fiche" : "Carte non reconnue : complète la fiche";
+    gradedForm(pre);
+    const miss = [!L.gr && "la société", !L.v && "la note", !L.cert && "le n° de certificat", !card && "la carte"].filter(Boolean);
+    if(miss.length) toast(`À vérifier : ${miss.join(", ")}`);
+  }catch(e){ status.textContent = "Lecture impossible : réessaie avec moins de reflets sur le plastique"; }
+  finally{ busy = false; frame.classList.remove("busy"); }
+}
+
 let worker=null;
 let workerP=null;
 const withTimeout = (p,ms,msg) => Promise.race([p, new Promise((_,rej)=>setTimeout(()=>rej(new Error(msg)),ms))]);
@@ -2735,6 +2810,7 @@ function lookupNum(c){
 async function autoTick(){
   autoTimer = null;
   const sheetOpen = $("#sheet").classList.contains("open");
+  if(SLAB){ autoSchedule(700); return; }
   if(!AUTO || !stream || !video.videoWidth || busy || autoBusy || $("#scanView").hidden || sheetOpen || document.hidden){ autoSchedule(500); return; }
   autoBusy = true;
   try{

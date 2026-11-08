@@ -18,7 +18,7 @@
 <link rel="preconnect" href="https://api.tcgdex.net" crossorigin>
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Anybody:wdth,wght@75..150,500..900&family=Luckiest+Guy&family=Rethink+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap" onload="this.onload=null;this.rel='stylesheet'">
 <style>
-/* Layout : app plein écran à 5 onglets (Scanner, Collection = accueil, Extensions, Recherche, Alertes), fiche carte en feuille qui remonte, barre d'onglets en bas */
+/* Layout : app plein écran à 6 onglets (Scanner, Collection = accueil, Extensions, Recherche, Alertes, Jouer), fiche carte en feuille qui remonte, barre d'onglets en bas */
 :root{
   --ink:#0E1014; --panel:#171A21; --panel-2:#20242D; --line:#2C313C;
   --fg:#EEF0F4; --muted:#8C93A3; --border-yellow:#F2C230; --border-deep:#C9941A;
@@ -739,11 +739,83 @@ input,select{font:inherit;color:var(--fg)}
 .tag.rep{background:rgba(255,203,5,.16);color:var(--y,#ffcb05)}
 .edown{display:block;font-size:11.5px;opacity:.7;margin-top:2px}
 .ctile .im .edb{position:absolute;left:4px;bottom:4px;font-size:9.5px;font-weight:700;padding:2px 5px;border-radius:6px;background:rgba(0,0,0,.72);color:#ffcb05;z-index:3}
+/* ---------- v42 : onglet Jouer ---------- */
+.tab{font-size:10.5px;min-width:0}
+.jlvl .jlname{font:800 24px/1.1 var(--f-display);margin:6px 0 10px}
+.jbar{height:8px;border-radius:5px;background:var(--panel-2);overflow:hidden}.jbar i{display:block;height:100%;background:var(--border-yellow);border-radius:5px}
+.jgames{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.jgame{display:flex;flex-direction:column;align-items:flex-start;gap:5px;text-align:left;background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:14px 12px;min-width:0}
+.jgame .je{font-size:28px;line-height:1}.jgame b{font-size:15px}.jgame .jd{font-size:12px;color:var(--muted);line-height:1.35}
+.jgame .jn{font:600 10px/1.3 var(--f-mono);text-transform:uppercase;letter-spacing:.06em;color:var(--border-yellow)}
+.jgame .jbest{font-size:11px;color:var(--up)}
+.jh{font:800 18px var(--f-display);margin:24px 0 10px;display:flex;justify-content:space-between;align-items:baseline}.jh small{font:600 12px var(--f-mono);color:var(--muted)}
+.jlex{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.jlx{display:flex;flex-direction:column;gap:3px;text-align:left;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:10px;min-width:0}
+.jlx b{font-size:13px}.jlx span{font-size:11.5px;color:var(--muted)}.jlx.off{opacity:.45}
+.jbadges{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.jbd{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:10px 6px;text-align:center;display:flex;flex-direction:column;gap:3px;opacity:.5}
+.jbd.on{opacity:1;border-color:var(--border-yellow)}.jbd span{font-size:24px}.jbd b{font-size:11.5px;line-height:1.2}.jbd small{font-size:10px;color:var(--muted);line-height:1.25}
+.jwarn{margin-top:22px}
+.gov{position:fixed;inset:0;z-index:30;background:var(--ink);display:flex;flex-direction:column}
+.gbar{display:flex;align-items:center;gap:12px;padding:calc(var(--safe-t) + 10px) 16px 10px;border-bottom:1px solid var(--line)}
+.gbar h3{flex:1;margin:0;font:800 18px var(--f-display);min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.gbar span{font:600 12px var(--f-mono);color:var(--muted);white-space:nowrap}
+.gbody{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:16px 16px calc(var(--safe-b) + 24px)}
+.jtop{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:12px}
+.jtop>div{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:9px 10px;min-width:0}
+.jtop span{display:block;font:600 9.5px/1.3 var(--f-mono);text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+.jtop b{display:block;font:700 15px var(--f-mono);margin-top:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.up{color:var(--up)}.down{color:var(--down)}
+.jnews{background:var(--panel-2);border-left:3px solid var(--border-yellow);border-radius:10px;padding:10px 12px;font-size:13.5px;line-height:1.45;margin:10px 0}
+.jnews span{display:block;font:600 10px var(--f-mono);text-transform:uppercase;color:var(--muted);margin-bottom:3px}
+.jassets{display:flex;flex-direction:column;gap:10px}
+.jas{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:12px}
+.jas1,.jas2{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.jas1 b{display:block}.jas small{display:block;font-size:11.5px;color:var(--muted)}
+.jas2{margin-top:8px}.jas2>div:first-child{min-width:0}.jp{font:700 16px var(--f-mono)}.jas2 span{font-size:12px}
+.jbtns{display:flex;gap:6px;flex-shrink:0}.jbtns .btn{padding:9px 12px;font-size:13px;border-radius:10px}
+.btn:disabled{opacity:.4}
+.jsp{display:block;flex-shrink:0}.jsp.wide{width:100%;height:auto;margin:10px 0}
+.jnext{position:sticky;bottom:-24px;background:var(--ink);padding:8px 0 24px;margin-bottom:-24px}
+.jq{font-size:15.5px;line-height:1.45;margin:0 0 14px}
+.jfork{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.jfc{display:flex;flex-direction:column;align-items:center;gap:4px;background:var(--panel);border:2px solid var(--line);border-radius:14px;padding:10px;text-align:center;min-width:0}
+.jfc img{width:100%;aspect-ratio:63/88;object-fit:cover;border-radius:8px;background:var(--panel-2)}
+.jfc b{font-size:13.5px}.jfc span{font-size:12px;color:var(--border-yellow);font-weight:700}.jfc small{font-size:11px;color:var(--muted)}
+.jfc em{font:700 16px var(--f-mono);font-style:normal;margin-top:4px}
+.jfc.hi{border-color:var(--up)}.jfc.lo{opacity:.7}
+.jverdict{font-weight:700;font-size:15px;margin:14px 0 6px}
+.jans{display:flex;flex-direction:column;gap:8px}.jans .btn{justify-content:flex-start;text-align:left}
+.jans .good{border-color:var(--up);color:var(--up)}.jans .bad{border-color:var(--down);color:var(--down)}.jans .dim{opacity:.5}
+.jtab{width:100%;border-collapse:collapse;font-size:13px;margin:8px 0}
+.jtab td{padding:7px 4px;border-bottom:1px solid var(--line)}.jtab td:last-child{text-align:right;font-family:var(--f-mono);white-space:nowrap}
+.jtab tr.b td{font-weight:700}
+.jdisp{display:grid;grid-template-columns:repeat(13,1fr);gap:3px;margin:6px 0}
+.jdisp i{aspect-ratio:1;border-radius:3px;background:var(--panel-2);border:1px solid var(--line)}.jdisp i.me{background:var(--border-yellow);border-color:var(--border-yellow)}
+.jpop{display:flex;flex-direction:column;gap:8px}
+.jpc{display:flex;justify-content:space-between;align-items:center;gap:10px;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:10px 12px}
+.jpc.on{border-color:var(--border-yellow)}.jpc b{display:block}.jpc small{display:block;font-size:11.5px;color:var(--muted);margin-top:2px}
+.jpc .btn{padding:9px 12px;font-size:13px;border-radius:10px;flex-shrink:0}
+.jsnipe{width:100%;height:180px;border-radius:20px;background:var(--panel-2);border:2px dashed var(--line);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px}
+.jsnipe span{font:800 22px var(--f-display)}.jsnipe small{color:var(--muted)}
+.jsnipe.go{background:var(--border-yellow);color:var(--on-acc);border:0}.jsnipe.go small{color:inherit}
+.jchart{min-height:90px}
+.jend .jscore{text-align:center;padding:14px 0}.jscore span{display:block;font:600 11px var(--f-mono);text-transform:uppercase;color:var(--muted)}
+.jscore b{display:block;font:800 40px var(--f-display);margin:6px 0}.jscore small{color:var(--muted)}
+.jlines{padding-left:18px;font-size:13.5px;line-height:1.5}
+.jrev{font:800 18px var(--f-display);margin:18px 0 6px}.jrevp{font-size:14px;line-height:1.55;margin:0 0 12px}
+.jlexl{display:flex;flex-direction:column;gap:8px}
+.jlexi{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:10px 12px}.jlexi.new{border-color:var(--border-yellow)}
+.jlexi b{font-size:14px}.jlexi em{font:600 10px var(--f-mono);text-transform:uppercase;color:var(--border-yellow);font-style:normal;margin-left:6px}
+.jlexi p{margin:5px 0 0;font-size:12.5px;line-height:1.45;color:var(--muted)}
+.jlexbig h2{font:800 26px var(--f-display);margin:4px 0 14px}
+.jside{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:12px 14px;margin-bottom:10px}.jside.cx{border-color:var(--border-yellow)}
+.jside span{font:600 11px var(--f-mono);text-transform:uppercase;color:var(--muted)}.jside p{margin:6px 0 0;font-size:14.5px;line-height:1.5}
 </style>
 </head>
 <body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="pb" viewBox="0 0 100 100"><defs><linearGradient id="pbV" x1="0" y1="0" x2="1" y2="1"><stop offset="0" style="stop-color:var(--pb1)"/><stop offset=".5" style="stop-color:var(--pb2)"/><stop offset="1" style="stop-color:var(--pb3)"/></linearGradient><radialGradient id="pbB" cx=".38" cy=".75" r=".75"><stop offset="0" style="stop-color:var(--pbb1)"/><stop offset="1" style="stop-color:var(--pbb2)"/></radialGradient><radialGradient id="pbC" cx=".4" cy=".35" r=".7"><stop offset="0" style="stop-color:var(--pbc1)"/><stop offset=".55" style="stop-color:var(--pbc2)"/><stop offset="1" style="stop-color:var(--pbc3)"/></radialGradient></defs><path d="M3 50a47 47 0 0 1 94 0z" fill="url(#pbV)"/><path d="M3 50a47 47 0 0 0 94 0z" fill="url(#pbB)"/><rect x="3" y="45.5" width="94" height="9" fill="#09080D"/><circle cx="50" cy="50" r="47" fill="none" stroke="#09080D" stroke-width="4"/><circle cx="50" cy="50" r="15.5" fill="#09080D"/><circle cx="50" cy="50" r="10" fill="url(#pbC)" style="stroke:var(--pb2)" stroke-width="2"/><path d="M19 33a35 35 0 0 1 17-15" fill="none" stroke="#fff" stroke-opacity=".38" stroke-width="4" stroke-linecap="round"/></symbol></svg>
-<script>window.__APPV="41";</script>
+<script>window.__APPV="42";</script>
 <div class="splash" id="splash" aria-hidden="true"><i class="hole"></i><i class="halo"></i><div class="bw"><svg class="b" viewBox="0 0 100 100"><use href="#pb"/></svg><svg class="t" viewBox="0 0 100 100"><use href="#pb"/></svg></div><i class="glow"></i></div>
 <script>setTimeout(function(){ if(window.__booted) return;
   var b=document.createElement("div"); b.setAttribute("role","alert");
@@ -858,6 +930,13 @@ input,select{font:inherit;color:var(--fg)}
   </section>
 
   <!-- ===== RECHERCHE ===== -->
+  <section class="view" id="playView" hidden>
+    <div class="scroll">
+      <h1 class="h1">Jouer</h1>
+      <p class="lede">Comprendre la crypto avec les cartes Pokémon : six jeux courts, de l'argent fictif et les vrais mécanismes du marché.</p>
+      <div id="playBody"></div>
+    </div>
+  </section>
   <section class="view" id="alertView" hidden>
     <div class="scroll">
       <h1 class="h1">Alertes</h1>
@@ -889,7 +968,7 @@ input,select{font:inherit;color:var(--fg)}
   <!-- ===== COLLECTION ===== -->
   <section class="view" id="colView" hidden>
     <div class="scroll">
-      <div class="homebar"><svg class="pball" viewBox="0 0 100 100" aria-hidden="true"><use href="#pb"/></svg><span class="brand">DEX<b>·</b>SCAN</span><button class="thbtn" id="themeBtn" aria-label="Changer de thème"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.6-.9 1.2-1.8-.5-1.1.2-2.2 1.4-2.2H17a4 4 0 0 0 4-4c0-5.5-4-10-9-10z"/><circle cx="7.5" cy="11" r="1.2"/><circle cx="10" cy="7" r="1.2"/><circle cx="15" cy="7" r="1.2"/></svg></button><span class="ver">v41</span></div>
+      <div class="homebar"><svg class="pball" viewBox="0 0 100 100" aria-hidden="true"><use href="#pb"/></svg><span class="brand">DEX<b>·</b>SCAN</span><button class="thbtn" id="themeBtn" aria-label="Changer de thème"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.6-.9 1.2-1.8-.5-1.1.2-2.2 1.4-2.2H17a4 4 0 0 0 4-4c0-5.5-4-10-9-10z"/><circle cx="7.5" cy="11" r="1.2"/><circle cx="10" cy="7" r="1.2"/><circle cx="15" cy="7" r="1.2"/></svg></button><span class="ver">v42</span></div>
       <h1 class="h1">Collection</h1>
       <p class="lede">Tes cartes rangées par série et par extension, dans l'ordre des numéros. Le mode Pokédex montre aussi celles qui te manquent, en grisé.</p>
       <div class="total" id="wallet">
@@ -921,6 +1000,7 @@ input,select{font:inherit;color:var(--fg)}
     <button class="tab" role="tab" aria-selected="false" data-v="extView"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>Extensions</button>
     <button class="tab" role="tab" aria-selected="false" data-v="searchView"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>Recherche</button>
     <button class="tab" role="tab" aria-selected="false" data-v="alertView"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg>Alertes<i class="tbadge" id="alertBadge" hidden></i></button>
+    <button class="tab" role="tab" aria-selected="false" data-v="playView"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 11h4M8 9v4"/><path d="M15 12h.01M18 10h.01"/><path d="M17.3 5H6.7a4 4 0 0 0-4 3.6l-.7 6.9A3 3 0 0 0 5 19c1 0 1.9-.5 2.5-1.3L9 16h6l1.5 1.7c.6.8 1.5 1.3 2.5 1.3a3 3 0 0 0 3-3.5l-.7-6.9A4 4 0 0 0 17.3 5z"/></svg>Jouer</button>
   </nav>
 </div>
 
@@ -931,6 +1011,10 @@ input,select{font:inherit;color:var(--fg)}
     <h3 id="sheetTitle">Carte</h3>
   </div>
   <div class="sheet-body" id="sheetBody"></div>
+</div>
+<div class="gov" id="gov" hidden>
+  <div class="gbar"><button class="round" id="govX" aria-label="Quitter le jeu" style="width:40px;height:40px"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg></button><h3 id="govT"></h3><span id="govS"></span></div>
+  <div class="gbody" id="govB"></div>
 </div>
 <div class="toast" id="toast"></div>
 
@@ -3712,13 +3796,422 @@ function renderExStats(){
   $("#exProg").hidden = all;
 }
 
+/* ================= JOUER : comprendre la crypto avec les cartes Pokémon =================
+   Six jeux courts, en argent fictif. Chaque partie finit par la « révélation » : le mécanisme vécu
+   porte un nom en crypto, et la notion rejoint le lexique Cartes ↔ Crypto. */
+const JEU = Object.assign({xp:0, badges:{}, lex:{}, best:{}, plays:{}}, store.get("jeu", {}));
+const jeuSave = () => store.set("jeu", JEU);
+const gE = (v, d=2) => (Math.round(v*100)/100).toLocaleString("fr-FR",{minimumFractionDigits:d, maximumFractionDigits:d})+" €";
+const gE0 = v => gE(v, 0);
+const rnd = (a, b) => a + Math.random()*(b-a);
+const pick = l => l[Math.floor(Math.random()*l.length)];
+const shuffle = l => { const a = l.slice(); for(let i=a.length-1;i>0;i--){ const j = Math.floor(Math.random()*(i+1)); [a[i],a[j]] = [a[j],a[i]]; } return a; };
+
+const LEX = [
+  ["supply","Offre en circulation","Le nombre d'exemplaires d'une carte ou d'une display qui existent encore.","La « supply » : le nombre de jetons en circulation. À demande égale, moins il y en a, plus chacun vaut cher."],
+  ["emission","Réimpression","Pokémon réimprime une série ou une carte : de nouveaux exemplaires arrivent sur le marché.","L'émission de nouveaux jetons (inflation) : chaque jeton existant pèse un peu moins lourd."],
+  ["cap","Fin d'impression","La série n'est plus produite : le stock ne fera que baisser.","Une supply plafonnée, comme les 21 millions de bitcoins : plus rien ne s'ajoute."],
+  ["burn","Ouvrir un booster","Chaque display ouverte disparaît pour toujours du marché du scellé.","Le « burn » : des jetons détruits volontairement, ce qui réduit l'offre restante."],
+  ["fork","Réédition","Même nom, même numéro, mais une autre impression avec sa propre cote.","Un « fork » : une copie d'une blockchain (BTC → BCH) qui devient un autre actif, avec un autre prix."],
+  ["oracle","Cote Cardmarket","Un prix de référence calculé à partir des ventes, lissé dans le temps.","Un « oracle » : la source de prix officielle qu'utilisent les applications crypto."],
+  ["trade","Vente eBay terminée","Le prix auquel une carte s'est vraiment vendue, à un instant précis.","Le dernier « trade » : la transaction réelle la plus récente, pas une estimation."],
+  ["book","Annonces en vente","Tous les prix demandés par les vendeurs, du moins cher au plus cher.","Le « carnet d'ordres » : la liste des prix auxquels on peut acheter ou vendre tout de suite."],
+  ["spread","Écart achat / revente","Acheter une carte puis la revendre aussitôt fait perdre de l'argent.","Le « spread » : l'écart entre le prix d'achat et le prix de vente immédiat."],
+  ["fees","Frais de vente","Commission, envoi, emballage : ce qui part avant que l'argent arrive chez toi.","Les frais de transaction (commission de la plateforme, frais de réseau)."],
+  ["liquidity","Liquidité","Une carte peut mettre des jours à trouver un acheteur, surtout si elle est chère.","La « liquidité » : la facilité à vendre vite sans faire baisser le prix."],
+  ["audit","Gradation","PSA, PCA ou CGC certifient l'authenticité et l'état de la carte dans un boîtier scellé.","Un audit : une preuve indépendante que l'actif est réel et conforme."],
+  ["pop","Population PSA","Le nombre de cartes notées 10, 9, 8… est public et grandit à chaque envoi.","La supply visible « on-chain » : tout le monde peut vérifier combien d'exemplaires existent."],
+  ["launch","Sortie de série","Précommandes, ruées en magasin, prix qui flambent la première semaine.","Le lancement d'un jeton : forte demande, peu d'offre au début, prix très volatils."],
+  ["pump","Effet YouTuber","Une vidéo fait grimper une carte… puis le prix retombe quand l'attention passe.","Le « pump and dump » : une hausse provoquée, suivie d'une chute brutale."],
+  ["fomo","Peur de rater","Acheter au plus haut parce que « tout le monde en parle ».","Le « FOMO » (fear of missing out) : acheter sous le coup de l'émotion, souvent au pire moment."],
+  ["hodl","Garder longtemps","Ne pas vendre à la première hausse, attendre la fin d'impression.","« HODL » : garder ses jetons malgré la volatilité, par conviction de long terme."],
+  ["scam","Fausses cartes","Des copies vendues comme vraies, surtout sur les cartes chères.","Les arnaques et « rug pulls » : un actif qui ne vaut rien au moment de le revendre."],
+  ["ev","Espérance de gain","En moyenne, un booster rapporte moins que son prix : c'est un pari.","L'espérance mathématique : ce que rapporte un pari en moyenne, sur beaucoup d'essais."],
+  ["sniping","Bots de réassort","Des programmes achètent en quelques millisecondes dès qu'un stock apparaît.","Les bots de « sniping » qui achètent un jeton dès la première seconde de cotation."],
+  ["ath","Plus haut historique","Le prix record jamais atteint par une carte.","L'« ATH » (all-time high) : le plus haut historique d'un jeton."],
+  ["diversif","Diversification","Ne pas mettre tout son budget sur une seule carte ou une seule série.","Répartir son argent entre plusieurs actifs pour limiter les pertes."]
+];
+const LEXS = {"supply": "Supply", "emission": "Émission de jetons", "cap": "Supply plafonnée", "burn": "Burn", "fork": "Fork", "oracle": "Oracle de prix", "trade": "Dernier trade", "book": "Carnet d'ordres", "spread": "Spread", "fees": "Frais de transaction", "liquidity": "Liquidité", "audit": "Audit", "pop": "Transparence on-chain", "launch": "Lancement de jeton", "pump": "Pump and dump", "fomo": "FOMO", "hodl": "HODL", "scam": "Arnaque / rug pull", "ev": "Espérance de gain", "sniping": "Bots de sniping", "ath": "ATH", "diversif": "Diversification"};
+const LEXM = Object.fromEntries(LEX.map(([k,t,c,x])=>[k,{k,t,c,x,s:LEXS[k]}]));
+const LEVELS = [[0,"Dresseur débutant"],[120,"Collectionneur"],[320,"Négociant"],[650,"Analyste du marché"],[1100,"Maître du marché"]];
+const lvlOf = xp => { let i = 0; LEVELS.forEach((l,j)=>{ if(xp>=l[0]) i = j; }); return {i, name:LEVELS[i][1], from:LEVELS[i][0], to:LEVELS[i+1]?.[0] ?? null}; };
+const BADGES = {
+  marchand:["🏪","Premier marché","Finir une partie du Marchand"], trader:["📈","Trader avisé","Finir le Marchand au-dessus de 750 €"],
+  fork:["🔀","Œil de lynx","Finir Fork ou pas fork"], fork8:["🎯","Sans faute","8 bonnes réponses sur 8 à Fork ou pas fork"],
+  display:["📦","Gardien du scellé","Finir La Display"], diamond:["💎","Mains de diamant","Garder toutes ses displays jusqu'au bout"],
+  frais:["🧾","Comptable","Finir Les Frais cachés"], frais4:["🧮","Rien ne m'échappe","4 bonnes réponses aux Frais cachés"],
+  pop:["🏷️","Expert en gradation","Finir Pop Report"], sniper:["⚡","Réflexes","Finir Le Sniper"], fast:["🤖","Plus rapide qu'un bot","Battre un bot de réassort"],
+  lexique:["📚","Lexique complet","Débloquer toutes les notions"]
+};
+const GAMES = [
+  {k:"marchand", e:"🏪", t:"Le Marchand", d:"52 semaines pour faire fructifier 500 € en cartes et displays. Les nouvelles font bouger les prix.", n:"Offre, demande, inflation"},
+  {k:"fork", e:"🔀", t:"Fork ou pas fork ?", d:"Originale ou réédition : laquelle vaut le plus ? Avec les vraies cotes Cardmarket.", n:"Fork, oracle de prix"},
+  {k:"display", e:"📦", t:"La Display", d:"100 displays existent. Les autres les ouvrent. Tu ouvres ou tu gardes ?", n:"Burn, rareté, patience"},
+  {k:"frais", e:"🧾", t:"Les Frais cachés", d:"Ce qu'il te reste vraiment après une vente. Les chiffres vont te surprendre.", n:"Frais, spread, liquidité"},
+  {k:"pop", e:"🏷️", t:"Pop Report", d:"Faire grader ou vendre brut ? Attention : la population PSA grandit.", n:"Audit, supply visible"},
+  {k:"sniper", e:"⚡", t:"Le Sniper", d:"Un réassort tombe. Achète avant les bots, puis choisis quand revendre.", n:"Lancement, FOMO, HODL"}
+];
+
+/* ---------- onglet Jouer ---------- */
+function renderPlay(){
+  const L = lvlOf(JEU.xp), nl = Object.keys(JEU.lex).length, nb = Object.keys(JEU.badges).length;
+  const pc = L.to ? Math.round((JEU.xp-L.from)/(L.to-L.from)*100) : 100;
+  $("#playBody").innerHTML = `
+    <div class="total jlvl"><div class="plabel"><span>Ton niveau</span><span>${JEU.xp} XP</span></div>
+      <div class="jlname">${esc(L.name)}</div>
+      <div class="jbar"><i style="width:${pc}%"></i></div>
+      <p class="psub" style="margin:8px 0 0">${L.to ? `Encore ${L.to-JEU.xp} XP pour « ${esc(LEVELS[L.i+1][1])} »` : "Niveau maximum atteint"} · ${nl}/${LEX.length} notions · ${nb}/${Object.keys(BADGES).length} badges</p></div>
+    <div class="jgames">${GAMES.map(g=>`<button class="jgame" data-game="${g.k}"><span class="je">${g.e}</span><b>${esc(g.t)}</b><span class="jd">${esc(g.d)}</span><span class="jn">${esc(g.n)}</span>${JEU.best[g.k]!=null?`<span class="jbest">Record : ${esc(JEU.best[g.k])}</span>`:""}</button>`).join("")}</div>
+    <h2 class="jh">Lexique Cartes ↔ Crypto <small>${nl}/${LEX.length}</small></h2>
+    <div class="jlex">${LEX.map(([k,t])=>JEU.lex[k] ? `<button class="jlx" data-lex="${k}"><b>${esc(t)}</b><span>⛓️ ${esc(LEXM[k].s)}</span></button>` : `<div class="jlx off"><b>???</b><span>Joue pour débloquer</span></div>`).join("")}</div>
+    <h2 class="jh">Badges</h2>
+    <div class="jbadges">${Object.entries(BADGES).map(([k,[e,t,d]])=>`<div class="jbd ${JEU.badges[k]?"on":""}" title="${esc(d)}"><span>${JEU.badges[k]?e:"🔒"}</span><b>${esc(t)}</b><small>${esc(d)}</small></div>`).join("")}</div>
+    <p class="fine jwarn">Ces jeux utilisent de l'argent fictif et simplifient le marché pour l'expliquer. Ce ne sont pas des conseils d'investissement : les cartes comme les cryptos peuvent perdre de la valeur, et les frais réduisent toujours les gains.</p>`;
+  $("#playBody").querySelectorAll("[data-game]").forEach(b=>b.onclick=()=>startGame(b.dataset.game));
+  $("#playBody").querySelectorAll("[data-lex]").forEach(b=>b.onclick=()=>lexCard(b.dataset.lex));
+}
+function lexCard(k){
+  const l = LEXM[k];
+  gOpen("Lexique", `<div class="jlexbig"><h2>${esc(l.t)}</h2><div class="jside"><span>🃏 Côté cartes</span><p>${esc(l.c)}</p></div><div class="jside cx"><span>⛓️ Côté crypto</span><p>${esc(l.x)}</p></div></div><div class="addrow"><button class="btn btn-g" id="gBack">Retour</button></div>`);
+  $("#gBack").onclick = gClose;
+}
+/* ---------- fenêtre de jeu ---------- */
+let gTimers = [];
+function gOpen(title, html){
+  gStop(); $("#govT").textContent = title; $("#govS").textContent = ""; $("#govB").innerHTML = html;
+  $("#gov").hidden = false; $("#govB").scrollTop = 0;
+}
+function gStop(){ gTimers.forEach(t=>{ clearTimeout(t); clearInterval(t); cancelAnimationFrame(t); }); gTimers = []; }
+function gClose(){ gStop(); $("#gov").hidden = true; renderPlay(); }
+$("#govX").onclick = gClose;
+const gStat = s => $("#govS").innerHTML = s;
+function gWin(k){ if(!JEU.badges[k]){ JEU.badges[k] = Date.now(); toast(`Badge débloqué : ${BADGES[k][0]} ${BADGES[k][1]}`); } }
+/* fin de partie : score, révélation crypto, notions débloquées, XP */
+function gEnd(o){
+  gStop();
+  const fresh = o.lex.filter(k=>!JEU.lex[k]);
+  o.lex.forEach(k=>JEU.lex[k] = JEU.lex[k] || Date.now());
+  JEU.xp += o.xp; JEU.plays[o.game] = (JEU.plays[o.game]||0)+1;
+  if(o.best!=null && (JEU.bestRaw?.[o.game]==null || o.bestRaw > JEU.bestRaw[o.game])){ JEU.bestRaw = JEU.bestRaw || {}; JEU.bestRaw[o.game] = o.bestRaw; JEU.best[o.game] = o.best; }
+  (o.badges||[]).forEach(gWin);
+  if(Object.keys(JEU.lex).length===LEX.length) gWin("lexique");
+  jeuSave();
+  $("#govB").innerHTML = `<div class="jend">
+    <div class="jscore"><span>${esc(o.label||"Résultat")}</span><b>${o.score}</b>${o.sub?`<small>${o.sub}</small>`:""}</div>
+    ${(o.lines||[]).length?`<ul class="jlines">${o.lines.map(l=>`<li>${l}</li>`).join("")}</ul>`:""}
+    <h3 class="jrev">La révélation</h3><p class="jrevp">${o.reveal}</p>
+    <div class="jlexl">${o.lex.map(k=>`<div class="jlexi ${fresh.includes(k)?"new":""}"><b>${esc(LEXM[k].t)}${fresh.includes(k)?" <em>nouveau</em>":""}</b><p>🃏 ${esc(LEXM[k].c)}</p><p>⛓️ ${esc(LEXM[k].x)}</p></div>`).join("")}</div>
+    <p class="psub" style="text-align:center">+${o.xp} XP</p>
+    <div class="addrow"><button class="btn btn-y" id="gAgain">Rejouer</button><button class="btn btn-g" id="gOut">Tous les jeux</button></div>
+    <p class="fine">Argent fictif, marché simplifié. Ce n'est pas un conseil d'investissement.</p></div>`;
+  $("#govB").scrollTop = 0;
+  $("#gAgain").onclick = ()=>startGame(o.game);
+  $("#gOut").onclick = gClose;
+}
+function startGame(k){ ({marchand:gMarchand, fork:gFork, display:gDisplay, frais:gFrais, pop:gPop, sniper:gSniper})[k](); }
+/* petite courbe */
+function spark(a, w=90, h=28, col){
+  if(a.length<2) return "";
+  const mn = Math.min(...a), mx = Math.max(...a), r = mx-mn || 1;
+  const pts = a.map((v,i)=>`${(i/(a.length-1)*w).toFixed(1)},${(h-2-(v-mn)/r*(h-4)).toFixed(1)}`).join(" ");
+  const c = col || (a[a.length-1] >= a[0] ? "var(--up)" : "var(--down)");
+  return `<svg class="jsp" viewBox="0 0 ${w} ${h}" width="${w}" height="${h}" aria-hidden="true"><polyline points="${pts}" fill="none" stroke="${c}" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></svg>`;
+}
+
+/* ===== 1. Le Marchand ===== */
+function gMarchand(){
+  const A = [
+    {k:"disp", n:"Display scellée", s:"Série récente, 36 boosters", p:160, vol:.035, dr:.002},
+    {k:"chase", n:"Carte phare moderne", s:"Illustration spéciale", p:90, vol:.07, dr:-.006},
+    {k:"vint", n:"Dracaufeu 1999", s:"Carte vintage, très bon état", p:420, vol:.03, dr:.003},
+    {k:"bulk", n:"Lot de 100 communes", s:"Cartes sans rareté", p:12, vol:.02, dr:-.003}
+  ].map(a=>({...a, base:a.p, tmp:1, h:[a.p], q:0, cost:0}));
+  const EV = [
+    {k:"launch", t:"Nouvelle série dans les magasins : tout le monde cherche la carte phare.", fx:{chase:[.45,0]}, dr:{chase:-.012}},
+    {k:"pump", t:"Un YouTuber à 2 millions d'abonnés montre la carte phare en vidéo.", fx:{chase:[.6,0]}},
+    {k:"emission", t:"Pokémon annonce une réédition du Dracaufeu 1999 pour un anniversaire.", fx:{vint:[0,-.18]}},
+    {k:"cap", t:"Fin d'impression : plus aucune display de la série ne sort d'usine.", fx:{disp:[0,.08]}, dr:{disp:.016}},
+    {k:"supply", t:"Réassort massif en grande surface : des milliers de displays arrivent.", fx:{disp:[0,-.14], chase:[0,-.1]}},
+    {k:"scam", t:"Vague de fausses cartes vendues en ligne : les acheteurs se méfient.", fx:{vint:[-.14,0], chase:[-.1,0]}},
+    {k:"ath", t:"Record aux enchères pour un Dracaufeu vintage : la presse en parle.", fx:{vint:[0,.16]}},
+    {k:"fomo", t:"Anniversaire de Pokémon : publicités, collabs, tout le monde veut des cartes.", fx:{disp:[.18,0], chase:[.22,0], vint:[.12,0], bulk:[.1,0]}},
+    {k:"liquidity", t:"Le marché ralentit : beaucoup de vendeurs, peu d'acheteurs.", fx:{disp:[0,-.1], chase:[0,-.12], vint:[0,-.08], bulk:[0,-.1]}}
+  ];
+  const plan = {}; shuffle(EV).slice(0,8).forEach((e,i)=>{ plan[3+i*6+Math.floor(rnd(0,4))] = e; });
+  const st = {w:1, cash:500, news:"Tu as 500 € et un an devant toi. Achète, garde, revends : les nouvelles de la semaine font bouger les prix.", seen:new Set(["fees","spread","diversif"]), sold:0};
+  const FEE = .07; // commission + envoi, en moyenne
+  const px = a => a.base*a.tmp;
+  const net = () => st.cash + A.reduce((s,a)=>s+a.q*px(a)*(1-FEE),0);
+  function week(){
+    const e = plan[st.w];
+    for(const a of A){
+      a.dr += (e?.dr?.[a.k]||0);
+      a.base *= 1 + a.dr + (Math.random()*2-1)*a.vol;
+      a.tmp = 1 + (a.tmp-1)*.62;
+      if(e?.fx?.[a.k]){ const [t,p] = e.fx[a.k]; a.tmp += t; a.base *= 1+p; }
+      a.base = Math.max(a.p*.15, a.base);
+      a.h.push(px(a));
+    }
+    st.news = e ? e.t : pick(["Semaine calme sur le marché.","Rien de spécial cette semaine.","Quelques ventes, sans grande nouvelle.","Le marché respire."]);
+    if(e) st.seen.add(e.k);
+    st.w++;
+  }
+  function draw(){
+    const n = net(), pnl = n-500;
+    gStat(`Semaine ${Math.min(st.w,52)}/52`);
+    $("#govB").innerHTML = `
+      <div class="jtop"><div><span>Argent</span><b>${gE(st.cash)}</b></div><div><span>Patrimoine net</span><b>${gE(n)}</b></div><div><span>Résultat</span><b class="${pnl>=0?"up":"down"}">${pnl>=0?"+":""}${gE(pnl)}</b></div></div>
+      <div class="jnews"><span>📰 Semaine ${Math.min(st.w,52)}</span>${esc(st.news)}</div>
+      <div class="jassets">${A.map((a,i)=>{ const p = px(a), pr = a.h[a.h.length-2] ?? p, d = (p-pr)/pr*100;
+        return `<div class="jas"><div class="jas1"><div><b>${esc(a.n)}</b><small>${esc(a.s)}</small></div>${spark(a.h.slice(-26))}</div>
+          <div class="jas2"><div><b class="jp">${gE(p)}</b> <span class="${d>=0?"up":"down"}">${d>=0?"▲":"▼"} ${Math.abs(d).toFixed(1).replace(".",",")} %</span><small>${a.q?`Tu en as ${a.q} · revente nette ${gE(p*(1-FEE))}`:"Tu n'en as pas"}</small></div>
+          <div class="jbtns"><button class="btn btn-g" data-s="${i}" ${a.q?"":"disabled"}>Vendre</button><button class="btn btn-y" data-b="${i}" ${st.cash>=p?"":"disabled"}>Acheter</button></div></div></div>`; }).join("")}</div>
+      <div class="addrow jnext"><button class="btn btn-y" id="jW1">Semaine suivante</button><button class="btn btn-g" id="jW4">+4 semaines</button></div>
+      <p class="fine">Tu achètes au prix affiché ; à la revente, ${Math.round(FEE*100)} % partent en commission et en envoi. Comme en vrai.</p>`;
+    $("#govB").querySelectorAll("[data-b]").forEach(b=>b.onclick=()=>{ const a = A[+b.dataset.b], p = px(a); if(st.cash<p) return; st.cash -= p; a.q++; draw(); });
+    $("#govB").querySelectorAll("[data-s]").forEach(b=>b.onclick=()=>{ const a = A[+b.dataset.s]; if(!a.q) return; st.cash += px(a)*(1-FEE); a.q--; st.sold++; st.seen.add("spread"); draw(); });
+    $("#jW1").onclick = ()=>{ week(); st.w>52 ? end() : draw(); };
+    $("#jW4").onclick = ()=>{ for(let i=0;i<4 && st.w<=52;i++) week(); st.w>52 ? end() : draw(); };
+  }
+  function end(){
+    const n = net(), pnl = n-500;
+    const kinds = A.filter(a=>a.q>0).length;
+    if(kinds>=2) st.seen.add("diversif");
+    const best = A.map(a=>({a, r:a.h[a.h.length-1]/a.h[0]})).sort((x,y)=>y.r-x.r)[0];
+    gEnd({game:"marchand", label:"Patrimoine final", score:gE(n), sub:`${pnl>=0?"+":""}${gE(pnl)} sur l'année`, best:gE0(n), bestRaw:n,
+      lines:[`Meilleur actif de l'année : <b>${esc(best.a.n)}</b> (${best.r>=1?"+":""}${Math.round((best.r-1)*100)} %)`, `Ce que tu détiens encore est compté au prix de revente, frais déduits.`, kinds>=2?"Tu as réparti ton argent sur plusieurs actifs : moins de risque si l'un s'effondre.":"Tout sur un seul actif : si la nouvelle tombe mal, tout baisse en même temps."],
+      reveal:"Chaque nouvelle que tu as lue existe aussi en crypto. La sortie d'une série, c'est le lancement d'un jeton ; la réédition, c'est l'émission de nouveaux jetons ; la fin d'impression, c'est une offre plafonnée ; la vidéo du YouTuber, c'est un « pump » qui retombe. Et les frais de revente, c'est ce qui sépare un bon trade d'une perte.",
+      lex:[...st.seen].filter(k=>LEXM[k]).slice(0,11), xp: 40 + (pnl>0?30:0) + (n>=750?30:0), badges:["marchand", ...(n>=750?["trader"]:[])]});
+  }
+  gOpen("Le Marchand", ""); draw();
+}
+
+/* ===== 2. Fork ou pas fork ? (vraies cotes Cardmarket) ===== */
+async function gFork(){
+  gOpen("Fork ou pas fork ?", `<div class="empty"><span class="loader"></span><br><br>Lecture des vraies cotes Cardmarket…</div>`);
+  const ids = shuffle(Object.keys(PRINT_OF)), pairs = [];
+  const price = async id => { const c = await getJSON(`${API}/en/cards/${encodeURIComponent(id)}`).catch(()=>null); return c ? {c, p:mainPrice(c)} : null; };
+  for(let i=0; i<ids.length && pairs.length<8; i+=4){
+    const got = await Promise.all(ids.slice(i,i+4).map(async r=>{ const [o, x] = await Promise.all([price(PRINT_OF[r].orig), price(r)]); return o?.p && x?.p ? {o, x, kind:PRINT_OF[r].kind, no:PRINT_OF[r].no} : null; }));
+    pairs.push(...got.filter(Boolean)); if($("#gov").hidden) return;
+  }
+  if(pairs.length<3){ $("#govB").innerHTML = `<div class="empty">Impossible de lire les cotes pour l'instant (connexion ?). Réessaie dans un moment.<br><br><button class="btn btn-g" id="gOut">Retour</button></div>`; $("#gOut").onclick = gClose; return; }
+  const P = pairs.slice(0,8); let i = 0, ok = 0;
+  const one = () => {
+    const q = P[i], left = Math.random()<.5, A = left ? [q.o,"Originale"] : [q.x, REPRINTS[q.kind].lbl+" ("+REPRINTS[q.kind].year+")"], B = left ? [q.x, REPRINTS[q.kind].lbl+" ("+REPRINTS[q.kind].year+")"] : [q.o,"Originale"];
+    gStat(`${i+1}/${P.length} · ${ok} ✓`);
+    $("#govB").innerHTML = `<p class="jq">Même carte, même numéro <b>${esc(q.no)}</b>. Laquelle vaut le plus ?</p>
+      <div class="jfork">${[A,B].map((s,j)=>`<button class="jfc" data-j="${j}">${imgTag(s[0].c,"low",'alt=""')}<b>${esc(s[0].c.name)}</b><span>${esc(s[1])}</span><small>${esc(s[0].c.set?.name||"")}</small><em class="jfp" hidden>${gE(s[0].p)}</em></button>`).join("")}</div><div id="jfr"></div>`;
+    $("#govB").querySelectorAll(".jfc").forEach(b=>b.onclick=()=>{
+      if($("#jfr").innerHTML) return;
+      const S = [A,B], j = +b.dataset.j, win = S[j][0].p >= S[1-j][0].p; if(win) ok++;
+      $("#govB").querySelectorAll(".jfc").forEach((x,k)=>{ x.querySelector(".jfp").hidden = false; x.classList.add(S[k][0].p >= S[1-k][0].p ? "hi" : "lo"); });
+      const hi = Math.max(q.o.p,q.x.p), lo = Math.min(q.o.p,q.x.p), origHi = q.o.p>=q.x.p;
+      $("#jfr").innerHTML = `<div class="jverdict ${win?"up":"down"}">${win?"Bien vu !":"Raté !"} ${hi/lo>=1.5?`La plus chère vaut <b>×${(hi/lo).toFixed(1).replace(".",",")}</b> l'autre.`:"Les deux valent presque pareil."}</div>
+        <p class="psub">${origHi ? "L'originale est plus ancienne et a souvent été jouée, abîmée ou perdue : il en reste moins en bon état. La réédition a créé une nouvelle offre à côté, sans remplacer l'originale." : "Ici, la réédition vaut plus : elle est récente, très demandée et parfois imprimée en quantité limitée. Le prix suit la demande, pas l'âge."} Cotes Cardmarket du jour.</p>
+        <button class="btn btn-y" id="jfn" style="width:100%;margin-top:10px">${i+1<P.length?"Carte suivante":"Voir le résultat"}</button>`;
+      $("#jfn").onclick = ()=>{ i++; i<P.length ? one() : end(); };
+    });
+  };
+  const end = () => gEnd({game:"fork", label:"Bonnes réponses", score:`${ok}/${P.length}`, best:`${ok}/${P.length}`, bestRaw:ok/P.length,
+    reveal:"Une réédition, c'est un « fork » : en crypto, quand une blockchain est copiée (comme Bitcoin Cash à partir de Bitcoin), on obtient un nouvel actif qui porte presque le même nom mais vit sa propre vie et a son propre prix. Pour éviter les erreurs, il faut toujours vérifier quelle version on achète : sur une carte, la série et le tampon ; en crypto, l'adresse exacte du jeton.",
+    lex:["fork","oracle","supply"], xp: 30 + ok*5, badges:["fork", ...(ok===P.length && P.length>=8?["fork8"]:[])]});
+  one();
+}
+
+/* ===== 3. La Display ===== */
+function gDisplay(){
+  const st = {y:0, rem:100, mine:3, cash:0, base:150, hype:1, log:[], hist:[150], rep:false, repY:Math.floor(rnd(3,7)), opened:0};
+  const price = () => st.base * Math.pow(100/st.rem, 1.25) * st.hype;
+  const N = 10;
+  function draw(msg){
+    gStat(`Année ${st.y+1}/${N}`);
+    $("#govB").innerHTML = `
+      <div class="jtop"><div><span>Displays existantes</span><b>${st.rem}</b></div><div><span>Prix d'une display</span><b>${gE0(price())}</b></div><div><span>Tes gains</span><b>${gE0(st.cash)}</b></div></div>
+      <div class="jdisp">${Array.from({length:Math.min(st.rem,130)},(_,i)=>`<i class="${i<st.mine?"me":""}"></i>`).join("")}</div>
+      <p class="psub" style="text-align:center">Chaque case est une display encore scellée. Celles en couleur sont les tiennes (${st.mine}).</p>
+      ${spark(st.hist, 300, 56, "var(--border-yellow)").replace('class="jsp"','class="jsp wide"')}
+      ${msg?`<div class="jnews">${msg}</div>`:""}
+      <div class="addrow"><button class="btn btn-g" id="jOpen" ${st.mine?"":"disabled"}>Ouvrir une display</button><button class="btn btn-y" id="jKeep">Année suivante</button></div>
+      <p class="fine">En ouvrant, tu touches la valeur des cartes tirées ; la display disparaît du marché. En gardant, tu paries sur la rareté.</p>`;
+    $("#jOpen").onclick = open; $("#jKeep").onclick = next;
+  }
+  function open(){
+    if(!st.mine) return;
+    const p = price(), r = Math.random();
+    const v = r < .02 ? p*rnd(3,6) : r < .16 ? p*rnd(.8,1.6) : p*rnd(.28,.6);
+    st.mine--; st.rem--; st.cash += v; st.opened++;
+    draw(`📦 Tu ouvres une display qui valait ${gE0(p)}… et tu tires des cartes pour <b>${gE0(v)}</b>. ${v>p?"Belle ouverture !":"Moins que le prix de la display, comme le plus souvent."} Il reste ${st.rem} displays dans le monde.`);
+  }
+  function next(){
+    st.y++;
+    const o = Math.round((st.rem-st.mine)*rnd(.06,.14)); st.rem -= o;
+    let msg = `Cette année, les autres collectionneurs ont ouvert <b>${o}</b> displays. Il en reste ${st.rem}.`;
+    if(st.y===st.repY && !st.rep){ st.rep = true; st.rem += 25; st.hype *= .92; msg += ` <br>⚠️ <b>Réimpression surprise :</b> Pokémon remet 25 displays en vente. Le prix baisse.`; }
+    st.hype = Math.max(.8, Math.min(1.3, st.hype*rnd(.95,1.07)));
+    st.hist.push(price());
+    if(st.y>=N) return end(); draw(msg);
+  }
+  function end(){
+    const fin = price(), tot = st.cash + st.mine*fin, kept = 3*fin, start = 3*150;
+    gEnd({game:"display", label:"Ta valeur finale", score:gE0(tot), sub:`Au départ, tes 3 displays valaient ${gE0(start)}`, best:gE0(tot), bestRaw:tot,
+      lines:[`Une display vaut maintenant <b>${gE0(fin)}</b> (il en reste ${st.rem} sur 100).`, `Si tu avais tout gardé : <b>${gE0(kept)}</b>.`, st.opened?`Tu en as ouvert ${st.opened} pour ${gE0(st.cash)} de cartes.`:"Tu n'as rien ouvert : pari sur la rareté."],
+      reveal:"Chaque display ouverte disparaît : c'est un « burn ». En crypto, certains projets détruisent des jetons pour réduire l'offre, ce qui peut faire monter le prix des jetons restants. Mais la réimpression surprise te rappelle l'autre côté : si l'émetteur peut créer de nouveaux exemplaires, la rareté n'est jamais garantie. Et ouvrir un booster, c'est un pari dont l'espérance est en général négative.",
+      lex:["burn","supply","emission","ev","hodl","cap"], xp: 40 + (tot>start?20:0), badges:["display", ...(st.mine===3?["diamond"]:[])]});
+  }
+  gOpen("La Display", ""); draw("Tu possèdes 3 displays d'une série qui n'est plus imprimée. 100 displays existent encore dans le monde.");
+}
+
+/* ===== 4. Les Frais cachés (tarifs : ordre de grandeur, novembre 2026) ===== */
+function gFrais(){
+  const Q = [
+    {q:"Tu achètes une carte 100 € sur Cardmarket (+ 5 € de port). Tu la revends aussitôt au même prix, sur Cardmarket. Combien il te reste ?",
+     a:["105 €","100 €","94 €","85 €"], ok:2,
+     rows:[["Prix de vente",100],["Commission Cardmarket (5 % + 0,01 €)",-5.01],["Emballage (sleeve, toploader, enveloppe)",-1],["Tu touches",93.99,1],["Tu avais payé (carte + port)",105],["Perte immédiate",-11.01,1]],
+     t:"Sans que le prix bouge, tu as perdu 10 %. C'est l'écart entre acheter et revendre : le « spread »."},
+    {q:"Sur eBay, la vente est gratuite pour les particuliers depuis septembre 2026, mais l'acheteur paie des frais de protection (0,10 € + 7 % jusqu'à 20 €). Pour qu'il paie 20 € tout compris, quel prix affiches-tu ?",
+     a:["20,00 €","19,50 €","18,60 €","17,00 €"], ok:2,
+     rows:[["Prix affiché",18.6],["Frais de protection payés par l'acheteur",1.40],["L'acheteur paie",20,1],["Tu touches (avant emballage)",18.6,1]],
+     t:"Les frais ne disparaissent pas : ils changent juste de côté. Si l'acheteur paie plus, il accepte un prix plus bas."},
+    {q:"Ta carte brute vaut 150 €. Une PSA 10 se vend 400 €, une PSA 9 250 €, une PSA 8 160 €. Tu as 1 chance sur 4 d'avoir un 10, 2 sur 4 un 9, 1 sur 4 un 8. Gradation + envois assurés ≈ 110 €. Faire grader, c'est rentable en moyenne ?",
+     a:["Oui, largement","Non, en moyenne tu perds"], ok:1,
+     rows:[["PSA 10 (1/4) : 400 € − 5 % − 110 €",270],["PSA 9 (2/4) : 250 € − 5 % − 110 €",127.5],["PSA 8 (1/4) : 160 € − 5 % − 110 €",42],["Moyenne pondérée",141.75,1],["Vendre brute : 150 € − 5 %",142.5,1]],
+     t:"Le PSA 10 fait rêver, mais en moyenne la gradation ne rapporte rien ici. C'est l'« espérance de gain » : il faut regarder tous les résultats possibles, pas seulement le meilleur."},
+    {q:"Comparaison : tu achètes 100 € d'un grand jeton crypto sur une plateforme à 0,1 % de frais, et tu revends tout de suite. Combien il te reste ?",
+     a:["99,80 €","95 €","90 €","100 €"], ok:0,
+     rows:[["Achat : 100 € − 0,1 %",99.9],["Revente : − 0,1 %",-0.1],["Il te reste",99.8,1],["Même opération avec une carte (question 1)",93.99,1]],
+     t:"Les cartes ont des frais beaucoup plus lourds que les grandes cryptos : il faut que la carte monte d'environ 10 % juste pour revenir à zéro. C'est le prix d'un marché peu « liquide »."}
+  ];
+  let i = 0, ok = 0;
+  const one = () => {
+    const q = Q[i]; gStat(`${i+1}/${Q.length} · ${ok} ✓`);
+    $("#govB").innerHTML = `<p class="jq">${esc(q.q)}</p><div class="jans">${q.a.map((a,j)=>`<button class="btn btn-g" data-a="${j}">${esc(a)}</button>`).join("")}</div><div id="jfr"></div>`;
+    $("#govB").querySelectorAll("[data-a]").forEach(b=>b.onclick=()=>{
+      if($("#jfr").innerHTML) return;
+      const j = +b.dataset.a, win = j===q.ok; if(win) ok++;
+      $("#govB").querySelectorAll("[data-a]").forEach((x,k)=>x.classList.add(k===q.ok?"good":k===j?"bad":"dim"));
+      $("#jfr").innerHTML = `<div class="jverdict ${win?"up":"down"}">${win?"Exact !":"Pas tout à fait."}</div>
+        <table class="jtab">${q.rows.map(([l,v,b])=>`<tr class="${b?"b":""}"><td>${esc(l)}</td><td>${v<0?"−":""}${gE(Math.abs(v))}</td></tr>`).join("")}</table>
+        <p class="psub">${esc(q.t)}</p><button class="btn btn-y" id="jfn" style="width:100%;margin-top:10px">${i+1<Q.length?"Question suivante":"Voir le résultat"}</button>`;
+      $("#jfn").onclick = ()=>{ i++; i<Q.length ? one() : end(); };
+    });
+  };
+  const end = () => gEnd({game:"frais", label:"Bonnes réponses", score:`${ok}/${Q.length}`, best:`${ok}/${Q.length}`, bestRaw:ok,
+    lines:["Tarifs : ordre de grandeur en novembre 2026 (Cardmarket 5 %, eBay gratuit pour les particuliers avec frais côté acheteur, PSA environ 80 $ par carte). Vérifie toujours les tarifs du jour."],
+    reveal:"Les annonces en vente forment un « carnet d'ordres » et chaque vente conclue est un « trade » : le vrai prix, c'est celui auquel tu peux vendre, pas la cote affichée. En crypto comme en cartes, les frais sont l'ennemi silencieux. Une plateforme crypto prend souvent 0,1 % à 1 % ; une vente de carte coûte 5 à 15 % une fois l'envoi compté. Résultat : plus on achète et revend souvent, plus on perd. C'est pour ça que le marché des cartes récompense surtout la patience.",
+    lex:["fees","spread","liquidity","book","trade","ev","audit"], xp: 30 + ok*8, badges:["frais", ...(ok===Q.length?["frais4"]:[])]});
+  gOpen("Les Frais cachés", ""); one();
+}
+
+/* ===== 5. Pop Report ===== */
+function gPop(){
+  const C = [
+    {n:"Carte phare moderne", s:"Série 2025", raw:60, cond:"Centrage parfait, coins nets", q:[.55,.38,.07], pop:14000, m:[2.6,1.3,.9], pop2:3},
+    {n:"Dracaufeu vintage", s:"1999", raw:300, cond:"Léger décentrage, un coin blanchi", q:[.04,.36,.6], pop:120, m:[18,4,1.6], pop2:1.1},
+    {n:"Promo rare", s:"Événement 2016", raw:45, cond:"Très bon état, surface propre", q:[.35,.5,.15], pop:600, m:[6,2.2,1.1], pop2:1.2},
+    {n:"Carte commune", s:"Série 2024", raw:3, cond:"Parfaite", q:[.7,.25,.05], pop:900, m:[10,3,1.5], pop2:1.5}
+  ];
+  const COST = 95, sel = C.map(()=>false);
+  gStat("Choisis");
+  const draw = () => {
+    $("#govB").innerHTML = `<p class="jq">Tu as 4 cartes. Pour chacune : la faire grader (≈ ${COST} € avec les envois assurés) ou la vendre brute ?</p>
+      <div class="jpop">${C.map((c,i)=>`<div class="jpc ${sel[i]?"on":""}"><div><b>${esc(c.n)}</b><small>${esc(c.s)} · brute ${gE0(c.raw)}</small><small>État : ${esc(c.cond)}</small><small>Population PSA 10 actuelle : <b>${c.pop.toLocaleString("fr-FR")}</b></small></div><button class="btn ${sel[i]?"btn-y":"btn-g"}" data-g="${i}">${sel[i]?"À grader":"Vendre brute"}</button></div>`).join("")}</div>
+      <button class="btn btn-y" id="jGo" style="width:100%;margin-top:12px">Envoyer chez PSA</button>
+      <p class="fine">Plus la population PSA 10 est grande, plus une PSA 10 est banale : sa prime baisse.</p>`;
+    $("#govB").querySelectorAll("[data-g]").forEach(b=>b.onclick=()=>{ sel[+b.dataset.g] = !sel[+b.dataset.g]; draw(); });
+    $("#jGo").onclick = run;
+  };
+  const run = () => {
+    gStat("Résultats");
+    const R = C.map((c,i)=>{
+      if(!sel[i]) return {c, g:null, v:c.raw*.95, v2:c.raw*.95};
+      const r = Math.random(), gi = r < c.q[0] ? 0 : r < c.q[0]+c.q[1] ? 1 : 2, g = [10,9,8][gi];
+      const v = c.raw*c.m[gi]*.95 - COST, v2 = gi===0 ? c.raw*(1+(c.m[0]-1)/c.pop2)*.95 - COST : v;
+      return {c, g, v, v2};
+    });
+    const t1 = R.reduce((s,x)=>s+x.v,0), t2 = R.reduce((s,x)=>s+x.v2,0), rawAll = C.reduce((s,c)=>s+c.raw*.95,0);
+    $("#govB").innerHTML = `<div class="jpop">${R.map(x=>`<div class="jpc"><div><b>${esc(x.c.n)}</b><small>${x.g?`Note : <b class="${x.g===10?"up":x.g===8?"down":""}">PSA ${x.g}</b>`:"Vendue brute"}</small></div><b class="${x.v>=x.c.raw*.95?"up":"down"}">${gE0(x.v)}</b></div>`).join("")}</div>
+      <div class="jnews">📈 <b>Six mois plus tard</b>, des milliers de collectionneurs ont envoyé la carte phare moderne : sa population PSA 10 passe de 14 000 à 42 000. Ta PSA 10 (si tu en as une) vaut moins.</div>
+      <table class="jtab"><tr><td>Total juste après la gradation</td><td>${gE0(t1)}</td></tr><tr class="b"><td>Total six mois plus tard</td><td>${gE0(t2)}</td></tr><tr><td>Si tu avais tout vendu brut</td><td>${gE0(rawAll)}</td></tr></table>
+      <button class="btn btn-y" id="jfn" style="width:100%;margin-top:12px">Voir la révélation</button>`;
+    $("#jfn").onclick = ()=>gEnd({game:"pop", label:"Résultat après six mois", score:gE0(t2), sub:`contre ${gE0(rawAll)} en vendant tout brut`, best:gE0(t2), bestRaw:t2,
+      lines:["La gradation rapporte surtout sur les cartes rares en bon état, dont la population PSA 10 est petite.","Sur une carte commune, le coût de la gradation dépasse presque toujours la prime."],
+      reveal:"La gradation, c'est un audit : une société indépendante certifie que la carte est vraie et dans tel état. Le rapport de population, c'est l'équivalent de la transparence d'une blockchain : tout le monde peut compter combien d'exemplaires notés 10 existent. Quand ce nombre grimpe, la rareté baisse, exactement comme quand un projet crypto émet de nouveaux jetons.",
+      lex:["audit","pop","supply","ev"], xp: 40 + (t2>rawAll?20:0), badges:["pop"]});
+  };
+  gOpen("Pop Report", ""); draw();
+}
+
+/* ===== 6. Le Sniper ===== */
+function gSniper(){
+  const st = {round:0, got:0, best:null, fast:false};
+  const BOTS = [520, 420, 330];
+  function reflex(){
+    gStat(`Réassort ${st.round+1}/3 · ${st.got} acheté${st.got>1?"s":""}`);
+    $("#govB").innerHTML = `<p class="jq">Un coffret Dresseur d'élite à 60 € va revenir en stock. Touche le bouton dès qu'il devient jaune. Un bot réagit en ${BOTS[st.round]} ms.</p>
+      <button class="jsnipe" id="jSn"><span>Rupture de stock</span><small>Attends…</small></button><div id="jfr"></div>`;
+    let t0 = 0, done = false;
+    const btn = $("#jSn");
+    const id = setTimeout(()=>{ t0 = performance.now(); btn.classList.add("go"); btn.innerHTML = `<span>RÉASSORT !</span><small>Achète maintenant</small>`; }, rnd(1400, 4200));
+    gTimers.push(id);
+    btn.onclick = ()=>{
+      if(done) return; done = true;
+      if(!t0){ clearTimeout(id); res(false, "Trop tôt ! La page n'était pas encore à jour : commande refusée."); return; }
+      const ms = Math.round(performance.now()-t0), win = ms < BOTS[st.round];
+      if(win){ st.got++; if(st.best==null || ms<st.best) st.best = ms; st.fast = true; }
+      res(win, win ? `${ms} ms : tu as battu le bot ! Coffret acheté 60 €.` : `${ms} ms : trop lent, le bot a tout pris en ${BOTS[st.round]} ms.`);
+    };
+    const res = (w, t) => { $("#jfr").innerHTML = `<div class="jverdict ${w?"up":"down"}">${t}</div><button class="btn btn-y" id="jfn" style="width:100%;margin-top:10px">${st.round<2?"Réassort suivant":"Passer à la revente"}</button>`;
+      $("#jfn").onclick = ()=>{ st.round++; st.round<3 ? reflex() : sell(); }; };
+  }
+  function sell(){
+    let have = st.got, fomo = false;
+    if(!have){ have = 1; fomo = true; }
+    const cost = fomo ? 140 : 60;
+    const curve = w => { // prix d'un coffret sur 2 ans : envolée, retombée, puis lente remontée après la fin d'impression
+      const peak = 60 + 85*Math.exp(-Math.pow((w-4)/3.2,2));
+      const dip = w>8 ? -18*Math.min(1,(w-8)/20) : 0;
+      const rise = w>40 ? 50*Math.min(1,(w-40)/64) : 0;
+      return Math.max(45, peak + dip + rise) + (Math.random()*2-1)*3;
+    };
+    const H = [60]; let w = 0, cash = 0, sold = [];
+    gStat("Revente");
+    $("#govB").innerHTML = `<p class="jq">${fomo ? "Les bots ont tout pris… alors tu achètes un coffret à un revendeur, au plus haut de la hype : <b>140 €</b>. C'est le FOMO." : `Tu as ${have} coffret${have>1?"s":""} payé${have>1?"s":""} 60 €.`} Les deux prochaines années défilent : touche « Vendre » quand tu veux. À chaque vente, environ 10 % partent en frais et en envoi.</p>
+      <div class="jtop"><div><span>Semaine</span><b id="jsW">0</b></div><div><span>Prix du coffret</span><b id="jsP">60 €</b></div><div><span>Il t'en reste</span><b id="jsH">${have}</b></div></div>
+      <div id="jsC" class="jchart"></div>
+      <button class="btn btn-y" id="jSell" style="width:100%">Vendre un coffret</button>
+      <div id="jsL" class="psub" style="margin-top:8px"></div>`;
+    const tick = ()=>{
+      w++; const p = curve(w); H.push(p);
+      $("#jsW").textContent = w; $("#jsP").textContent = gE0(p);
+      $("#jsC").innerHTML = spark(H, 320, 90, "var(--border-yellow)").replace('class="jsp"','class="jsp wide"');
+      if(w>=104){ clearInterval(iv); fin(); }
+    };
+    const iv = setInterval(tick, 140); gTimers.push(iv);
+    $("#jSell").onclick = ()=>{ if(!have || w>=104) return; const p = H[H.length-1]; const n = p*.9; cash += n; have--; sold.push([w,p]);
+      $("#jsH").textContent = have; $("#jsL").innerHTML = sold.map(([x,p])=>`Semaine ${x} : vendu ${gE0(p)} (tu touches ${gE0(p*.9)})`).join("<br>");
+      if(!have){ clearInterval(iv); setTimeout(fin, 500); } };
+    const fin = ()=>{
+      if(fin.done) return; fin.done = true;
+      const last = H[H.length-1], left = have*last*.9, tot = cash + left, paid = cost*(fomo?1:st.got), pnl = tot - paid;
+      const peakW = H.indexOf(Math.max(...H));
+      gEnd({game:"sniper", label:"Résultat", score:`${pnl>=0?"+":""}${gE0(pnl)}`, sub:`payé ${gE0(paid)} · récupéré ${gE0(tot)}`, best:`${pnl>=0?"+":""}${gE0(pnl)}`, bestRaw:pnl,
+        lines:[st.best!=null?`Meilleur réflexe : <b>${st.best} ms</b>`:"Aucun réassort gagné face aux bots.", `Le prix a atteint son maximum la semaine ${peakW} (${gE0(Math.max(...H))}), puis il est retombé quand le stock est revenu.`, have?`Tu as gardé ${have} coffret${have>1?"s":""}, compté${have>1?"s":""} au prix de la dernière semaine, frais déduits.`:"Tu as tout vendu."],
+        reveal:"Une sortie Pokémon ressemble au lancement d'un jeton crypto : des bots achètent en quelques millisecondes, le prix s'envole les premiers jours (c'est là que le FOMO pousse à acheter trop cher), puis retombe quand l'offre arrive. Ceux qui gardent jusqu'à la fin d'impression (« HODL ») sont parfois récompensés… mais pas toujours.",
+        lex:["sniping","launch","fomo","pump","hodl","cap"], xp: 40 + st.got*10 + (pnl>0?20:0), badges:["sniper", ...(st.fast?["fast"]:[])]});
+    };
+  }
+  gOpen("Le Sniper", ""); reflex();
+}
+
 /* ---------------- Onglets & langue ---------------- */
 function selectTab(v){
   document.querySelectorAll(".tab").forEach(t=>t.setAttribute("aria-selected", t.dataset.v===v));
-  for(const id of ["extView","scanView","searchView","colView","alertView"]) document.getElementById(id).hidden = id!==v;
+  for(const id of ["extView","scanView","searchView","colView","alertView","playView"]) document.getElementById(id).hidden = id!==v;
   if(v!=="scanView") stopCamera();   // on quitte le scanner : la caméra se coupe
   if(v==="colView") renderCol();
   if(v==="alertView") openAlerts(); else closeAlerts();
+  if(v==="playView") renderPlay();
   if(v==="extView" && !EX.inited){ EX.inited = true; showExtHome(); }
   if(v==="scanView"){
     requestAnimationFrame(layoutFrame); autoSchedule(500);

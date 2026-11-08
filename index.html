@@ -728,11 +728,22 @@ input,select{font:inherit;color:var(--fg)}
 .gbox .nx{position:absolute;right:14px;bottom:10px;animation:gbBl .8s steps(2) infinite}
 @keyframes gbIn{from{transform:translateY(20px);opacity:0}}
 @keyframes gbBl{50%{opacity:0}}
+.vers .prints{display:flex;gap:10px;overflow-x:auto;padding:2px 2px 6px;scrollbar-width:none}
+.vers .prints::-webkit-scrollbar{display:none}
+.vers .pv{flex:0 0 86px;display:flex;flex-direction:column;align-items:center;gap:3px;padding:6px;border-radius:12px;border:1.5px solid var(--line,rgba(255,255,255,.12));background:rgba(255,255,255,.03);color:inherit;font:inherit;text-align:center}
+.vers .pv[aria-pressed="true"]{border-color:var(--y,#ffcb05);background:rgba(255,203,5,.08)}
+.vers .pv img,.vers .pv .ph{width:70px;aspect-ratio:63/88;object-fit:cover;border-radius:5px;display:block;background:rgba(255,255,255,.06)}
+.vers .pv b{font-size:11.5px;line-height:1.2}
+.vers .pv span{font-size:11px;opacity:.65}
+.vers .edtabs{margin-top:10px}
+.tag.rep{background:rgba(255,203,5,.16);color:var(--y,#ffcb05)}
+.edown{display:block;font-size:11.5px;opacity:.7;margin-top:2px}
+.ctile .im .edb{position:absolute;left:4px;bottom:4px;font-size:9.5px;font-weight:700;padding:2px 5px;border-radius:6px;background:rgba(0,0,0,.72);color:#ffcb05;z-index:3}
 </style>
 </head>
 <body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="pb" viewBox="0 0 100 100"><defs><linearGradient id="pbV" x1="0" y1="0" x2="1" y2="1"><stop offset="0" style="stop-color:var(--pb1)"/><stop offset=".5" style="stop-color:var(--pb2)"/><stop offset="1" style="stop-color:var(--pb3)"/></linearGradient><radialGradient id="pbB" cx=".38" cy=".75" r=".75"><stop offset="0" style="stop-color:var(--pbb1)"/><stop offset="1" style="stop-color:var(--pbb2)"/></radialGradient><radialGradient id="pbC" cx=".4" cy=".35" r=".7"><stop offset="0" style="stop-color:var(--pbc1)"/><stop offset=".55" style="stop-color:var(--pbc2)"/><stop offset="1" style="stop-color:var(--pbc3)"/></radialGradient></defs><path d="M3 50a47 47 0 0 1 94 0z" fill="url(#pbV)"/><path d="M3 50a47 47 0 0 0 94 0z" fill="url(#pbB)"/><rect x="3" y="45.5" width="94" height="9" fill="#09080D"/><circle cx="50" cy="50" r="47" fill="none" stroke="#09080D" stroke-width="4"/><circle cx="50" cy="50" r="15.5" fill="#09080D"/><circle cx="50" cy="50" r="10" fill="url(#pbC)" style="stroke:var(--pb2)" stroke-width="2"/><path d="M19 33a35 35 0 0 1 17-15" fill="none" stroke="#fff" stroke-opacity=".38" stroke-width="4" stroke-linecap="round"/></symbol></svg>
-<script>window.__APPV="40";</script>
+<script>window.__APPV="41";</script>
 <div class="splash" id="splash" aria-hidden="true"><i class="hole"></i><i class="halo"></i><div class="bw"><svg class="b" viewBox="0 0 100 100"><use href="#pb"/></svg><svg class="t" viewBox="0 0 100 100"><use href="#pb"/></svg></div><i class="glow"></i></div>
 <script>setTimeout(function(){ if(window.__booted) return;
   var b=document.createElement("div"); b.setAttribute("role","alert");
@@ -878,7 +889,7 @@ input,select{font:inherit;color:var(--fg)}
   <!-- ===== COLLECTION ===== -->
   <section class="view" id="colView" hidden>
     <div class="scroll">
-      <div class="homebar"><svg class="pball" viewBox="0 0 100 100" aria-hidden="true"><use href="#pb"/></svg><span class="brand">DEX<b>·</b>SCAN</span><button class="thbtn" id="themeBtn" aria-label="Changer de thème"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.6-.9 1.2-1.8-.5-1.1.2-2.2 1.4-2.2H17a4 4 0 0 0 4-4c0-5.5-4-10-9-10z"/><circle cx="7.5" cy="11" r="1.2"/><circle cx="10" cy="7" r="1.2"/><circle cx="15" cy="7" r="1.2"/></svg></button><span class="ver">v40</span></div>
+      <div class="homebar"><svg class="pball" viewBox="0 0 100 100" aria-hidden="true"><use href="#pb"/></svg><span class="brand">DEX<b>·</b>SCAN</span><button class="thbtn" id="themeBtn" aria-label="Changer de thème"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.6-.9 1.2-1.8-.5-1.1.2-2.2 1.4-2.2H17a4 4 0 0 0 4-4c0-5.5-4-10-9-10z"/><circle cx="7.5" cy="11" r="1.2"/><circle cx="10" cy="7" r="1.2"/><circle cx="15" cy="7" r="1.2"/></svg></button><span class="ver">v41</span></div>
       <h1 class="h1">Collection</h1>
       <p class="lede">Tes cartes rangées par série et par extension, dans l'ordre des numéros. Le mode Pokédex montre aussi celles qui te manquent, en grisé.</p>
       <div class="total" id="wallet">
@@ -1201,15 +1212,67 @@ function mainPrice(card){
   const s = vs[0].key; return cmVal(cm,"trend",s) ?? cmVal(cm,"avg",s) ?? cmVal(cm,"avg7",s);
 }
 
+/* ---------------- Versions d'une carte : originale, rééditions, éditions ----------------
+   Une réédition garde le numéro de l'originale (Dracaufeu 4/102 existe en 1999, en 2021 et en 2026) :
+   chaque version a sa fiche, sa cote et ses propres recherches eBay, qui excluent les autres versions. */
+const REPRINTS = {
+  "30th-c": {lbl:"Réédition 30 ans", year:"2026", inc:"(30th,30ème,30eme,30ans,celebration,anniversary,anniversaire)", exc:["25th","25ème","25eme","celebrations","célébrations"],
+    m:{"001":["base1-4","4/102"],"002":["ex1-5","5/109"],"003":["ex11-11","11/113"],"004":["bw10-11","11/101"],"005":["gym1-18","18/132"],"006":["ex7-19","19/109"],"007":["neo1-25","25/111"],"008":["sm9-33","33/181"],"009":["xy9-41","41/122"],"010":["dp6-43","43/146"],"011":["pl1-47","47/127"],"012":["swsh4-50","050/185"],"013":["sm4-57","57/111"],"014":["base1-58","58/102"],"015":["gym2-69","69/132"],"016":["bw6-85","85/124"],"017":["sm1-89","89/149"],"018":["hgss4-94","94/102"],"019":["hgss4-99","99/102"],"020":["hgss4-100","100/102"],"021":["bw3-101","101/101"],"022":["dp4-106","106/106"],"023":["xy5-106","106/160"],"024":["neo4-106","106/105"],"025":["ex10-108","108/115"],"026":["swsh8-114","114/264"],"027":["swsh9-123","123/172"],"028":["swsh1-138","138/202"],"029":["ecard2-149","149/147"],"030":["sv02-203","203/193"]}},
+  "cel25cc": {lbl:"Réédition 25 ans", year:"2021", inc:"(celebrations,célébrations,celebration,25th,25ème,25eme,anniversary,anniversaire)", exc:["30th","30ème","30eme","30ans"],
+    m:{"CC001":["base1-2","2/102"],"CC002":["base1-4","4/102"],"CC003":["base1-15","15/102"],"CC004":["base1-73","73/102"],"CC005":["base5-8","8/82"],"CC006":["base5-15","15/82"],"CC007":["gym2-15","15/132"],"CC008":["basep-24","24"],"CC009":["neo1-20","20/111"],"CC010":["neo3-66","66/64"],"CC011":["ex4-9","9/95"],"CC012":["ex7-86","86/109"],"CC013":["ex12-88","88/92"],"CC014":["ex15-93","93/101"],"CC015":["pop5-17","17/17"],"CC016":["dp4-15","15/106"],"CC017":["pl2-109","109/111"],"CC018":["pl3-145","145/147"],"CC019":["hgss1-107","107/123"],"CC020":["bw1-113","113/114"],"CC021":["bw1-114","114/114"],"CC022":["bw4-54","54/99"],"CC023":["xy1-97","97/146"],"CC024":["xy6-76","76/108"],"CC025":["sm2-60","60/145"]}}
+};
+const PRINT_OF = {}, PRINT_GROUP = {};   // réédition -> {orig, no, kind} ; originale -> [rééditions]
+for(const [sid, k] of Object.entries(REPRINTS)) for(const [loc, [orig, no]] of Object.entries(k.m)){
+  const id = `${sid}-${loc}`; PRINT_OF[id] = {orig, no, kind:sid};
+  (PRINT_GROUP[orig] ||= []).push(id);
+}
+// toutes les versions d'une carte, originale en premier
+function printsOf(id){
+  const o = PRINT_OF[id]?.orig || id, l = PRINT_GROUP[o]; if(!l) return [];
+  return [{id:o, lbl:"Originale", year:""}, ...l.map(r=>({id:r, lbl:REPRINTS[PRINT_OF[r].kind].lbl, year:REPRINTS[PRINT_OF[r].kind].year}))];
+}
+/* éditions des séries Wizards : 1ère édition, Shadowless (Set de Base seulement), Unlimited */
+const ED_SETS = /^(base1|base2|base3|base5|gym1|gym2|neo1|neo2|neo3|neo4)$/;
+const EDS = {"1ed":"1ère édition", sl:"Shadowless", unl:"Unlimited"};
+function edsOf(c){
+  const sid = setIdOf(c?.id||""); if(!ED_SETS.test(sid) || c?.variants?.firstEdition===false) return [];
+  return sid==="base1" ? ["1ed","sl","unl"] : ["1ed","unl"];
+}
+const edLbl = k => EDS[k] || "";
+/* mots qui séparent les ventes d'une version de celles des autres */
+const EB_FAKE = ["proxy","custom","orica","fake","lot"];
+const EB_GRADED = ["psa","pca","cgc","bgs","beckett","collectaura","sgc","gradée","graded"];
+const EB_REPR = ["30th","30ème","30ans","celebration","celebrations","célébrations","25th","25ème","anniversary","anniversaire","reprint","evolutions","évolutions","classic"];
+const ebOr = l => `(${l.join(",")})`;
+/* recherche eBay d'une version précise.
+   o.name : nom à chercher (par défaut celui de la fiche) · o.ed : édition · o.grade : « PSA 10 » (sinon on exclut les cartes gradées) */
+function ebayQuery(c, o={}){
+  const id = c?.id || "", pr = PRINT_OF[id], off = c?.off ?? c?.set?.cardCount?.official;
+  let no = pr ? pr.no : String(c?.localId||"");
+  if(!pr && no && !no.includes("/") && off && /^\d+$/.test(no)) no = `${no}/${off}`;
+  const inc = [o.name ?? c?.name ?? "", no], exc = [...EB_FAKE];
+  if(pr){ const k = REPRINTS[pr.kind]; inc.push(k.inc); exc.push(...k.exc, "evolutions", "évolutions"); }
+  else if(PRINT_GROUP[id] || ED_SETS.test(setIdOf(id))) exc.push(...EB_REPR);
+  const ed = o.ed;
+  if(ed==="1ed") inc.push("(1st,1ère,1ere,1ed,ed1)"), exc.push("shadowless");
+  else if(ed==="sl") inc.push("shadowless"), exc.push("1st","1ère","1ere");
+  else if(ed==="unl") exc.push("1st","1ère","1ere","1ed","ed1","shadowless");
+  if(o.grade) inc.push(o.grade); else exc.push(...EB_GRADED);
+  if(o.jp) inc.push("japanese");
+  const q = inc.filter(Boolean).join(" ").replace(/\s+/g," ").trim() + " -" + ebOr([...new Set(exc)]);
+  return q;
+}
+const ebayUrl = (c, o={}, dom="ebay.fr") => `https://www.${dom}/sch/i.html?_nkw=${encodeURIComponent(ebayQuery(c, o))}&LH_Sold=1&LH_Complete=1&_sop=13`;
+
 /* ---------------- Fiche ---------------- */
-let current = null, currentAlts = [], currentVariant = 0;
+let current = null, currentAlts = [], currentVariant = 0, currentEd = null;
 function openSheet(){ const s=$("#sheet"); s.classList.add("open"); s.setAttribute("aria-hidden","false"); }
 function closeSheet(){ const s=$("#sheet"); s.classList.remove("open"); s.setAttribute("aria-hidden","true"); resumeCamera(); }
 $("#closeSheet").onclick = closeSheet;
 
 let currentDiag = null;
 async function showCard(id, alts, diag=null){
-  currentAlts = alts || currentAlts; currentVariant = 0; currentDiag = diag;
+  currentAlts = alts || currentAlts; currentVariant = 0; currentDiag = diag; currentEd = null;
   $("#sheetTitle").textContent = "Chargement…";
   $("#sheetBody").innerHTML = `<div class="empty"><span class="loader"></span><br><br>Récupération de la cote…</div>`;
   openSheet();
@@ -1442,6 +1505,9 @@ function renderCard(){
   const numTxt = `${c.localId}${off?" / "+String(off).padStart(String(c.localId).length,"0"):""}`;
   const types = (c.types||[]).map(t=>`<span class="tag type" style="background:${tcol(t)}">${esc(t)}</span>`).join("");
   const vs = cmVariants(c); if(currentVariant>=vs.length) currentVariant=0;
+  const eds = edsOf(c), prints = printsOf(c.id);
+  if(eds.length && !eds.includes(currentEd)){ const o = getCol().find(x=>x.id===c.id)?.ed || {}; currentEd = eds.find(k=>o[k]>0) || "unl"; }
+  if(!eds.length) currentEd = null;
   const suf = vs[currentVariant]?.key ?? "";
 
   let priceHTML;
@@ -1477,11 +1543,10 @@ function renderCard(){
   const qName = encodeURIComponent(`${c.name} ${c.localId}${off?"/"+off:""}`);
   const links = `<div class="links">
     <a href="https://www.cardmarket.com/fr/Pokemon/Products/Search?searchString=${encodeURIComponent(c.name)}" target="_blank" rel="noopener">${ico.ext}Voir sur Cardmarket</a>
-    <a href="https://www.ebay.fr/sch/i.html?_nkw=${qName}&LH_Sold=1&LH_Complete=1" target="_blank" rel="noopener">${ico.ext}Ventes eBay réalisées</a>
+    <a href="${esc(ebayUrl(c,{ed:currentEd}))}" target="_blank" rel="noopener">${ico.ext}Ventes eBay réalisées${currentEd?" · "+esc(edLbl(currentEd)):PRINT_OF[c.id]?" · "+esc(REPRINTS[PRINT_OF[c.id].kind].lbl.toLowerCase()):""}</a>
   </div>`;
 
-  const gq = g => encodeURIComponent(`${c.name} ${c.localId}${off?"/"+off:""} ${g}`);
-  const graded = `<div class="section"><h4>Cartes gradées · ventes eBay réalisées</h4><div class="gradegrid">${["PSA 10","PSA 9","CollectAura 10","CollectAura 9.5"].map(g=>`<a class="gradebtn" href="https://www.ebay.fr/sch/i.html?_nkw=${gq(g)}&LH_Sold=1&LH_Complete=1&_sop=13" target="_blank" rel="noopener"><b>${esc(g)}</b><span>Voir les ventes terminées</span></a>`).join("")}</div><p class="fine" style="margin-top:8px">Aucune base de prix gratuite ne suit les cartes gradées en euros, ni CollectAura : ces boutons ouvrent les dernières ventes conclues sur eBay pour cette note.</p><div class="addrow" style="margin-top:10px"><button class="btn btn-g" id="grLookCard">Toutes les notes</button><button class="btn btn-g" id="grFromCard">Ajouter en gradée</button></div></div>`;
+  const graded = `<div class="section"><h4>Cartes gradées · ventes eBay réalisées</h4><div class="gradegrid">${["PSA 10","PSA 9","CollectAura 10","CollectAura 9.5"].map(g=>`<a class="gradebtn" href="${esc(ebayUrl(c,{ed:currentEd, grade:g}))}" target="_blank" rel="noopener"><b>${esc(g)}</b><span>Voir les ventes terminées</span></a>`).join("")}</div><p class="fine" style="margin-top:8px">Aucune base de prix gratuite ne suit les cartes gradées en euros, ni CollectAura : ces boutons ouvrent les dernières ventes conclues sur eBay pour cette note.</p><div class="addrow" style="margin-top:10px"><button class="btn btn-g" id="grLookCard">Toutes les notes</button><button class="btn btn-g" id="grFromCard">Ajouter en gradée</button></div></div>`;
   const attacks = (c.attacks||[]).map(a=>`<div class="attack"><div class="attack-h"><span class="cost">${(a.cost||[]).map(t=>`<span class="dot" title="${esc(t)}" style="background:${tcol(t)}"></span>`).join("")}</span><strong>${esc(a.name)}</strong>${a.damage?`<span class="dmg">${esc(a.damage)}</span>`:""}</div>${a.effect?`<p>${esc(a.effect)}</p>`:""}</div>`).join("");
   const abil = (c.abilities||[]).map(a=>`<div class="attack"><div class="attack-h"><span class="tag">${esc(a.type||"Talent")}</span><strong>${esc(a.name)}</strong></div>${a.effect?`<p>${esc(a.effect)}</p>`:""}</div>`).join("");
   const effect = c.effect ? `<div class="attack"><p style="margin:0">${esc(c.effect)}</p></div>` : "";
@@ -1499,6 +1564,11 @@ function renderCard(){
   const altHTML = alts.length ? `<div class="section"><h4>Pas la bonne carte ? Autres correspondances</h4><div class="alts">${alts.map(a=>`<button class="alt" data-id="${esc(a.id)}">${imgTag(a,"low",'loading="lazy" alt=""') || `<span class="ph"></span>`}<b>${esc(a.name)}</b><span>${esc(a.set?.name||a.setId)} · ${esc(a.localId)}</span></button>`).join("")}</div></div>` : "";
 
   const inCol = getCol().find(x=>x.id===c.id);
+  const pr = PRINT_OF[c.id], ownEd = inCol?.ed ? Object.entries(inCol.ed).filter(([,n])=>n>0) : [];
+  const verHTML = (prints.length || eds.length) ? `<div class="section vers"><h4>Version de la carte</h4>
+    ${prints.length?`<div class="prints">${prints.map(p=>`<button class="pv" data-pid="${esc(p.id)}" aria-pressed="${p.id===c.id}">${imgTag({id:p.id},"low",'alt="" loading="lazy"') || `<span class="ph"></span>`}<b>${esc(p.lbl)}</b><span>${esc(p.year || (p.id===c.id ? (c.set?.releaseDate||"").slice(0,4) : "") || "")}</span></button>`).join("")}</div>`:""}
+    ${eds.length?`<div class="variant-tabs edtabs" role="group" aria-label="Édition">${eds.map(k=>`<button class="vt" data-ed="${k}" aria-pressed="${k===currentEd}">${esc(EDS[k])}</button>`).join("")}</div>`:""}
+    <p class="fine" style="margin:8px 0 0">${prints.length?`Même numéro (${esc(pr?.no || numTxt.replace(/ /g,""))}) sur ${prints.length>2?"chaque version":"les deux versions"} : les ventes eBay de cette fiche excluent les autres. `:""}${eds.length?`La cote Cardmarket ne sépare pas les éditions ; les ventes eBay et ta collection suivent l'édition choisie${currentEd==="sl"?" (Shadowless : pas d'ombre à droite du cadre de l'illustration)":currentEd==="1ed"?" (tampon « Édition 1 » à gauche sous l'illustration)":""}.`:""}</p></div>` : "";
   const dg = currentDiag;
   const banner = dg && dg.uncertain ? `<button class="banner" id="seeDiag"><span class="pill warn">!</span><span><b>Correspondance incertaine.</b> ${esc(dg.uncertain)} <u>Voir la lecture</u></span></button>` : "";
   $("#sheetBody").innerHTML = `${banner}
@@ -1508,15 +1578,16 @@ function renderCard(){
         <h2 class="cname">${esc(c.name)}</h2>
         <div class="setline">${setPic(c.set,"symbol")?`<img src="${setPic(c.set,"symbol")}" alt="">`:""}<span>${esc(c.set?.name||"")}</span></div>
         <div class="num">${esc(numTxt)}</div>
-        <div class="tags">${types}${c.rarity?`<span class="tag">${esc(c.rarity)}</span>`:""}${c.category?`<span class="tag">${esc(c.category)}</span>`:""}</div>
+        <div class="tags">${pr?`<span class="tag rep">${esc(REPRINTS[pr.kind].lbl)}</span>`:""}${currentEd?`<span class="tag rep">${esc(edLbl(currentEd))}</span>`:""}${types}${c.rarity?`<span class="tag">${esc(c.rarity)}</span>`:""}${c.category?`<span class="tag">${esc(c.category)}</span>`:""}</div>
         ${setPic(c.set,"logo")?`<img src="${setPic(c.set,"logo")}" alt="" style="max-height:44px;max-width:100%;object-fit:contain;align-self:flex-start;margin-top:4px">`:""}
       </div>
     </div>
+    ${verHTML}
     <div class="price">${priceHTML}${links}</div>
-    ${inCol?`<div class="colqty"><button id="colMinus" aria-label="Retirer un exemplaire">−</button><span>Dans ta collection : <b style="color:var(--fg)">×${inCol.qty}</b></span><button id="colPlus" aria-label="Ajouter un exemplaire">+</button></div>
+    ${inCol?`<div class="colqty"><button id="colMinus" aria-label="Retirer un exemplaire">−</button><span>Dans ta collection : <b style="color:var(--fg)">×${inCol.qty}</b>${ownEd.length?`<small class="edown">${ownEd.map(([k,n])=>`${esc(edLbl(k))} ×${n}`).join(" · ")}</small>`:""}</span><button id="colPlus" aria-label="Ajouter un exemplaire">+</button></div>
     <div class="buyrow"><label for="buyIn">Prix d'achat (par carte)</label><span class="buyin"><input id="buyIn" type="text" inputmode="decimal" value="${inCol.buy!=null?String(Math.round(inCol.buy*100)/100).replace(".",","):""}" placeholder="0,00"> €</span>${(()=>{ const p = pnlOf(inCol); return p ? `<b class="tpnl ${pnlCls(p)}">PnL ${esc(pnlTxt(p))}</b>` : ""; })()}</div>`:""}
     <div class="addrow">
-      <button class="btn btn-y" id="addCol">${inCol?"Ajouter un exemplaire ("+inCol.qty+")":"Ajouter à ma collection"}</button>
+      <button class="btn btn-y" id="addCol">${inCol?"Ajouter un exemplaire"+(currentEd?" "+esc(edLbl(currentEd)):"")+" ("+inCol.qty+")":"Ajouter à ma collection"+(currentEd?" · "+esc(edLbl(currentEd)):"")}</button>
       <button class="btn btn-g" id="rescan">Scanner une autre</button>
     </div>
     ${tpHTML}
@@ -1531,11 +1602,13 @@ function renderCard(){
 
   $("#sheetBody").querySelectorAll(".vt").forEach(b=>b.onclick=()=>{ currentVariant=+b.dataset.vi; renderCard(); });
   $("#sheetBody").querySelectorAll(".alt").forEach(b=>b.onclick=()=>showCard(b.dataset.id));
-  $("#addCol").onclick = ()=>{ addToCol(c); renderCard(); toast("Ajoutée à ta collection"); };
-  $("#grFromCard") && ($("#grFromCard").onclick = ()=>gradedForm(c));
+  $("#sheetBody").querySelectorAll("[data-pid]").forEach(b=>b.onclick=()=>{ if(b.dataset.pid!==c.id) showCard(b.dataset.pid, currentAlts); });
+  $("#sheetBody").querySelectorAll("[data-ed]").forEach(b=>b.onclick=()=>{ currentEd = b.dataset.ed; const y = $("#sheetBody").scrollTop; renderCard(); $("#sheetBody").scrollTop = y; });
+  $("#addCol").onclick = ()=>{ addToCol(c, currentEd); renderCard(); toast("Ajoutée à ta collection"+(currentEd?" ("+edLbl(currentEd)+")":"")); };
+  $("#grFromCard") && ($("#grFromCard").onclick = ()=>gradedForm({...c, ed:currentEd}));
   $("#grLookCard") && ($("#grLookCard").onclick = ()=>gradedLookup(c));
-  $("#colMinus") && ($("#colMinus").onclick = ()=>{ setColQty(c.id,-1); renderCard(); toast("Exemplaire retiré"); });
-  $("#colPlus") && ($("#colPlus").onclick = ()=>{ setColQty(c.id,1); renderCard(); });
+  $("#colMinus") && ($("#colMinus").onclick = ()=>{ setColQty(c.id,-1,currentEd); renderCard(); toast("Exemplaire retiré"); });
+  $("#colPlus") && ($("#colPlus").onclick = ()=>{ setColQty(c.id,1,currentEd); renderCard(); });
   $("#buyIn") && ($("#buyIn").onchange = e=>{
     const v = parseFloat(String(e.target.value).replace(/\s/g,"").replace(",",".")); if(isNaN(v) || v<0) return;
     const col = getCol(), x = col.find(y=>y.id===c.id); if(!x) return;
@@ -1548,11 +1621,12 @@ const ico = { ext:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" st
 
 /* ---------------- Collection ---------------- */
 const getCol = () => store.get("col",[]);
-function addToCol(c){
+function addToCol(c, ed=null){
   const col = getCol(); const ex = col.find(x=>x.id===c.id);
+  const bump = x=>{ if(ed){ x.ed ||= {}; x.ed[ed] = (x.ed[ed]||0)+1; } };
   const mi = marketInfo(c) || {};
-  if(ex){ const p = mi.p ?? ex.price; if(ex.buy!=null && p!=null) ex.buy = (ex.buy*ex.qty + p)/(ex.qty+1); ex.qty++; if(mi.p) Object.assign(ex, {price:mi.p, a1:mi.a1, a7:mi.a7, a30:mi.a30, pt:Date.now()}); ex.t=Date.now(); }
-  else { const p = mi.p ?? mainPrice(c); col.unshift({id:c.id, name:c.name, set:c.set?.name||"", num:c.localId, img:img(c,"low"), price:p, buy:p, a1:mi.a1, a7:mi.a7, a30:mi.a30, pt:Date.now(), qty:1, t:Date.now()}); }
+  if(ex){ const p = mi.p ?? ex.price; if(ex.buy!=null && p!=null) ex.buy = (ex.buy*ex.qty + p)/(ex.qty+1); ex.qty++; bump(ex); if(mi.p) Object.assign(ex, {price:mi.p, a1:mi.a1, a7:mi.a7, a30:mi.a30, pt:Date.now()}); ex.t=Date.now(); }
+  else { const p = mi.p ?? mainPrice(c); col.unshift({id:c.id, name:c.name, set:c.set?.name||"", num:c.localId, img:img(c,"low"), price:p, buy:p, a1:mi.a1, a7:mi.a7, a30:mi.a30, pt:Date.now(), qty:1, t:Date.now()}); bump(col[0]); }
   store.set("col",col); renderCol();
 }
 const COLV = {pdx: store.get("colPdx", true), q:"", open: store.get("colOpen", {}), gen:0, sets:new Map(), view: store.get("colViewMode","compact"), sort: store.get("colSort","serie")};
@@ -1646,7 +1720,7 @@ function colTile(c, own){
   const pic = imgTag(c, "low", 'alt="" loading="lazy"') || (own && colImg(own) ? `<img src="${esc(colImg(own))}" alt="" loading="lazy">` : "");
   const tr = own?.price && own.a7 ? (own.price-own.a7)/own.a7 : 0, tc = tr > .03 ? " up" : tr < -.03 ? " down" : "";
   const px = own ? (own.price ? `<span class="px${tc}" title="${tc?`${tr>0?"+":""}${(tr*100).toFixed(0)} % sur 7 jours`:""}">${tc===" up"?"▲ ":tc===" down"?"▼ ":""}${esc(eurS(own.price))}</span>` : `<span class="px none">—</span>`) : "";
-  return `<button class="ctile ${own?"have":"miss"}" data-id="${esc(c.id)}" aria-label="${esc(c.name)} ${esc(c.localId)}${own?", possédée":", manquante"}"><span class="im${tileFoil(c)}"><span class="nm0">${esc(c.name)}</span>${pic}${q>1?`<span class="qx">×${q}</span>`:""}${own&&COLV.pdx?`<span class="own">✓</span>`:""}</span><span class="nm">${esc(c.name)}</span><span class="mt"><span class="no">${esc(c.localId)}</span>${px}</span>${own?(()=>{ const p = pnlOf(own); return p ? `<span class="tpnl ${pnlCls(p)}" title="PnL : ${esc(pnlTxt(p))} (achat ${esc(eurS(own.buy))})">${esc(pnlTxt(p))}</span>` : ""; })():""}</button>`;
+  return `<button class="ctile ${own?"have":"miss"}" data-id="${esc(c.id)}" aria-label="${esc(c.name)} ${esc(c.localId)}${own?", possédée":", manquante"}"><span class="im${tileFoil(c)}"><span class="nm0">${esc(c.name)}</span>${pic}${q>1?`<span class="qx">×${q}</span>`:""}${own?.ed?.["1ed"]>0?`<span class="edb">1re éd.</span>`:own?.ed?.sl>0?`<span class="edb">Shadowless</span>`:""}${own&&COLV.pdx?`<span class="own">✓</span>`:""}</span><span class="nm">${esc(c.name)}</span><span class="mt"><span class="no">${esc(c.localId)}</span>${px}</span>${own?(()=>{ const p = pnlOf(own); return p ? `<span class="tpnl ${pnlCls(p)}" title="PnL : ${esc(pnlTxt(p))} (achat ${esc(eurS(own.buy))})">${esc(pnlTxt(p))}</span>` : ""; })():""}</button>`;
 }
 async function renderCol(){
   const col = getCol(), list = $("#colList"), gen = ++COLV.gen;
@@ -1747,9 +1821,12 @@ $("#colFlt").onclick = openColFilters;
 $("#colPdx").onclick = ()=>{ COLV.pdx = !COLV.pdx; store.set("colPdx", COLV.pdx); renderCol(); };
 let colQT = null;
 $("#colQ").addEventListener("input", e=>{ COLV.q = e.target.value; clearTimeout(colQT); colQT = setTimeout(renderCol, 200); });
-function setColQty(id, d){
+function setColQty(id, d, ed=null){
   const col = getCol(), i = col.findIndex(x=>x.id===id); if(i<0) return;
-  col[i].qty += d; if(col[i].qty<=0) col.splice(i,1);
+  const x = col[i]; x.qty += d;
+  if(ed){ x.ed ||= {}; if(d>0 || x.ed[ed]>0) x.ed[ed] = Math.max(0, (x.ed[ed]||0)+d); }
+  else if(d<0 && x.ed){ const k = Object.keys(x.ed).find(k=>x.ed[k]>0 && Object.values(x.ed).reduce((a,b)=>a+b,0) > x.qty); if(k) x.ed[k]--; }
+  if(x.qty<=0) col.splice(i,1);
   store.set("col", col); renderCol();
 }
 /* ---------- Valeur qui suit le marché ----------
@@ -1985,7 +2062,7 @@ const GRADERS = [
 const grBy = k => GRADERS.find(g=>g.k===k) || GRADERS[GRADERS.length-1];
 const getGraded = () => store.get("graded", []);
 const setGraded = l => store.set("graded", l);
-const grEbay = (x, g, n) => `https://www.ebay.${x.lg==="EN"?"com":"fr"}/sch/i.html?_nkw=${encodeURIComponent(`${x.name} ${x.localId||""} ${g.k==="CA"?"CollectAura":g.k==="AUT"?"":g.k} ${n.replace(/^(Pristine|Gem Mint|Black Label) /,"")} ${x.lg==="JP"?"japanese":""}`.replace(/\s+/g," ").trim())}&LH_Sold=1&LH_Complete=1&_sop=13`;
+const grEbay = (x, g, n) => ebayUrl(x, {name:x.name, ed:x.ed||null, jp:x.lg==="JP", grade:`${g.k==="CA"?"CollectAura":g.k==="AUT"?"":g.k} ${n.replace(/^(Pristine|Gem Mint|Black Label) /,"")}`.trim()}, x.lg==="EN"?"ebay.com":"ebay.fr");
 const num = v => { const n = parseFloat(String(v||"").replace(",",".").replace(/[^\d.]/g,"")); return isFinite(n) ? n : null; };
 $("#grGuide").innerHTML = GRADERS.filter(g=>g.site).map(g=>`<a class="gradebtn" href="${g.site}" target="_blank" rel="noopener"><b>${esc(g.n)}</b><span>${esc(g.d)}</span></a>`).join("");
 function renderGraded(){
@@ -2043,7 +2120,7 @@ async function jpFind(q){
   return out.slice(0, 60);
 }
 function gradedForm(c, edit=false){
-  const x = edit ? c : {uid: Date.now().toString(36)+Math.random().toString(36).slice(2,6), id:c.id||null, localId:c.localId||"", name:c.name||"", image:c.image||null, img:c.img||null, setName:c.setName||c.set?.name||"", lg:c.lg||"FR", manual:!!c.manual, gr:c.gr||"PSA", note:c.note||"10", cert:c.cert||"", photo:c.photo||undefined, buy:null, val:null, added:Date.now()};
+  const x = edit ? c : {uid: Date.now().toString(36)+Math.random().toString(36).slice(2,6), id:c.id||null, localId:c.localId||"", name:c.name||"", image:c.image||null, img:c.img||null, setName:c.setName||c.set?.name||"", lg:c.lg||"FR", manual:!!c.manual, gr:c.gr||"PSA", note:c.note||"10", cert:c.cert||"", photo:c.photo||undefined, ed:c.ed||null, off:c.off ?? c.set?.cardCount?.official ?? null, buy:null, val:null, added:Date.now()};
   $("#sheetTitle").textContent = edit ? "Carte gradée" : "Ajouter une carte gradée";
   const opts = () => grBy(x.gr).grades.map(n=>`<option ${n===x.note?"selected":""}>${esc(n)}</option>`).join("");
   $("#sheetBody").innerHTML = `
@@ -2053,6 +2130,7 @@ function gradedForm(c, edit=false){
       <label>Nom de la carte<input id="grNm" type="text" value="${esc(x.name||"")}" placeholder="ex. Dracaufeu"></label>
       <label>Extension<input id="grSt" type="text" value="${esc(x.setName||"")}" placeholder="ex. 151"></label>
       <label>Numéro<input id="grNo" type="text" value="${esc(x.localId||"")}" placeholder="ex. 199/165"></label>
+      ${edsOf(x).length?`<label>Édition<select id="grE"><option value="">Je ne sais pas</option>${edsOf(x).map(k=>`<option value="${k}" ${k===x.ed?"selected":""}>${esc(EDS[k])}</option>`).join("")}</select></label>`:""}
       <label>Société<select id="grG">${GRADERS.map(g=>`<option value="${g.k}" ${g.k===x.gr?"selected":""}>${esc(g.n)}</option>`).join("")}</select></label>
       <label>Note<select id="grN">${opts()}</select></label>
       <label id="grOthL" ${x.gr==="AUT"?"":"hidden"}>Nom de la société<input id="grOth" type="text" value="${esc(x.grOther||"")}" placeholder="ex. Ace, TAG"></label>
@@ -2068,9 +2146,10 @@ function gradedForm(c, edit=false){
   $("#grG").onchange = ()=>{ x.gr = $("#grG").value; x.note = grBy(x.gr).grades[0]; $("#grN").innerHTML = opts(); $("#grOthL").hidden = x.gr!=="AUT"; links(); };
   $("#grN").onchange = ()=>{ x.note = $("#grN").value; links(); };
   $("#grC").oninput = links; links();
+  $("#grE") && ($("#grE").onchange = ()=>{ x.ed = $("#grE").value||null; links(); });
   $("#grSave").onclick = ()=>{
     const nm = $("#grNm").value.trim(); if(!nm){ toast("Indique le nom de la carte"); $("#grNm").focus(); return; }
-    Object.assign(x, {name:nm, setName:$("#grSt").value.trim(), localId:$("#grNo").value.trim(), lg:$("#grL").value, gr:$("#grG").value, note:$("#grN").value, cert:$("#grC").value.trim(), buy:num($("#grB").value), val:num($("#grV").value), grOther: $("#grOth").value.trim()||undefined});
+    Object.assign(x, {name:nm, setName:$("#grSt").value.trim(), localId:$("#grNo").value.trim(), lg:$("#grL").value, gr:$("#grG").value, note:$("#grN").value, cert:$("#grC").value.trim(), ed: $("#grE") ? ($("#grE").value||null) : x.ed, buy:num($("#grB").value), val:num($("#grV").value), grOther: $("#grOth").value.trim()||undefined});
     const l = getGraded(), i = l.findIndex(y=>y.uid===x.uid); if(i>=0) l[i] = x; else l.push(x);
     try{ setGraded(l); }catch(e){ x.photo = undefined; setGraded(l); toast("Photo trop lourde, carte enregistrée sans photo"); }
     closeSheet(); toast(edit?"Carte gradée mise à jour":"Ajoutée à tes cartes gradées"); grRefresh();
@@ -2126,14 +2205,13 @@ function gradedLookup(c){
   $("#sheetTitle").textContent = "Cote d'une carte gradée";
   const draw = ()=>{
     const g = grBy(st.gr), lbl = g.k==="CA" ? "CollectAura" : g.k==="AUT" ? "" : g.k, n = st.note.replace(/^(Pristine|Gem Mint|Black Label) /,"");
-    const qn = encodeURIComponent(`${c.name} ${c.localId}${off?"/"+off:""} ${lbl} ${n}`.replace(/\s+/g," ").trim());
-    const qEn = c._en ? encodeURIComponent(`${c._en} ${c.localId}${off?"/"+off:""} ${lbl} ${n}`.replace(/\s+/g," ").trim()) : qn;
+    const ed = current?.id===c.id ? currentEd : null, grade = `${lbl} ${n}`.trim();
     $("#sheetBody").innerHTML = `
       <div class="grhead">${imgTag(c, "low", `alt=""`)}<div><h2 style="margin:0 0 4px">${esc(c.name)}</h2><p class="psub" style="margin:0">${esc(c.set?.name||"")}${c.localId?" · n° "+esc(c.localId)+(off?"/"+off:""):""}</p>${raw!=null?`<p class="psub" style="margin:6px 0 0">Carte non gradée : <b style="color:var(--fg)">${esc(eurN(raw))} €</b> (Cardmarket)</p>`:""}</div></div>
       <h4 class="lkh">Société</h4><div class="gchips" id="lkG">${GRADERS.filter(x=>x.k!=="AUT").map(x=>`<button data-g="${x.k}" aria-pressed="${x.k===st.gr}">${esc(x.k==="CA"?"CollectAura":x.k==="BGS"?"Beckett":x.k)}</button>`).join("")}</div>
       <h4 class="lkh">Note</h4><div class="gchips" id="lkN">${g.grades.map(x=>`<button data-n="${esc(x)}" aria-pressed="${x===st.note}">${esc(x)}</button>`).join("")}</div>
       <div class="lkres">
-        ${EBAY_SITES.map(([d,l],i)=>`<a href="https://www.${d}/sch/i.html?_nkw=${i===0?qn:qEn}&LH_Sold=1&LH_Complete=1&_sop=13" target="_blank" rel="noopener"><span>Ventes réalisées · ${esc(l)}<small>${esc(g.n)} ${esc(st.note)} · les plus récentes d'abord</small></span>${ico.ext}</a>`).join("")}
+        ${EBAY_SITES.map(([d,l],i)=>`<a href="${esc(ebayUrl(c, {ed, grade, name: i===0 ? c.name : (c._en||c.name)}, d))}" target="_blank" rel="noopener"><span>Ventes réalisées · ${esc(l)}<small>${esc(g.n)} ${esc(st.note)} · les plus récentes d'abord</small></span>${ico.ext}</a>`).join("")}
         <a href="https://www.cardmarket.com/fr/Pokemon/Products/Search?searchString=${encodeURIComponent(c.name)}" target="_blank" rel="noopener"><span>Cardmarket<small>Certaines annonces précisent la gradation dans les commentaires</small></span>${ico.ext}</a>
         ${g.site?`<a href="${g.site}" target="_blank" rel="noopener"><span>Population ${esc(g.n)}<small>Combien d'exemplaires existent avec chaque note</small></span>${ico.ext}</a>`:""}
       </div>
@@ -2394,7 +2472,9 @@ function parseSlab(raw){
   const lg = /JAPAN|\bJPN\b|\bJP\b/.test(t) ? "JP" : /FRENCH|FRAN[CÇ]AIS|\bFR\b/.test(t) ? "FR" : /ENGLISH|\bENG\b/.test(t) ? "EN" : null;
   let name = ""; const hm = t.match(/#\s*[A-Z]{0,4}\s?\d{1,4}[A-Z]?\s+([A-Z][A-Z' .\-]{2,80})/);
   if(hm) name = hm[1].replace(/\b(GEM|MT|MINT|NM|PSA|CGC|BGS|PCA|SGC|PRISTINE|PERFECT|BLACK LABEL)\b.*$/,"").replace(/\b(SPECIAL ILLUSTRATION RARE|ILLUSTRATION RARE|HYPER RARE|ULTRA RARE|SECRET RARE|SECRET|FULL ART|ALT(ERNATE)? ART|REVERSE HOLO|HOLO|REV|FOIL|FRENCH|JAPANESE|ENGLISH|FRANCAIS|1ST EDITION|EDITION 1)\b/g,"").replace(/\s+/g," ").trim().slice(0,40);
-  return {gr, v, cert, no, lg, name, raw:String(raw||"").trim()};
+  const ed = /\b1ST\s*ED|FIRST\s*EDITION|EDITION\s*1\b/.test(t) ? "1ed" : /SHADOWLESS/.test(t) ? "sl" : null;
+  const rep = /\b30TH\b|30 ?ANS/.test(t) ? "30th-c" : /CELEBRATIONS|\b25TH\b|CLASSIC COLL/.test(t) ? "cel25cc" : null;
+  return {gr, v, cert, no, lg, name, ed, rep, raw:String(raw||"").trim()};
 }
 function slabNote(gr, v, raw){
   const g = grBy(gr||"PSA"), up = String(raw||"").toUpperCase(); if(!v) return g.grades[0];
@@ -2422,12 +2502,17 @@ async function slabScan(sx, sy, sw, sh){
     if(M){
       let pick = M.t0;
       if(L.no && M.group.length>1){ const h = M.group.find(i=>numKey(localOfIdx(i))===numKey(L.no)); if(h!=null) pick = h; }
-      card = await getCard(INDEX.ids[pick]).catch(()=>idxCard(pick));
+      let cid = INDEX.ids[pick];
+      // l'étiquette dit « 30th » ou « Celebrations » : c'est la réédition, pas l'originale (même numéro)
+      const orig = PRINT_OF[cid]?.orig || cid;
+      if(L.rep){ const r = (PRINT_GROUP[orig]||[]).find(x=>PRINT_OF[x].kind===L.rep); if(r) cid = r; }
+      else if(PRINT_OF[cid] && /\b(19\d\d|20[01]\d)\b/.test(L.raw)) cid = orig;
+      card = await getCard(cid).catch(()=>idxCard(pick));
     }
     navigator.vibrate?.(card ? [20,40,20] : 40);
     const lg = L.lg || (LANG==="en" ? "EN" : "FR");
     const pre = card ? {...card, lg} : {manual:true, name: L.name ? L.name.toLowerCase().replace(/\b\w/g,m=>m.toUpperCase()) : "", localId: L.no, lg};
-    Object.assign(pre, {gr: L.gr || "PSA", note: slabNote(L.gr, L.v, L.raw), cert: L.cert, photo});
+    Object.assign(pre, {gr: L.gr || "PSA", note: slabNote(L.gr, L.v, L.raw), cert: L.cert, photo, ed: L.ed});
     status.textContent = card ? "Carte gradée reconnue : vérifie la fiche" : "Carte non reconnue : complète la fiche";
     gradedForm(pre);
     const miss = [!L.gr && "la société", !L.v && "la note", !L.cert && "le n° de certificat", !card && "la carte"].filter(Boolean);

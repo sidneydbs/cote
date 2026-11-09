@@ -845,7 +845,7 @@ input,select{font:inherit;color:var(--fg)}
 </head>
 <body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="pb" viewBox="0 0 100 100"><defs><linearGradient id="pbV" x1="0" y1="0" x2="1" y2="1"><stop offset="0" style="stop-color:var(--pb1)"/><stop offset=".5" style="stop-color:var(--pb2)"/><stop offset="1" style="stop-color:var(--pb3)"/></linearGradient><radialGradient id="pbB" cx=".38" cy=".75" r=".75"><stop offset="0" style="stop-color:var(--pbb1)"/><stop offset="1" style="stop-color:var(--pbb2)"/></radialGradient><radialGradient id="pbC" cx=".4" cy=".35" r=".7"><stop offset="0" style="stop-color:var(--pbc1)"/><stop offset=".55" style="stop-color:var(--pbc2)"/><stop offset="1" style="stop-color:var(--pbc3)"/></radialGradient></defs><path d="M3 50a47 47 0 0 1 94 0z" fill="url(#pbV)"/><path d="M3 50a47 47 0 0 0 94 0z" fill="url(#pbB)"/><rect x="3" y="45.5" width="94" height="9" fill="#09080D"/><circle cx="50" cy="50" r="47" fill="none" stroke="#09080D" stroke-width="4"/><circle cx="50" cy="50" r="15.5" fill="#09080D"/><circle cx="50" cy="50" r="10" fill="url(#pbC)" style="stroke:var(--pb2)" stroke-width="2"/><path d="M19 33a35 35 0 0 1 17-15" fill="none" stroke="#fff" stroke-opacity=".38" stroke-width="4" stroke-linecap="round"/></symbol></svg>
-<script>window.__APPV="43";</script>
+<script>window.__APPV="44";</script>
 <div class="splash" id="splash" aria-hidden="true"><i class="hole"></i><i class="halo"></i><div class="bw"><svg class="b" viewBox="0 0 100 100"><use href="#pb"/></svg><svg class="t" viewBox="0 0 100 100"><use href="#pb"/></svg></div><i class="glow"></i></div>
 <script>setTimeout(function(){ if(window.__booted) return;
   var b=document.createElement("div"); b.setAttribute("role","alert");
@@ -1006,7 +1006,7 @@ input,select{font:inherit;color:var(--fg)}
   <!-- ===== COLLECTION ===== -->
   <section class="view" id="colView" hidden>
     <div class="scroll">
-      <div class="homebar"><svg class="pball" viewBox="0 0 100 100" aria-hidden="true"><use href="#pb"/></svg><span class="brand">DEX<b>·</b>SCAN</span><button class="thbtn" id="themeBtn" aria-label="Changer de thème"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.6-.9 1.2-1.8-.5-1.1.2-2.2 1.4-2.2H17a4 4 0 0 0 4-4c0-5.5-4-10-9-10z"/><circle cx="7.5" cy="11" r="1.2"/><circle cx="10" cy="7" r="1.2"/><circle cx="15" cy="7" r="1.2"/></svg></button><span class="ver">v43</span></div>
+      <div class="homebar"><svg class="pball" viewBox="0 0 100 100" aria-hidden="true"><use href="#pb"/></svg><span class="brand">DEX<b>·</b>SCAN</span><button class="thbtn" id="themeBtn" aria-label="Changer de thème"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.6-.9 1.2-1.8-.5-1.1.2-2.2 1.4-2.2H17a4 4 0 0 0 4-4c0-5.5-4-10-9-10z"/><circle cx="7.5" cy="11" r="1.2"/><circle cx="10" cy="7" r="1.2"/><circle cx="15" cy="7" r="1.2"/></svg></button><span class="ver">v44</span></div>
       <h1 class="h1">Collection</h1>
       <p class="lede">Tes cartes rangées par série et par extension, dans l'ordre des numéros. Le mode Pokédex montre aussi celles qui te manquent, en grisé.</p>
       <div class="total" id="wallet">
@@ -1389,12 +1389,15 @@ function ebayQuery(c, o={}){
   else if(ed==="unl") exc.push(...EB_1ED, "shadowless");
   if(o.grade) inc.push(o.grade.startsWith("(") ? o.grade : ebGrade(o.grade)); else exc.push(...EB_GRADED);
   if(o.jp) inc.push("japanese");
-  // eBay coupe au-delà d'environ 350 caractères : on retire les exclusions les moins utiles plutôt que de couper un mot
-  let head = inc.filter(Boolean).join(" ").replace(/\s+/g," ").trim(), ex = [...new Set(exc)];
-  while(ex.length && (head+" "+ex.map(w=>"-"+w).join(" ")).length > 330) ex.pop();
-  return (head + (ex.length ? " "+ex.map(w=>"-"+w).join(" ") : "")).trim();
+  // Sur téléphone, eBay refuse (« mots-clés génériques ») une recherche avec trop d'exclusions :
+  // les 10 plus importantes vont dans la recherche, les autres dans le paramètre d'exclusion d'eBay (_ex_kw).
+  const PRIO = ["psa","pca","cgc","collectaura","1st","1re",'"edition 1"',"shadowless","30th",'"30 ans"',"anniversaire","celebrations","25th",'"25 ans"',"30e","celebration","proxy","lot"];
+  const all = [...new Set(exc)].sort((x,y)=>{ const i = PRIO.indexOf(x), j = PRIO.indexOf(y); return (i<0?99:i)-(j<0?99:j); });
+  const head = inc.filter(Boolean).join(" ").replace(/\s+/g," ").trim();
+  const inQ = all.slice(0, 10), rest = all.slice(10).filter(w=>!/[" ]/.test(w));
+  return {q: (head + (inQ.length ? " "+inQ.map(w=>"-"+w).join(" ") : "")).trim(), ex: rest.join(" ")};
 }
-const ebayUrl = (c, o={}, dom="ebay.fr") => `https://www.${dom}/sch/i.html?_nkw=${encodeURIComponent(ebayQuery(c, o))}&LH_Sold=1&LH_Complete=1&_sop=13`;
+const ebayUrl = (c, o={}, dom="ebay.fr") => { const r = ebayQuery(c, o); return `https://www.${dom}/sch/i.html?_nkw=${encodeURIComponent(r.q)}${r.ex?`&_ex_kw=${encodeURIComponent(r.ex)}`:""}&LH_Sold=1&LH_Complete=1&_sop=13`; };
 
 /* ---------------- Fiche ---------------- */
 let current = null, currentAlts = [], currentVariant = 0, currentEd = null;

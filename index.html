@@ -827,6 +827,7 @@ html{background:var(--panel)}
 .blab{display:block;font:600 11px var(--f-mono);text-transform:uppercase;letter-spacing:.05em;color:var(--muted);margin:14px 0 6px}.blab em{color:var(--down);font-style:normal;text-transform:none;letter-spacing:0}
 .binp{width:100%;min-width:0;background:var(--panel-2);border:1px solid var(--line);border-radius:10px;padding:11px 12px;color:var(--fg);font:inherit;font-size:15px}
 .binp.need{border-color:var(--down)}
+.hi .hibtn{display:flex;flex-direction:column;margin-top:10px}.hi .kv dd small{font-size:11.5px;color:var(--muted)}
 .brow{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:4px}.brow>div{min-width:0}
 .gbody{overflow-x:hidden}
 .bwrap{flex-wrap:wrap;overflow:visible}
@@ -854,7 +855,7 @@ html{background:var(--panel)}
 </head>
 <body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="pb" viewBox="0 0 100 100"><defs><linearGradient id="pbV" x1="0" y1="0" x2="1" y2="1"><stop offset="0" style="stop-color:var(--pb1)"/><stop offset=".5" style="stop-color:var(--pb2)"/><stop offset="1" style="stop-color:var(--pb3)"/></linearGradient><radialGradient id="pbB" cx=".38" cy=".75" r=".75"><stop offset="0" style="stop-color:var(--pbb1)"/><stop offset="1" style="stop-color:var(--pbb2)"/></radialGradient><radialGradient id="pbC" cx=".4" cy=".35" r=".7"><stop offset="0" style="stop-color:var(--pbc1)"/><stop offset=".55" style="stop-color:var(--pbc2)"/><stop offset="1" style="stop-color:var(--pbc3)"/></radialGradient></defs><path d="M3 50a47 47 0 0 1 94 0z" fill="url(#pbV)"/><path d="M3 50a47 47 0 0 0 94 0z" fill="url(#pbB)"/><rect x="3" y="45.5" width="94" height="9" fill="#09080D"/><circle cx="50" cy="50" r="47" fill="none" stroke="#09080D" stroke-width="4"/><circle cx="50" cy="50" r="15.5" fill="#09080D"/><circle cx="50" cy="50" r="10" fill="url(#pbC)" style="stroke:var(--pb2)" stroke-width="2"/><path d="M19 33a35 35 0 0 1 17-15" fill="none" stroke="#fff" stroke-opacity=".38" stroke-width="4" stroke-linecap="round"/></symbol></svg>
-<script>window.__APPV="46";</script>
+<script>window.__APPV="47";</script>
 <div class="splash" id="splash" aria-hidden="true"><i class="hole"></i><i class="halo"></i><div class="bw"><svg class="b" viewBox="0 0 100 100"><use href="#pb"/></svg><svg class="t" viewBox="0 0 100 100"><use href="#pb"/></svg></div><i class="glow"></i></div>
 <script>setTimeout(function(){ if(window.__booted) return;
   var b=document.createElement("div"); b.setAttribute("role","alert");
@@ -1015,7 +1016,7 @@ html{background:var(--panel)}
   <!-- ===== COLLECTION ===== -->
   <section class="view" id="colView" hidden>
     <div class="scroll">
-      <div class="homebar"><svg class="pball" viewBox="0 0 100 100" aria-hidden="true"><use href="#pb"/></svg><span class="brand">DEX<b>·</b>SCAN</span><button class="thbtn" id="themeBtn" aria-label="Changer de thème"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.6-.9 1.2-1.8-.5-1.1.2-2.2 1.4-2.2H17a4 4 0 0 0 4-4c0-5.5-4-10-9-10z"/><circle cx="7.5" cy="11" r="1.2"/><circle cx="10" cy="7" r="1.2"/><circle cx="15" cy="7" r="1.2"/></svg></button><span class="ver">v46</span></div>
+      <div class="homebar"><svg class="pball" viewBox="0 0 100 100" aria-hidden="true"><use href="#pb"/></svg><span class="brand">DEX<b>·</b>SCAN</span><button class="thbtn" id="themeBtn" aria-label="Changer de thème"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.6-.9 1.2-1.8-.5-1.1.2-2.2 1.4-2.2H17a4 4 0 0 0 4-4c0-5.5-4-10-9-10z"/><circle cx="7.5" cy="11" r="1.2"/><circle cx="10" cy="7" r="1.2"/><circle cx="15" cy="7" r="1.2"/></svg></button><span class="ver">v47</span></div>
       <h1 class="h1">Collection</h1>
       <p class="lede">Tes cartes rangées par série et par extension, dans l'ordre des numéros. Le mode Pokédex montre aussi celles qui te manquent, en grisé.</p>
       <div class="total" id="wallet">
@@ -1406,7 +1407,7 @@ function ebayQuery(c, o={}){
   const inQ = all.slice(0, 10), rest = all.slice(10).filter(w=>!/[" ]/.test(w));
   return {q: (head + (inQ.length ? " "+inQ.map(w=>"-"+w).join(" ") : "")).trim(), ex: rest.join(" ")};
 }
-const ebayUrl = (c, o={}, dom="ebay.fr") => { const r = ebayQuery(c, o); return `https://www.${dom}/sch/i.html?_nkw=${encodeURIComponent(r.q)}${r.ex?`&_ex_kw=${encodeURIComponent(r.ex)}`:""}&LH_Sold=1&LH_Complete=1&_sop=13`; };
+const ebayUrl = (c, o={}, dom="ebay.fr") => { const r = ebayQuery(c, o); return `https://www.${dom}/sch/i.html?_nkw=${encodeURIComponent(r.q)}${r.ex?`&_ex_kw=${encodeURIComponent(r.ex)}`:""}&LH_Sold=1&LH_Complete=1&_sop=${o.sop||13}`; };
 
 /* ---------------- Fiche ---------------- */
 let current = null, currentAlts = [], currentVariant = 0, currentEd = null;
@@ -1644,6 +1645,7 @@ function tileFoil(){ return ""; }
 
 function renderCard(){
   const c = current, cm = c.pricing?.cardmarket, tp = c.pricing?.tcgplayer;
+  if(!SEALED.data) loadSealed().catch(()=>{});   // taux dollar → euro
   $("#sheetTitle").textContent = `${c.name} · ${c.set?.name||""}`;
   const off = c.set?.cardCount?.official;
   const numTxt = `${c.localId}${off?" / "+String(off).padStart(String(c.localId).length,"0"):""}`;
@@ -1684,13 +1686,27 @@ function renderCard(){
     const rows = Object.entries(tp).filter(([k,v])=>v && typeof v==="object" && (v.marketPrice||v.midPrice));
     if(rows.length) tpHTML = `<div class="section"><h4>TCGplayer · marché US</h4><dl class="grid2">${rows.map(([k,v])=>`<div class="kv"><dt>${esc(lbl[k]||k)} · market</dt><dd>${usd(v.marketPrice??v.midPrice)}</dd></div>`).join("")}</dl></div>`;
   }
+  // Plus haut connu : aucune source gratuite ne donne le détail des ventes, on montre le plus haut des moyennes Cardmarket
+  // et l'annonce TCGplayer la plus chère, plus un lien vers les ventes eBay triées de la plus chère à la moins chère.
+  const hiCm = cm && vs.length ? [["moyenne 24 h","avg1"],["moyenne 7 j","avg7"],["moyenne 30 j","avg30"],["prix moyen vendu","avg"],["tendance","trend"]].map(([l,k])=>[l, cmVal(cm,k,suf)]).filter(x=>x[1]!=null).sort((a,b)=>b[1]-a[1])[0] : null;
+  // TCGplayer sépare 1ère édition et Unlimited : on ne garde que l'édition affichée
+  const tpEd = k => currentEd==="1ed" ? /1st/.test(k) : currentEd ? !/1st/.test(k) : true;
+  const hiTp = tp ? Object.entries(tp).filter(([k,v])=>v && typeof v==="object" && v.highPrice!=null && tpEd(k)).sort((a,b)=>b[1].highPrice-a[1].highPrice)[0] : null;
+  const hiEb = ebayUrl(c,{ed:currentEd, sop:16});
+  const highHTML = `<div class="section hi"><h4>Plus haut connu</h4>
+    <dl class="grid2">
+      <div class="kv"><dt>Ventes Cardmarket${hiCm?` · ${esc(hiCm[0])}`:""}</dt><dd>${hiCm?eur(hiCm[1])+" €":"—"}</dd></div>
+      <div class="kv"><dt>Annonce la plus chère · TCGplayer US</dt><dd>${hiTp?`${usd(hiTp[1].highPrice)}${SEALED.data?.usdEur?` <small>≈ ${eur(sEur(hiTp[1].highPrice))} €</small>`:""}`:"—"}</dd></div>
+    </dl>
+    <a class="gradebtn hibtn" href="${esc(hiEb)}" target="_blank" rel="noopener"><b>Ventes eBay les plus chères</b><span>Ventes terminées de cette version, de la plus chère à la moins chère</span></a>
+    <p class="fine" style="margin-top:8px">eBay ne permet plus de lire les ventes une par une : le bouton ouvre directement le classement, la vente record en premier.</p></div>`;
   const qName = encodeURIComponent(`${c.name} ${c.localId}${off?"/"+off:""}`);
   const links = `<div class="links">
     <a href="https://www.cardmarket.com/fr/Pokemon/Products/Search?searchString=${encodeURIComponent(c.name)}" target="_blank" rel="noopener">${ico.ext}Voir sur Cardmarket</a>
     <a href="${esc(ebayUrl(c,{ed:currentEd}))}" target="_blank" rel="noopener">${ico.ext}Ventes eBay réalisées${currentEd?" · "+esc(edLbl(currentEd)):PRINT_OF[c.id]?" · "+esc(REPRINTS[PRINT_OF[c.id].kind].lbl.toLowerCase()):""}</a>
   </div>`;
 
-  const graded = `<div class="section"><h4>Cartes gradées · ventes eBay réalisées</h4><div class="gradegrid">${["PSA 10","PSA 9","CollectAura 10","CollectAura 9.5"].map(g=>`<a class="gradebtn" href="${esc(ebayUrl(c,{ed:currentEd, grade:g}))}" target="_blank" rel="noopener"><b>${esc(g)}</b><span>Voir les ventes terminées</span></a>`).join("")}<a class="gradebtn" href="${esc(ebayUrl(c,{ed:currentEd, grade:'(psa,pca,cgc,bgs,beckett,collectaura,"collect aura",ccc)'}))}" target="_blank" rel="noopener"><b>Toutes sociétés</b><span>Si une note n'a aucune vente</span></a></div><p class="fine" style="margin-top:8px">Aucune base de prix gratuite ne suit les cartes gradées en euros, ni CollectAura : ces boutons ouvrent les dernières ventes conclues sur eBay pour cette note.</p><div class="addrow" style="margin-top:10px"><button class="btn btn-g" id="grLookCard">Toutes les notes</button><button class="btn btn-g" id="grFromCard">Ajouter en gradée</button></div></div>`;
+  const graded = `<div class="section"><h4>Cartes gradées · ventes eBay réalisées</h4><div class="gradegrid">${["PSA 10","PSA 9","CollectAura 10","CollectAura 9.5"].map(g=>`<a class="gradebtn" href="${esc(ebayUrl(c,{ed:currentEd, grade:g}))}" target="_blank" rel="noopener"><b>${esc(g)}</b><span>Voir les ventes terminées</span></a>`).join("")}<a class="gradebtn" href="${esc(ebayUrl(c,{ed:currentEd, grade:'(psa,pca,cgc,bgs,beckett,collectaura,"collect aura",ccc)'}))}" target="_blank" rel="noopener"><b>Toutes sociétés</b><span>Si une note n'a aucune vente</span></a><a class="gradebtn" href="${esc(ebayUrl(c,{ed:currentEd, sop:16, grade:'(psa,pca,cgc,bgs,beckett,collectaura,"collect aura",ccc)'}))}" target="_blank" rel="noopener"><b>Gradées les plus chères</b><span>Toutes sociétés, record en premier</span></a></div><p class="fine" style="margin-top:8px">Aucune base de prix gratuite ne suit les cartes gradées en euros, ni CollectAura : ces boutons ouvrent les dernières ventes conclues sur eBay pour cette note.</p><div class="addrow" style="margin-top:10px"><button class="btn btn-g" id="grLookCard">Toutes les notes</button><button class="btn btn-g" id="grFromCard">Ajouter en gradée</button></div></div>`;
   const attacks = (c.attacks||[]).map(a=>`<div class="attack"><div class="attack-h"><span class="cost">${(a.cost||[]).map(t=>`<span class="dot" title="${esc(t)}" style="background:${tcol(t)}"></span>`).join("")}</span><strong>${esc(a.name)}</strong>${a.damage?`<span class="dmg">${esc(a.damage)}</span>`:""}</div>${a.effect?`<p>${esc(a.effect)}</p>`:""}</div>`).join("");
   const abil = (c.abilities||[]).map(a=>`<div class="attack"><div class="attack-h"><span class="tag">${esc(a.type||"Talent")}</span><strong>${esc(a.name)}</strong></div>${a.effect?`<p>${esc(a.effect)}</p>`:""}</div>`).join("");
   const effect = c.effect ? `<div class="attack"><p style="margin:0">${esc(c.effect)}</p></div>` : "";
@@ -1735,6 +1751,7 @@ function renderCard(){
       <button class="btn btn-g" id="rescan">Scanner une autre</button>
     </div>
     ${tpHTML}
+    ${highHTML}
     ${graded}
     ${altHTML}
     ${(abil||attacks||effect)?`<div class="section"><h4>${c.category==="Pokémon"||c.category==="Pokemon"?"Talents et attaques":"Effet"}</h4>${abil}${attacks}${effect}</div>`:""}

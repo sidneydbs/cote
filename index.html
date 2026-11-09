@@ -827,6 +827,7 @@ html{background:var(--panel)}
 .blab{display:block;font:600 11px var(--f-mono);text-transform:uppercase;letter-spacing:.05em;color:var(--muted);margin:14px 0 6px}.blab em{color:var(--down);font-style:normal;text-transform:none;letter-spacing:0}
 .binp{width:100%;min-width:0;background:var(--panel-2);border:1px solid var(--line);border-radius:10px;padding:11px 12px;color:var(--fg);font:inherit;font-size:15px}
 .binp.need{border-color:var(--down)}
+.bitem .im img.lg{object-fit:contain;padding:4px;background:var(--panel-2)}
 .hi .hibtn{display:flex;flex-direction:column;margin-top:10px}.hi .kv dd small{font-size:11.5px;color:var(--muted)}
 .brow{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:4px}.brow>div{min-width:0}
 .gbody{overflow-x:hidden}
@@ -855,7 +856,7 @@ html{background:var(--panel)}
 </head>
 <body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="pb" viewBox="0 0 100 100"><defs><linearGradient id="pbV" x1="0" y1="0" x2="1" y2="1"><stop offset="0" style="stop-color:var(--pb1)"/><stop offset=".5" style="stop-color:var(--pb2)"/><stop offset="1" style="stop-color:var(--pb3)"/></linearGradient><radialGradient id="pbB" cx=".38" cy=".75" r=".75"><stop offset="0" style="stop-color:var(--pbb1)"/><stop offset="1" style="stop-color:var(--pbb2)"/></radialGradient><radialGradient id="pbC" cx=".4" cy=".35" r=".7"><stop offset="0" style="stop-color:var(--pbc1)"/><stop offset=".55" style="stop-color:var(--pbc2)"/><stop offset="1" style="stop-color:var(--pbc3)"/></radialGradient></defs><path d="M3 50a47 47 0 0 1 94 0z" fill="url(#pbV)"/><path d="M3 50a47 47 0 0 0 94 0z" fill="url(#pbB)"/><rect x="3" y="45.5" width="94" height="9" fill="#09080D"/><circle cx="50" cy="50" r="47" fill="none" stroke="#09080D" stroke-width="4"/><circle cx="50" cy="50" r="15.5" fill="#09080D"/><circle cx="50" cy="50" r="10" fill="url(#pbC)" style="stroke:var(--pb2)" stroke-width="2"/><path d="M19 33a35 35 0 0 1 17-15" fill="none" stroke="#fff" stroke-opacity=".38" stroke-width="4" stroke-linecap="round"/></symbol></svg>
-<script>window.__APPV="47";</script>
+<script>window.__APPV="48";</script>
 <div class="splash" id="splash" aria-hidden="true"><i class="hole"></i><i class="halo"></i><div class="bw"><svg class="b" viewBox="0 0 100 100"><use href="#pb"/></svg><svg class="t" viewBox="0 0 100 100"><use href="#pb"/></svg></div><i class="glow"></i></div>
 <script>setTimeout(function(){ if(window.__booted) return;
   var b=document.createElement("div"); b.setAttribute("role","alert");
@@ -1016,7 +1017,7 @@ html{background:var(--panel)}
   <!-- ===== COLLECTION ===== -->
   <section class="view" id="colView" hidden>
     <div class="scroll">
-      <div class="homebar"><svg class="pball" viewBox="0 0 100 100" aria-hidden="true"><use href="#pb"/></svg><span class="brand">DEX<b>·</b>SCAN</span><button class="thbtn" id="themeBtn" aria-label="Changer de thème"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.6-.9 1.2-1.8-.5-1.1.2-2.2 1.4-2.2H17a4 4 0 0 0 4-4c0-5.5-4-10-9-10z"/><circle cx="7.5" cy="11" r="1.2"/><circle cx="10" cy="7" r="1.2"/><circle cx="15" cy="7" r="1.2"/></svg></button><span class="ver">v47</span></div>
+      <div class="homebar"><svg class="pball" viewBox="0 0 100 100" aria-hidden="true"><use href="#pb"/></svg><span class="brand">DEX<b>·</b>SCAN</span><button class="thbtn" id="themeBtn" aria-label="Changer de thème"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.6-.9 1.2-1.8-.5-1.1.2-2.2 1.4-2.2H17a4 4 0 0 0 4-4c0-5.5-4-10-9-10z"/><circle cx="7.5" cy="11" r="1.2"/><circle cx="10" cy="7" r="1.2"/><circle cx="15" cy="7" r="1.2"/></svg></button><span class="ver">v48</span></div>
       <h1 class="h1">Collection</h1>
       <p class="lede">Tes cartes rangées par série et par extension, dans l'ordre des numéros. Le mode Pokédex montre aussi celles qui te manquent, en grisé.</p>
       <div class="total" id="wallet">
@@ -1453,13 +1454,15 @@ function altImgs(id, localId, q="low"){
   if(sx){ const c = typeof sx==="string" ? sx : sx.c; const k = (typeof sx==="object" && sx.m?.[loc]) || sxNum(loc);
     out.push(`https://images.scrydex.com/pokemon/${c}-${k}/${q==="high"?"large":"small"}`); }
   if(SRC.pt[set]) out.push(`https://images.pokemontcg.io/${SRC.pt[set]}/${loc}${q==="high"?"_hires":""}.png`);
+  // media.json (vérifié chaque jour) dit quelle source a vraiment l'image : on la met en premier
+  const k = MEDIA.d?.cards?.[id]; if(k){ const re = {ll:/limitless/, sx:/scrydex/, pt:/pokemontcg/}[k]; if(re) out.sort((a,b)=>(re.test(b)?1:0)-(re.test(a)?1:0)); }
   return out;
 }
 function altImg(id, localId, q="low"){ return altImgs(id, localId, q)[0] || ""; }
 function imgChain(c, q="low"){
   const out = [];
   if(c?._img){ const u = c._img[q]||c._img.high; if(u) out.push(u); }
-  if(c?.image){ out.push(`${c.image}/${q}.webp`); if(c.image.includes("/fr/")) out.push(`${c.image.replace("/fr/","/en/")}/${q}.webp`); }
+  if(c?.image){ out.push(`${c.image}/${q}.webp`, `${c.image}/${q}.png`); if(c.image.includes("/fr/")) out.push(`${c.image.replace("/fr/","/en/")}/${q}.webp`, `${c.image.replace("/fr/","/en/")}/${q}.png`); }
   out.push(...altImgs(c?.id, c?.localId, q));
   return [...new Set(out)];
 }
@@ -1470,16 +1473,22 @@ function imgTag(c, q, attrs=""){
   const l = imgChain(c, q); if(!l.length) return "";
   return `<img src="${esc(l[0])}" data-alt="${esc(l.slice(1).join("|"))}" onerror="__imgNext(this)" onload="__imgChk(this)" decoding="async" ${attrs}>`;
 }
+/* images vérifiées chaque jour par la tâche GitHub « Images » (media.json) : logo et symbole de chaque extension,
+   source des cartes sans image TCGdex, photo de secours des scellés */
+const MEDIA = {d:null};
+fetchT("media.json?h="+Math.floor(Date.now()/36e5), 30000).then(r=>r.ok?r.json():null).then(j=>{ if(!j) return; MEDIA.d = j;
+  try{ if(!$("#extView").hidden && !EX.set) showExtHome(); }catch(e){} }).catch(()=>{});
 function logoChain(s){
   const out = [];
-  if(s?.logo) out.push(s.logo+".webp");
+  const m = MEDIA.d?.sets?.[s?.id]; if(m?.l) out.push(m.l);
+  if(s?.logo) out.push(s.logo+".webp", s.logo+".png");
   if(s?.id && SRC.logo[s.id]) out.push(srcUrl(SRC.logo[s.id]));
   if(s?.id && SRC.pt[s.id]) out.push(`https://images.pokemontcg.io/${SRC.pt[s.id]}/logo.png`);
-  if(s?.symbol) out.push(s.symbol+".webp");
+  if(s?.symbol) out.push(s.symbol+".webp", s.symbol+".png");
   return [...new Set(out)];
 }
 function img(card, q="high"){ return imgChain(card, q)[0] || ""; }
-const setPic = (set,k) => set?.["_"+k] || (k==="logo" ? (logoChain(set)[0]||"") : (set?.[k] ? set[k]+".webp" : ""));
+const setPic = (set,k) => set?.["_"+k] || (k==="logo" ? (logoChain(set)[0]||"") : (MEDIA.d?.sets?.[set?.id]?.s || (set?.[k] ? set[k]+".webp" : "")));
 
 /* ---------- Brillance des cartes ----------
    Chaque carte reçoit le traitement de sa vraie impression, selon sa rareté :
@@ -4359,7 +4368,7 @@ const tpOf = x => { const id = x.tp || cmOf(x)?.tp; return id && SEALED.data ? S
 /* une ligne de budget, scellé ou gradée, ramenée au même format */
 function budRows(){
   const s = getBud().map(x=>{ const c = cmOf(x), m = cmMarket(c);
-    return {k:"s", x, t:x.t, n:x.n, q:x.q, buy:x.buy, cost:(x.buy||0)*x.q, val: m!=null ? m*x.q : (x.est!=null ? x.est*x.q : null), sold:(x.sold||[]), img:x.photo || c?.img || tpOf(x)?.img || ""}; });
+    return {k:"s", x, t:x.t, n:x.n, q:x.q, buy:x.buy, cost:(x.buy||0)*x.q, val: m!=null ? m*x.q : (x.est!=null ? x.est*x.q : null), sold:(x.sold||[]), img:x.photo || c?.img || tpOf(x)?.img || (x.cm && MEDIA.d?.sealed?.[x.cm]) || ""}; });
   const g = getGraded().map(x=>({k:"g", x, t:"graded", n:x.name, q:1, buy:x.buy, cost:x.buy||0, val:x.val ?? null, sold:x.sold||[], img:null}));
   return [...s, ...g];
 }
@@ -4415,7 +4424,7 @@ async function budList(rows, l){
   }
   box.innerHTML = (q.length>1 ? `<h3 class="bh" style="margin-top:6px">Dans ton budget</h3>` : "")
     + (mine.length ? `<div class="slist">${mine.map(budRowHTML).join("")}</div>` : `<div class="empty" style="padding:${q?"14px":"40px"} 12px">${q ? "Aucun de tes produits ne correspond." : rows.length ? "Rien dans cette catégorie." : "Ajoute ton premier produit : prends-le en photo ou saisis-le à la main. Le prix d'achat est demandé à chaque fois, pour suivre ton budget au centime."}</div>`)
-    + (q.length>2 ? `<h3 class="bh">Tous les produits <small class="psub">cotes Cardmarket</small></h3>${cat.length ? `<div class="slist">${cat.map(c=>`<button class="sitem bitem" data-ci="${c.i}"><span class="im">${c.img?`<img src="${esc(c.img)}" alt="" loading="lazy" onerror="this.remove()">`:`<span class="bph">📦</span>`}</span><div><b>${esc(frName(c.n))}</b><span>${esc(btLbl(c.t))} · ${esc(c.n)}</span><span class="bnums">Vente la moins chère ${bE(c.lo)}${c.a7!=null?` · ventes 7 j ${bE(c.a7)}`:""}</span></div><span class="bp">${bE0(cmMarket(c))}<small>cote</small></span></button>`).join("")}</div>` : `<div class="empty" style="padding:14px 12px">${BUD.cm ? "Aucun produit trouvé. Essaie avec le nom de l'extension et le type (ex. « display flammes fantasmagoriques »)." : "Chargement du catalogue…"}</div>`}` : "");
+    + (q.length>2 ? `<h3 class="bh">Tous les produits <small class="psub">cotes Cardmarket</small></h3>${cat.length ? `<div class="slist">${cat.map(c=>`<button class="sitem bitem" data-ci="${c.i}"><span class="im">${(c.img||MEDIA.d?.sealed?.[c.i])?`<img src="${esc(c.img||MEDIA.d.sealed[c.i])}" alt="" loading="lazy" class="${c.img?"":"lg"}" onerror="this.remove()">`:`<span class="bph">📦</span>`}</span><div><b>${esc(frName(c.n))}</b><span>${esc(btLbl(c.t))} · ${esc(c.n)}</span><span class="bnums">Vente la moins chère ${bE(c.lo)}${c.a7!=null?` · ventes 7 j ${bE(c.a7)}`:""}</span></div><span class="bp">${bE0(cmMarket(c))}<small>cote</small></span></button>`).join("")}</div>` : `<div class="empty" style="padding:14px 12px">${BUD.cm ? "Aucun produit trouvé. Essaie avec le nom de l'extension et le type (ex. « display flammes fantasmagoriques »)." : "Chargement du catalogue…"}</div>`}` : "");
   box.querySelectorAll("[data-bu]").forEach(b=>b.onclick=()=>{ const [k,u] = b.dataset.bu.split(":"); if(k==="g"){ const x = getGraded().find(y=>y.uid===u); if(x) gradedForm(x, true); } else budDetail(u); });
   box.querySelectorAll("[data-ci]").forEach(b=>b.onclick=()=>catDetail(+b.dataset.ci));
 }
@@ -4567,7 +4576,7 @@ async function catDetail(id){
   const qFr = frName(c.n), qEn = c.n;
   const own = getBud().filter(y=>y.cm===id && y.q>0), nOwn = own.reduce((a,y)=>a+y.q,0);
   bOpen(btLbl(c.t), `
-    <div class="bhead">${c.img||tp?.img?`<img src="${esc(c.img||tp?.img)}" alt="" onerror="this.remove()">`:""}<div><h2>${esc(qFr)}</h2><p class="psub">${esc(btLbl(c.t))} · ${esc(c.n)}</p></div></div>
+    <div class="bhead">${c.img||tp?.img||MEDIA.d?.sealed?.[c.i]?`<img src="${esc(c.img||tp?.img||MEDIA.d.sealed[c.i])}" alt="" onerror="this.remove()">`:""}<div><h2>${esc(qFr)}</h2><p class="psub">${esc(btLbl(c.t))} · ${esc(c.n)}</p></div></div>
     <div class="total" style="margin-top:12px"><div class="plabel"><span>Cote Cardmarket</span><span>${nOwn?`Tu en as ${nOwn}`:"Pas dans ton budget"}</span></div><div class="pmain">${bE(cmMarket(c))}</div></div>
     <button class="btn btn-y" id="cdAdd" style="width:100%">Je l'ai : ajouter à mon budget</button>
     ${own.length?`<button class="btn btn-g" id="cdMine" style="width:100%;margin-top:8px">Voir mon produit</button>`:""}
@@ -4588,7 +4597,7 @@ async function budDetail(uid){
   const sold = x.sold || [];
   const row = (l, v, cls="") => `<tr class="${cls}"><td>${l}</td><td>${v}</td></tr>`;
   bOpen(btLbl(x.t), `
-    <div class="bhead">${x.photo||c?.img||tp?.img?`<img src="${esc(x.photo||c?.img||tp?.img)}" alt="" onerror="this.remove()">`:""}<div><h2>${esc(x.n)}</h2><p class="psub">${esc(btLbl(x.t))} · ${esc(x.lg||"")} · ${x.q>0?`×${x.q}`:"vendu"}</p></div></div>
+    <div class="bhead">${x.photo||c?.img||tp?.img||(x.cm&&MEDIA.d?.sealed?.[x.cm])?`<img src="${esc(x.photo||c?.img||tp?.img||MEDIA.d.sealed[x.cm])}" alt="" onerror="this.remove()">`:""}<div><h2>${esc(x.n)}</h2><p class="psub">${esc(btLbl(x.t))} · ${esc(x.lg||"")} · ${x.q>0?`×${x.q}`:"vendu"}</p></div></div>
 
     <h3 class="bh">Ton achat</h3>
     <table class="jtab">${row("Prix d'achat unitaire", bE(x.buy))}${x.q>1?row(`Total (×${x.q})`, bE(x.buy*x.q), "b"):""}${row("Date", esc(frDate(x.date)))}${x.shop?row("Acheté chez", esc(x.shop)):""}

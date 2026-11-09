@@ -841,11 +841,17 @@ input,select{font:inherit;color:var(--fg)}
 .bx{background:none;border:0;color:var(--muted);padding:0 0 0 6px;font-size:12px}
 .bcm{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:12px 14px;margin-bottom:10px}
 .bgrid{display:grid;grid-template-columns:1fr 1fr;gap:8px 12px;margin-top:8px}.bgrid span{display:block;font-size:11px;color:var(--muted)}.bgrid b{font:700 15px var(--f-mono)}
+/* ---------- v45 : navigation au glissé ---------- */
+.view.in-r,.sheet.in-r{animation:vinR .24s cubic-bezier(.2,.8,.2,1)}
+.view.in-l,.sheet.in-l{animation:vinL .24s cubic-bezier(.2,.8,.2,1)}
+@keyframes vinR{from{transform:translateX(38%);opacity:.35}to{transform:none;opacity:1}}
+@keyframes vinL{from{transform:translateX(-38%);opacity:.35}to{transform:none;opacity:1}}
+@media (prefers-reduced-motion:reduce){.view.in-r,.view.in-l,.sheet.in-r,.sheet.in-l{animation:none}}
 </style>
 </head>
 <body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="pb" viewBox="0 0 100 100"><defs><linearGradient id="pbV" x1="0" y1="0" x2="1" y2="1"><stop offset="0" style="stop-color:var(--pb1)"/><stop offset=".5" style="stop-color:var(--pb2)"/><stop offset="1" style="stop-color:var(--pb3)"/></linearGradient><radialGradient id="pbB" cx=".38" cy=".75" r=".75"><stop offset="0" style="stop-color:var(--pbb1)"/><stop offset="1" style="stop-color:var(--pbb2)"/></radialGradient><radialGradient id="pbC" cx=".4" cy=".35" r=".7"><stop offset="0" style="stop-color:var(--pbc1)"/><stop offset=".55" style="stop-color:var(--pbc2)"/><stop offset="1" style="stop-color:var(--pbc3)"/></radialGradient></defs><path d="M3 50a47 47 0 0 1 94 0z" fill="url(#pbV)"/><path d="M3 50a47 47 0 0 0 94 0z" fill="url(#pbB)"/><rect x="3" y="45.5" width="94" height="9" fill="#09080D"/><circle cx="50" cy="50" r="47" fill="none" stroke="#09080D" stroke-width="4"/><circle cx="50" cy="50" r="15.5" fill="#09080D"/><circle cx="50" cy="50" r="10" fill="url(#pbC)" style="stroke:var(--pb2)" stroke-width="2"/><path d="M19 33a35 35 0 0 1 17-15" fill="none" stroke="#fff" stroke-opacity=".38" stroke-width="4" stroke-linecap="round"/></symbol></svg>
-<script>window.__APPV="44";</script>
+<script>window.__APPV="45";</script>
 <div class="splash" id="splash" aria-hidden="true"><i class="hole"></i><i class="halo"></i><div class="bw"><svg class="b" viewBox="0 0 100 100"><use href="#pb"/></svg><svg class="t" viewBox="0 0 100 100"><use href="#pb"/></svg></div><i class="glow"></i></div>
 <script>setTimeout(function(){ if(window.__booted) return;
   var b=document.createElement("div"); b.setAttribute("role","alert");
@@ -1006,7 +1012,7 @@ input,select{font:inherit;color:var(--fg)}
   <!-- ===== COLLECTION ===== -->
   <section class="view" id="colView" hidden>
     <div class="scroll">
-      <div class="homebar"><svg class="pball" viewBox="0 0 100 100" aria-hidden="true"><use href="#pb"/></svg><span class="brand">DEX<b>·</b>SCAN</span><button class="thbtn" id="themeBtn" aria-label="Changer de thème"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.6-.9 1.2-1.8-.5-1.1.2-2.2 1.4-2.2H17a4 4 0 0 0 4-4c0-5.5-4-10-9-10z"/><circle cx="7.5" cy="11" r="1.2"/><circle cx="10" cy="7" r="1.2"/><circle cx="15" cy="7" r="1.2"/></svg></button><span class="ver">v44</span></div>
+      <div class="homebar"><svg class="pball" viewBox="0 0 100 100" aria-hidden="true"><use href="#pb"/></svg><span class="brand">DEX<b>·</b>SCAN</span><button class="thbtn" id="themeBtn" aria-label="Changer de thème"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.6-.9 1.2-1.8-.5-1.1.2-2.2 1.4-2.2H17a4 4 0 0 0 4-4c0-5.5-4-10-9-10z"/><circle cx="7.5" cy="11" r="1.2"/><circle cx="10" cy="7" r="1.2"/><circle cx="15" cy="7" r="1.2"/></svg></button><span class="ver">v45</span></div>
       <h1 class="h1">Collection</h1>
       <p class="lede">Tes cartes rangées par série et par extension, dans l'ordre des numéros. Le mode Pokédex montre aussi celles qui te manquent, en grisé.</p>
       <div class="total" id="wallet">
@@ -2406,7 +2412,8 @@ function jpTile(c){
 }
 async function renderJPSet(g){
   const el = $("#jpList"); el.innerHTML = `<div class="empty"><span class="loader"></span></div>`;
-  const s = await jpSet(g); if(!s){ el.innerHTML = `<div class="empty">Extension indisponible.</div>`; return; }
+  const s = await jpSet(g); if(JP.open!==g) return;   // on est revenu en arrière pendant le chargement
+  if(!s){ el.innerHTML = `<div class="empty">Extension indisponible.</div>`; return; }
   let l = s.cards.slice(); const q = norm(JP.q); if(q) l = l.filter(c=>norm(c.n+" "+c.no+" "+c.r).includes(q) || norm(s.n).includes(q));
   if(JP.sort==="price") l.sort((a,b)=>(b.m||0)-(a.m||0)); else l.sort((a,b)=>jpNum(a)-jpNum(b));
   const tot = s.cards.reduce((a,c)=>a+(c.m||0),0);
@@ -4612,6 +4619,123 @@ function selectTab(v){
   }
 }
 document.querySelectorAll(".tab").forEach(t=>t.onclick=()=>selectTab(t.dataset.v));
+/* ================= NAVIGATION AU GLISSÉ =================
+   Glisser vers la droite = revenir (fiche → carte précédente ou fermeture, jeu/budget → fermer, extension → liste).
+   Sans rien à fermer, glisser à gauche / à droite change d'onglet. Glisser vers le bas en haut d'une fiche la ferme.
+   Le bouton retour du téléphone (Android) et du navigateur fait la même chose que glisser vers la droite. */
+const NAV = {stack:[], restoring:false};
+const viewIds = () => [...document.querySelectorAll(".tab")].map(t=>t.dataset.v);
+const curView = () => ["extView","scanView","searchView","colView","alertView","playView","budgetView"].find(id=>!document.getElementById(id).hidden);
+/* ce qu'un « retour » fermerait, sans le faire : sert à choisir entre revenir et changer d'onglet */
+function backTarget(){
+  if($("#foilView")?.classList.contains("open")) return "foil";
+  if(!$("#gov").hidden) return "gov";
+  if($("#sheet").classList.contains("open")) return NAV.stack.length ? "card" : "sheet";
+  const v = curView();
+  if(v==="extView" && EX.set) return "set";
+  if(v==="colView" && JP.open && !$("#jpBox").hidden) return "jp";
+  if(v==="alertView") return "alert";
+  return null;
+}
+function navBack(){
+  const t = backTarget(); if(!t) return false;
+  if(t==="foil") $("#foilView").classList.remove("open");
+  else if(t==="gov") $("#gov").dataset.mode==="budget" ? bClose() : gClose();
+  else if(t==="card"){ const p = NAV.stack.pop(); NAV.restoring = true; showCard(p.id, p.alts).finally(()=>{ NAV.restoring = false; }); }
+  else if(t==="sheet") closeSheet();
+  else if(t==="set") showExtHome();
+  else if(t==="jp"){ JP.open = null; renderJP(); }
+  else if(t==="alert") selectTab("budgetView");
+  return true;
+}
+/* la fiche garde la carte précédente quand on passe d'une carte à une autre (version, carte liée, carte gradée…) */
+const _openSheet = openSheet;
+openSheet = function(){
+  const s = $("#sheet");
+  if(s.classList.contains("open") && current && !NAV.restoring && NAV.stack[NAV.stack.length-1]?.id!==current.id) NAV.stack.push({id:current.id, alts:currentAlts});
+  _openSheet();
+};
+const _closeSheet = closeSheet;
+closeSheet = function(){ NAV.stack = []; _closeSheet(); };
+$("#closeSheet").onclick = ()=>closeSheet();
+/* bouton retour du téléphone / du navigateur */
+history.replaceState({dex:0}, "");
+history.pushState({dex:1}, "");
+window.addEventListener("popstate", ()=>{
+  if(navBack()) history.pushState({dex:1}, "");
+  else history.back();   // rien à fermer : on laisse sortir de l'app
+});
+/* ---------- gestes ---------- */
+function goTab(dir){
+  const ids = viewIds(), v = curView()==="alertView" ? "budgetView" : curView(), i = ids.indexOf(v), j = i+dir;
+  if(j<0 || j>=ids.length) return false;
+  selectTab(ids[j]);
+  const el = document.getElementById(ids[j]); el.classList.remove("in-l","in-r"); void el.offsetWidth; el.classList.add(dir>0 ? "in-r" : "in-l");
+  setTimeout(()=>el.classList.remove("in-l","in-r"), 260);
+  return true;
+}
+function hScrollable(el){
+  for(let n = el; n && n!==document.body; n = n.parentElement){
+    if(n.scrollWidth > n.clientWidth+2){ const o = getComputedStyle(n).overflowX; if(o==="auto" || o==="scroll") return true; }
+  }
+  return false;
+}
+const G = {on:false};
+function layerFor(t){ return t==="gov" ? $("#gov") : (t==="card" || t==="sheet") ? $("#sheet") : null; }
+document.addEventListener("touchstart", e=>{
+  if(e.touches.length!==1){ G.on = false; return; }
+  const tg = e.target;
+  if(tg.closest("input,textarea,select,canvas,#foilView,[data-noswipe],.tabs") || hScrollable(tg)){ G.on = false; return; }
+  const p = e.touches[0];
+  G.on = true; G.x = p.clientX; G.y = p.clientY; G.t = Date.now(); G.lock = null; G.dx = 0; G.dy = 0;
+  G.back = backTarget(); G.layer = layerFor(G.back) || document.getElementById(curView());
+  G.sheetTop = G.back && (G.back==="card"||G.back==="sheet") ? $("#sheetBody").scrollTop<=0 : false;
+}, {passive:true});
+document.addEventListener("touchmove", e=>{
+  if(!G.on) return;
+  const p = e.touches[0]; G.dx = p.clientX-G.x; G.dy = p.clientY-G.y;
+  if(!G.lock){
+    if(Math.abs(G.dx)>14 && Math.abs(G.dx)>Math.abs(G.dy)*1.4) G.lock = "h";
+    else if(G.sheetTop && G.dy>14 && G.dy>Math.abs(G.dx)*1.4) G.lock = "v";
+    else if(Math.abs(G.dy)>14){ G.on = false; return; }
+    if(G.lock){ G.layer.style.transition = "none"; }
+  }
+  if(!G.lock) return;
+  if(e.cancelable) e.preventDefault();
+  if(G.lock==="v"){ G.layer.style.transform = `translateY(${Math.max(0,G.dy)}px)`; return; }
+  let dx = G.dx;
+  if(G.back){ dx = Math.max(0, dx); }                       // une fiche ou une page ouverte : on ne glisse que pour revenir
+  else { const ids = viewIds(), i = ids.indexOf(curView()==="alertView"?"budgetView":curView()); if((i===0 && dx>0) || (i===ids.length-1 && dx<0)) dx *= .25; }
+  G.layer.style.transform = `translateX(${dx}px)`;
+}, {passive:false});
+function settle(el, to, done){
+  el.style.transition = "transform .2s cubic-bezier(.2,.8,.2,1)"; el.style.transform = to;
+  setTimeout(()=>{ done && done(); el.style.transition = "none"; el.style.transform = ""; void el.offsetWidth; el.style.transition = ""; }, 200);
+}
+document.addEventListener("touchend", ()=>{
+  if(!G.on || !G.lock){ G.on = false; return; }
+  G.on = false;
+  const el = G.layer, v = Math.abs(G.lock==="v" ? G.dy : G.dx) / Math.max(1, Date.now()-G.t), W = innerWidth;
+  if(G.lock==="v"){
+    if(G.dy>110 || (G.dy>40 && v>.5)) settle(el, "translateY(100%)", ()=>{ el.classList.remove("open"); NAV.stack = []; closeSheet(); });
+    else settle(el, "");
+    return;
+  }
+  const far = Math.abs(G.dx)>W*.28 || (Math.abs(G.dx)>45 && v>.45);
+  if(far && G.dx>0 && G.back){
+    if(G.back==="card"){ settle(el, `translateX(${W}px)`, ()=>{ navBack(); el.classList.add("in-l"); setTimeout(()=>el.classList.remove("in-l"), 260); }); }
+    else if(G.back==="sheet"){ settle(el, `translateX(${W}px)`, ()=>{ el.style.transition = "none"; navBack(); }); }
+    else settle(el, `translateX(${W}px)`, ()=>{ navBack(); const nv = document.getElementById(curView()); if(nv!==el || G.back==="set" || G.back==="jp"){ nv.classList.add("in-l"); setTimeout(()=>nv.classList.remove("in-l"), 260); } });
+  } else if(far && !G.back){
+    const ids = viewIds(), i = ids.indexOf(curView()==="alertView"?"budgetView":curView()), j = i + (G.dx<0 ? 1 : -1);
+    if(j>=0 && j<ids.length) settle(el, `translateX(${G.dx<0 ? -W : W}px)`, ()=>goTab(G.dx<0 ? 1 : -1));
+    else settle(el, "");
+  } else settle(el, "");
+}, {passive:true});
+document.addEventListener("touchcancel", ()=>{ if(G.on && G.lock) settle(G.layer, ""); G.on = false; }, {passive:true});
+/* une seule fois : expliquer le geste */
+if(!store.get("swipeTip", false) && matchMedia("(pointer:coarse)").matches){ setTimeout(()=>{ toast("Astuce : glisse vers la droite pour revenir, à gauche ou à droite pour changer d'onglet"); store.set("swipeTip", true); }, 2500); }
+
 const langChip=$("#langChip");
 function setLangUI(){ langChip.textContent = LANG==="fr" ? "FR" : "EN"; $("#extLang").textContent = LANG==="fr" ? "Cartes FR" : "Cartes EN"; }
 function toggleLang(){

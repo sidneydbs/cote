@@ -11,7 +11,7 @@ const UA = {"user-agent": "Mozilla/5.0 (compatible; DexScan/1.0; +https://github
 const sleep = ms => new Promise(r => setTimeout(r, ms));
 const readJSON = (f, d) => { try { return JSON.parse(fs.readFileSync(f, "utf8")); } catch (e) { return d; } };
 const md5 = b => crypto.createHash("md5").update(b).digest("hex");
-async function getJSON(u, tries = 3, headers = {}) {
+async function getJSON(u, tries = 6, headers = {}) {
   for (let t = 0; t < tries; t++) {
     try { const r = await fetch(u, {headers: {...UA, accept: "application/json", ...headers}, signal: AbortSignal.timeout(40000)}); if (r.ok) return await r.json(); if (r.status === 404) return null; } catch (e) {}
     await sleep(1500 * (t + 1));
@@ -80,13 +80,16 @@ const sxCodes = id => {
 };
 
 // kits du dresseur : TCGdex (tk-xy-n…) et pokemontcg/scrydex (tk6b…) n'ont pas les mêmes codes → on les apparie par les noms des cartes
-const TK = {};
+// kits 3 à 10 : absents de l'API pokemontcg, appariés à la main en comparant la carte n° 1 (images Scrydex vérifiées)
+const TK = {"tk-dp-m": "tk3a", "tk-dp-l": "tk3b", "tk-hs-r": "tk4a", "tk-hs-g": "tk4b", "tk-bw-z": "tk5a", "tk-bw-e": "tk5b",
+  "tk-xy-sy": "tk6a", "tk-xy-n": "tk6b", "tk-xy-w": "tk7a", "tk-xy-b": "tk7b", "tk-xy-latio": "tk8a", "tk-xy-latia": "tk8b",
+  "tk-xy-su": "tk9a", "tk-xy-p": "tk9b", "tk-sm-l": "tk10a", "tk-sm-r": "tk10b"};
 {
   const tkIds = ids.filter(id => id.startsWith("tk-"));
   const codes = []; for (let n = 1; n <= 12; n++) codes.push(`tk${n}a`, `tk${n}b`);
   const pt = {};
   await pool(codes, 4, async c => { const j = await getJSON(`https://api.pokemontcg.io/v2/cards?q=set.id:${c}&select=number,name&pageSize=250`, 2); if (j?.data?.length) pt[c] = new Map(j.data.map(x => [String(x.number), x.name.toLowerCase()])); });
-  await pool(tkIds, 4, async id => {
+  await pool(tkIds.filter(id => !TK[id]), 4, async id => {
     const s = await getJSON(`${API}/en/sets/${encodeURIComponent(id)}`); if (!s?.cards?.length) return;
     let best = null;
     for (const [c, m] of Object.entries(pt)) {
@@ -98,6 +101,7 @@ const TK = {};
   console.log(`kits du dresseur appariés : ${Object.keys(TK).length}/${tkIds.length}`, JSON.stringify(TK));
 }
 
+const OLD = readJSON("media.json", {});
 const media = {v: 2, built: new Date().toISOString(), sets: {}, cards: {}, sealed: {}};
 const audit = {built: media.built, sets: {total: ids.length, noLogo: [], noSymbol: []}, cards: {total: 0, tcgdex: 0, fallback: 0, missing: [], bySet: {}}, sealed: {total: 0, photo: 0, logo: 0, missing: 0}, tk: TK, diag};
 
@@ -128,14 +132,18 @@ console.log(`logos : ${ids.length - audit.sets.noLogo.length}/${ids.length} · s
 // 2. cartes sans image TCGdex (ni en français, ni en anglais) : Limitless, Scrydex, pokemontcg.io
 const llUrl = (set, loc) => { const e = SRC.ll[set]; if (!e) return null; const c = typeof e === "string" ? e : e.c; let k = (typeof e === "object" && e.m && e.m[loc]) || loc; if (/^\d+$/.test(k)) k = String(k).padStart(3, "0"); return `https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/tpci/${c}/${c}_${k}_R_EN_SM.png`; };
 const cardSets = [...new Set([...frSets.map(s => s.id), ...enSets.map(s => s.id)])].filter(id => !isPocket(id));
-await pool(cardSets, 6, async sid => {
+await pool(cardSets, 4, async sid => {
   const [a, b] = await Promise.all([fr.has(sid) ? getJSON(`${API}/fr/sets/${encodeURIComponent(sid)}`) : null, en.has(sid) ? getJSON(`${API}/en/sets/${encodeURIComponent(sid)}`) : null]);
+  if (!a && !b) {   // TCGdex injoignable pour cette extension : on garde le résultat précédent
+    for (const [k, v] of Object.entries(OLD.cards || {})) if (k.slice(0, k.lastIndexOf("-")) === sid) { media.cards[k] = v; audit.cards.fallback++; audit.cards.total++; }
+    audit.cards.unreachable = [...(audit.cards.unreachable || []), sid]; return;
+  }
   const cards = new Map();
   for (const c of [...(a?.cards || []), ...(b?.cards || [])]) { const x = cards.get(c.id) || {id: c.id, localId: c.localId, img: false}; if (c.image) x.img = true; cards.set(c.id, x); }
   const codes = [...sxCodes(sid), ...(TK[sid] ? [TK[sid]] : [])], sxm = typeof SRC.sx?.[sid] === "object" ? SRC.sx[sid].m : null;
   const ptc = SRC.pt[sid] || TK[sid];
-  const dead = new Set();   // une source qui échoue sur 6 cartes d affilée n'est plus essayée pour cette extension
-  const fails = {};
+  const dead = new Set();   // une source qui n'a encore rien donné après 8 essais n'est plus essayée pour cette extension
+  const fails = {}, wins = {};
   for (const c of cards.values()) {
     audit.cards.total++;
     if (c.img) { audit.cards.tcgdex++; continue; }
@@ -146,8 +154,8 @@ await pool(cardSets, 6, async sid => {
     let got = null;
     for (const [k, u] of cands) {
       if (dead.has(k)) continue;
-      if (await okImg(u)) { got = [k, u]; fails[k] = 0; break; }
-      fails[k] = (fails[k] || 0) + 1; if (fails[k] >= 6) dead.add(k);
+      if (await okImg(u)) { got = [k, u]; wins[k] = 1; break; }
+      fails[k] = (fails[k] || 0) + 1; if (!wins[k] && fails[k] >= 8) dead.add(k);
     }
     if (got) {
       // « ll », « sx », « pt » : l'app sait déjà construire l'adresse ; sinon on donne l'adresse complète

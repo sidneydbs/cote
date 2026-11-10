@@ -856,7 +856,7 @@ html{background:var(--panel)}
 </head>
 <body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="pb" viewBox="0 0 100 100"><defs><linearGradient id="pbV" x1="0" y1="0" x2="1" y2="1"><stop offset="0" style="stop-color:var(--pb1)"/><stop offset=".5" style="stop-color:var(--pb2)"/><stop offset="1" style="stop-color:var(--pb3)"/></linearGradient><radialGradient id="pbB" cx=".38" cy=".75" r=".75"><stop offset="0" style="stop-color:var(--pbb1)"/><stop offset="1" style="stop-color:var(--pbb2)"/></radialGradient><radialGradient id="pbC" cx=".4" cy=".35" r=".7"><stop offset="0" style="stop-color:var(--pbc1)"/><stop offset=".55" style="stop-color:var(--pbc2)"/><stop offset="1" style="stop-color:var(--pbc3)"/></radialGradient></defs><path d="M3 50a47 47 0 0 1 94 0z" fill="url(#pbV)"/><path d="M3 50a47 47 0 0 0 94 0z" fill="url(#pbB)"/><rect x="3" y="45.5" width="94" height="9" fill="#09080D"/><circle cx="50" cy="50" r="47" fill="none" stroke="#09080D" stroke-width="4"/><circle cx="50" cy="50" r="15.5" fill="#09080D"/><circle cx="50" cy="50" r="10" fill="url(#pbC)" style="stroke:var(--pb2)" stroke-width="2"/><path d="M19 33a35 35 0 0 1 17-15" fill="none" stroke="#fff" stroke-opacity=".38" stroke-width="4" stroke-linecap="round"/></symbol></svg>
-<script>window.__APPV="48";</script>
+<script>window.__APPV="49";</script>
 <div class="splash" id="splash" aria-hidden="true"><i class="hole"></i><i class="halo"></i><div class="bw"><svg class="b" viewBox="0 0 100 100"><use href="#pb"/></svg><svg class="t" viewBox="0 0 100 100"><use href="#pb"/></svg></div><i class="glow"></i></div>
 <script>setTimeout(function(){ if(window.__booted) return;
   var b=document.createElement("div"); b.setAttribute("role","alert");
@@ -1017,7 +1017,7 @@ html{background:var(--panel)}
   <!-- ===== COLLECTION ===== -->
   <section class="view" id="colView" hidden>
     <div class="scroll">
-      <div class="homebar"><svg class="pball" viewBox="0 0 100 100" aria-hidden="true"><use href="#pb"/></svg><span class="brand">DEX<b>·</b>SCAN</span><button class="thbtn" id="themeBtn" aria-label="Changer de thème"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.6-.9 1.2-1.8-.5-1.1.2-2.2 1.4-2.2H17a4 4 0 0 0 4-4c0-5.5-4-10-9-10z"/><circle cx="7.5" cy="11" r="1.2"/><circle cx="10" cy="7" r="1.2"/><circle cx="15" cy="7" r="1.2"/></svg></button><span class="ver">v48</span></div>
+      <div class="homebar"><svg class="pball" viewBox="0 0 100 100" aria-hidden="true"><use href="#pb"/></svg><span class="brand">DEX<b>·</b>SCAN</span><button class="thbtn" id="themeBtn" aria-label="Changer de thème"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.6-.9 1.2-1.8-.5-1.1.2-2.2 1.4-2.2H17a4 4 0 0 0 4-4c0-5.5-4-10-9-10z"/><circle cx="7.5" cy="11" r="1.2"/><circle cx="10" cy="7" r="1.2"/><circle cx="15" cy="7" r="1.2"/></svg></button><span class="ver">v49</span></div>
       <h1 class="h1">Collection</h1>
       <p class="lede">Tes cartes rangées par série et par extension, dans l'ordre des numéros. Le mode Pokédex montre aussi celles qui te manquent, en grisé.</p>
       <div class="total" id="wallet">
@@ -1455,8 +1455,10 @@ function altImgs(id, localId, q="low"){
     out.push(`https://images.scrydex.com/pokemon/${c}-${k}/${q==="high"?"large":"small"}`); }
   if(SRC.pt[set]) out.push(`https://images.pokemontcg.io/${SRC.pt[set]}/${loc}${q==="high"?"_hires":""}.png`);
   // media.json (vérifié chaque jour) dit quelle source a vraiment l'image : on la met en premier
-  const k = MEDIA.d?.cards?.[id]; if(k){ const re = {ll:/limitless/, sx:/scrydex/, pt:/pokemontcg/}[k]; if(re) out.sort((a,b)=>(re.test(b)?1:0)-(re.test(a)?1:0)); }
-  return out;
+  const k = MEDIA.d?.cards?.[id];
+  if(k && /^https?:/.test(k)) out.unshift(k.replace("/small", q==="high"?"/large":"/small"));
+  else if(k){ const re = {ll:/limitless/, sx:/scrydex/, pt:/pokemontcg/}[k]; if(re) out.sort((a,b)=>(re.test(b)?1:0)-(re.test(a)?1:0)); }
+  return [...new Set(out)];
 }
 function altImg(id, localId, q="low"){ return altImgs(id, localId, q)[0] || ""; }
 function imgChain(c, q="low"){
@@ -1481,14 +1483,29 @@ fetchT("media.json?h="+Math.floor(Date.now()/36e5), 30000).then(r=>r.ok?r.json()
 function logoChain(s){
   const out = [];
   const m = MEDIA.d?.sets?.[s?.id]; if(m?.l) out.push(m.l);
-  if(s?.logo) out.push(s.logo+".webp", s.logo+".png");
+  if(m?.lu) out.push(m.lu);
+  if(s?.logo) out.push(s.logo+".png", s.logo+".webp");
   if(s?.id && SRC.logo[s.id]) out.push(srcUrl(SRC.logo[s.id]));
-  if(s?.id && SRC.pt[s.id]) out.push(`https://images.pokemontcg.io/${SRC.pt[s.id]}/logo.png`);
-  if(s?.symbol) out.push(s.symbol+".webp", s.symbol+".png");
+  if(s?.id && SRC.pt[s.id]) out.push(`https://images.pokemontcg.io/${SRC.pt[s.id]}/logo.png`, `https://images.scrydex.com/pokemon/${SRC.pt[s.id]}-logo/logo`);
+  out.push(...symChain(s));
   return [...new Set(out)];
 }
+// symbole de l'extension : copie vérifiée (media/), puis TCGdex, pokemontcg, scrydex
+function symChain(s){
+  const out = [], m = MEDIA.d?.sets?.[s?.id];
+  if(s?._symbol) out.push(s._symbol);
+  if(m?.s) out.push(m.s); if(m?.su) out.push(m.su);
+  if(s?.symbol) out.push(s.symbol+".png", s.symbol+".webp");
+  if(s?.id && SRC.pt[s.id]) out.push(`https://images.pokemontcg.io/${SRC.pt[s.id]}/symbol.png`, `https://images.scrydex.com/pokemon/${SRC.pt[s.id]}-symbol/symbol`);
+  return [...new Set(out)];
+}
+// <img> qui essaie chaque adresse de la liste jusqu'à en trouver une qui s'affiche
+function chainImg(l, attrs="", ini=null){
+  if(!l.length) return ini!=null ? `<span class="ini">${esc(ini)}</span>` : "";
+  return `<img src="${esc(l[0])}" data-alt="${esc(l.slice(1).join("|"))}"${ini!=null?` data-ini="${esc(ini)}"`:""} onerror="__imgNext(this)" onload="__imgChk(this)" ${attrs}>`;
+}
 function img(card, q="high"){ return imgChain(card, q)[0] || ""; }
-const setPic = (set,k) => set?.["_"+k] || (k==="logo" ? (logoChain(set)[0]||"") : (MEDIA.d?.sets?.[set?.id]?.s || (set?.[k] ? set[k]+".webp" : "")));
+const setPic = (set,k) => set?.["_"+k] || (k==="logo" ? (logoChain(set)[0]||"") : (symChain(set)[0]||""));
 
 /* ---------- Brillance des cartes ----------
    Chaque carte reçoit le traitement de sa vraie impression, selon sa rareté :
@@ -1745,10 +1762,10 @@ function renderCard(){
       <div><div class="cardimg" id="heroImg">${imgTag(c, "high", `alt="${esc(c.name)}"`)}</div>${foilOf(c.rarity, setIdOf(c.id), c.name, c.variants)?`<span class="foilhint">✨ Touche pour la vitrine 3D</span>`:""}</div>
       <div class="hero-meta">
         <h2 class="cname">${esc(c.name)}</h2>
-        <div class="setline">${setPic(c.set,"symbol")?`<img src="${setPic(c.set,"symbol")}" alt="">`:""}<span>${esc(c.set?.name||"")}</span></div>
+        <div class="setline">${chainImg(symChain(c.set), `alt=""`)}<span>${esc(c.set?.name||"")}</span></div>
         <div class="num">${esc(numTxt)}</div>
         <div class="tags">${pr?`<span class="tag rep">${esc(REPRINTS[pr.kind].lbl)}</span>`:""}${currentEd?`<span class="tag rep">${esc(edLbl(currentEd))}</span>`:""}${types}${c.rarity?`<span class="tag">${esc(c.rarity)}</span>`:""}${c.category?`<span class="tag">${esc(c.category)}</span>`:""}</div>
-        ${setPic(c.set,"logo")?`<img src="${setPic(c.set,"logo")}" alt="" style="max-height:44px;max-width:100%;object-fit:contain;align-self:flex-start;margin-top:4px">`:""}
+        ${chainImg(c.set?._logo ? [c.set._logo, ...logoChain(c.set)] : logoChain(c.set), `alt="" style="max-height:44px;max-width:100%;object-fit:contain;align-self:flex-start;margin-top:4px"`)}
       </div>
     </div>
     ${verHTML}
@@ -3607,7 +3624,7 @@ function setStats(s, own){
 function setCardHTML(s, o={}){
   const st = setStats(s, o.own), ri = st.ri;
   const date = ri?.date || s.releaseDate || store.get("setDates",{})[s.id] || "";
-  const sym = setPic(s, "symbol") || (s.symbol ? s.symbol+".webp" : "");
+  const syms = symChain(s), sym = syms[0] || "";
   const abbr = ri?.abbr || s.abbreviation?.official || "";
   const tag = o.tag || "div", min = o.min;
   const chips = ri ? ri.groups.map(g=>{
@@ -3618,7 +3635,7 @@ function setCardHTML(s, o={}){
     <div class="sch"><h3>${esc(s.name)}</h3><p data-date="${esc(s.id)}">${date?"Date de sortie : "+esc(fmtDay(date)):"&nbsp;"}</p></div>
     <div class="scp">
       <div class="sctop">${logoHTML(s)}<div class="scr">${o.noMin?"":`<span class="scmin" role="button" tabindex="0" aria-label="${(min||o.plus)?"Déplier":"Replier"}" data-min>${(min||o.plus)?PLUS_SVG:MIN_SVG}</span>`}<span class="scc" data-cnt><b>${st.have}</b><small>/${st.total||"?"}</small><span class="sep"></span><b>${st.pc}%</b></span>${o.value?`<span class="scv">Valeur <b>${esc(o.value)}</b></span>`:""}</div></div>
-      <div class="scbar"><span class="scsym">${sym?`<img src="${esc(sym)}" alt="" loading="lazy" onerror="this.replaceWith(document.createTextNode('${esc((abbr||s.id).toUpperCase().slice(0,5))}'))">`:esc((abbr||s.id).toUpperCase().slice(0,5))}</span><span class="sbar"><i style="width:${st.pc}%"></i></span></div>
+      <div class="scbar"><span class="scsym">${sym?chainImg(syms, `alt="" loading="lazy"`, (abbr||s.id).toUpperCase().slice(0,5)):esc((abbr||s.id).toUpperCase().slice(0,5))}</span><span class="sbar"><i style="width:${st.pc}%"></i></span></div>
       ${chips?`<div class="scrar">${chips}</div>`:(!RAR.d && !o.noRar)?`<div class="scnote">Détail par rareté en cours de chargement…</div>`:""}
       ${o.inner||""}
     </div>
@@ -3706,7 +3723,7 @@ const SER_CHEV = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" str
 EX.view = store.get("extViewMode", "compact");
 const SERCL = store.get("serClosed", {});
 function logo2HTML(s){
-  const sym = setPic(s, "symbol"), l = [...logoChain(s), ...(sym?[sym]:[])];
+  const l = logoChain(s);
   if(!l.length) return `<span class="lg2"><span class="ini">${esc(initials(s))}</span></span>`;
   return `<span class="lg2"><img src="${esc(l[0])}" alt="" loading="lazy" data-alt="${esc(l.slice(1).join("|"))}" data-ini="${esc(initials(s))}" onerror="__imgNext(this)" onload="__imgChk(this)"></span>`;
 }

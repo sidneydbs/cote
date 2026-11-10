@@ -622,6 +622,42 @@ html{background:var(--panel)}
 .lg2{width:84px;height:46px;flex:none;display:grid;place-items:center;border-radius:10px;background:radial-gradient(85% 90% at 50% 50%,color-mix(in srgb,var(--fg) 13%,transparent),transparent 75%)}
 .lg2 img{max-width:78px;max-height:42px;object-fit:contain;filter:drop-shadow(0 0 1px rgba(255,255,255,.55)) drop-shadow(0 1px 2px rgba(0,0,0,.4))}
 .lg2 .ini{font:800 13px/1.1 var(--f-body);color:var(--fg);text-align:center;padding:6px 8px;border-radius:9px;background:linear-gradient(135deg,color-mix(in srgb,var(--border-yellow) 45%,var(--panel-2)),var(--panel-2));letter-spacing:.04em}
+/* vue « dossiers » (comme l'explorateur Windows) */
+.fpath{display:flex;align-items:center;gap:2px;flex:1;min-width:0;height:36px;padding:0 6px;border-radius:11px;background:var(--panel);border:1px solid var(--line);overflow-x:auto;white-space:nowrap;scrollbar-width:none}
+.fpath::-webkit-scrollbar{display:none}
+.fpath button{flex:none;display:flex;align-items:center;gap:5px;padding:5px 6px;border-radius:7px;font:600 13px/1 var(--f-body);color:var(--fg)}
+.fpath button:last-child{color:var(--border-yellow)}
+.fpath button:active{background:var(--panel-2)}
+.fpath .fsep{flex:none;color:var(--muted);font:600 13px/1 var(--f-body);padding:0 1px}
+.fpath svg{width:16px;height:16px;flex:none}
+.fup{flex:none;width:36px;height:36px;border-radius:11px;display:grid;place-items:center;background:var(--panel);border:1px solid var(--line);color:var(--fg)}
+.fup:disabled{opacity:.35}
+.fup svg{width:17px;height:17px}
+.lrow+.lrow{margin-top:8px}
+.fhead{display:flex;justify-content:space-between;align-items:baseline;gap:8px;margin:14px 2px 2px;font:600 11px/1 var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.fhead b{color:var(--fg);font-weight:700;letter-spacing:0;text-transform:none;font-size:12px}
+.fgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(102px,1fr));gap:10px 8px;margin-top:8px;animation:fin .22s ease-out}
+@keyframes fin{from{opacity:0;transform:scale(.97)}to{opacity:1;transform:none}}
+.fold{display:flex;flex-direction:column;align-items:center;gap:4px;padding:8px 4px 10px;border-radius:14px;text-align:center;color:inherit;cursor:pointer;min-width:0;-webkit-tap-highlight-color:transparent}
+.fold:active{background:color-mix(in srgb,var(--border-yellow) 16%,transparent)}
+.fic{position:relative;width:100%;max-width:118px;aspect-ratio:1.25;margin-bottom:4px}
+.fback{position:absolute;inset:9% 0 0 0;border-radius:5px 8px 8px 8px;background:var(--border-deep)}
+.fback::before{content:"";position:absolute;left:0;top:-10%;width:40%;height:16%;border-radius:6px 9px 0 0;background:inherit}
+.fpap{position:absolute;left:11%;right:11%;top:13%;height:58%;background:#fff;border-radius:3px;box-shadow:0 1px 3px rgba(0,0,0,.35);transform:rotate(var(--r,0deg)) translateY(var(--y,0));display:grid;place-items:center;padding:4px;overflow:hidden}
+.fpap img{max-width:100%;max-height:100%;object-fit:contain}
+.fpap .ini{font:800 10px/1 var(--f-body);color:#333}
+.ffront{position:absolute;left:0;right:0;bottom:0;height:68%;border-radius:4px 4px 8px 8px;background:linear-gradient(180deg,color-mix(in srgb,var(--border-yellow) 80%,#fff) 0%,var(--border-yellow) 38%,color-mix(in srgb,var(--border-yellow) 70%,var(--border-deep)) 100%);box-shadow:inset 0 1px 0 rgba(255,255,255,.45),0 5px 12px rgba(0,0,0,.35);display:grid;place-items:center;padding:9% 9% 8%;transform-origin:50% 100%;transition:transform .18s}
+.fold:active .ffront,.fold:hover .ffront{transform:perspective(260px) rotateX(-16deg)}
+.ffront img{max-width:100%;max-height:100%;object-fit:contain;filter:drop-shadow(0 0 1px rgba(255,255,255,.7)) drop-shadow(0 1px 2px rgba(0,0,0,.5))}
+.ffront .ini{font:800 13px/1.1 var(--f-body);color:var(--on-acc);letter-spacing:.04em}
+.ffront .fn{position:absolute;right:6%;bottom:8%;min-width:20px;height:18px;padding:0 5px;border-radius:9px;background:rgba(0,0,0,.55);color:#fff;font:700 10px/18px var(--f-mono)}
+.fold b{font:700 12.5px/1.2 var(--f-body);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;width:100%;min-height:2.4em}
+.fold small{font:600 10.5px/1.25 var(--f-mono);color:var(--muted);font-variant-numeric:tabular-nums}
+.fold small em{font-style:normal;color:var(--fg);opacity:.85}
+.fpb{display:block;width:70%;height:3px;border-radius:3px;background:color-mix(in srgb,var(--fg) 12%,transparent);overflow:hidden;margin-top:2px}
+.fpb>i{display:block;height:100%;background:linear-gradient(90deg,var(--g1),var(--g2))}
+.fold.done small{color:var(--up)}
+.fopen{margin-top:10px;animation:fin .22s ease-out}
 .stiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(104px,1fr));gap:10px}
 .stile2{position:relative;display:flex;flex-direction:column;align-items:center;gap:6px;padding:14px 8px 10px;border-radius:14px;background:var(--panel);border:1px solid color-mix(in srgb,var(--fg) 10%,transparent);cursor:pointer;text-align:center;min-width:0}
 .stile2 .lg2{width:100%;height:58px}
@@ -856,7 +892,7 @@ html{background:var(--panel)}
 </head>
 <body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="pb" viewBox="0 0 100 100"><defs><linearGradient id="pbV" x1="0" y1="0" x2="1" y2="1"><stop offset="0" style="stop-color:var(--pb1)"/><stop offset=".5" style="stop-color:var(--pb2)"/><stop offset="1" style="stop-color:var(--pb3)"/></linearGradient><radialGradient id="pbB" cx=".38" cy=".75" r=".75"><stop offset="0" style="stop-color:var(--pbb1)"/><stop offset="1" style="stop-color:var(--pbb2)"/></radialGradient><radialGradient id="pbC" cx=".4" cy=".35" r=".7"><stop offset="0" style="stop-color:var(--pbc1)"/><stop offset=".55" style="stop-color:var(--pbc2)"/><stop offset="1" style="stop-color:var(--pbc3)"/></radialGradient></defs><path d="M3 50a47 47 0 0 1 94 0z" fill="url(#pbV)"/><path d="M3 50a47 47 0 0 0 94 0z" fill="url(#pbB)"/><rect x="3" y="45.5" width="94" height="9" fill="#09080D"/><circle cx="50" cy="50" r="47" fill="none" stroke="#09080D" stroke-width="4"/><circle cx="50" cy="50" r="15.5" fill="#09080D"/><circle cx="50" cy="50" r="10" fill="url(#pbC)" style="stroke:var(--pb2)" stroke-width="2"/><path d="M19 33a35 35 0 0 1 17-15" fill="none" stroke="#fff" stroke-opacity=".38" stroke-width="4" stroke-linecap="round"/></symbol></svg>
-<script>window.__APPV="49";</script>
+<script>window.__APPV="50";</script>
 <div class="splash" id="splash" aria-hidden="true"><i class="hole"></i><i class="halo"></i><div class="bw"><svg class="b" viewBox="0 0 100 100"><use href="#pb"/></svg><svg class="t" viewBox="0 0 100 100"><use href="#pb"/></svg></div><i class="glow"></i></div>
 <script>setTimeout(function(){ if(window.__booted) return;
   var b=document.createElement("div"); b.setAttribute("role","alert");
@@ -1017,7 +1053,7 @@ html{background:var(--panel)}
   <!-- ===== COLLECTION ===== -->
   <section class="view" id="colView" hidden>
     <div class="scroll">
-      <div class="homebar"><svg class="pball" viewBox="0 0 100 100" aria-hidden="true"><use href="#pb"/></svg><span class="brand">DEX<b>·</b>SCAN</span><button class="thbtn" id="themeBtn" aria-label="Changer de thème"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.6-.9 1.2-1.8-.5-1.1.2-2.2 1.4-2.2H17a4 4 0 0 0 4-4c0-5.5-4-10-9-10z"/><circle cx="7.5" cy="11" r="1.2"/><circle cx="10" cy="7" r="1.2"/><circle cx="15" cy="7" r="1.2"/></svg></button><span class="ver">v49</span></div>
+      <div class="homebar"><svg class="pball" viewBox="0 0 100 100" aria-hidden="true"><use href="#pb"/></svg><span class="brand">DEX<b>·</b>SCAN</span><button class="thbtn" id="themeBtn" aria-label="Changer de thème"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.6-.9 1.2-1.8-.5-1.1.2-2.2 1.4-2.2H17a4 4 0 0 0 4-4c0-5.5-4-10-9-10z"/><circle cx="7.5" cy="11" r="1.2"/><circle cx="10" cy="7" r="1.2"/><circle cx="15" cy="7" r="1.2"/></svg></button><span class="ver">v50</span></div>
       <h1 class="h1">Collection</h1>
       <p class="lede">Tes cartes rangées par série et par extension, dans l'ordre des numéros. Le mode Pokédex montre aussi celles qui te manquent, en grisé.</p>
       <div class="total" id="wallet">
@@ -1816,7 +1852,7 @@ function addToCol(c, ed=null){
   else { const p = mi.p ?? mainPrice(c); col.unshift({id:c.id, name:c.name, set:c.set?.name||"", num:c.localId, img:img(c,"low"), price:p, buy:p, a1:mi.a1, a7:mi.a7, a30:mi.a30, pt:Date.now(), qty:1, t:Date.now()}); bump(col[0]); }
   store.set("col",col); renderCol();
 }
-const COLV = {pdx: store.get("colPdx", true), q:"", open: store.get("colOpen", {}), gen:0, sets:new Map(), view: store.get("colViewMode","compact"), sort: store.get("colSort","serie")};
+const COLV = {pdx: store.get("colPdx", true), q:"", open: store.get("colOpen", {}), gen:0, sets:new Map(), view: store.get("colViewMode2","folders"), fold:{ser:null, set:null}, sort: store.get("colSort","serie")};
 const CSORT = [["serie","Par série"],["value","Valeur"],["prog","Avancement"],["recent","Récentes"]];
 /* ---------- Filtres du Pokédex : afficher, rareté, type, catégorie, prix, tri ---------- */
 const CF = Object.assign({show:"all", rarity:"", type:"", cat:"", pmin:null, pmax:null, sort:"num"}, store.get("colFlt", {}));
@@ -1942,7 +1978,8 @@ async function renderCol(){
   const SD = store.get("setDates", {}), serDate = {}, OWNI = ownIndex();
   if(!RAR.d) loadRar().then(d=>{ if(d && gen===COLV.gen && !$("#colView").hidden) renderCol(); });
   for(const se of EX.series||[]) serDate[se.name] = se.date;
-  const cbar = `<div class="lbar"><div class="lrow"><div class="csort">${CSORT.map(([k,l])=>`<button data-csort="${k}" aria-pressed="${COLV.sort===k}">${l}</button>`).join("")}</div>${vtogHTML(COLV.view, ["compact","detail"])}</div></div>`;
+  const cbar = `<div class="lbar"><div class="lrow"><div class="csort">${CSORT.map(([k,l])=>`<button data-csort="${k}" aria-pressed="${COLV.sort===k}">${l}</button>`).join("")}</div>${vtogHTML(COLV.view, ["folders","compact","detail"])}</div></div>`;
+  if(COLV.view==="folders" && !q && !narrow){ colFolders(groups, by, OWNI, gen, list); return; }
   list.innerHTML = cbar + groups.map(g=>`<section class="serie"><h2><span>${esc(g.name)}${serDate[g.name]?` <em class="sdate">· depuis ${esc(fmtMonth(serDate[g.name]))}</em>`:""}</span><span>${g.sets.reduce((a,s)=>a+by.get(s.id).length,0)}</span></h2>${
     g.sets.map(s=>{
       const own = by.get(s.id), val = own.reduce((a,x)=>a+(x.price||0)*x.qty,0);
@@ -1951,7 +1988,7 @@ async function renderCol(){
       return setCardHTML(s, {own: OWNI.get(s.id), cls:"colset"+(open?" open":""), plus:!open, value: val?eurS(val):"", attrs:` role="button" tabindex="0" aria-expanded="${open}"`, inner:`<div class="cgrid"></div>`});
     }).join("")}</section>`).join("");
   list.querySelectorAll("[data-csort]").forEach(b=>b.onclick=()=>{ COLV.sort = b.dataset.csort; store.set("colSort", COLV.sort); renderCol(); });
-  list.querySelectorAll("[data-view]").forEach(b=>b.onclick=()=>{ COLV.view = b.dataset.view; store.set("colViewMode", COLV.view); renderCol(); });
+  list.querySelectorAll("[data-view]").forEach(b=>b.onclick=()=>{ COLV.view = b.dataset.view; store.set("colViewMode2", COLV.view); renderCol(); });
   list.querySelectorAll(".colset").forEach(box=>box.onclick=e=>{
     if(e.target.closest(".cgrid")) return;
     const h = box, id = box.dataset.set, open = !box.classList.contains("open");
@@ -1973,6 +2010,41 @@ async function renderCol(){
     }
     if(box.classList.contains("open") || q || narrow){ if(q || narrow) box.classList.add("open"); fillColSet(box, by.get(box.dataset.set), gen); }
   }
+}
+/* Collection en dossiers : séries → extensions → cartes */
+function colFolders(groups, by, OWNI, gen, list){
+  const F = COLV.fold, flat = groups.length===1 && COLV.sort!=="serie";
+  const val = s=>by.get(s.id).reduce((a,x)=>a+(x.price||0)*x.qty,0);
+  const g = flat ? groups[0] : groups.find(x=>x.name===F.ser);
+  if(!g){ F.ser = null; F.set = null; }
+  const s = g && F.set ? g.sets.find(x=>x.id===F.set) : null; if(!s) F.set = null;
+  const segs = ["Collection", ...(g ? [g.name] : []), ...(s ? [s.name] : [])];
+  const bar = `<div class="lbar"><div class="lrow"><div class="csort">${CSORT.map(([k,l])=>`<button data-csort="${k}" aria-pressed="${COLV.sort===k}">${l}</button>`).join("")}</div>${vtogHTML(COLV.view, ["folders","compact","detail"])}</div><div class="lrow">${fpathHTML(segs)}</div></div>`;
+  let inner;
+  if(s){
+    const v = val(s);
+    inner = `<div class="fopen">${setRowHTML(s, OWNI.get(s.id), {cls:"colset open", value: v?eurS(v):"", inner:`<div class="cgrid"></div>`})}</div>`;
+  } else if(g){
+    const sv = g.sets.reduce((a,x)=>a+val(x),0), ss = serStats(g.sets, OWNI);
+    inner = `<div class="fhead"><span>${g.sets.length} extension${g.sets.length>1?"s":""}</span><b>${sv?eurS(sv)+" · ":""}${ss.pc}%</b></div><div class="fgrid">${g.sets.map(x=>{
+      const st = setStats(x, OWNI.get(x.id)), v = val(x); return fSetHTML(x, `${st.have}/${st.total||"?"}${v?` · <em>${eurS(v)}</em>`:""}`, st.pc, `data-cfset="${esc(x.id)}"`); }).join("")}</div>`;
+  } else {
+    inner = `<div class="fhead"><span>${groups.length} série${groups.length>1?"s":""}</span><b>${by.size} extension${by.size>1?"s":""}</b></div><div class="fgrid">${groups.map(x=>{
+      const v = x.sets.reduce((a,y)=>a+val(y),0), ss = serStats(x.sets, OWNI), n = x.sets.reduce((a,y)=>a+by.get(y.id).length,0);
+      return fSerHTML(x.name, x.sets, `${n} carte${n>1?"s":""}${v?` · <em>${eurS(v)}</em>`:""}`, ss.pc, `data-cfser="${esc(x.name)}"`); }).join("")}</div>`;
+  }
+  list.innerHTML = bar + inner;
+  const top = ()=>{ const sc = $("#colView .scroll"), y = list.offsetTop - 4; if(sc.scrollTop > y) sc.scrollTop = y; };
+  list.querySelectorAll("[data-csort]").forEach(b=>b.onclick=()=>{ COLV.sort = b.dataset.csort; store.set("colSort", COLV.sort); F.ser = F.set = null; renderCol(); });
+  list.querySelectorAll("[data-view]").forEach(b=>b.onclick=()=>{ COLV.view = b.dataset.view; store.set("colViewMode2", COLV.view); renderCol(); });
+  list.querySelectorAll("[data-cfser]").forEach(b=>b.onclick=()=>{ F.ser = b.dataset.cfser; F.set = null; renderCol(); top(); });
+  list.querySelectorAll("[data-cfset]").forEach(b=>b.onclick=()=>{ if(flat) F.ser = g.name; F.set = b.dataset.cfset; renderCol(); top(); });
+  list.querySelectorAll("[data-fgo]").forEach(b=>b.onclick=()=>{
+    const i = +b.dataset.fgo;
+    if(i===0){ F.ser = F.set = null; } else if(i===1){ F.set = null; }
+    renderCol(); top();
+  });
+  if(s){ const box = list.querySelector(".colset"); fillColSet(box, by.get(s.id), gen); }
 }
 async function fillColSet(box, own, gen){
   const grid = box.querySelector(".cgrid"), id = box.dataset.set, q = norm(COLV.q);
@@ -3718,9 +3790,26 @@ const VIEW_ICO = {
   compact:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h16"/></svg>`,
   grid:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="4" y="4" width="7" height="7" rx="1.5"/><rect x="13" y="4" width="7" height="7" rx="1.5"/><rect x="4" y="13" width="7" height="7" rx="1.5"/><rect x="13" y="13" width="7" height="7" rx="1.5"/></svg>`,
   detail:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><rect x="4" y="4" width="16" height="9" rx="2"/><path d="M4 17h16M4 21h10"/></svg>`};
-const VIEW_LBL = {compact:"Vue compacte", grid:"Vue en grille", detail:"Vue détaillée"};
+VIEW_ICO.folders = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linejoin="round"><path d="M3 7.5V18a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V9.5a2 2 0 0 0-2-2h-7.2L9.6 5.2A2 2 0 0 0 8.2 4.6H5a2 2 0 0 0-2 2z"/><path d="M3 11h18"/></svg>`;
+const VIEW_LBL = {folders:"Vue dossiers", compact:"Vue compacte", grid:"Vue en grille", detail:"Vue détaillée"};
+/* ---------- Vue « dossiers » : séries et extensions rangées comme dans l'explorateur Windows ---------- */
+const FOLD_ICO = `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 6.5A2.5 2.5 0 0 1 5.5 4h3.3c.6 0 1.2.2 1.6.7L12 6.5h6.5A2.5 2.5 0 0 1 21 9v8.5a2.5 2.5 0 0 1-2.5 2.5h-13A2.5 2.5 0 0 1 3 17.5z" opacity=".9"/></svg>`;
+const UP_ICO = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>`;
+// barre d'adresse : [↑] 📁 Extensions › Méga-Évolution
+function fpathHTML(segs){
+  return `<button class="fup" data-fgo="${segs.length>1?segs.length-2:0}" ${segs.length>1?"":"disabled"} aria-label="Dossier parent">${UP_ICO}</button><div class="fpath">${segs.map((x,i)=>`${i?`<span class="fsep">›</span>`:""}<button data-fgo="${i}">${i?"":FOLD_ICO}${esc(x)}</button>`).join("")}</div>`;
+}
+// un dossier de série : les logos de ses extensions dépassent comme des feuilles
+function fSerHTML(name, sets, sub, pc, attr){
+  const pap = sets.slice(0,3).map((s,i)=>`<span class="fpap" style="--r:${[-7,5,-1][i]}deg;--y:${[2,-1,-4][i]}px">${chainImg(logoChain(s), `alt="" loading="lazy"`, initials(s))}</span>`).join("");
+  return `<button class="fold${pc>=100?" done":""}" ${attr}><span class="fic"><span class="fback"></span>${pap}<span class="ffront"><span class="fn">${sets.length}</span></span></span><b>${esc(name)}</b><small>${sub}</small><i class="fpb"><i style="width:${pc}%"></i></i></button>`;
+}
+// un dossier d'extension : son logo sur le rabat
+function fSetHTML(s, sub, pc, attr){
+  return `<button class="fold${pc>=100?" done":""}" ${attr}><span class="fic"><span class="fback"></span><span class="fpap" style="--r:-4deg"></span><span class="ffront">${chainImg(logoChain(s), `alt="" loading="lazy"`, initials(s))}</span></span><b>${esc(s.name)}</b><small>${sub}</small><i class="fpb"><i style="width:${pc}%"></i></i></button>`;
+}
 const SER_CHEV = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="m6 9 6 6 6-6"/></svg>`;
-EX.view = store.get("extViewMode", "compact");
+EX.view = store.get("extViewMode2", "folders"); EX.fold = null;
 const SERCL = store.get("serClosed", {});
 function logo2HTML(s){
   const l = logoChain(s);
@@ -3755,7 +3844,23 @@ function renderExtList(){
       : `<div class="srows">${sets.map(s=>setRowHTML(s, OWN.get(s.id))).join("")}</div>`;
     return `<section class="serie${closed?" closed":""}" id="${serKey(se.name)}"><h2 class="sh2" data-ser="${esc(se.name)}" role="button" aria-expanded="${!closed}">${SER_CHEV}<span>${esc(se.name)} · ${sets.length}</span><span class="sp">${ss.h}/${ss.t} · ${ss.pc}%</span></h2>${inner}</section>`;
   }).join("");
-  extList.innerHTML = groups.length ? bar + upcomingHTML(q) + body : upcomingHTML(q) + `<div class="empty">Aucune extension trouvée.<br>Essaie « 151 » ou « Écarlate ».</div>`;
+  if(V==="folders" && groups.length){
+    const g = !q && EX.fold ? groups.find(x=>x.se.name===EX.fold) : null; if(!g) EX.fold = null;
+    const segs = ["Extensions", ...(q ? [`Recherche « ${EX.q.trim()} »`] : g ? [g.se.name] : [])];
+    const fbar = `<div class="lbar"><div class="lrow">${fpathHTML(segs)}${vtogHTML(V, ["folders","compact","grid","detail"])}</div></div>`;
+    let inner;
+    if(!q && !g){
+      inner = `<div class="fhead"><span>${groups.length} séries</span><b>${groups.reduce((a,x)=>a+x.sets.length,0)} extensions</b></div><div class="fgrid">${groups.map(({se, sets})=>{
+        const ss = serStats(sets, OWN); return fSerHTML(se.name, sets, `${sets.length} ext. · <em>${ss.pc}%</em>`, ss.pc, `data-fser="${esc(se.name)}"`); }).join("")}</div>`;
+    } else {
+      const sets = g ? g.sets : groups.flatMap(x=>x.sets);
+      const ss = serStats(sets, OWN);
+      inner = `<div class="fhead"><span>${sets.length} extension${sets.length>1?"s":""}</span><b>${ss.h}/${ss.t} · ${ss.pc}%</b></div><div class="fgrid">${sets.map(s=>{
+        const st = setStats(s, OWN.get(s.id)); return fSetHTML(s, `${st.have}/${st.total||"?"} · <em>${st.pc}%</em>`, st.pc, `data-set="${esc(s.id)}"`); }).join("")}</div>`;
+    }
+    extList.innerHTML = fbar + (!g ? upcomingHTML(q) : "") + inner;
+  }
+  else extList.innerHTML = groups.length ? bar + upcomingHTML(q) + body : upcomingHTML(q) + `<div class="empty">Aucune extension trouvée.<br>Essaie « 151 » ou « Écarlate ».</div>`;
   extList.querySelectorAll("[data-set]").forEach(b=>b.onclick=e=>{
     const m = e.target.closest("[data-min]");
     if(m){ e.stopPropagation(); const id = b.dataset.set, v = !b.classList.contains("min"); b.classList.toggle("min", v); m.innerHTML = v?PLUS_SVG:MIN_SVG; m.setAttribute("aria-label", v?"Déplier":"Replier"); if(v) SCMIN[id]=1; else delete SCMIN[id]; store.set("scMin", SCMIN); return; }
@@ -3772,7 +3877,9 @@ function renderExtList(){
     const bar = extList.querySelector(".lbar");
     extScroll.scrollTo({top: sec.getBoundingClientRect().top - extScroll.getBoundingClientRect().top + extScroll.scrollTop - (bar?.offsetHeight||0) - 6, behavior:"smooth"});
   });
-  extList.querySelectorAll("[data-view]").forEach(b=>b.onclick=()=>{ EX.view = b.dataset.view; store.set("extViewMode", EX.view); renderExtList(); });
+  extList.querySelectorAll("[data-view]").forEach(b=>b.onclick=()=>{ EX.view = b.dataset.view; store.set("extViewMode2", EX.view); renderExtList(); });
+  extList.querySelectorAll("[data-fser]").forEach(b=>b.onclick=()=>{ EX.fold = b.dataset.fser; renderExtList(); extScroll.scrollTop = 0; });
+  extList.querySelectorAll("[data-fgo]").forEach(b=>b.onclick=()=>{ if(+b.dataset.fgo===0 && EX.fold){ EX.fold = null; renderExtList(); extScroll.scrollTop = 0; } });
   extList.querySelectorAll("[data-upc]").forEach(b=>b.onclick=()=>showUpcoming(b.dataset.upc));
 }
 $("#extQ").addEventListener("input", e=>{ EX.q = e.target.value; if(EX.series) renderExtList(); });
@@ -4681,6 +4788,8 @@ function backTarget(){
   if(v==="extView" && EX.set) return "set";
   if(v==="colView" && JP.open && !$("#jpBox").hidden) return "jp";
   if(v==="alertView") return "alert";
+  if(v==="extView" && !EX.set && EX.view==="folders" && EX.fold && !norm(EX.q)) return "efold";
+  if(v==="colView" && COLV.view==="folders" && (COLV.fold.set || (COLV.fold.ser && COLV.sort==="serie"))) return "cfold";
   return null;
 }
 function navBack(){
@@ -4692,6 +4801,8 @@ function navBack(){
   else if(t==="set") showExtHome();
   else if(t==="jp"){ JP.open = null; renderJP(); }
   else if(t==="alert") selectTab("budgetView");
+  else if(t==="efold"){ EX.fold = null; renderExtList(); extScroll.scrollTop = 0; }
+  else if(t==="cfold"){ if(COLV.fold.set) COLV.fold.set = null; else COLV.fold.ser = null; renderCol(); }
   return true;
 }
 /* la fiche garde la carte précédente quand on passe d'une carte à une autre (version, carte liée, carte gradée…) */

@@ -150,7 +150,7 @@ await pool(cardSets, 4, async sid => {
     const cands = [];
     if (SRC.ll[sid]) cands.push(["ll", llUrl(sid, c.localId)]);
     codes.forEach((code, i) => cands.push([`sx${i}`, `${SX}/${code}-${(i === 0 && sxm?.[c.localId]) || sxNum(c.localId)}/small`]));
-    if (ptc) cands.push(["pt", `https://images.pokemontcg.io/${ptc}/${sxNum(c.localId)}.png`]);
+    if (ptc) cands.push(["pt", `https://images.pokemontcg.io/${ptc}/${c.localId}.png`]);
     let got = null;
     for (const [k, u] of cands) {
       if (dead.has(k)) continue;

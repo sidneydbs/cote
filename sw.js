@@ -2,8 +2,8 @@
 // - L'app (index.html) est toujours chargée à jour depuis le réseau ; sans réseau, une page d'attente.
 // - Les images des cartes, logos et icônes sont gardées sur le téléphone : la 2e fois elles s'affichent tout de suite,
 //   sans retélécharger (moins de réseau, moins de batterie).
-// - Les données TCGdex (extensions, cartes) sont gardées 6 h : retour arrière et réouverture instantanés.
-const IMG = "dex-img-v1", API = "dex-api-v1", MAX_IMG = 2500, API_TTL = 6 * 3600e3;
+// - Les données TCGdex : extensions gardées 6 h, cartes et cotes 2 h : retour arrière et réouverture instantanés.
+const IMG = "dex-img-v1", API = "dex-api-v2", MAX_IMG = 2500, API_TTL = 6 * 3600e3;
 const IMG_HOSTS = /^(assets\.tcgdex\.net|images\.pokemontcg\.io|images\.scrydex\.com|limitlesstcg\.nyc3\.cdn\.digitaloceanspaces\.com|www\.google\.com|icons\.duckduckgo\.com)$/;
 self.addEventListener("install", () => self.skipWaiting());
 self.addEventListener("activate", e => e.waitUntil((async () => {
@@ -31,7 +31,9 @@ async function image(req) {
 }
 async function api(req) {
   const c = await caches.open(API), hit = await c.match(req.url);
-  const fresh = hit && Date.now() - Number(hit.headers.get("x-dex-t") || 0) < API_TTL;
+  // fiches cartes (avec les cotes) : 2 h, pour suivre les 3 relevés de prix par jour ; extensions et séries : 6 h
+  const ttl = /\/cards\//.test(new URL(req.url).pathname) ? 2 * 3600e3 : API_TTL;
+  const fresh = hit && Date.now() - Number(hit.headers.get("x-dex-t") || 0) < ttl;
   const net = fetch(req).then(async r => {
     if (r.ok) { const b = await r.clone().blob(); const h = new Headers(r.headers); h.set("x-dex-t", String(Date.now()));
       await c.put(req.url, new Response(b, {status: r.status, headers: h})); }

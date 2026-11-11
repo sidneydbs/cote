@@ -224,6 +224,7 @@ html{background:var(--panel)}
 .lgpick button{flex:none;min-width:44px;height:36px;padding:0 10px;border-radius:10px;background:var(--panel-2);border:1px solid var(--line);font:700 13px/1 var(--f-mono);color:var(--muted)}
 .lgpick button[aria-pressed="true"]{background:var(--border-yellow);border-color:var(--border-yellow);color:var(--on-acc)}
 .ctile .lgb{position:absolute;left:4px;top:4px;z-index:2;padding:2px 5px;border-radius:5px;background:rgba(0,0,0,.72);color:#fff;font:700 9px/1.2 var(--f-mono)}
+.ctile .ownq{position:absolute;right:4px;bottom:4px;z-index:3;min-width:22px;height:20px;padding:0 6px;border-radius:10px;box-sizing:border-box;display:flex;align-items:center;justify-content:center;background:var(--up);color:#06281a;font:800 11px/1 var(--f-mono);box-shadow:0 1px 4px rgba(0,0,0,.45)}
 .colqty{display:flex;align-items:center;justify-content:center;gap:10px;margin:-4px 0 10px;font-size:13px;color:var(--muted)}
 .colqty button{width:32px;height:32px;border-radius:9px;background:var(--panel-2);border:1px solid var(--line);font-weight:800;font-size:16px;color:var(--fg)}
 
@@ -954,7 +955,7 @@ html{background:var(--panel)}
 </head>
 <body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="pb" viewBox="0 0 100 100"><defs><linearGradient id="pbV" x1="0" y1="0" x2="1" y2="1"><stop offset="0" style="stop-color:var(--pb1)"/><stop offset=".5" style="stop-color:var(--pb2)"/><stop offset="1" style="stop-color:var(--pb3)"/></linearGradient><radialGradient id="pbB" cx=".38" cy=".75" r=".75"><stop offset="0" style="stop-color:var(--pbb1)"/><stop offset="1" style="stop-color:var(--pbb2)"/></radialGradient><radialGradient id="pbC" cx=".4" cy=".35" r=".7"><stop offset="0" style="stop-color:var(--pbc1)"/><stop offset=".55" style="stop-color:var(--pbc2)"/><stop offset="1" style="stop-color:var(--pbc3)"/></radialGradient></defs><path d="M3 50a47 47 0 0 1 94 0z" fill="url(#pbV)"/><path d="M3 50a47 47 0 0 0 94 0z" fill="url(#pbB)"/><rect x="3" y="45.5" width="94" height="9" fill="#09080D"/><circle cx="50" cy="50" r="47" fill="none" stroke="#09080D" stroke-width="4"/><circle cx="50" cy="50" r="15.5" fill="#09080D"/><circle cx="50" cy="50" r="10" fill="url(#pbC)" style="stroke:var(--pb2)" stroke-width="2"/><path d="M19 33a35 35 0 0 1 17-15" fill="none" stroke="#fff" stroke-opacity=".38" stroke-width="4" stroke-linecap="round"/></symbol></svg>
-<script>window.__APPV="53";</script>
+<script>window.__APPV="54";</script>
 <div class="splash" id="splash" aria-hidden="true"><i class="hole"></i><i class="halo"></i><div class="bw"><svg class="b" viewBox="0 0 100 100"><use href="#pb"/></svg><svg class="t" viewBox="0 0 100 100"><use href="#pb"/></svg></div><i class="glow"></i></div>
 <script>setTimeout(function(){ if(window.__booted) return;
   var b=document.createElement("div"); b.setAttribute("role","alert");
@@ -989,7 +990,7 @@ html{background:var(--panel)}
   <!-- ===== EXTENSIONS ===== -->
   <section class="view" id="homeView">
     <div class="scroll">
-      <div class="homebar"><svg class="pball" viewBox="0 0 100 100" aria-hidden="true"><use href="#pb"/></svg><span class="brand">DEX<b>·</b>SCAN</span><button class="thbtn" id="themeBtn" aria-label="Changer de thème"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.6-.9 1.2-1.8-.5-1.1.2-2.2 1.4-2.2H17a4 4 0 0 0 4-4c0-5.5-4-10-9-10z"/><circle cx="7.5" cy="11" r="1.2"/><circle cx="10" cy="7" r="1.2"/><circle cx="15" cy="7" r="1.2"/></svg></button><span class="ver">v53</span></div>
+      <div class="homebar"><svg class="pball" viewBox="0 0 100 100" aria-hidden="true"><use href="#pb"/></svg><span class="brand">DEX<b>·</b>SCAN</span><button class="thbtn" id="themeBtn" aria-label="Changer de thème"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.6-.9 1.2-1.8-.5-1.1.2-2.2 1.4-2.2H17a4 4 0 0 0 4-4c0-5.5-4-10-9-10z"/><circle cx="7.5" cy="11" r="1.2"/><circle cx="10" cy="7" r="1.2"/><circle cx="15" cy="7" r="1.2"/></svg></button><span class="ver">v54</span></div>
       <div class="hhead"><div><span class="hdate" id="hDate"></span><h1 class="h1">Accueil</h1></div><button class="hsearch" id="hSearch" aria-label="Rechercher une carte"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></button></div>
       <div class="total htot" id="hTot"></div>
       <div class="hqa">
@@ -1014,7 +1015,7 @@ html{background:var(--panel)}
         <button id="mTheme"><span class="mi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.6-.9 1.2-1.8-.5-1.1.2-2.2 1.4-2.2H17a4 4 0 0 0 4-4c0-5.5-4-10-9-10z"/><circle cx="7.5" cy="11" r="1.2"/><circle cx="10" cy="7" r="1.2"/><circle cx="15" cy="7" r="1.2"/></svg></span><span class="mt"><b>Thème de l'app</b><small>Couleurs et ambiance</small></span><svg class="mch" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></button>
         <button id="mLang"><span class="mi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg></span><span class="mt"><b>Langue des cartes</b><small id="mLangV">Français</small></span><svg class="mch" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></button>
       </div>
-      <p class="fine" style="text-align:center;margin-top:18px">Dex Scan v53</p>
+      <p class="fine" style="text-align:center;margin-top:18px">Dex Scan v54</p>
     </div>
   </section>
   <section class="view" id="extView" hidden>
@@ -1948,8 +1949,10 @@ function addToCol(c, ed=null, lg=null){
   const mi = marketInfo(c) || {};
   if(ex){ const p = mi.p ?? ex.price; if(ex.buy!=null && p!=null) ex.buy = (ex.buy*ex.qty + p)/(ex.qty+1); ex.qty++; bump(ex); if(mi.p) Object.assign(ex, {price:mi.p, a1:mi.a1, a7:mi.a7, a30:mi.a30, pt:Date.now()}); ex.t=Date.now(); }
   else { const p = mi.p ?? mainPrice(c); col.unshift({id:c.id, name:c.name, set:c.set?.name||"", num:c.localId, img:img(c,"low"), price:p, buy:p, a1:mi.a1, a7:mi.a7, a30:mi.a30, pt:Date.now(), qty:1, t:Date.now()}); bump(col[0]); }
-  store.set("col",col); renderCol();
+  store.set("col",col); renderCol(); refreshSetTiles();
 }
+/* la grille de l'extension ouverte suit la collection (pastille ×N) */
+function refreshSetTiles(){ try{ if(EX.set && EX.cards?.length && document.getElementById("cgrid")) renderTiles(); }catch(e){} }
 const COLV = {pdx: store.get("colPdx", true), q:"", open: store.get("colOpen", {}), gen:0, sets:new Map(), view: store.get("colViewMode2","folders"), fold:{ser:null, set:null}, sort: store.get("colSort","serie")};
 const CSORT = [["serie","Par série"],["value","Valeur"],["prog","Avancement"],["recent","Récentes"]];
 /* ---------- Filtres du Pokédex : afficher, rareté, type, catégorie, prix, tri ---------- */
@@ -2041,7 +2044,7 @@ function colTile(c, own){
   const pic = imgTag(c, "low", 'alt="" loading="lazy"') || (own && colImg(own) ? `<img src="${esc(colImg(own))}" alt="" loading="lazy">` : "");
   const tr = own?.price && own.a7 ? (own.price-own.a7)/own.a7 : 0, tc = tr > .03 ? " up" : tr < -.03 ? " down" : "";
   const px = own ? (own.price ? `<span class="px${tc}" title="${tc?`${tr>0?"+":""}${(tr*100).toFixed(0)} % sur 7 jours`:""}">${tc===" up"?"▲ ":tc===" down"?"▼ ":""}${esc(eurS(own.price))}</span>` : `<span class="px none">—</span>`) : "";
-  return `<button class="ctile ${own?"have":"miss"}" data-id="${esc(c.id)}" aria-label="${esc(c.name)} ${esc(c.localId)}${own?", possédée":", manquante"}"><span class="im${tileFoil(c)}"><span class="nm0">${esc(c.name)}</span>${pic}${q>1?`<span class="qx">×${q}</span>`:""}${own?.ed?.["1ed"]>0?`<span class="edb">1re éd.</span>`:own?.ed?.sl>0?`<span class="edb">Shadowless</span>`:""}${(()=>{ const l = ownLgs(own).map(([k])=>k).filter(k=>k!=="FR"); return l.length ? `<span class="lgb">${esc(l.join(" · "))}</span>` : ""; })()}${own&&COLV.pdx?`<span class="own">✓</span>`:""}</span><span class="nm">${esc(c.name)}</span><span class="mt"><span class="no">${esc(c.localId)}</span>${px}</span>${own?(()=>{ const p = pnlOf(own); return p ? `<span class="tpnl ${pnlCls(p)}" title="PnL : ${esc(pnlTxt(p))} (achat ${esc(eurS(own.buy))})">${esc(pnlTxt(p))}</span>` : ""; })():""}</button>`;
+  return `<button class="ctile ${own?"have":"miss"}" data-id="${esc(c.id)}" aria-label="${esc(c.name)} ${esc(c.localId)}${own?", possédée":", manquante"}"><span class="im${tileFoil(c)}"><span class="nm0">${esc(c.name)}</span>${pic}${own?.ed?.["1ed"]>0?`<span class="edb">1re éd.</span>`:own?.ed?.sl>0?`<span class="edb">Shadowless</span>`:""}${(()=>{ const l = ownLgs(own).map(([k])=>k).filter(k=>k!=="FR"); return l.length ? `<span class="lgb">${esc(l.join(" · "))}</span>` : ""; })()}${q>0?`<span class="ownq" title="Tu en as ${q}">×${q}</span>`:""}</span><span class="nm">${esc(c.name)}</span><span class="mt"><span class="no">${esc(c.localId)}</span>${px}</span>${own?(()=>{ const p = pnlOf(own); return p ? `<span class="tpnl ${pnlCls(p)}" title="PnL : ${esc(pnlTxt(p))} (achat ${esc(eurS(own.buy))})">${esc(pnlTxt(p))}</span>` : ""; })():""}</button>`;
 }
 async function renderCol(){
   const col = getCol(), list = $("#colList"), gen = ++COLV.gen;
@@ -2186,7 +2189,7 @@ function setColQty(id, d, ed=null, lg=null){
   if(ed){ x.ed ||= {}; if(d>0 || x.ed[ed]>0) x.ed[ed] = Math.max(0, (x.ed[ed]||0)+d); }
   else if(d<0 && x.ed){ const k = Object.keys(x.ed).find(k=>x.ed[k]>0 && Object.values(x.ed).reduce((a,b)=>a+b,0) > x.qty); if(k) x.ed[k]--; }
   if(x.qty<=0) col.splice(i,1);
-  store.set("col", col); renderCol();
+  store.set("col", col); renderCol(); refreshSetTiles();
 }
 /* ---------- Valeur qui suit le marché ----------
    Les cotes de la collection sont relues toutes les 2 h (à l'ouverture de l'onglet, au retour dans l'app,
@@ -4077,12 +4080,13 @@ function pxBadge(id, r){
   return {txt: v===undefined ? "…" : eurS(v), cls: v===undefined ? "wait" : v==null ? "none" : r>=0 ? "top" : ""};
 }
 function renderTiles(){
+  const OQ = new Map(getCol().map(x=>[x.id, x.qty]));   // nombre d'exemplaires possédés, affiché sur chaque carte
   const g = $("#cgrid"); if(!g) return;
   const top = exTop(), list = exSorted();
   if(!list.length){ g.innerHTML = `<div class="empty" style="grid-column:1/-1">Aucune carte ne correspond à « ${esc(EX.cq)} ».</div>`; return; }
   g.innerHTML = list.map(c=>{
     const r = top.indexOf(c.id), p = pxBadge(c.id, r);
-    return `<button class="ctile" data-id="${esc(c.id)}" aria-label="${esc(c.name)}, ${esc(p.txt)}"><span class="im${tileFoil(c)}"><span class="nm0">${esc(c.name)}</span>${imgTag(c, "low", 'alt="" loading="lazy"')}${r>=0?`<span class="rk">#${r+1}</span>`:""}</span><span class="nm">${esc(c.name)}</span><span class="mt"><span class="no">${esc(c.localId)}</span><span class="px ${p.cls}">${esc(p.txt)}</span></span></button>`;
+    return `<button class="ctile" data-id="${esc(c.id)}" aria-label="${esc(c.name)}, ${esc(p.txt)}"><span class="im${tileFoil(c)}"><span class="nm0">${esc(c.name)}</span>${imgTag(c, "low", 'alt="" loading="lazy"')}${r>=0?`<span class="rk">#${r+1}</span>`:""}${(q=>q>0?`<span class="ownq" title="Tu en as ${q}">×${q}</span>`:"")(OQ.get(c.id)||0)}</span><span class="nm">${esc(c.name)}</span><span class="mt"><span class="no">${esc(c.localId)}</span><span class="px ${p.cls}">${esc(p.txt)}</span></span></button>`;
   }).join("");
   g.querySelectorAll(".ctile").forEach(b=>b.onclick=()=>showCard(b.dataset.id, []));
 }

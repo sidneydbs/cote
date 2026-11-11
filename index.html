@@ -992,6 +992,11 @@ html{background:var(--panel)}
 .bh{font:800 16px var(--f-display);margin:22px 0 8px}
 .bl{display:flex;flex-wrap:wrap;gap:6px}.bl a{font-size:12.5px}
 .bsearch{margin:0 0 10px}
+/* v64 : produit descellé, cartes sorties reliées à la Collection */
+.bcard{grid-template-columns:52px 1fr auto}.bcard .im{width:52px;height:72px;background:var(--panel-2)}
+.bcq{display:flex;align-items:center;gap:6px}.bcq button{width:36px;height:36px;border-radius:10px;background:var(--panel-2);border:1px solid var(--line);color:var(--fg);font-size:18px}.bcq b{min-width:20px;text-align:center;font:700 15px var(--f-mono);-webkit-line-clamp:unset}
+.bcq button.on{background:var(--border-yellow);color:var(--on-acc);border-color:transparent}
+.bopen{display:inline-block;font:700 10px var(--f-mono);text-transform:uppercase;letter-spacing:.05em;padding:2px 6px;border-radius:6px;background:var(--panel-2);color:var(--muted);margin-left:4px;vertical-align:1px}
 .bseen{display:flex;gap:6px;margin:8px 0}.bseen .binp{padding:9px 10px;font-size:14px}.bseen .btn{padding:9px 12px;font-size:13px;flex-shrink:0}
 .bx{background:none;border:0;color:var(--muted);padding:0 0 0 6px;font-size:12px}
 .bcm{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:12px 14px;margin-bottom:10px}
@@ -1006,7 +1011,7 @@ html{background:var(--panel)}
 </head>
 <body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="pb" viewBox="0 0 100 100"><defs><linearGradient id="pbV" x1="0" y1="0" x2="1" y2="1"><stop offset="0" style="stop-color:var(--pb1)"/><stop offset=".5" style="stop-color:var(--pb2)"/><stop offset="1" style="stop-color:var(--pb3)"/></linearGradient><radialGradient id="pbB" cx=".38" cy=".75" r=".75"><stop offset="0" style="stop-color:var(--pbb1)"/><stop offset="1" style="stop-color:var(--pbb2)"/></radialGradient><radialGradient id="pbC" cx=".4" cy=".35" r=".7"><stop offset="0" style="stop-color:var(--pbc1)"/><stop offset=".55" style="stop-color:var(--pbc2)"/><stop offset="1" style="stop-color:var(--pbc3)"/></radialGradient></defs><path d="M3 50a47 47 0 0 1 94 0z" fill="url(#pbV)"/><path d="M3 50a47 47 0 0 0 94 0z" fill="url(#pbB)"/><rect x="3" y="45.5" width="94" height="9" fill="#09080D"/><circle cx="50" cy="50" r="47" fill="none" stroke="#09080D" stroke-width="4"/><circle cx="50" cy="50" r="15.5" fill="#09080D"/><circle cx="50" cy="50" r="10" fill="url(#pbC)" style="stroke:var(--pb2)" stroke-width="2"/><path d="M19 33a35 35 0 0 1 17-15" fill="none" stroke="#fff" stroke-opacity=".38" stroke-width="4" stroke-linecap="round"/></symbol></svg>
-<script>window.__APPV="63";</script>
+<script>window.__APPV="64";</script>
 <div class="splash" id="splash" aria-hidden="true"><i class="hole"></i><i class="halo"></i><div class="bw"><svg class="b" viewBox="0 0 100 100"><use href="#pb"/></svg><svg class="t" viewBox="0 0 100 100"><use href="#pb"/></svg></div><i class="glow"></i></div>
 <script>setTimeout(function(){ if(window.__booted) return;
   var b=document.createElement("div"); b.setAttribute("role","alert");
@@ -1041,7 +1046,7 @@ html{background:var(--panel)}
   <!-- ===== EXTENSIONS ===== -->
   <section class="view" id="homeView">
     <div class="scroll">
-      <div class="homebar"><svg class="pball" viewBox="0 0 100 100" aria-hidden="true"><use href="#pb"/></svg><span class="brand">DEX<b>·</b>SCAN</span><button class="thbtn" id="themeBtn" aria-label="Changer de thème"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.6-.9 1.2-1.8-.5-1.1.2-2.2 1.4-2.2H17a4 4 0 0 0 4-4c0-5.5-4-10-9-10z"/><circle cx="7.5" cy="11" r="1.2"/><circle cx="10" cy="7" r="1.2"/><circle cx="15" cy="7" r="1.2"/></svg></button><span class="ver">v63</span></div>
+      <div class="homebar"><svg class="pball" viewBox="0 0 100 100" aria-hidden="true"><use href="#pb"/></svg><span class="brand">DEX<b>·</b>SCAN</span><button class="thbtn" id="themeBtn" aria-label="Changer de thème"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.6-.9 1.2-1.8-.5-1.1.2-2.2 1.4-2.2H17a4 4 0 0 0 4-4c0-5.5-4-10-9-10z"/><circle cx="7.5" cy="11" r="1.2"/><circle cx="10" cy="7" r="1.2"/><circle cx="15" cy="7" r="1.2"/></svg></button><span class="ver">v64</span></div>
       <div class="hhead"><div><span class="hdate" id="hDate"></span><h1 class="h1">Accueil</h1></div><button class="hsearch" id="hSearch" aria-label="Rechercher une carte"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></button></div>
       <div class="total htot" id="hTot"></div>
       <div class="hqa">
@@ -1066,7 +1071,7 @@ html{background:var(--panel)}
         <button id="mTheme"><span class="mi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.6-.9 1.2-1.8-.5-1.1.2-2.2 1.4-2.2H17a4 4 0 0 0 4-4c0-5.5-4-10-9-10z"/><circle cx="7.5" cy="11" r="1.2"/><circle cx="10" cy="7" r="1.2"/><circle cx="15" cy="7" r="1.2"/></svg></span><span class="mt"><b>Thème de l'app</b><small>Couleurs et ambiance</small></span><svg class="mch" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></button>
         <button id="mLang"><span class="mi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg></span><span class="mt"><b>Langue des cartes</b><small id="mLangV">Français</small></span><svg class="mch" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></button>
       </div>
-      <p class="fine" style="text-align:center;margin-top:18px">Dex Scan v63</p>
+      <p class="fine" style="text-align:center;margin-top:18px">Dex Scan v64</p>
     </div>
   </section>
   <section class="view" id="extView" hidden>
@@ -4688,9 +4693,15 @@ const cmOf = x => x.cm && BUD.cmMap ? BUD.cmMap.get(x.cm) : null;
 const cmMarket = c => c ? (c.tr ?? c.a7 ?? c.a ?? c.a30 ?? c.lo ?? null) : null;
 const tpOf = x => { const id = x.tp || cmOf(x)?.tp; return id && SEALED.data ? SEALED.data.items.find(y=>y.i===id) : null; };
 /* une ligne de budget, scellé ou gradée, ramenée au même format */
+/* produit descellé : sa valeur = les cartes qui en sont sorties, à la cote de ta Collection (relue toutes les 2 h) */
+function budCardsVal(x, colm = new Map(getCol().map(c=>[c.id,c]))){
+  return (x.cards||[]).reduce((a,k)=>a+((colm.get(k.id)?.price ?? k.p) || 0)*k.q, 0);
+}
 function budRows(){
+  const colm = new Map(getCol().map(c=>[c.id,c]));
   const s = getBud().map(x=>{ const c = cmOf(x), m = cmMarket(c);
-    return {k:"s", x, t:x.t, n:x.n, q:x.q, buy:x.buy, cost:(x.buy||0)*x.q, val: m!=null ? m*x.q : (x.est!=null ? x.est*x.q : null), sold:(x.sold||[]), img:x.photo || c?.img || tpOf(x)?.img || (x.cm && MEDIA.d?.sealed?.[x.cm]) || ""}; });
+    const v = x.open ? (x.cards?.length ? budCardsVal(x, colm) : null) : m!=null ? m*x.q : (x.est!=null ? x.est*x.q : null);
+    return {k:"s", x, t:x.t, n:x.n, q:x.q, buy:x.buy, cost:(x.buy||0)*x.q, val: x.q>0 ? v : null, sold:(x.sold||[]), img:x.photo || c?.img || tpOf(x)?.img || (x.cm && MEDIA.d?.sealed?.[x.cm]) || ""}; });
   const g = getGraded().map(x=>({k:"g", x, t:"graded", n:x.name, q:1, buy:x.buy, cost:x.buy||0, val:x.val ?? null, sold:x.sold||[], img:null}));
   return [...s, ...g];
 }
@@ -4720,12 +4731,13 @@ async function renderBudget(){
       <div class="bsum"><div><span>Investi</span><b>${bE0(S.cost)}</b></div><div><span>Plus-value latente</span><b class="${S.pnl>=0?"up":"down"}">${S.pnl>=0?"+":""}${bE0(S.pnl)} <small>${S.cost?(S.pnl>=0?"+":"")+S.pc.toFixed(1).replace(".",",")+" %":""}</small></b></div>${S.cashIn?`<div><span>Ventes encaissées</span><b>${bE0(S.cashIn)}</b></div><div><span>Gain réalisé</span><b class="${S.real>=0?"up":"down"}">${S.real>=0?"+":""}${bE0(S.real)}</b></div>`:""}</div>
       ${S.missing?`<p class="psub" style="margin:10px 0 0;color:var(--down)">⚠️ ${S.missing} carte${S.missing>1?"s":""} gradée${S.missing>1?"s":""} sans prix d'achat : touche-la pour le compléter.</p>`:""}
       ${S.unpriced?`<p class="psub" style="margin:6px 0 0">${S.unpriced} article${S.unpriced>1?"s":""} sans cote : compté${S.unpriced>1?"s":""} à son prix d'achat.</p>`:""}
+      ${rows.some(r=>r.k==="s" && r.x.open && r.q>0 && !r.x.cards?.length)?`<p class="psub" style="margin:6px 0 0">Un produit descellé sans cartes reliées est compté à son prix d'achat : ouvre-le pour relier ses cartes.</p>`:""}
     </div>
     <div class="addrow" style="margin:0 0 14px"><button class="btn btn-y" id="budPhoto">📷 Photo</button><button class="btn btn-g" id="budMan">Saisir à la main</button></div>
     <label class="ext-search bsearch"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><input id="budQ" type="search" placeholder="Chercher un produit : ETB Règne Delta, UPC…" value="${esc(BUD.q||"")}" autocomplete="off" enterkeyhint="search"></label>
     <div class="schips" id="budF">${[["all","Tout"],...BT.filter(([k])=>have.has(k)),...(rows.some(r=>r.sold.length)?[["sold","Vendus"]]:[])].map(([k,t])=>`<button data-bf="${k}" aria-pressed="${f===k}">${esc(t)}</button>`).join("")}</div>
     <div id="budList"></div>
-    <p class="fine">Cotes : Cardmarket (marché européen, la France est l'un des plus gros vendeurs), mises à jour chaque jour${BUD.cm?.pg?` · ${esc(ago(BUD.cm.pg))}`:""}. Les cartes gradées sont comptées à la valeur que tu leur as donnée.</p>`;
+    <p class="fine">Cotes : Cardmarket (marché européen, la France est l'un des plus gros vendeurs), mises à jour chaque jour${BUD.cm?.pg?` · ${esc(ago(BUD.cm.pg))}`:""}. Les produits descellés valent la somme des cartes qui en sont sorties (cotes de ta Collection). Les cartes gradées sont comptées à la valeur que tu leur as donnée.</p>`;
   el.querySelectorAll("[data-bf]").forEach(b=>b.onclick=()=>{ BUD.f = b.dataset.bf; store.set("budF", BUD.f); renderBudget(); });
   let qt = null;
   $("#budQ").oninput = e=>{ BUD.q = e.target.value; clearTimeout(qt); qt = setTimeout(()=>budList(rows, l), 180); };
@@ -4753,9 +4765,9 @@ async function budList(rows, l){
 function budRowHTML(r){
   const p = r.val!=null && r.q>0 ? r.val - r.cost : null, pc = p!=null && r.cost ? p/r.cost*100 : null;
   const im = r.k==="g" ? grImg(r.x, `alt="" loading="lazy"`) : r.img ? `<img src="${esc(r.img)}" alt="" loading="lazy" onerror="this.remove()">` : `<span class="bph">${{display:"📦",etb:"🎁",upc:"💎",booster:"🃏",blister:"🃏",bundle:"🎁"}[r.t]||"📦"}</span>`;
-  const sub = r.k==="g" ? `${esc((grBy(r.x.gr).k==="AUT"?r.x.grOther:grBy(r.x.gr).k)||"")} ${esc(r.x.note||"")} · ${esc(r.x.lg||"")}` : `${esc(btLbl(r.t))}${r.x.lg?" · "+esc(r.x.lg):""}${r.q>1?" · ×"+r.q:""}`;
+  const sub = r.k==="g" ? `${esc((grBy(r.x.gr).k==="AUT"?r.x.grOther:grBy(r.x.gr).k)||"")} ${esc(r.x.note||"")} · ${esc(r.x.lg||"")}` : `${esc(btLbl(r.t))}${r.x.lg?" · "+esc(r.x.lg):""}${r.q>1?" · ×"+r.q:""}${r.x.open?` · descellé${r.x.cards?.length?`, ${r.x.cards.reduce((a,k)=>a+k.q,0)} carte${r.x.cards.reduce((a,k)=>a+k.q,0)>1?"s":""}`:""}`:""}`;
   return `<button class="sitem bitem" data-bu="${r.k}:${esc(r.x.uid)}"><span class="im">${im}</span><div><b>${esc(r.n||"Sans nom")}</b><span>${sub}</span>
-    <span class="bnums">${r.buy==null?`<em class="down">Prix d'achat manquant</em>`:`Achat ${bE(r.cost)}`}${r.val!=null && r.q>0?` · Cote ${bE(r.val)}`:""}${r.q===0?" · vendu":""}</span></div>
+    <span class="bnums">${r.buy==null?`<em class="down">Prix d'achat manquant</em>`:`Achat ${bE(r.cost)}`}${r.val!=null && r.q>0?` · ${r.x.open?"Cartes":"Cote"} ${bE(r.val)}`:""}${r.q===0?" · vendu":""}</span></div>
     ${p!=null?`<span class="bp ${p>=0?"up":"down"}">${p>=0?"+":""}${bE0(p)}<small>${pc!=null?(pc>=0?"+":"")+Math.round(pc)+" %":""}</small></span>`:""}</button>`;
 }
 
@@ -4789,6 +4801,9 @@ async function budForm(edit, withPhoto, fresh=false){
       <input class="binp" id="bfN" value="${esc(x.n)}" placeholder="ex. Display Règne Delta, ETB Évolutions Prismatiques" autocomplete="off">
       ${c?`<div class="blink"><span>🔗 Cardmarket : <b>${esc(c.n)}</b> · cote ${bE(cmMarket(c))}</span><button class="btn btn-g" id="bfUn">Délier</button></div>`:""}
       <div id="bfSug"></div>
+      <label class="blab">État</label>
+      <div class="seg" id="bfO"><button data-bo="0" aria-pressed="${!x.open}">Scellé</button><button data-bo="1" aria-pressed="${!!x.open}">Descellé (ouvert)</button></div>
+      <p class="psub" id="bfOh" style="margin:6px 0 0">${x.open?"Sa valeur sera celle des cartes qui en sont sorties : tu les relies depuis ta Collection juste après.":"Sa valeur suit la cote du produit scellé."}</p>
       <label class="blab">Langue</label>
       <div class="seg" id="bfL">${["FR","EN","JP","Autre"].map(l=>`<button data-bl="${l}" aria-pressed="${x.lg===l}">${l}</button>`).join("")}</div>
       <div class="brow">
@@ -4809,6 +4824,7 @@ async function budForm(edit, withPhoto, fresh=false){
     let st = null;
     $("#bfN").oninput = ()=>{ x.n = $("#bfN").value; tot(); clearTimeout(st); st = setTimeout(async()=>{ await loadCM().catch(()=>{}); await loadFr(); sugg = x.n.trim().length>2 ? cmSearch(x.n, x.t) : []; showSug(); }, 220); };
     $("#bfUn") && ($("#bfUn").onclick = ()=>{ x.cm = null; main(); });
+    $("#bfO").querySelectorAll("[data-bo]").forEach(b=>b.onclick=()=>{ x.open = b.dataset.bo==="1"; $("#bfO").querySelectorAll("[data-bo]").forEach(y=>y.setAttribute("aria-pressed", y===b)); $("#bfOh").textContent = x.open?"Sa valeur sera celle des cartes qui en sont sorties : tu les relies depuis ta Collection juste après.":"Sa valeur suit la cote du produit scellé."; });
     $("#bfL").querySelectorAll("[data-bl]").forEach(b=>b.onclick=()=>{ x.lg = b.dataset.bl; $("#bfL").querySelectorAll("[data-bl]").forEach(y=>y.setAttribute("aria-pressed", y===b)); });
     $("#bfQm").onclick = ()=>{ $("#bfQ").value = Math.max(1,(parseInt($("#bfQ").value)||1)-1); tot(); };
     $("#bfQp").onclick = ()=>{ $("#bfQ").value = (parseInt($("#bfQ").value)||1)+1; tot(); };
@@ -4820,7 +4836,9 @@ async function budForm(edit, withPhoto, fresh=false){
       if(x.ean && x.cm){ const m = store.get("eanMap", {}); m[x.ean] = {cm:x.cm, n:x.n, t:x.t}; store.set("eanMap", m); }
       const l = getBud(), i = l.findIndex(y=>y.uid===x.uid); if(i>=0) l[i] = x; else l.push(x);
       try{ setBud(l); }catch(e){ x.photo = null; if(i>=0) l[i] = x; setBud(l); toast("Photo trop lourde, produit enregistré sans photo"); }
-      toast(edit ? "Produit mis à jour" : "Ajouté à ton budget"); bClose();
+      toast(edit ? "Produit mis à jour" : "Ajouté à ton budget");
+      if(x.open && !x.cards?.length){ budCards(x.uid); return; }   // descellé : on relie tout de suite ses cartes
+      bClose();
     };
     $("#bfDel") && ($("#bfDel").onclick = ()=>{ setBud(getBud().filter(y=>y.uid!==x.uid)); toast("Produit supprimé"); bClose(); });
     showSug(); tot();
@@ -4851,6 +4869,50 @@ async function budForm(edit, withPhoto, fresh=false){
   };
   main();
   if(withPhoto) setTimeout(()=>$("#bfFile").click(), 50);
+}
+
+/* ---------- produit descellé : relier les cartes qui en sont sorties (prises dans la Collection) ----------
+   Les cartes ajoutées à la Collection depuis la date d'achat sont proposées en premier. */
+function budCards(uid){
+  const x0 = getBud().find(y=>y.uid===uid); if(!x0) return;
+  const since = x0.date ? new Date(x0.date+"T00:00:00").getTime() : 0;
+  let q = "";
+  bOpen("Cartes du produit", `
+    <p class="psub" style="margin:0 0 10px">Touche <b>+</b> pour chaque carte sortie de « ${esc(x0.n)} » : cartes promo et cartes tirées des boosters. Une carte pas encore dans ta Collection : ajoute-la d'abord avec le Scanner ou la Recherche.</p>
+    <div class="total" style="margin-bottom:12px"><div class="plabel"><span>Valeur des cartes reliées</span><span id="bcN"></span></div><div class="pmain" id="bcV">—</div><div class="psub" id="bcR"></div></div>
+    <label class="ext-search bsearch"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><input id="bcQ" type="search" placeholder="Chercher dans ta Collection : nom, extension, numéro" autocomplete="off" enterkeyhint="search"></label>
+    <div id="bcL" class="slist"></div>
+    <button class="btn btn-y" id="bcOk" style="width:100%;margin-top:14px">Terminé</button>`);
+  const draw = ()=>{
+    const y = getBud().find(z=>z.uid===uid); if(!y) return;
+    const col = getCol(), colm = new Map(col.map(c=>[c.id,c])), linked = new Map((y.cards||[]).map(k=>[k.id,k]));
+    const cv = budCardsVal(y, colm), cost = (y.buy||0)*y.q, d = cv - cost, n = (y.cards||[]).reduce((a,k)=>a+k.q,0);
+    $("#bcN").textContent = n ? `${n} carte${n>1?"s":""}` : "aucune carte";
+    $("#bcV").textContent = bE(cv);
+    $("#bcR").innerHTML = y.buy!=null ? `Prix d'achat ${bE(cost)} → <b class="${d>=0?"up":"down"}">${d>=0?"+":"−"}${bE(Math.abs(d))}</b>` : "";
+    const nq = norm(q);
+    const gone = [...linked.values()].filter(k=>!colm.has(k.id)).map(k=>({id:k.id, name:k.n, set:k.set, num:k.num, img:k.img, price:k.p, gone:true}));
+    const cs = col.filter(c=>!nq || norm(`${c.name} ${c.set} ${c.num}`).includes(nq))
+      .sort((a,b)=>(linked.has(b.id)-linked.has(a.id)) || (((b.t||0)>=since)-((a.t||0)>=since)) || ((b.t||0)-(a.t||0)));
+    const l = [...gone, ...cs].slice(0, 120);
+    $("#bcL").innerHTML = l.length ? l.map(c=>{ const k = linked.get(c.id), v = k?.q || 0;
+      return `<div class="sitem bitem bcard"><span class="im">${c.img?`<img src="${esc(c.img)}" alt="" loading="lazy" onerror="this.remove()">`:""}</span><div><b>${esc(c.name||c.id)}</b><span>${esc(c.set||"")}${c.num?" · n° "+esc(c.num):""}</span><span class="bnums">${c.price!=null?`cote ${bE(c.price)}`:"sans cote"}${c.gone?" · plus dans ta Collection":since && (c.t||0)>=since?" · ajoutée depuis l'achat":""}</span></div>
+        <div class="bcq"><button data-bm="${esc(c.id)}" aria-label="Retirer une">−</button><b>${v}</b><button data-bp="${esc(c.id)}" class="${v?"on":""}" aria-label="Ajouter une">+</button></div></div>`; }).join("")
+      : `<div class="empty" style="padding:20px 12px">${col.length ? "Aucune carte ne correspond." : "Ta Collection est vide : ajoute d'abord les cartes avec le Scanner."}</div>`;
+    const set = (id, dd)=>{ const L = getBud(), z = L.find(w=>w.uid===uid); z.cards ||= [];
+      let k = z.cards.find(w=>w.id===id); const c = colm.get(id);
+      if(!k && dd>0){ k = {id, q:0}; z.cards.push(k); }
+      if(!k) return;
+      k.q = Math.max(0, k.q + dd);
+      if(c) Object.assign(k, {p:c.price ?? k.p ?? null, n:c.name, set:c.set, num:c.num, img:c.img});   // gardé si la carte quitte la Collection
+      z.cards = z.cards.filter(w=>w.q>0); setBud(L); draw(); };
+    $("#bcL").querySelectorAll("[data-bp]").forEach(b=>b.onclick=()=>set(b.dataset.bp, 1));
+    $("#bcL").querySelectorAll("[data-bm]").forEach(b=>b.onclick=()=>set(b.dataset.bm, -1));
+  };
+  let t = null;
+  $("#bcQ").oninput = e=>{ q = e.target.value; clearTimeout(t); t = setTimeout(draw, 150); };
+  $("#bcOk").onclick = ()=>budDetail(uid);
+  draw();
 }
 
 /* ---------- fiche d'un produit : achat, magasins, revente France, reste du monde ---------- */
@@ -4917,15 +4979,23 @@ async function budDetail(uid){
   const seen = x.seen || [];
   const pnl = m!=null ? (m - x.buy)*x.q : null;
   const sold = x.sold || [];
+  const colm = new Map(getCol().map(k=>[k.id,k])), lc = x.cards||[], cv = budCardsVal(x, colm), cost = (x.buy||0)*x.q;
+  const ncard = lc.reduce((a,k)=>a+k.q,0), opnl = cv - cost;
   const row = (l, v, cls="") => `<tr class="${cls}"><td>${l}</td><td>${v}</td></tr>`;
   bOpen(btLbl(x.t), `
-    <div class="bhead">${x.photo||c?.img||tp?.img||(x.cm&&MEDIA.d?.sealed?.[x.cm])?`<img src="${esc(x.photo||c?.img||tp?.img||MEDIA.d.sealed[x.cm])}" alt="" onerror="this.remove()">`:""}<div><h2>${esc(x.n)}</h2><p class="psub">${esc(btLbl(x.t))} · ${esc(x.lg||"")} · ${x.q>0?`×${x.q}`:"vendu"}</p></div></div>
+    <div class="bhead">${x.photo||c?.img||tp?.img||(x.cm&&MEDIA.d?.sealed?.[x.cm])?`<img src="${esc(x.photo||c?.img||tp?.img||MEDIA.d.sealed[x.cm])}" alt="" onerror="this.remove()">`:""}<div><h2>${esc(x.n)}</h2><p class="psub">${esc(btLbl(x.t))} · ${esc(x.lg||"")} · ${x.q>0?`×${x.q}`:"vendu"}${x.open?` <span class="bopen">Descellé</span>`:""}</p></div></div>
 
     <h3 class="bh">Ton achat</h3>
     <table class="jtab">${row("Prix d'achat unitaire", bE(x.buy))}${x.q>1?row(`Total (×${x.q})`, bE(x.buy*x.q), "b"):""}${row("Date", esc(frDate(x.date)))}${x.shop?row("Acheté chez", esc(x.shop)):""}
-      ${m!=null && x.q>0?row("Cote actuelle × quantité", bE(m*x.q))+row("Plus-value latente", `<span class="${pnl>=0?"up":"down"}">${pnl>=0?"+":""}${bE(pnl)} (${pnl>=0?"+":""}${Math.round((m-x.buy)/x.buy*100)} %)</span>`, "b"):""}
+      ${x.open ? (ncard ? row(`Valeur des ${ncard} carte${ncard>1?"s":""} sorties`, bE(cv))+row("Résultat de l'ouverture", `<span class="${opnl>=0?"up":"down"}">${opnl>=0?"+":""}${bE(opnl)}${cost?` (${opnl>=0?"+":""}${Math.round(opnl/cost*100)} %)`:""}</span>`, "b") : "")
+        : m!=null && x.q>0?row("Cote actuelle × quantité", bE(m*x.q))+row("Plus-value latente", `<span class="${pnl>=0?"up":"down"}">${pnl>=0?"+":""}${bE(pnl)} (${pnl>=0?"+":""}${Math.round((m-x.buy)/x.buy*100)} %)</span>`, "b"):""}
       ${sold.map(s=>row(`Vendu ${s.q>1?"×"+s.q+" ":""}le ${esc(frDate(s.d))}`, `${bE(s.p*s.q)} <span class="${s.p>=x.buy?"up":"down"}">(${s.p>=x.buy?"+":""}${bE((s.p-x.buy)*s.q)})</span>`)).join("")}</table>
     ${x.note?`<p class="psub">${esc(x.note)}</p>`:""}
+    ${x.open?`<h3 class="bh">Cartes sorties du produit</h3>
+      ${lc.length?`<div class="slist">${lc.map(k=>{ const o = colm.get(k.id), p = o?.price ?? k.p; return `<div class="sitem bitem bcard"><span class="im">${(o?.img||k.img)?`<img src="${esc(o?.img||k.img)}" alt="" loading="lazy" onerror="this.remove()">`:""}</span><div><b>${esc(o?.name||k.n||k.id)}</b><span>${esc(o?.set||k.set||"")}${(o?.num||k.num)?" · n° "+esc(o?.num||k.num):""}${o?"":" · plus dans ta Collection"}</span><span class="bnums">${k.q>1?`×${k.q} · `:""}${p!=null?`cote ${bE(p)}`:"sans cote"}</span></div><span class="bp">${p!=null?bE(p*k.q):"—"}</span></div>`; }).join("")}</div>`
+        :`<p class="psub">Relie les cartes sorties de ce produit (cartes promo, cartes tirées des boosters) : sa valeur devient la somme de leurs cotes, comparée à ton prix d'achat.</p>`}
+      <button class="btn btn-y" id="bdCards" style="width:100%;margin-top:10px">${lc.length?"Modifier les cartes reliées":"Relier les cartes de ma Collection"}</button>
+      ${m!=null && ncard?`<p class="psub" style="margin-top:8px">S'il était resté scellé, il vaudrait ${bE(m*x.q)} (cote Cardmarket) : l'ouverture ${cv>=m*x.q?"rapporte":"coûte"} ${bE(Math.abs(cv-m*x.q))} ${cv>=m*x.q?"de plus":"de valeur"}.</p>`:""}`:""}
 
     <h3 class="bh">Prix neuf en magasin</h3>
     ${seen.length?`<table class="jtab">${seen.map((s,i)=>row(`${esc(s.s)} <small class="psub">${esc(frDate(s.d))}</small>`, `${bE(s.p)} <button class="bx" data-sx="${i}" aria-label="Retirer">✕</button>`)).join("")}</table>`:`<p class="psub">Note ici les prix que tu vois en rayon ou en ligne : tu sauras où acheter au meilleur prix.</p>`}
@@ -4933,11 +5003,13 @@ async function budDetail(uid){
 ${shopLinks(qFr)}
 
 ${marketHTML(qFr, qEn, c, tp)}
-    <div class="addrow" style="margin-top:20px">${x.q>0?`<button class="btn btn-y" id="bdSold">J'en ai vendu</button>`:""}<button class="btn btn-g" id="bdEdit">Modifier</button></div>
+    <div class="addrow" style="margin-top:20px">${x.q>0?`<button class="btn btn-y" id="bdSold">J'en ai vendu</button>`:""}${x.q>0 && !x.open?`<button class="btn btn-g" id="bdOpen">Je l'ai ouvert</button>`:""}<button class="btn btn-g" id="bdEdit">Modifier</button></div>
     <p class="fine">Les prix des magasins changent tout le temps et ne sont pas accessibles automatiquement : les liens ouvrent la recherche du produit chez chaque enseigne.</p>`);
   $("#govB").querySelectorAll("[data-sx]").forEach(b=>b.onclick=()=>{ const l = getBud(), y = l.find(z=>z.uid===uid); y.seen.splice(+b.dataset.sx,1); setBud(l); budDetail(uid); });
   $("#bsAdd").onclick = ()=>{ const s = $("#bsS").value.trim(), p = num($("#bsP").value); if(!s || p==null){ toast("Indique l'enseigne et le prix"); return; } const l = getBud(), y = l.find(z=>z.uid===uid); (y.seen ||= []).push({s, p, d:today()}); y.seen.sort((a,b)=>a.p-b.p); setBud(l); budDetail(uid); };
   $("#bdEdit").onclick = ()=>budForm(getBud().find(y=>y.uid===uid), false);
+  $("#bdCards") && ($("#bdCards").onclick = ()=>budCards(uid));
+  $("#bdOpen") && ($("#bdOpen").onclick = ()=>{ const l = getBud(), y = l.find(z=>z.uid===uid); y.open = true; y.opened = today(); setBud(l); budCards(uid); });
   $("#bdLink") && ($("#bdLink").onclick = ()=>budForm(getBud().find(y=>y.uid===uid), false));
   $("#bdSold") && ($("#bdSold").onclick = ()=>{
     const y = getBud().find(z=>z.uid===uid);

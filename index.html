@@ -216,6 +216,14 @@ html{background:var(--panel)}
 .ctile.miss .im{outline:1px dashed var(--line);outline-offset:-1px}
 .ctile .qx{position:absolute;top:4px;right:4px;background:var(--fg);color:var(--ink);font:700 10px/1 var(--f-mono);padding:3px 5px;border-radius:5px}
 .ctile .own{position:absolute;bottom:4px;right:4px;width:16px;height:16px;border-radius:50%;background:var(--up);color:#06281a;display:grid;place-items:center;font:900 10px/1 var(--f-body)}
+.lgrow{margin:2px 0 12px}
+.lgrow>span{display:block;font:600 11px/1 var(--f-mono);letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+.lgrow>small{display:block;font-size:12px;color:var(--muted);margin-top:8px;line-height:1.4}
+.lgpick{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;padding-bottom:2px}
+.lgpick::-webkit-scrollbar{display:none}
+.lgpick button{flex:none;min-width:44px;height:36px;padding:0 10px;border-radius:10px;background:var(--panel-2);border:1px solid var(--line);font:700 13px/1 var(--f-mono);color:var(--muted)}
+.lgpick button[aria-pressed="true"]{background:var(--border-yellow);border-color:var(--border-yellow);color:var(--on-acc)}
+.ctile .lgb{position:absolute;left:4px;top:4px;z-index:2;padding:2px 5px;border-radius:5px;background:rgba(0,0,0,.72);color:#fff;font:700 9px/1.2 var(--f-mono)}
 .colqty{display:flex;align-items:center;justify-content:center;gap:10px;margin:-4px 0 10px;font-size:13px;color:var(--muted)}
 .colqty button{width:32px;height:32px;border-radius:9px;background:var(--panel-2);border:1px solid var(--line);font-weight:800;font-size:16px;color:var(--fg)}
 
@@ -946,7 +954,7 @@ html{background:var(--panel)}
 </head>
 <body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="pb" viewBox="0 0 100 100"><defs><linearGradient id="pbV" x1="0" y1="0" x2="1" y2="1"><stop offset="0" style="stop-color:var(--pb1)"/><stop offset=".5" style="stop-color:var(--pb2)"/><stop offset="1" style="stop-color:var(--pb3)"/></linearGradient><radialGradient id="pbB" cx=".38" cy=".75" r=".75"><stop offset="0" style="stop-color:var(--pbb1)"/><stop offset="1" style="stop-color:var(--pbb2)"/></radialGradient><radialGradient id="pbC" cx=".4" cy=".35" r=".7"><stop offset="0" style="stop-color:var(--pbc1)"/><stop offset=".55" style="stop-color:var(--pbc2)"/><stop offset="1" style="stop-color:var(--pbc3)"/></radialGradient></defs><path d="M3 50a47 47 0 0 1 94 0z" fill="url(#pbV)"/><path d="M3 50a47 47 0 0 0 94 0z" fill="url(#pbB)"/><rect x="3" y="45.5" width="94" height="9" fill="#09080D"/><circle cx="50" cy="50" r="47" fill="none" stroke="#09080D" stroke-width="4"/><circle cx="50" cy="50" r="15.5" fill="#09080D"/><circle cx="50" cy="50" r="10" fill="url(#pbC)" style="stroke:var(--pb2)" stroke-width="2"/><path d="M19 33a35 35 0 0 1 17-15" fill="none" stroke="#fff" stroke-opacity=".38" stroke-width="4" stroke-linecap="round"/></symbol></svg>
-<script>window.__APPV="52";</script>
+<script>window.__APPV="53";</script>
 <div class="splash" id="splash" aria-hidden="true"><i class="hole"></i><i class="halo"></i><div class="bw"><svg class="b" viewBox="0 0 100 100"><use href="#pb"/></svg><svg class="t" viewBox="0 0 100 100"><use href="#pb"/></svg></div><i class="glow"></i></div>
 <script>setTimeout(function(){ if(window.__booted) return;
   var b=document.createElement("div"); b.setAttribute("role","alert");
@@ -981,7 +989,7 @@ html{background:var(--panel)}
   <!-- ===== EXTENSIONS ===== -->
   <section class="view" id="homeView">
     <div class="scroll">
-      <div class="homebar"><svg class="pball" viewBox="0 0 100 100" aria-hidden="true"><use href="#pb"/></svg><span class="brand">DEX<b>·</b>SCAN</span><button class="thbtn" id="themeBtn" aria-label="Changer de thème"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.6-.9 1.2-1.8-.5-1.1.2-2.2 1.4-2.2H17a4 4 0 0 0 4-4c0-5.5-4-10-9-10z"/><circle cx="7.5" cy="11" r="1.2"/><circle cx="10" cy="7" r="1.2"/><circle cx="15" cy="7" r="1.2"/></svg></button><span class="ver">v52</span></div>
+      <div class="homebar"><svg class="pball" viewBox="0 0 100 100" aria-hidden="true"><use href="#pb"/></svg><span class="brand">DEX<b>·</b>SCAN</span><button class="thbtn" id="themeBtn" aria-label="Changer de thème"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.6-.9 1.2-1.8-.5-1.1.2-2.2 1.4-2.2H17a4 4 0 0 0 4-4c0-5.5-4-10-9-10z"/><circle cx="7.5" cy="11" r="1.2"/><circle cx="10" cy="7" r="1.2"/><circle cx="15" cy="7" r="1.2"/></svg></button><span class="ver">v53</span></div>
       <div class="hhead"><div><span class="hdate" id="hDate"></span><h1 class="h1">Accueil</h1></div><button class="hsearch" id="hSearch" aria-label="Rechercher une carte"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></button></div>
       <div class="total htot" id="hTot"></div>
       <div class="hqa">
@@ -1006,7 +1014,7 @@ html{background:var(--panel)}
         <button id="mTheme"><span class="mi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.6-.9 1.2-1.8-.5-1.1.2-2.2 1.4-2.2H17a4 4 0 0 0 4-4c0-5.5-4-10-9-10z"/><circle cx="7.5" cy="11" r="1.2"/><circle cx="10" cy="7" r="1.2"/><circle cx="15" cy="7" r="1.2"/></svg></span><span class="mt"><b>Thème de l'app</b><small>Couleurs et ambiance</small></span><svg class="mch" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></button>
         <button id="mLang"><span class="mi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg></span><span class="mt"><b>Langue des cartes</b><small id="mLangV">Français</small></span><svg class="mch" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></button>
       </div>
-      <p class="fine" style="text-align:center;margin-top:18px">Dex Scan v52</p>
+      <p class="fine" style="text-align:center;margin-top:18px">Dex Scan v53</p>
     </div>
   </section>
   <section class="view" id="extView" hidden>
@@ -1532,6 +1540,10 @@ const ebayUrl = (c, o={}, dom="ebay.fr") => { const r = ebayQuery(c, o); return 
 
 /* ---------------- Fiche ---------------- */
 let current = null, currentAlts = [], currentVariant = 0, currentEd = null;
+/* langue de l'exemplaire qu'on ajoute à la collection (mémorisée d'une carte à l'autre) */
+const CARD_LG = {FR:"Français", EN:"Anglais", JP:"Japonais", DE:"Allemand", IT:"Italien", ES:"Espagnol", PT:"Portugais", KO:"Coréen", ZH:"Chinois"};
+let currentLg = store.get("addLg", "FR");
+const ownLgs = x => x?.lgs ? Object.entries(x.lgs).filter(([,n])=>n>0) : [];
 function openSheet(){ const s=$("#sheet"); s.classList.add("open"); s.setAttribute("aria-hidden","false"); }
 function closeSheet(){ const s=$("#sheet"); s.classList.remove("open"); s.setAttribute("aria-hidden","true"); resumeCamera(); }
 $("#closeSheet").onclick = closeSheet;
@@ -1838,7 +1850,7 @@ function renderCard(){
   // TCGplayer sépare 1ère édition et Unlimited : on ne garde que l'édition affichée
   const tpEd = k => currentEd==="1ed" ? /1st/.test(k) : currentEd ? !/1st/.test(k) : true;
   const hiTp = tp ? Object.entries(tp).filter(([k,v])=>v && typeof v==="object" && v.highPrice!=null && tpEd(k)).sort((a,b)=>b[1].highPrice-a[1].highPrice)[0] : null;
-  const hiEb = ebayUrl(c,{ed:currentEd, sop:16});
+  const hiEb = ebayUrl(c,{jp:currentLg==="JP", ed:currentEd, sop:16});
   const highHTML = `<div class="section hi"><h4>Plus haut connu</h4>
     <dl class="grid2">
       <div class="kv"><dt>Ventes Cardmarket${hiCm?` · ${esc(hiCm[0])}`:""}</dt><dd>${hiCm?eur(hiCm[1])+" €":"—"}</dd></div>
@@ -1849,10 +1861,10 @@ function renderCard(){
   const qName = encodeURIComponent(`${c.name} ${c.localId}${off?"/"+off:""}`);
   const links = `<div class="links">
     <a href="https://www.cardmarket.com/fr/Pokemon/Products/Search?searchString=${encodeURIComponent(c.name)}" target="_blank" rel="noopener">${ico.ext}Voir sur Cardmarket</a>
-    <a href="${esc(ebayUrl(c,{ed:currentEd}))}" target="_blank" rel="noopener">${ico.ext}Ventes eBay réalisées${currentEd?" · "+esc(edLbl(currentEd)):PRINT_OF[c.id]?" · "+esc(REPRINTS[PRINT_OF[c.id].kind].lbl.toLowerCase()):""}</a>
+    <a href="${esc(ebayUrl(c,{jp:currentLg==="JP", ed:currentEd}))}" target="_blank" rel="noopener">${ico.ext}Ventes eBay réalisées${currentEd?" · "+esc(edLbl(currentEd)):PRINT_OF[c.id]?" · "+esc(REPRINTS[PRINT_OF[c.id].kind].lbl.toLowerCase()):""}</a>
   </div>`;
 
-  const graded = `<div class="section"><h4>Cartes gradées · ventes eBay réalisées</h4><div class="gradegrid">${["PSA 10","PSA 9","CollectAura 10","CollectAura 9.5"].map(g=>`<a class="gradebtn" href="${esc(ebayUrl(c,{ed:currentEd, grade:g}))}" target="_blank" rel="noopener"><b>${esc(g)}</b><span>Voir les ventes terminées</span></a>`).join("")}<a class="gradebtn" href="${esc(ebayUrl(c,{ed:currentEd, grade:'(psa,pca,cgc,bgs,beckett,collectaura,"collect aura",ccc)'}))}" target="_blank" rel="noopener"><b>Toutes sociétés</b><span>Si une note n'a aucune vente</span></a><a class="gradebtn" href="${esc(ebayUrl(c,{ed:currentEd, sop:16, grade:'(psa,pca,cgc,bgs,beckett,collectaura,"collect aura",ccc)'}))}" target="_blank" rel="noopener"><b>Gradées les plus chères</b><span>Toutes sociétés, record en premier</span></a></div><p class="fine" style="margin-top:8px">Aucune base de prix gratuite ne suit les cartes gradées en euros, ni CollectAura : ces boutons ouvrent les dernières ventes conclues sur eBay pour cette note.</p><div class="addrow" style="margin-top:10px"><button class="btn btn-g" id="grLookCard">Toutes les notes</button><button class="btn btn-g" id="grFromCard">Ajouter en gradée</button></div></div>`;
+  const graded = `<div class="section"><h4>Cartes gradées · ventes eBay réalisées</h4><div class="gradegrid">${["PSA 10","PSA 9","CollectAura 10","CollectAura 9.5"].map(g=>`<a class="gradebtn" href="${esc(ebayUrl(c,{jp:currentLg==="JP", ed:currentEd, grade:g}))}" target="_blank" rel="noopener"><b>${esc(g)}</b><span>Voir les ventes terminées</span></a>`).join("")}<a class="gradebtn" href="${esc(ebayUrl(c,{jp:currentLg==="JP", ed:currentEd, grade:'(psa,pca,cgc,bgs,beckett,collectaura,"collect aura",ccc)'}))}" target="_blank" rel="noopener"><b>Toutes sociétés</b><span>Si une note n'a aucune vente</span></a><a class="gradebtn" href="${esc(ebayUrl(c,{jp:currentLg==="JP", ed:currentEd, sop:16, grade:'(psa,pca,cgc,bgs,beckett,collectaura,"collect aura",ccc)'}))}" target="_blank" rel="noopener"><b>Gradées les plus chères</b><span>Toutes sociétés, record en premier</span></a></div><p class="fine" style="margin-top:8px">Aucune base de prix gratuite ne suit les cartes gradées en euros, ni CollectAura : ces boutons ouvrent les dernières ventes conclues sur eBay pour cette note.</p><div class="addrow" style="margin-top:10px"><button class="btn btn-g" id="grLookCard">Toutes les notes</button><button class="btn btn-g" id="grFromCard">Ajouter en gradée</button></div></div>`;
   const attacks = (c.attacks||[]).map(a=>`<div class="attack"><div class="attack-h"><span class="cost">${(a.cost||[]).map(t=>`<span class="dot" title="${esc(t)}" style="background:${tcol(t)}"></span>`).join("")}</span><strong>${esc(a.name)}</strong>${a.damage?`<span class="dmg">${esc(a.damage)}</span>`:""}</div>${a.effect?`<p>${esc(a.effect)}</p>`:""}</div>`).join("");
   const abil = (c.abilities||[]).map(a=>`<div class="attack"><div class="attack-h"><span class="tag">${esc(a.type||"Talent")}</span><strong>${esc(a.name)}</strong></div>${a.effect?`<p>${esc(a.effect)}</p>`:""}</div>`).join("");
   const effect = c.effect ? `<div class="attack"><p style="margin:0">${esc(c.effect)}</p></div>` : "";
@@ -1890,10 +1902,11 @@ function renderCard(){
     </div>
     ${verHTML}
     <div class="price">${priceHTML}${links}</div>
-    ${inCol?`<div class="colqty"><button id="colMinus" aria-label="Retirer un exemplaire">−</button><span>Dans ta collection : <b style="color:var(--fg)">×${inCol.qty}</b>${ownEd.length?`<small class="edown">${ownEd.map(([k,n])=>`${esc(edLbl(k))} ×${n}`).join(" · ")}</small>`:""}</span><button id="colPlus" aria-label="Ajouter un exemplaire">+</button></div>
+    ${inCol?`<div class="colqty"><button id="colMinus" aria-label="Retirer un exemplaire">−</button><span>Dans ta collection : <b style="color:var(--fg)">×${inCol.qty}</b>${ownEd.length?`<small class="edown">${ownEd.map(([k,n])=>`${esc(edLbl(k))} ×${n}`).join(" · ")}</small>`:""}${ownLgs(inCol).length?`<small class="edown">${ownLgs(inCol).map(([k,n])=>`${esc(CARD_LG[k]||k)} ×${n}`).join(" · ")}</small>`:""}</span><button id="colPlus" aria-label="Ajouter un exemplaire">+</button></div>
     <div class="buyrow"><label for="buyIn">Prix d'achat (par carte)</label><span class="buyin"><input id="buyIn" type="text" inputmode="decimal" value="${inCol.buy!=null?String(Math.round(inCol.buy*100)/100).replace(".",","):""}" placeholder="0,00"> €</span>${(()=>{ const p = pnlOf(inCol); return p ? `<b class="tpnl ${pnlCls(p)}">PnL ${esc(pnlTxt(p))}</b>` : ""; })()}</div>`:""}
+    <div class="lgrow"><span>Langue de ta carte</span><div class="lgpick" role="group" aria-label="Langue de la carte">${Object.entries(CARD_LG).map(([k,t])=>`<button data-lg="${k}" aria-pressed="${k===currentLg}" title="${esc(t)}">${k}</button>`).join("")}</div>${currentLg==="JP"?`<small>La cote affichée est celle des cartes occidentales : les ventes eBay ci-dessus cherchent maintenant la version japonaise.</small>`:""}</div>
     <div class="addrow">
-      <button class="btn btn-y" id="addCol">${inCol?"Ajouter un exemplaire"+(currentEd?" "+esc(edLbl(currentEd)):"")+" ("+inCol.qty+")":"Ajouter à ma collection"+(currentEd?" · "+esc(edLbl(currentEd)):"")}</button>
+      <button class="btn btn-y" id="addCol">${inCol?"Ajouter un exemplaire"+(currentEd?" "+esc(edLbl(currentEd)):"")+" · "+esc(CARD_LG[currentLg])+" ("+inCol.qty+")":"Ajouter à ma collection"+(currentEd?" · "+esc(edLbl(currentEd)):"")+" · "+esc(CARD_LG[currentLg])}</button>
       <button class="btn btn-g" id="rescan">Scanner une autre</button>
     </div>
     ${tpHTML}
@@ -1911,11 +1924,12 @@ function renderCard(){
   $("#sheetBody").querySelectorAll(".alt").forEach(b=>b.onclick=()=>showCard(b.dataset.id));
   $("#sheetBody").querySelectorAll("[data-pid]").forEach(b=>b.onclick=()=>{ if(b.dataset.pid!==c.id) showCard(b.dataset.pid, currentAlts); });
   $("#sheetBody").querySelectorAll("[data-ed]").forEach(b=>b.onclick=()=>{ currentEd = b.dataset.ed; const y = $("#sheetBody").scrollTop; renderCard(); $("#sheetBody").scrollTop = y; });
-  $("#addCol").onclick = ()=>{ addToCol(c, currentEd); renderCard(); toast("Ajoutée à ta collection"+(currentEd?" ("+edLbl(currentEd)+")":"")); };
+  $("#addCol").onclick = ()=>{ addToCol(c, currentEd, currentLg); renderCard(); toast("Ajoutée à ta collection · "+CARD_LG[currentLg]+(currentEd?" · "+edLbl(currentEd):"")); };
+  $("#sheetBody").querySelectorAll("[data-lg]").forEach(b=>b.onclick=()=>{ currentLg = b.dataset.lg; store.set("addLg", currentLg); const y = $("#sheetBody").scrollTop; renderCard(); $("#sheetBody").scrollTop = y; });
   $("#grFromCard") && ($("#grFromCard").onclick = ()=>gradedForm({...c, ed:currentEd}));
   $("#grLookCard") && ($("#grLookCard").onclick = ()=>gradedLookup(c));
-  $("#colMinus") && ($("#colMinus").onclick = ()=>{ setColQty(c.id,-1,currentEd); renderCard(); toast("Exemplaire retiré"); });
-  $("#colPlus") && ($("#colPlus").onclick = ()=>{ setColQty(c.id,1,currentEd); renderCard(); });
+  $("#colMinus") && ($("#colMinus").onclick = ()=>{ setColQty(c.id,-1,currentEd,currentLg); renderCard(); toast("Exemplaire retiré"); });
+  $("#colPlus") && ($("#colPlus").onclick = ()=>{ setColQty(c.id,1,currentEd,currentLg); renderCard(); });
   $("#buyIn") && ($("#buyIn").onchange = e=>{
     const v = parseFloat(String(e.target.value).replace(/\s/g,"").replace(",",".")); if(isNaN(v) || v<0) return;
     const col = getCol(), x = col.find(y=>y.id===c.id); if(!x) return;
@@ -1928,9 +1942,9 @@ const ico = { ext:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" st
 
 /* ---------------- Collection ---------------- */
 const getCol = () => store.get("col",[]);
-function addToCol(c, ed=null){
+function addToCol(c, ed=null, lg=null){
   const col = getCol(); const ex = col.find(x=>x.id===c.id);
-  const bump = x=>{ if(ed){ x.ed ||= {}; x.ed[ed] = (x.ed[ed]||0)+1; } };
+  const bump = x=>{ if(ed){ x.ed ||= {}; x.ed[ed] = (x.ed[ed]||0)+1; } if(lg){ x.lgs ||= {}; x.lgs[lg] = (x.lgs[lg]||0)+1; } };
   const mi = marketInfo(c) || {};
   if(ex){ const p = mi.p ?? ex.price; if(ex.buy!=null && p!=null) ex.buy = (ex.buy*ex.qty + p)/(ex.qty+1); ex.qty++; bump(ex); if(mi.p) Object.assign(ex, {price:mi.p, a1:mi.a1, a7:mi.a7, a30:mi.a30, pt:Date.now()}); ex.t=Date.now(); }
   else { const p = mi.p ?? mainPrice(c); col.unshift({id:c.id, name:c.name, set:c.set?.name||"", num:c.localId, img:img(c,"low"), price:p, buy:p, a1:mi.a1, a7:mi.a7, a30:mi.a30, pt:Date.now(), qty:1, t:Date.now()}); bump(col[0]); }
@@ -2027,7 +2041,7 @@ function colTile(c, own){
   const pic = imgTag(c, "low", 'alt="" loading="lazy"') || (own && colImg(own) ? `<img src="${esc(colImg(own))}" alt="" loading="lazy">` : "");
   const tr = own?.price && own.a7 ? (own.price-own.a7)/own.a7 : 0, tc = tr > .03 ? " up" : tr < -.03 ? " down" : "";
   const px = own ? (own.price ? `<span class="px${tc}" title="${tc?`${tr>0?"+":""}${(tr*100).toFixed(0)} % sur 7 jours`:""}">${tc===" up"?"▲ ":tc===" down"?"▼ ":""}${esc(eurS(own.price))}</span>` : `<span class="px none">—</span>`) : "";
-  return `<button class="ctile ${own?"have":"miss"}" data-id="${esc(c.id)}" aria-label="${esc(c.name)} ${esc(c.localId)}${own?", possédée":", manquante"}"><span class="im${tileFoil(c)}"><span class="nm0">${esc(c.name)}</span>${pic}${q>1?`<span class="qx">×${q}</span>`:""}${own?.ed?.["1ed"]>0?`<span class="edb">1re éd.</span>`:own?.ed?.sl>0?`<span class="edb">Shadowless</span>`:""}${own&&COLV.pdx?`<span class="own">✓</span>`:""}</span><span class="nm">${esc(c.name)}</span><span class="mt"><span class="no">${esc(c.localId)}</span>${px}</span>${own?(()=>{ const p = pnlOf(own); return p ? `<span class="tpnl ${pnlCls(p)}" title="PnL : ${esc(pnlTxt(p))} (achat ${esc(eurS(own.buy))})">${esc(pnlTxt(p))}</span>` : ""; })():""}</button>`;
+  return `<button class="ctile ${own?"have":"miss"}" data-id="${esc(c.id)}" aria-label="${esc(c.name)} ${esc(c.localId)}${own?", possédée":", manquante"}"><span class="im${tileFoil(c)}"><span class="nm0">${esc(c.name)}</span>${pic}${q>1?`<span class="qx">×${q}</span>`:""}${own?.ed?.["1ed"]>0?`<span class="edb">1re éd.</span>`:own?.ed?.sl>0?`<span class="edb">Shadowless</span>`:""}${(()=>{ const l = ownLgs(own).map(([k])=>k).filter(k=>k!=="FR"); return l.length ? `<span class="lgb">${esc(l.join(" · "))}</span>` : ""; })()}${own&&COLV.pdx?`<span class="own">✓</span>`:""}</span><span class="nm">${esc(c.name)}</span><span class="mt"><span class="no">${esc(c.localId)}</span>${px}</span>${own?(()=>{ const p = pnlOf(own); return p ? `<span class="tpnl ${pnlCls(p)}" title="PnL : ${esc(pnlTxt(p))} (achat ${esc(eurS(own.buy))})">${esc(pnlTxt(p))}</span>` : ""; })():""}</button>`;
 }
 async function renderCol(){
   const col = getCol(), list = $("#colList"), gen = ++COLV.gen;
@@ -2165,9 +2179,10 @@ $("#colFlt").onclick = openColFilters;
 $("#colPdx").onclick = ()=>{ COLV.pdx = !COLV.pdx; store.set("colPdx", COLV.pdx); renderCol(); };
 let colQT = null;
 $("#colQ").addEventListener("input", e=>{ COLV.q = e.target.value; clearTimeout(colQT); colQT = setTimeout(renderCol, 200); });
-function setColQty(id, d, ed=null){
+function setColQty(id, d, ed=null, lg=null){
   const col = getCol(), i = col.findIndex(x=>x.id===id); if(i<0) return;
   const x = col[i]; x.qty += d;
+  if(lg && (d>0 || x.lgs)){ x.lgs ||= {}; const k = d<0 && !(x.lgs[lg]>0) ? Object.keys(x.lgs).find(k=>x.lgs[k]>0) : lg; if(k) x.lgs[k] = Math.max(0, (x.lgs[k]||0)+d); }
   if(ed){ x.ed ||= {}; if(d>0 || x.ed[ed]>0) x.ed[ed] = Math.max(0, (x.ed[ed]||0)+d); }
   else if(d<0 && x.ed){ const k = Object.keys(x.ed).find(k=>x.ed[k]>0 && Object.values(x.ed).reduce((a,b)=>a+b,0) > x.qty); if(k) x.ed[k]--; }
   if(x.qty<=0) col.splice(i,1);

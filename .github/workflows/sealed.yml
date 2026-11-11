@@ -4,7 +4,7 @@ on:
   push:
     paths: ["scripts/build-sealed.mjs", ".github/workflows/sealed.yml"]
   schedule:
-    - cron: "41 6 * * *"
+    - cron: "41 6,14,22 * * *"
 permissions:
   contents: write
   pages: write

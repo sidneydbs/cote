@@ -721,6 +721,49 @@ html{background:var(--panel)}
 .mlist .mt small{font-size:12.5px;color:var(--muted)}
 .mlist .mn{font:700 13px/1 var(--f-mono);color:var(--fg)}
 .mlist .mch{width:16px;height:16px;color:var(--muted);flex:none}
+/* v55 : Classeur simplifié */
+.clshead{display:flex;align-items:center;gap:8px;margin:0 0 12px}
+.clshead .h1{flex:1;margin:0}
+.hicon{position:relative;width:42px;height:42px;border-radius:21px;flex:none;display:grid;place-items:center;background:var(--panel);border:1px solid var(--line);color:var(--fg)}
+.hicon svg{width:20px;height:20px}
+.hicon[aria-pressed="true"]{background:var(--border-yellow);border-color:var(--border-yellow);color:var(--on-acc)}
+.hbadge{position:absolute;top:-3px;right:-3px;min-width:17px;height:17px;padding:0 4px;border-radius:9px;background:var(--border-yellow);color:var(--on-acc);font:800 10px/17px var(--f-mono);box-sizing:border-box;font-style:normal}
+.seg.clsw3{display:grid;grid-template-columns:repeat(3,1fr);width:100%;box-sizing:border-box;margin:0 0 12px}
+.seg.clsw3 button{padding:10px 4px;font-size:14px}
+.csum{display:flex;align-items:baseline;flex-wrap:wrap;gap:4px 8px;margin:0 2px 12px;font-size:13px;color:var(--muted)}
+.csum strong{font:800 22px/1 var(--f-display);color:var(--fg);font-variant-numeric:tabular-nums}
+.csum .up{color:var(--up);font-weight:700}.csum .down{color:var(--down);font-weight:700}
+#colView #wallet,#colView .colmode,#colTools #colPdx,#colTools #colFlt{display:none}
+#colView[data-cm="graded"] .csum{display:none}
+.fbk{display:flex;align-items:center;gap:10px;margin:2px 0 10px}
+.fbk .hicon{width:40px;height:40px}
+.fbk div{display:flex;flex-direction:column;gap:3px;min-width:0}
+.fbk small{font:600 11px/1 var(--f-body);letter-spacing:.05em;text-transform:uppercase;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.fbk b{font:800 22px/1.1 var(--f-display);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(62px,1fr));gap:12px 7px;margin-top:8px;animation:fin .2s ease-out}
+.tl{display:flex;flex-direction:column;gap:5px;min-width:0;text-align:center;color:var(--fg);-webkit-tap-highlight-color:transparent}
+.tl .sq{position:relative;aspect-ratio:1;border-radius:14px;background:radial-gradient(90% 80% at 50% 35%,color-mix(in srgb,var(--border-yellow) 14%,var(--panel-2)),var(--panel));border:1px solid var(--line);display:grid;place-items:center;padding:8px 6px 12px;box-sizing:border-box;overflow:hidden}
+.tl:active .sq{transform:scale(.96)}
+.tl .sq img{max-width:100%;max-height:100%;object-fit:contain}
+.tl .sq .ini{font:800 11px/1.1 var(--f-body);color:var(--muted)}
+.tl .cnt{position:absolute;top:4px;right:4px;min-width:16px;height:15px;padding:0 4px;border-radius:8px;background:var(--border-yellow);color:var(--on-acc);font:700 8.5px/15px var(--f-mono);box-sizing:border-box}
+.tl .bar{position:absolute;left:0;right:0;bottom:0;height:4px;background:color-mix(in srgb,var(--fg) 12%,transparent)}
+.tl .bar i{display:block;height:100%;background:linear-gradient(90deg,var(--g1),var(--g2))}
+.tl.done .bar i{background:var(--up)}
+.tl .tn{font:600 10px/1.15 var(--f-body);height:23px;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+.tl .tv{font:600 9.5px/1.2 var(--f-mono);color:var(--muted);font-variant-numeric:tabular-nums}
+.shd{display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:16px;background:var(--panel);border:1px solid var(--line);margin:0 0 12px}
+.shd .lg{width:90px;height:40px;display:grid;place-items:center;flex:none}
+.shd .lg img{max-width:90px;max-height:40px;object-fit:contain}
+.shd>div{flex:1;min-width:0;display:flex;flex-direction:column;gap:7px;font-size:12.5px;color:var(--muted)}
+.shd>div b{color:var(--fg)}
+.shd .pb{height:5px;border-radius:5px;background:color-mix(in srgb,var(--fg) 12%,transparent);overflow:hidden}
+.shd .pb i{display:block;height:100%;background:linear-gradient(90deg,var(--g1),var(--g2))}
+.fchips{display:flex;gap:6px;margin:0 0 10px}
+.fchips button{height:34px;padding:0 14px;border-radius:17px;border:1px solid var(--line);background:var(--panel);font:600 13px/1 var(--f-body);color:var(--muted)}
+.fchips button[aria-pressed="true"]{background:var(--fg);border-color:var(--fg);color:var(--ink)}
+.fopen .colset{background:none;border:0;padding:0}
+.fopen .colset>.cgrid{margin-top:0}
 .stiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(104px,1fr));gap:10px}
 .stile2{position:relative;display:flex;flex-direction:column;align-items:center;gap:6px;padding:14px 8px 10px;border-radius:14px;background:var(--panel);border:1px solid color-mix(in srgb,var(--fg) 10%,transparent);cursor:pointer;text-align:center;min-width:0}
 .stile2 .lg2{width:100%;height:58px}
@@ -955,7 +998,7 @@ html{background:var(--panel)}
 </head>
 <body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="pb" viewBox="0 0 100 100"><defs><linearGradient id="pbV" x1="0" y1="0" x2="1" y2="1"><stop offset="0" style="stop-color:var(--pb1)"/><stop offset=".5" style="stop-color:var(--pb2)"/><stop offset="1" style="stop-color:var(--pb3)"/></linearGradient><radialGradient id="pbB" cx=".38" cy=".75" r=".75"><stop offset="0" style="stop-color:var(--pbb1)"/><stop offset="1" style="stop-color:var(--pbb2)"/></radialGradient><radialGradient id="pbC" cx=".4" cy=".35" r=".7"><stop offset="0" style="stop-color:var(--pbc1)"/><stop offset=".55" style="stop-color:var(--pbc2)"/><stop offset="1" style="stop-color:var(--pbc3)"/></radialGradient></defs><path d="M3 50a47 47 0 0 1 94 0z" fill="url(#pbV)"/><path d="M3 50a47 47 0 0 0 94 0z" fill="url(#pbB)"/><rect x="3" y="45.5" width="94" height="9" fill="#09080D"/><circle cx="50" cy="50" r="47" fill="none" stroke="#09080D" stroke-width="4"/><circle cx="50" cy="50" r="15.5" fill="#09080D"/><circle cx="50" cy="50" r="10" fill="url(#pbC)" style="stroke:var(--pb2)" stroke-width="2"/><path d="M19 33a35 35 0 0 1 17-15" fill="none" stroke="#fff" stroke-opacity=".38" stroke-width="4" stroke-linecap="round"/></symbol></svg>
-<script>window.__APPV="54";</script>
+<script>window.__APPV="55";</script>
 <div class="splash" id="splash" aria-hidden="true"><i class="hole"></i><i class="halo"></i><div class="bw"><svg class="b" viewBox="0 0 100 100"><use href="#pb"/></svg><svg class="t" viewBox="0 0 100 100"><use href="#pb"/></svg></div><i class="glow"></i></div>
 <script>setTimeout(function(){ if(window.__booted) return;
   var b=document.createElement("div"); b.setAttribute("role","alert");
@@ -990,7 +1033,7 @@ html{background:var(--panel)}
   <!-- ===== EXTENSIONS ===== -->
   <section class="view" id="homeView">
     <div class="scroll">
-      <div class="homebar"><svg class="pball" viewBox="0 0 100 100" aria-hidden="true"><use href="#pb"/></svg><span class="brand">DEX<b>·</b>SCAN</span><button class="thbtn" id="themeBtn" aria-label="Changer de thème"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.6-.9 1.2-1.8-.5-1.1.2-2.2 1.4-2.2H17a4 4 0 0 0 4-4c0-5.5-4-10-9-10z"/><circle cx="7.5" cy="11" r="1.2"/><circle cx="10" cy="7" r="1.2"/><circle cx="15" cy="7" r="1.2"/></svg></button><span class="ver">v54</span></div>
+      <div class="homebar"><svg class="pball" viewBox="0 0 100 100" aria-hidden="true"><use href="#pb"/></svg><span class="brand">DEX<b>·</b>SCAN</span><button class="thbtn" id="themeBtn" aria-label="Changer de thème"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.6-.9 1.2-1.8-.5-1.1.2-2.2 1.4-2.2H17a4 4 0 0 0 4-4c0-5.5-4-10-9-10z"/><circle cx="7.5" cy="11" r="1.2"/><circle cx="10" cy="7" r="1.2"/><circle cx="15" cy="7" r="1.2"/></svg></button><span class="ver">v55</span></div>
       <div class="hhead"><div><span class="hdate" id="hDate"></span><h1 class="h1">Accueil</h1></div><button class="hsearch" id="hSearch" aria-label="Rechercher une carte"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></button></div>
       <div class="total htot" id="hTot"></div>
       <div class="hqa">
@@ -1015,14 +1058,14 @@ html{background:var(--panel)}
         <button id="mTheme"><span class="mi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.6-.9 1.2-1.8-.5-1.1.2-2.2 1.4-2.2H17a4 4 0 0 0 4-4c0-5.5-4-10-9-10z"/><circle cx="7.5" cy="11" r="1.2"/><circle cx="10" cy="7" r="1.2"/><circle cx="15" cy="7" r="1.2"/></svg></span><span class="mt"><b>Thème de l'app</b><small>Couleurs et ambiance</small></span><svg class="mch" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></button>
         <button id="mLang"><span class="mi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg></span><span class="mt"><b>Langue des cartes</b><small id="mLangV">Français</small></span><svg class="mch" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></button>
       </div>
-      <p class="fine" style="text-align:center;margin-top:18px">Dex Scan v54</p>
+      <p class="fine" style="text-align:center;margin-top:18px">Dex Scan v55</p>
     </div>
   </section>
   <section class="view" id="extView" hidden>
     <div class="scroll" id="extScroll">
       <div id="extHome">
-        <div class="ext-head"><h1 class="h1">Classeur</h1><button class="chip" id="extLang" aria-label="Langue des cartes">Cartes FR</button></div>
-      <div class="seg clsw" role="group" aria-label="Classeur"><button data-cls="colView">Mes cartes</button><button data-cls="extView">Tout</button></div>
+        <div class="clshead"><h1 class="h1">Classeur</h1><button class="chip" id="extLang" aria-label="Langue des cartes" hidden>Cartes FR</button><button class="hicon" id="extSearchBtn" aria-label="Rechercher"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></button><button class="hicon" id="extSetBtn" aria-label="Trier et filtrer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16M7 12h10M10 18h4"/></svg><i class="hbadge" hidden></i></button></div>
+      <div class="seg clsw3" role="group" aria-label="Classeur"><button data-cls3="cards">Mes cartes</button><button data-cls3="graded">Gradées</button><button data-cls3="all">Toutes</button></div>
 
         <div class="seg exmode" role="group" aria-label="Type de produits"><button data-mode="cards" aria-pressed="true">Cartes</button><button data-mode="sealed" aria-pressed="false">Scellés</button><button data-mode="graded" aria-pressed="false">Gradées</button><button data-mode="jp" aria-pressed="false">Japon</button></div>
         <div id="cardsBox">
@@ -1147,8 +1190,9 @@ html{background:var(--panel)}
   <!-- ===== COLLECTION ===== -->
   <section class="view" id="colView" hidden>
     <div class="scroll">
-      <h1 class="h1">Classeur</h1>
-      <div class="seg clsw" role="group" aria-label="Classeur"><button data-cls="colView">Mes cartes</button><button data-cls="extView">Tout</button></div>
+      <div class="clshead"><h1 class="h1">Classeur</h1><button class="hicon" id="colSearchBtn" aria-label="Rechercher"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></button><button class="hicon" id="colSetBtn" aria-label="Trier et filtrer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16M7 12h10M10 18h4"/></svg><i class="hbadge" hidden></i></button></div>
+      <div class="seg clsw3" role="group" aria-label="Classeur"><button data-cls3="cards">Mes cartes</button><button data-cls3="graded">Gradées</button><button data-cls3="all">Toutes</button></div>
+      <div class="csum" id="colSum"></div>
 
       <div class="total" id="wallet">
         <div class="plabel"><span id="wLabel">Valeur de la collection</span><span id="wDate"></span><button class="wmin" id="wMin" aria-label="Réduire" aria-expanded="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m6 15 6-6 6 6"/></svg></button></div>
@@ -1163,7 +1207,7 @@ html{background:var(--panel)}
       </div>
       <div class="seg colmode" role="group" aria-label="Type de cartes"><button data-cm="cards" aria-pressed="true">Cartes</button><button data-cm="graded" aria-pressed="false">Gradées <i id="cmGrN"></i></button></div>
       <div id="colGraded" hidden></div>
-      <div class="coltools" id="colTools">
+      <div class="coltools" id="colTools" hidden>
         <input id="colQ" type="search" placeholder="Filtrer (nom ou numéro)" autocomplete="off" aria-label="Filtrer la collection">
         <button class="chip" id="colPdx" aria-pressed="true" title="Afficher aussi les cartes qui te manquent">Pokédex</button>
         <button class="chip" id="colFlt" aria-pressed="false" title="Filtres et tri"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" style="vertical-align:-3px"><path d="M4 6h16M7 12h10M10 18h4"/></svg><span id="colFltN"></span></button>
@@ -1956,10 +2000,12 @@ function refreshSetTiles(){ try{ if(EX.set && EX.cards?.length && document.getEl
 const COLV = {pdx: store.get("colPdx", true), q:"", open: store.get("colOpen", {}), gen:0, sets:new Map(), view: store.get("colViewMode2","folders"), fold:{ser:null, set:null}, sort: store.get("colSort","serie")};
 const CSORT = [["serie","Par série"],["value","Valeur"],["prog","Avancement"],["recent","Récentes"]];
 /* ---------- Filtres du Pokédex : afficher, rareté, type, catégorie, prix, tri ---------- */
-const CF = Object.assign({show:"all", rarity:"", type:"", cat:"", pmin:null, pmax:null, sort:"num"}, store.get("colFlt", {}));
+const CF = Object.assign({show:"all", rarity:"", type:"", cat:"", pmin:null, pmax:null, sort:"num", lg:""}, store.get("colFlt", {}));
 const CF_IDS = new Map();   // "rarity:Commune" -> Set d'identifiants (chargé une fois depuis la base de cartes)
-const cfActive = () => (CF.show!=="all") + !!CF.rarity + !!CF.type + !!CF.cat + (CF.pmin!=null || CF.pmax!=null) + (CF.sort!=="num");
-const cfNarrow = () => CF.show!=="all" || CF.rarity || CF.type || CF.cat || CF.pmin!=null || CF.pmax!=null;
+const cfActive = () => (CF.show!=="all") + !!CF.rarity + !!CF.type + !!CF.cat + (CF.pmin!=null || CF.pmax!=null) + (CF.sort!=="num") + !!CF.lg;
+const cfNarrow = () => CF.show!=="all" || CF.rarity || CF.type || CF.cat || CF.pmin!=null || CF.pmax!=null || !!CF.lg;
+/* langue d'un exemplaire possédé : sans langue enregistrée, on le compte comme français */
+const ownHasLg = (own, lg) => { const l = own?.lgs, any = l && Object.values(l).some(n=>n>0); return lg==="FR" ? (!any || l.FR>0) : !!(l?.[lg]>0); };
 async function cfLoad(){
   const want = [["rarity",CF.rarity],["types",CF.type],["category",CF.cat]].filter(([,v])=>v);
   await Promise.all(want.map(async ([k,v])=>{ const key = `${LANG}:${k}:${v}`; if(CF_IDS.has(key)) return;
@@ -1969,6 +2015,7 @@ async function cfLoad(){
 function cfMatch(c, own){
   if(CF.show==="own" && !own) return false;
   if(CF.show==="miss" && own) return false;
+  if(CF.lg && !ownHasLg(own, CF.lg)) return false;
   for(const [k,v] of [["rarity",CF.rarity],["types",CF.type],["category",CF.cat]]){ if(!v) continue; const s = CF_IDS.get(`${LANG}:${k}:${v}`); if(s && !s.has(c.id)) return false; }
   if(CF.pmin!=null || CF.pmax!=null){ const p = own?.price; if(p==null) return false; if(CF.pmin!=null && p < CF.pmin) return false; if(CF.pmax!=null && p > CF.pmax) return false; }
   return true;
@@ -1986,20 +2033,27 @@ function cfBar(){
   if(CF.show!=="all") parts.push(["show", CF.show==="own"?"Possédées":"Manquantes"]);
   if(CF.rarity) parts.push(["rarity", CF.rarity]); if(CF.type) parts.push(["type", CF.type]); if(CF.cat) parts.push(["cat", CF.cat]);
   if(CF.pmin!=null || CF.pmax!=null) parts.push(["price", CF.pmin!=null && CF.pmax!=null ? `${eurN(CF.pmin)} – ${eurN(CF.pmax)} €` : CF.pmin!=null ? `≥ ${eurN(CF.pmin)} €` : `≤ ${eurN(CF.pmax)} €`]);
+  if(CF.lg) parts.push(["lg", "Langue : "+(CARD_LG[CF.lg]||CF.lg)]);
   if(CF.sort!=="num") parts.push(["sort", {value:"Tri : valeur",gain:"Tri : gains",loss:"Tri : pertes",recent:"Tri : ajout récent"}[CF.sort]]);
   $("#colFltBar").innerHTML = parts.map(([k,l])=>`<button data-cfx="${k}">${esc(l)}</button>`).join("");
   $("#colFltBar").querySelectorAll("[data-cfx]").forEach(b=>b.onclick=()=>{ const k = b.dataset.cfx;
-    if(k==="price"){ CF.pmin=null; CF.pmax=null; } else if(k==="show") CF.show="all"; else if(k==="sort") CF.sort="num"; else CF[k]="";
+    if(k==="price"){ CF.pmin=null; CF.pmax=null; } else if(k==="show") CF.show="all"; else if(k==="sort") CF.sort="num"; else if(k==="lg") CF.lg=""; else CF[k]="";
     store.set("colFlt", CF); renderCol(); });
   const n = cfActive(); $("#colFltN").textContent = n ? n : ""; $("#colFlt").setAttribute("aria-pressed", n>0);
+  const hb = $("#colSetBtn .hbadge"); if(hb){ hb.hidden = !n; hb.textContent = n; }
 }
 async function openColFilters(){
-  $("#sheetTitle").textContent = "Filtres du Pokédex";
+  $("#sheetTitle").textContent = "Trier et filtrer";
   $("#sheetBody").innerHTML = `<div class="empty"><span class="loader"></span></div>`; openSheet();
   const [rar, typ, cat] = await Promise.all(["rarities","types","categories"].map(k=>getJSON(`${API}/${LANG}/${k}`).catch(()=>[])));
   const opt = (l, v, all) => `<option value="">${all}</option>` + (l||[]).map(x=>`<option ${x===v?"selected":""}>${esc(x)}</option>`).join("");
   const seg = (k, l) => `<div class="seg" role="group">${l.map(([v,t])=>`<button data-${k}="${v}" aria-pressed="${CF[k==="fs"?"show":"sort"]===v}">${t}</button>`).join("")}</div>`;
+  const sg = (k, cur, l) => `<div class="seg" role="group" style="flex-wrap:wrap">${l.map(([v,t])=>`<button data-${k}="${v}" aria-pressed="${String(cur)===String(v)}">${t}</button>`).join("")}</div>`;
   $("#sheetBody").innerHTML = `<div class="fltform">
+    <div><h4>Ranger les extensions</h4>${sg("xs", COLV.sort, CSORT.map(([k,l])=>[k, l.replace("Par série","Par série")]))}</div>
+    <div><h4>Affichage</h4>${sg("xv", COLV.view, [["folders","Dossiers"],["compact","Liste"],["detail","Détaillée"]])}</div>
+    <div><h4>Cartes manquantes</h4>${sg("xp", COLV.pdx, [[true,"Grisées"],[false,"Cachées"]])}</div>
+    <div><h4>Langue</h4><select id="cfL"><option value="">Toutes les langues</option>${Object.entries(CARD_LG).map(([k,t])=>`<option value="${k}" ${CF.lg===k?"selected":""}>${t}</option>`).join("")}</select></div>
     <div><h4>Afficher</h4>${seg("fs",[["all","Toutes"],["own","Possédées"],["miss","Manquantes"]])}${!COLV.pdx?`<p class="fine" style="margin:6px 0 0">« Manquantes » demande le mode Pokédex.</p>`:""}</div>
     <div class="two"><div><h4>Rareté</h4><select id="cfR">${opt(rar, CF.rarity, "Toutes")}</select></div><div><h4>Type</h4><select id="cfT">${opt(typ, CF.type, "Tous")}</select></div></div>
     <div><h4>Catégorie</h4><select id="cfC">${opt(cat, CF.cat, "Toutes")}</select></div>
@@ -2007,13 +2061,16 @@ async function openColFilters(){
     <div><h4>Trier par</h4><select id="cfS">${[["num","Numéro"],["value","Valeur (la plus haute)"],["gain","Gains (les plus forts)"],["loss","Pertes (les plus fortes)"],["recent","Ajout le plus récent"]].map(([v,t])=>`<option value="${v}" ${CF.sort===v?"selected":""}>${t}</option>`).join("")}</select></div>
     <div class="addrow"><button class="btn btn-y" id="cfOk">Appliquer</button><button class="btn btn-g" id="cfReset">Tout effacer</button></div>
   </div>`;
-  let show = CF.show;
+  let show = CF.show, xs = COLV.sort, xv = COLV.view, xp = COLV.pdx;
+  const pick = (k, set) => $("#sheetBody").querySelectorAll(`[data-${k}]`).forEach(b=>b.onclick=()=>{ set(b.dataset[k]); $("#sheetBody").querySelectorAll(`[data-${k}]`).forEach(x=>x.setAttribute("aria-pressed", x===b)); });
+  pick("xs", v=>xs=v); pick("xv", v=>xv=v); pick("xp", v=>xp = v==="true");
   $("#sheetBody").querySelectorAll("[data-fs]").forEach(b=>b.onclick=()=>{ show = b.dataset.fs; $("#sheetBody").querySelectorAll("[data-fs]").forEach(x=>x.setAttribute("aria-pressed", x===b)); });
   const num = v => { const n = parseFloat(String(v).replace(",",".")); return isFinite(n) ? n : null; };
-  $("#cfOk").onclick = ()=>{ Object.assign(CF, {show, rarity:$("#cfR").value, type:$("#cfT").value, cat:$("#cfC").value, pmin:num($("#cfMin").value), pmax:num($("#cfMax").value), sort:$("#cfS").value});
+  $("#cfOk").onclick = ()=>{ if(xs!==COLV.sort){ COLV.sort = xs; store.set("colSort", xs); COLV.fold.ser = COLV.fold.set = null; } COLV.view = xv; store.set("colViewMode2", xv); COLV.pdx = xp; store.set("colPdx", xp);
+    Object.assign(CF, {lg:$("#cfL").value, show, rarity:$("#cfR").value, type:$("#cfT").value, cat:$("#cfC").value, pmin:num($("#cfMin").value), pmax:num($("#cfMax").value), sort:$("#cfS").value});
     if(CF.show==="miss" && !COLV.pdx){ COLV.pdx = true; store.set("colPdx", true); }
     store.set("colFlt", CF); closeSheet(); renderCol(); };
-  $("#cfReset").onclick = ()=>{ Object.assign(CF, {show:"all", rarity:"", type:"", cat:"", pmin:null, pmax:null, sort:"num"}); store.set("colFlt", CF); closeSheet(); renderCol(); };
+  $("#cfReset").onclick = ()=>{ Object.assign(CF, {show:"all", rarity:"", type:"", cat:"", pmin:null, pmax:null, sort:"num", lg:""}); store.set("colFlt", CF); closeSheet(); renderCol(); };
 }
 const colImg = x => x.img ? (/^https?:.*\.(png|jpe?g|webp)$/i.test(x.img) ? x.img : x.img+"/low.webp") : "";
 /* liste complète d'une extension (images anglaises si la version française n'en a pas) */
@@ -2051,6 +2108,8 @@ async function renderCol(){
   if(col.some(x=>x.buy==null && x.price!=null)){ col.forEach(x=>{ if(x.buy==null && x.price!=null) x.buy = x.price; }); store.set("col", col); }
   const total = col.reduce((s,x)=>s+(x.price||0)*x.qty,0), n = col.reduce((s,x)=>s+x.qty,0);
   $("#colTotal").innerHTML = `${eur(total)}<small>€</small>`;
+  { const cost = col.reduce((a,x)=>a+(x.buy ?? x.price ?? 0)*x.qty,0), pc = cost ? (total-cost)/cost*100 : 0;
+    $("#colSum").innerHTML = col.length ? `<strong>${eur(total)} €</strong><span>${n} carte${n>1?"s":""}</span>${cost?`<span class="${pc>=0?"up":"down"}">${pc>=0?"+":"−"}${Math.abs(pc).toFixed(1).replace(".",",")} % depuis l'achat</span>`:""}` : ""; }
   renderWallet(col);
   const pxT = store.get("colPxT",0);
   $("#colUpd").textContent = col.length ? (COLPX.busy ? "Mise à jour des cotes…" : pxT ? `Cotes Cardmarket relues ${ago(pxT)} · suivi automatique` : "Cotes en cours de lecture…") : "";
@@ -2080,7 +2139,7 @@ async function renderCol(){
   if(!RAR.d) loadRar().then(d=>{ if(d && gen===COLV.gen && !$("#colView").hidden) renderCol(); });
   for(const se of EX.series||[]) serDate[se.name] = se.date;
   const cbar = `<div class="lbar"><div class="lrow"><div class="csort">${CSORT.map(([k,l])=>`<button data-csort="${k}" aria-pressed="${COLV.sort===k}">${l}</button>`).join("")}</div>${vtogHTML(COLV.view, ["folders","compact","detail"])}</div></div>`;
-  if(COLV.view==="folders" && !q && !narrow){ colFolders(groups, by, OWNI, gen, list); return; }
+  if(COLV.view==="folders" && !q && !(CF.rarity || CF.type || CF.cat || CF.pmin!=null || CF.pmax!=null)){ colFolders(groups, by, OWNI, gen, list); return; }
   list.innerHTML = cbar + groups.map(g=>`<section class="serie"><h2><span>${esc(g.name)}${serDate[g.name]?` <em class="sdate">· depuis ${esc(fmtMonth(serDate[g.name]))}</em>`:""}</span><span>${g.sets.reduce((a,s)=>a+by.get(s.id).length,0)}</span></h2>${
     g.sets.map(s=>{
       const own = by.get(s.id), val = own.reduce((a,x)=>a+(x.price||0)*x.qty,0);
@@ -2119,33 +2178,33 @@ function colFolders(groups, by, OWNI, gen, list){
   const g = flat ? groups[0] : groups.find(x=>x.name===F.ser);
   if(!g){ F.ser = null; F.set = null; }
   const s = g && F.set ? g.sets.find(x=>x.id===F.set) : null; if(!s) F.set = null;
-  const segs = ["Collection", ...(g ? [g.name] : []), ...(s ? [s.name] : [])];
-  const bar = `<div class="lbar"><div class="lrow"><div class="csort">${CSORT.map(([k,l])=>`<button data-csort="${k}" aria-pressed="${COLV.sort===k}">${l}</button>`).join("")}</div>${vtogHTML(COLV.view, ["folders","compact","detail"])}</div><div class="lrow">${fpathHTML(segs)}</div></div>`;
   let inner;
   if(s){
-    const v = val(s);
-    inner = `<div class="fopen">${setRowHTML(s, OWNI.get(s.id), {cls:"colset open", value: v?eurS(v):"", inner:`<div class="cgrid"></div>`})}</div>`;
-  } else if(g){
+    // une extension ouverte : avancement, filtre Toutes / Possédées / Manquantes, puis les cartes
+    const st = setStats(s, OWNI.get(s.id)), v = val(s), show = CF.show;
+    inner = fbkHTML(flat ? "Mes extensions" : g.name, s.name, 1)
+      + `<div class="shd"><span class="lg">${chainImg(logoChain(s), `alt=""`, initials(s))}</span><div><span><b>${st.have}</b> / ${st.total||"?"} cartes${v?` · <b>${eurS(v)}</b>`:""}</span><span class="pb"><i style="width:${st.pc}%"></i></span></div></div>`
+      + `<div class="fchips" role="group" aria-label="Cartes affichées">${[["all","Toutes"],["own","Possédées"],["miss","Manquantes"]].map(([k,l])=>`<button data-fshow="${k}" aria-pressed="${show===k}">${l}</button>`).join("")}</div>`
+      + `<div class="fopen"><div class="colset open" data-set="${esc(s.id)}"><div class="cgrid"></div></div></div>`;
+  } else if(g && !flat){
     const sv = g.sets.reduce((a,x)=>a+val(x),0), ss = serStats(g.sets, OWNI);
-    inner = `<div class="fhead"><span>${g.sets.length} extension${g.sets.length>1?"s":""}</span><b>${sv?eurS(sv)+" · ":""}${ss.pc}%</b></div><div class="fgrid">${g.sets.map(x=>{
-      const st = setStats(x, OWNI.get(x.id)), v = val(x); return fSetHTML(x, `${st.have}/${st.total||"?"}${v?` · <em>${eurS(v)}</em>`:""}`, st.pc, `data-cfset="${esc(x.id)}"`); }).join("")}</div>`;
+    inner = fbkHTML("Mes séries", g.name, 0)
+      + `<div class="fhead"><span>${g.sets.length} extension${g.sets.length>1?"s":""}</span><b>${sv?eurS(sv)+" · ":""}${ss.pc} %</b></div><div class="tgrid">${g.sets.map(x=>{
+      const st = setStats(x, OWNI.get(x.id)), v = val(x); return fSetHTML(x, `${st.have}/${st.total||"?"}${v?`<br>${eurS(v)}`:""}`, st.pc, `data-cfset="${esc(x.id)}"`); }).join("")}</div>`;
+  } else if(flat){
+    inner = `<div class="fhead"><span>Mes extensions · ${esc(g.name.toLowerCase())}</span><b>${g.sets.length}</b></div><div class="tgrid">${g.sets.map(x=>{
+      const st = setStats(x, OWNI.get(x.id)), v = val(x); return fSetHTML(x, `${st.have}/${st.total||"?"}${v?`<br>${eurS(v)}`:""}`, st.pc, `data-cfset="${esc(x.id)}"`); }).join("")}</div>`;
   } else {
-    inner = `<div class="fhead"><span>${groups.length} série${groups.length>1?"s":""}</span><b>${by.size} extension${by.size>1?"s":""}</b></div><div class="fgrid">${groups.map(x=>{
-      const v = x.sets.reduce((a,y)=>a+val(y),0), ss = serStats(x.sets, OWNI), n = x.sets.reduce((a,y)=>a+by.get(y.id).length,0);
-      return fSerHTML(x.name, x.sets, `${n} carte${n>1?"s":""}${v?` · <em>${eurS(v)}</em>`:""}`, ss.pc, `data-cfser="${esc(x.name)}"`); }).join("")}</div>`;
+    inner = `<div class="fhead"><span>Mes séries</span><b>${groups.length}</b></div><div class="tgrid">${groups.map(x=>{
+      const v = x.sets.reduce((a,y)=>a+val(y),0), ss = serStats(x.sets, OWNI), n = x.sets.reduce((a,y)=>a+by.get(y.id).reduce((b,z)=>b+z.qty,0),0);
+      return fSerHTML(x.name, x.sets, v ? eurS(v) : `${n} carte${n>1?"s":""}`, ss.pc, `data-cfser="${esc(x.name)}"`); }).join("")}</div>`;
   }
-  list.innerHTML = bar + inner;
-  list.querySelectorAll(".fpath").forEach(p=>p.scrollLeft = p.scrollWidth);
-  const top = ()=>{ const sc = $("#colView .scroll"), y = list.offsetTop - 4; if(sc.scrollTop > y) sc.scrollTop = y; };
-  list.querySelectorAll("[data-csort]").forEach(b=>b.onclick=()=>{ COLV.sort = b.dataset.csort; store.set("colSort", COLV.sort); F.ser = F.set = null; renderCol(); });
-  list.querySelectorAll("[data-view]").forEach(b=>b.onclick=()=>{ COLV.view = b.dataset.view; store.set("colViewMode2", COLV.view); renderCol(); });
+  list.innerHTML = inner;
+  const top = ()=>{ const sc = $("#colView .scroll"); sc.scrollTop = 0; };
   list.querySelectorAll("[data-cfser]").forEach(b=>b.onclick=()=>{ F.ser = b.dataset.cfser; F.set = null; renderCol(); top(); });
   list.querySelectorAll("[data-cfset]").forEach(b=>b.onclick=()=>{ if(flat) F.ser = g.name; F.set = b.dataset.cfset; renderCol(); top(); });
-  list.querySelectorAll("[data-fgo]").forEach(b=>b.onclick=()=>{
-    const i = +b.dataset.fgo;
-    if(i===0){ F.ser = F.set = null; } else if(i===1){ F.set = null; }
-    renderCol(); top();
-  });
+  list.querySelectorAll("[data-fgo]").forEach(b=>b.onclick=()=>{ if(+b.dataset.fgo===0){ F.ser = F.set = null; } else F.set = null; renderCol(); top(); });
+  list.querySelectorAll("[data-fshow]").forEach(b=>b.onclick=()=>{ CF.show = b.dataset.fshow; if(CF.show!=="own" && !COLV.pdx){ COLV.pdx = true; store.set("colPdx", true); } store.set("colFlt", CF); renderCol(); });
   if(s){ const box = list.querySelector(".colset"); fillColSet(box, by.get(s.id), gen); }
 }
 async function fillColSet(box, own, gen){
@@ -2450,7 +2509,8 @@ function setColMode(m){
   COLM.mode = m; store.set("colMode", m);
   document.querySelectorAll("[data-cm]").forEach(b=>b.setAttribute("aria-pressed", b.dataset.cm===m));
   const g = m==="graded";
-  ["#colTools","#colFltBar","#colList"].forEach(s=>{ const e=$(s); if(e) e.hidden = g; });
+  ["#colTools","#colFltBar","#colList"].forEach(s=>{ const e=$(s); if(e) e.hidden = g || (s==="#colTools" && !COLV.sq); });
+  $("#colView").dataset.cm = m; syncCls3();
   $("#colGraded").hidden = !g; if(g) renderColGraded();
 }
 function renderColGraded(){
@@ -3904,12 +3964,15 @@ function fpathHTML(segs){
 }
 // un dossier de série : les logos de ses extensions dépassent comme des feuilles
 function fSerHTML(name, sets, sub, pc, attr){
-  const pap = sets.slice(1,4).map((s,i)=>`<span class="fpap" style="--r:${[-7,5,-1][i]}deg;--y:${[2,-1,-4][i]}px">${chainImg(logoChain(s), `alt="" loading="lazy"`, initials(s))}</span>`).join("");
-  return `<button class="fold${pc>=100?" done":""}" ${attr}><span class="fic"><span class="fback"></span>${pap}<span class="ffront">${sets[0]?chainImg(logoChain(sets[0]), `alt="" loading="lazy"`):""}<span class="fn">${sets.length}</span></span></span><b>${esc(name)}</b><small>${sub}</small><i class="fpb"><i style="width:${pc}%"></i></i></button>`;
+  return `<button class="tl${pc>=100?" done":""}" ${attr}><span class="sq">${sets[0]?chainImg(logoChain(sets[0]), `alt="" loading="lazy"`, initials(sets[0])):""}<span class="cnt">${sets.length}</span><span class="bar"><i style="width:${pc}%"></i></span></span><span class="tn">${esc(name)}</span><span class="tv">${sub}</span></button>`;
 }
 // un dossier d'extension : son logo sur le rabat
 function fSetHTML(s, sub, pc, attr){
-  return `<button class="fold${pc>=100?" done":""}" ${attr}><span class="fic"><span class="fback"></span><span class="fpap" style="--r:-4deg"></span><span class="ffront">${chainImg(logoChain(s), `alt="" loading="lazy"`, initials(s))}</span></span><b>${esc(s.name)}</b><small>${sub}</small><i class="fpb"><i style="width:${pc}%"></i></i></button>`;
+  return `<button class="tl${pc>=100?" done":""}" ${attr}><span class="sq">${chainImg(logoChain(s), `alt="" loading="lazy"`, initials(s))}<span class="bar"><i style="width:${pc}%"></i></span></span><span class="tn">${esc(s.name)}</span><span class="tv">${sub}</span></button>`;
+}
+/* en-tête de dossier ouvert : ‹ retour, dossier parent en petit, dossier ouvert en grand */
+function fbkHTML(parent, name, go){
+  return `<div class="fbk"><button class="hicon" data-fgo="${go}" aria-label="Revenir à ${esc(parent)}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 6-6 6 6 6"/></svg></button><div><small>${esc(parent)}</small><b>${esc(name)}</b></div></div>`;
 }
 const SER_CHEV = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="m6 9 6 6 6-6"/></svg>`;
 EX.view = store.get("extViewMode2", "folders"); EX.fold = null;
@@ -3950,19 +4013,18 @@ function renderExtList(){
   if(V==="folders" && groups.length){
     const g = !q && EX.fold ? groups.find(x=>x.se.name===EX.fold) : null; if(!g) EX.fold = null;
     const segs = ["Extensions", ...(q ? [`Recherche « ${EX.q.trim()} »`] : g ? [g.se.name] : [])];
-    const fbar = `<div class="lbar"><div class="lrow">${fpathHTML(segs)}${vtogHTML(V, ["folders","compact","grid","detail"])}</div></div>`;
+    const fbar = g ? fbkHTML("Toutes les séries", g.se.name, 0) : "";
     let inner;
     if(!q && !g){
-      inner = `<div class="fhead"><span>${groups.length} séries</span><b>${groups.reduce((a,x)=>a+x.sets.length,0)} extensions</b></div><div class="fgrid">${groups.map(({se, sets})=>{
-        const ss = serStats(sets, OWN); return fSerHTML(se.name, sets, `${sets.length} ext. · <em>${ss.pc}%</em>`, ss.pc, `data-fser="${esc(se.name)}"`); }).join("")}</div>`;
+      inner = `<div class="fhead"><span>${groups.length} séries</span><b>${groups.reduce((a,x)=>a+x.sets.length,0)} extensions</b></div><div class="tgrid">${groups.map(({se, sets})=>{
+        const ss = serStats(sets, OWN); return fSerHTML(se.name, sets, `${ss.pc} %`, ss.pc, `data-fser="${esc(se.name)}"`); }).join("")}</div>`;
     } else {
       const sets = g ? g.sets : groups.flatMap(x=>x.sets);
       const ss = serStats(sets, OWN);
-      inner = `<div class="fhead"><span>${sets.length} extension${sets.length>1?"s":""}</span><b>${ss.h}/${ss.t} · ${ss.pc}%</b></div><div class="fgrid">${sets.map(s=>{
-        const st = setStats(s, OWN.get(s.id)); return fSetHTML(s, `${st.have}/${st.total||"?"} · <em>${st.pc}%</em>`, st.pc, `data-set="${esc(s.id)}"`); }).join("")}</div>`;
+      inner = `<div class="fhead"><span>${sets.length} extension${sets.length>1?"s":""}</span><b>${ss.h}/${ss.t} · ${ss.pc} %</b></div><div class="tgrid">${sets.map(s=>{
+        const st = setStats(s, OWN.get(s.id)); return fSetHTML(s, `${st.have}/${st.total||"?"}`, st.pc, `data-set="${esc(s.id)}"`); }).join("")}</div>`;
     }
     extList.innerHTML = fbar + (!g ? upcomingHTML(q) : "") + inner;
-    extList.querySelectorAll(".fpath").forEach(p=>p.scrollLeft = p.scrollWidth);   // le dossier ouvert reste visible
   }
   else extList.innerHTML = groups.length ? bar + upcomingHTML(q) + body : upcomingHTML(q) + `<div class="empty">Aucune extension trouvée.<br>Essaie « 151 » ou « Écarlate ».</div>`;
   extList.querySelectorAll("[data-set]").forEach(b=>b.onclick=e=>{
@@ -4901,6 +4963,7 @@ function selectTab(v){
   for(const id of ALLV) document.getElementById(id).hidden = id!==v;
   if(v==="colView" || v==="extView"){ store.set("clsV", v); document.querySelectorAll("[data-cls]").forEach(b=>b.setAttribute("aria-pressed", b.dataset.cls===v)); }
   if(v==="homeView") renderHome();
+  try{ syncCls3(); }catch(e){}
   if(v!=="scanView") stopCamera();   // on quitte le scanner : la caméra se coupe
   if(v==="colView") renderCol();
   if(v==="alertView") openAlerts(); else closeAlerts();
@@ -4915,6 +4978,23 @@ function selectTab(v){
 }
 document.querySelectorAll(".tab").forEach(t=>t.onclick=()=>selectTab(t.dataset.v==="colView" ? (curView()==="extView" || curView()==="colView" ? curView() : store.get("clsV","colView")) : t.dataset.v));
 document.querySelectorAll("[data-cls]").forEach(b=>b.onclick=()=>selectTab(b.dataset.cls));
+/* Classeur : Mes cartes / Gradées / Toutes */
+function syncCls3(){ const v = curView(), k = v==="extView" ? "all" : COLM.mode==="graded" ? "graded" : "cards"; document.querySelectorAll("[data-cls3]").forEach(b=>b.setAttribute("aria-pressed", b.dataset.cls3===k)); }
+document.querySelectorAll("[data-cls3]").forEach(b=>b.onclick=()=>{ const k = b.dataset.cls3;
+  if(k==="all") selectTab("extView"); else { if(curView()!=="colView") selectTab("colView"); setColMode(k); } syncCls3(); });
+$("#colSearchBtn").onclick = ()=>{ COLV.sq = !COLV.sq; const t = $("#colTools"); t.hidden = !COLV.sq; $("#colSearchBtn").setAttribute("aria-pressed", COLV.sq);
+  if(COLV.sq) setTimeout(()=>$("#colQ").focus(), 50); else if(COLV.q){ COLV.q = ""; $("#colQ").value = ""; renderCol(); } };
+$("#colSetBtn").onclick = ()=>openColFilters();
+$("#extSearchBtn").onclick = ()=>{ const i = $("#extQ"); i.scrollIntoView({block:"center"}); setTimeout(()=>i.focus(), 50); };
+$("#extSetBtn").onclick = ()=>{
+  $("#sheetTitle").textContent = "Affichage";
+  const sg = (k, cur, l) => `<div class="seg" role="group" style="flex-wrap:wrap">${l.map(([v,t])=>`<button data-${k}="${v}" aria-pressed="${cur===v}">${t}</button>`).join("")}</div>`;
+  $("#sheetBody").innerHTML = `<div class="fltform"><div><h4>Affichage des extensions</h4>${sg("ev", EX.view, [["folders","Dossiers"],["compact","Liste"],["grid","Grille"],["detail","Détaillée"]])}</div>
+    <div><h4>Langue des cartes</h4>${sg("el", LANG, [["fr","Français"],["en","Anglais"]])}</div></div>`;
+  openSheet();
+  $("#sheetBody").querySelectorAll("[data-ev]").forEach(b=>b.onclick=()=>{ EX.view = b.dataset.ev; store.set("extViewMode2", EX.view); closeSheet(); renderExtList(); });
+  $("#sheetBody").querySelectorAll("[data-el]").forEach(b=>b.onclick=()=>{ closeSheet(); if(b.dataset.el!==LANG) toggleLang(); });
+};
 /* pages ouvertes depuis l'Accueil ou Plus : le retour ramène d'où l'on vient */
 function openSub(v){ NAV.subFrom = tabOf(curView()); selectTab(v); }
 document.querySelectorAll("[data-mgo]").forEach(b=>b.onclick=()=>openSub(b.dataset.mgo));

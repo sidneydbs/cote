@@ -10,6 +10,10 @@
 <script>try{var __t=JSON.parse(localStorage.getItem("cote:theme")||'"spectre"');if(__t==="kanto"&&!JSON.parse(localStorage.getItem("cote:kanto")||"false"))__t="spectre";document.documentElement.dataset.theme=__t;}catch(e){document.documentElement.dataset.theme="spectre";}</script>
 <link rel="apple-touch-icon" href="icon.png">
 <link rel="manifest" href="manifest.json">
+<link rel="preconnect" href="https://api.tcgdex.net" crossorigin>
+<link rel="preconnect" href="https://assets.tcgdex.net" crossorigin>
+<link rel="preconnect" href="https://images.pokemontcg.io" crossorigin>
+<link rel="preconnect" href="https://images.scrydex.com" crossorigin>
 <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
 <link rel="icon" href="icon.png">
 <title>Dex Scan</title>
@@ -66,7 +70,7 @@ input,select{font:inherit;color:var(--fg)}
 .scan-top{position:absolute;top:0;left:0;right:0;padding:calc(var(--safe-t) + 12px) max(16px,env(safe-area-inset-right,0px)) 12px max(16px,env(safe-area-inset-left,0px));display:flex;align-items:center;gap:10px;z-index:3}
 .brand{font:800 20px/1 var(--f-display);font-stretch:130%;letter-spacing:.01em}
 .brand b{color:var(--border-yellow)}
-.chip{display:inline-flex;align-items:center;gap:6px;padding:7px 11px;border-radius:999px;background:rgba(23,26,33,.8);border:1px solid var(--line);font-size:12.5px;font-weight:600;backdrop-filter:blur(8px)}
+.chip{display:inline-flex;align-items:center;gap:6px;padding:7px 11px;border-radius:999px;background:rgba(23,26,33,.8);border:1px solid var(--line);font-size:12.5px;font-weight:600}
 .spacer{flex:1}
 .status{position:absolute;left:0;right:0;text-align:center;z-index:3;font-size:13.5px;color:#dfe2e8;padding:0 24px;text-shadow:0 1px 6px #000}
 .scan-bottom{position:absolute;left:0;right:0;bottom:0;z-index:3;display:flex;align-items:center;justify-content:center;gap:34px;padding:14px max(16px,env(safe-area-inset-right,0px)) 18px max(16px,env(safe-area-inset-left,0px))}
@@ -436,7 +440,7 @@ html{background:var(--panel)}
 .cgrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
 @media (min-width:600px){.cgrid{grid-template-columns:repeat(4,minmax(0,1fr))}}
 @media (min-width:860px){.cgrid{grid-template-columns:repeat(6,minmax(0,1fr))}}
-.ctile{display:flex;flex-direction:column;gap:5px;min-width:0;text-align:left}
+.ctile{display:flex;flex-direction:column;gap:5px;min-width:0;text-align:left;content-visibility:auto;contain-intrinsic-size:auto 200px}
 .ctile .im{position:relative;display:block;aspect-ratio:63/88;max-width:100%;border-radius:4.5%/3.2%;background:var(--panel-2);overflow:hidden}
 .ctile .im img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .ctile .nm0{position:absolute;inset:0;display:grid;place-items:center;padding:6px;text-align:center;font-size:11px;color:var(--muted)}
@@ -993,8 +997,8 @@ html{background:var(--panel)}
 .bcm{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:12px 14px;margin-bottom:10px}
 .bgrid{display:grid;grid-template-columns:1fr 1fr;gap:8px 12px;margin-top:8px}.bgrid span{display:block;font-size:11px;color:var(--muted)}.bgrid b{font:700 15px var(--f-mono)}
 /* ---------- v45 : navigation au glissé ---------- */
-.view.in-r,.sheet.in-r{animation:vinR .24s cubic-bezier(.2,.8,.2,1)}
-.view.in-l,.sheet.in-l{animation:vinL .24s cubic-bezier(.2,.8,.2,1)}
+.view.in-r,.sheet.in-r{animation:vinR .17s cubic-bezier(.2,.8,.2,1)}
+.view.in-l,.sheet.in-l{animation:vinL .17s cubic-bezier(.2,.8,.2,1)}
 @keyframes vinR{from{transform:translateX(38%);opacity:.35}to{transform:none;opacity:1}}
 @keyframes vinL{from{transform:translateX(-38%);opacity:.35}to{transform:none;opacity:1}}
 @media (prefers-reduced-motion:reduce){.view.in-r,.view.in-l,.sheet.in-r,.sheet.in-l{animation:none}}
@@ -1002,7 +1006,7 @@ html{background:var(--panel)}
 </head>
 <body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="pb" viewBox="0 0 100 100"><defs><linearGradient id="pbV" x1="0" y1="0" x2="1" y2="1"><stop offset="0" style="stop-color:var(--pb1)"/><stop offset=".5" style="stop-color:var(--pb2)"/><stop offset="1" style="stop-color:var(--pb3)"/></linearGradient><radialGradient id="pbB" cx=".38" cy=".75" r=".75"><stop offset="0" style="stop-color:var(--pbb1)"/><stop offset="1" style="stop-color:var(--pbb2)"/></radialGradient><radialGradient id="pbC" cx=".4" cy=".35" r=".7"><stop offset="0" style="stop-color:var(--pbc1)"/><stop offset=".55" style="stop-color:var(--pbc2)"/><stop offset="1" style="stop-color:var(--pbc3)"/></radialGradient></defs><path d="M3 50a47 47 0 0 1 94 0z" fill="url(#pbV)"/><path d="M3 50a47 47 0 0 0 94 0z" fill="url(#pbB)"/><rect x="3" y="45.5" width="94" height="9" fill="#09080D"/><circle cx="50" cy="50" r="47" fill="none" stroke="#09080D" stroke-width="4"/><circle cx="50" cy="50" r="15.5" fill="#09080D"/><circle cx="50" cy="50" r="10" fill="url(#pbC)" style="stroke:var(--pb2)" stroke-width="2"/><path d="M19 33a35 35 0 0 1 17-15" fill="none" stroke="#fff" stroke-opacity=".38" stroke-width="4" stroke-linecap="round"/></symbol></svg>
-<script>window.__APPV="61";</script>
+<script>window.__APPV="62";</script>
 <div class="splash" id="splash" aria-hidden="true"><i class="hole"></i><i class="halo"></i><div class="bw"><svg class="b" viewBox="0 0 100 100"><use href="#pb"/></svg><svg class="t" viewBox="0 0 100 100"><use href="#pb"/></svg></div><i class="glow"></i></div>
 <script>setTimeout(function(){ if(window.__booted) return;
   var b=document.createElement("div"); b.setAttribute("role","alert");
@@ -1037,7 +1041,7 @@ html{background:var(--panel)}
   <!-- ===== EXTENSIONS ===== -->
   <section class="view" id="homeView">
     <div class="scroll">
-      <div class="homebar"><svg class="pball" viewBox="0 0 100 100" aria-hidden="true"><use href="#pb"/></svg><span class="brand">DEX<b>·</b>SCAN</span><button class="thbtn" id="themeBtn" aria-label="Changer de thème"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.6-.9 1.2-1.8-.5-1.1.2-2.2 1.4-2.2H17a4 4 0 0 0 4-4c0-5.5-4-10-9-10z"/><circle cx="7.5" cy="11" r="1.2"/><circle cx="10" cy="7" r="1.2"/><circle cx="15" cy="7" r="1.2"/></svg></button><span class="ver">v61</span></div>
+      <div class="homebar"><svg class="pball" viewBox="0 0 100 100" aria-hidden="true"><use href="#pb"/></svg><span class="brand">DEX<b>·</b>SCAN</span><button class="thbtn" id="themeBtn" aria-label="Changer de thème"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.6-.9 1.2-1.8-.5-1.1.2-2.2 1.4-2.2H17a4 4 0 0 0 4-4c0-5.5-4-10-9-10z"/><circle cx="7.5" cy="11" r="1.2"/><circle cx="10" cy="7" r="1.2"/><circle cx="15" cy="7" r="1.2"/></svg></button><span class="ver">v62</span></div>
       <div class="hhead"><div><span class="hdate" id="hDate"></span><h1 class="h1">Accueil</h1></div><button class="hsearch" id="hSearch" aria-label="Rechercher une carte"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></button></div>
       <div class="total htot" id="hTot"></div>
       <div class="hqa">
@@ -1062,7 +1066,7 @@ html{background:var(--panel)}
         <button id="mTheme"><span class="mi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.6-.9 1.2-1.8-.5-1.1.2-2.2 1.4-2.2H17a4 4 0 0 0 4-4c0-5.5-4-10-9-10z"/><circle cx="7.5" cy="11" r="1.2"/><circle cx="10" cy="7" r="1.2"/><circle cx="15" cy="7" r="1.2"/></svg></span><span class="mt"><b>Thème de l'app</b><small>Couleurs et ambiance</small></span><svg class="mch" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></button>
         <button id="mLang"><span class="mi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg></span><span class="mt"><b>Langue des cartes</b><small id="mLangV">Français</small></span><svg class="mch" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></button>
       </div>
-      <p class="fine" style="text-align:center;margin-top:18px">Dex Scan v61</p>
+      <p class="fine" style="text-align:center;margin-top:18px">Dex Scan v62</p>
     </div>
   </section>
   <section class="view" id="extView" hidden>
@@ -1593,7 +1597,7 @@ let current = null, currentAlts = [], currentVariant = 0, currentEd = null;
 const CARD_LG = {FR:"Français", EN:"Anglais", JP:"Japonais", DE:"Allemand", IT:"Italien", ES:"Espagnol", PT:"Portugais", KO:"Coréen", ZH:"Chinois"};
 let currentLg = store.get("addLg", "FR");
 const ownLgs = x => x?.lgs ? Object.entries(x.lgs).filter(([,n])=>n>0) : [];
-function openSheet(){ const s=$("#sheet"); s.classList.add("open"); s.setAttribute("aria-hidden","false"); }
+function openSheet(){ const s=$("#sheet"); s.classList.add("open"); s.setAttribute("aria-hidden","false"); requestAnimationFrame(()=>FOIL.wake()); }
 function closeSheet(){ const s=$("#sheet"); s.classList.remove("open"); s.setAttribute("aria-hidden","true"); resumeCamera(); }
 $("#closeSheet").onclick = closeSheet;
 
@@ -1795,20 +1799,25 @@ const FOIL = {els:new Set(), gyro:null, on:false, gyroOn:false,
       el.addEventListener("pointermove", e=>{ if(s.hold){ if(Math.hypot(e.clientX-s.sx, e.clientY-s.sy)>6) s.moved=true; mv(e); } });
       const up = ()=>{ s.hold=false; }; el.addEventListener("pointerup", up); el.addEventListener("pointercancel", up); el.addEventListener("pointerleave", up);
     }
-    this.els.add(el); if(!this.on){ this.on=true; requestAnimationFrame(t=>this.tick(t)); }
+    this.els.add(el); this.wake();
   },
+  wake(){ if(!this.on && this.els.size){ this.on=true; requestAnimationFrame(t=>this.tick(t)); } },
   tick(t){
+    // la boucle ne tourne que si un reflet est réellement à l'écran : sinon elle s'arrête (téléphone au repos)
+    let live = 0;
+    const skip = this.last && t - this.last < 30; if(!skip) this.last = t;
     for(const el of this.els){
       const s = el._f;
       if(!el.isConnected){ s.r.lose(); this.els.delete(el); continue; }
       if(document.hidden || el.closest("#sheet:not(.open)") || el.closest("#foilView:not(.open)")) continue;
+      live++; if(skip) continue;
       if(s.opt.drive){ const l = s.opt.drive(); s.r.draw(l.x, l.y, l.a); continue; }   // vitrine 3D : la lumière suit la rotation
       if(!s.hold){ if(this.gyro){ s.tx=this.gyro.x; s.ty=this.gyro.y; } else { const k=t/1000+s.ph; s.tx=Math.sin(k*.8)*.55; s.ty=Math.cos(k*.6)*.45; } }
       s.x += (s.tx-s.x)*.12; s.y += (s.ty-s.y)*.12;
       el.style.setProperty("--ry", (s.x*10).toFixed(2)+"deg"); el.style.setProperty("--rx", (-s.y*10).toFixed(2)+"deg");
       s.r.draw(s.x, s.y, Math.min(1, .18+Math.hypot(s.x,s.y)*1.1));
     }
-    if(this.els.size) requestAnimationFrame(t=>this.tick(t)); else this.on=false;
+    if(live) requestAnimationFrame(t=>this.tick(t)); else this.on=false;
   },
   needsAsk(){ return typeof DeviceOrientationEvent!=="undefined" && typeof DeviceOrientationEvent.requestPermission==="function" && !this.gyroOn; },
   startGyro(){
@@ -1845,7 +1854,7 @@ function openFoilView(c){
     return {x:lx*1.3, y:ly*1.3, a:Math.min(1, .18+Math.hypot(lx,ly)*1.6)};
   }});
   $("#fvGyro") && ($("#fvGyro").onclick = ()=>FOIL.startGyro().then(ok=>{ if(ok) $("#fvGyro")?.remove(); else toast("Inclinaison refusée par le téléphone"); }));
-  requestAnimationFrame(()=>v.classList.add("open"));
+  requestAnimationFrame(()=>{ v.classList.add("open"); FOIL.wake(); });
 }
 // vignettes : aucune retouche, la photo reste nette
 function tileFoil(){ return ""; }
@@ -3323,8 +3332,9 @@ function lookupNum(c){
 async function autoTick(){
   autoTimer = null;
   const sheetOpen = $("#sheet").classList.contains("open");
+  if($("#scanView").hidden || document.hidden || !stream) return;   // relancée en revenant sur le Scanner
   if(SLAB){ autoSchedule(700); return; }
-  if(!AUTO || !stream || !video.videoWidth || busy || autoBusy || $("#scanView").hidden || sheetOpen || document.hidden){ autoSchedule(500); return; }
+  if(!AUTO || !video.videoWidth || busy || autoBusy || sheetOpen){ autoSchedule(500); return; }
   autoBusy = true;
   try{
     const S = snapFrame();
@@ -4997,7 +5007,8 @@ function brandLinks(root=document){
     if(sv) sv.replaceWith(img); else if(b) b.prepend(img); else a.prepend(img);
   });
 }
-new MutationObserver(ms=>{ for(const m of ms) for(const n of m.addedNodes) if(n.nodeType===1) brandLinks(n.parentNode||n); }).observe(document.body, {childList:true, subtree:true});
+let brandQ = false;
+new MutationObserver(()=>{ if(brandQ) return; brandQ = true; requestAnimationFrame(()=>{ brandQ = false; brandLinks(); }); }).observe(document.body, {childList:true, subtree:true});
 brandLinks();
 /* Classeur : Mes cartes / Gradées / Toutes */
 function syncCls3(){ const v = curView(), k = v==="extView" ? "all" : COLM.mode==="graded" ? "graded" : "cards"; document.querySelectorAll("[data-cls3]").forEach(b=>b.setAttribute("aria-pressed", b.dataset.cls3===k)); }
@@ -5115,8 +5126,8 @@ document.addEventListener("touchmove", e=>{
   G.layer.style.transform = `translateX(${dx}px)`;
 }, {passive:false});
 function settle(el, to, done){
-  el.style.transition = "transform .2s cubic-bezier(.2,.8,.2,1)"; el.style.transform = to;
-  setTimeout(()=>{ done && done(); el.style.transition = "none"; el.style.transform = ""; void el.offsetWidth; el.style.transition = ""; }, 200);
+  el.style.transition = "transform .15s cubic-bezier(.2,.8,.2,1)"; el.style.transform = to;
+  setTimeout(()=>{ done && done(); el.style.transition = "none"; el.style.transform = ""; void el.offsetWidth; el.style.transition = ""; }, 150);
 }
 document.addEventListener("touchend", ()=>{
   if(!G.on || !G.lock){ G.on = false; return; }

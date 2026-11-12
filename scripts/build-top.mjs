@@ -4,7 +4,9 @@
 //  - valeur : les plus chères
 //  - hausse : les plus fortes hausses sur 30 jours (cartes à 10 € et plus)
 // La valeur retenue est la médiane (tendance, moyenne 7 j, moyenne 30 j) : un seul achat isolé ne fausse pas le classement.
-// Une cote Cardmarket incohérente (moins du quart du prix TCGplayer, cartes mal reliées) est remplacée par le prix TCGplayer en €.
+// Une cote Cardmarket incohérente (moins du quart du prix TCGplayer, cartes mal reliées) est remplacée par le prix TCGplayer en €,
+// seulement pour les extensions récentes (Écarlate et Violet, Méga-Évolution) : sur les anciennes, TCGplayer mélange 1ère édition et Unlimited.
+// Plusieurs cartes reliées au même produit Cardmarket : même nom → une seule est gardée ; noms différents → lien douteux, aucune n'est gardée.
 // Sortie : top.json { v, built, usdEur, n, chasse:[…], valeur:[…], hausse:[…] }
 import fs from "node:fs";
 
@@ -52,21 +54,30 @@ await pool(cand, 10, async c => {
   let v = med([tr, a7, a30]), src = "cm";
   const usd = Math.max(0, ...Object.values(tp).filter(x => x && typeof x === "object").map(x => x.marketPrice ?? x.midPrice ?? 0));
   const tE = usd * usdEur;
-  if (tE >= 1 && (v == null || v < tE / 4)) { if (v != null) fixed++; v = Math.round(tE * 100) / 100; tr = v; a1 = a7 = a30 = null; src = "tp"; }
+  if (/^(me|sv)/.test(c.sid) && tE >= 1 && (v == null || v < tE / 4)) { if (v != null) fixed++; v = Math.round(tE * 100) / 100; tr = v; a1 = a7 = a30 = null; src = "tp"; }
   if (v == null || v < 1) return;
   priced++;
   const chg = a7 && a30 ? a7 / a30 - 1 : null;
-  out.push({id: c.id, n: k.name || c.id, s: c.sid, sn: c.sn, no: k.localId || c.n, of: k.set?.cardCount?.official || null, r: c.r, d: c.d,
+  out.push({pid: src === "cm" ? cm.idProduct || null : null, id: c.id, n: k.name || c.id, s: c.sid, sn: c.sn, no: k.localId || c.n, of: k.set?.cardCount?.official || null, r: c.r, d: c.d,
     img: k.image || null, v: Math.round(v * 100) / 100, a1, a7, a30, chg: chg == null ? null : Math.round(chg * 1000) / 1000, src});
 });
 console.log("cartes cotées :", priced, "· cotes corrigées :", fixed);
+const nm = x => String(x.n).toLowerCase().normalize("NFD").replace(/[^a-z0-9]/g, "");
+const byP = new Map(); for (const x of out) if (x.pid) { if (!byP.has(x.pid)) byP.set(x.pid, []); byP.get(x.pid).push(x); }
+const drop = new Set();
+for (const l of byP.values()) if (l.length > 1) {
+  if (new Set(l.map(nm)).size > 1) l.forEach(x => drop.add(x)); else l.slice(1).forEach(x => drop.add(x));
+}
+for (let i = out.length - 1; i >= 0; i--) if (drop.has(out[i])) out.splice(i, 1);
+for (const x of out) delete x.pid;
+console.log("doublons ou liens douteux retirés :", drop.size);
 if (priced < 2000) { console.error("Trop peu de cartes cotées, rien n'est publié"); process.exit(1); }
 
 const clamp = (x, a, b) => Math.max(a, Math.min(b, x));
 // chasse : valeur (échelle logarithmique) × élan ; une carte sans historique 30 j compte comme stable
-const score = x => Math.log10(x.v) * (1 + clamp(x.chg ?? 0, -0.4, 0.8)) + (x.a1 ? 0.05 : 0);
+const score = x => Math.log10(x.v) * (1 + clamp(x.chg ?? 0, -0.4, 0.6)) + (x.a1 ? 0.05 : 0);
 const pick = l => l.slice(0, 100).map((x, i) => ({...x, k: i + 1}));
-const chasse = pick(out.filter(x => x.v >= 15).map(x => ({...x, sc: Math.round(score(x) * 1000) / 1000})).sort((a, b) => b.sc - a.sc));
+const chasse = pick(out.filter(x => x.v >= 15 && (x.src === "tp" || (x.a7 && x.a30))).map(x => ({...x, sc: Math.round(score(x) * 1000) / 1000})).sort((a, b) => b.sc - a.sc));
 const valeur = pick([...out].sort((a, b) => b.v - a.v));
 const hausse = pick(out.filter(x => x.v >= 10 && x.chg != null && x.a30 >= 5).sort((a, b) => b.chg - a.chg));
 fs.writeFileSync("top.json", JSON.stringify({v: 1, built: new Date().toISOString(), usdEur, n: priced, chasse, valeur, hausse}));

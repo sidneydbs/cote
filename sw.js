@@ -1,13 +1,15 @@
 // Dex Scan : service worker.
-// - L'app (index.html) est toujours chargée à jour depuis le réseau ; sans réseau, une page d'attente.
+// - L'app (index.html) s'ouvre tout de suite depuis le téléphone, puis la copie gardée est mise à jour en fond.
+//   Quand une nouvelle version est publiée, l'intro le voit (version.json) et recharge avec ?v= : ce chargement-là passe
+//   par le réseau. Sans réseau et sans copie gardée, une page d'attente.
 // - Les images des cartes, logos et icônes sont gardées sur le téléphone : la 2e fois elles s'affichent tout de suite,
 //   sans retélécharger (moins de réseau, moins de batterie).
 // - Les données TCGdex : extensions gardées 6 h, cartes et cotes 2 h : retour arrière et réouverture instantanés.
-const IMG = "dex-img-v1", API = "dex-api-v2", MAX_IMG = 2500, API_TTL = 6 * 3600e3;
+const APP = "dex-app-v1", IMG = "dex-img-v1", API = "dex-api-v2", MAX_IMG = 2500, API_TTL = 6 * 3600e3;
 const IMG_HOSTS = /^(assets\.tcgdex\.net|images\.pokemontcg\.io|images\.scrydex\.com|limitlesstcg\.nyc3\.cdn\.digitaloceanspaces\.com|www\.google\.com|icons\.duckduckgo\.com)$/;
 self.addEventListener("install", () => self.skipWaiting());
 self.addEventListener("activate", e => e.waitUntil((async () => {
-  for (const k of await caches.keys()) if (![IMG, API].includes(k)) await caches.delete(k);
+  for (const k of await caches.keys()) if (![APP, IMG, API].includes(k)) await caches.delete(k);
   await self.clients.claim();
 })()));
 
@@ -42,16 +44,29 @@ async function api(req) {
   if (fresh) { net.catch(() => {}); return hit; }     // récent : réponse immédiate, mise à jour en fond
   try { return await net; } catch (e) { if (hit) return hit; throw e; }
 }
+const OFFLINE = () => new Response(
+  '<!doctype html><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Dex Scan</title>' +
+  '<body style="margin:0;min-height:100vh;display:grid;place-items:center;background:#0B0911;color:#F1EAFF;font:16px system-ui;text-align:center;padding:24px">' +
+  '<div><h1 style="font-size:22px">Pas de connexion</h1><p style="color:#9C90B3">Dex Scan a besoin d\'internet pour lire les cotes.<br>Reconnecte-toi puis touche « Réessayer ».</p>' +
+  '<button onclick="location.reload()" style="margin-top:12px;padding:12px 18px;border:0;border-radius:12px;background:#9B5CFF;color:#fff;font:700 15px system-ui">Réessayer</button></div>',
+  {headers: {"content-type": "text/html; charset=utf-8"}});
+async function nav(req) {
+  const u = new URL(req.url), key = new URL("./", self.registration.scope).href;   // une seule copie, quels que soient les paramètres
+  const c = await caches.open(APP);
+  const net = fetch(u.href, {cache: "no-cache", credentials: "same-origin"}).then(r => {
+    if (r.ok && (r.headers.get("content-type") || "").includes("text/html")) c.put(key, r.clone());
+    return r;
+  });
+  const fresh = u.searchParams.has("v") || u.searchParams.has("r");   // rechargement voulu : la version en ligne
+  if (!fresh) { const hit = await c.match(key); if (hit) { net.catch(() => {}); return hit; } }
+  try { return await net; } catch (e) { return (await c.match(key)) || OFFLINE(); }
+}
 self.addEventListener("fetch", e => {
   const req = e.request; if (req.method !== "GET") return;
   let u; try { u = new URL(req.url); } catch (x) { return; }
   if (req.mode === "navigate") {
-    e.respondWith(fetch(req).catch(() => new Response(
-      '<!doctype html><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Dex Scan</title>' +
-      '<body style="margin:0;min-height:100vh;display:grid;place-items:center;background:#0B0911;color:#F1EAFF;font:16px system-ui;text-align:center;padding:24px">' +
-      '<div><h1 style="font-size:22px">Pas de connexion</h1><p style="color:#9C90B3">Dex Scan a besoin d\'internet pour lire les cotes.<br>Reconnecte-toi puis touche « Réessayer ».</p>' +
-      '<button onclick="location.reload()" style="margin-top:12px;padding:12px 18px;border:0;border-radius:12px;background:#9B5CFF;color:#fff;font:700 15px system-ui">Réessayer</button></div>',
-      {headers: {"content-type": "text/html; charset=utf-8"}})));
+    if (u.origin === location.origin && u.pathname.startsWith(new URL(self.registration.scope).pathname)) { e.respondWith(nav(req)); return; }
+    e.respondWith(fetch(req).catch(() => OFFLINE()));
     return;
   }
   if (req.destination === "image" && (IMG_HOSTS.test(u.hostname) || (u.origin === location.origin && u.pathname.includes("/media/")))) { e.respondWith(image(req)); return; }

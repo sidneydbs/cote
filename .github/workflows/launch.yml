@@ -1,0 +1,29 @@
+name: Images de démarrage iPhone
+on:
+  workflow_dispatch:
+  push:
+    paths: ["scripts/build-launch.mjs", ".github/workflows/launch.yml"]
+permissions:
+  contents: write
+  pages: write
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: npm i --no-save playwright@1.48.2 && npx playwright install --with-deps chromium
+      - run: node scripts/build-launch.mjs
+      - name: Publier les images
+        run: |
+          git config user.name "cote-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add media/launch
+          git diff --cached --quiet || (git commit -m "Images de démarrage iPhone" && git pull --rebase && git push)
+      - name: Republier le site
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh api -X POST repos/${{ github.repository }}/pages/builds || true

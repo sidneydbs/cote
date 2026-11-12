@@ -855,7 +855,16 @@ html{background:var(--panel)}
 .frame.slab .z-name,.frame.slab .z-num{display:none}
 .frame.slab .z-label{display:block;top:2%;height:21%}
 .frame.slab::after{content:"";position:absolute;left:8.5%;right:8.5%;top:28.5%;bottom:5%;border:1.5px dashed color-mix(in srgb,var(--border-yellow) 45%,transparent);border-radius:4px;pointer-events:none}
-#slabChip.on{background:var(--border-yellow);color:var(--on-acc);border-color:var(--border-yellow)}
+#slabChip.on,#qrChip.on{background:var(--border-yellow);color:var(--on-acc);border-color:var(--border-yellow)}
+/* v68 : QR code des boîtiers gradés */
+.frame.qr .zone{display:none}
+.frame.qr::after{content:"";position:absolute;inset:18%;border:2px dashed color-mix(in srgb,var(--border-yellow) 55%,transparent);border-radius:10px;pointer-events:none}
+.qrres{position:absolute;left:max(14px,env(safe-area-inset-left,0px));right:max(14px,env(safe-area-inset-right,0px));bottom:calc(var(--safe-b,0px) + 120px);z-index:6;background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:14px;box-shadow:0 12px 40px rgba(0,0,0,.5);display:flex;flex-direction:column;gap:8px}
+.qrres .qh{display:flex;align-items:center;gap:10px}.qrres .qh b{font:800 17px var(--f-display)}.qrres .qh small{display:block;color:var(--muted);font-size:12px;word-break:break-all}
+.qrres .qx{margin-left:auto;width:34px;height:34px;border-radius:50%;background:var(--panel-2);color:var(--fg);font-size:16px;flex:none}
+.qrres .qw{font-size:12.5px;color:var(--down);margin:0}
+.qrres .btn{width:100%;display:flex;align-items:center;justify-content:center;gap:8px;text-decoration:none}
+.qrres .qalt{display:flex;flex-wrap:wrap;gap:6px}.qrres .qalt a{font-size:12.5px}
 
 /* ---------- Thèmes ---------- */
 :root{--on-acc:#1a1408;--soft:#c4c8d1;--t-fill:#0B0910;--t-stroke:#C08CFF;--t-shadow:#4A12A8;--pb1:#C08CFF;--pb2:#7B2FF7;--pb3:#3E0E92;--pbb1:#2B2735;--pbb2:#09080D;--pbc1:#F1E6FF;--pbc2:#B98CFF;--pbc3:#7B2FF7;--sp1:#2A1450}
@@ -1030,7 +1039,7 @@ html{background:var(--panel)}
 </head>
 <body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="pb" viewBox="0 0 100 100"><defs><linearGradient id="pbV" x1="0" y1="0" x2="1" y2="1"><stop offset="0" style="stop-color:var(--pb1)"/><stop offset=".5" style="stop-color:var(--pb2)"/><stop offset="1" style="stop-color:var(--pb3)"/></linearGradient><radialGradient id="pbB" cx=".38" cy=".75" r=".75"><stop offset="0" style="stop-color:var(--pbb1)"/><stop offset="1" style="stop-color:var(--pbb2)"/></radialGradient><radialGradient id="pbC" cx=".4" cy=".35" r=".7"><stop offset="0" style="stop-color:var(--pbc1)"/><stop offset=".55" style="stop-color:var(--pbc2)"/><stop offset="1" style="stop-color:var(--pbc3)"/></radialGradient></defs><path d="M3 50a47 47 0 0 1 94 0z" fill="url(#pbV)"/><path d="M3 50a47 47 0 0 0 94 0z" fill="url(#pbB)"/><rect x="3" y="45.5" width="94" height="9" fill="#09080D"/><circle cx="50" cy="50" r="47" fill="none" stroke="#09080D" stroke-width="4"/><circle cx="50" cy="50" r="15.5" fill="#09080D"/><circle cx="50" cy="50" r="10" fill="url(#pbC)" style="stroke:var(--pb2)" stroke-width="2"/><path d="M19 33a35 35 0 0 1 17-15" fill="none" stroke="#fff" stroke-opacity=".38" stroke-width="4" stroke-linecap="round"/></symbol></svg>
-<script>window.__APPV="67";</script>
+<script>window.__APPV="68";</script>
 <div class="splash" id="splash" aria-hidden="true"><i class="hole"></i><i class="halo"></i><div class="bw"><svg class="b" viewBox="0 0 100 100"><use href="#pb"/></svg><svg class="t" viewBox="0 0 100 100"><use href="#pb"/></svg></div><i class="glow"></i></div>
 <script>setTimeout(function(){ if(window.__booted) return;
   var b=document.createElement("div"); b.setAttribute("role","alert");
@@ -1065,7 +1074,7 @@ html{background:var(--panel)}
   <!-- ===== EXTENSIONS ===== -->
   <section class="view" id="homeView">
     <div class="scroll">
-      <div class="homebar"><svg class="pball" viewBox="0 0 100 100" aria-hidden="true"><use href="#pb"/></svg><span class="brand">DEX<b>·</b>SCAN</span><button class="thbtn" id="themeBtn" aria-label="Changer de thème"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.6-.9 1.2-1.8-.5-1.1.2-2.2 1.4-2.2H17a4 4 0 0 0 4-4c0-5.5-4-10-9-10z"/><circle cx="7.5" cy="11" r="1.2"/><circle cx="10" cy="7" r="1.2"/><circle cx="15" cy="7" r="1.2"/></svg></button><span class="ver">v67</span></div>
+      <div class="homebar"><svg class="pball" viewBox="0 0 100 100" aria-hidden="true"><use href="#pb"/></svg><span class="brand">DEX<b>·</b>SCAN</span><button class="thbtn" id="themeBtn" aria-label="Changer de thème"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.6-.9 1.2-1.8-.5-1.1.2-2.2 1.4-2.2H17a4 4 0 0 0 4-4c0-5.5-4-10-9-10z"/><circle cx="7.5" cy="11" r="1.2"/><circle cx="10" cy="7" r="1.2"/><circle cx="15" cy="7" r="1.2"/></svg></button><span class="ver">v68</span></div>
       <div class="hhead"><div><span class="hdate" id="hDate"></span><h1 class="h1">Accueil</h1></div><button class="hsearch" id="hSearch" aria-label="Rechercher une carte"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></button></div>
       <div class="total htot" id="hTot"></div>
       <div class="hqa">
@@ -1092,7 +1101,7 @@ html{background:var(--panel)}
         <button id="mTheme"><span class="mi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.6-.9 1.2-1.8-.5-1.1.2-2.2 1.4-2.2H17a4 4 0 0 0 4-4c0-5.5-4-10-9-10z"/><circle cx="7.5" cy="11" r="1.2"/><circle cx="10" cy="7" r="1.2"/><circle cx="15" cy="7" r="1.2"/></svg></span><span class="mt"><b>Thème de l'app</b><small>Couleurs et ambiance</small></span><svg class="mch" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></button>
         <button id="mLang"><span class="mi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg></span><span class="mt"><b>Langue des cartes</b><small id="mLangV">Français</small></span><svg class="mch" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></button>
       </div>
-      <p class="fine" style="text-align:center;margin-top:18px">Dex Scan v67</p>
+      <p class="fine" style="text-align:center;margin-top:18px">Dex Scan v68</p>
     </div>
   </section>
   <section class="view" id="extView" hidden>
@@ -1153,6 +1162,7 @@ html{background:var(--panel)}
       <button class="chip lastchip" id="lastChip" aria-label="Voir la dernière lecture">Dernière</button>
       <button class="chip on" id="autoChip" aria-pressed="true" aria-label="Scan automatique">Auto</button>
       <button class="chip" id="slabChip" aria-pressed="false" aria-label="Scanner une carte gradée">Gradée</button>
+      <button class="chip" id="qrChip" aria-pressed="false" aria-label="Scanner le QR code d'un boîtier gradé">QR</button>
       <button class="chip" id="langChip" aria-label="Langue des cartes">FR</button>
     </div>
     <button class="banner netbar" id="netBar" hidden></button>
@@ -1173,6 +1183,7 @@ html{background:var(--panel)}
       <button class="btn btn-y" id="photoBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3z"/><circle cx="12" cy="13" r="3.5"/></svg>Prendre une photo</button>
       <button class="btn btn-g" id="retryCam">Réessayer la caméra</button>
     </div>
+    <div class="qrres" id="qrRes" hidden></div>
     <input type="file" id="fileIn" accept="image/*" capture="environment" hidden>
     <input type="file" id="fileIn2" accept="image/*" hidden>
   </section>
@@ -2874,7 +2885,7 @@ function layoutFrame(){
   const v=$("#scanView").getBoundingClientRect();
   const a=$("#frameArea").getBoundingClientRect();   // zone libre entre la barre du haut et les indications
   const availH = Math.max(80, a.height - 8), availW = Math.min(v.width*0.86, 460);
-  const R = SLAB ? .6 : 63/88;   // boîtier gradé : plus haut que la carte seule
+  const R = QRM ? 1 : SLAB ? .6 : 63/88;   // boîtier gradé : plus haut que la carte seule
   let h = Math.min(availH, availW/R); let w = h*R;
   const x=(v.width-w)/2, y=(a.top - v.top) + (a.height - h)/2;
   Object.assign(frame.style,{left:x+"px",top:y+"px",width:w+"px",height:h+"px"});
@@ -2925,6 +2936,7 @@ function loadImage(file){ return new Promise((res,rej)=>{ const i=new Image(); i
 
 $("#shutter").onclick = async ()=>{
   if(busy) return;
+  if(QRM){ const t = await qrRead().catch(()=>null); if(t){ QR.last = t; QR.lastT = Date.now(); qrShow(t); } else toast("Aucun QR code dans le cadre : rapproche-toi de l'étiquette"); return; }
   busy = true; while(autoBusy) await new Promise(r=>setTimeout(r,40)); busy = false;
   if(!stream || !video.videoWidth){ $("#fileIn").click(); return; }
   const vr=video.getBoundingClientRect(), fr=frame.getBoundingClientRect();
@@ -2943,15 +2955,90 @@ $("#shutter").onclick = async ()=>{
 /* ---------- v40 : mode « Gradée » du scanner ----------
    On cadre le boîtier entier : l'étiquette est lue (société, note, n° de certificat, numéro, langue)
    et la carte est reconnue à travers le plastique par son image. La fiche de la gradée se remplit toute seule. */
-let SLAB = false;
+let SLAB = false, QRM = false;
 const slabChip = $("#slabChip");
 function setSlab(on){
+  if(on && QRM) setQR(false);
   SLAB = on; slabChip.classList.toggle("on", on); slabChip.setAttribute("aria-pressed", on);
   frame.classList.toggle("slab", on); layoutFrame(); autoReset();
   status.textContent = on ? "Mode gradée : cadre le boîtier entier, étiquette en haut, puis touche le bouton" : (AUTO ? "Vise la carte : le scan se lance tout seul" : "Cadre la carte puis touche le bouton jaune");
   $("#live").hidden = on || !AUTO;
 }
 slabChip.onclick = ()=>{ setSlab(!SLAB); toast(SLAB ? "Mode carte gradée" : "Mode carte normale"); };
+/* ---------- QR code des boîtiers gradés ----------
+   Le QR code imprimé sur l'étiquette mène à la fiche officielle du certificat (PSA, CGC, Beckett, PCA, SGC…).
+   Mode QR : la caméra cherche le code en continu (4 lectures/s, zone visée seulement) et propose d'ouvrir le site.
+   En mode Gradée, le QR est aussi cherché en tâche de fond. Lecteur : BarcodeDetector quand le téléphone l'a,
+   sinon jsQR (iPhone), téléchargé au premier usage. Un lien vers un site inconnu est signalé avant de l'ouvrir. */
+const qrChip = $("#qrChip");
+const QR_SITES = [[/(^|\.)psacard\.com$/,"PSA"],[/(^|\.)cgccards\.com$/,"CGC"],[/(^|\.)cgcgrading\.com$/,"CGC"],[/(^|\.)beckett\.com$/,"Beckett (BGS)"],
+  [/(^|\.)gosgc\.com$/,"SGC"],[/(^|\.)pcagrade\.com$/,"PCA"],[/(^|\.)pca-?grading\.[a-z.]+$/,"PCA"],[/(^|\.)collect-?aura\.[a-z.]+$/,"CollectAura"],
+  [/(^|\.)acegrading\.co\.uk$/,"ACE"],[/(^|\.)taggrading\.com$/,"TAG"],[/(^|\.)agscard\.com$/,"AGS"],[/(^|\.)ark-?grading\.[a-z.]+$/,"ARK"]];
+const QR = {det:null, lib:null, busy:false, last:"", lastT:0, c:null};
+function setQR(on){
+  if(on && SLAB) setSlab(false);
+  QRM = on; qrChip.classList.toggle("on", on); qrChip.setAttribute("aria-pressed", on);
+  frame.classList.toggle("qr", on); layoutFrame(); autoReset();
+  status.textContent = on ? "Vise le QR code de l'étiquette du boîtier" : (AUTO ? "Vise la carte : le scan se lance tout seul" : "Cadre la carte puis touche le bouton jaune");
+  $("#live").hidden = on || !AUTO;
+  if(on){ qrReady().catch(()=>{ status.textContent = "Le lecteur de QR code n'a pas pu se charger : vérifie la connexion"; }); autoSchedule(200); }
+  else $("#qrRes").hidden = true;
+}
+qrChip.onclick = ()=>{ setQR(!QRM); toast(QRM ? "Mode QR code" : "Mode carte normale"); };
+async function qrReady(){
+  if(QR.det || QR.lib) return;
+  if("BarcodeDetector" in window){ try{ const f = await BarcodeDetector.getSupportedFormats(); if(f.includes("qr_code")){ QR.det = new BarcodeDetector({formats:["qr_code"]}); return; } }catch(e){} }
+  if(!window.jsQR) await new Promise((res,rej)=>{ const sc = document.createElement("script"); sc.src = "https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.js"; sc.async = true; sc.onload = res; sc.onerror = rej; document.head.appendChild(sc); });
+  QR.lib = window.jsQR;
+}
+/* lit un QR dans la zone visée ; renvoie le texte ou null */
+async function qrRead(){
+  if(!video.videoWidth) return null;
+  await qrReady();
+  const {sx,sy,sw,sh} = frameRect(), vw = video.videoWidth, vh = video.videoHeight;
+  const x = Math.max(0,sx), y = Math.max(0,sy), w = Math.min(vw,sx+sw)-x, h = Math.min(vh,sy+sh)-y; if(w<20||h<20) return null;
+  const k = Math.min(1, 720/Math.max(w,h)), c = QR.c ||= document.createElement("canvas");
+  c.width = Math.round(w*k); c.height = Math.round(h*k);
+  const g = c.getContext("2d", {willReadFrequently:true}); g.drawImage(video, x, y, w, h, 0, 0, c.width, c.height);
+  if(QR.det){ const r = await QR.det.detect(c).catch(()=>[]); return r[0]?.rawValue || null; }
+  const d = g.getImageData(0, 0, c.width, c.height), r = QR.lib(d.data, c.width, c.height, {inversionAttempts:"attemptBoth"});
+  return r?.data || null;
+}
+async function qrTick(){
+  if(QR.busy || $("#sheet").classList.contains("open") || !$("#qrRes").hidden) return;
+  QR.busy = true;
+  if(QRM) status.textContent = "Vise le QR code de l'étiquette du boîtier";
+  try{
+    const t = await qrRead();
+    if(t && (t!==QR.last || Date.now()-QR.lastT > 6000)){ QR.last = t; QR.lastT = Date.now(); qrShow(t); }
+  }catch(e){} finally{ QR.busy = false; }
+}
+function qrShow(raw){
+  const box = $("#qrRes"), txt = String(raw).trim();
+  let u = null; try{ const x = new URL(/^www\./i.test(txt) ? "https://"+txt : txt); if(/^https?:$/.test(x.protocol)) u = x; }catch(e){}
+  const host = u ? u.hostname.toLowerCase() : "", g = u ? (QR_SITES.find(([re])=>re.test(host))||[])[1] : null;
+  const cert = (u ? (u.pathname+u.search) : txt).match(/\d{6,}/)?.[0] || "";
+  navigator.vibrate?.(40);
+  const head = (t, sub) => `<div class="qh"><span style="font-size:24px">🏷️</span><div><b>${esc(t)}</b><small>${esc(sub)}</small></div><button class="qx" id="qrX" aria-label="Fermer">✕</button></div>`;
+  if(u){
+    box.innerHTML = head(g ? `Certificat ${g}` : "QR code lu", (cert?`N° ${cert} · `:"")+host)
+      + (g ? "" : `<p class="qw">⚠️ Ce lien ne mène pas à un site de gradation connu (${esc(host)}). Ouvre-le seulement si tu fais confiance au boîtier.</p>`)
+      + `<a class="btn ${g?"btn-y":"btn-g"}" href="${esc(u.href)}" target="_blank" rel="noopener noreferrer" id="qrGo">${g?`Ouvrir la fiche sur le site ${esc(g.replace(/ \(.*\)/,""))}`:"Ouvrir quand même"}</a>`;
+  } else {
+    // pas de lien : on propose la recherche du numéro chez les principales sociétés
+    box.innerHTML = head("QR code lu", txt.slice(0,80))
+      + (cert ? `<p class="psub" style="margin:0">Pas de lien dans ce code. Cherche le certificat n° ${esc(cert)} :</p><div class="qalt links">
+        <a href="https://www.psacard.com/cert/${cert}" target="_blank" rel="noopener">PSA</a>
+        <a href="https://www.cgccards.com/certlookup/${cert}/" target="_blank" rel="noopener">CGC</a>
+        <a href="https://www.beckett.com/grading/card-lookup?item_type=BGS&item_id=${cert}" target="_blank" rel="noopener">Beckett</a>
+        <a href="https://www.google.com/search?q=${encodeURIComponent("certificat "+cert+" carte gradée")}" target="_blank" rel="noopener">Autre société</a></div>`
+        : `<p class="psub" style="margin:0">Ce code ne contient ni lien ni numéro de certificat.</p>`);
+  }
+  box.hidden = false;
+  const close = ()=>{ box.hidden = true; QR.lastT = Date.now(); };
+  $("#qrX").onclick = close;
+  box.querySelectorAll("a").forEach(a=>a.addEventListener("click", ()=>setTimeout(close, 400)));
+}
 function parseSlab(raw){
   const t = " "+String(raw||"").toUpperCase().replace(/[|]/g,"I").replace(/\s+/g," ")+" ";
   const gr = /\bPSA\b/.test(t) ? "PSA" : /\bCGC\b/.test(t) ? "CGC" : /BECKETT|\bBGS\b/.test(t) ? "BGS" : /\bPCA\b/.test(t) ? "PCA" : /COLLECT ?AURA/.test(t) ? "CA" : /\bSGC\b/.test(t) ? "SGC" : null;
@@ -3386,7 +3473,7 @@ async function autoTick(){
   autoTimer = null;
   const sheetOpen = $("#sheet").classList.contains("open");
   if($("#scanView").hidden || document.hidden || !stream) return;   // relancée en revenant sur le Scanner
-  if(SLAB){ autoSchedule(700); return; }
+  if(QRM || SLAB){ if(!busy) qrTick(); autoSchedule(QRM ? 250 : 700); return; }
   if(!AUTO || !video.videoWidth || busy || autoBusy || sheetOpen){ autoSchedule(500); return; }
   autoBusy = true;
   try{

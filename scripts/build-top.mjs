@@ -7,7 +7,8 @@
 // Une cote Cardmarket incohérente (moins du quart du prix TCGplayer, cartes mal reliées) est remplacée par le prix TCGplayer en €,
 // seulement pour les extensions récentes (Écarlate et Violet, Méga-Évolution) : sur les anciennes, TCGplayer mélange 1ère édition et Unlimited.
 // Plusieurs cartes reliées au même produit Cardmarket : même nom → une seule est gardée ; noms différents → lien douteux, aucune n'est gardée.
-// Sortie : top.json { v, built, usdEur, n, chasse:[…], valeur:[…], hausse:[…] }
+// Les trois classements existent aussi pour les extensions récentes (3 dernières années) et anciennes (avant 2010).
+// Sortie : top.json { v, built, usdEur, n, chasse:[…], valeur:[…], hausse:[…], recent:{chasse,valeur,hausse}, vintage:{…} }
 import fs from "node:fs";
 
 const API = "https://api.tcgdex.net/v2";
@@ -76,10 +77,17 @@ if (priced < 2000) { console.error("Trop peu de cartes cotées, rien n'est publi
 const clamp = (x, a, b) => Math.max(a, Math.min(b, x));
 // chasse : valeur (échelle logarithmique) × élan ; une carte sans historique 30 j compte comme stable
 const score = x => Math.log10(x.v) * (1 + clamp(x.chg ?? 0, -0.4, 0.6)) + (x.a1 ? 0.05 : 0);
-const pick = l => l.slice(0, 100).map((x, i) => ({...x, k: i + 1}));
-const chasse = pick(out.filter(x => x.v >= 15 && (x.src === "tp" || (x.a7 && x.a30))).map(x => ({...x, sc: Math.round(score(x) * 1000) / 1000})).sort((a, b) => b.sc - a.sc));
-const valeur = pick([...out].sort((a, b) => b.v - a.v));
-const hausse = pick(out.filter(x => x.v >= 10 && x.chg != null && x.a30 >= 5).sort((a, b) => b.chg - a.chg));
-fs.writeFileSync("top.json", JSON.stringify({v: 1, built: new Date().toISOString(), usdEur, n: priced, chasse, valeur, hausse}));
+const pick = l => l.slice(0, 100).map((x, i) => { const {a1, a7, a30, ...y} = x; return {...y, k: i + 1}; });
+function lists(src) {
+  return {
+    chasse: pick(src.filter(x => x.v >= 15 && (x.src === "tp" || (x.a7 && x.a30))).map(x => ({...x, sc: Math.round(score(x) * 1000) / 1000})).sort((a, b) => b.sc - a.sc)),
+    valeur: pick([...src].sort((a, b) => b.v - a.v)),
+    hausse: pick(src.filter(x => x.v >= 10 && x.chg != null && x.a30 >= 5).sort((a, b) => b.chg - a.chg))
+  };
+}
+const cut = new Date(Date.now() - 3 * 365.25 * 864e5).toISOString().slice(0, 10);
+const all = lists(out), recent = lists(out.filter(x => x.d && x.d >= cut)), vintage = lists(out.filter(x => x.d && x.d < "2010"));
+fs.writeFileSync("top.json", JSON.stringify({v: 2, built: new Date().toISOString(), usdEur, n: out.length, ...all, recent, vintage}));
+console.log("récentes :", recent.chasse.slice(0, 10).map(x => `${x.n} (${x.sn}) ${x.v}€ ${x.chg}`).join(" | "));
 console.log("top.json :", (fs.statSync("top.json").size / 1024).toFixed(0), "Ko");
-console.log("chasse :", chasse.slice(0, 10).map(x => `${x.n} (${x.sn}) ${x.v}€ ${x.chg}`).join(" | "));
+console.log("chasse :", all.chasse.slice(0, 10).map(x => `${x.n} (${x.sn}) ${x.v}€ ${x.chg}`).join(" | "));

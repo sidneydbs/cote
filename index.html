@@ -708,6 +708,25 @@ html{background:var(--panel)}
 .hh small{font:600 11px/1 var(--f-mono);color:var(--muted);font-weight:500}
 .hrow{display:flex;gap:10px;overflow-x:auto;margin:0 -16px 22px;padding:0 16px 4px;scrollbar-width:none;scroll-snap-type:x mandatory}
 .hrow::-webkit-scrollbar{display:none}
+/* v65 : Top 100 des cartes à chasser */
+.tlist{display:flex;flex-direction:column;gap:8px}
+.trow{display:grid;grid-template-columns:24px 52px 1fr auto;gap:10px;align-items:center;padding:8px 10px 8px 6px;background:var(--panel);border:1px solid var(--line);border-radius:14px;width:100%;text-align:left;color:var(--fg)}
+.trow .tk{font:800 14px var(--f-mono);color:var(--muted);text-align:center}
+.trow .tk.t1{color:#F5C542}.trow .tk.t2{color:#C9D1DC}.trow .tk.t3{color:#D99A5B}
+.tim{width:52px;height:72px;border-radius:5px;overflow:hidden;background:var(--panel-2);display:block}
+.tim img{width:100%;height:100%;object-fit:cover;display:block}
+.trow .tx{min-width:0}.trow .tx b{display:block;font-size:14px;line-height:1.25;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.trow .tx span{display:block;font-size:12px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-top:2px}
+.trow .tv{text-align:right;white-space:nowrap}.trow .tv b{display:block;font:700 15px var(--f-mono)}
+.trow .tv small{display:block;font:600 11.5px var(--f-mono);color:var(--muted);margin-top:2px}.trow .tv small.up{color:var(--up)}.trow .tv small.down{color:var(--down)}
+.town{display:inline-block;margin-top:4px;font:700 10px var(--f-mono);padding:2px 6px;border-radius:6px;background:rgba(61,214,140,.15);color:var(--up)}
+.tseg{display:flex;width:100%;margin:4px 0 10px}.tseg button{flex:1}
+.tcard{flex:none;width:118px;scroll-snap-align:start;display:flex;flex-direction:column;gap:5px;padding:8px;border-radius:14px;background:var(--panel);border:1px solid var(--line);text-align:left;color:var(--fg);position:relative}
+.tcard .tim{width:100%;height:auto;aspect-ratio:.716}
+.tcard b{font-size:12.5px;line-height:1.2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tcard small{font:700 12.5px var(--f-mono)}.tcard small i{font-style:normal;font-weight:600;font-size:11px;margin-left:4px}
+.tcard .tn{position:absolute;top:12px;left:12px;font:800 11px var(--f-mono);background:rgba(0,0,0,.7);color:#fff;border-radius:6px;padding:2px 6px}
+.tmore{flex:none;width:118px;display:flex;align-items:center;justify-content:center;text-align:center;border-radius:14px;border:1px dashed var(--line);color:var(--muted);font-size:13px;font-weight:600}
 .hcard{flex:none;width:150px;scroll-snap-align:start;display:flex;flex-direction:column;gap:7px;padding:12px;border-radius:16px;background:var(--panel);border:1px solid var(--line);text-align:left;color:var(--fg)}
 .hcard .lg{height:44px;display:flex;align-items:center}
 .hcard .lg img{max-width:100%;max-height:44px;object-fit:contain}
@@ -1011,7 +1030,7 @@ html{background:var(--panel)}
 </head>
 <body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="pb" viewBox="0 0 100 100"><defs><linearGradient id="pbV" x1="0" y1="0" x2="1" y2="1"><stop offset="0" style="stop-color:var(--pb1)"/><stop offset=".5" style="stop-color:var(--pb2)"/><stop offset="1" style="stop-color:var(--pb3)"/></linearGradient><radialGradient id="pbB" cx=".38" cy=".75" r=".75"><stop offset="0" style="stop-color:var(--pbb1)"/><stop offset="1" style="stop-color:var(--pbb2)"/></radialGradient><radialGradient id="pbC" cx=".4" cy=".35" r=".7"><stop offset="0" style="stop-color:var(--pbc1)"/><stop offset=".55" style="stop-color:var(--pbc2)"/><stop offset="1" style="stop-color:var(--pbc3)"/></radialGradient></defs><path d="M3 50a47 47 0 0 1 94 0z" fill="url(#pbV)"/><path d="M3 50a47 47 0 0 0 94 0z" fill="url(#pbB)"/><rect x="3" y="45.5" width="94" height="9" fill="#09080D"/><circle cx="50" cy="50" r="47" fill="none" stroke="#09080D" stroke-width="4"/><circle cx="50" cy="50" r="15.5" fill="#09080D"/><circle cx="50" cy="50" r="10" fill="url(#pbC)" style="stroke:var(--pb2)" stroke-width="2"/><path d="M19 33a35 35 0 0 1 17-15" fill="none" stroke="#fff" stroke-opacity=".38" stroke-width="4" stroke-linecap="round"/></symbol></svg>
-<script>window.__APPV="64";</script>
+<script>window.__APPV="65";</script>
 <div class="splash" id="splash" aria-hidden="true"><i class="hole"></i><i class="halo"></i><div class="bw"><svg class="b" viewBox="0 0 100 100"><use href="#pb"/></svg><svg class="t" viewBox="0 0 100 100"><use href="#pb"/></svg></div><i class="glow"></i></div>
 <script>setTimeout(function(){ if(window.__booted) return;
   var b=document.createElement("div"); b.setAttribute("role","alert");
@@ -1046,7 +1065,7 @@ html{background:var(--panel)}
   <!-- ===== EXTENSIONS ===== -->
   <section class="view" id="homeView">
     <div class="scroll">
-      <div class="homebar"><svg class="pball" viewBox="0 0 100 100" aria-hidden="true"><use href="#pb"/></svg><span class="brand">DEX<b>·</b>SCAN</span><button class="thbtn" id="themeBtn" aria-label="Changer de thème"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.6-.9 1.2-1.8-.5-1.1.2-2.2 1.4-2.2H17a4 4 0 0 0 4-4c0-5.5-4-10-9-10z"/><circle cx="7.5" cy="11" r="1.2"/><circle cx="10" cy="7" r="1.2"/><circle cx="15" cy="7" r="1.2"/></svg></button><span class="ver">v64</span></div>
+      <div class="homebar"><svg class="pball" viewBox="0 0 100 100" aria-hidden="true"><use href="#pb"/></svg><span class="brand">DEX<b>·</b>SCAN</span><button class="thbtn" id="themeBtn" aria-label="Changer de thème"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.6-.9 1.2-1.8-.5-1.1.2-2.2 1.4-2.2H17a4 4 0 0 0 4-4c0-5.5-4-10-9-10z"/><circle cx="7.5" cy="11" r="1.2"/><circle cx="10" cy="7" r="1.2"/><circle cx="15" cy="7" r="1.2"/></svg></button><span class="ver">v65</span></div>
       <div class="hhead"><div><span class="hdate" id="hDate"></span><h1 class="h1">Accueil</h1></div><button class="hsearch" id="hSearch" aria-label="Rechercher une carte"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></button></div>
       <div class="total htot" id="hTot"></div>
       <div class="hqa">
@@ -1054,6 +1073,7 @@ html{background:var(--panel)}
         <button id="hqSeal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8l9-5 9 5v8l-9 5-9-5z"/><path d="M3 8l9 5 9-5M12 13v8"/></svg>Ajouter un scellé</button>
         <button id="hqCls"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7.5V18a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V9.5a2 2 0 0 0-2-2h-7.2L9.6 5.2A2 2 0 0 0 8.2 4.6H5a2 2 0 0 0-2 2z"/></svg>Mon classeur</button>
       </div>
+      <div id="hTop"></div>
       <div id="hRecent"></div>
       <h3 class="hh">Raccourcis</h3>
       <div class="mlist" id="hLinks"></div>
@@ -1064,6 +1084,7 @@ html{background:var(--panel)}
       <h1 class="h1">Plus</h1>
       <div class="mlist">
         <button data-mgo="playView"><span class="mi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 11h4M8 9v4"/><path d="M15 12h.01M18 10h.01"/><path d="M17.3 5H6.7a4 4 0 0 0-4 3.6l-.7 6.9A3 3 0 0 0 5 19c1 0 1.9-.5 2.5-1.3L9 16h6l1.5 1.7c.6.8 1.5 1.3 2.5 1.3a3 3 0 0 0 3-3.5l-.7-6.9A4 4 0 0 0 17.3 5z"/></svg></span><span class="mt"><b>Jouer</b><small>Comprendre la crypto avec les cartes</small></span><svg class="mch" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></button>
+        <button data-mgo="topView"><span class="mi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/></svg></span><span class="mt"><b>Top 100 à chasser</b><small>Les cartes qui valent cher et qui montent</small></span><svg class="mch" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></button>
         <button data-mgo="searchView"><span class="mi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></span><span class="mt"><b>Recherche</b><small>Par nom et numéro de carte</small></span><svg class="mch" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></button>
         <button data-mgo="alertView"><span class="mi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 8a6 6 0 1 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.9 1.9 0 0 0 3.4 0"/></svg></span><span class="mt"><b>Alertes réassort</b><small>Ton guetteur de sorties</small></span><svg class="mch" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></button>
       </div>
@@ -1071,7 +1092,7 @@ html{background:var(--panel)}
         <button id="mTheme"><span class="mi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.6-.9 1.2-1.8-.5-1.1.2-2.2 1.4-2.2H17a4 4 0 0 0 4-4c0-5.5-4-10-9-10z"/><circle cx="7.5" cy="11" r="1.2"/><circle cx="10" cy="7" r="1.2"/><circle cx="15" cy="7" r="1.2"/></svg></span><span class="mt"><b>Thème de l'app</b><small>Couleurs et ambiance</small></span><svg class="mch" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></button>
         <button id="mLang"><span class="mi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg></span><span class="mt"><b>Langue des cartes</b><small id="mLangV">Français</small></span><svg class="mch" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></button>
       </div>
-      <p class="fine" style="text-align:center;margin-top:18px">Dex Scan v64</p>
+      <p class="fine" style="text-align:center;margin-top:18px">Dex Scan v65</p>
     </div>
   </section>
   <section class="view" id="extView" hidden>
@@ -1157,6 +1178,15 @@ html{background:var(--panel)}
   </section>
 
   <!-- ===== RECHERCHE ===== -->
+  <section class="view" id="topView" hidden>
+    <div class="scroll">
+      <h1 class="h1">Top 100 à chasser</h1>
+      <p class="lede" id="topLede"></p>
+      <div class="seg tseg" role="group" aria-label="Classement"><button data-tm="chasse">À chasser</button><button data-tm="valeur">Les plus chères</button><button data-tm="hausse">En hausse</button></div>
+      <div class="schips" id="topF"></div>
+      <div id="topBody"></div>
+    </div>
+  </section>
   <section class="view" id="playView" hidden>
     <div class="scroll">
       <h1 class="h1">Jouer</h1>
@@ -5025,11 +5055,64 @@ ${marketHTML(qFr, qEn, c, tp)}
   });
 }
 
+/* ================= TOP 100 DES CARTES À CHASSER =================
+   top.json est reconstruit 3 fois par jour (scripts/build-top.mjs) à partir des cotes Cardmarket de toutes les cartes rares.
+   À chasser = valeur × élan des ventes (moyenne 7 j / 30 j) ; Les plus chères ; En hausse (cartes à 10 € et plus). */
+const TOP = {d:null, p:null, m:store.get("topM","chasse"), f:store.get("topF","all")};
+function loadTop(){
+  if(TOP.p) return TOP.p;
+  TOP.p = fetchT("top.json?h="+Math.floor(Date.now()/36e5), 30000).then(r=>{ if(!r.ok) throw new Error("top "+r.status); return r.json(); })
+    .then(j=>{ TOP.d = j; return j; }).catch(e=>{ TOP.p = null; throw e; });
+  return TOP.p;
+}
+const TOP_LEDE = {
+  chasse: "Les cartes à viser en priorité : elles valent cher et leurs ventes montent. Le classement mêle la valeur et l'élan des ventes des 7 derniers jours par rapport aux 30 derniers.",
+  valeur: "Les 100 cartes les plus chères du moment, à la cote Cardmarket (médiane des ventes, un achat isolé ne fausse pas le classement).",
+  hausse: "Les plus fortes hausses : ventes des 7 derniers jours comparées aux 30 derniers jours, pour les cartes à 10 € et plus."
+};
+const topChg = x => x.chg==null ? (x.src==="tp" ? `<small>cote US convertie</small>` : "") : `<small class="${x.chg>=0?"up":"down"}">${x.chg>=0?"+":"−"}${Math.abs(Math.round(x.chg*100))} % / 30 j</small>`;
+const topCard = x => ({id:x.id, image:x.img, localId:x.no});
+function topList(){
+  const own = new Set(getCol().map(c=>c.id)), yr = new Date().getFullYear();
+  let l = TOP.d?.[TOP.m] || [];
+  if(TOP.f==="miss") l = l.filter(x=>!own.has(x.id));
+  else if(TOP.f==="recent") l = l.filter(x=>(x.d||"").slice(0,4) >= String(yr-2));
+  else if(TOP.f==="vintage") l = l.filter(x=>x.d && x.d < "2010");
+  return {l, own};
+}
+async function renderTop(){
+  document.querySelectorAll("[data-tm]").forEach(b=>{ b.setAttribute("aria-pressed", b.dataset.tm===TOP.m); b.onclick = ()=>{ TOP.m = b.dataset.tm; store.set("topM", TOP.m); renderTop(); $("#topView .scroll").scrollTop = 0; }; });
+  $("#topLede").textContent = TOP_LEDE[TOP.m];
+  $("#topF").innerHTML = [["all","Toutes"],["miss","Pas encore à moi"],["recent","Récentes"],["vintage","Anciennes (avant 2010)"]].map(([k,t])=>`<button data-tf="${k}" aria-pressed="${TOP.f===k}">${t}</button>`).join("");
+  $("#topF").querySelectorAll("[data-tf]").forEach(b=>b.onclick=()=>{ TOP.f = b.dataset.tf; store.set("topF", TOP.f); renderTop(); });
+  const box = $("#topBody");
+  if(!TOP.d){ box.innerHTML = `<div class="empty"><span class="loader"></span> Chargement du classement…</div>`;
+    try{ await loadTop(); }catch(e){ box.innerHTML = `<div class="empty">Le classement est en cours de préparation : il sera disponible d'ici quelques minutes.</div>`; return; } }
+  const {l, own} = topList();
+  box.innerHTML = (l.length ? `<div class="tlist">${l.map(x=>`<button class="trow" data-tid="${esc(x.id)}">
+      <span class="tk ${x.k<=3?"t"+x.k:""}">${x.k}</span><span class="tim">${imgTag(topCard(x), "low", `alt="" loading="lazy"`)}</span>
+      <div class="tx"><b>${esc(x.n)}</b><span>${esc(x.sn||"")} · n° ${esc(x.no)}${x.of?"/"+x.of:""}</span><span>${esc(x.r||"")}${x.d?" · "+esc(x.d.slice(0,4)):""}</span></div>
+      <div class="tv"><b>${eurN(x.v)} €</b>${topChg(x)}${own.has(x.id)?`<span class="town">✓ Tu l'as</span>`:""}</div></button>`).join("")}</div>`
+      : `<div class="empty">${TOP.f==="miss" ? "Tu as déjà toutes les cartes de ce classement !" : "Aucune carte dans ce filtre."}</div>`)
+    + `<p class="fine">Cotes Cardmarket (marché européen) relues 3 fois par jour sur ${(TOP.d.n||0).toLocaleString("fr-FR")} cartes rares${TOP.d.built?` · mis à jour ${esc(ago(TOP.d.built))}`:""}. Une cote Cardmarket incohérente est remplacée par le prix du marché US converti en euros. Ce classement aide à repérer les cartes recherchées : ce n'est pas un conseil d'achat, les prix peuvent baisser.</p>`;
+  box.querySelectorAll("[data-tid]").forEach(b=>b.onclick=()=>showCard(b.dataset.tid));
+}
+/* Accueil : les 10 premières cartes à chasser */
+function topHome(){
+  const el = $("#hTop"); if(!el) return;
+  if(!TOP.d){ el.innerHTML = ""; loadTop().then(()=>{ if(!$("#homeView").hidden) topHome(); }).catch(()=>{}); return; }
+  const own = new Set(getCol().map(c=>c.id)), l = (TOP.d.chasse||[]).slice(0,10);
+  if(!l.length){ el.innerHTML = ""; return; }
+  el.innerHTML = `<h3 class="hh">Top 100 à chasser <small>mis à jour ${esc(ago(TOP.d.built))}</small></h3><div class="hrow">${l.map(x=>`<button class="tcard" data-tid="${esc(x.id)}"><span class="tim">${imgTag(topCard(x), "low", `alt="" loading="lazy"`)}</span><span class="tn">#${x.k}</span><b>${esc(x.n)}</b><small>${eurN(x.v)} €${x.chg!=null?`<i class="${x.chg>=0?"up":"down"}">${x.chg>=0?"+":"−"}${Math.abs(Math.round(x.chg*100))} %</i>`:""}</small>${own.has(x.id)?`<span class="town">✓ Tu l'as</span>`:""}</button>`).join("")}<button class="tmore" id="hTopAll">Voir les 100 cartes ›</button></div>`;
+  el.querySelectorAll("[data-tid]").forEach(b=>b.onclick=()=>showCard(b.dataset.tid));
+  $("#hTopAll").onclick = ()=>openSub("topView");
+}
+
 /* ---------------- Onglets & langue ---------------- */
 /* l'onglet du bas qui s'allume pour chaque page : « Tout » appartient au Classeur, Jouer et Recherche à Plus */
-const TABOF = {extView:"colView", searchView:"moreView", playView:"moreView", alertView:"budgetView"};
+const TABOF = {extView:"colView", searchView:"moreView", playView:"moreView", topView:"moreView", alertView:"budgetView"};
 const tabOf = v => TABOF[v] || v;
-const ALLV = ["homeView","extView","scanView","searchView","colView","alertView","playView","budgetView","moreView"];
+const ALLV = ["homeView","extView","scanView","searchView","colView","alertView","playView","topView","budgetView","moreView"];
 /* ---------- Accueil : valeur totale, actions rapides, extensions en cours ---------- */
 function renderHome(){
   const el = $("#hTot"); if(!el) return;
@@ -5050,6 +5133,7 @@ function renderHome(){
         return `<button class="hcard" data-hset="${esc(s.id)}"><span class="lg">${chainImg(logoChain(s), `alt="" loading="lazy"`, initials(s))}</span><b>${esc(s.name)}</b><small>${st.have}/${st.total||"?"} · ${st.pc} %</small><span class="pb"><i style="width:${st.pc}%"></i></span></button>`; }).join("")}</div>`
     : `<div class="hempty">Les extensions que tu ouvres apparaîtront ici, pour reprendre où tu en étais.</div>`;
   $("#hRecent").querySelectorAll("[data-hset]").forEach(b=>b.onclick=()=>{ selectTab("extView"); openSet(b.dataset.hset); });
+  topHome();
   // raccourcis
   const al = $("#alertBadge")?.hidden ? 0 : ($("#alertBadge")?.textContent || 0), bs = budStats(rows);
   const CH = `<svg class="mch" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg>`;
@@ -5070,6 +5154,7 @@ function selectTab(v){
   if(v==="colView") renderCol();
   if(v==="alertView") openAlerts(); else closeAlerts();
   if(v==="playView") renderPlay();
+  if(v==="topView") renderTop();
   if(v==="budgetView") renderBudget();
   if(v==="extView" && !EX.inited){ EX.inited = true; showExtHome(); }
   if(v==="scanView"){
@@ -5134,7 +5219,7 @@ function backTarget(){
   if(v==="extView" && EX.set) return "set";
   if(v==="colView" && JP.open && !$("#jpBox").hidden) return "jp";
   if(v==="alertView") return NAV.subFrom && NAV.subFrom!=="budgetView" ? "sub" : "alert";
-  if(v==="searchView" || v==="playView") return "sub";
+  if(v==="searchView" || v==="playView" || v==="topView") return "sub";
   if(v==="extView" && !EX.set && EX.view==="folders" && EX.fold && !norm(EX.q)) return "efold";
   if(v==="colView" && COLV.view==="folders" && (COLV.fold.set || (COLV.fold.ser && COLV.sort==="serie"))) return "cfold";
   return null;

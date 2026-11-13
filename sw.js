@@ -10,6 +10,9 @@ const IMG_HOSTS = /^(assets\.tcgdex\.net|images\.pokemontcg\.io|images\.scrydex\
 self.addEventListener("install", () => self.skipWaiting());
 self.addEventListener("activate", e => e.waitUntil((async () => {
   for (const k of await caches.keys()) if (![APP, IMG, API].includes(k)) await caches.delete(k);
+  // réparation : une ancienne version a pu garder une autre page (booster3d.html) à la place de l'app
+  try { const c = await caches.open(APP), key = new URL("./", self.registration.scope).href, hit = await c.match(key);
+    if (hit && !(await hit.clone().text()).includes("__APPV")) await c.delete(key); } catch (e) {}
   await self.clients.claim();
 })()));
 
@@ -51,7 +54,10 @@ const OFFLINE = () => new Response(
   '<button onclick="location.reload()" style="margin-top:12px;padding:12px 18px;border:0;border-radius:12px;background:#9B5CFF;color:#fff;font:700 15px system-ui">Réessayer</button></div>',
   {headers: {"content-type": "text/html; charset=utf-8"}});
 async function nav(req) {
-  const u = new URL(req.url), key = new URL("./", self.registration.scope).href;   // une seule copie, quels que soient les paramètres
+  const u = new URL(req.url), root = new URL("./", self.registration.scope);
+  // seule l'app (index.html) est gardée sous cette clé ; les autres pages (booster3d.html…) gardent la leur
+  const isApp = u.pathname === root.pathname || u.pathname === root.pathname + "index.html";
+  const key = isApp ? root.href : u.origin + u.pathname;
   const c = await caches.open(APP);
   const net = fetch(u.href, {cache: "no-cache", credentials: "same-origin"}).then(r => {
     if (r.ok && (r.headers.get("content-type") || "").includes("text/html")) c.put(key, r.clone());

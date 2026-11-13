@@ -1050,7 +1050,7 @@ html{background:var(--panel)}
 </head>
 <body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="pb" viewBox="0 0 100 100"><defs><linearGradient id="pbV" x1="0" y1="0" x2="1" y2="1"><stop offset="0" style="stop-color:var(--pb1)"/><stop offset=".5" style="stop-color:var(--pb2)"/><stop offset="1" style="stop-color:var(--pb3)"/></linearGradient><radialGradient id="pbB" cx=".38" cy=".75" r=".75"><stop offset="0" style="stop-color:var(--pbb1)"/><stop offset="1" style="stop-color:var(--pbb2)"/></radialGradient><radialGradient id="pbC" cx=".4" cy=".35" r=".7"><stop offset="0" style="stop-color:var(--pbc1)"/><stop offset=".55" style="stop-color:var(--pbc2)"/><stop offset="1" style="stop-color:var(--pbc3)"/></radialGradient></defs><path d="M3 50a47 47 0 0 1 94 0z" fill="url(#pbV)"/><path d="M3 50a47 47 0 0 0 94 0z" fill="url(#pbB)"/><rect x="3" y="45.5" width="94" height="9" fill="#09080D"/><circle cx="50" cy="50" r="47" fill="none" stroke="#09080D" stroke-width="4"/><circle cx="50" cy="50" r="15.5" fill="#09080D"/><circle cx="50" cy="50" r="10" fill="url(#pbC)" style="stroke:var(--pb2)" stroke-width="2"/><path d="M19 33a35 35 0 0 1 17-15" fill="none" stroke="#fff" stroke-opacity=".38" stroke-width="4" stroke-linecap="round"/></symbol></svg>
-<script>window.__APPV="70";</script>
+<script>window.__APPV="71";</script>
 <div class="splash" id="splash" aria-hidden="true"><i class="hole"></i><i class="halo"></i><div class="bw"><svg class="b" viewBox="0 0 100 100"><use href="#pb"/></svg><svg class="t" viewBox="0 0 100 100"><use href="#pb"/></svg></div><i class="glow"></i></div>
 <script>setTimeout(function(){ if(window.__booted) return;
   var b=document.createElement("div"); b.setAttribute("role","alert");
@@ -1075,10 +1075,10 @@ html{background:var(--panel)}
         try{ if(sessionStorage.getItem("upd:"+j.v)) return; sessionStorage.setItem("upd:"+j.v,"1"); }catch(e){}
         updating=true; s.classList.add("upd"); u.searchParams.set("v",j.v); location.replace(u.pathname+u.search);
       }).catch(function(){}),
-      new Promise(function(r){setTimeout(r,900)})
+      new Promise(function(r){setTimeout(r,500)})
     ]);
   }
-  ready.then(function(){ setTimeout(open, Math.max(0,(rm?350:1000)-(Date.now()-t0))); });
+  ready.then(function(){ setTimeout(open, Math.max(0,(rm?250:450)-(Date.now()-t0))); });
 })();</script>
 <div class="app">
 
@@ -2349,7 +2349,10 @@ async function refreshColPrices(manual=false){
   let done = 0; const upd = new Map();
   const show = ()=>{ b.innerHTML = `<span class="loader"></span> Cotes du marché… ${done}/${ids.length}`; };
   show();
+  if(!manual) await loadPrices();
+  const bulk = !manual && bulkFresh();   // relève automatique : le fichier des cotes suffit (actualisation manuelle : fiches en direct)
   await pool(ids, 6, async id=>{
+    if(bulk){ const b = bulkOf(id); if(b){ upd.set(id, b); done++; show(); return; } }
     try{
       // relit la fiche sans le cache de la session
       for(const k of [...cache.keys()]) if(k.includes("/cards/"+encodeURIComponent(id))) cache.delete(k);
@@ -4265,7 +4268,26 @@ async function openSet(id){
   if(!EX.cards.length){ $("#cgrid").outerHTML = `<div class="empty">La liste des cartes de cette extension n'est pas encore disponible.</div>`; renderExStats(); return; }
   renderTiles(); renderExStats(); loadExPrices(gen);
 }
+/* cotes de toutes les cartes en un seul fichier (prices.json, relu 3 fois par jour par GitHub) :
+   une extension affiche ses prix d'un coup, sans demander la fiche de chaque carte. Les cartes absentes du fichier
+   (extension toute neuve) sont encore lues une par une. */
+const PRICES = {d:null, p:null};
+function loadPrices(){
+  if(PRICES.p) return PRICES.p;
+  PRICES.p = fetchT("prices.json?h="+Math.floor(Date.now()/36e5), 30000).then(r=>r.ok ? r.json() : null)
+    .then(j=>{ PRICES.d = j && j.p ? j : null; return PRICES.d; }).catch(()=>{ PRICES.p = null; return null; });
+  return PRICES.p;
+}
+const bulkFresh = () => !!(PRICES.d && Date.now() - Date.parse(PRICES.d.built) < 12*3600e3);
+// undefined : pas dans le fichier ; null : relue, sans cote ; sinon {p, a1, a7, a30}
+function bulkOf(id){
+  const d = PRICES.d; if(!d) return undefined;
+  const i = id.lastIndexOf("-"), v = d.p[id.slice(0,i)]?.[id.slice(i+1)];
+  return v===undefined ? undefined : v===0 ? null : {p:v[0], a1:v[1]??null, a7:v[2]??null, a30:v[3]??null};
+}
 async function loadExPrices(gen){
+  await loadPrices(); if(gen!==EX.gen) return;
+  if(bulkFresh()) for(const c of EX.cards){ if(c.id in EX.prices) continue; const b = bulkOf(c.id); if(b!==undefined) EX.prices[c.id] = b ? b.p : null; }
   const todo = EX.cards.filter(c=>!(c.id in EX.prices));
   let timer = null;
   const flush = ()=>{ timer = null; if(gen!==EX.gen) return; EX.sort==="price" ? renderTiles() : patchTiles(); renderExStats(); };
@@ -5454,7 +5476,8 @@ window.__booted = true;
 { const w = $("#wallet"), b = $("#wMin"), apply = m=>{ w.classList.toggle("min", m); b.setAttribute("aria-expanded", String(!m)); b.setAttribute("aria-label", m ? "Agrandir" : "Réduire"); };
   apply(!!store.get("walMin2", true));   // l'Accueil montre déjà la courbe : réduit par défaut
   b.onclick = ()=>{ const m = !w.classList.contains("min"); store.set("walMin2", m); apply(m); if(!m) renderCol(); }; }
-setTimeout(()=>loadTess().catch(()=>{}), 2500);   // prépare le scan sans ralentir l'ouverture
+setTimeout(()=>loadTess().catch(()=>{}), 6000);   // prépare le scan sans ralentir l'ouverture (images de l'accueil d'abord)
+setTimeout(()=>loadPrices(), 1500);   // cotes de toutes les cartes, prêtes avant d'ouvrir une extension
 // glisser depuis le bord gauche de la Collection : scanner ; glisser vers la gauche dans le scanner : retour à la Collection
 (function(){ let x0=null,y0=0,from=null;
   document.addEventListener("touchstart",e=>{ const t=e.touches[0]; if(e.touches.length!==1){x0=null;return;}
@@ -5464,7 +5487,7 @@ setTimeout(()=>loadTess().catch(()=>{}), 2500);   // prépare le scan sans ralen
     if(dy>70) return; if(from==="col" && dx>70) selectTab("scanView"); else if(from==="scan" && dx<-70) selectTab("colView"); },{passive:true});
 })();
 getSets(LANG).catch(()=>{});
-checkHealth().catch(()=>{});
+setTimeout(()=>checkHealth().catch(()=>{}), 3000);   // état de la connexion : après l'ouverture
 
 /* ---------------- Mise à jour automatique ----------------
    version.json (publié avec chaque version) est relu à l'ouverture, au retour dans l'app et toutes les 30 min.

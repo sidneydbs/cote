@@ -45,6 +45,8 @@
   color-scheme:dark;
 }
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{touch-action:manipulation}
+@supports (-webkit-touch-callout:none){input,select,textarea{font-size:16px!important}}
 html,body{height:100%;margin:0;background:var(--ink);color:var(--fg);font-family:var(--f-body);font-size:15px;overscroll-behavior:none}
 [hidden]{display:none!important}
 button{font:inherit;color:inherit;border:0;background:none;cursor:pointer}
@@ -1084,7 +1086,7 @@ html{background:var(--panel)}
 </head>
 <body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="pb" viewBox="0 0 100 100"><defs><linearGradient id="pbV" x1="0" y1="0" x2="1" y2="1"><stop offset="0" style="stop-color:var(--pb1)"/><stop offset=".5" style="stop-color:var(--pb2)"/><stop offset="1" style="stop-color:var(--pb3)"/></linearGradient><radialGradient id="pbB" cx=".38" cy=".75" r=".75"><stop offset="0" style="stop-color:var(--pbb1)"/><stop offset="1" style="stop-color:var(--pbb2)"/></radialGradient><radialGradient id="pbC" cx=".4" cy=".35" r=".7"><stop offset="0" style="stop-color:var(--pbc1)"/><stop offset=".55" style="stop-color:var(--pbc2)"/><stop offset="1" style="stop-color:var(--pbc3)"/></radialGradient></defs><path d="M3 50a47 47 0 0 1 94 0z" fill="url(#pbV)"/><path d="M3 50a47 47 0 0 0 94 0z" fill="url(#pbB)"/><rect x="3" y="45.5" width="94" height="9" fill="#09080D"/><circle cx="50" cy="50" r="47" fill="none" stroke="#09080D" stroke-width="4"/><circle cx="50" cy="50" r="15.5" fill="#09080D"/><circle cx="50" cy="50" r="10" fill="url(#pbC)" style="stroke:var(--pb2)" stroke-width="2"/><path d="M19 33a35 35 0 0 1 17-15" fill="none" stroke="#fff" stroke-opacity=".38" stroke-width="4" stroke-linecap="round"/></symbol></svg>
-<script>window.__APPV="72";</script>
+<script>window.__APPV="73";</script>
 <div class="splash" id="splash" aria-hidden="true"><i class="hole"></i><i class="halo"></i><div class="bw"><svg class="b" viewBox="0 0 100 100"><use href="#pb"/></svg><svg class="t" viewBox="0 0 100 100"><use href="#pb"/></svg></div><i class="glow"></i></div>
 <script>setTimeout(function(){ if(window.__booted) return;
   var b=document.createElement("div"); b.setAttribute("role","alert");
@@ -1119,7 +1121,7 @@ html{background:var(--panel)}
   <!-- ===== EXTENSIONS ===== -->
   <section class="view" id="homeView">
     <div class="scroll">
-      <div class="homebar"><span id="avatSlot"><svg class="pball" viewBox="0 0 100 100" aria-hidden="true"><use href="#pb"/></svg></span><span class="brand">DEX<b>·</b>SCAN</span><button class="thbtn" id="themeBtn" aria-label="Changer de thème"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.6-.9 1.2-1.8-.5-1.1.2-2.2 1.4-2.2H17a4 4 0 0 0 4-4c0-5.5-4-10-9-10z"/><circle cx="7.5" cy="11" r="1.2"/><circle cx="10" cy="7" r="1.2"/><circle cx="15" cy="7" r="1.2"/></svg></button><span class="ver">v72</span></div>
+      <div class="homebar"><span id="avatSlot"><svg class="pball" viewBox="0 0 100 100" aria-hidden="true"><use href="#pb"/></svg></span><span class="brand">DEX<b>·</b>SCAN</span><button class="thbtn" id="themeBtn" aria-label="Changer de thème"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.6-.9 1.2-1.8-.5-1.1.2-2.2 1.4-2.2H17a4 4 0 0 0 4-4c0-5.5-4-10-9-10z"/><circle cx="7.5" cy="11" r="1.2"/><circle cx="10" cy="7" r="1.2"/><circle cx="15" cy="7" r="1.2"/></svg></button><span class="ver">v73</span></div>
       <div class="hhead"><div><span class="hdate" id="hDate"></span><h1 class="h1">Accueil</h1></div><button class="hsearch" id="hSearch" aria-label="Rechercher une carte"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></button></div>
       <div class="total htot" id="hTot"></div>
       <div class="hqa">
@@ -5421,7 +5423,8 @@ history.replaceState({dex:0}, "");
 history.pushState({dex:1}, "");
 window.addEventListener("popstate", ()=>{
   if(navBack()) history.pushState({dex:1}, "");
-  else history.back();   // rien à fermer : on laisse sortir de l'app
+  else if(curView()!=="homeView"){ selectTab("homeView"); history.pushState({dex:1}, ""); }
+  else history.back();   // déjà sur l'Accueil, rien à fermer : on laisse sortir de l'app
 });
 /* ---------- gestes ---------- */
 function goTab(dir){
@@ -5441,7 +5444,7 @@ function hScrollable(el){
 const G = {on:false};
 function layerFor(t){ return t==="gov" ? $("#gov") : (t==="card" || t==="sheet") ? $("#sheet") : null; }
 document.addEventListener("touchstart", e=>{
-  if(e.touches.length!==1){ G.on = false; return; }
+  if(e.touches.length!==1 || G.busy){ G.on = false; return; }
   const tg = e.target;
   if(tg.closest("input,textarea,select,canvas,#foilView,[data-noswipe],.tabs") || hScrollable(tg)){ G.on = false; return; }
   const p = e.touches[0];
@@ -5467,8 +5470,9 @@ document.addEventListener("touchmove", e=>{
   G.layer.style.transform = `translateX(${dx}px)`;
 }, {passive:false});
 function settle(el, to, done){
+  G.busy = true;
   el.style.transition = "transform .15s cubic-bezier(.2,.8,.2,1)"; el.style.transform = to;
-  setTimeout(()=>{ done && done(); el.style.transition = "none"; el.style.transform = ""; void el.offsetWidth; el.style.transition = ""; }, 150);
+  setTimeout(()=>{ try{ done && done(); }catch(e){} el.style.transition = "none"; el.style.transform = ""; void el.offsetWidth; el.style.transition = ""; G.busy = false; }, 150);
 }
 document.addEventListener("touchend", ()=>{
   if(!G.on || !G.lock){ G.on = false; return; }
@@ -5615,14 +5619,7 @@ window.__booted = true;
   b.onclick = ()=>{ const m = !w.classList.contains("min"); store.set("walMin2", m); apply(m); if(!m) renderCol(); }; }
 setTimeout(()=>loadTess().catch(()=>{}), 6000);   // prépare le scan sans ralentir l'ouverture (images de l'accueil d'abord)
 setTimeout(()=>loadPrices(), 1500);   // cotes de toutes les cartes, prêtes avant d'ouvrir une extension
-// glisser depuis le bord gauche de la Collection : scanner ; glisser vers la gauche dans le scanner : retour à la Collection
-(function(){ let x0=null,y0=0,from=null;
-  document.addEventListener("touchstart",e=>{ const t=e.touches[0]; if(e.touches.length!==1){x0=null;return;}
-    if(!$("#colView").hidden && t.clientX<32){ x0=t.clientX; y0=t.clientY; from="col"; }
-    else if(!$("#scanView").hidden && !e.target.closest("button")){ x0=t.clientX; y0=t.clientY; from="scan"; } else x0=null; },{passive:true});
-  document.addEventListener("touchend",e=>{ if(x0==null) return; const t=e.changedTouches[0], dx=t.clientX-x0, dy=Math.abs(t.clientY-y0); x0=null;
-    if(dy>70) return; if(from==="col" && dx>70) selectTab("scanView"); else if(from==="scan" && dx<-70) selectTab("colView"); },{passive:true});
-})();
+// (ancien geste du bord gauche Classeur ↔ Scanner retiré : il doublait le glissé général et ouvrait la caméra par erreur)
 getSets(LANG).catch(()=>{});
 setTimeout(()=>checkHealth().catch(()=>{}), 3000);   // état de la connexion : après l'ouverture
 
@@ -5647,7 +5644,7 @@ function applyUpdate(){
   toast(`Mise à jour de Dex Scan (v${updPending})…`);
   setTimeout(()=>{ const u = new URL(location.href); u.searchParams.set("v", updPending); u.searchParams.set("q","1"); location.replace(u.pathname + u.search); }, 900);
 }
-(function(){ const u = new URL(location.href); if(u.searchParams.has("v") || u.searchParams.has("q")){ u.searchParams.delete("v"); u.searchParams.delete("q"); history.replaceState(null, "", u.pathname + (u.search||"") + u.hash); } })();
+(function(){ const u = new URL(location.href); if(u.searchParams.has("v") || u.searchParams.has("q")){ u.searchParams.delete("v"); u.searchParams.delete("q"); history.replaceState(history.state, "", u.pathname + (u.search||"") + u.hash); } })();
 setTimeout(()=>checkUpdate(true), 8000);
 setInterval(()=>{ if(!document.hidden) checkUpdate(); }, 30*60e3);
 document.addEventListener("visibilitychange", ()=>{ if(!document.hidden) checkUpdate(); });

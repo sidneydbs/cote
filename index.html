@@ -7,7 +7,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="Dex Scan">
 <meta name="theme-color" content="#0E1014">
-<script>try{var __t=JSON.parse(localStorage.getItem("cote:theme")||'"spectre"');if(__t==="kanto"&&!JSON.parse(localStorage.getItem("cote:kanto")||"false"))__t="spectre";document.documentElement.dataset.theme=__t;}catch(e){document.documentElement.dataset.theme="spectre";}</script>
+<script>try{var __t=JSON.parse(localStorage.getItem("cote:theme")||'"spectre"');if(__t==="kanto"&&!JSON.parse(localStorage.getItem("cote:kanto")||"false"))__t="spectre";document.documentElement.dataset.theme=__t;if(!localStorage.getItem("cote:starter"))document.documentElement.classList.add("nostart");}catch(e){document.documentElement.dataset.theme="spectre";}</script>
 <link rel="apple-touch-icon" href="icon.png">
 <!-- écran de démarrage iPhone (Poké Ball de l'intro) : sans lui, iOS affiche un écran noir pendant le lancement -->
 <link rel="apple-touch-startup-image" media="screen and (device-width: 440px) and (device-height: 956px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="media/launch/launch-1320x2868.jpg">
@@ -910,6 +910,40 @@ html{background:var(--panel)}
 .thbtn svg{width:18px;height:18px}
 .homebar .ver{margin-left:8px}
 /* boîte de dialogue façon jeu d'époque */
+
+/* ---------- Starter : 1re ouverture et niveau du compte ---------- */
+:root.nostart[data-theme]{--pb1:#7A7A80;--pb2:#2A2A2E;--pb3:#060607;--pbb1:#FFFFFF;--pbb2:#C9C9D2;--pbc1:#FFFFFF;--pbc2:#E2E2E8;--pbc3:#9A9AA2}
+.px{image-rendering:pixelated;image-rendering:crisp-edges}
+.stp{position:fixed;inset:0;z-index:9500;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;
+  padding:calc(env(safe-area-inset-top,0px) + 20px) 22px calc(env(safe-area-inset-bottom,0px) + 22px);
+  background:color-mix(in srgb,var(--ink) 84%,transparent);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);color:var(--fg);touch-action:pan-y;transition:opacity .45s}
+.stp.out{opacity:0;pointer-events:none}
+.stp h2{margin:0;font:800 26px/1.05 var(--f-display);font-stretch:125%;letter-spacing:.01em}
+.stp .lede{margin:6px 0 0;color:var(--muted);font-size:14px}
+.stp-stage{position:relative;width:260px;height:270px;margin:8px 0 2px}
+.stp-spr{position:absolute;left:50%;top:6px;width:196px;height:196px;margin-left:-98px;transform-origin:50% 100%;transition:transform .35s cubic-bezier(.3,1.6,.5,1),opacity .2s}
+.stp-spr.hide{transform:scale(.2) translateY(260px);opacity:0}
+.stp-spr.lock{filter:brightness(0) opacity(.75)}
+.stp-ball{position:absolute;left:50%;bottom:0;width:74px;height:74px;margin-left:-37px;filter:drop-shadow(0 10px 18px rgba(0,0,0,.45));transition:transform .3s}
+.stp.empty .stp-ball{width:150px;height:150px;margin-left:-75px;bottom:56px;animation:stpw 2.4s ease-in-out infinite}
+@keyframes stpw{0%,70%,100%{transform:rotate(0)}76%{transform:rotate(-12deg)}84%{transform:rotate(10deg)}92%{transform:rotate(-5deg)}}
+.stp-name{font:800 24px/1 var(--f-display);font-stretch:120%;letter-spacing:.03em;min-height:24px}
+.stp-type{display:inline-block;margin-top:8px;padding:4px 10px;border-radius:99px;font:700 11px/1.2 var(--f-mono);letter-spacing:.08em;background:var(--border-yellow);color:var(--on-acc)}
+.stp.empty .stp-type{visibility:hidden}
+.stp-desc{margin:10px auto 0;max-width:300px;min-height:40px;font-size:14px;line-height:1.4;color:var(--muted)}
+.stp-nav{display:flex;align-items:center;gap:14px;margin:12px 0 16px}
+.stp-nav button{width:42px;height:42px;border-radius:50%;border:1px solid var(--line);background:var(--panel);color:var(--fg);font-size:18px}
+.stp-dots{display:flex;gap:6px}.stp-dots i{width:7px;height:7px;border-radius:50%;background:var(--line)}.stp-dots i.on{background:var(--border-yellow);transform:scale(1.25)}
+.stp-go{width:100%;max-width:340px;height:54px;border:0;border-radius:999px;font:800 16px/1 system-ui;background:var(--border-yellow);color:var(--on-acc);box-shadow:0 10px 30px color-mix(in srgb,var(--border-yellow) 40%,transparent)}
+.stp-go:disabled{background:var(--panel-2);color:var(--muted);box-shadow:none}
+.stp-fly{position:fixed;z-index:9600;pointer-events:none;transition:transform .75s cubic-bezier(.5,-.3,.3,1),width .75s,height .75s,opacity .3s;image-rendering:pixelated}
+.avat{display:flex;align-items:center;gap:6px;border:1px solid var(--line);background:var(--panel);border-radius:999px;padding:2px 10px 2px 2px;color:var(--fg);flex:none}
+.avat img{width:34px;height:34px;border-radius:50%;background:var(--panel-2)}
+.avat b{font:800 12px/1 var(--f-mono);text-align:left}.avat b small{display:block;font:600 9px/1.2 var(--f-mono);color:var(--muted);margin-top:2px}
+.avat.pop{animation:avp .5s cubic-bezier(.3,1.8,.5,1)}@keyframes avp{0%{transform:scale(.6)}100%{transform:scale(1)}}
+.lvsheet{text-align:center}.lvsheet img{width:150px;height:150px}
+.lvbar{height:10px;border-radius:9px;background:var(--panel-2);overflow:hidden;margin:8px 0 4px}.lvbar i{display:block;height:100%;background:var(--border-yellow);border-radius:9px}
+.lvlist{text-align:left;margin-top:14px}.lvlist div{display:flex;justify-content:space-between;padding:9px 0;border-top:1px solid var(--line);font-size:14px}.lvlist b{color:var(--border-yellow)}
 .gbox{position:fixed;left:12px;right:12px;bottom:calc(env(safe-area-inset-bottom,0px) + 86px);z-index:9000;background:#fff;color:#111;
   border:4px solid #111;box-shadow:inset 0 0 0 3px #fff,inset 0 0 0 6px #111,0 14px 40px rgba(0,0,0,.45);border-radius:6px;padding:18px 18px 14px;
   font:700 15px/1.55 var(--f-mono);animation:gbIn .25s ease-out}
@@ -1050,7 +1084,7 @@ html{background:var(--panel)}
 </head>
 <body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="pb" viewBox="0 0 100 100"><defs><linearGradient id="pbV" x1="0" y1="0" x2="1" y2="1"><stop offset="0" style="stop-color:var(--pb1)"/><stop offset=".5" style="stop-color:var(--pb2)"/><stop offset="1" style="stop-color:var(--pb3)"/></linearGradient><radialGradient id="pbB" cx=".38" cy=".75" r=".75"><stop offset="0" style="stop-color:var(--pbb1)"/><stop offset="1" style="stop-color:var(--pbb2)"/></radialGradient><radialGradient id="pbC" cx=".4" cy=".35" r=".7"><stop offset="0" style="stop-color:var(--pbc1)"/><stop offset=".55" style="stop-color:var(--pbc2)"/><stop offset="1" style="stop-color:var(--pbc3)"/></radialGradient></defs><path d="M3 50a47 47 0 0 1 94 0z" fill="url(#pbV)"/><path d="M3 50a47 47 0 0 0 94 0z" fill="url(#pbB)"/><rect x="3" y="45.5" width="94" height="9" fill="#09080D"/><circle cx="50" cy="50" r="47" fill="none" stroke="#09080D" stroke-width="4"/><circle cx="50" cy="50" r="15.5" fill="#09080D"/><circle cx="50" cy="50" r="10" fill="url(#pbC)" style="stroke:var(--pb2)" stroke-width="2"/><path d="M19 33a35 35 0 0 1 17-15" fill="none" stroke="#fff" stroke-opacity=".38" stroke-width="4" stroke-linecap="round"/></symbol></svg>
-<script>window.__APPV="71";</script>
+<script>window.__APPV="72";</script>
 <div class="splash" id="splash" aria-hidden="true"><i class="hole"></i><i class="halo"></i><div class="bw"><svg class="b" viewBox="0 0 100 100"><use href="#pb"/></svg><svg class="t" viewBox="0 0 100 100"><use href="#pb"/></svg></div><i class="glow"></i></div>
 <script>setTimeout(function(){ if(window.__booted) return;
   var b=document.createElement("div"); b.setAttribute("role","alert");
@@ -1085,7 +1119,7 @@ html{background:var(--panel)}
   <!-- ===== EXTENSIONS ===== -->
   <section class="view" id="homeView">
     <div class="scroll">
-      <div class="homebar"><svg class="pball" viewBox="0 0 100 100" aria-hidden="true"><use href="#pb"/></svg><span class="brand">DEX<b>·</b>SCAN</span><button class="thbtn" id="themeBtn" aria-label="Changer de thème"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.6-.9 1.2-1.8-.5-1.1.2-2.2 1.4-2.2H17a4 4 0 0 0 4-4c0-5.5-4-10-9-10z"/><circle cx="7.5" cy="11" r="1.2"/><circle cx="10" cy="7" r="1.2"/><circle cx="15" cy="7" r="1.2"/></svg></button><span class="ver">v69</span></div>
+      <div class="homebar"><span id="avatSlot"><svg class="pball" viewBox="0 0 100 100" aria-hidden="true"><use href="#pb"/></svg></span><span class="brand">DEX<b>·</b>SCAN</span><button class="thbtn" id="themeBtn" aria-label="Changer de thème"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.6-.9 1.2-1.8-.5-1.1.2-2.2 1.4-2.2H17a4 4 0 0 0 4-4c0-5.5-4-10-9-10z"/><circle cx="7.5" cy="11" r="1.2"/><circle cx="10" cy="7" r="1.2"/><circle cx="15" cy="7" r="1.2"/></svg></button><span class="ver">v72</span></div>
       <div class="hhead"><div><span class="hdate" id="hDate"></span><h1 class="h1">Accueil</h1></div><button class="hsearch" id="hSearch" aria-label="Rechercher une carte"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></button></div>
       <div class="total htot" id="hTot"></div>
       <div class="hqa">
@@ -5238,6 +5272,7 @@ const ALLV = ["homeView","extView","scanView","searchView","colView","alertView"
 /* ---------- Accueil : valeur totale, actions rapides, extensions en cours ---------- */
 function renderHome(){
   const el = $("#hTot"); if(!el) return;
+  try{ renderAvatar(); }catch(e){}
   $("#hDate").textContent = new Date().toLocaleDateString("fr-FR",{weekday:"long", day:"numeric", month:"long"});
   const col = getCol(), cards = col.reduce((a,x)=>a+(x.price||0)*x.qty,0);
   const rows = budRows(), own = rows.filter(r=>r.q>0);
@@ -5470,7 +5505,109 @@ langChip.onclick = toggleLang;
 $("#extLang").onclick = toggleLang;
 setLangUI();
 
+/* ---------------- Compagnon (starter) et niveau du compte ----------------
+   1re ouverture : Poké Ball noire et blanche, on glisse à gauche / à droite pour découvrir les starters
+   (chacun applique son thème en direct), « Je choisis » l'envoie dans le coin haut gauche de l'Accueil :
+   c'est le niveau du compte, qui monte avec la collection. Le 6e starter est le secret de Kanto (carte n°151). */
+const STARTERS = [
+  {k:"brumelin", n:"BRUMELIN", th:"spectre", t:"SPECTRE", d:"Chaton de brume violette. Le bout de sa queue brille comme une lanterne.", img:"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAAcCAYAAAByDd+UAAAB60lEQVR4Xu2Wv0vDQBTHn1JQcFIUBAeFKrSjIKWb3bp010EsTrVSMKBI/wiHDMHqVAod2q1DB7vpFoq7GSw4Cgqudap8L75wSS6/CgqKHygX7pL3ve+7d3cl+s3omlU3e+M62lg+En/wz59H16xL/GSjM9/hmkXyhQ0R3rx7Jk3PnONZKbi5uDt5er8PnUzUO7IzFlOCQGZvPEEb5D7OO0HM8oCc706eqN0ciMDeD9GHMbwzDSlvvo2WHca8faHaXouMbtklij6MUX51Gj17DeV8G63KGYLGxeiWKWq9A6sU6UoixiQRTamcnDbWRffawjZdHPZ8r0SNh+EUjReIhRE1HoRrrwWldD8zpo4174vB/UlSqnSIQDIQQ1CkEi2jmkQUrjVEtYltoKhSFNPWUkG0Ych7V1W9vuMLH+TSVREztxN/d7Pz/usdXb990PHyHJVWCj5RX5WKWY3IEY0LO2cxtCoCqxQMH8y4egJ2GSQGHIe6Zl1J0RtGq1Ll1Cahny1S6XEgWtUa4iwVQnx3MXymwiWvpfzMGeAxeWv0s8XA643PUtmdI35wVHRcDkcNu5DSVdcEuB94HbEZTc+csJHIG5/LnINxFbNQuzmwZ/J1s8vINz6AcKSgCp5ErXzjiHmXBH8rGNnhj/MJZVj6zNkMNMEAAAAASUVORK5CYII="},
+  {k:"pandabraise", n:"PANDABRAISE", th:"feu", t:"FEU", d:"Panda roux toujours en feu. Ses oreilles et sa queue crépitent quand il est content.", img:"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAAcCAYAAAByDd+UAAABnklEQVR4XmNgIAD+dxn8J6QGHfy/4ECyHorA/yiB/wQtJaiA2oAoVw12MBpqAwO0eFhIykOkqkcBIM2giCbWEFLVgwALRjh2XWC4esSGQdvmCNE+verHw6C96cv/a1/+MBKKFwwFIFevc5EgpA8DBO15wUCMhUzIOmGWqS85A8bEAJhakCNxRQVyeYziQ3J9BwPE+JIJV20AcnnSqS8EPUmsOhhgYiy7gDWirdU0CFoGArjU4QpezFTKwMCw484HhqO37hBl4VGoqokWKuB4DNrzApy6YSkdPSGhJBqQJCge8AGQj3D5CiUOodkL3acYPgRZOuvBj//5OGw9eusGVplZD34QlS1wZlSYy9IUOPD6GGQRCMCCDqQPVBAwlBmACg8MR2CNQ1j2AMXlqndYlcAByEEeKgLguEOOL2yWgQBKHIIAcl4kZBkIgCyDAZjen2kJOEMFw0JywbktObBUysDhMIERVzFHNQsfTFhDXEmD7iNY1gDFHzEApo6YYg0nANdz0LallZQARv1ISB4fIJgtkJM8MkDO0Ljia1AAALC57gUQfAGWAAAAAElFTkSuQmCC"},
+  {k:"ornibulle", n:"ORNIBULLE", th:"eau", t:"EAU", d:"Bébé ornithorynque. Il souffle des bulles pour dire bonjour.", img:"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAAcCAYAAAByDd+UAAABz0lEQVR4Xs2Wv0vDUBDHX0R0cNChijgIbkVEHQpJFwn9C8TFTsHJuaPgkkVwdHbqZkdHpyCCkCGDiJTODlGKQ2aXJxe8+F5y70ckhX6glL5f37t7d/fK2Dwy+uQxfJqwbaGJQ0z04yw1rWkMEOOcpxVRGJiVJaQYWAFuzUoUKe7QcZytxuKowcE59GzkrRXCS22P6zZ/T+JifxnM6v6m44lzi/hDFAJArBPeaJ1OwgHXiVKQFqLYVW8v33MZvSmFk3Cg9bSMsQ51Yv9BK+ivr7Dk4rxy7vOpS47rwBwp7pBieeeg1rgKELtzVxmLs1QSxMwK/G6+t3N9S56hGleRJ2ScpfAtJQ0IBn7X/Rq2a11P62xinTiSIGQnio1fX6xEd/cP83W2ouQdghgeZKLOWqBSh6KXtth6RwoCYpfB4i+D9SkWfrkVUl2I9BBbmkoMEUWBjd6xZNc0umcnw4cPGMTWaew0NoCBZTEE6g/EpMIX6s81NWyK96dHpV3lZ0/roa6PinMQOhX4TwJDSt4hhGf7yLeJZu4dCophhTEqaSp1CIumjBUPr0oYwygeLO5TvZPK5j0OJr8dhA4XdqRW9BeIuo+xBNSU7i+GaX5u+AHGY+eL25yffwAAAABJRU5ErkJggg=="},
+  {k:"fureclair", n:"FURÉCLAIR", th:"electrik", t:"ÉLECTRIK", d:"Furet chargé d'électricité. Il file comme l'éclair dessiné sur son front.", img:"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAAcCAYAAAByDd+UAAAB10lEQVR4Xs2Wv0oDQRDG98RC0CInFlZHDKlVrILVVSl8iMQypfgEPoGktFTfwcYq5VXB9KKSKkXQFBZ2J9+es8zu7T8Pgv7guCMzu9/O7MwQIf4T5VteNj3Pr9digaSBaPTa1v6xJtBEjAiuNcXWxQY2hthH0ZIa+F6XmAZSsC6xWvZMMTjQE4o25Bu8Kjgcnt2Wi2UpH1/UsJEf1pi+JMYD2vRF0B/ciezkQojp2BkpfMDj/VD0B0L6rhZPCX6r3nmZ9lY/30JIAwenkiIWZtc38tejy5HVPp+O1cYAkXExIKuUg1NhoYtYMZC0JwlFS9QEfUAMUVKkHGQlpsprgr6U+tIJYkSdEc4ehvKxYabV52viTel2euBNMcfla/ahagsab6gqYG6AsreBtvAdDCOT9gRK0DR0T6/U/lys062ifnl+lW/Vfw4ghr2TduWg+pAiRCmbheOKDlDjA7MPbag7RL9ADE7Ui9SPfFMXtt61tUlt0nBCLcIxo5MZm2yJNP/Spo9TkIv5UsrTSqIkJrKRSDv6uPMO7ybokZ3XAooabb475DZMGjxmGjnBO9zZ60n/3ax6m7zPC80eqtRowc9loV0+QProQLBThVtPFkvor0bI/ud8AyLjOYarI8yhAAAAAElFTkSuQmCC"},
+  {k:"fougefaon", n:"FOUGEFAON", th:"plante", t:"PLANTE", d:"Faon des sous-bois. Ses bois sont des fougères et une vigne pousse sur son dos.", img:"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAAcCAYAAAByDd+UAAACA0lEQVR4Xu2WMUhCQRjHT2mShgZxiAbbpCGkJRARcQinxgYnEYmICKdmpwZpkIiIEHGKaIyGaIgQkVrEKRwdoiEaGqLV+H/0vb533b1TEFr8weO9d/d93/++e9/dO6VmzJgWZ8PKCLFWFufp7oLt2G9iEADOmfPMyCWKftjB3mUbNo2ER3lx11OFjTXPRB+9fIcd7EFQlkbBnXg9xCoIst8tUxZ45gzkO/pZDEh/HS+wCQSNVn8zRBbHqYZ6fv0MoU8Xeq/2qM8Y7AdjJ2fBzlIYQRkejBTSfcfKEE7d+wbZpnJlz6dZSf8JAEr1jtcu/UzZWtOXomBw3TKKMYnNoveMQdqmdo6tUNZ4bm+3aRBwSOXK1MajdhEkxFCVQkyWP8OjRHbruyd06XC7awZ8ggBlzdnZWI6vGrts7SZoSl1CYBpiwPuGLvpHh2rwdusrDnCplErE8tRnQ9aHcacxIcWS6RJdANXpEpP14RRE4ch1BvqdJl0S2NiWgqyPwG1IwjuIvkTGWQqSsQQhVswuqZtsTNU+IsYpb/eHqvXw4txLw/xB+a7DYplknDbvg4Uvn4lpbQYRRhDbwtdJXg0oQ4j2txLU/XS6R3dkb0JPKMz/rqB/mA5EIQ5hKW5ikoQ8MK21QmL0WMv7jhBoR5vrGGL7XFYQOB6N0CXPLNw+zlnm3/gGhDUcsalRlQ4AAAAASUVORK5CYII="},
+  {k:"macaneige", n:"MACANEIGE", th:"kanto", t:"KANTO", d:"Bébé macaque des neiges, sa serviette sur la tête. Il ne sort que pour les vrais dresseurs.", img:"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAAcCAYAAAByDd+UAAABkUlEQVR4Xs2Vv0oEQQzGd8RqD9RCQVs7/xRXytnIoe/gI/oUh5VYXqGioIKVe2ihYD/yzV2W2VwmycIh/mC5291MMvkyyVaVg6vbr+gwWw0I1vzE6A3qtVPxOnFvjhx6HWu4fcQY/7ZO2LV7d05WqZwbrty6Z+Xh9q4q98NnEyQ/yDCEEPB7ebIl2iyBYBbWhnJcGb4d7HmEcKGmSTu//3hXnR3tzDdUktaFJOXjc6Oq20faDp665eQbsYIuSYoFkoQkG6dkW5LXdWgQbDLcF0uBd1aNi9DwRZbN+Sip1vlf1+l5+25xTyXA85KkNHXW8uhozuu7bzmTwaDznN9bA/3seHM+CEqGVEsu5/hmmpZMRsN26Xj6mmSFrTZ1kFAnQwk4gsOWeqNK1wIKZkGjzWx8OhDWKdWyc9OnH/lh6f1pomDWdAFkw4NKH3WxhnRgnl5mrRqzi9N0EfwetpCfguafJlPSXMo+GVLfmgEk+tSPsOYoUNsilxTgJOILDvip5bYlzLagGYp+402NjLT3/4JfaRRT/4W+9t8AAAAASUVORK5CYII=", secret:true}
+];
+const starterOf = () => STARTERS.find(x=>x.k===store.get("starter", null)) || null;
+// XP : chaque carte (plus elle vaut cher, plus elle rapporte), scellés, gradées, extensions complétées
+function acctXP(){
+  let xp = 0;
+  for(const x of getCol()){ const p = x.price || 0; xp += (10 + (p>=100 ? 140 : p>=20 ? 50 : p>=5 ? 20 : 0)) * Math.max(1, x.qty||1); }
+  for(const x of getBud()) xp += 40 * Math.max(0, x.q||0);
+  xp += 100 * getGraded().length;
+  try{ for(const [sid, own] of ownIndex()){ const st = setStats({id:sid}, own); if(st.ri && st.total && st.have >= st.total) xp += 500; } }catch(e){}
+  return xp;
+}
+const lvNeed = l => 50 * (l-1) * (l-1);                      // XP pour atteindre le niveau l (niveau 10 ≈ 300 cartes)
+const lvOf = xp => Math.min(50, Math.floor(Math.sqrt(xp/50)) + 1);
+function renderAvatar(){
+  const slot = $("#avatSlot"), st = starterOf(); if(!slot || !st) return;
+  const xp = acctXP(), lv = lvOf(xp);
+  slot.innerHTML = `<button class="avat" id="avat" aria-label="${esc(st.n)}, niveau ${lv}"><img class="px" src="${st.img}" alt=""><b>Niv. ${lv}<small>${esc(st.n)}</small></b></button>`;
+  $("#avat").onclick = openAvatar;
+  const prev = store.get("lvl", 0);
+  if(prev && lv > prev && !$("#stp")) setTimeout(()=>gameBox([`${st.n} passe au niveau ${lv} !`, lv===10||lv===25 ? "Quelque chose se prépare… Son évolution approche !" : "Continue à faire grandir ta collection."], [{label:"Super !", go:true}]), 600);
+  if(lv !== prev) store.set("lvl", lv);
+}
+function openAvatar(){
+  const st = starterOf(); if(!st) return;
+  const xp = acctXP(), lv = lvOf(xp), a = lvNeed(lv), b = lvNeed(lv+1), pc = lv>=50 ? 100 : Math.round((xp-a)/(b-a)*100);
+  $("#sheetTitle").textContent = "Ton compagnon";
+  $("#sheetBody").innerHTML = `<div class="lvsheet"><img class="px" src="${st.img}" alt=""><div class="stp-name" style="margin-top:4px">${esc(st.n)}</div>
+    <div style="margin-top:6px;color:var(--muted);font-size:14px">Niveau <b style="color:var(--fg)">${lv}</b> · ${xp.toLocaleString("fr-FR")} XP</div>
+    <div class="lvbar"><i style="width:${pc}%"></i></div><div style="font-size:12px;color:var(--muted)">${lv>=50 ? "Niveau maximum !" : `${(b-xp).toLocaleString("fr-FR")} XP avant le niveau ${lv+1}`}</div>
+    <div class="lvlist"><div><span>Carte ajoutée</span><b>+10 XP</b></div><div><span>… cotée 5 € et plus</span><b>+30 XP</b></div><div><span>… cotée 20 € et plus</span><b>+60 XP</b></div><div><span>… cotée 100 € et plus</span><b>+150 XP</b></div>
+    <div><span>Produit scellé (Budget)</span><b>+40 XP</b></div><div><span>Carte gradée</span><b>+100 XP</b></div><div><span>Extension complétée</span><b>+500 XP</b></div></div>
+    <p class="fine" style="margin-top:12px">Ton compagnon grandit avec ta collection. Une carte retirée lui retire ses XP.</p></div>`;
+  openSheet();
+}
+function starterPicker(){
+  if(starterOf() || $("#stp")) return;
+  const el = document.createElement("div"); el.id = "stp"; el.className = "stp empty";
+  el.innerHTML = `<h2>CHOISIS TON STARTER</h2><p class="lede">Glisse à gauche ou à droite pour les découvrir</p>
+    <div class="stp-stage"><img class="stp-spr px hide" alt=""><svg class="stp-ball" viewBox="0 0 100 100" aria-hidden="true"><use href="#pb"/></svg></div>
+    <div class="stp-name">???</div><span class="stp-type">?</span><p class="stp-desc">Chaque Poké Ball cache un compagnon et une ambiance pour ton app.</p>
+    <div class="stp-nav"><button data-d="-1" aria-label="Précédent">‹</button><div class="stp-dots">${STARTERS.map(()=>"<i></i>").join("")}</div><button data-d="1" aria-label="Suivant">›</button></div>
+    <button class="stp-go" disabled>Glisse pour choisir</button>`;
+  document.body.appendChild(el);
+  let i = -1;
+  const spr = el.querySelector(".stp-spr"), go = el.querySelector(".stp-go");
+  const show = ()=>{
+    const st = STARTERS[i], lock = st.secret && !store.get("kanto", false);
+    el.classList.remove("empty"); document.documentElement.classList.toggle("nostart", lock);
+    if(!lock){ document.documentElement.dataset.theme = st.th; const m = document.querySelector('meta[name="theme-color"]'); if(m && THEMES[st.th]) m.content = THEMES[st.th].ink; }
+    spr.classList.add("hide");
+    setTimeout(()=>{ spr.src = st.img; spr.classList.toggle("lock", lock); spr.classList.remove("hide"); }, 160);
+    el.querySelector(".stp-name").textContent = lock ? "???" : st.n;
+    el.querySelector(".stp-type").textContent = lock ? "SECRET" : st.t;
+    el.querySelector(".stp-desc").textContent = lock ? "Un starter secret… Scanne la carte du Pokémon n°151 pour le débloquer." : st.d;
+    el.querySelectorAll(".stp-dots i").forEach((d,j)=>d.classList.toggle("on", j===i));
+    go.disabled = lock; go.textContent = lock ? "Verrouillé" : `Je choisis ${st.n} !`;
+    try{ navigator.vibrate?.(8); }catch(e){}
+  };
+  const step = d=>{ i = i<0 ? (d>0 ? 0 : STARTERS.length-1) : (i + d + STARTERS.length) % STARTERS.length; show(); };
+  el.querySelectorAll("[data-d]").forEach(b=>b.onclick = ()=>step(+b.dataset.d));
+  let x0 = null, y0 = 0;
+  el.addEventListener("touchstart", e=>{ e.stopPropagation(); const t = e.touches[0]; x0 = t.clientX; y0 = t.clientY; }, {passive:true});
+  el.addEventListener("touchmove", e=>e.stopPropagation(), {passive:true});
+  el.addEventListener("touchend", e=>{ e.stopPropagation(); if(x0==null) return; const t = e.changedTouches[0], dx = t.clientX - x0, dy = Math.abs(t.clientY - y0); x0 = null;
+    if(Math.abs(dx) > 40 && Math.abs(dx) > dy) step(dx < 0 ? 1 : -1); }, {passive:true});
+  const key = e=>{ if(!document.body.contains(el)){ removeEventListener("keydown", key); return; } if(e.key==="ArrowRight") step(1); if(e.key==="ArrowLeft") step(-1); };
+  addEventListener("keydown", key);
+  go.onclick = ()=>{
+    const st = STARTERS[i]; if(!st || go.disabled) return;
+    go.disabled = true;
+    store.set("starter", st.k); store.set("starterT", Date.now()); store.set("lvl", lvOf(acctXP()));
+    document.documentElement.classList.remove("nostart"); setTheme(st.th);
+    if($("#homeView").hidden) selectTab("homeView");
+    renderAvatar();
+    const av = $("#avat"), img = av?.querySelector("img"), r0 = spr.getBoundingClientRect(), r1 = img?.getBoundingClientRect();
+    if(img) img.style.visibility = "hidden";
+    const fly = document.createElement("img"); fly.src = st.img; fly.className = "stp-fly";
+    Object.assign(fly.style, {left:r0.left+"px", top:r0.top+"px", width:r0.width+"px", height:r0.height+"px"});
+    document.body.appendChild(fly); el.classList.add("out");
+    requestAnimationFrame(()=>requestAnimationFrame(()=>{
+      if(r1){ fly.style.transform = `translate(${r1.left-r0.left}px,${r1.top-r0.top}px)`; fly.style.width = r1.width+"px"; fly.style.height = r1.height+"px"; }
+      else fly.style.opacity = 0;
+    }));
+    setTimeout(()=>{ fly.remove(); el.remove(); if(img){ img.style.visibility = ""; av.classList.add("pop"); }
+      gameBox([`Tu as choisi ${st.n} !`, "Il grandit avec ta collection : chaque carte, chaque scellé et chaque gradée lui donnent de l'XP.", "Son niveau, c'est le niveau de ton compte. Touche-le en haut à gauche pour le voir."], [{label:"C'est parti !", go:true}]);
+    }, 800);
+  };
+}
+
 selectTab("homeView");
+renderAvatar();
+setTimeout(starterPicker, 350);
 setTimeout(()=>{ const m = document.querySelector('meta[name="theme-color"]'), k = document.documentElement.dataset.theme; if(m && THEMES[k]) m.content = THEMES[k].ink; }, 0);
 window.__booted = true;
 { const w = $("#wallet"), b = $("#wMin"), apply = m=>{ w.classList.toggle("min", m); b.setAttribute("aria-expanded", String(!m)); b.setAttribute("aria-label", m ? "Agrandir" : "Réduire"); };

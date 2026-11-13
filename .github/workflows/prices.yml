@@ -1,0 +1,30 @@
+name: Cotes de toutes les cartes
+on:
+  workflow_dispatch:
+  push:
+    paths: ["scripts/build-prices.mjs", ".github/workflows/prices.yml"]
+  schedule:
+    - cron: "23 1,9,17 * * *"
+permissions:
+  contents: write
+  pages: write
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: node scripts/build-prices.mjs
+      - name: Publier les cotes
+        run: |
+          git config user.name "cote-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add prices.json
+          git diff --cached --quiet || (git commit -m "Cotes de toutes les cartes mises à jour" && git pull --rebase && git push)
+      - name: Republier le site
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh api -X POST repos/${{ github.repository }}/pages/builds || true

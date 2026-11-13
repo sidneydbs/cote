@@ -1,0 +1,449 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="theme-color" content="#0c0a14">
+<title>Dex Scan · Booster 3D</title>
+<style>
+  html,body{margin:0;height:100%;background:#0c0a14;overflow:hidden;color:#F1EAFF;font-family:Inter,-apple-system,system-ui,sans-serif;
+    -webkit-user-select:none;user-select:none;touch-action:none;-webkit-tap-highlight-color:transparent}
+  #c{position:fixed;inset:0;width:100%;height:100%;display:block}
+  .top{position:fixed;left:0;right:0;top:0;padding:calc(env(safe-area-inset-top,0px) + 14px) 18px 0;text-align:center;pointer-events:none}
+  .top h1{margin:0;font:700 22px/1.2 -apple-system,system-ui;letter-spacing:-.01em}
+  .top p{margin:4px 0 0;color:#9C90B3;font-size:13px}
+  .hint{position:fixed;left:0;right:0;bottom:calc(env(safe-area-inset-bottom,0px) + 104px);text-align:center;font-size:15px;font-weight:600;color:#E6DCFA;
+    text-shadow:0 2px 12px rgba(0,0,0,.8);pointer-events:none;transition:opacity .3s}
+  .hint .sw{display:inline-block;width:60px;height:3px;border-radius:3px;background:linear-gradient(90deg,transparent,#fff,transparent);vertical-align:middle;margin-left:8px;animation:sw 1.4s ease-in-out infinite}
+  @keyframes sw{0%{transform:translateX(-18px);opacity:0}50%{opacity:1}100%{transform:translateX(18px);opacity:0}}
+  .bar{position:fixed;left:14px;right:14px;bottom:calc(env(safe-area-inset-bottom,0px) + 16px);display:flex;gap:10px}
+  .bar button{flex:1;height:54px;border:0;border-radius:999px;font:800 16px -apple-system,system-ui;color:#fff;background:linear-gradient(90deg,#9B5CFF,#5B2BD6);
+    box-shadow:0 0 0 2px rgba(155,92,255,.45),0 10px 30px rgba(155,92,255,.35)}
+  .bar button.g{flex:0 0 auto;padding:0 18px;background:rgba(40,34,56,.9);box-shadow:inset 0 0 0 1px rgba(255,255,255,.14)}
+  .rar{position:fixed;left:0;right:0;top:calc(env(safe-area-inset-top,0px) + 74px);text-align:center;pointer-events:none;opacity:0;transition:opacity .25s}
+  .rar b{display:inline-block;padding:6px 14px;border-radius:999px;font:800 14px -apple-system,system-ui;background:rgba(20,16,30,.8);box-shadow:inset 0 0 0 1px rgba(255,255,255,.18)}
+  .rar small{display:block;margin-top:6px;color:#CFC6DF;font-size:13px}
+  .sum{position:fixed;inset:0;background:rgba(10,8,16,.94);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);display:none;flex-direction:column;
+    padding:calc(env(safe-area-inset-top,0px) + 20px) 16px calc(env(safe-area-inset-bottom,0px) + 90px);overflow:auto;touch-action:pan-y}
+  .sum h2{margin:0;text-align:center;font:700 24px -apple-system,system-ui}
+  .sum .tot{text-align:center;color:#9C90B3;margin:6px 0 16px}.sum .tot b{color:#7CF0B0;font-size:20px}
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+  .grid div{text-align:center;font-size:11.5px;color:#CFC6DF}.grid img,.grid i{display:block;width:100%;aspect-ratio:.716;border-radius:6px;object-fit:cover;background:#241D31;margin-bottom:5px}
+  .grid div.hit img{box-shadow:0 0 0 2px #F5C542,0 0 18px rgba(245,197,66,.6)}
+  .grid b{display:block;color:#fff;font-size:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .load{position:fixed;inset:0;display:grid;place-items:center;color:#9C90B3;font-size:14px;pointer-events:none}
+</style>
+</head>
+<body>
+<canvas id="c"></canvas>
+<div class="load" id="load">Préparation du booster…</div>
+<div class="top"><h1>Chasse aux Rares</h1><p>Prototype 3D · cartes Évolutions Prismatiques</p></div>
+<div class="rar" id="rar"><b id="rarT"></b><small id="rarP"></small></div>
+<div class="hint" id="hint">Glisse le doigt sur le haut du sachet<span class="sw"></span></div>
+<div class="bar" id="bar"><button class="g" id="tilt">Inclinaison</button><button id="go">Ouvrir le booster</button></div>
+<div class="sum" id="sum"><h2>Ton booster</h2><p class="tot" id="tot"></p><div class="grid" id="grid"></div></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+/* ============================================================================
+   Dex Scan · prototype de booster en 3D (Three.js r128)
+   - sachet modélisé : bombé, pincé aux soudures, plis en éventail et en travers (géométrie),
+     micro-froissé + titre gaufré (normal map), aluminium brillant avec reflets d'environnement
+   - on fait tourner le sachet du doigt, ou en inclinant le téléphone (bouton « Inclinaison »)
+   - ouverture : on glisse le doigt sur le haut → la bande se déchire, les cartes sortent
+   - vraies cartes d'Évolutions Prismatiques (TCGdex), tirées selon leur rareté ; la meilleure à la fin
+   - économie d'énergie : 30 images/s max, arrêt quand l'onglet est caché
+============================================================================ */
+const FONTS = [
+  ["Anton","https://cdn.jsdelivr.net/npm/@fontsource/anton@5.3.0/files/anton-latin-400-normal.woff2"],
+  ["Permanent Marker","https://cdn.jsdelivr.net/npm/@fontsource/permanent-marker@5.3.0/files/permanent-marker-latin-400-normal.woff2"],
+  ["Inter","https://cdn.jsdelivr.net/npm/@fontsource/inter@5.3.0/files/inter-latin-800-normal.woff2"]
+];
+const SET = "sv08.5", SETNAME = "Évolutions Prismatiques";
+const RAR_URL = "rarities.json";
+const API = "https://api.tcgdex.net/v2";
+
+const $ = s => document.querySelector(s);
+const clamp = (x,a,b) => Math.max(a,Math.min(b,x));
+const smooth = (a,b,x) => { const t = clamp((x-a)/(b-a),0,1); return t*t*(3-2*t); };
+const lerp = (a,b,t) => a+(b-a)*t;
+const ease = t => 1-Math.pow(1-t,3);
+let seed = 1234; const rnd = () => (seed = (seed*16807) % 2147483647) / 2147483647;
+
+/* ---------- 1. textures du sachet (illustration + carte de relief) ---------- */
+const TW = 1024, TH = 1600, CRIMP = .075;   // proportion de chaque soudure
+function drawArt(g, W, H){
+  const bg = g.createLinearGradient(0,0,W*.3,H); bg.addColorStop(0,"#2a0b57"); bg.addColorStop(.55,"#ff2fa8"); bg.addColorStop(1,"#20e3ff");
+  g.fillStyle = bg; g.fillRect(0,0,W,H);
+  // étoiles
+  for(let k=0;k<70;k++){ g.fillStyle = `rgba(255,255,255,${.4+rnd()*.6})`; g.beginPath(); g.arc(rnd()*W, H*.1+rnd()*H*.3, 1+rnd()*2.5, 0, 7); g.fill(); }
+  // soleil rayé
+  const cx = W/2, cy = H*.4, r = W*.33;
+  const sg = g.createLinearGradient(0,cy-r,0,cy+r); sg.addColorStop(0,"#fff36b"); sg.addColorStop(.5,"#ff7a3d"); sg.addColorStop(1,"#ff2fa8");
+  g.fillStyle = sg; g.beginPath(); g.arc(cx,cy,r,0,7); g.fill();
+  g.fillStyle = "#3a0f6e"; for(let k=0;k<6;k++) g.fillRect(cx-r*1.2, cy+r*.12+k*r*.15, r*2.4, 8+k*5);
+  // montagnes
+  g.fillStyle = "#3a0f6e"; g.beginPath(); g.moveTo(0,H*.6);
+  [[.22,.5],[.38,.58],[.55,.47],[.75,.57],[1,.5]].forEach(([x,y])=>g.lineTo(W*x,H*y)); g.lineTo(W,H); g.lineTo(0,H); g.fill();
+  // sol quadrillé
+  g.strokeStyle = "rgba(34,232,255,.8)"; g.lineWidth = 4;
+  for(let k=0;k<11;k++){ g.beginPath(); g.moveTo(W/2,H*.62); g.lineTo(-W*.8+k*W*.26,H); g.stroke(); }
+  for(let k=0;k<6;k++){ const y = H*.64+k*k*H*.011+k*H*.022; g.beginPath(); g.moveTo(0,y); g.lineTo(W,y); g.stroke(); }
+}
+function drawTitle(g, W, H, fill, stroke){
+  g.textAlign = "center"; g.lineJoin = "round";
+  g.font = `${W*.2}px Anton`; g.lineWidth = W*.03; g.strokeStyle = stroke; g.strokeText("CHASSE", W/2, H*.69); g.fillStyle = fill; g.fillText("CHASSE", W/2, H*.69);
+  g.save(); g.translate(W/2, H*.79); g.rotate(-.1); g.font = `${W*.16}px "Permanent Marker"`; g.strokeText("aux Rares",0,0); g.fillText("aux Rares",0,0); g.restore();
+  g.font = `800 ${W*.04}px Inter`; g.fillStyle = fill === "#fff" ? "rgba(255,255,255,.9)" : fill; g.fillText("ÉVOLUTIONS PRISMATIQUES · 10 CARTES", W/2, H*.885);
+}
+function drawCrimps(g, W, H){
+  const ch = H*CRIMP;
+  [0, H-ch].forEach(y0=>{
+    const mg = g.createLinearGradient(0,0,W,0);
+    ["#2a0b57","#ff2fa8","#ffffff","#20e3ff","#ff2fa8","#2a0b57"].forEach((c,k,a)=>mg.addColorStop(k/(a.length-1),c));
+    g.fillStyle = mg; g.fillRect(0,y0,W,ch);
+    for(let x=0;x<W;x+=10){ g.fillStyle = "rgba(0,0,0,.35)"; g.fillRect(x,y0,4,ch); g.fillStyle = "rgba(255,255,255,.35)"; g.fillRect(x+5,y0,2,ch); }
+  });
+}
+function buildTextures(){
+  seed = 99;
+  const art = document.createElement("canvas"); art.width = TW; art.height = TH;
+  const g = art.getContext("2d");
+  drawArt(g,TW,TH); drawTitle(g,TW,TH,"#fff","#2a0b57"); drawCrimps(g,TW,TH);
+  // carte de relief (gris = hauteur) : titre gaufré, soleil légèrement relevé, stries des soudures, micro-froissé
+  const HW = 512, HH = 800, hc = document.createElement("canvas"); hc.width = HW; hc.height = HH;
+  const h = hc.getContext("2d");
+  h.fillStyle = "#808080"; h.fillRect(0,0,HW,HH);
+  for(let k=0;k<900;k++){ const x=rnd()*HW, y=rnd()*HH, l=4+rnd()*28, a=rnd()*Math.PI;
+    h.strokeStyle = `rgba(${rnd()<.5?255:0},${rnd()<.5?255:0},${rnd()<.5?255:0},0)`; // (couleur inutilisée)
+    h.strokeStyle = rnd()<.5 ? `rgba(255,255,255,${.05+rnd()*.12})` : `rgba(0,0,0,${.05+rnd()*.12})`;
+    h.lineWidth = 1+rnd()*2.5; h.beginPath(); h.moveTo(x,y); h.lineTo(x+Math.cos(a)*l, y+Math.sin(a)*l); h.stroke(); }
+  h.filter = "blur(1.2px)"; h.drawImage(hc,0,0); h.filter = "none";
+  h.fillStyle = "rgba(255,255,255,.18)"; h.beginPath(); h.arc(HW/2,HH*.4,HW*.33,0,7); h.fill();
+  h.save(); h.filter = "blur(2.5px)"; drawTitle(h,HW,HH,"#ffffff","#ffffff"); h.restore();
+  const ch = HH*CRIMP; [0,HH-ch].forEach(y0=>{ for(let x=0;x<HW;x+=5){ h.fillStyle="#303030"; h.fillRect(x,y0,2,ch); h.fillStyle="#d8d8d8"; h.fillRect(x+2,y0,3,ch); } });
+  // relief → normal map (dérivées de la hauteur)
+  const src = h.getImageData(0,0,HW,HH).data, nm = h.createImageData(HW,HH), o = nm.data, S = 2.2;
+  const H_ = (x,y) => src[((clamp(y,0,HH-1))*HW + clamp(x,0,HW-1))*4] / 255;
+  for(let y=0;y<HH;y++) for(let x=0;x<HW;x++){
+    const dx = (H_(x+1,y)-H_(x-1,y))*S, dy = (H_(x,y+1)-H_(x,y-1))*S, l = Math.hypot(dx,dy,1), i = (y*HW+x)*4;
+    o[i] = (-dx/l*.5+.5)*255; o[i+1] = (dy/l*.5+.5)*255; o[i+2] = (1/l*.5+.5)*255; o[i+3] = 255;
+  }
+  const nc = document.createElement("canvas"); nc.width = HW; nc.height = HH; nc.getContext("2d").putImageData(nm,0,0);
+  // dos du sachet : aluminium + mentions
+  const bk = document.createElement("canvas"); bk.width = 512; bk.height = 800; const b = bk.getContext("2d");
+  const bgd = b.createLinearGradient(0,0,512,800); bgd.addColorStop(0,"#3a1f6e"); bgd.addColorStop(1,"#160b2e"); b.fillStyle = bgd; b.fillRect(0,0,512,800);
+  b.fillStyle = "rgba(255,255,255,.85)"; b.textAlign = "center"; b.font = "60px Anton"; b.fillText("DEX · SCAN", 256, 380);
+  b.font = "800 18px Inter"; b.fillStyle = "rgba(255,255,255,.55)"; b.fillText("10 CARTES · " + SETNAME.toUpperCase(), 256, 420);
+  drawCrimps(b,512,800);
+  return {art, normal:nc, back:bk};
+}
+
+/* ---------- 2. géométrie du sachet ---------- */
+const PW = 2.0, PH = 3.2;           // largeur, hauteur
+const FOLDS = (()=>{ seed = 7; const f = [];
+  for(let k=0;k<10;k++) f.push({type:"fan", x:-.92+k*.2+rnd()*.06, top:k%2===0, len:.25+rnd()*.35, ang:(rnd()-.5)*.9, a:.012+rnd()*.012});
+  for(let k=0;k<10;k++) f.push({type:"fan", x:-.92+k*.2+rnd()*.06, top:k%2===1, len:.2+rnd()*.3, ang:(rnd()-.5)*.9, a:.01+rnd()*.012});
+  for(let k=0;k<3;k++) f.push({type:"across", v:.28+rnd()*.44, bend:(rnd()-.5)*.15, a:.008+rnd()*.008});
+  f.push({type:"down", u:-.35+rnd()*.7, a:.006});
+  return f; })();
+function surfaceZ(u, v){  // u ∈ [-1,1] (largeur), v ∈ [0,1] (bas → haut)
+  const body = smooth(CRIMP, CRIMP+.07, v) * smooth(CRIMP, CRIMP+.07, 1-v);
+  let z = .17 * Math.pow(Math.max(0,1-u*u), .55) * Math.pow(body,.75);
+  // stries des soudures
+  if(body < .05) z += .004*Math.sin(u*120);
+  // plis
+  for(const f of FOLDS){
+    if(f.type === "fan"){
+      const v0 = f.top ? 1-CRIMP : CRIMP, dir = f.top ? -1 : 1;
+      const dvv = (v - v0)*dir; if(dvv < 0 || dvv > f.len) continue;
+      const cx = f.x + f.ang*dvv*1.6, d = (u - cx)*PW/2, w = .035 + dvv*.08, fade = 1 - dvv/f.len;
+      z += f.a * Math.exp(-(d*d)/(w*w)) * fade * body;
+    } else if(f.type === "across"){
+      const cv = f.v + f.bend*(1-u*u), d = (v - cv)*PH, w = .05;
+      z += f.a * Math.exp(-(d*d)/(w*w)) * (1-u*u) * body;
+    } else {
+      const d = (u - f.u)*PW/2, w = .06; z -= f.a * Math.exp(-(d*d)/(w*w)) * body;
+    }
+  }
+  // grandes ondulations douces
+  z += .006*Math.sin(u*5.1+v*9.3)*body + .004*Math.sin(u*11.7-v*6.1)*body;
+  return z;
+}
+function pouchGeometry(v0, v1, segX, segY){
+  const g = new THREE.PlaneGeometry(PW, PH*(v1-v0), segX, segY), p = g.attributes.position, uv = g.attributes.uv;
+  for(let i=0;i<p.count;i++){
+    const x = p.getX(i), yLocal = p.getY(i);
+    const u = x/(PW/2), v = v0 + (yLocal/(PH*(v1-v0)) + .5)*(v1-v0);
+    // léger pincement de la largeur près des soudures
+    const pinch = 1 - .03*smooth(CRIMP, CRIMP+.2, v)*smooth(CRIMP, CRIMP+.2, 1-v)*0 - .025*(1-smooth(CRIMP,CRIMP+.12,Math.min(v,1-v)))*0;
+    p.setXYZ(i, x*pinch, (v-.5)*PH, surfaceZ(u,v));
+    uv.setXY(i, u*.5+.5, v);
+  }
+  g.computeVertexNormals();
+  return g;
+}
+
+/* ---------- 3. scène ---------- */
+const canvas = $("#c");
+const renderer = new THREE.WebGLRenderer({canvas, antialias:true, alpha:false, powerPreference:"high-performance"});
+renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+renderer.outputEncoding = THREE.sRGBEncoding;
+renderer.localClippingEnabled = true;
+renderer.toneMapping = THREE.ACESFilmicToneMapping; renderer.toneMappingExposure = 1.05;
+const scene = new THREE.Scene(); scene.background = new THREE.Color("#0c0a14");
+const camera = new THREE.PerspectiveCamera(32, 1, .1, 50); camera.position.set(0, 0, 8.6);
+
+// environnement de reflets : pièce sombre avec panneaux lumineux colorés (donne le brillant de l'aluminium)
+function envMap(){
+  const es = new THREE.Scene();
+  es.add(new THREE.Mesh(new THREE.SphereGeometry(10,32,16), new THREE.MeshBasicMaterial({color:"#120c22", side:THREE.BackSide})));
+  const panel = (w,h,color,pos,look) => { const m = new THREE.Mesh(new THREE.PlaneGeometry(w,h), new THREE.MeshBasicMaterial({color, side:THREE.DoubleSide}));
+    m.position.set(...pos); m.lookAt(...look); es.add(m); };
+  panel(6,2.2,"#ffffff",[-4,4,5],[0,0,0]);
+  panel(2,7,"#ffe6ff",[6,0,3],[0,0,0]);
+  panel(5,1.2,"#7af6ff",[0,-5,4],[0,0,0]);
+  panel(3,3,"#ff6ad5",[-6,-1,-2],[0,0,0]);
+  panel(8,1,"#fff7d6",[0,7,-1],[0,0,0]);
+  const pm = new THREE.PMREMGenerator(renderer); const rt = pm.fromScene(es, .02); pm.dispose(); return rt.texture;
+}
+scene.environment = envMap();
+const key = new THREE.DirectionalLight("#ffffff", .9); key.position.set(-3,4,6); scene.add(key);
+scene.add(new THREE.AmbientLight("#6a5a90", .35));
+// halo derrière le sachet
+const glowTex = (()=>{ const c = document.createElement("canvas"); c.width = c.height = 256; const g = c.getContext("2d");
+  const rg = g.createRadialGradient(128,128,0,128,128,128); rg.addColorStop(0,"rgba(155,92,255,.55)"); rg.addColorStop(1,"rgba(155,92,255,0)"); g.fillStyle = rg; g.fillRect(0,0,256,256);
+  return new THREE.CanvasTexture(c); })();
+const glow = new THREE.Mesh(new THREE.PlaneGeometry(9,9), new THREE.MeshBasicMaterial({map:glowTex, transparent:true, depthWrite:false}));
+glow.position.z = -2; scene.add(glow);
+
+const pouch = new THREE.Group(); scene.add(pouch);
+let pouchMat, backMat, strip, bodyFront, bodyBack, stripFront, stripBack;
+const TEAR_V = .905;   // la bande arrachée = au-dessus de cette hauteur
+function buildPouch(tex){
+  const map = new THREE.CanvasTexture(tex.art); map.encoding = THREE.sRGBEncoding; map.anisotropy = renderer.capabilities.getMaxAnisotropy();
+  const normalMap = new THREE.CanvasTexture(tex.normal);
+  const bmap = new THREE.CanvasTexture(tex.back); bmap.encoding = THREE.sRGBEncoding;
+  pouchMat = new THREE.MeshPhysicalMaterial({map, normalMap, normalScale:new THREE.Vector2(.9,.9), metalness:.72, roughness:.24,
+    clearcoat:1, clearcoatRoughness:.12, envMapIntensity:1.35, transparent:true});
+  backMat = new THREE.MeshPhysicalMaterial({map:bmap, normalMap, normalScale:new THREE.Vector2(.9,.9), metalness:.8, roughness:.28, clearcoat:.8,
+    envMapIntensity:1.2, side:THREE.BackSide, transparent:true});
+  const gBody = pouchGeometry(0, TEAR_V, 90, 150), gStrip = pouchGeometry(TEAR_V, 1, 90, 14);
+  bodyFront = new THREE.Mesh(gBody, pouchMat); bodyBack = new THREE.Mesh(gBody, backMat); bodyBack.scale.z = -1;
+  pouch.add(bodyFront, bodyBack);
+  // la bande du haut : pivot sur le bord gauche pour se déchirer de gauche à droite
+  strip = new THREE.Group(); strip.position.set(-PW/2, 0, 0); pouch.add(strip);
+  stripFront = new THREE.Mesh(gStrip, pouchMat); stripBack = new THREE.Mesh(gStrip, backMat); stripBack.scale.z = -1;
+  stripFront.position.x = stripBack.position.x = PW/2; strip.add(stripFront, stripBack);
+}
+
+/* ---------- 4. cartes ---------- */
+const CW = 1.72, CH = CW*1.396;
+function roundedAlpha(){ const c = document.createElement("canvas"); c.width = 128; c.height = 178; const g = c.getContext("2d");
+  g.fillStyle = "#000"; g.fillRect(0,0,128,178); g.fillStyle = "#fff"; g.beginPath(); g.roundRect ? g.roundRect(1,1,126,176,7) : g.rect(1,1,126,176); g.fill();
+  return new THREE.CanvasTexture(c); }
+const ALPHA = roundedAlpha();
+function placeholderCard(name, rar){ const c = document.createElement("canvas"); c.width = 360; c.height = 502; const g = c.getContext("2d");
+  const gr = g.createLinearGradient(0,0,360,502); gr.addColorStop(0,"#F7E27A"); gr.addColorStop(1,"#E9B530"); g.fillStyle = gr; g.fillRect(0,0,360,502);
+  g.fillStyle = "#2a1f45"; g.fillRect(16,16,328,470); g.fillStyle = "#fff"; g.textAlign = "center"; g.font = "800 26px Inter"; g.fillText(name,180,240);
+  g.font = "18px Inter"; g.fillStyle = "#cfc6df"; g.fillText(rar,180,275); return c; }
+function cardBack(){ const c = document.createElement("canvas"); c.width = 360; c.height = 502; const g = c.getContext("2d");
+  const gr = g.createLinearGradient(0,0,360,502); gr.addColorStop(0,"#3b1d6e"); gr.addColorStop(1,"#120a24"); g.fillStyle = gr; g.fillRect(0,0,360,502);
+  g.strokeStyle = "#C08CFF"; g.lineWidth = 10; g.strokeRect(14,14,332,474); g.fillStyle = "#C08CFF"; g.textAlign = "center"; g.font = "48px Anton"; g.fillText("DEX · SCAN",180,265);
+  return c; }
+const BACK_TEX = (()=>{ const t = new THREE.CanvasTexture(cardBack()); t.encoding = THREE.sRGBEncoding; return t; })();
+function holoTex(){ const c = document.createElement("canvas"); c.width = 256; c.height = 256; const g = c.getContext("2d");
+  const gr = g.createLinearGradient(0,0,256,256); ["#ff5ad1","#5ae8ff","#fff35a","#7affb0","#b45aff","#ff5ad1"].forEach((x,k,a)=>gr.addColorStop(k/(a.length-1),x));
+  g.fillStyle = gr; g.fillRect(0,0,256,256); const t = new THREE.CanvasTexture(c); t.wrapS = t.wrapT = THREE.RepeatWrapping; return t; }
+const HOLO = holoTex();
+const cards = [];   // {group, front, holo, info}
+const CLIP = new THREE.Plane(new THREE.Vector3(0,1,0), 0);   // mis à jour à chaque image : bord de l'ouverture
+function makeCard(info){
+  const grp = new THREE.Group();
+  const front = new THREE.Mesh(new THREE.PlaneGeometry(CW,CH), new THREE.MeshPhysicalMaterial({color:"#fff", roughness:.38, metalness:.05, clearcoat:1, clearcoatRoughness:.2, alphaMap:ALPHA, transparent:true, clippingPlanes:[CLIP]}));
+  const back = new THREE.Mesh(new THREE.PlaneGeometry(CW,CH), new THREE.MeshPhysicalMaterial({map:BACK_TEX, roughness:.45, clearcoat:.6, alphaMap:ALPHA, transparent:true, clippingPlanes:[CLIP]}));
+  back.rotation.y = Math.PI; back.position.z = -.002;
+  grp.add(front, back);
+  let holo = null;
+  if(info.hit){ holo = new THREE.Mesh(new THREE.PlaneGeometry(CW,CH), new THREE.MeshBasicMaterial({map:HOLO.clone(), alphaMap:ALPHA, transparent:true, opacity:.0, blending:THREE.AdditiveBlending, depthWrite:false, clippingPlanes:[CLIP]}));
+    holo.material.map.needsUpdate = true; holo.position.z = .003; grp.add(holo); }
+  const setTex = img => { const t = new THREE.Texture(img); t.encoding = THREE.sRGBEncoding; t.anisotropy = 4; t.needsUpdate = true; front.material.map = t; front.material.needsUpdate = true; };
+  setTex(placeholderCard(info.name || "Carte", info.rar));
+  if(info.img){ const im = new Image(); im.crossOrigin = "anonymous"; im.onload = () => setTex(im); im.src = info.img; }
+  return {group:grp, front, holo, info};
+}
+
+/* ---------- 5. tirage selon la rareté (événement « Chasse aux Rares » : hits boostés) ---------- */
+const FALLBACK = {R:["Commune","Peu Commune","Rare","Double rare","Ultra Rare","Illustration spéciale rare","Hyper rare"],
+  g:{"Commune":["001","003","004","007","009","015","018","020","035","036"],"Peu Commune":["002","010","016","019","021","024","042"],"Rare":["005","008","013","022","025"],
+     "Double rare":["006","011","012","014","017"],"Ultra Rare":["132","133","134"],"Illustration spéciale rare":["144","150","155","161"],"Hyper rare":["176","177"]}};
+async function rarityTable(){
+  try{ const r = await fetch(RAR_URL, {cache:"no-cache"}); const d = await r.json(); const s = d.S[SET]; const g = {};
+    for(const [ri, nums] of s.g) g[d.R[ri]] = String(nums).split(","); return g; }catch(e){ return FALLBACK.g; }
+}
+const pick = a => a[Math.floor(Math.random()*a.length)];
+function weighted(list){ let t = list.reduce((a,[,w])=>a+w,0), x = Math.random()*t; for(const [k,w] of list){ if((x-=w) <= 0) return k; } return list[0][0]; }
+function draw(g){
+  const has = k => g[k] && g[k].length, out = [];
+  for(let k=0;k<4;k++) out.push(["Commune", pick(g["Commune"])]);
+  for(let k=0;k<3;k++) out.push(["Peu Commune", pick(g["Peu Commune"])]);
+  out.push(["Reverse", pick([...(g["Commune"]||[]), ...(g["Peu Commune"]||[]), ...(g["Rare"]||[])])]);
+  const slot9 = weighted([["Rare",65],["Double rare",35]].filter(([k])=>has(k)));
+  out.push([slot9, pick(g[slot9])]);
+  const slot10 = weighted([["Double rare",30],["Ultra Rare",22],["HIGH-TECH rare",12],["Illustration rare",14],["Illustration spéciale rare",16],["Hyper rare",6]].filter(([k])=>has(k)));
+  out.push([slot10, pick(g[slot10])]);
+  return out;
+}
+const HITS = /double|ultra|illustration|hyper|high-tech/i;
+async function cardInfo([rar, num]){
+  const id = `${SET}-${num}`, info = {id, rar, name:`n° ${num}`, hit:HITS.test(rar)};
+  try{ const r = await fetch(`${API}/fr/cards/${id}`); if(r.ok){ const c = await r.json(); info.name = c.name;
+      if(c.image) info.img = c.image + "/high.webp";
+      const cm = c.pricing && c.pricing.cardmarket; if(cm){ const v = [cm.trend, cm.avg7, cm.avg30, cm["trend-holo"]].filter(x=>typeof x==="number"&&x>0); if(v.length) info.price = v.sort((a,b)=>a-b)[Math.floor((v.length-1)/2)]; } }
+  }catch(e){}
+  if(!info.img) info.img = `https://assets.tcgdex.net/en/sv/${SET}/${num}/high.webp`;
+  return info;
+}
+
+/* ---------- 6. interactions et animation ---------- */
+const state = {mode:"idle", rotY:0, rotX:0, tY:0, tX:0, vY:0, drag:null, tear:0, tearDone:0, outT:0, idx:0, flyT:0, tilt:null};
+let rarTable = null, pulls = [];
+function resize(){ const w = innerWidth, h = innerHeight; renderer.setSize(w,h,false); camera.aspect = w/h;
+  camera.position.z = w/h < .62 ? 8.6 : 7.4; camera.updateProjectionMatrix(); }
+addEventListener("resize", resize); resize();
+
+function topScreenY(){ const p = new THREE.Vector3(0, PH*(TEAR_V-.5)+.12, 0); pouch.localToWorld(p); p.project(camera); return (1-p.y)/2*innerHeight; }
+canvas.addEventListener("pointerdown", e => {
+  canvas.setPointerCapture(e.pointerId);
+  if(state.mode === "cards"){ nextCard(); return; }
+  if(state.mode !== "idle") return;
+  const ty = topScreenY();
+  state.drag = {x:e.clientX, y:e.clientY, lx:e.clientX, tear: Math.abs(e.clientY - ty) < 70};
+});
+canvas.addEventListener("pointermove", e => {
+  const d = state.drag; if(!d) return;
+  const dx = e.clientX - d.lx; d.lx = e.clientX;
+  if(d.tear){ state.tear = clamp((e.clientX - d.x) / (innerWidth*.55), 0, 1); if(state.tear >= .98) openPouch(); }
+  else { state.tY += dx * .012; state.vY = dx * .012; state.tX = clamp(state.tX + (e.clientY - d.y)*.0005, -.4, .4); }
+});
+const up = () => { if(state.drag && state.drag.tear && state.mode === "idle" && state.tear < .98) state.tearBack = true; state.drag = null; };
+canvas.addEventListener("pointerup", up); canvas.addEventListener("pointercancel", up);
+
+$("#go").onclick = () => { if(state.mode === "idle") openPouch(); else if(state.mode === "done") reset(); };
+$("#tilt").onclick = async () => {
+  try{ if(typeof DeviceOrientationEvent !== "undefined" && DeviceOrientationEvent.requestPermission){ const r = await DeviceOrientationEvent.requestPermission(); if(r !== "granted") return; }
+    addEventListener("deviceorientation", ev => { state.tilt = {b:ev.beta||0, g:ev.gamma||0}; });
+    $("#tilt").textContent = "Inclinaison ✓";
+  }catch(e){ $("#tilt").textContent = "Non dispo"; }
+};
+
+async function openPouch(){
+  if(state.mode !== "idle") return;
+  state.mode = "tearing"; state.tearDone = 0; $("#hint").style.opacity = 0; $("#go").disabled = true;
+  pulls = (await Promise.all(draw(rarTable).map(cardInfo)));
+  // ordre : communes d'abord, la meilleure carte en dernier
+  cards.forEach(c => pouch.remove(c.group)); cards.length = 0;
+  pulls.forEach((info,k) => { const c = makeCard(info); c.group.position.set(0, -.2, .002*(pulls.length-k)); pouch.add(c.group); cards.push(c); });
+  cards.forEach((c,k) => c.group.renderOrder = 10 - k);
+}
+function nextCard(){
+  if(state.flyT > 0) return;
+  state.flyT = .0001;
+}
+function showRarity(info){
+  $("#rarT").textContent = info.rar + (info.hit ? " ✨" : "");
+  $("#rarP").textContent = info.name + (info.price ? ` · ${info.price.toFixed(2).replace(".",",")} €` : "");
+  $("#rar").style.opacity = 1;
+}
+function finish(){
+  state.mode = "done"; $("#rar").style.opacity = 0;
+  const tot = pulls.reduce((a,c)=>a+(c.price||0),0);
+  $("#tot").innerHTML = `Valeur totale : <b>${tot.toFixed(2).replace(".",",")} €</b>`;
+  $("#grid").innerHTML = pulls.map(c=>`<div class="${c.hit?"hit":""}"><img src="${c.img}" alt="" onerror="this.outerHTML='<i></i>'"><b>${c.name}</b>${c.rar}${c.price?` · ${c.price.toFixed(2).replace(".",",")} €`:""}</div>`).join("");
+  $("#sum").style.display = "flex"; $("#go").disabled = false; $("#go").textContent = "Ouvrir un autre booster";
+}
+function reset(){
+  $("#sum").style.display = "none"; $("#go").textContent = "Ouvrir le booster"; $("#hint").style.opacity = 1;
+  cards.forEach(c => { pouch.remove(c.group); scene.remove(c.group); }); cards.length = 0;
+  state.mode = "idle"; state.tear = 0; state.tearDone = 0; state.flyStrip = 0; CLIP.constant = 0; state.outT = 0; state.idx = 0; state.flyT = 0;
+  strip.visible = true; strip.rotation.set(0,0,0); strip.position.set(-PW/2,0,0);
+  pouchMat.opacity = backMat.opacity = 1; bodyFront.visible = bodyBack.visible = true; pouch.position.set(0,0,0);
+}
+
+/* ---------- 7. boucle de rendu (30 images/s max, pause quand caché) ---------- */
+let last = 0, t0 = performance.now(), running = true;
+document.addEventListener("visibilitychange", () => { running = !document.hidden; if(running) requestAnimationFrame(loop); });
+function loop(now){
+  if(!running) return;
+  requestAnimationFrame(loop);
+  if(now - last < 32) return;
+  const dt = Math.min(.12, (now - last)/1000); last = now; const t = (now - t0)/1000;
+
+  // rotation : doigt + inertie, ou inclinaison du téléphone
+  if(!state.drag){ state.vY *= .92; state.tY += state.vY; state.tY *= .97; state.tX *= .95; }
+  let ty = state.tY + Math.sin(t*.7)*.12, tx = state.tX + Math.sin(t*.9)*.04;
+  if(state.tilt){ ty += clamp(state.tilt.g, -40, 40) * .012; tx += clamp(state.tilt.b - 45, -40, 40) * .008; }
+  state.rotY = lerp(state.rotY, ty, .15); state.rotX = lerp(state.rotX, tx, .15);
+  pouch.rotation.set(state.rotX, state.rotY, 0);
+  pouch.position.y = state.mode === "idle" ? Math.sin(t*1.3)*.04 : pouch.position.y;
+
+  // déchirure de la bande
+  if(state.tearBack){ state.tear = Math.max(0, state.tear - dt*3); if(state.tear === 0) state.tearBack = false; }
+  if(state.mode === "tearing"){ state.tearDone = Math.min(1, state.tearDone + dt*1.6); state.tear = Math.max(state.tear, state.tearDone); }
+  if(strip && strip.visible){
+    const p = state.tear;
+    strip.rotation.z = p * .55; strip.rotation.y = -p * .35; strip.position.y = p * .25;
+    if(state.tearDone >= 1 && (state.mode === "tearing" || state.mode === "out")){
+      state.flyStrip = (state.flyStrip||0) + dt;
+      strip.position.x = -PW/2 - state.flyStrip*6; strip.position.y = .25 + state.flyStrip*4; strip.rotation.z = .55 + state.flyStrip*3;
+      if(state.mode === "tearing" && state.flyStrip > .35 && cards.length){ state.mode = "out"; state.outT = 0; }
+      if(state.flyStrip > 1.2) strip.visible = false;
+    }
+  }
+  if(state.mode === "tearing" || state.mode === "out"){
+    const n = new THREE.Vector3(0,1,0).applyQuaternion(pouch.quaternion).normalize();
+    const p = new THREE.Vector3(0, PH*(TEAR_V-.5), 0); pouch.localToWorld(p);
+    CLIP.setFromNormalAndCoplanarPoint(n, p);   // three.js cache ce qui est sous le plan : on ne voit que ce qui dépasse de l'ouverture
+  }
+  // les cartes sortent du sachet, le sachet descend et s'efface
+  if(state.mode === "out"){
+    state.outT = Math.min(1, state.outT + dt*.9); const e = ease(state.outT);
+    cards.forEach((c,k) => { c.group.position.y = lerp(-.2, 2.2, e); });
+    if(state.outT > .55){ const f = ease((state.outT-.55)/.45); pouch.position.y = -f*5; pouchMat.opacity = backMat.opacity = 1-f; }
+    if(state.outT >= 1){
+      // les cartes passent dans la scène, face à l'écran
+      CLIP.constant = 99;   // plus de découpe une fois sorties
+      cards.forEach((c,k) => { pouch.remove(c.group); scene.add(c.group); c.group.position.set(0, .1, .002*(cards.length-k)); c.group.rotation.set(0,0,0); });
+      bodyFront.visible = bodyBack.visible = false; state.mode = "cards"; state.idx = 0; showRarity(cards[0].info);
+      $("#hint").textContent = "Touche l'écran pour la carte suivante"; $("#hint").style.opacity = 1;
+    }
+  }
+  if(state.mode === "cards"){
+    const c = cards[state.idx];
+    // la carte du dessus suit l'inclinaison ; reflet holo des cartes rares
+    cards.forEach((x,k) => { if(k >= state.idx){ x.group.rotation.y = lerp(x.group.rotation.y, state.rotY*.6, .2); x.group.rotation.x = lerp(x.group.rotation.x, state.rotX*.6, .2); } });
+    if(c && c.holo){ c.holo.material.opacity = .22 + .12*Math.sin(t*2.2); c.holo.material.map.offset.set(state.rotY*.6 + t*.05, state.rotX*.6); }
+    if(state.flyT > 0 && c){
+      state.flyT = Math.min(1, state.flyT + dt*2.4); const e = ease(state.flyT);
+      c.group.position.x = e*5.5; c.group.position.y = .1 + e*1.2; c.group.rotation.z = -e*.6;
+      if(state.flyT >= 1){ c.group.visible = false; state.flyT = 0; state.idx++;
+        if(state.idx >= cards.length){ $("#hint").style.opacity = 0; finish(); }
+        else { const n = cards[state.idx]; showRarity(n.info); if(state.idx === cards.length-1 && n.info.hit){ glow.material.color.set("#ffd76a"); } } }
+    }
+  }
+  glow.material.opacity = state.mode === "cards" && cards[state.idx] && cards[state.idx].info.hit ? .9 + .1*Math.sin(t*4) : .75;
+  renderer.render(scene, camera);
+}
+
+/* ---------- 8. démarrage ---------- */
+(async () => {
+  try{ await Promise.all(FONTS.map(([f,u]) => new FontFace(f, `url(${u})`, f==="Inter"?{weight:"800"}:{}).load().then(ff => document.fonts.add(ff)).catch(()=>{}))); }catch(e){}
+  rarTable = await rarityTable();
+  buildPouch(buildTextures());
+  $("#load").style.display = "none";
+  requestAnimationFrame(loop);
+})();
+</script>
+</body>
+</html>

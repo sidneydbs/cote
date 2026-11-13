@@ -199,6 +199,7 @@ html{background:var(--panel)}
 .alt span{display:block;font-size:11px;color:var(--muted);margin-top:5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .alt b{display:block;font-size:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .addrow{display:flex;gap:8px;margin-top:14px}
+.sharebtn{width:100%;margin-top:8px}
 .addrow .btn{flex:1}
 .fine{font-size:11.5px;color:var(--muted);line-height:1.5;margin-top:18px}
 
@@ -1088,7 +1089,7 @@ html{background:var(--panel)}
 </head>
 <body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="pb" viewBox="0 0 100 100"><defs><linearGradient id="pbV" x1="0" y1="0" x2="1" y2="1"><stop offset="0" style="stop-color:var(--pb1)"/><stop offset=".5" style="stop-color:var(--pb2)"/><stop offset="1" style="stop-color:var(--pb3)"/></linearGradient><radialGradient id="pbB" cx=".38" cy=".75" r=".75"><stop offset="0" style="stop-color:var(--pbb1)"/><stop offset="1" style="stop-color:var(--pbb2)"/></radialGradient><radialGradient id="pbC" cx=".4" cy=".35" r=".7"><stop offset="0" style="stop-color:var(--pbc1)"/><stop offset=".55" style="stop-color:var(--pbc2)"/><stop offset="1" style="stop-color:var(--pbc3)"/></radialGradient></defs><path d="M3 50a47 47 0 0 1 94 0z" fill="url(#pbV)"/><path d="M3 50a47 47 0 0 0 94 0z" fill="url(#pbB)"/><rect x="3" y="45.5" width="94" height="9" fill="#09080D"/><circle cx="50" cy="50" r="47" fill="none" stroke="#09080D" stroke-width="4"/><circle cx="50" cy="50" r="15.5" fill="#09080D"/><circle cx="50" cy="50" r="10" fill="url(#pbC)" style="stroke:var(--pb2)" stroke-width="2"/><path d="M19 33a35 35 0 0 1 17-15" fill="none" stroke="#fff" stroke-opacity=".38" stroke-width="4" stroke-linecap="round"/></symbol></svg>
-<script>window.__APPV="74";</script>
+<script>window.__APPV="75";</script>
 <div class="splash" id="splash" aria-hidden="true"><i class="hole"></i><i class="halo"></i><div class="bw"><svg class="b" viewBox="0 0 100 100"><use href="#pb"/></svg><svg class="t" viewBox="0 0 100 100"><use href="#pb"/></svg></div><i class="glow"></i></div>
 <script>setTimeout(function(){ if(window.__booted) return;
   var b=document.createElement("div"); b.setAttribute("role","alert");
@@ -1123,7 +1124,7 @@ html{background:var(--panel)}
   <!-- ===== EXTENSIONS ===== -->
   <section class="view" id="homeView">
     <div class="scroll">
-      <div class="homebar"><span id="avatSlot"><svg class="pball" viewBox="0 0 100 100" aria-hidden="true"><use href="#pb"/></svg></span><span class="brand">DEX<b>·</b>SCAN</span><button class="thbtn" id="themeBtn" aria-label="Changer de thème"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.6-.9 1.2-1.8-.5-1.1.2-2.2 1.4-2.2H17a4 4 0 0 0 4-4c0-5.5-4-10-9-10z"/><circle cx="7.5" cy="11" r="1.2"/><circle cx="10" cy="7" r="1.2"/><circle cx="15" cy="7" r="1.2"/></svg></button><span class="ver">v74</span></div>
+      <div class="homebar"><span id="avatSlot"><svg class="pball" viewBox="0 0 100 100" aria-hidden="true"><use href="#pb"/></svg></span><span class="brand">DEX<b>·</b>SCAN</span><button class="thbtn" id="themeBtn" aria-label="Changer de thème"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.6-.9 1.2-1.8-.5-1.1.2-2.2 1.4-2.2H17a4 4 0 0 0 4-4c0-5.5-4-10-9-10z"/><circle cx="7.5" cy="11" r="1.2"/><circle cx="10" cy="7" r="1.2"/><circle cx="15" cy="7" r="1.2"/></svg></button><span class="ver">v75</span></div>
       <div class="hhead"><div><span class="hdate" id="hDate"></span><h1 class="h1">Accueil</h1></div><button class="hsearch" id="hSearch" aria-label="Rechercher une carte"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></button></div>
       <div class="total htot" id="hTot"></div>
       <div class="hqa">
@@ -2079,6 +2080,7 @@ function renderCard(){
       <button class="btn btn-y" id="addCol">${inCol?"Ajouter un exemplaire"+(currentEd?" "+esc(edLbl(currentEd)):"")+" · "+esc(CARD_LG[currentLg])+" ("+inCol.qty+")":"Ajouter à ma collection"+(currentEd?" · "+esc(edLbl(currentEd)):"")+" · "+esc(CARD_LG[currentLg])}</button>
       <button class="btn btn-g" id="rescan">Scanner une autre</button>
     </div>
+    <button class="btn btn-g sharebtn" id="shareCard">${SHARE_ICO}Partager la carte</button>
     ${verHTML}
     <div class="price">${priceHTML}${links}</div>
     ${tpHTML}
@@ -2099,6 +2101,8 @@ function renderCard(){
   $("#addCol").onclick = ()=>{ addToCol(c, currentEd, currentLg); renderCard(); toast("Ajoutée à ta collection · "+CARD_LG[currentLg]+(currentEd?" · "+edLbl(currentEd):"")); };
   $("#sheetBody").querySelectorAll("[data-lg]").forEach(b=>b.onclick=()=>{ currentLg = b.dataset.lg; store.set("addLg", currentLg); const y = $("#sheetBody").scrollTop; renderCard(); $("#sheetBody").scrollTop = y; });
   $("#grFromCard") && ($("#grFromCard").onclick = ()=>gradedForm({...c, ed:currentEd}));
+  $("#shareCard").onclick = ()=>shareCard(c);
+  setTimeout(()=>{ if(current===c) buildShare(c).catch(()=>{}); }, 700);   // image prête avant le toucher
   $("#grLookCard") && ($("#grLookCard").onclick = ()=>gradedLookup(c));
   $("#colMinus") && ($("#colMinus").onclick = ()=>{ setColQty(c.id,-1,currentEd,currentLg); renderCard(); toast("Exemplaire retiré"); });
   $("#colPlus") && ($("#colPlus").onclick = ()=>{ setColQty(c.id,1,currentEd,currentLg); renderCard(); });
@@ -5516,6 +5520,118 @@ function toggleLang(){
 langChip.onclick = toggleLang;
 $("#extLang").onclick = toggleLang;
 setLangUI();
+
+/* ---------------- Partager une carte ----------------
+   Une image prête à envoyer (format 4:5, comme une story ou un post) : la carte, son nom, l'extension et le numéro,
+   la rareté et la cote du jour. L'image est préparée dès l'ouverture de la fiche, pour que l'iPhone ouvre
+   sa feuille de partage tout de suite au toucher (Safari refuse le partage s'il arrive trop longtemps après le geste). */
+const SHARE = {key:null, file:null, text:"", busy:null};
+function sharePrice(c){
+  const cm = c.pricing?.cardmarket, vs = cmVariants(c); if(!cm || !vs.length) return null;
+  const suf = vs[Math.min(currentVariant, vs.length-1)]?.key ?? "";
+  const big = cmVal(cm,"trend",suf) ?? cmVal(cm,"avg",suf) ?? cmVal(cm,"avg7",suf), a30 = cmVal(cm,"avg30",suf);
+  return big ? {v:big, d: a30 ? (big-a30)/a30*100 : null, est: !!cm._tp, variant: vs.length>1 ? vs[Math.min(currentVariant, vs.length-1)].label : ""} : null;
+}
+async function shareLoadImg(c){
+  for(const u of imgChain(c, "high").concat(imgChain(c, "low"))){
+    try{
+      const r = await fetch(u, {mode:"cors", credentials:"omit"}); if(!r.ok) continue;
+      const b = await r.blob(); if(!/image/.test(b.type) && b.size < 2000) continue;
+      const url = URL.createObjectURL(b);
+      const im = await new Promise((ok, ko)=>{ const i = new Image(); i.onload = ()=>ok(i); i.onerror = ko; i.src = url; });
+      if(im.naturalWidth===640 && im.naturalHeight===892 && /pokemontcg\.io|scrydex\.com/.test(u)) continue;   // dos de carte de secours
+      return im;
+    }catch(e){}
+  }
+  return null;
+}
+function shareRound(x, X, Y, W, H, R){ x.beginPath(); x.moveTo(X+R,Y); x.arcTo(X+W,Y,X+W,Y+H,R); x.arcTo(X+W,Y+H,X,Y+H,R); x.arcTo(X,Y+H,X,Y,R); x.arcTo(X,Y,X+W,Y,R); x.closePath(); }
+async function buildShare(c){
+  const key = c.id+"|"+currentVariant+"|"+(currentEd||"");
+  if(SHARE.key===key && SHARE.file) return SHARE.file;
+  if(SHARE.busy?.key===key) return SHARE.busy.p;
+  const p = (async()=>{
+    const cs = getComputedStyle(document.documentElement), V = k=>cs.getPropertyValue(k).trim();
+    const nc = document.createElement("canvas").getContext("2d"), hex = (v, d)=>{ try{ nc.fillStyle = d; nc.fillStyle = v || d; }catch(e){} return /^#[0-9a-f]{6}$/i.test(nc.fillStyle) ? nc.fillStyle : d; };
+    const ink = hex(V("--ink"), "#0e0b14"), acc = hex(V("--border-yellow"), "#9b5cff"), fg = hex(V("--fg"), "#f1eaff"), mut = hex(V("--muted"), "#9c90b3");
+    const W = 1080, H = 1350, cv = document.createElement("canvas"); cv.width = W; cv.height = H;
+    const x = cv.getContext("2d");
+    // fond : couleur du thème, halo derrière la carte
+    x.fillStyle = ink; x.fillRect(0,0,W,H);
+    const g = x.createRadialGradient(W/2, 430, 40, W/2, 430, 640); g.addColorStop(0, acc+"66"); g.addColorStop(1, ink+"00");
+    x.fillStyle = g; x.fillRect(0,0,W,H);
+    // la carte
+    const im = await shareLoadImg(c);
+    const ch = 760, cw = Math.round(ch*63/88), cx = (W-cw)/2, cy = 64;
+    x.save(); x.shadowColor = "rgba(0,0,0,.55)"; x.shadowBlur = 50; x.shadowOffsetY = 24;
+    shareRound(x, cx, cy, cw, ch, 26); x.fillStyle = "#222"; x.fill(); x.restore();
+    x.save(); shareRound(x, cx, cy, cw, ch, 26); x.clip();
+    if(im) x.drawImage(im, cx, cy, cw, ch); else { x.fillStyle = "#2a2338"; x.fillRect(cx, cy, cw, ch); }
+    x.restore();
+    // textes
+    const sans = "-apple-system, 'SF Pro Display', 'Helvetica Neue', Arial, sans-serif";
+    const fit = (t, w, size, weight)=>{ let s = size; do{ x.font = `${weight} ${s}px ${sans}`; s -= 2; } while(x.measureText(t).width > w && s > 20); return x.font; };
+    x.textAlign = "center"; x.textBaseline = "alphabetic";
+    let y = cy + ch + 92;
+    x.fillStyle = fg; x.font = fit(c.name, W-120, 68, 800); x.fillText(c.name, W/2, y);
+    const off = c.set?.cardCount?.official;
+    const num = `${c.localId}${off ? "/"+String(off).padStart(String(c.localId).length,"0") : ""}`;
+    const sline = [c.set?.name, num].filter(Boolean).join("  ·  ");
+    y += 54; x.fillStyle = mut; x.font = fit(sline, W-120, 34, 600); x.fillText(sline, W/2, y);
+    // pastilles : rareté, édition, variante
+    const chips = [c.rarity, currentEd ? edLbl(currentEd) : "", PRINT_OF[c.id] ? REPRINTS[PRINT_OF[c.id].kind].lbl : ""].filter(Boolean);
+    if(chips.length){
+      x.font = `700 28px ${sans}`; const pads = chips.map(t=>x.measureText(t).width + 40), tot = pads.reduce((a,b)=>a+b,0) + (chips.length-1)*14;
+      let px = (W-tot)/2; y += 34;
+      chips.forEach((t,i)=>{ shareRound(x, px, y, pads[i], 50, 25); x.fillStyle = i===0 ? acc : "rgba(255,255,255,.12)"; x.fill();
+        x.fillStyle = i===0 ? (V("--on-acc") || "#fff") : fg; x.fillText(t, px + pads[i]/2, y + 35); px += pads[i] + 14; });
+      y += 50;
+    }
+    // la cote
+    const pr = sharePrice(c);
+    y += 96;
+    if(pr){
+      const val = eur(pr.v) + " €";
+      x.fillStyle = acc; x.font = `800 92px ${sans}`; x.fillText(val, W/2, y);
+      y += 46; x.fillStyle = mut; x.font = `600 28px ${sans}`;
+      const sub = [(pr.est ? "Cote estimée" : "Cote Cardmarket") + (pr.variant ? " · "+pr.variant : ""), pr.d!=null ? `${pr.d>0?"+":""}${pr.d.toFixed(1).replace(".",",")} % sur 30 jours` : ""].filter(Boolean).join("   ·   ");
+      x.fillText(sub, W/2, y);
+    } else { x.fillStyle = mut; x.font = `700 44px ${sans}`; x.fillText("Pas encore de cote", W/2, y); }
+    // pied : marque, date, compagnon
+    x.fillStyle = "rgba(255,255,255,.08)"; x.fillRect(0, H-92, W, 92);
+    x.textAlign = "left"; x.fillStyle = fg; x.font = `900 34px ${sans}`; x.fillText("DEX·SCAN", 120, H-34);
+    x.textAlign = "right"; x.fillStyle = mut; x.font = `600 26px ${sans}`;
+    x.fillText(new Date().toLocaleDateString("fr-FR", {day:"numeric", month:"long", year:"numeric"}), W-48, H-36);
+    const st = typeof starterOf==="function" ? starterOf() : null;
+    if(st){ const sp = new Image(); sp.src = st.img; await sp.decode().catch(()=>{}); x.imageSmoothingEnabled = false; x.drawImage(sp, 44, H-88, 66, 66); x.imageSmoothingEnabled = true; }
+    const blob = await new Promise(r=>cv.toBlob(r, "image/png"));
+    const fname = `dexscan-${(c.name||"carte").normalize("NFD").replace(/[^\w]+/g,"-").replace(/^-|-$/g,"").toLowerCase()}-${String(c.localId).replace(/[^\w]+/g,"")}.png`;
+    const file = new File([blob], fname, {type:"image/png"});
+    SHARE.key = key; SHARE.file = file;
+    SHARE.text = `${c.name} · ${sline}${c.rarity ? " · "+c.rarity : ""}${pr ? ` — ${eur(pr.v)} € (${pr.est ? "cote estimée" : "cote Cardmarket"})` : ""} · via Dex Scan`;
+    return file;
+  })();
+  SHARE.busy = {key, p}; p.finally(()=>{ if(SHARE.busy?.p===p) SHARE.busy = null; });
+  return p;
+}
+async function shareCard(c){
+  const btn = $("#shareCard");
+  const key = c.id+"|"+currentVariant+"|"+(currentEd||"");
+  if(SHARE.key!==key || !SHARE.file){
+    // pas encore prête : on la prépare, puis un 2e toucher partage (l'iPhone exige le geste juste avant)
+    if(btn){ btn.disabled = true; btn.textContent = "Préparation de l'image…"; }
+    try{ await buildShare(c); }catch(e){ toast("Image indisponible, partage du texte"); }
+    if(btn){ btn.disabled = false; btn.innerHTML = `${SHARE_ICO}Partager maintenant`; }
+    return;
+  }
+  const f = SHARE.file;
+  try{
+    if(navigator.canShare && navigator.canShare({files:[f]})) await navigator.share({files:[f], title:c.name, text:SHARE.text});
+    else if(navigator.share) await navigator.share({title:c.name, text:SHARE.text});
+    else { const a = document.createElement("a"); a.href = URL.createObjectURL(f); a.download = f.name; document.body.appendChild(a); a.click(); a.remove(); toast("Image enregistrée"); }
+  }catch(e){ if(e?.name!=="AbortError"){ try{ await navigator.clipboard.writeText(SHARE.text); toast("Texte copié"); }catch(x){} } }
+}
+const SHARE_ICO = `<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="vertical-align:-3px;margin-right:6px"><path d="M12 3v12"/><path d="m7 8 5-5 5 5"/><path d="M5 13v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6"/></svg>`;
 
 /* ---------------- Compagnon (starter) et niveau du compte ----------------
    1re ouverture : Poké Ball noire et blanche, on glisse à gauche / à droite pour découvrir les starters

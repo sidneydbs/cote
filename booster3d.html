@@ -32,13 +32,15 @@
   .grid div{text-align:center;font-size:11.5px;color:#CFC6DF}.grid img,.grid i{display:block;width:100%;aspect-ratio:.716;border-radius:6px;object-fit:cover;background:#241D31;margin-bottom:5px}
   .grid div.hit img{box-shadow:0 0 0 2px #F5C542,0 0 18px rgba(245,197,66,.6)}
   .grid b{display:block;color:#fff;font-size:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .x{position:fixed;left:14px;top:calc(env(safe-area-inset-top,0px) + 12px);width:40px;height:40px;border:0;border-radius:50%;background:rgba(40,34,56,.9);box-shadow:inset 0 0 0 1px rgba(255,255,255,.14);color:#fff;font:700 18px -apple-system,system-ui;display:none;z-index:5}
   .load{position:fixed;inset:0;display:grid;place-items:center;color:#9C90B3;font-size:14px;pointer-events:none}
 </style>
 </head>
 <body>
 <canvas id="c"></canvas>
+<button class="x" id="x" aria-label="Fermer">✕</button>
 <div class="load" id="load">Préparation du booster…</div>
-<div class="top"><h1>Chasse aux Rares</h1><p>Prototype 3D · cartes Évolutions Prismatiques</p></div>
+<div class="top"><h1>Chasse aux Rares</h1><p>Évolutions Prismatiques · 10 cartes</p></div>
 <div class="rar" id="rar"><b id="rarT"></b><small id="rarP"></small></div>
 <div class="hint" id="hint">Glisse le doigt sur le haut du sachet<span class="sw"></span></div>
 <div class="bar" id="bar"><button class="g" id="tilt">Inclinaison</button><button id="go">Ouvrir le booster</button></div>
@@ -120,24 +122,28 @@ function buildTextures(){
     h.strokeStyle = rnd()<.5 ? `rgba(255,255,255,${.05+rnd()*.12})` : `rgba(0,0,0,${.05+rnd()*.12})`;
     h.lineWidth = 1+rnd()*2.5; h.beginPath(); h.moveTo(x,y); h.lineTo(x+Math.cos(a)*l, y+Math.sin(a)*l); h.stroke(); }
   h.filter = "blur(1.2px)"; h.drawImage(hc,0,0); h.filter = "none";
+  // relief du dos : seulement le froissé + les soudures (pas le titre gaufré de la face)
+  const hb = document.createElement("canvas"); hb.width = HW; hb.height = HH; const hbx = hb.getContext("2d"); hbx.drawImage(hc,0,0);
   h.fillStyle = "rgba(255,255,255,.18)"; h.beginPath(); h.arc(HW/2,HH*.4,HW*.33,0,7); h.fill();
   h.save(); h.filter = "blur(2.5px)"; drawTitle(h,HW,HH,"#ffffff","#ffffff"); h.restore();
   const ch = HH*CRIMP; [0,HH-ch].forEach(y0=>{ for(let x=0;x<HW;x+=5){ h.fillStyle="#303030"; h.fillRect(x,y0,2,ch); h.fillStyle="#d8d8d8"; h.fillRect(x+2,y0,3,ch); } });
+  [0,HH-ch].forEach(y0=>{ for(let x=0;x<HW;x+=5){ hbx.fillStyle="#303030"; hbx.fillRect(x,y0,2,ch); hbx.fillStyle="#d8d8d8"; hbx.fillRect(x+2,y0,3,ch); } });
   // relief → normal map (dérivées de la hauteur)
-  const src = h.getImageData(0,0,HW,HH).data, nm = h.createImageData(HW,HH), o = nm.data, S = 2.2;
-  const H_ = (x,y) => src[((clamp(y,0,HH-1))*HW + clamp(x,0,HW-1))*4] / 255;
-  for(let y=0;y<HH;y++) for(let x=0;x<HW;x++){
-    const dx = (H_(x+1,y)-H_(x-1,y))*S, dy = (H_(x,y+1)-H_(x,y-1))*S, l = Math.hypot(dx,dy,1), i = (y*HW+x)*4;
-    o[i] = (-dx/l*.5+.5)*255; o[i+1] = (dy/l*.5+.5)*255; o[i+2] = (1/l*.5+.5)*255; o[i+3] = 255;
-  }
-  const nc = document.createElement("canvas"); nc.width = HW; nc.height = HH; nc.getContext("2d").putImageData(nm,0,0);
+  const toNormal = hcv => { const hx = hcv.getContext("2d"), src = hx.getImageData(0,0,HW,HH).data, nm = hx.createImageData(HW,HH), o = nm.data, S = 2.2;
+    const H_ = (x,y) => src[((clamp(y,0,HH-1))*HW + clamp(x,0,HW-1))*4] / 255;
+    for(let y=0;y<HH;y++) for(let x=0;x<HW;x++){
+      const dx = (H_(x+1,y)-H_(x-1,y))*S, dy = (H_(x,y+1)-H_(x,y-1))*S, l = Math.hypot(dx,dy,1), i = (y*HW+x)*4;
+      o[i] = (-dx/l*.5+.5)*255; o[i+1] = (dy/l*.5+.5)*255; o[i+2] = (1/l*.5+.5)*255; o[i+3] = 255;
+    }
+    const c = document.createElement("canvas"); c.width = HW; c.height = HH; c.getContext("2d").putImageData(nm,0,0); return c; };
+  const nc = toNormal(hc), nb = toNormal(hb);
   // dos du sachet : aluminium + mentions
   const bk = document.createElement("canvas"); bk.width = 512; bk.height = 800; const b = bk.getContext("2d");
   const bgd = b.createLinearGradient(0,0,512,800); bgd.addColorStop(0,"#3a1f6e"); bgd.addColorStop(1,"#160b2e"); b.fillStyle = bgd; b.fillRect(0,0,512,800);
   b.fillStyle = "rgba(255,255,255,.85)"; b.textAlign = "center"; b.font = "60px Anton"; b.fillText("DEX · SCAN", 256, 380);
   b.font = "800 18px Inter"; b.fillStyle = "rgba(255,255,255,.55)"; b.fillText("10 CARTES · " + SETNAME.toUpperCase(), 256, 420);
   drawCrimps(b,512,800);
-  return {art, normal:nc, back:bk};
+  return {art, normal:nc, back:bk, backNormal:nb};
 }
 
 /* ---------- 2. géométrie du sachet ---------- */
@@ -226,15 +232,15 @@ function buildPouch(tex){
   const normalMap = new THREE.CanvasTexture(tex.normal);
   const bmap = new THREE.CanvasTexture(tex.back); bmap.encoding = THREE.sRGBEncoding;
   pouchMat = new THREE.MeshPhysicalMaterial({map, normalMap, normalScale:new THREE.Vector2(.9,.9), metalness:.72, roughness:.24,
-    clearcoat:1, clearcoatRoughness:.12, envMapIntensity:1.35, transparent:true});
-  backMat = new THREE.MeshPhysicalMaterial({map:bmap, normalMap, normalScale:new THREE.Vector2(.9,.9), metalness:.8, roughness:.28, clearcoat:.8,
-    envMapIntensity:1.2, side:THREE.BackSide, transparent:true});
+    clearcoat:1, clearcoatRoughness:.12, envMapIntensity:1.35});
+  backMat = new THREE.MeshPhysicalMaterial({map:bmap, normalMap:new THREE.CanvasTexture(tex.backNormal), normalScale:new THREE.Vector2(.9,.9), metalness:.8, roughness:.28, clearcoat:.8,
+    envMapIntensity:1.2});
   const gBody = pouchGeometry(0, TEAR_V, 90, 150), gStrip = pouchGeometry(TEAR_V, 1, 90, 14);
-  bodyFront = new THREE.Mesh(gBody, pouchMat); bodyBack = new THREE.Mesh(gBody, backMat); bodyBack.scale.z = -1;
+  bodyFront = new THREE.Mesh(gBody, pouchMat); bodyBack = new THREE.Mesh(gBody, backMat); bodyBack.rotation.y = Math.PI;  // dos = même sachet retourné, imprimé et opaque
   pouch.add(bodyFront, bodyBack);
   // la bande du haut : pivot sur le bord gauche pour se déchirer de gauche à droite
   strip = new THREE.Group(); strip.position.set(-PW/2, 0, 0); pouch.add(strip);
-  stripFront = new THREE.Mesh(gStrip, pouchMat); stripBack = new THREE.Mesh(gStrip, backMat); stripBack.scale.z = -1;
+  stripFront = new THREE.Mesh(gStrip, pouchMat); stripBack = new THREE.Mesh(gStrip, backMat); stripBack.rotation.y = Math.PI;
   stripFront.position.x = stripBack.position.x = PW/2; strip.add(stripFront, stripBack);
 }
 
@@ -330,6 +336,8 @@ canvas.addEventListener("pointermove", e => {
 const up = () => { if(state.drag && state.drag.tear && state.mode === "idle" && state.tear < .98) state.tearBack = true; state.drag = null; };
 canvas.addEventListener("pointerup", up); canvas.addEventListener("pointercancel", up);
 
+// dans l'app (iframe) : bouton fermer
+if(window.parent !== window){ $("#x").style.display = "block"; $("#x").onclick = () => window.parent.postMessage("boosterClose", "*"); }
 $("#go").onclick = () => { if(state.mode === "idle") openPouch(); else if(state.mode === "done") reset(); };
 $("#tilt").onclick = async () => {
   try{ if(typeof DeviceOrientationEvent !== "undefined" && DeviceOrientationEvent.requestPermission){ const r = await DeviceOrientationEvent.requestPermission(); if(r !== "granted") return; }
@@ -368,7 +376,7 @@ function reset(){
   cards.forEach(c => { pouch.remove(c.group); scene.remove(c.group); }); cards.length = 0;
   state.mode = "idle"; state.tear = 0; state.tearDone = 0; state.flyStrip = 0; CLIP.constant = 0; state.outT = 0; state.idx = 0; state.flyT = 0;
   strip.visible = true; strip.rotation.set(0,0,0); strip.position.set(-PW/2,0,0);
-  pouchMat.opacity = backMat.opacity = 1; bodyFront.visible = bodyBack.visible = true; pouch.position.set(0,0,0);
+  pouchMat.opacity = backMat.opacity = 1; pouchMat.transparent = backMat.transparent = false; bodyFront.visible = bodyBack.visible = true; pouch.position.set(0,0,0);
 }
 
 /* ---------- 7. boucle de rendu (30 images/s max, pause quand caché) ---------- */
@@ -410,7 +418,7 @@ function loop(now){
   if(state.mode === "out"){
     state.outT = Math.min(1, state.outT + dt*.9); const e = ease(state.outT);
     cards.forEach((c,k) => { c.group.position.y = lerp(-.2, 2.2, e); });
-    if(state.outT > .55){ const f = ease((state.outT-.55)/.45); pouch.position.y = -f*5; pouchMat.opacity = backMat.opacity = 1-f; }
+    if(state.outT > .55){ const f = ease((state.outT-.55)/.45); pouch.position.y = -f*5; pouchMat.transparent = backMat.transparent = true; pouchMat.opacity = backMat.opacity = 1-f; }
     if(state.outT >= 1){
       // les cartes passent dans la scène, face à l'écran
       CLIP.constant = 99;   // plus de découpe une fois sorties

@@ -942,14 +942,21 @@ html{background:var(--panel)}
 .stp-stage{position:relative;width:260px;height:270px;margin:8px 0 2px}
 .stp-spr{position:absolute;left:50%;top:6px;width:196px;height:196px;margin-left:-98px;transform-origin:50% 100%;transition:transform .35s cubic-bezier(.3,1.6,.5,1),opacity .2s}
 .stp-spr.hide{transform:scale(.2) translateY(260px);opacity:0}
-.stp-spr.lock{filter:brightness(0) opacity(.75)}
+
+.stp-spr.lock{filter:brightness(0) opacity(.8)}
+.stp-spr.reveal{animation:stpRev .9s ease-out}
+@keyframes stpRev{0%{filter:brightness(0)}35%{filter:brightness(3) saturate(0)}100%{filter:none}}
+.stp-namer{display:none;width:100%;max-width:340px;margin-top:14px}
+.stp.naming .stp-namer{display:block}.stp.naming .stp-nav,.stp.naming > .stp-go,.stp.naming .lede{display:none}
+.stp-namer label{display:block;font-size:14px;color:var(--muted);margin-bottom:8px}
+.stp-namer input{width:100%;height:54px;border-radius:16px;border:2px solid var(--border-yellow);background:var(--panel);color:var(--fg);font:800 20px/1 var(--f-display);text-align:center;letter-spacing:.04em;margin-bottom:12px;box-sizing:border-box}
 .stp-ball{position:absolute;left:50%;bottom:0;width:74px;height:74px;margin-left:-37px;filter:drop-shadow(0 10px 18px rgba(0,0,0,.45));transition:transform .3s}
 .stp.empty .stp-ball{width:150px;height:150px;margin-left:-75px;bottom:56px;animation:stpw 2.4s ease-in-out infinite}
 @keyframes stpw{0%,70%,100%{transform:rotate(0)}76%{transform:rotate(-12deg)}84%{transform:rotate(10deg)}92%{transform:rotate(-5deg)}}
 .stp-name{font:800 24px/1 var(--f-display);font-stretch:120%;letter-spacing:.03em;min-height:24px}
 .stp-type{display:inline-block;margin-top:8px;padding:4px 10px;border-radius:99px;font:700 11px/1.2 var(--f-mono);letter-spacing:.08em;background:var(--border-yellow);color:var(--on-acc)}
 .stp.empty .stp-type{visibility:hidden}
-.stp-desc{margin:10px auto 0;max-width:300px;min-height:40px;font-size:14px;line-height:1.4;color:var(--muted)}
+
 .stp-nav{display:flex;align-items:center;gap:14px;margin:12px 0 16px}
 .stp-nav button{width:42px;height:42px;border-radius:50%;border:1px solid var(--line);background:var(--panel);color:var(--fg);font-size:18px}
 .stp-dots{display:flex;gap:6px}.stp-dots i{width:7px;height:7px;border-radius:50%;background:var(--line)}.stp-dots i.on{background:var(--border-yellow);transform:scale(1.25)}
@@ -1103,7 +1110,7 @@ html{background:var(--panel)}
 </head>
 <body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="pb" viewBox="0 0 100 100"><defs><linearGradient id="pbV" x1="0" y1="0" x2="1" y2="1"><stop offset="0" style="stop-color:var(--pb1)"/><stop offset=".5" style="stop-color:var(--pb2)"/><stop offset="1" style="stop-color:var(--pb3)"/></linearGradient><radialGradient id="pbB" cx=".38" cy=".75" r=".75"><stop offset="0" style="stop-color:var(--pbb1)"/><stop offset="1" style="stop-color:var(--pbb2)"/></radialGradient><radialGradient id="pbC" cx=".4" cy=".35" r=".7"><stop offset="0" style="stop-color:var(--pbc1)"/><stop offset=".55" style="stop-color:var(--pbc2)"/><stop offset="1" style="stop-color:var(--pbc3)"/></radialGradient></defs><path d="M3 50a47 47 0 0 1 94 0z" fill="url(#pbV)"/><path d="M3 50a47 47 0 0 0 94 0z" fill="url(#pbB)"/><rect x="3" y="45.5" width="94" height="9" fill="#09080D"/><circle cx="50" cy="50" r="47" fill="none" stroke="#09080D" stroke-width="4"/><circle cx="50" cy="50" r="15.5" fill="#09080D"/><circle cx="50" cy="50" r="10" fill="url(#pbC)" style="stroke:var(--pb2)" stroke-width="2"/><path d="M19 33a35 35 0 0 1 17-15" fill="none" stroke="#fff" stroke-opacity=".38" stroke-width="4" stroke-linecap="round"/></symbol></svg>
-<script>window.__APPV="78";</script>
+<script>window.__APPV="81";</script>
 <div class="splash" id="splash" aria-hidden="true"><i class="hole"></i><i class="halo"></i><div class="bw"><svg class="b" viewBox="0 0 100 100"><use href="#pb"/></svg><svg class="t" viewBox="0 0 100 100"><use href="#pb"/></svg></div><i class="glow"></i></div>
 <script>setTimeout(function(){ if(window.__booted) return;
   var b=document.createElement("div"); b.setAttribute("role","alert");
@@ -1138,7 +1145,7 @@ html{background:var(--panel)}
   <!-- ===== EXTENSIONS ===== -->
   <section class="view" id="homeView">
     <div class="scroll">
-      <div class="homebar"><span id="avatSlot"><svg class="pball" viewBox="0 0 100 100" aria-hidden="true"><use href="#pb"/></svg></span><span class="brand">DEX<b>·</b>SCAN</span><button class="thbtn" id="themeBtn" aria-label="Changer de thème"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.6-.9 1.2-1.8-.5-1.1.2-2.2 1.4-2.2H17a4 4 0 0 0 4-4c0-5.5-4-10-9-10z"/><circle cx="7.5" cy="11" r="1.2"/><circle cx="10" cy="7" r="1.2"/><circle cx="15" cy="7" r="1.2"/></svg></button><span class="ver">v78</span></div>
+      <div class="homebar"><span id="avatSlot"><svg class="pball" viewBox="0 0 100 100" aria-hidden="true"><use href="#pb"/></svg></span><span class="brand">DEX<b>·</b>SCAN</span><button class="thbtn" id="themeBtn" aria-label="Changer de thème"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.6-.9 1.2-1.8-.5-1.1.2-2.2 1.4-2.2H17a4 4 0 0 0 4-4c0-5.5-4-10-9-10z"/><circle cx="7.5" cy="11" r="1.2"/><circle cx="10" cy="7" r="1.2"/><circle cx="15" cy="7" r="1.2"/></svg></button><span class="ver">v81</span></div>
       <div class="hhead"><div><span class="hdate" id="hDate"></span><h1 class="h1">Accueil</h1></div><button class="hsearch" id="hSearch" aria-label="Rechercher une carte"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></button></div>
       <div class="total htot" id="hTot"></div>
       <div class="hqa">
@@ -1166,7 +1173,12 @@ html{background:var(--panel)}
         <button id="mTheme"><span class="mi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.6-.9 1.2-1.8-.5-1.1.2-2.2 1.4-2.2H17a4 4 0 0 0 4-4c0-5.5-4-10-9-10z"/><circle cx="7.5" cy="11" r="1.2"/><circle cx="10" cy="7" r="1.2"/><circle cx="15" cy="7" r="1.2"/></svg></span><span class="mt"><b>Thème de l'app</b><small>Couleurs et ambiance</small></span><svg class="mch" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></button>
         <button id="mLang"><span class="mi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg></span><span class="mt"><b>Langue des cartes</b><small id="mLangV">Français</small></span><svg class="mch" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></button>
       </div>
-      <p class="fine" style="text-align:center;margin-top:18px">Dex Scan v69</p>
+      <div class="mlist">
+        <button id="mSave"><span class="mi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg></span><span class="mt"><b>Sauvegarder mes données</b><small id="mSaveT">Jamais sauvegardé</small></span><svg class="mch" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></button>
+        <button id="mLoad"><span class="mi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21V9"/><path d="m7 14 5-5 5 5"/><path d="M5 3h14"/></svg></span><span class="mt"><b>Restaurer une sauvegarde</b><small>Depuis un fichier Dex Scan</small></span><svg class="mch" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></button>
+      </div>
+      <input type="file" id="bkIn" accept=".json,application/json,text/plain" hidden>
+      <p class="fine" style="text-align:center;margin-top:18px" id="mVer">Dex Scan</p>
     </div>
   </section>
   <section class="view" id="extView" hidden>
@@ -5909,25 +5921,34 @@ function acctXP(){
 }
 const lvNeed = l => 50 * (l-1) * (l-1);                      // XP pour atteindre le niveau l (niveau 10 ≈ 300 cartes)
 const lvOf = xp => Math.min(50, Math.floor(Math.sqrt(xp/50)) + 1);
+function petName(){ const st = starterOf(); return (store.get("starterName", "") || "").trim() || st?.n || ""; }
 function renderAvatar(){
   const slot = $("#avatSlot"), st = starterOf(); if(!slot || !st) return;
   const xp = acctXP(), lv = lvOf(xp);
-  slot.innerHTML = `<button class="avat" id="avat" aria-label="${esc(st.n)}, niveau ${lv}"><img class="px" src="${st.img}" alt=""><b>Niv. ${lv}<small>${esc(st.n)}</small></b></button>`;
+  slot.innerHTML = `<button class="avat" id="avat" aria-label="${esc(petName())}, niveau ${lv}"><img class="px" src="${st.img}" alt=""><b>Niv. ${lv}<small>${esc(petName())}</small></b></button>`;
   $("#avat").onclick = openAvatar;
   const prev = store.get("lvl", 0);
-  if(prev && lv > prev && !$("#stp")) setTimeout(()=>gameBox([`${st.n} passe au niveau ${lv} !`, lv===10||lv===25 ? "Quelque chose se prépare… Son évolution approche !" : "Continue à faire grandir ta collection."], [{label:"Super !", go:true}]), 600);
+  if(prev && lv > prev && !$("#stp")) setTimeout(()=>gameBox([`${petName()} passe au niveau ${lv} !`, lv===10||lv===25 ? "Quelque chose se prépare… Son évolution approche !" : "Continue à faire grandir ta collection."], [{label:"Super !", go:true}]), 600);
   if(lv !== prev) store.set("lvl", lv);
 }
 function openAvatar(){
   const st = starterOf(); if(!st) return;
   const xp = acctXP(), lv = lvOf(xp), a = lvNeed(lv), b = lvNeed(lv+1), pc = lv>=50 ? 100 : Math.round((xp-a)/(b-a)*100);
   $("#sheetTitle").textContent = "Ton compagnon";
-  $("#sheetBody").innerHTML = `<div class="lvsheet"><img class="px" src="${st.img}" alt=""><div class="stp-name" style="margin-top:4px">${esc(st.n)}</div>
+  $("#sheetBody").innerHTML = `<div class="lvsheet"><img class="px" src="${st.img}" alt=""><div class="stp-name" style="margin-top:4px">${esc(petName())}</div><div style="font-size:12px;color:var(--muted);margin-top:4px">${esc(st.n)} · ${esc(st.t)}</div>
+    <button class="btn" id="petRen" style="margin-top:10px;padding:8px 14px">Renommer</button>
     <div style="margin-top:6px;color:var(--muted);font-size:14px">Niveau <b style="color:var(--fg)">${lv}</b> · ${xp.toLocaleString("fr-FR")} XP</div>
     <div class="lvbar"><i style="width:${pc}%"></i></div><div style="font-size:12px;color:var(--muted)">${lv>=50 ? "Niveau maximum !" : `${(b-xp).toLocaleString("fr-FR")} XP avant le niveau ${lv+1}`}</div>
     <div class="lvlist"><div><span>Carte ajoutée</span><b>+10 XP</b></div><div><span>… cotée 5 € et plus</span><b>+30 XP</b></div><div><span>… cotée 20 € et plus</span><b>+60 XP</b></div><div><span>… cotée 100 € et plus</span><b>+150 XP</b></div>
     <div><span>Produit scellé (Budget)</span><b>+40 XP</b></div><div><span>Carte gradée</span><b>+100 XP</b></div><div><span>Extension complétée</span><b>+500 XP</b></div></div>
     <p class="fine" style="margin-top:12px">Ton compagnon grandit avec ta collection. Une carte retirée lui retire ses XP.</p></div>`;
+  $("#petRen").onclick = ()=>{
+    const b = $("#petRen"), box = document.createElement("div"); box.style.cssText = "display:flex;gap:8px;margin-top:10px;justify-content:center";
+    box.innerHTML = `<input id="petNm" maxlength="12" value="${esc(petName())}" autocomplete="off" spellcheck="false" style="width:170px;height:42px;border-radius:12px;border:2px solid var(--border-yellow);background:var(--panel);color:var(--fg);font:800 16px/1 var(--f-display);text-align:center"><button class="btn btn-y" id="petOk" style="padding:0 16px">OK</button>`;
+    b.replaceWith(box); const i = $("#petNm"); i.focus(); i.select();
+    const ok = ()=>{ store.set("starterName", i.value.trim().replace(/\s+/g," ").slice(0,12)); renderAvatar(); openAvatar(); };
+    $("#petOk").onclick = ok; i.onkeydown = e=>{ if(e.key==="Enter") ok(); };
+  };
   openSheet();
 }
 function starterPicker(){
@@ -5935,23 +5956,23 @@ function starterPicker(){
   const el = document.createElement("div"); el.id = "stp"; el.className = "stp empty";
   el.innerHTML = `<h2>CHOISIS TON STARTER</h2><p class="lede">Glisse à gauche ou à droite pour les découvrir</p>
     <div class="stp-stage"><img class="stp-spr px hide" alt=""><svg class="stp-ball" viewBox="0 0 100 100" aria-hidden="true"><use href="#pb"/></svg></div>
-    <div class="stp-name">???</div><span class="stp-type">?</span><p class="stp-desc">Chaque Poké Ball cache un compagnon et une ambiance pour ton app.</p>
+    <div class="stp-name">???</div><span class="stp-type">?</span>
     <div class="stp-nav"><button data-d="-1" aria-label="Précédent">‹</button><div class="stp-dots">${STARTERS.map(()=>"<i></i>").join("")}</div><button data-d="1" aria-label="Suivant">›</button></div>
-    <button class="stp-go" disabled>Glisse pour choisir</button>`;
+    <button class="stp-go" disabled>Glisse pour choisir</button>
+    <div class="stp-namer"><label for="stpNm">Donne-lui un nom</label><input id="stpNm" maxlength="12" autocomplete="off" autocapitalize="characters" spellcheck="false"><button class="stp-go" id="stpOk">C'est son nom !</button></div>`;
   document.body.appendChild(el);
   let i = -1;
-  const spr = el.querySelector(".stp-spr"), go = el.querySelector(".stp-go");
+  const spr = el.querySelector(".stp-spr"), go = el.querySelector(".stp-go"), nm = el.querySelector("#stpNm");
   const show = ()=>{
-    const st = STARTERS[i], lock = st.secret && !store.get("kanto", false);
+    const st = STARTERS[i], lock = !!(st.secret && !store.get("kanto", false));   // !! : toggle(x, undefined) basculerait au lieu de retirer
     el.classList.remove("empty"); document.documentElement.classList.toggle("nostart", lock);
     if(!lock){ document.documentElement.dataset.theme = st.th; const m = document.querySelector('meta[name="theme-color"]'); if(m && THEMES[st.th]) m.content = THEMES[st.th].ink; }
     spr.classList.add("hide");
-    setTimeout(()=>{ spr.src = st.img; spr.classList.toggle("lock", lock); spr.classList.remove("hide"); }, 160);
+    setTimeout(()=>{ spr.src = st.img; spr.classList.add("lock"); spr.classList.remove("hide"); }, 160);   // tous en silhouette : on ne le découvre qu'une fois choisi
     el.querySelector(".stp-name").textContent = lock ? "???" : st.n;
     el.querySelector(".stp-type").textContent = lock ? "SECRET" : st.t;
-    el.querySelector(".stp-desc").textContent = lock ? "Un starter secret… Scanne la carte du Pokémon n°151 pour le débloquer." : st.d;
     el.querySelectorAll(".stp-dots i").forEach((d,j)=>d.classList.toggle("on", j===i));
-    go.disabled = lock; go.textContent = lock ? "Verrouillé" : `Je choisis ${st.n} !`;
+    go.disabled = lock; go.textContent = lock ? "Verrouillé · carte n°151" : `Je choisis ${st.n} !`;
     try{ navigator.vibrate?.(8); }catch(e){}
   };
   const step = d=>{ i = i<0 ? (d>0 ? 0 : STARTERS.length-1) : (i + d + STARTERS.length) % STARTERS.length; show(); };
@@ -5960,12 +5981,22 @@ function starterPicker(){
   el.addEventListener("touchstart", e=>{ e.stopPropagation(); const t = e.touches[0]; x0 = t.clientX; y0 = t.clientY; }, {passive:true});
   el.addEventListener("touchmove", e=>e.stopPropagation(), {passive:true});
   el.addEventListener("touchend", e=>{ e.stopPropagation(); if(x0==null) return; const t = e.changedTouches[0], dx = t.clientX - x0, dy = Math.abs(t.clientY - y0); x0 = null;
-    if(Math.abs(dx) > 40 && Math.abs(dx) > dy) step(dx < 0 ? 1 : -1); }, {passive:true});
-  const key = e=>{ if(!document.body.contains(el)){ removeEventListener("keydown", key); return; } if(e.key==="ArrowRight") step(1); if(e.key==="ArrowLeft") step(-1); };
+    if(Math.abs(dx) > 40 && Math.abs(dx) > dy && !el.classList.contains("naming")) step(dx < 0 ? 1 : -1); }, {passive:true});
+  const key = e=>{ if(!document.body.contains(el)){ removeEventListener("keydown", key); return; } if(el.classList.contains("naming")) return; if(e.key==="ArrowRight") step(1); if(e.key==="ArrowLeft") step(-1); };
   addEventListener("keydown", key);
   go.onclick = ()=>{
     const st = STARTERS[i]; if(!st || go.disabled) return;
     go.disabled = true;
+    // révélation : la silhouette s'illumine et on découvre le compagnon, puis on lui donne un nom
+    spr.classList.remove("lock"); spr.classList.add("reveal");
+    try{ navigator.vibrate?.([10,60,20]); }catch(e){}
+    setTimeout(()=>{ el.classList.add("naming"); nm.value = st.n; nm.focus(); nm.select(); }, 900);
+  };
+  const finish = ()=>{
+    const st = STARTERS[i]; if(!st || !el.classList.contains("naming")) return;
+    const name = nm.value.trim().replace(/\s+/g," ").slice(0,12) || st.n;
+    nm.blur(); el.classList.remove("naming"); el.querySelector(".stp-name").textContent = name.toUpperCase();
+    store.set("starterName", name);
     store.set("starter", st.k); store.set("starterT", Date.now()); store.set("lvl", lvOf(acctXP()));
     document.documentElement.classList.remove("nostart"); setTheme(st.th);
     if($("#homeView").hidden) selectTab("homeView");
@@ -5980,9 +6011,11 @@ function starterPicker(){
       else fly.style.opacity = 0;
     }));
     setTimeout(()=>{ fly.remove(); el.remove(); if(img){ img.style.visibility = ""; av.classList.add("pop"); }
-      gameBox([`Tu as choisi ${st.n} !`, "Il grandit avec ta collection : chaque carte, chaque scellé et chaque gradée lui donnent de l'XP.", "Son niveau, c'est le niveau de ton compte. Touche-le en haut à gauche pour le voir."], [{label:"C'est parti !", go:true}]);
+      gameBox([`${petName()} rejoint ton aventure !`, "Il grandit avec ta collection : chaque carte, chaque scellé et chaque gradée lui donnent de l'XP.", "Son niveau, c'est le niveau de ton compte. Touche-le en haut à gauche pour le voir."], [{label:"C'est parti !", go:true}]);
     }, 800);
   };
+  el.querySelector("#stpOk").onclick = finish;
+  nm.addEventListener("keydown", e=>{ if(e.key==="Enter"){ e.preventDefault(); finish(); } });
 }
 
 selectTab("homeView");
@@ -6050,6 +6083,68 @@ function openThemes(){
 }
 $("#themeBtn").onclick = openThemes;
 $("#mTheme").onclick = openThemes;
+/* ---------------- Sauvegarde par fichier ----------------
+   Tout ce qui est à toi (collection, prix d'achat, budget, gradées, échanges, compagnon, réglages) part dans un
+   fichier .json à ranger dans Fichiers / iCloud Drive. Les caches (cotes, raretés, sorties à venir) se rechargent seuls. */
+const BK_SKIP = new Set(["rar","upcoming","setDates"]);
+function bkKeys(){ const o = []; for(let i=0;i<localStorage.length;i++){ const k = localStorage.key(i); if(k?.startsWith("cote:") && !BK_SKIP.has(k.slice(5))) o.push(k); } return o; }
+function bkSummary(d){
+  const g = k=>{ try{ return JSON.parse(d["cote:"+k] ?? "null"); }catch(e){ return null; } };
+  const col = g("col")||[], cards = col.reduce((a,x)=>a+(x.qty||1),0), bud = (g("budget")||[]).filter(x=>!x.tf).length, gr = (g("graded")||[]).length, tr = (g("trades")||[]).length;
+  const pl = (n,w)=>`${n} ${w}${n>1?"s":""}`;
+  return [pl(cards,"carte"), pl(bud,"produit scellé").replace("produit scellés","produits scellés"), pl(gr,"gradée"), tr ? pl(tr,"échange") : ""].filter(Boolean).join(" · ");
+}
+function bkLabel(){ const t = store.get("backupT", 0), el = $("#mSaveT"); if(!el) return;
+  if(!t){ el.textContent = "Jamais sauvegardé · à faire régulièrement"; return; }
+  const j = Math.floor((Date.now()-t)/864e5);
+  el.textContent = "Dernière : " + (j<1 ? "aujourd'hui" : j<2 ? "hier" : `il y a ${j} jours`) + " · " + new Date(t).toLocaleDateString("fr-FR"); }
+async function bkSave(){
+  const data = {}; for(const k of bkKeys()) data[k] = localStorage.getItem(k);
+  const now = new Date(), day = now.toISOString().slice(0,10);
+  const file = new File([JSON.stringify({app:"dexscan", v:window.__APPV, date:now.toISOString(), data})], `dexscan-sauvegarde-${day}.json`, {type:"application/json"});
+  let ok = false;
+  try{
+    if(navigator.canShare && navigator.canShare({files:[file]})){ await navigator.share({files:[file], title:"Sauvegarde Dex Scan"}); ok = true; }
+    else { const a = document.createElement("a"); a.href = URL.createObjectURL(file); a.download = file.name; document.body.appendChild(a); a.click(); a.remove(); setTimeout(()=>URL.revokeObjectURL(a.href), 4000); ok = true; }
+  }catch(e){ if(e?.name==="AbortError") return; toast("Sauvegarde impossible"); return; }
+  if(ok){ store.set("backupT", Date.now()); bkLabel(); toast("Sauvegarde prête · choisis « Enregistrer dans Fichiers »"); }
+}
+function bkLoad(f){
+  const r = new FileReader();
+  r.onload = ()=>{
+    let j; try{ j = JSON.parse(r.result); }catch(e){}
+    if(!j || j.app!=="dexscan" || !j.data || typeof j.data!=="object"){ toast("Ce fichier n'est pas une sauvegarde Dex Scan"); return; }
+    const d = j.data, when = j.date ? new Date(j.date).toLocaleString("fr-FR",{day:"numeric",month:"long",year:"numeric",hour:"2-digit",minute:"2-digit"}) : "date inconnue";
+    $("#sheetTitle").textContent = "Restaurer une sauvegarde";
+    $("#sheetBody").innerHTML = `<div style="text-align:center;padding:4px 4px 8px">
+      <p style="margin:0 0 6px;font-size:15px">Sauvegarde du <b>${esc(when)}</b></p>
+      <p style="margin:0 0 14px;color:var(--muted);font-size:14px">${esc(bkSummary(d))}</p>
+      <p class="fine" style="margin:0 0 16px">Tes données actuelles (${esc(bkSummary(Object.fromEntries(bkKeys().map(k=>[k, localStorage.getItem(k)]))))}) seront remplacées par celles du fichier.</p>
+      <button class="btn btn-y" id="bkGo" style="width:100%">Remplacer par la sauvegarde</button>
+      <button class="btn" id="bkNo" style="width:100%;margin-top:8px">Annuler</button></div>`;
+    $("#bkNo").onclick = closeSheet;
+    $("#bkGo").onclick = ()=>{
+      const old = {}; for(const k of bkKeys()) old[k] = localStorage.getItem(k);
+      try{
+        for(const k of Object.keys(old)) localStorage.removeItem(k);
+        for(const [k,v] of Object.entries(d)) if(k.startsWith("cote:") && typeof v==="string") localStorage.setItem(k, v);
+      }catch(e){   // mémoire pleine ou autre : on remet tout comme avant
+        try{ for(const k of bkKeys()) localStorage.removeItem(k); for(const [k,v] of Object.entries(old)) localStorage.setItem(k, v); }catch(x){}
+        toast("Restauration impossible, rien n'a été modifié"); return;
+      }
+      sessionStorage.setItem("bkDone", "1"); location.reload();
+    };
+    openSheet();
+  };
+  r.readAsText(f);
+}
+$("#mSave").onclick = bkSave;
+$("#mLoad").onclick = ()=>{ const i = $("#bkIn"); i.value = ""; i.click(); };
+$("#bkIn").onchange = e=>{ const f = e.target.files?.[0]; if(f) bkLoad(f); };
+$("#mVer").textContent = "Dex Scan v" + window.__APPV;
+bkLabel();
+if(sessionStorage.getItem("bkDone")){ sessionStorage.removeItem("bkDone"); setTimeout(()=>toast("Sauvegarde restaurée ✓"), 800); }
+
 $("#mLang").onclick = ()=>toggleLang();
 $("#hSearch").onclick = ()=>openSub("searchView");
 $("#hqScan").onclick = ()=>selectTab("scanView");

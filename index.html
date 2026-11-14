@@ -199,7 +199,11 @@ html{background:var(--panel)}
 .alt span{display:block;font-size:11px;color:var(--muted);margin-top:5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .alt b{display:block;font-size:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .addrow{display:flex;gap:8px;margin-top:14px}
-.sharebtn{width:100%;margin-top:8px}
+.sharerow{margin-top:8px}
+.trrow .travl{display:flex;align-items:center;gap:6px;margin-top:6px;font-size:12px;color:var(--muted)}.trrow .trv{width:90px;padding:6px 8px;font-size:16px}
+.trbtn{width:100%;margin-top:8px}.trcash{display:flex;align-items:center;gap:8px;margin-top:10px;font-size:14px;color:var(--muted)}.trcash .binp{width:110px}
+.trsearch{display:grid;grid-template-columns:1fr 110px;gap:8px;margin-top:6px}.trsearch .btn{grid-column:1/-1}
+.tradd{font-weight:700;color:var(--border-yellow);font-size:13px}
 .addrow .btn{flex:1}
 .fine{font-size:11.5px;color:var(--muted);line-height:1.5;margin-top:18px}
 
@@ -1089,7 +1093,7 @@ html{background:var(--panel)}
 </head>
 <body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="pb" viewBox="0 0 100 100"><defs><linearGradient id="pbV" x1="0" y1="0" x2="1" y2="1"><stop offset="0" style="stop-color:var(--pb1)"/><stop offset=".5" style="stop-color:var(--pb2)"/><stop offset="1" style="stop-color:var(--pb3)"/></linearGradient><radialGradient id="pbB" cx=".38" cy=".75" r=".75"><stop offset="0" style="stop-color:var(--pbb1)"/><stop offset="1" style="stop-color:var(--pbb2)"/></radialGradient><radialGradient id="pbC" cx=".4" cy=".35" r=".7"><stop offset="0" style="stop-color:var(--pbc1)"/><stop offset=".55" style="stop-color:var(--pbc2)"/><stop offset="1" style="stop-color:var(--pbc3)"/></radialGradient></defs><path d="M3 50a47 47 0 0 1 94 0z" fill="url(#pbV)"/><path d="M3 50a47 47 0 0 0 94 0z" fill="url(#pbB)"/><rect x="3" y="45.5" width="94" height="9" fill="#09080D"/><circle cx="50" cy="50" r="47" fill="none" stroke="#09080D" stroke-width="4"/><circle cx="50" cy="50" r="15.5" fill="#09080D"/><circle cx="50" cy="50" r="10" fill="url(#pbC)" style="stroke:var(--pb2)" stroke-width="2"/><path d="M19 33a35 35 0 0 1 17-15" fill="none" stroke="#fff" stroke-opacity=".38" stroke-width="4" stroke-linecap="round"/></symbol></svg>
-<script>window.__APPV="75";</script>
+<script>window.__APPV="76";</script>
 <div class="splash" id="splash" aria-hidden="true"><i class="hole"></i><i class="halo"></i><div class="bw"><svg class="b" viewBox="0 0 100 100"><use href="#pb"/></svg><svg class="t" viewBox="0 0 100 100"><use href="#pb"/></svg></div><i class="glow"></i></div>
 <script>setTimeout(function(){ if(window.__booted) return;
   var b=document.createElement("div"); b.setAttribute("role","alert");
@@ -1124,7 +1128,7 @@ html{background:var(--panel)}
   <!-- ===== EXTENSIONS ===== -->
   <section class="view" id="homeView">
     <div class="scroll">
-      <div class="homebar"><span id="avatSlot"><svg class="pball" viewBox="0 0 100 100" aria-hidden="true"><use href="#pb"/></svg></span><span class="brand">DEX<b>·</b>SCAN</span><button class="thbtn" id="themeBtn" aria-label="Changer de thème"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.6-.9 1.2-1.8-.5-1.1.2-2.2 1.4-2.2H17a4 4 0 0 0 4-4c0-5.5-4-10-9-10z"/><circle cx="7.5" cy="11" r="1.2"/><circle cx="10" cy="7" r="1.2"/><circle cx="15" cy="7" r="1.2"/></svg></button><span class="ver">v75</span></div>
+      <div class="homebar"><span id="avatSlot"><svg class="pball" viewBox="0 0 100 100" aria-hidden="true"><use href="#pb"/></svg></span><span class="brand">DEX<b>·</b>SCAN</span><button class="thbtn" id="themeBtn" aria-label="Changer de thème"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.6-.9 1.2-1.8-.5-1.1.2-2.2 1.4-2.2H17a4 4 0 0 0 4-4c0-5.5-4-10-9-10z"/><circle cx="7.5" cy="11" r="1.2"/><circle cx="10" cy="7" r="1.2"/><circle cx="15" cy="7" r="1.2"/></svg></button><span class="ver">v76</span></div>
       <div class="hhead"><div><span class="hdate" id="hDate"></span><h1 class="h1">Accueil</h1></div><button class="hsearch" id="hSearch" aria-label="Rechercher une carte"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></button></div>
       <div class="total htot" id="hTot"></div>
       <div class="hqa">
@@ -2080,7 +2084,7 @@ function renderCard(){
       <button class="btn btn-y" id="addCol">${inCol?"Ajouter un exemplaire"+(currentEd?" "+esc(edLbl(currentEd)):"")+" · "+esc(CARD_LG[currentLg])+" ("+inCol.qty+")":"Ajouter à ma collection"+(currentEd?" · "+esc(edLbl(currentEd)):"")+" · "+esc(CARD_LG[currentLg])}</button>
       <button class="btn btn-g" id="rescan">Scanner une autre</button>
     </div>
-    <button class="btn btn-g sharebtn" id="shareCard">${SHARE_ICO}Partager la carte</button>
+    <div class="addrow sharerow"><button class="btn btn-g" id="tradeCard">⇄ Échanger</button><button class="btn btn-g" id="shareCard">${SHARE_ICO}Partager</button></div>
     ${verHTML}
     <div class="price">${priceHTML}${links}</div>
     ${tpHTML}
@@ -2102,6 +2106,7 @@ function renderCard(){
   $("#sheetBody").querySelectorAll("[data-lg]").forEach(b=>b.onclick=()=>{ currentLg = b.dataset.lg; store.set("addLg", currentLg); const y = $("#sheetBody").scrollTop; renderCard(); $("#sheetBody").scrollTop = y; });
   $("#grFromCard") && ($("#grFromCard").onclick = ()=>gradedForm({...c, ed:currentEd}));
   $("#shareCard").onclick = ()=>shareCard(c);
+  $("#tradeCard").onclick = ()=>{ const side = tradeAdd(c); toast(side==="give" ? "Ajoutée à « Je donne »" : "Ajoutée à « Je reçois »"); tradeOpen(); };
   setTimeout(()=>{ if(current===c) buildShare(c).catch(()=>{}); }, 700);   // image prête avant le toucher
   $("#grLookCard") && ($("#grLookCard").onclick = ()=>gradedLookup(c));
   $("#colMinus") && ($("#colMinus").onclick = ()=>{ setColQty(c.id,-1,currentEd,currentLg); renderCard(); toast("Exemplaire retiré"); });
@@ -4896,7 +4901,9 @@ const tpOf = x => { const id = x.tp || cmOf(x)?.tp; return id && SEALED.data ? S
 /* une ligne de budget, scellé ou gradée, ramenée au même format */
 /* produit descellé : sa valeur = les cartes qui en sont sorties, à la cote de ta Collection (relue toutes les 2 h) */
 function budCardsVal(x, colm = new Map(getCol().map(c=>[c.id,c]))){
-  return (x.cards||[]).reduce((a,k)=>a+((colm.get(k.id)?.price ?? k.p) || 0)*k.q, 0);
+  return (x.cards||[]).reduce((a,k)=>{
+    if(k.tf){ const t = getTrades().find(z=>z.id===k.tf.tid); return a + (t ? k.tf.s * tradeGetVal(t, colm) : 0); }   // échangée : sa part de ce qui a été reçu
+    return a+((colm.get(k.id)?.price ?? k.p) || 0)*k.q; }, 0);
 }
 function budRows(){
   const colm = new Map(getCol().map(c=>[c.id,c]));
@@ -4926,6 +4933,7 @@ async function renderBudget(){
   l.sort((a,b)=>(b.val??b.cost)-(a.val??a.cost));
   const nAl = AL.items.filter(m=>m.priority!==2 && m.time*1000>AL.seenT).length;
   el.innerHTML = `
+    <button class="balert" id="budTrades"><span>⇄ Mes échanges${getTrades().length?` <i class="tbadge" style="position:static">${getTrades().length}</i>`:""}</span><small>${TRD().give.length||TRD().get.length?"Un échange en cours à terminer":"Ce que tu as donné, reçu, et ce que ça vaut aujourd'hui"}</small></button>
     <button class="balert" id="budAlerts"><span>🔔 Alertes réassort${nAl?` <i class="tbadge" style="position:static">${nAl}</i>`:""}</span><small>Précommandes et réassorts repérés par ton guetteur</small></button>
     <div class="total"><div class="plabel"><span>Valeur estimée de tes produits</span><span>${S.n} article${S.n>1?"s":""}</span></div>
       <div class="pmain">${bE0(S.val)}</div>
@@ -4946,6 +4954,7 @@ async function renderBudget(){
   $("#budPhoto").onclick = ()=>budForm(null, true);
   $("#budMan").onclick = ()=>budForm(null, false);
   $("#budAlerts").onclick = ()=>selectTab("alertView");
+  $("#budTrades").onclick = tradeList;
 }
 /* liste du budget + recherche : dans tes produits, puis dans tout le catalogue Cardmarket (prix sans posséder le produit) */
 async function budList(rows, l){
@@ -5086,7 +5095,7 @@ function budCards(uid){
     <button class="btn btn-y" id="bcOk" style="width:100%;margin-top:14px">Terminé</button>`);
   const draw = ()=>{
     const y = getBud().find(z=>z.uid===uid); if(!y) return;
-    const col = getCol(), colm = new Map(col.map(c=>[c.id,c])), linked = new Map((y.cards||[]).map(k=>[k.id,k]));
+    const col = getCol(), colm = new Map(col.map(c=>[c.id,c])), linked = new Map((y.cards||[]).filter(k=>!k.tf).map(k=>[k.id,k]));
     const cv = budCardsVal(y, colm), cost = (y.buy||0)*y.q, d = cv - cost, n = (y.cards||[]).reduce((a,k)=>a+k.q,0);
     $("#bcN").textContent = n ? `${n} carte${n>1?"s":""}` : "aucune carte";
     $("#bcV").textContent = bE(cv);
@@ -5101,12 +5110,12 @@ function budCards(uid){
         <div class="bcq"><button data-bm="${esc(c.id)}" aria-label="Retirer une">−</button><b>${v}</b><button data-bp="${esc(c.id)}" class="${v?"on":""}" aria-label="Ajouter une">+</button></div></div>`; }).join("")
       : `<div class="empty" style="padding:20px 12px">${col.length ? "Aucune carte ne correspond." : "Ta Collection est vide : ajoute d'abord les cartes avec le Scanner."}</div>`;
     const set = (id, dd)=>{ const L = getBud(), z = L.find(w=>w.uid===uid); z.cards ||= [];
-      let k = z.cards.find(w=>w.id===id); const c = colm.get(id);
+      let k = z.cards.find(w=>w.id===id && !w.tf); const c = colm.get(id);
       if(!k && dd>0){ k = {id, q:0}; z.cards.push(k); }
       if(!k) return;
       k.q = Math.max(0, k.q + dd);
       if(c) Object.assign(k, {p:c.price ?? k.p ?? null, n:c.name, set:c.set, num:c.num, img:c.img});   // gardé si la carte quitte la Collection
-      z.cards = z.cards.filter(w=>w.q>0); setBud(L); draw(); };
+      z.cards = z.cards.filter(w=>w.q>0 || w.tf); setBud(L); draw(); };
     $("#bcL").querySelectorAll("[data-bp]").forEach(b=>b.onclick=()=>set(b.dataset.bp, 1));
     $("#bcL").querySelectorAll("[data-bm]").forEach(b=>b.onclick=()=>set(b.dataset.bm, -1));
   };
@@ -5193,7 +5202,9 @@ async function budDetail(uid){
       ${sold.map(s=>row(`Vendu ${s.q>1?"×"+s.q+" ":""}le ${esc(frDate(s.d))}`, `${bE(s.p*s.q)} <span class="${s.p>=x.buy?"up":"down"}">(${s.p>=x.buy?"+":""}${bE((s.p-x.buy)*s.q)})</span>`)).join("")}</table>
     ${x.note?`<p class="psub">${esc(x.note)}</p>`:""}
     ${x.open?`<h3 class="bh">Cartes sorties du produit</h3>
-      ${lc.length?`<div class="slist">${lc.map(k=>{ const o = colm.get(k.id), p = o?.price ?? k.p; return `<div class="sitem bitem bcard"><span class="im">${(o?.img||k.img)?`<img src="${esc(o?.img||k.img)}" alt="" loading="lazy" onerror="this.remove()">`:""}</span><div><b>${esc(o?.name||k.n||k.id)}</b><span>${esc(o?.set||k.set||"")}${(o?.num||k.num)?" · n° "+esc(o?.num||k.num):""}${o?"":" · plus dans ta Collection"}</span><span class="bnums">${k.q>1?`×${k.q} · `:""}${p!=null?`cote ${bE(p)}`:"sans cote"}</span></div><span class="bp">${p!=null?bE(p*k.q):"—"}</span></div>`; }).join("")}</div>`
+      ${lc.length?`<div class="slist">${lc.map(k=>{ if(k.tf){ const t = getTrades().find(z=>z.id===k.tf.tid), v = t ? k.tf.s*tradeGetVal(t, colm) : 0;
+          return `<button class="sitem bitem bcard" data-trv="${esc(k.tf.tid)}"><span class="im">${k.img?`<img src="${esc(k.img)}" alt="" loading="lazy" onerror="this.remove()">`:""}</span><div><b>${k.q>1?k.q+" × ":""}${esc(k.n||k.id)}</b><span>⇄ échangée${t?` le ${esc(frDate(t.d))} contre ${esc(t.get.map(g=>g.name).join(", "))}`:""}</span><span class="bnums">sa part de l'échange, à la cote du jour</span></div><span class="bp">${bE(v)}</span></button>`; }
+        const o = colm.get(k.id), p = o?.price ?? k.p; return `<div class="sitem bitem bcard"><span class="im">${(o?.img||k.img)?`<img src="${esc(o?.img||k.img)}" alt="" loading="lazy" onerror="this.remove()">`:""}</span><div><b>${esc(o?.name||k.n||k.id)}</b><span>${esc(o?.set||k.set||"")}${(o?.num||k.num)?" · n° "+esc(o?.num||k.num):""}${o?"":" · plus dans ta Collection"}</span><span class="bnums">${k.q>1?`×${k.q} · `:""}${p!=null?`cote ${bE(p)}`:"sans cote"}</span></div><span class="bp">${p!=null?bE(p*k.q):"—"}</span></div>`; }).join("")}</div>`
         :`<p class="psub">Relie les cartes sorties de ce produit (cartes promo, cartes tirées des boosters) : sa valeur devient la somme de leurs cotes, comparée à ton prix d'achat.</p>`}
       <button class="btn btn-y" id="bdCards" style="width:100%;margin-top:10px">${lc.length?"Modifier les cartes reliées":"Relier les cartes de ma Collection"}</button>
       ${m!=null && ncard?`<p class="psub" style="margin-top:8px">S'il était resté scellé, il vaudrait ${bE(m*x.q)} (cote Cardmarket) : l'ouverture ${cv>=m*x.q?"rapporte":"coûte"} ${bE(Math.abs(cv-m*x.q))} ${cv>=m*x.q?"de plus":"de valeur"}.</p>`:""}`:""}
@@ -5210,6 +5221,7 @@ ${marketHTML(qFr, qEn, c, tp)}
   $("#bsAdd").onclick = ()=>{ const s = $("#bsS").value.trim(), p = num($("#bsP").value); if(!s || p==null){ toast("Indique l'enseigne et le prix"); return; } const l = getBud(), y = l.find(z=>z.uid===uid); (y.seen ||= []).push({s, p, d:today()}); y.seen.sort((a,b)=>a.p-b.p); setBud(l); budDetail(uid); };
   $("#bdEdit").onclick = ()=>budForm(getBud().find(y=>y.uid===uid), false);
   $("#bdCards") && ($("#bdCards").onclick = ()=>budCards(uid));
+  $("#govB").querySelectorAll("[data-trv]").forEach(b=>b.onclick=()=>tradeShow(b.dataset.trv));
   $("#bdOpen") && ($("#bdOpen").onclick = ()=>{ const l = getBud(), y = l.find(z=>z.uid===uid); y.open = true; y.opened = today(); setBud(l); budCards(uid); });
   $("#bdLink") && ($("#bdLink").onclick = ()=>budForm(getBud().find(y=>y.uid===uid), false));
   $("#bdSold") && ($("#bdSold").onclick = ()=>{
@@ -5520,6 +5532,189 @@ function toggleLang(){
 langChip.onclick = toggleLang;
 $("#extLang").onclick = toggleLang;
 setLangUI();
+
+/* ================= ÉCHANGES =================
+   Bouton « Échanger » sur la fiche d'une carte : un brouillon d'échange (gardé sur le téléphone, on peut aller scanner
+   la carte de l'autre et revenir) avec « Je donne » (cartes de la Collection + argent) et « Je reçois » (cartes cherchées
+   ou scannées + argent). Chaque carte a sa cote du jour et une valeur convenue modifiable.
+   À la validation :
+   - les cartes données sortent de la Collection, les cartes reçues y entrent ;
+   - le prix d'achat des cartes reçues = le COÛT RÉEL des cartes données (prix d'achat de la carte, ou sa part du prix
+     du produit scellé dont elle est sortie, ou à défaut sa cote du jour), + argent donné − argent reçu,
+     réparti entre les cartes reçues selon leur valeur convenue ;
+   - un produit descellé (Budget) dont des cartes sont parties garde la trace : sa valeur compte sa part des cartes reçues. */
+const getTrades = () => store.get("trades", []);
+const TRD = () => store.get("tradeDraft", null) || {give:[], get:[], cashGive:null, cashGet:null, who:""};
+const setTRD = d => store.set("tradeDraft", d);
+// coût réel d'UNE carte de la Collection
+function cardCost(id){
+  const c = getCol().find(x=>x.id===id);
+  for(const b of getBud()){
+    if(!b.open || b.buy==null || !b.cards?.length) continue;
+    const k = b.cards.find(w=>w.id===id && !w.tf); if(!k) continue;
+    const tot = b.cards.reduce((a,w)=>a+(w.p||0)*w.q, 0);   // part du prix du produit, au prorata de la cote de chaque carte reliée
+    if(tot>0) return {v:b.buy*Math.max(1, b.q)*(k.p||0)/tot, src:"upc", uid:b.uid, n:b.n};
+  }
+  if(c?.buy!=null) return {v:c.buy, src:"buy"};
+  return {v:c?.price ?? 0, src:"cote"};
+}
+function tradeGetVal(t, colm){ return t.get.reduce((a,g)=>a+((colm.get(g.id)?.price ?? g.price) || 0)*g.q, 0) + (t.cashGet||0); }
+const trE = v => v==null ? "—" : (Math.round(v*100)/100).toLocaleString("fr-FR",{minimumFractionDigits:2, maximumFractionDigits:2})+" €";
+function tradeAdd(c, side){
+  const d = TRD(), col = getCol(), own = col.find(x=>x.id===c.id);
+  if(!side) side = own ? "give" : "get";
+  const L = d[side], ex = L.find(x=>x.id===c.id);
+  const price = (c.pricing ? (marketInfo(c)?.p ?? mainPrice(c)) : c.price) ?? null;
+  if(ex){ if(side==="get" || ex.q < (own?.qty||1)) ex.q++; }
+  else L.push({id:c.id, name:c.name, set:c.set?.name ?? c.set ?? "", num:c.localId ?? c.num ?? "", img: c.pricing ? img(c,"low") : (c.img||""), price, agreed:price!=null ? Math.round(price*100)/100 : null, q:1});
+  setTRD(d); return side;
+}
+function tradeSums(d){
+  const g = d.give.reduce((a,x)=>a+(x.agreed||0)*x.q,0) + (d.cashGive||0), r = d.get.reduce((a,x)=>a+(x.agreed||0)*x.q,0) + (d.cashGet||0);
+  const gm = d.give.reduce((a,x)=>a+(x.price||0)*x.q,0) + (d.cashGive||0), rm = d.get.reduce((a,x)=>a+(x.price||0)*x.q,0) + (d.cashGet||0);
+  const cost = d.give.reduce((a,x)=>a+cardCost(x.id).v*x.q,0) + (d.cashGive||0) - (d.cashGet||0);
+  return {g, r, gm, rm, cost};
+}
+function tradeRow(x, side){
+  const own = side==="give" ? getCol().find(c=>c.id===x.id) : null, cc = side==="give" ? cardCost(x.id) : null;
+  return `<div class="sitem bitem trrow"><span class="im">${x.img?`<img src="${esc(x.img)}" alt="" loading="lazy" onerror="this.remove()">`:""}</span>
+    <div><b>${esc(x.name)}</b><span>${esc(x.set||"")}${x.num?" · n° "+esc(x.num):""}</span>
+      <span>Cote ${trE(x.price)}${cc?` · coût réel ${trE(cc.v)}${cc.src==="upc"?` <small>(part de « ${esc(cc.n)} »)</small>`:cc.src==="cote"?` <small>(sans prix d'achat : cote)</small>`:""}`:""}</span>
+      <label class="travl">Valeur convenue <input class="binp trv" data-tv="${side}|${esc(x.id)}" inputmode="decimal" value="${x.agreed!=null?String(x.agreed).replace(".",","):""}" placeholder="0,00"> €</label></div>
+    <div class="bcq"><button data-tm="${side}|${esc(x.id)}" aria-label="Retirer une">−</button><b>${x.q}</b><button data-tp="${side}|${esc(x.id)}" ${side==="give" && own && x.q>=own.qty?"disabled":""} aria-label="Ajouter une">+</button></div></div>`;
+}
+function tradeOpen(){
+  const d = TRD(), S = tradeSums(d), diff = S.r - S.g, dm = S.rm - S.gm;
+  bOpen("Échange", `
+    <h3 class="bh">Je donne</h3>
+    <div class="slist">${d.give.map(x=>tradeRow(x,"give")).join("") || `<p class="psub">Aucune carte pour l'instant.</p>`}</div>
+    <button class="btn btn-g trbtn" id="trAddG">+ Une carte de ma Collection</button>
+    <label class="trcash">+ Argent que je donne <input class="binp" id="trCG" inputmode="decimal" value="${d.cashGive!=null?String(d.cashGive).replace(".",","):""}" placeholder="0,00"> €</label>
+    <h3 class="bh">Je reçois</h3>
+    <div class="slist">${d.get.map(x=>tradeRow(x,"get")).join("") || `<p class="psub">Cherche la carte reçue ci-dessous, ou scanne-la puis touche « Échanger » sur sa fiche.</p>`}</div>
+    <form id="trF" class="trsearch" autocomplete="off"><input class="binp" id="trN" placeholder="Nom (Lugia…)" enterkeyhint="search"><input class="binp" id="trNo" placeholder="N° (ex. 9/25)" enterkeyhint="search"><button class="btn btn-y" type="submit">Chercher</button></form>
+    <div id="trRes" class="slist"></div>
+    <label class="trcash">+ Argent que je reçois <input class="binp" id="trCR" inputmode="decimal" value="${d.cashGet!=null?String(d.cashGet).replace(".",","):""}" placeholder="0,00"> €</label>
+    <div class="total" style="margin-top:16px"><div class="plabel"><span>Bilan (valeurs convenues)</span><span>${d.give.reduce((a,x)=>a+x.q,0)} → ${d.get.reduce((a,x)=>a+x.q,0)} carte(s)</span></div>
+      <div class="bsum"><div><span>Je donne</span><b>${trE(S.g)}</b></div><div><span>Je reçois</span><b>${trE(S.r)}</b></div><div><span>Différence</span><b class="${diff>=0?"up":"down"}">${diff>=0?"+":"−"}${trE(Math.abs(diff))}</b></div></div>
+      <p class="psub" style="margin:10px 0 0">À la cote du jour : je donne ${trE(S.gm)}, je reçois ${trE(S.rm)} (<b class="${dm>=0?"up":"down"}">${dm>=0?"+":"−"}${trE(Math.abs(dm))}</b>).</p>
+      <p class="psub" style="margin:6px 0 0">Coût réel transmis aux cartes reçues : <b>${trE(S.cost)}</b> (ce que t'avaient coûté les cartes données${d.cashGive||d.cashGet?", argent compris":""}).</p></div>
+    <label class="blab" for="trWho" style="margin-top:14px">Avec qui (facultatif)</label><input class="binp" id="trWho" value="${esc(d.who||"")}" placeholder="Pseudo, boutique…">
+    <button class="btn btn-y" id="trOk" style="width:100%;margin-top:14px" ${d.give.length||d.cashGive?"":"disabled"} ${d.get.length||d.cashGet?"":"disabled"}>Valider l'échange</button>
+    <button class="btn btn-g" id="trNo2" style="width:100%;margin-top:8px">Annuler cet échange</button>
+    <p class="fine">Le brouillon reste gardé : tu peux fermer, aller scanner la carte reçue et toucher « Échanger » sur sa fiche pour l'ajouter.</p>`);
+  const B = $("#govB"), save = f=>{ const x = TRD(); f(x); setTRD(x); };
+  const keyOf = s=>{ const i = s.indexOf("|"); return [s.slice(0,i), s.slice(i+1)]; };
+  B.querySelectorAll("[data-tv]").forEach(i=>i.onchange = ()=>{ const [sd,id] = keyOf(i.dataset.tv); save(x=>{ const it = x[sd].find(y=>y.id===id); if(it) it.agreed = num(i.value); }); tradeOpen(); });
+  B.querySelectorAll("[data-tp]").forEach(b=>b.onclick = ()=>{ const [sd,id] = keyOf(b.dataset.tp); save(x=>{ const it = x[sd].find(y=>y.id===id); if(it) it.q++; }); tradeOpen(); });
+  B.querySelectorAll("[data-tm]").forEach(b=>b.onclick = ()=>{ const [sd,id] = keyOf(b.dataset.tm); save(x=>{ const it = x[sd].find(y=>y.id===id); if(it){ it.q--; if(it.q<=0) x[sd] = x[sd].filter(y=>y.id!==id); } }); tradeOpen(); });
+  $("#trCG").onchange = e=>{ save(x=>x.cashGive = num(e.target.value)); tradeOpen(); };
+  $("#trCR").onchange = e=>{ save(x=>x.cashGet = num(e.target.value)); tradeOpen(); };
+  $("#trWho").onchange = e=>save(x=>x.who = e.target.value.trim());
+  $("#trAddG").onclick = tradePickGive;
+  $("#trF").onsubmit = async e=>{
+    e.preventDefault(); const name = $("#trN").value.trim(), raw = $("#trNo").value.trim(), el = $("#trRes");
+    if(!name && !raw) return;
+    let p = parseNumber(raw); if(!p && /^\s*[A-Za-z]{0,4}\d{1,3}\s*$/.test(raw)) p = {num:raw.trim().toUpperCase(), total:null};
+    el.innerHTML = `<div class="empty"><span class="loader"></span></div>`;
+    try{
+      const l = (await findCards({name, num:p?.num, total:p?.total})).slice(0, 12);
+      el.innerHTML = l.length ? l.map(c=>`<button class="sitem bitem" data-tget="${esc(c.id)}"><span class="im">${imgTag(c,"low",'alt="" loading="lazy"')}</span><div><b>${esc(c.name)}</b><span>${esc(c.set?.name||c.setName||"")} · n° ${esc(c.localId||"")}</span></div><span class="tradd">Ajouter</span></button>`).join("") : `<div class="empty">Aucune carte trouvée.</div>`;
+      el.querySelectorAll("[data-tget]").forEach(b=>b.onclick = async ()=>{ b.disabled = true; try{ const c = await getCard(b.dataset.tget); tradeAdd(c, "get"); tradeOpen(); }catch(err){ toast("Carte indisponible"); b.disabled = false; } });
+    }catch(err){ el.innerHTML = `<div class="empty">Recherche impossible (connexion).</div>`; }
+  };
+  $("#trNo2").onclick = ()=>{ setTRD(null); bClose(); toast("Échange annulé"); };
+  $("#trOk").onclick = tradeCommit;
+}
+function tradePickGive(){
+  let q = "";
+  bOpen("Je donne", `<label class="ext-search bsearch"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><input id="tgQ" type="search" placeholder="Chercher dans ta Collection"></label>
+    <div id="tgL" class="slist"></div><button class="btn btn-y" id="tgOk" style="width:100%;margin-top:14px">Retour à l'échange</button>`);
+  const draw = ()=>{
+    const d = TRD(), inT = new Map(d.give.map(x=>[x.id,x.q])), nq = norm(q);
+    const l = getCol().filter(c=>!nq || norm(`${c.name} ${c.set} ${c.num}`).includes(nq)).sort((a,b)=>(inT.has(b.id)-inT.has(a.id)) || (b.price||0)-(a.price||0)).slice(0,120);
+    $("#tgL").innerHTML = l.map(c=>{ const v = inT.get(c.id)||0;
+      return `<div class="sitem bitem bcard"><span class="im">${c.img?`<img src="${esc(c.img)}" alt="" loading="lazy" onerror="this.remove()">`:""}</span><div><b>${esc(c.name)}</b><span>${esc(c.set||"")}${c.num?" · n° "+esc(c.num):""} · ×${c.qty}</span><span>${trE(c.price)}</span></div>
+        <div class="bcq"><button data-gm="${esc(c.id)}" aria-label="Retirer une">−</button><b>${v}</b><button data-gp="${esc(c.id)}" class="${v?"on":""}" ${v>=c.qty?"disabled":""} aria-label="Ajouter une">+</button></div></div>`; }).join("") || `<div class="empty">Ta Collection est vide.</div>`;
+    $("#tgL").querySelectorAll("[data-gp]").forEach(b=>b.onclick = ()=>{ const c = getCol().find(x=>x.id===b.dataset.gp); if(c) tradeAdd(c, "give"); draw(); });
+    $("#tgL").querySelectorAll("[data-gm]").forEach(b=>b.onclick = ()=>{ const x = TRD(), it = x.give.find(y=>y.id===b.dataset.gm); if(it){ it.q--; if(it.q<=0) x.give = x.give.filter(y=>y.id!==it.id); setTRD(x); } draw(); });
+  };
+  let t = null; $("#tgQ").oninput = e=>{ q = e.target.value; clearTimeout(t); t = setTimeout(draw, 150); };
+  $("#tgOk").onclick = tradeOpen;
+  draw();
+}
+async function tradeCommit(){
+  const d = TRD(); if(!(d.give.length||d.cashGive) || !(d.get.length||d.cashGet)) return;
+  const btn = $("#trOk"); btn.disabled = true; btn.textContent = "Enregistrement…";
+  // fiches complètes des cartes reçues (cote, image) avant de toucher à la Collection
+  const full = [];
+  for(const g of d.get){ try{ full.push(await getCard(g.id)); }catch(e){ full.push(null); } }
+  const tid = "t"+Date.now().toString(36), col0 = getCol();
+  const give = d.give.map(x=>{ const cc = cardCost(x.id); return {...x, cost:cc.v, src:cc.src, uid:cc.uid||null}; });
+  const S = tradeSums(d), giveAgreed = give.reduce((a,x)=>a+(x.agreed||0)*x.q,0) + (d.cashGive||0);
+  const costTot = give.reduce((a,x)=>a+x.cost*x.q,0) + (d.cashGive||0) - (d.cashGet||0);
+  const getAgreed = d.get.reduce((a,x)=>a+(x.agreed||0)*x.q,0) || 1;
+  const get = d.get.map(x=>({...x, cost: Math.max(0, costTot) * ((x.agreed||0)*x.q/getAgreed) / x.q}));
+  // 1) produits descellés : la part des cartes données suit l'échange
+  const L = getBud(); let budTouched = false;
+  for(const x of give){
+    if(x.src!=="upc" || !x.uid) continue;
+    const b = L.find(z=>z.uid===x.uid); if(!b) continue;
+    const k = b.cards.find(w=>w.id===x.id && !w.tf); if(!k) continue;
+    const q = Math.min(k.q, x.q); k.q -= q;
+    b.cards.push({id:x.id, q, p:k.p, n:k.n, set:k.set, num:k.num, img:k.img, tf:{tid, s: giveAgreed ? (x.agreed||0)*q/giveAgreed : 0}});
+    b.cards = b.cards.filter(w=>w.q>0); budTouched = true;
+  }
+  if(budTouched) setBud(L);
+  // 2) cartes données : sortent de la Collection
+  const col = getCol();
+  for(const x of give){ const i = col.findIndex(c=>c.id===x.id); if(i<0) continue; col[i].qty -= x.q; if(col[i].qty<=0) col.splice(i,1); }
+  store.set("col", col);
+  // 3) cartes reçues : entrent dans la Collection avec leur coût réel (moyenne si la carte y était déjà)
+  get.forEach((x,i)=>{
+    const c = full[i], before = getCol().find(y=>y.id===x.id), oq = before?.qty || 0, ob = before ? (before.buy ?? before.price ?? 0) : 0;
+    if(c){ for(let n=0;n<x.q;n++) addToCol(c); }
+    else { const l = getCol(), ex = l.find(y=>y.id===x.id); if(ex) ex.qty += x.q; else l.unshift({id:x.id, name:x.name, set:x.set, num:x.num, img:x.img, price:x.price, buy:x.cost, pt:Date.now(), qty:x.q, t:Date.now()}); store.set("col", l); }
+    const l = getCol(), e = l.find(y=>y.id===x.id);
+    if(e){ e.buy = oq ? (ob*oq + x.cost*x.q)/(oq+x.q) : x.cost; e.tr = tid; store.set("col", l); }
+  });
+  // 4) l'échange dans l'historique
+  const T = getTrades();
+  T.unshift({id:tid, d:today(), who:d.who||"", give:give.map(({id,name,set,num,img,q,agreed,price,cost,src,uid})=>({id,name,set,num,img,q,agreed,price,cost,src,uid})),
+    get:get.map(({id,name,set,num,img,q,agreed,price,cost})=>({id,name,set,num,img,q,agreed,price,cost})), cashGive:d.cashGive||0, cashGet:d.cashGet||0, cost:costTot, agreedGive:S.g, agreedGet:S.r, mGive:S.gm, mGet:S.rm});
+  store.set("trades", T); setTRD(null);
+  renderCol(); refreshSetTiles(); try{ renderHome(); }catch(e){}
+  toast("Échange enregistré");
+  tradeShow(tid);
+}
+function tradeShow(tid){
+  const t = getTrades().find(x=>x.id===tid); if(!t) return;
+  const colm = new Map(getCol().map(c=>[c.id,c]));
+  const getNow = tradeGetVal(t, colm), giveNow = t.give.reduce((a,x)=>a+x.price*x.q,0) + (t.cashGive||0);
+  const row = x=>`<div class="sitem bitem"><span class="im">${x.img?`<img src="${esc(x.img)}" alt="" loading="lazy" onerror="this.remove()">`:""}</span><div><b>${x.q>1?x.q+" × ":""}${esc(x.name)}</b><span>${esc(x.set||"")}${x.num?" · n° "+esc(x.num):""}</span><span>Convenue ${trE(x.agreed)} · coût réel ${trE(x.cost)}${x.src==="upc"?" (part d'un scellé)":""}</span></div></div>`;
+  bOpen("Échange du "+frDate(t.d), `
+    ${t.who?`<p class="psub">Avec ${esc(t.who)}</p>`:""}
+    <h3 class="bh">J'ai donné</h3><div class="slist">${t.give.map(row).join("")}${t.cashGive?`<p class="psub">+ ${trE(t.cashGive)} en argent</p>`:""}</div>
+    <h3 class="bh">J'ai reçu</h3><div class="slist">${t.get.map(row).join("")}${t.cashGet?`<p class="psub">+ ${trE(t.cashGet)} en argent</p>`:""}</div>
+    <table class="jtab" style="margin-top:12px">
+      <tr><td>Valeurs convenues</td><td>${trE(t.agreedGive)} → ${trE(t.agreedGet)}</td></tr>
+      <tr><td>Cote le jour de l'échange</td><td>${trE(t.mGive)} → ${trE(t.mGet)}</td></tr>
+      <tr><td>Coût réel des cartes données</td><td>${trE(t.cost)}</td></tr>
+      <tr class="b"><td>Ce que vaut ce que j'ai reçu aujourd'hui</td><td>${trE(getNow)} <span class="${getNow-t.cost>=0?"up":"down"}">(${getNow-t.cost>=0?"+":"−"}${trE(Math.abs(getNow-t.cost))} sur le coût réel)</span></td></tr>
+    </table>
+    <button class="btn btn-g" id="trBack" style="width:100%;margin-top:14px">Tous mes échanges</button>`);
+  $("#trBack").onclick = tradeList;
+}
+function tradeList(){
+  const T = getTrades(), colm = new Map(getCol().map(c=>[c.id,c])), d = TRD();
+  bOpen("Mes échanges", `
+    ${(d.give.length||d.get.length)?`<button class="btn btn-y" id="trDraft" style="width:100%;margin-bottom:12px">Reprendre l'échange en cours (${d.give.length+d.get.length} carte(s))</button>`:""}
+    ${T.length ? `<div class="slist">${T.map(t=>{ const now = tradeGetVal(t, colm), p = now - t.cost;
+      return `<button class="sitem bitem" data-tid="${t.id}"><span class="im">${t.get[0]?.img?`<img src="${esc(t.get[0].img)}" alt="" loading="lazy" onerror="this.remove()">`:""}</span><div><b>${esc(t.give.map(x=>x.name).join(", ")).slice(0,60)} → ${esc(t.get.map(x=>x.name).join(", "))}</b><span>${esc(frDate(t.d))}${t.who?" · "+esc(t.who):""}</span><span>Coût réel ${trE(t.cost)} · vaut aujourd'hui ${trE(now)} <b class="${p>=0?"up":"down"}">${p>=0?"+":"−"}${trE(Math.abs(p))}</b></span></div></button>`; }).join("")}</div>`
+      : `<p class="psub">Aucun échange pour l'instant. Ouvre une carte de ta Collection et touche « Échanger ».</p>`}`);
+  $("#govB").querySelectorAll("[data-tid]").forEach(b=>b.onclick = ()=>tradeShow(b.dataset.tid));
+  $("#trDraft") && ($("#trDraft").onclick = tradeOpen);
+}
 
 /* ---------------- Partager une carte ----------------
    Une image prête à envoyer (format 4:5, comme une story ou un post) : la carte, son nom, l'extension et le numéro,

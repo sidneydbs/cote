@@ -810,8 +810,9 @@ html{background:var(--panel)}
 .fchips .fselb{height:34px;padding:0 12px;border-radius:17px;border:1px solid var(--line);background:var(--panel);font:600 13px/1 var(--f-body);color:var(--muted)}
 .fchips .fselb[aria-pressed="true"]{border-color:var(--border-yellow);color:var(--border-yellow)}
 .ctile.sel{outline:3px solid var(--border-yellow);outline-offset:1px;border-radius:10px;position:relative}
-.ctile.sel::after{content:"✓";position:absolute;top:4px;right:4px;width:22px;height:22px;border-radius:50%;background:var(--border-yellow);color:var(--on-acc);font:800 13px/22px system-ui;text-align:center;z-index:3}
+.ctile.sel::after{content:attr(data-selq);position:absolute;top:4px;right:4px;min-width:26px;height:22px;padding:0 5px;border-radius:11px;background:var(--border-yellow);color:var(--on-acc);font:800 13px/22px system-ui;text-align:center;z-index:3}
 .ctile.miss.sel .im img{filter:none;opacity:.9}
+.ctile .selm{position:absolute;top:2px;left:2px;width:30px;height:30px;border-radius:50%;background:rgba(0,0,0,.72);color:#fff;font:800 18px/30px system-ui;text-align:center;z-index:3}
 .selbar{position:fixed;left:12px;right:12px;z-index:15;display:flex;align-items:center;gap:8px;padding:8px;border-radius:18px;background:var(--panel);border:1px solid var(--line);box-shadow:0 12px 30px rgba(0,0,0,.45)}
 .selbar span{flex:1;font-size:14px}.selbar .btn{padding:11px 16px}
 .selbar .sbx,.selbar .sball{height:40px;min-width:40px;padding:0 10px;border-radius:12px;border:1px solid var(--line);background:var(--panel-2);color:var(--fg);font-weight:700}
@@ -1102,7 +1103,7 @@ html{background:var(--panel)}
 </head>
 <body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="pb" viewBox="0 0 100 100"><defs><linearGradient id="pbV" x1="0" y1="0" x2="1" y2="1"><stop offset="0" style="stop-color:var(--pb1)"/><stop offset=".5" style="stop-color:var(--pb2)"/><stop offset="1" style="stop-color:var(--pb3)"/></linearGradient><radialGradient id="pbB" cx=".38" cy=".75" r=".75"><stop offset="0" style="stop-color:var(--pbb1)"/><stop offset="1" style="stop-color:var(--pbb2)"/></radialGradient><radialGradient id="pbC" cx=".4" cy=".35" r=".7"><stop offset="0" style="stop-color:var(--pbc1)"/><stop offset=".55" style="stop-color:var(--pbc2)"/><stop offset="1" style="stop-color:var(--pbc3)"/></radialGradient></defs><path d="M3 50a47 47 0 0 1 94 0z" fill="url(#pbV)"/><path d="M3 50a47 47 0 0 0 94 0z" fill="url(#pbB)"/><rect x="3" y="45.5" width="94" height="9" fill="#09080D"/><circle cx="50" cy="50" r="47" fill="none" stroke="#09080D" stroke-width="4"/><circle cx="50" cy="50" r="15.5" fill="#09080D"/><circle cx="50" cy="50" r="10" fill="url(#pbC)" style="stroke:var(--pb2)" stroke-width="2"/><path d="M19 33a35 35 0 0 1 17-15" fill="none" stroke="#fff" stroke-opacity=".38" stroke-width="4" stroke-linecap="round"/></symbol></svg>
-<script>window.__APPV="77";</script>
+<script>window.__APPV="78";</script>
 <div class="splash" id="splash" aria-hidden="true"><i class="hole"></i><i class="halo"></i><div class="bw"><svg class="b" viewBox="0 0 100 100"><use href="#pb"/></svg><svg class="t" viewBox="0 0 100 100"><use href="#pb"/></svg></div><i class="glow"></i></div>
 <script>setTimeout(function(){ if(window.__booted) return;
   var b=document.createElement("div"); b.setAttribute("role","alert");
@@ -1137,7 +1138,7 @@ html{background:var(--panel)}
   <!-- ===== EXTENSIONS ===== -->
   <section class="view" id="homeView">
     <div class="scroll">
-      <div class="homebar"><span id="avatSlot"><svg class="pball" viewBox="0 0 100 100" aria-hidden="true"><use href="#pb"/></svg></span><span class="brand">DEX<b>·</b>SCAN</span><button class="thbtn" id="themeBtn" aria-label="Changer de thème"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.6-.9 1.2-1.8-.5-1.1.2-2.2 1.4-2.2H17a4 4 0 0 0 4-4c0-5.5-4-10-9-10z"/><circle cx="7.5" cy="11" r="1.2"/><circle cx="10" cy="7" r="1.2"/><circle cx="15" cy="7" r="1.2"/></svg></button><span class="ver">v77</span></div>
+      <div class="homebar"><span id="avatSlot"><svg class="pball" viewBox="0 0 100 100" aria-hidden="true"><use href="#pb"/></svg></span><span class="brand">DEX<b>·</b>SCAN</span><button class="thbtn" id="themeBtn" aria-label="Changer de thème"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.6-.9 1.2-1.8-.5-1.1.2-2.2 1.4-2.2H17a4 4 0 0 0 4-4c0-5.5-4-10-9-10z"/><circle cx="7.5" cy="11" r="1.2"/><circle cx="10" cy="7" r="1.2"/><circle cx="15" cy="7" r="1.2"/></svg></button><span class="ver">v78</span></div>
       <div class="hhead"><div><span class="hdate" id="hDate"></span><h1 class="h1">Accueil</h1></div><button class="hsearch" id="hSearch" aria-label="Rechercher une carte"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></button></div>
       <div class="total htot" id="hTot"></div>
       <div class="hqa">
@@ -2354,7 +2355,7 @@ function colFolders(groups, by, OWNI, gen, list){
   list.querySelectorAll("[data-cfser]").forEach(b=>b.onclick=()=>{ F.ser = b.dataset.cfser; F.set = null; renderCol(); top(); });
   list.querySelectorAll("[data-cfset]").forEach(b=>b.onclick=()=>{ if(flat) F.ser = g.name; F.set = b.dataset.cfset; renderCol(); top(); });
   list.querySelectorAll("[data-fgo]").forEach(b=>b.onclick=()=>{ if(+b.dataset.fgo===0){ F.ser = F.set = null; } else F.set = null; renderCol(); top(); });
-  list.querySelectorAll("[data-fsel]").forEach(b=>b.onclick=()=>{ if(COLV.sel) selEnd(); else { COLV.sel = new Set(); if(CF.show==="own"){ CF.show = "miss"; if(!COLV.pdx){ COLV.pdx = true; store.set("colPdx", true); } store.set("colFlt", CF); } renderCol(); selBar(); } });
+  list.querySelectorAll("[data-fsel]").forEach(b=>b.onclick=()=>{ if(COLV.sel) selEnd(); else { COLV.sel = new Map(); if(CF.show==="own"){ CF.show = "miss"; if(!COLV.pdx){ COLV.pdx = true; store.set("colPdx", true); } store.set("colFlt", CF); } renderCol(); selBar(); } });
   list.querySelectorAll("[data-fsort]").forEach(b=>b.onclick=()=>{ CF.sort = b.dataset.fsort; store.set("colFlt", CF);
     if(CF.sort==="price" && typeof loadPrices==="function") loadPrices().then(()=>renderCol()); else renderCol(); });
   list.querySelectorAll("[data-fshow]").forEach(b=>b.onclick=()=>{ CF.show = b.dataset.fshow; if(CF.show!=="own" && !COLV.pdx){ COLV.pdx = true; store.set("colPdx", true); } store.set("colFlt", CF); renderCol(); });
@@ -2375,8 +2376,11 @@ async function fillColSet(box, own, gen){
     const sec = box.closest(".serie"); if(sec) sec.hidden = [...sec.querySelectorAll(".colset")].every(x=>x.hidden);
     grid.innerHTML = l.map(c=>colTile(c, ownById.get(c.id))).join("");
     grid.querySelectorAll(".ctile").forEach(b=>{
-      if(COLV.sel?.has(b.dataset.id)) b.classList.add("sel");
-      b.onclick = ()=>{ if(COLV.sel){ const id = b.dataset.id; COLV.sel.has(id) ? COLV.sel.delete(id) : COLV.sel.add(id); b.classList.toggle("sel", COLV.sel.has(id)); selBar(); try{ navigator.vibrate?.(6); }catch(e){} }
+      selMark(b);
+      // mode sélection : chaque toucher ajoute un exemplaire (×1, ×2, ×3…), le « − » en retire un
+      b.onclick = e=>{ if(COLV.sel){ const id = b.dataset.id, n = COLV.sel.get(id) || 0;
+          const d = e.target.closest(".selm") ? -1 : 1; if(n+d>0) COLV.sel.set(id, n+d); else COLV.sel.delete(id);
+          selMark(b); selBar(); try{ navigator.vibrate?.(6); }catch(x){} }
         else showCard(b.dataset.id, []); };
     });
   };
@@ -5550,34 +5554,39 @@ $("#extLang").onclick = toggleLang;
 setLangUI();
 
 /* ---------- Sélection de plusieurs cartes (extension ouverte dans Mes cartes) : ajout groupé à la Collection ---------- */
+function selMark(b){
+  const n = COLV.sel?.get(b.dataset.id) || 0;
+  b.classList.toggle("sel", n>0); if(n) b.dataset.selq = "×"+n; else delete b.dataset.selq;
+  let m = b.querySelector(".selm"); if(n && !m){ m = document.createElement("span"); m.className = "selm"; m.setAttribute("aria-label","Retirer un exemplaire"); m.textContent = "−"; b.appendChild(m); } else if(!n && m) m.remove();
+}
 function selBar(){
   let bar = $("#selBar");
   if(!COLV.sel){ bar?.remove(); return; }
   if(!bar){ bar = document.createElement("div"); bar.id = "selBar"; bar.className = "selbar"; document.body.appendChild(bar); }
   const tabs = document.querySelector(".tabs"); bar.style.bottom = ((tabs?.getBoundingClientRect().height || 64) + 10) + "px";
-  const n = COLV.sel.size;
+  const n = [...COLV.sel.values()].reduce((a,v)=>a+v,0);
   bar.innerHTML = `<button class="sbx" id="selX" aria-label="Quitter la sélection">✕</button><span><b>${n}</b> carte${n>1?"s":""}</span><button class="sball" id="selAll">Tout</button><button class="btn btn-y" id="selAdd" ${n?"":"disabled"}>Ajouter${n?` (${n})`:""}</button>`;
   $("#selX").onclick = ()=>selEnd();
   $("#selAll").onclick = ()=>{ const tiles = [...document.querySelectorAll("#colView .ctile.miss")]; const all = tiles.length && tiles.every(t=>COLV.sel.has(t.dataset.id));
-    tiles.forEach(t=>{ all ? COLV.sel.delete(t.dataset.id) : COLV.sel.add(t.dataset.id); t.classList.toggle("sel", !all); }); selBar(); };
+    tiles.forEach(t=>{ if(all) COLV.sel.delete(t.dataset.id); else if(!COLV.sel.has(t.dataset.id)) COLV.sel.set(t.dataset.id, 1); selMark(t); }); selBar(); };
   $("#selAdd").onclick = selAdd;
 }
 function selEnd(render=true){ COLV.sel = null; $("#selBar")?.remove(); if(render) renderCol(); }
 async function selAdd(){
-  const ids = [...(COLV.sel||[])]; if(!ids.length) return;
+  const qty = new Map(COLV.sel||[]), ids = [...qty.keys()]; if(!ids.length) return;
   const btn = $("#selAdd"); btn.disabled = true;
   const cards = []; let done = 0;
   await pool(ids, 4, async id=>{ try{ const c = await getCard(id); if(c) cards.push(c); }catch(e){} done++; if(btn) btn.textContent = `Ajout ${done}/${ids.length}…`; });
   // tout d'un coup : une seule écriture et un seul rafraîchissement
   const col = getCol();
-  for(const c of cards){
+  for(const c of cards.flatMap(c=>Array(qty.get(c.id)||1).fill(c))){
     const mi = marketInfo(c) || {}, ex = col.find(x=>x.id===c.id), bump = x=>{ x.lgs ||= {}; x.lgs[currentLg] = (x.lgs[currentLg]||0)+1; };
     if(ex){ const p = mi.p ?? ex.price; if(ex.buy!=null && p!=null) ex.buy = (ex.buy*ex.qty + p)/(ex.qty+1); ex.qty++; bump(ex); if(mi.p) Object.assign(ex, {price:mi.p, a1:mi.a1, a7:mi.a7, a30:mi.a30, pt:Date.now()}); ex.t = Date.now(); }
     else { const p = mi.p ?? mainPrice(c); const x = {id:c.id, name:c.name, set:c.set?.name||"", num:c.localId, img:img(c,"low"), price:p, buy:p, a1:mi.a1, a7:mi.a7, a30:mi.a30, pt:Date.now(), qty:1, t:Date.now()}; bump(x); col.unshift(x); }
   }
   store.set("col", col);
-  const miss = ids.length - cards.length;
-  toast(`${cards.length} carte${cards.length>1?"s":""} ajoutée${cards.length>1?"s":""} à ta collection${miss?` · ${miss} indisponible${miss>1?"s":""}`:""}`);
+  const miss = ids.length - cards.length, nb = cards.reduce((a,c)=>a+(qty.get(c.id)||1),0);
+  toast(`${nb} carte${nb>1?"s":""} ajoutée${nb>1?"s":""} à ta collection${miss?` · ${miss} indisponible${miss>1?"s":""}`:""}`);
   selEnd(); refreshSetTiles(); try{ renderHome(); }catch(e){}
 }
 

@@ -243,6 +243,11 @@ html{background:var(--panel)}
 .ctile .qx{position:absolute;top:4px;right:4px;background:var(--fg);color:var(--ink);font:700 10px/1 var(--f-mono);padding:3px 5px;border-radius:5px}
 .ctile .own{position:absolute;bottom:4px;right:4px;width:16px;height:16px;border-radius:50%;background:var(--up);color:#06281a;display:grid;place-items:center;font:900 10px/1 var(--f-body)}
 .lgrow{margin:2px 0 12px}
+.cdpick button{min-width:46px}
+.lexh{margin:16px 0 6px;font:700 11px/1 var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--border-yellow)}
+.lexl{margin:0;display:flex;flex-direction:column;gap:0}.lexl div{padding:10px 0;border-top:1px solid var(--line)}
+.lexl dt{font-weight:800;font-size:15px}.lexl dd{margin:3px 0 0;color:var(--muted);font-size:14px;line-height:1.45}
+.tagc{display:inline-block;font:800 10px/1 var(--f-mono);padding:3px 5px;border-radius:5px;background:var(--panel-2);color:var(--fg);margin-left:4px;vertical-align:1px}
 .lgrow>span{display:block;font:600 11px/1 var(--f-mono);letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
 .lgrow>small{display:block;font-size:12px;color:var(--muted);margin-top:8px;line-height:1.4}
 .lgpick{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;padding-bottom:2px}
@@ -466,6 +471,12 @@ html{background:var(--panel)}
 .ctile{display:flex;flex-direction:column;gap:5px;min-width:0;text-align:left;content-visibility:auto;contain-intrinsic-size:auto 200px}
 .ctile .im{position:relative;display:block;aspect-ratio:63/88;max-width:100%;border-radius:4.5%/3.2%;background:var(--panel-2);overflow:hidden}
 .ctile .im img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.cph{position:relative;width:100%;aspect-ratio:63/88;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6%;padding:8%;text-align:center;color:color-mix(in srgb,var(--border-yellow) 70%,var(--muted));background:radial-gradient(circle at 50% 35%,color-mix(in srgb,var(--border-yellow) 18%,var(--panel-2)),var(--panel-2) 70%);border:2px solid color-mix(in srgb,var(--border-yellow) 35%,transparent);border-radius:inherit;overflow:hidden}
+.cph svg{width:38%;height:auto}.cph b{font:800 clamp(9px,2.6vw,14px)/1.15 var(--f-body);color:var(--fg);max-width:100%;overflow:hidden;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical}.cph small{font:700 clamp(8px,2.2vw,12px)/1 var(--f-mono);color:var(--muted)}
+.ctile .im > .cph,.tcard .tim > .cph{position:absolute;inset:0;width:auto;aspect-ratio:auto}
+/* produit sans photo : une Poké Ball grise plutôt qu'une case vide */
+.im:empty,.bhead:not(:has(img))::before{background:var(--panel-2) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cg fill='none' stroke='%23888' stroke-width='6' opacity='.55'%3E%3Ccircle cx='50' cy='50' r='42'/%3E%3Cpath d='M8 50h30M62 50h30'/%3E%3Ccircle cx='50' cy='50' r='12'/%3E%3C/g%3E%3C/svg%3E") center/50% no-repeat}
+.bhead:not(:has(img))::before{content:"";flex:none;width:90px;height:90px;border-radius:10px}
 .ctile .nm0{position:absolute;inset:0;display:grid;place-items:center;padding:6px;text-align:center;font-size:11px;color:var(--muted)}
 .ctile .rk{position:absolute;top:4px;left:4px;background:var(--border-yellow);color:var(--on-acc);font:700 10px/1 var(--f-mono);padding:3px 5px;border-radius:5px}
 .ctile .nm{display:block;font-size:11px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
@@ -1180,7 +1191,7 @@ img.px.reveal{animation:stpRev .9s ease-out}
 </head>
 <body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="pb" viewBox="0 0 100 100"><defs><linearGradient id="pbV" x1="0" y1="0" x2="1" y2="1"><stop offset="0" style="stop-color:var(--pb1)"/><stop offset=".5" style="stop-color:var(--pb2)"/><stop offset="1" style="stop-color:var(--pb3)"/></linearGradient><radialGradient id="pbB" cx=".38" cy=".75" r=".75"><stop offset="0" style="stop-color:var(--pbb1)"/><stop offset="1" style="stop-color:var(--pbb2)"/></radialGradient><radialGradient id="pbC" cx=".4" cy=".35" r=".7"><stop offset="0" style="stop-color:var(--pbc1)"/><stop offset=".55" style="stop-color:var(--pbc2)"/><stop offset="1" style="stop-color:var(--pbc3)"/></radialGradient></defs><path d="M3 50a47 47 0 0 1 94 0z" fill="url(#pbV)"/><path d="M3 50a47 47 0 0 0 94 0z" fill="url(#pbB)"/><rect x="3" y="45.5" width="94" height="9" fill="#09080D"/><circle cx="50" cy="50" r="47" fill="none" stroke="#09080D" stroke-width="4"/><circle cx="50" cy="50" r="15.5" fill="#09080D"/><circle cx="50" cy="50" r="10" fill="url(#pbC)" style="stroke:var(--pb2)" stroke-width="2"/><path d="M19 33a35 35 0 0 1 17-15" fill="none" stroke="#fff" stroke-opacity=".38" stroke-width="4" stroke-linecap="round"/></symbol></svg>
-<script>window.__APPV="95";</script>
+<script>window.__APPV="97";</script>
 <div class="splash" id="splash" aria-hidden="true"><i class="hole"></i><i class="halo"></i><div class="bw"><svg class="b" viewBox="0 0 100 100"><use href="#pb"/></svg><svg class="t" viewBox="0 0 100 100"><use href="#pb"/></svg></div><i class="glow"></i></div>
 <script>setTimeout(function(){ if(window.__booted) return;
   var b=document.createElement("div"); b.setAttribute("role","alert");
@@ -1215,7 +1226,7 @@ img.px.reveal{animation:stpRev .9s ease-out}
   <!-- ===== EXTENSIONS ===== -->
   <section class="view" id="homeView">
     <div class="scroll">
-      <div class="homebar"><span id="avatSlot"><svg class="pball" viewBox="0 0 100 100" aria-hidden="true"><use href="#pb"/></svg></span><span class="brand">DEX<b>·</b>SCAN</span><button class="thbtn" id="themeBtn" aria-label="Changer de thème"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.6-.9 1.2-1.8-.5-1.1.2-2.2 1.4-2.2H17a4 4 0 0 0 4-4c0-5.5-4-10-9-10z"/><circle cx="7.5" cy="11" r="1.2"/><circle cx="10" cy="7" r="1.2"/><circle cx="15" cy="7" r="1.2"/></svg></button><span class="ver">v95</span></div>
+      <div class="homebar"><span id="avatSlot"><svg class="pball" viewBox="0 0 100 100" aria-hidden="true"><use href="#pb"/></svg></span><span class="brand">DEX<b>·</b>SCAN</span><button class="thbtn" id="themeBtn" aria-label="Changer de thème"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.6-.9 1.2-1.8-.5-1.1.2-2.2 1.4-2.2H17a4 4 0 0 0 4-4c0-5.5-4-10-9-10z"/><circle cx="7.5" cy="11" r="1.2"/><circle cx="10" cy="7" r="1.2"/><circle cx="15" cy="7" r="1.2"/></svg></button><span class="ver">v97</span></div>
       <div class="hhead"><div><span class="hdate" id="hDate"></span><div class="htitle"><h1 class="h1">Accueil</h1><button class="hsearch hrank" id="hRank" aria-label="Classement"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 21h8M12 17v4"/><path d="M7 4h10v5a5 5 0 0 1-10 0z"/><path d="M17 5h3v2a3 3 0 0 1-3 3M7 5H4v2a3 3 0 0 0 3 3"/></svg></button></div></div><button class="hsearch" id="hSearch" aria-label="Rechercher une carte"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></button></div>
       <div class="total htot" id="hTot"></div>
       <div class="hqa">
@@ -1236,6 +1247,9 @@ img.px.reveal{animation:stpRev .9s ease-out}
         <button data-mgo="playView"><span class="mi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 11h4M8 9v4"/><path d="M15 12h.01M18 10h.01"/><path d="M17.3 5H6.7a4 4 0 0 0-4 3.6l-.7 6.9A3 3 0 0 0 5 19c1 0 1.9-.5 2.5-1.3L9 16h6l1.5 1.7c.6.8 1.5 1.3 2.5 1.3a3 3 0 0 0 3-3.5l-.7-6.9A4 4 0 0 0 17.3 5z"/></svg></span><span class="mt"><b>Jouer</b><small>Comprendre la crypto avec les cartes</small></span><svg class="mch" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></button>
         <button data-boost="1"><span class="mi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 3h10l1 3-1 3 1 3-1 3 1 3-1 3H7l-1-3 1-3-1-3 1-3-1-3z"/><path d="M6 6h12"/></svg></span><span class="mt"><b>Ouvrir des boosters</b><small>Booster en 3D, vraies cartes et vraies raretés</small></span><svg class="mch" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></button>
         <button data-mgo="alertView"><span class="mi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 8a6 6 0 1 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.9 1.9 0 0 0 3.4 0"/></svg></span><span class="mt"><b>Alertes réassort</b><small>Ton guetteur de sorties</small></span><svg class="mch" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></button>
+      </div>
+      <div class="mlist">
+        <button id="mLex"><span class="mi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V3H6.5A2.5 2.5 0 0 0 4 5.5z"/><path d="M4 19.5A2.5 2.5 0 0 0 6.5 22H20v-5"/><path d="M9 7h7M9 11h5"/></svg></span><span class="mt"><b>Lexique TCG</b><small>Alt, SIR, ETB, NM, PSA… tous les mots du TCG</small></span><svg class="mch" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></button>
       </div>
       <div class="mlist">
         <button id="mTheme"><span class="mi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.6-.9 1.2-1.8-.5-1.1.2-2.2 1.4-2.2H17a4 4 0 0 0 4-4c0-5.5-4-10-9-10z"/><circle cx="7.5" cy="11" r="1.2"/><circle cx="10" cy="7" r="1.2"/><circle cx="15" cy="7" r="1.2"/></svg></span><span class="mt"><b>Thème de l'app</b><small>Couleurs et ambiance</small></span><svg class="mch" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></button>
@@ -1813,6 +1827,13 @@ let current = null, currentAlts = [], currentVariant = 0, currentEd = null;
 /* langue de l'exemplaire qu'on ajoute à la collection (mémorisée d'une carte à l'autre) */
 const CARD_LG = {FR:"Français", EN:"Anglais", JP:"Japonais", DE:"Allemand", IT:"Italien", ES:"Espagnol", PT:"Portugais", KO:"Coréen", ZH:"Chinois"};
 let currentLg = store.get("addLg", "FR");
+/* état d'une carte (normes Cardmarket) ; la cote du marché correspond à NM, les autres états valent moins */
+const CONDS = [["M","Mint","Parfaite",1.1],["NM","Near Mint","Quasi parfaite",1],["EX","Excellent","Petits défauts",.85],["GD","Good","Usure nette",.7],["LP","Light Played","Jouée",.6],["PL","Played","Très jouée",.45],["PO","Poor","Abîmée",.25]];
+const CONDF = Object.fromEntries(CONDS.map(c=>[c[0], c[3]]));
+let currentCond = store.get("addCond", "NM");
+const ownConds = x => x?.conds ? Object.entries(x.conds).filter(([,n])=>n>0) : [];
+// valeur estimée des exemplaires selon leur état (sans état noté : NM)
+function condValue(x){ if(!x?.price) return null; const cs = ownConds(x), n = cs.reduce((a,[,v])=>a+v,0); return cs.reduce((a,[k,v])=>a+x.price*(CONDF[k]??1)*v,0) + x.price*Math.max(0,(x.qty||1)-n); }
 const ownLgs = x => x?.lgs ? Object.entries(x.lgs).filter(([,n])=>n>0) : [];
 function openSheet(){ const s=$("#sheet"); s.classList.add("open"); s.setAttribute("aria-hidden","false"); requestAnimationFrame(()=>FOIL.wake()); }
 function closeSheet(){ const s=$("#sheet"); s.classList.remove("open"); s.setAttribute("aria-hidden","true"); resumeCamera(); }
@@ -1836,7 +1857,7 @@ async function showCard(id, alts, diag=null){
   }
 }
 /* ---------- Images de secours : TCGdex FR -> TCGdex EN -> pokemontcg.io -> Limitless ---------- */
-const SRC = {"pt":{"base1":"base1","base2":"base2","basep":"basep","base3":"base3","base4":"base4","base5":"base5","gym1":"gym1","gym2":"gym2","neo1":"neo1","neo2":"neo2","si1":"si1","neo3":"neo3","neo4":"neo4","lc":"base6","ecard1":"ecard1","bog":"bp","ecard2":"ecard2","ecard3":"ecard3","ex1":"ex1","ex2":"ex2","np":"np","ex3":"ex3","ex4":"ex4","ex5":"ex5","tk-ex-latia":"tk1a","tk-ex-latio":"tk1b","ex6":"ex6","pop1":"pop1","ex7":"ex7","ex8":"ex8","ex9":"ex9","pop2":"pop2","ex10":"ex10","ex11":"ex11","ex12":"ex12","tk-ex-p":"tk2a","tk-ex-m":"tk2b","pop3":"pop3","ex13":"ex13","pop4":"pop4","ex14":"ex14","ex15":"ex15","ex16":"ex16","pop5":"pop5","dpp":"dpp","dp1":"dp1","dp2":"dp2","pop6":"pop6","dp3":"dp3","dp4":"dp4","pop7":"pop7","dp5":"dp5","dp6":"dp6","pop8":"pop8","dp7":"dp7","pl1":"pl1","pop9":"pop9","pl2":"pl2","pl3":"pl3","pl4":"pl4","ru1":"ru1","hgss1":"hgss1","hgssp":"hsp","hgss2":"hgss2","hgss3":"hgss3","hgss4":"hgss4","col1":"col1","bw1":"bw1","bwp":"bwp","2011bw":"mcd11","bw2":"bw2","bw3":"bw3","bw4":"bw4","bw5":"bw5","2012bw":"mcd12","bw6":"bw6","dv1":"dv1","bw7":"bw7","bw8":"bw8","bw9":"bw9","bw10":"bw10","xyp":"xyp","bw11":"bw11","xy0":"xy0","xy1":"xy1","xy2":"xy2","2014xy":"mcd14","xy3":"xy3","xy4":"xy4","xy5":"xy5","dc1":"dc1","xy6":"xy6","xy7":"xy7","xy8":"xy8","2015xy":"mcd15","xy9":"xy9","g1":"g1","xy10":"xy10","xy11":"xy11","2016xy":"mcd16","xy12":"xy12","smp":"smp","sm1":"sm1","sm2":"sm2","2017sm":"mcd17","sm3":"sm3","sm3.5":"sm35","sm4":"sm4","sm5":"sm5","sm6":"sm6","sm7":"sm7","sm7.5":"sm75","2018sm":"mcd18","sm8":"sm8","sm9":"sm9","det1":"det1","sm10":"sm10","sm11":"sm11","sm115":"sm115","sma":"sma","2019sm":"mcd19","sm12":"sm12","swshp":"swshp","swsh1":"swsh1","swsh2":"swsh2","swsh3":"swsh3","fut2020":"fut20","swsh3.5":"swsh35","swsh4":"swsh4","2021swsh":"mcd21","swsh4.5sv":"swsh45sv","swsh4.5":"swsh45","swsh5":"swsh5","swsh6":"swsh6","swsh7":"swsh7","cel25":"cel25","cel25cc":"cel25c","swsh8":"swsh8","swsh9tg":"swsh9tg","swsh9":"swsh9","swsh10tg":"swsh10tg","swsh10":"swsh10","swsh10.5":"pgo","2022swsh":"mcd22","swsh11":"swsh11","swsh11tg":"swsh11tg","swsh12tg":"swsh12tg","swsh12":"swsh12","swsh12.5gg":"swsh12pt5gg","swsh12.5":"swsh12pt5","sv01":"sv1","sve":"sve","sv02":"sv2","sv03":"sv3","sv03.5":"sv3pt5","sv04":"sv4","sv04.5":"sv4pt5","sv05":"sv5","sv06":"sv6","sv06.5":"sv6pt5","sv07":"sv7","sv08":"sv8","sv08.5":"sv8pt5","sv09":"sv9","sv10":"sv10","sv10.5w":"rsv10pt5","sv10.5b":"zsv10pt5","me01":"me1","me02":"me2","me02.5":"me2pt5","me03":"me3","me04":"me4","me05":"me5","svp":"svp"},"ll":{"me06":"DRI","mep":"MEP","mee":"MEE","30th":"30C","30th-c":{"c":"30C","m":{"001":"CC2","002":"CC8","003":"CC11","004":"CC20","005":"CC3","006":"CC9","007":"CC5","008":"CC25","009":"CC22","010":"CC13","011":"CC14","012":"CC27","013":"CC24","014":"CC1","015":"CC4","016":"CC19","017":"CC23","018":"CC15","019":"CC16","020":"CC17","021":"CC18","022":"CC12","023":"CC21","024":"CC6","025":"CC10","026":"CC28","027":"CC29","028":"CC26","029":"CC7","030":"CC30"}}},"logo":{"me06":"https://images.scrydex.com/pokemon/me6-logo/logo","2011bw":"@p/mcd11/logo.png","2012bw":"@p/mcd12/logo.png","2014xy":"@p/mcd14/logo.png","2015xy":"@p/mcd15/logo.png","2016xy":"@p/mcd16/logo.png","2017sm":"@p/mcd17/logo.png","2018sm":"@p/mcd18/logo.png","2019sm":"@p/mcd19/logo.png","2021swsh":"@p/mcd21/logo.png","2022swsh":"@p/mcd22/logo.png","30th":"https://images.scrydex.com/pokemon/me55-logo/logo","30th-c":"https://images.scrydex.com/pokemon/me55c-logo/logo","base1":"@t/en/base/base1/logo.webp","base4":"@t/en/base/base4/logo.webp","basep":"@t/en/base/basep/logo.webp","bog":"@p/bp/logo.png","bw11":"@t/en/bw/bw11/logo.webp","bwp":"@t/en/bw/bwp/logo.webp","cel25cc":"@p/cel25c/logo.png","dpp":"@t/en/dp/dpp/logo.webp","ecard3":"@t/en/ecard/ecard3/logo.webp","ex7":"@t/en/ex/ex7/logo.webp","fut2020":"@t/en/swsh/fut2020/logo.webp","gym1":"@t/en/gym/gym1/logo.webp","gym2":"@t/en/gym/gym2/logo.webp","hgssp":"@t/en/hgss/hgssp/logo.webp","lc":"@t/en/lc/lc/logo.webp","np":"@t/en/pop/np/logo.webp","pl4":"@t/en/pl/pl4/logo.webp","pop1":"@t/en/pop/pop1/logo.webp","pop2":"@t/en/pop/pop2/logo.webp","pop3":"@t/en/pop/pop3/logo.webp","pop4":"@t/en/pop/pop4/logo.webp","pop5":"@t/en/pop/pop5/logo.webp","pop6":"@t/en/pop/pop6/logo.webp","pop7":"@t/en/pop/pop7/logo.webp","pop8":"@t/en/pop/pop8/logo.webp","pop9":"@t/en/pop/pop9/logo.webp","ru1":"@t/en/pl/ru1/logo.webp","si1":"@t/en/neo/si1/logo.webp","sm3.5":"@t/fr/sm/sm3.5/logo.webp","sm7.5":"@t/fr/sm/sm7.5/logo.webp","sma":"@p/sma/logo.png","smp":"@t/en/sm/smp/logo.webp","sp":"@t/univ/ecard/sp/symbol.webp","sv05":"@t/fr/sv/sv05/logo.webp","sve":"@p/sve/logo.png","svp":"@p/svp/logo.png","swsh10tg":"@p/swsh10tg/logo.png","swsh11tg":"@p/swsh11tg/logo.png","swsh12.5gg":"@p/swsh12pt5gg/logo.png","swsh12tg":"@p/swsh12tg/logo.png","swsh4.5sv":"@p/swsh45sv/logo.png","swsh9tg":"@p/swsh9tg/logo.png","tk-dp-l":"@t/univ/tk/tk-dp-l/symbol.webp","tk-dp-m":"@t/univ/tk/tk-dp-m/symbol.webp","tk-ex-latia":"@p/tk1a/logo.png","tk-ex-latio":"@p/tk1b/logo.png","tk-ex-m":"@p/tk2b/logo.png","tk-ex-p":"@p/tk2a/logo.png","tk-hs-g":"@t/univ/tk/tk-hs-g/symbol.webp","tk-hs-r":"@t/univ/tk/tk-hs-r/symbol.webp","tk-sm-l":"@t/univ/tk/tk-sm-l/symbol.webp","tk-sm-r":"@t/univ/tk/tk-sm-r/symbol.webp","tk-xy-b":"@t/univ/tk/tk-xy-b/symbol.webp","tk-xy-latia":"@t/univ/tk/tk-xy-latia/symbol.webp","tk-xy-latio":"@t/univ/tk/tk-xy-latio/symbol.webp","tk-xy-n":"@t/univ/tk/tk-xy-n/symbol.webp","tk-xy-p":"@t/univ/tk/tk-xy-p/symbol.webp","tk-xy-su":"@t/univ/tk/tk-xy-su/symbol.webp","tk-xy-sy":"@t/univ/tk/tk-xy-sy/symbol.webp","tk-xy-w":"@t/univ/tk/tk-xy-w/symbol.webp","xyp":"@t/en/xy/xyp/logo.webp","mep":"https://images.scrydex.com/pokemon/mep-logo/logo","mee":"https://images.scrydex.com/pokemon/mee-logo/logo","2018sm-fr":"https://images.scrydex.com/pokemon/mcd18-logo/logo","2019sm-fr":"https://images.scrydex.com/pokemon/mcd19-logo/logo","2023sv":"https://images.scrydex.com/pokemon/mcd23-logo/logo","2024sv":"https://images.scrydex.com/pokemon/mcd24-logo/logo","2013bw":"@p/mcd12/logo.png","exu":"https://images.scrydex.com/pokemon/ex10-logo/logo","rc":"https://images.scrydex.com/pokemon/bw11-logo/logo","xya":"https://images.scrydex.com/pokemon/xy1-logo/logo"},"sx":{"me06":"me6","2011bw":"mcd11","2012bw":"mcd12","2014xy":"mcd14","2015xy":"mcd15","2016xy":"mcd16","2017sm":"mcd17","2018sm":"mcd18","2019sm":"mcd19","2021swsh":"mcd21","2022swsh":"mcd22","2023sv":"mcd23","2024sv":"mcd24","sve":"sve","svp":"svp","swshp":"swshp","smp":"smp","hgssp":"hsp","ecard2":"ecard2","ecard3":"ecard3","pop6":"pop6","bog":"bp","mep":"mep","mee":"mee","exu":"ex10","tk-ex-latia":"tk1a","tk-ex-latio":"tk1b","tk-ex-p":"tk2a","tk-ex-m":"tk2b","cel25cc":{"c":"cel25c","m":{"CC001":"2_A","CC002":"4_A","CC003":"15_A1","CC004":"73_A","CC005":"8_A","CC006":"15_A2","CC007":"15_A3","CC008":"24_A","CC009":"20_A","CC010":"66_A","CC011":"9_A","CC012":"86_A","CC013":"88_A","CC014":"93_A","CC015":"17_A","CC016":"15_A4","CC017":"109_A","CC018":"145_A","CC019":"107_A","CC020":"113_A","CC021":"114_A","CC022":"54_A","CC023":"97_A","CC024":"76_A","CC025":"60_A"}}}};
+const SRC = {"pt":{"base1":"base1","base2":"base2","basep":"basep","base3":"base3","base4":"base4","base5":"base5","gym1":"gym1","gym2":"gym2","neo1":"neo1","neo2":"neo2","si1":"si1","neo3":"neo3","neo4":"neo4","lc":"base6","ecard1":"ecard1","bog":"bp","ecard2":"ecard2","ecard3":"ecard3","ex1":"ex1","ex2":"ex2","np":"np","ex3":"ex3","ex4":"ex4","ex5":"ex5","tk-ex-latia":"tk1a","tk-ex-latio":"tk1b","ex6":"ex6","pop1":"pop1","ex7":"ex7","ex8":"ex8","ex9":"ex9","pop2":"pop2","ex10":"ex10","ex11":"ex11","ex12":"ex12","tk-ex-p":"tk2a","tk-ex-m":"tk2b","pop3":"pop3","ex13":"ex13","pop4":"pop4","ex14":"ex14","ex15":"ex15","ex16":"ex16","pop5":"pop5","dpp":"dpp","dp1":"dp1","dp2":"dp2","pop6":"pop6","dp3":"dp3","dp4":"dp4","pop7":"pop7","dp5":"dp5","dp6":"dp6","pop8":"pop8","dp7":"dp7","pl1":"pl1","pop9":"pop9","pl2":"pl2","pl3":"pl3","pl4":"pl4","ru1":"ru1","hgss1":"hgss1","hgssp":"hsp","hgss2":"hgss2","hgss3":"hgss3","hgss4":"hgss4","col1":"col1","bw1":"bw1","bwp":"bwp","2011bw":"mcd11","bw2":"bw2","bw3":"bw3","bw4":"bw4","bw5":"bw5","2012bw":"mcd12","bw6":"bw6","dv1":"dv1","bw7":"bw7","bw8":"bw8","bw9":"bw9","bw10":"bw10","xyp":"xyp","bw11":"bw11","xy0":"xy0","xy1":"xy1","xy2":"xy2","2014xy":"mcd14","xy3":"xy3","xy4":"xy4","xy5":"xy5","dc1":"dc1","xy6":"xy6","xy7":"xy7","xy8":"xy8","2015xy":"mcd15","xy9":"xy9","g1":"g1","xy10":"xy10","xy11":"xy11","2016xy":"mcd16","xy12":"xy12","smp":"smp","sm1":"sm1","sm2":"sm2","2017sm":"mcd17","sm3":"sm3","sm3.5":"sm35","sm4":"sm4","sm5":"sm5","sm6":"sm6","sm7":"sm7","sm7.5":"sm75","2018sm":"mcd18","sm8":"sm8","sm9":"sm9","det1":"det1","sm10":"sm10","sm11":"sm11","sm115":"sm115","sma":"sma","2019sm":"mcd19","sm12":"sm12","swshp":"swshp","swsh1":"swsh1","swsh2":"swsh2","swsh3":"swsh3","fut2020":"fut20","swsh3.5":"swsh35","swsh4":"swsh4","2021swsh":"mcd21","swsh4.5sv":"swsh45sv","swsh4.5":"swsh45","swsh5":"swsh5","swsh6":"swsh6","swsh7":"swsh7","cel25":"cel25","cel25cc":"cel25c","swsh8":"swsh8","swsh9tg":"swsh9tg","swsh9":"swsh9","swsh10tg":"swsh10tg","swsh10":"swsh10","swsh10.5":"pgo","2022swsh":"mcd22","swsh11":"swsh11","swsh11tg":"swsh11tg","swsh12tg":"swsh12tg","swsh12":"swsh12","swsh12.5gg":"swsh12pt5gg","swsh12.5":"swsh12pt5","sv01":"sv1","sve":"sve","sv02":"sv2","sv03":"sv3","sv03.5":"sv3pt5","sv04":"sv4","sv04.5":"sv4pt5","sv05":"sv5","sv06":"sv6","sv06.5":"sv6pt5","sv07":"sv7","sv08":"sv8","sv08.5":"sv8pt5","sv09":"sv9","sv10":"sv10","sv10.5w":"rsv10pt5","sv10.5b":"zsv10pt5","me01":"me1","me02":"me2","me02.5":"me2pt5","me03":"me3","me04":"me4","me05":"me5","svp":"svp","2019sm-fr":"mcd19"},"ll":{"me06":"DRI","mep":"MEP","mee":"MEE","30th":"30C","30th-c":{"c":"30C","m":{"001":"CC2","002":"CC8","003":"CC11","004":"CC20","005":"CC3","006":"CC9","007":"CC5","008":"CC25","009":"CC22","010":"CC13","011":"CC14","012":"CC27","013":"CC24","014":"CC1","015":"CC4","016":"CC19","017":"CC23","018":"CC15","019":"CC16","020":"CC17","021":"CC18","022":"CC12","023":"CC21","024":"CC6","025":"CC10","026":"CC28","027":"CC29","028":"CC26","029":"CC7","030":"CC30"}}},"logo":{"me06":"https://images.scrydex.com/pokemon/me6-logo/logo","2011bw":"@p/mcd11/logo.png","2012bw":"@p/mcd12/logo.png","2014xy":"@p/mcd14/logo.png","2015xy":"@p/mcd15/logo.png","2016xy":"@p/mcd16/logo.png","2017sm":"@p/mcd17/logo.png","2018sm":"@p/mcd18/logo.png","2019sm":"@p/mcd19/logo.png","2021swsh":"@p/mcd21/logo.png","2022swsh":"@p/mcd22/logo.png","30th":"https://images.scrydex.com/pokemon/me55-logo/logo","30th-c":"https://images.scrydex.com/pokemon/me55c-logo/logo","base1":"@t/en/base/base1/logo.webp","base4":"@t/en/base/base4/logo.webp","basep":"@t/en/base/basep/logo.webp","bog":"@p/bp/logo.png","bw11":"@t/en/bw/bw11/logo.webp","bwp":"@t/en/bw/bwp/logo.webp","cel25cc":"@p/cel25c/logo.png","dpp":"@t/en/dp/dpp/logo.webp","ecard3":"@t/en/ecard/ecard3/logo.webp","ex7":"@t/en/ex/ex7/logo.webp","fut2020":"@t/en/swsh/fut2020/logo.webp","gym1":"@t/en/gym/gym1/logo.webp","gym2":"@t/en/gym/gym2/logo.webp","hgssp":"@t/en/hgss/hgssp/logo.webp","lc":"@t/en/lc/lc/logo.webp","np":"@t/en/pop/np/logo.webp","pl4":"@t/en/pl/pl4/logo.webp","pop1":"@t/en/pop/pop1/logo.webp","pop2":"@t/en/pop/pop2/logo.webp","pop3":"@t/en/pop/pop3/logo.webp","pop4":"@t/en/pop/pop4/logo.webp","pop5":"@t/en/pop/pop5/logo.webp","pop6":"@t/en/pop/pop6/logo.webp","pop7":"@t/en/pop/pop7/logo.webp","pop8":"@t/en/pop/pop8/logo.webp","pop9":"@t/en/pop/pop9/logo.webp","ru1":"@t/en/pl/ru1/logo.webp","si1":"@t/en/neo/si1/logo.webp","sm3.5":"@t/fr/sm/sm3.5/logo.webp","sm7.5":"@t/fr/sm/sm7.5/logo.webp","sma":"@p/sma/logo.png","smp":"@t/en/sm/smp/logo.webp","sp":"@t/univ/ecard/sp/symbol.webp","sv05":"@t/fr/sv/sv05/logo.webp","sve":"@p/sve/logo.png","svp":"@p/svp/logo.png","swsh10tg":"@p/swsh10tg/logo.png","swsh11tg":"@p/swsh11tg/logo.png","swsh12.5gg":"@p/swsh12pt5gg/logo.png","swsh12tg":"@p/swsh12tg/logo.png","swsh4.5sv":"@p/swsh45sv/logo.png","swsh9tg":"@p/swsh9tg/logo.png","tk-dp-l":"@t/univ/tk/tk-dp-l/symbol.webp","tk-dp-m":"@t/univ/tk/tk-dp-m/symbol.webp","tk-ex-latia":"@p/tk1a/logo.png","tk-ex-latio":"@p/tk1b/logo.png","tk-ex-m":"@p/tk2b/logo.png","tk-ex-p":"@p/tk2a/logo.png","tk-hs-g":"@t/univ/tk/tk-hs-g/symbol.webp","tk-hs-r":"@t/univ/tk/tk-hs-r/symbol.webp","tk-sm-l":"@t/univ/tk/tk-sm-l/symbol.webp","tk-sm-r":"@t/univ/tk/tk-sm-r/symbol.webp","tk-xy-b":"@t/univ/tk/tk-xy-b/symbol.webp","tk-xy-latia":"@t/univ/tk/tk-xy-latia/symbol.webp","tk-xy-latio":"@t/univ/tk/tk-xy-latio/symbol.webp","tk-xy-n":"@t/univ/tk/tk-xy-n/symbol.webp","tk-xy-p":"@t/univ/tk/tk-xy-p/symbol.webp","tk-xy-su":"@t/univ/tk/tk-xy-su/symbol.webp","tk-xy-sy":"@t/univ/tk/tk-xy-sy/symbol.webp","tk-xy-w":"@t/univ/tk/tk-xy-w/symbol.webp","xyp":"@t/en/xy/xyp/logo.webp","mep":"https://images.scrydex.com/pokemon/mep-logo/logo","mee":"https://images.scrydex.com/pokemon/mee-logo/logo","2018sm-fr":"https://images.scrydex.com/pokemon/mcd18-logo/logo","2019sm-fr":"https://images.scrydex.com/pokemon/mcd19-logo/logo","2023sv":"https://images.scrydex.com/pokemon/mcd23-logo/logo","2024sv":"https://images.scrydex.com/pokemon/mcd24-logo/logo","2013bw":"@p/mcd12/logo.png","exu":"https://images.scrydex.com/pokemon/ex10-logo/logo","rc":"https://images.scrydex.com/pokemon/bw11-logo/logo","xya":"https://images.scrydex.com/pokemon/xy1-logo/logo"},"sx":{"me06":"me6","2011bw":"mcd11","2012bw":"mcd12","2014xy":"mcd14","2015xy":"mcd15","2016xy":"mcd16","2017sm":"mcd17","2018sm":"mcd18","2019sm":"mcd19","2021swsh":"mcd21","2022swsh":"mcd22","2023sv":"mcd23","2024sv":"mcd24","sve":"sve","svp":"svp","swshp":"swshp","smp":"smp","hgssp":"hsp","ecard2":"ecard2","ecard3":"ecard3","pop6":"pop6","bog":"bp","mep":"mep","mee":"mee","exu":"ex10","tk-ex-latia":"tk1a","tk-ex-latio":"tk1b","tk-ex-p":"tk2a","tk-ex-m":"tk2b","cel25cc":{"c":"cel25c","m":{"CC001":"2_A","CC002":"4_A","CC003":"15_A1","CC004":"73_A","CC005":"8_A","CC006":"15_A2","CC007":"15_A3","CC008":"24_A","CC009":"20_A","CC010":"66_A","CC011":"9_A","CC012":"86_A","CC013":"88_A","CC014":"93_A","CC015":"17_A","CC016":"15_A4","CC017":"109_A","CC018":"145_A","CC019":"107_A","CC020":"113_A","CC021":"114_A","CC022":"54_A","CC023":"97_A","CC024":"76_A","CC025":"60_A"}},"2019sm-fr":"mcd19","2018sm-fr":"mcd18"}};
 const srcUrl = u => u.replace(/^@t\//,"https://assets.tcgdex.net/").replace(/^@p\//,"https://images.pokemontcg.io/");
 function llUrl(set, loc, q){
   const e = SRC.ll[set]; if(!e) return "";
@@ -1872,10 +1893,13 @@ function imgChain(c, q="low"){
 }
 // pokemontcg.io renvoie un dos de carte 640×892 au lieu d'une erreur quand l'image n'existe pas
 window.__imgChk = el => { if(el.naturalWidth===640 && el.naturalHeight===892 && /pokemontcg\.io|scrydex\.com/.test(el.src)) __imgNext(el); };
-window.__imgNext = el => { const l = (el.dataset.alt||"").split("|").filter(Boolean); if(l.length){ el.dataset.alt = l.slice(1).join("|"); el.src = l[0]; } else if(el.dataset.ini!=null){ const x=document.createElement("span"); x.className="ini"; x.textContent=el.dataset.ini; el.replaceWith(x); } else el.remove(); };
+window.__imgNext = el => { const l = (el.dataset.alt||"").split("|").filter(Boolean); if(l.length){ el.dataset.alt = l.slice(1).join("|"); el.src = l[0]; } else if(el.dataset.ini!=null){ const x=document.createElement("span"); x.className="ini"; x.textContent=el.dataset.ini; el.replaceWith(x); } else if(el.dataset.ph!=null){ el.replaceWith(cardPh(el.dataset.ph)); } else el.remove(); };
+// carte sans aucune image trouvée : un dos de carte avec son nom et son numéro, jamais un trou
+function cardPh(t){ const [n, num] = String(t||"").split("|"); const x = document.createElement("span"); x.className = "cph"; x.innerHTML = `<svg viewBox="0 0 100 100" aria-hidden="true"><path d="M5 50a45 45 0 0 1 90 0z" fill="currentColor" opacity=".55"/><circle cx="50" cy="50" r="45" fill="none" stroke="currentColor" stroke-width="6"/><rect x="5" y="46" width="90" height="8" fill="currentColor"/><circle cx="50" cy="50" r="13" fill="currentColor"/></svg><b></b><small></small>`; x.querySelector("b").textContent = n||""; x.querySelector("small").textContent = num ? "n° "+num : ""; return x; }
 function imgTag(c, q, attrs=""){
-  const l = imgChain(c, q); if(!l.length) return "";
-  return `<img src="${esc(l[0])}" data-alt="${esc(l.slice(1).join("|"))}" onerror="__imgNext(this)" onload="__imgChk(this)" decoding="async" ${attrs}>`;
+  const l = imgChain(c, q), ph = `${c?.name||""}|${c?.localId||""}`;
+  if(!l.length) return cardPh(ph).outerHTML;
+  return `<img src="${esc(l[0])}" data-alt="${esc(l.slice(1).join("|"))}" data-ph="${esc(ph)}" onerror="__imgNext(this)" onload="__imgChk(this)" decoding="async" ${attrs}>`;
 }
 /* images vérifiées chaque jour par la tâche GitHub « Images » (media.json) : logo et symbole de chaque extension,
    source des cartes sans image TCGdex, photo de secours des scellés */
@@ -2177,11 +2201,12 @@ function renderCard(){
         ${chainImg(c.set?._logo ? [c.set._logo, ...logoChain(c.set)] : logoChain(c.set), `alt="" style="max-height:44px;max-width:100%;object-fit:contain;align-self:flex-start;margin-top:4px"`)}
       </div>
     </div>
-    ${inCol?`<div class="colqty"><button id="colMinus" aria-label="Retirer un exemplaire">−</button><span>Dans ta collection : <b style="color:var(--fg)">×${inCol.qty}</b>${ownEd.length?`<small class="edown">${ownEd.map(([k,n])=>`${esc(edLbl(k))} ×${n}`).join(" · ")}</small>`:""}${ownLgs(inCol).length?`<small class="edown">${ownLgs(inCol).map(([k,n])=>`${esc(CARD_LG[k]||k)} ×${n}`).join(" · ")}</small>`:""}</span><button id="colPlus" aria-label="Ajouter un exemplaire">+</button></div>
+    ${inCol?`<div class="colqty"><button id="colMinus" aria-label="Retirer un exemplaire">−</button><span>Dans ta collection : <b style="color:var(--fg)">×${inCol.qty}</b>${ownEd.length?`<small class="edown">${ownEd.map(([k,n])=>`${esc(edLbl(k))} ×${n}`).join(" · ")}</small>`:""}${ownLgs(inCol).length?`<small class="edown">${ownLgs(inCol).map(([k,n])=>`${esc(CARD_LG[k]||k)} ×${n}`).join(" · ")}</small>`:""}${ownConds(inCol).length?`<small class="edown">État : ${ownConds(inCol).map(([k,n])=>`${esc(k)} ×${n}`).join(" · ")}${inCol.price?` · valeur selon l'état ≈ ${esc(eurN(condValue(inCol)))} €`:""}</small>`:""}</span><button id="colPlus" aria-label="Ajouter un exemplaire">+</button></div>
     <div class="buyrow"><label for="buyIn">Prix d'achat (par carte)</label><span class="buyin"><input id="buyIn" type="text" inputmode="decimal" value="${inCol.buy!=null?String(Math.round(inCol.buy*100)/100).replace(".",","):""}" placeholder="0,00"> €</span>${(()=>{ const p = pnlOf(inCol); return p ? `<b class="tpnl ${pnlCls(p)}">PnL ${esc(pnlTxt(p))}</b>` : ""; })()}</div>`:""}
+    <div class="lgrow"><span>État de ta carte</span><div class="lgpick cdpick" role="group" aria-label="État de la carte">${CONDS.map(([k,n,d])=>`<button data-cond="${k}" aria-pressed="${k===currentCond}" title="${esc(n+" · "+d)}">${k}</button>`).join("")}</div><small>${esc((CONDS.find(c=>c[0]===currentCond)||CONDS[1])[1])} : ${esc((CONDS.find(c=>c[0]===currentCond)||CONDS[1])[2].toLowerCase())}${currentCond!=="NM"?` · vaut environ ${Math.round((CONDF[currentCond]||1)*100)} % de la cote`:" · c'est l'état de la cote affichée"}. <a href="#" id="condHelp">C'est quoi ?</a></small></div>
     <div class="lgrow"><span>Langue de ta carte</span><div class="lgpick" role="group" aria-label="Langue de la carte">${Object.entries(CARD_LG).map(([k,t])=>`<button data-lg="${k}" aria-pressed="${k===currentLg}" title="${esc(t)}">${k}</button>`).join("")}</div>${currentLg==="JP"?`<small>La cote affichée est celle des cartes occidentales : les ventes eBay ci-dessous cherchent maintenant la version japonaise.</small>`:""}</div>
     <div class="addrow">
-      <button class="btn btn-y" id="addCol">${inCol?"Ajouter un exemplaire"+(currentEd?" "+esc(edLbl(currentEd)):"")+" · "+esc(CARD_LG[currentLg])+" ("+inCol.qty+")":"Ajouter à ma collection"+(currentEd?" · "+esc(edLbl(currentEd)):"")+" · "+esc(CARD_LG[currentLg])}</button>
+      <button class="btn btn-y" id="addCol">${inCol?"Ajouter un exemplaire"+(currentEd?" "+esc(edLbl(currentEd)):"")+" · "+esc(currentCond)+" · "+esc(CARD_LG[currentLg])+" ("+inCol.qty+")":"Ajouter à ma collection"+(currentEd?" · "+esc(edLbl(currentEd)):"")+" · "+esc(currentCond)+" · "+esc(CARD_LG[currentLg])}</button>
       <button class="btn btn-g" id="rescan">Scanner une autre</button>
     </div>
     <div class="addrow sharerow"><button class="btn btn-g" id="tradeCard">⇄ Échanger</button><button class="btn btn-g" id="shareCard">${SHARE_ICO}Partager</button></div>
@@ -2202,15 +2227,17 @@ function renderCard(){
   $("#sheetBody").querySelectorAll(".alt").forEach(b=>b.onclick=()=>showCard(b.dataset.id));
   $("#sheetBody").querySelectorAll("[data-pid]").forEach(b=>b.onclick=()=>{ if(b.dataset.pid!==c.id) showCard(b.dataset.pid, currentAlts); });
   $("#sheetBody").querySelectorAll("[data-ed]").forEach(b=>b.onclick=()=>{ currentEd = b.dataset.ed; const y = $("#sheetBody").scrollTop; renderCard(); $("#sheetBody").scrollTop = y; });
-  $("#addCol").onclick = ()=>{ addToCol(c, currentEd, currentLg); renderCard(); toast("Ajoutée à ta collection · "+CARD_LG[currentLg]+(currentEd?" · "+edLbl(currentEd):"")); };
+  $("#addCol").onclick = ()=>{ addToCol(c, currentEd, currentLg, currentCond); renderCard(); toast("Ajoutée à ta collection · "+CARD_LG[currentLg]+" · "+currentCond+(currentEd?" · "+edLbl(currentEd):"")); };
+  $("#sheetBody").querySelectorAll("[data-cond]").forEach(b=>b.onclick=()=>{ currentCond = b.dataset.cond; store.set("addCond", currentCond); const y = $("#sheetBody").scrollTop; renderCard(); $("#sheetBody").scrollTop = y; });
+  $("#condHelp") && ($("#condHelp").onclick = e=>{ e.preventDefault(); openLexique(); setTimeout(()=>{ const q = $("#lexQ"); if(q){ q.value = "Near Mint"; q.dispatchEvent(new Event("input")); } }, 50); });
   $("#sheetBody").querySelectorAll("[data-lg]").forEach(b=>b.onclick=()=>{ currentLg = b.dataset.lg; store.set("addLg", currentLg); const y = $("#sheetBody").scrollTop; renderCard(); $("#sheetBody").scrollTop = y; });
   $("#grFromCard") && ($("#grFromCard").onclick = ()=>gradedForm({...c, ed:currentEd}));
   $("#shareCard").onclick = ()=>shareCard(c);
   $("#tradeCard").onclick = ()=>{ const side = tradeAdd(c); toast(side==="give" ? "Ajoutée à « Je donne »" : "Ajoutée à « Je reçois »"); tradeOpen(); };
   setTimeout(()=>{ if(current===c) buildShare(c).catch(()=>{}); }, 700);   // image prête avant le toucher
   $("#grLookCard") && ($("#grLookCard").onclick = ()=>gradedLookup(c));
-  $("#colMinus") && ($("#colMinus").onclick = ()=>{ setColQty(c.id,-1,currentEd,currentLg); renderCard(); toast("Exemplaire retiré"); });
-  $("#colPlus") && ($("#colPlus").onclick = ()=>{ setColQty(c.id,1,currentEd,currentLg); renderCard(); });
+  $("#colMinus") && ($("#colMinus").onclick = ()=>{ setColQty(c.id,-1,currentEd,currentLg,currentCond); renderCard(); toast("Exemplaire retiré"); });
+  $("#colPlus") && ($("#colPlus").onclick = ()=>{ setColQty(c.id,1,currentEd,currentLg,currentCond); renderCard(); });
   $("#buyIn") && ($("#buyIn").onchange = e=>{
     const v = parseFloat(String(e.target.value).replace(/\s/g,"").replace(",",".")); if(isNaN(v) || v<0) return;
     const col = getCol(), x = col.find(y=>y.id===c.id); if(!x) return;
@@ -2223,9 +2250,9 @@ const ico = { ext:`<svg class="xico" viewBox="0 0 24 24" fill="none" stroke="cur
 
 /* ---------------- Collection ---------------- */
 const getCol = () => store.get("col",[]);
-function addToCol(c, ed=null, lg=null){
+function addToCol(c, ed=null, lg=null, cond=null){
   const col = getCol(); const ex = col.find(x=>x.id===c.id);
-  const bump = x=>{ if(ed){ x.ed ||= {}; x.ed[ed] = (x.ed[ed]||0)+1; } if(lg){ x.lgs ||= {}; x.lgs[lg] = (x.lgs[lg]||0)+1; } };
+  const bump = x=>{ if(ed){ x.ed ||= {}; x.ed[ed] = (x.ed[ed]||0)+1; } if(lg){ x.lgs ||= {}; x.lgs[lg] = (x.lgs[lg]||0)+1; } if(cond){ x.conds ||= {}; x.conds[cond] = (x.conds[cond]||0)+1; } };
   const mi = marketInfo(c) || {};
   if(ex){ const p = mi.p ?? ex.price; if(ex.buy!=null && p!=null) ex.buy = (ex.buy*ex.qty + p)/(ex.qty+1); ex.qty++; bump(ex); if(mi.p) Object.assign(ex, {price:mi.p, a1:mi.a1, a7:mi.a7, a30:mi.a30, pt:Date.now()}); ex.t=Date.now(); }
   else { const p = mi.p ?? mainPrice(c); col.unshift({id:c.id, name:c.name, set:c.set?.name||"", num:c.localId, img:img(c,"low"), price:p, buy:p, a1:mi.a1, a7:mi.a7, a30:mi.a30, pt:Date.now(), qty:1, t:Date.now()}); bump(col[0]); }
@@ -2492,9 +2519,10 @@ $("#colFlt").onclick = openColFilters;
 $("#colPdx").onclick = ()=>{ COLV.pdx = !COLV.pdx; store.set("colPdx", COLV.pdx); renderCol(); };
 let colQT = null;
 $("#colQ").addEventListener("input", e=>{ COLV.q = e.target.value; clearTimeout(colQT); colQT = setTimeout(renderCol, 200); });
-function setColQty(id, d, ed=null, lg=null){
+function setColQty(id, d, ed=null, lg=null, cond=null){
   const col = getCol(), i = col.findIndex(x=>x.id===id); if(i<0) return;
   const x = col[i]; x.qty += d;
+  if(cond && (d>0 || x.conds)){ x.conds ||= {}; const k = d<0 && !(x.conds[cond]>0) ? Object.keys(x.conds).find(k=>x.conds[k]>0) : cond; if(k) x.conds[k] = Math.max(0, (x.conds[k]||0)+d); }
   if(lg && (d>0 || x.lgs)){ x.lgs ||= {}; const k = d<0 && !(x.lgs[lg]>0) ? Object.keys(x.lgs).find(k=>x.lgs[k]>0) : lg; if(k) x.lgs[k] = Math.max(0, (x.lgs[k]||0)+d); }
   if(ed){ x.ed ||= {}; if(d>0 || x.ed[ed]>0) x.ed[ed] = Math.max(0, (x.ed[ed]||0)+d); }
   else if(d<0 && x.ed){ const k = Object.keys(x.ed).find(k=>x.ed[k]>0 && Object.values(x.ed).reduce((a,b)=>a+b,0) > x.qty); if(k) x.ed[k]--; }
@@ -6484,6 +6512,104 @@ setTimeout(async ()=>{
   gameBox([`${lg.name} t'invite !`, `${lg.n} dresseur${lg.n>1?"s":""} dans cette ligue. Tu la rejoins ?`], [{label:"Rejoindre", go:true, run:()=>{ openSub("rankView"); if(rkProf()?.on){ store.set("rkPend",""); rkJoin(pend); } else rkSetup(); }}, {label:"Plus tard"}]);
 }, 2500);
 if(rkProf()?.on){ rkLgsRefresh(); setTimeout(()=>rkSync(), 4000); }
+
+/* ---------------- Lexique TCG (menu Plus) ---------------- */
+const TCGLEX = [
+ ["Raretés et cartes spéciales", [
+  ["C · Commune", "Carte la plus courante, symbole ●. Plusieurs par booster."],
+  ["U · Peu commune", "Un cran au-dessus, symbole ◆."],
+  ["R · Rare", "Symbole ★. Au moins une rare par booster."],
+  ["Holo", "Carte dont l'illustration brille (effet holographique)."],
+  ["Reverse (RH)", "Reverse holo : c'est tout le reste de la carte qui brille, pas l'illustration. Existe pour presque chaque carte d'une extension."],
+  ["Double rare (RR)", "Les cartes ex, V ou GX classiques. Symbole ★★ noir."],
+  ["ex / EX", "Pokémon puissant qui donne 2 cartes Récompense s'il est mis K.O. « EX » en majuscules : séries Noir & Blanc et XY ; « ex » en minuscules : époque EX et Écarlate et Violet."],
+  ["GX", "Pokémon de l'ère Soleil et Lune, avec une attaque GX utilisable une fois par partie."],
+  ["V · VMAX · VSTAR", "Pokémon de l'ère Épée et Bouclier. Le VMAX est la forme Dynamax, le VSTAR a un pouvoir VSTAR unique par partie."],
+  ["Mega · Méga-évolution", "Forme Méga d'un Pokémon. Revenue en 2025 avec la série Méga-Évolution (Méga ex)."],
+  ["Full Art (FA)", "L'illustration couvre toute la carte, sans cadre."],
+  ["Ultra rare (UR)", "Full Art de Pokémon ex ou de Dresseur, symbole ★★ argenté."],
+  ["IR · Illustration rare", "Illustration pleine carte d'un Pokémon de base, souvent un vrai petit tableau. Symbole ★ doré."],
+  ["SIR · Illustration spéciale rare", "La version la plus recherchée d'un ex ou d'un Dresseur, illustration pleine carte unique. Symbole ★★ doré. Équivalent moderne de l'Alt Art."],
+  ["Alt Art (AA)", "« Alternative art » : version d'une carte V/VMAX avec une illustration alternative pleine carte (ère Épée et Bouclier). Ce sont souvent les cartes les plus chères d'une extension."],
+  ["Hyper rare · Gold", "Carte dorée, la plus rare du set. Symbole ★★★ doré."],
+  ["Secret rare (SR)", "Carte numérotée au-delà du total officiel de l'extension (par ex. 201/165)."],
+  ["Rainbow rare", "Carte arc-en-ciel des ères Soleil et Lune et Épée et Bouclier."],
+  ["Shiny · Chromatique", "Pokémon aux couleurs alternatives, souvent dans des sets spéciaux (Destinées Radieuses, Destinées de Paldea…)."],
+  ["Trainer Gallery (TG)", "Sous-série de cartes où un Pokémon pose avec son Dresseur (fin d'Épée et Bouclier)."],
+  ["Radieux", "Pokémon chromatique au style unique, un seul par deck."],
+  ["ACE SPEC", "Carte Dresseur très puissante, une seule par deck."],
+  ["Tera", "Pokémon ex téracristal, protégé des dégâts sur le Banc."],
+  ["Promo", "Carte distribuée hors booster : coffrets, événements, magazines. Numérotée avec le préfixe de la série (SWSH, SVP, MEP…)."],
+  ["1re édition", "Premier tirage des toutes premières séries (Wizards of the Coast), marqué d'un tampon « Édition 1 ». Beaucoup plus cher que l'Unlimited."],
+  ["Unlimited", "Tirage normal, après la 1re édition."],
+  ["Error · Misprint", "Carte avec une erreur d'impression : décalage, texte manquant, mauvaise couleur. Peut valoir beaucoup."]]],
+ ["État d'une carte (normes Cardmarket)", [
+  ["M · Mint", "Parfaite, comme sortie du booster, aucun défaut même à la loupe."],
+  ["NM · Near Mint", "Quasi parfaite : peut-être un micro-défaut. C'est l'état de référence des cotes."],
+  ["EX · Excellent", "Petits défauts visibles : légère usure des coins ou des bords."],
+  ["GD · Good", "Usure nette : bords blanchis, petites rayures, mais carte encore propre."],
+  ["LP · Light Played", "Jouée : usure générale, rayures, coins marqués."],
+  ["PL · Played", "Très jouée : pliures légères, salissures, bords abîmés."],
+  ["PO · Poor", "Abîmée : pliure franche, déchirure, dégâts d'eau…"],
+  ["Centrage", "Équilibre des bordures. Un mauvais centrage baisse la note de gradation même sur une carte neuve."],
+  ["Whitening", "Points blancs sur les bords au dos, premier signe d'usure."]]],
+ ["Gradation", [
+  ["Gradée · Slab", "Carte notée par une société puis scellée dans un boîtier plastique numéroté (le « slab »)."],
+  ["PSA", "La société de gradation la plus connue, notes de 1 à 10. Le PSA 10 « Gem Mint » est le graal."],
+  ["CGC", "Notes au demi-point, avec une note « Pristine 10 » au-dessus du Gem Mint."],
+  ["BGS · Beckett", "Note avec quatre sous-notes. Le « Black Label » (10 partout) est rarissime."],
+  ["PCA · CollectAura", "Sociétés de gradation européennes, PCA est française."],
+  ["Pop report", "Nombre d'exemplaires notés pour chaque note. Une pop faible fait monter le prix."],
+  ["Gem Mint", "Note 10 : parfaite."]]],
+ ["Produits scellés", [
+  ["Booster", "Paquet de 10 cartes (en général) dont au moins une rare."],
+  ["Display · Booster box", "Boîte de 36 boosters (18 pour certains sets spéciaux)."],
+  ["ETB · Coffret Dresseur d'Élite", "Boîte avec 9 à 11 boosters, des sleeves, des dés, des marqueurs et une carte promo."],
+  ["UPC · Ultra Premium Collection", "Grand coffret haut de gamme : beaucoup de boosters, promos exclusives, accessoires de luxe."],
+  ["Bundle", "Lot de 6 boosters dans une boîte simple."],
+  ["Tripack · Blister", "Boosters sous plastique avec une carte promo ou une pièce."],
+  ["Pokébox · Tin", "Boîte en métal avec boosters et une promo."],
+  ["Mini tin", "Petite boîte métal avec 2 boosters et une carte illustrée."],
+  ["Coffret", "Boîte avec boosters et une ou plusieurs cartes promo."],
+  ["Avant-premières · Build & Battle", "Kit vendu lors des tournois d'avant-première, avant la sortie officielle."],
+  ["Case · Carton", "Carton d'usine qui contient plusieurs displays ou ETB."],
+  ["Scellé", "Produit jamais ouvert, encore sous blister d'origine."],
+  ["Descellé", "Produit ouvert : on garde la boîte et les cartes séparément."]]],
+ ["Achat, vente et marché", [
+  ["Cote", "Prix de marché d'une carte, calculé à partir des ventes récentes."],
+  ["Trend · Tendance", "Cote moyenne récente sur Cardmarket, la référence en Europe."],
+  ["Hit", "Grosse carte tirée d'un booster."],
+  ["Chase card", "LA carte que tout le monde veut dans une extension."],
+  ["Pull rate · Taux de drop", "Probabilité de tirer une rareté donnée dans un booster."],
+  ["Bulk", "Cartes communes de faible valeur, vendues au poids ou par lots."],
+  ["Lot", "Plusieurs cartes ou produits vendus ensemble."],
+  ["Flip", "Acheter pour revendre rapidement plus cher."],
+  ["Scalp · Scalper", "Achat en masse à la sortie pour revendre au-dessus du prix boutique."],
+  ["Réassort · Restock", "Remise en stock d'un produit en rupture."],
+  ["Précommande", "Achat d'un produit avant sa sortie officielle."],
+  ["Prix boutique · MSRP", "Prix de vente conseillé par l'éditeur."],
+  ["Proxy", "Copie imprimée d'une carte pour jouer, sans valeur."],
+  ["Fake", "Contrefaçon. Méfie-toi des prix trop bas, des couleurs ternes et du carton trop fin."],
+  ["Toploader", "Protection rigide pour ranger une carte de valeur."],
+  ["Sleeve", "Pochette souple qui protège une carte."]]],
+ ["Jeu et extensions", [
+  ["Série", "Groupe d'extensions d'une même génération (Écarlate et Violet, Épée et Bouclier…)."],
+  ["Extension · Set", "Ensemble de cartes sorties ensemble, avec son symbole et son code (ex. « PAR »)."],
+  ["Numéro de carte", "Inscrit en bas : numéro / total officiel de l'extension (ex. 199/165)."],
+  ["Symbole d'extension", "Petit logo en bas de la carte qui indique son extension."],
+  ["Marque de régulation", "Lettre (G, H, I…) en bas à gauche, qui dit si la carte est jouable en format Standard."],
+  ["Standard · Étendu", "Formats de jeu officiels : Standard = cartes récentes seulement, Étendu = depuis Noir & Blanc."],
+  ["Code TCG Live", "Carte à code dans les produits, à utiliser dans le jeu en ligne Pokémon TCG Live."]]]
+];
+function openLexique(){
+  $("#sheetTitle").textContent = "Lexique TCG";
+  $("#sheetBody").innerHTML = `<label class="ext-search" style="margin:0 0 12px"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><input id="lexQ" type="search" placeholder="Chercher un mot (alt, SIR, ETB, NM…)" autocomplete="off" aria-label="Chercher dans le lexique"></label><div id="lexList"></div>`;
+  const draw = ()=>{ const q = norm($("#lexQ").value||"");
+    const html = TCGLEX.map(([g, l])=>{ const it = l.filter(([t,d])=>!q || norm(t+" "+d).includes(q)); return it.length ? `<h4 class="lexh">${esc(g)}</h4><dl class="lexl">${it.map(([t,d])=>`<div><dt>${esc(t)}</dt><dd>${esc(d)}</dd></div>`).join("")}</dl>` : ""; }).join("");
+    $("#lexList").innerHTML = html || `<div class="empty">Aucun mot ne correspond.</div>`; };
+  $("#lexQ").addEventListener("input", draw); draw(); openSheet();
+}
+$("#mLex").onclick = openLexique;
 
 /* ---------------- Sauvegarde par fichier ----------------
    Tout ce qui est à toi (collection, prix d'achat, budget, gradées, échanges, compagnon, réglages) part dans un

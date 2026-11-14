@@ -1110,7 +1110,7 @@ html{background:var(--panel)}
 </head>
 <body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="pb" viewBox="0 0 100 100"><defs><linearGradient id="pbV" x1="0" y1="0" x2="1" y2="1"><stop offset="0" style="stop-color:var(--pb1)"/><stop offset=".5" style="stop-color:var(--pb2)"/><stop offset="1" style="stop-color:var(--pb3)"/></linearGradient><radialGradient id="pbB" cx=".38" cy=".75" r=".75"><stop offset="0" style="stop-color:var(--pbb1)"/><stop offset="1" style="stop-color:var(--pbb2)"/></radialGradient><radialGradient id="pbC" cx=".4" cy=".35" r=".7"><stop offset="0" style="stop-color:var(--pbc1)"/><stop offset=".55" style="stop-color:var(--pbc2)"/><stop offset="1" style="stop-color:var(--pbc3)"/></radialGradient></defs><path d="M3 50a47 47 0 0 1 94 0z" fill="url(#pbV)"/><path d="M3 50a47 47 0 0 0 94 0z" fill="url(#pbB)"/><rect x="3" y="45.5" width="94" height="9" fill="#09080D"/><circle cx="50" cy="50" r="47" fill="none" stroke="#09080D" stroke-width="4"/><circle cx="50" cy="50" r="15.5" fill="#09080D"/><circle cx="50" cy="50" r="10" fill="url(#pbC)" style="stroke:var(--pb2)" stroke-width="2"/><path d="M19 33a35 35 0 0 1 17-15" fill="none" stroke="#fff" stroke-opacity=".38" stroke-width="4" stroke-linecap="round"/></symbol></svg>
-<script>window.__APPV="82";</script>
+<script>window.__APPV="83";</script>
 <div class="splash" id="splash" aria-hidden="true"><i class="hole"></i><i class="halo"></i><div class="bw"><svg class="b" viewBox="0 0 100 100"><use href="#pb"/></svg><svg class="t" viewBox="0 0 100 100"><use href="#pb"/></svg></div><i class="glow"></i></div>
 <script>setTimeout(function(){ if(window.__booted) return;
   var b=document.createElement("div"); b.setAttribute("role","alert");
@@ -1145,7 +1145,7 @@ html{background:var(--panel)}
   <!-- ===== EXTENSIONS ===== -->
   <section class="view" id="homeView">
     <div class="scroll">
-      <div class="homebar"><span id="avatSlot"><svg class="pball" viewBox="0 0 100 100" aria-hidden="true"><use href="#pb"/></svg></span><span class="brand">DEX<b>·</b>SCAN</span><button class="thbtn" id="themeBtn" aria-label="Changer de thème"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.6-.9 1.2-1.8-.5-1.1.2-2.2 1.4-2.2H17a4 4 0 0 0 4-4c0-5.5-4-10-9-10z"/><circle cx="7.5" cy="11" r="1.2"/><circle cx="10" cy="7" r="1.2"/><circle cx="15" cy="7" r="1.2"/></svg></button><span class="ver">v82</span></div>
+      <div class="homebar"><span id="avatSlot"><svg class="pball" viewBox="0 0 100 100" aria-hidden="true"><use href="#pb"/></svg></span><span class="brand">DEX<b>·</b>SCAN</span><button class="thbtn" id="themeBtn" aria-label="Changer de thème"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.6-.9 1.2-1.8-.5-1.1.2-2.2 1.4-2.2H17a4 4 0 0 0 4-4c0-5.5-4-10-9-10z"/><circle cx="7.5" cy="11" r="1.2"/><circle cx="10" cy="7" r="1.2"/><circle cx="15" cy="7" r="1.2"/></svg></button><span class="ver">v83</span></div>
       <div class="hhead"><div><span class="hdate" id="hDate"></span><h1 class="h1">Accueil</h1></div><button class="hsearch" id="hSearch" aria-label="Rechercher une carte"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></button></div>
       <div class="total htot" id="hTot"></div>
       <div class="hqa">
@@ -1282,14 +1282,14 @@ html{background:var(--panel)}
   </section>
   <section class="view" id="budgetView" hidden>
     <div class="scroll">
-      <h1 class="h1">Budget</h1>
+      <h1 class="h1">Stock</h1>
       <p class="lede">Tout ce que tu possèdes, ce que tu l'as payé et ce que ça vaut aujourd'hui.</p>
       <div id="budBody"></div>
     </div>
   </section>
   <section class="view" id="alertView" hidden>
     <div class="scroll">
-      <button class="btn btn-g" id="alertBack" style="padding:8px 12px;font-size:13px;margin-bottom:10px">‹ Budget</button>
+      <button class="btn btn-g" id="alertBack" style="padding:8px 12px;font-size:13px;margin-bottom:10px">‹ Stock</button>
       <h1 class="h1">Alertes réassort</h1>
       <p class="lede">Précommandes, invitations et réassorts Pokémon repérés par ton guetteur (le programme qui tourne sur ton PC).</p>
       <div class="total" style="padding:14px 16px">
@@ -1350,7 +1350,7 @@ html{background:var(--panel)}
     <button class="tab" role="tab" aria-selected="true" data-v="homeView"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 11l8-7 8 7v8a1 1 0 0 1-1 1h-4v-6H9v6H5a1 1 0 0 1-1-1z"/></svg>Accueil</button>
     <button class="tab" role="tab" aria-selected="false" data-v="colView"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7.5V18a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V9.5a2 2 0 0 0-2-2h-7.2L9.6 5.2A2 2 0 0 0 8.2 4.6H5a2 2 0 0 0-2 2z"/></svg>Classeur</button>
     <button class="tab scanb" role="tab" aria-selected="false" data-v="scanView"><span class="scb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7V5a2 2 0 0 1 2-2h2M17 3h2a2 2 0 0 1 2 2v2M21 17v2a2 2 0 0 1-2 2h-2M7 21H5a2 2 0 0 1-2-2v-2"/><rect x="8" y="6" width="8" height="12" rx="1.5"/></svg></span>Scanner</button>
-    <button class="tab" role="tab" aria-selected="false" data-v="budgetView"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 7V5a2 2 0 0 0-2-2H5a2 2 0 0 0 0 4h15a1 1 0 0 1 1 1v4h-3a2 2 0 0 0 0 4h3a1 1 0 0 0 1-1v-2"/><path d="M3 5v14a2 2 0 0 0 2 2h15a1 1 0 0 0 1-1v-4"/></svg>Budget<i class="tbadge" id="alertBadge" hidden></i></button>
+    <button class="tab" role="tab" aria-selected="false" data-v="budgetView"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 7V5a2 2 0 0 0-2-2H5a2 2 0 0 0 0 4h15a1 1 0 0 1 1 1v4h-3a2 2 0 0 0 0 4h3a1 1 0 0 0 1-1v-2"/><path d="M3 5v14a2 2 0 0 0 2 2h15a1 1 0 0 0 1-1v-4"/></svg>Stock<i class="tbadge" id="alertBadge" hidden></i></button>
     <button class="tab" role="tab" aria-selected="false" data-v="moreView"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="5" cy="12" r="1.4"/><circle cx="12" cy="12" r="1.4"/><circle cx="19" cy="12" r="1.4"/></svg>Plus</button>
   </nav>
 </div>
@@ -4996,7 +4996,7 @@ async function budList(rows, l){
     if(q.length>2){ await Promise.all([loadCM().catch(()=>{}), loadFr()]); if((BUD.q||"").trim()!==q) return; cat = cmSearch(q, BUD.f!=="all" && BUD.f!=="sold" ? BUD.f : null).slice(0,12); }
   }
   box.innerHTML = (q.length>1 ? `<h3 class="bh" style="margin-top:6px">Dans ton budget</h3>` : "")
-    + (mine.length ? `<div class="slist">${mine.map(budRowHTML).join("")}</div>` : `<div class="empty" style="padding:${q?"14px":"40px"} 12px">${q ? "Aucun de tes produits ne correspond." : rows.length ? "Rien dans cette catégorie." : "Ajoute ton premier produit : prends-le en photo ou saisis-le à la main. Le prix d'achat est demandé à chaque fois, pour suivre ton budget au centime."}</div>`)
+    + (mine.length ? `<div class="slist">${mine.map(budRowHTML).join("")}</div>` : `<div class="empty" style="padding:${q?"14px":"40px"} 12px">${q ? "Aucun de tes produits ne correspond." : rows.length ? "Rien dans cette catégorie." : "Ajoute ton premier produit : prends-le en photo ou saisis-le à la main. Le prix d'achat est demandé à chaque fois, pour suivre ton stock au centime."}</div>`)
     + (q.length>2 ? `<h3 class="bh">Tous les produits <small class="psub">cotes Cardmarket</small></h3>${cat.length ? `<div class="slist">${cat.map(c=>`<button class="sitem bitem" data-ci="${c.i}"><span class="im">${(c.img||MEDIA.d?.sealed?.[c.i])?`<img src="${esc(c.img||MEDIA.d.sealed[c.i])}" alt="" loading="lazy" class="${c.img?"":"lg"}" onerror="this.remove()">`:`<span class="bph">📦</span>`}</span><div><b>${esc(frName(c.n))}</b><span>${esc(btLbl(c.t))} · ${esc(c.n)}</span><span class="bnums">Vente la moins chère ${bE(c.lo)}${c.a7!=null?` · ventes 7 j ${bE(c.a7)}`:""}</span></div><span class="bp">${bE0(cmMarket(c))}<small>cote</small></span></button>`).join("")}</div>` : `<div class="empty" style="padding:14px 12px">${BUD.cm ? "Aucun produit trouvé. Essaie avec le nom de l'extension et le type (ex. « display flammes fantasmagoriques »)." : "Chargement du catalogue…"}</div>`}` : "");
   box.querySelectorAll("[data-bu]").forEach(b=>b.onclick=()=>{ const [k,u] = b.dataset.bu.split(":"); if(k==="g"){ const x = getGraded().find(y=>y.uid===u); if(x) gradedForm(x, true); } else budDetail(u); });
   box.querySelectorAll("[data-ci]").forEach(b=>b.onclick=()=>catDetail(+b.dataset.ci));
@@ -5055,7 +5055,7 @@ async function budForm(edit, withPhoto, fresh=false){
         <div><label class="blab" for="bfS">Acheté chez</label><input class="binp" id="bfS" list="bfShops" value="${esc(x.shop||"")}" placeholder="Leclerc, Amazon…"><datalist id="bfShops">${SHOPS.map(s=>`<option value="${esc(s)}">`).join("")}</datalist></div>
       </div>
       <label class="blab" for="bfNo">Note</label><input class="binp" id="bfNo" value="${esc(x.note||"")}" placeholder="facultatif">
-      <button class="btn btn-y" id="bfSave" style="width:100%;margin-top:16px">${edit?"Enregistrer":"Ajouter à mon budget"}</button>
+      <button class="btn btn-y" id="bfSave" style="width:100%;margin-top:16px">${edit?"Enregistrer":"Ajouter à mon stock"}</button>
       ${edit?`<button class="btn btn-g" id="bfDel" style="width:100%;margin-top:8px">Supprimer</button>`:""}`;
     const tot = ()=>{ const b = num($("#bfB").value), q = Math.max(1, parseInt($("#bfQ").value)||1); $("#bfTot").textContent = b!=null ? `Total payé : ${bE(b*q)}${c&&cmMarket(c)!=null?` · cote actuelle ${bE(cmMarket(c)*q)}`:""}` : "Sans prix d'achat, impossible de valider."; $("#bfB").classList.toggle("need", b==null); $("#bfSave").disabled = b==null || !$("#bfN").value.trim(); };
     const showSug = ()=>{ $("#bfSug").innerHTML = sugg.length ? `<div class="bsug">${sugg.map(s=>`<button data-cm="${s.i}"><span>${esc(frName(s.n))}<small>${esc(s.n)} · ${esc(btLbl(s.t))}</small></span><b>${bE(cmMarket(s))}</b></button>`).join("")}</div>` : "";
@@ -5075,7 +5075,7 @@ async function budForm(edit, withPhoto, fresh=false){
       if(x.ean && x.cm){ const m = store.get("eanMap", {}); m[x.ean] = {cm:x.cm, n:x.n, t:x.t}; store.set("eanMap", m); }
       const l = getBud(), i = l.findIndex(y=>y.uid===x.uid); if(i>=0) l[i] = x; else l.push(x);
       try{ setBud(l); }catch(e){ x.photo = null; if(i>=0) l[i] = x; setBud(l); toast("Photo trop lourde, produit enregistré sans photo"); }
-      toast(edit ? "Produit mis à jour" : "Ajouté à ton budget");
+      toast(edit ? "Produit mis à jour" : "Ajouté à ton stock");
       if(x.open && !x.cards?.length){ budCards(x.uid); return; }   // descellé : on relie tout de suite ses cartes
       bClose();
     };
@@ -5200,7 +5200,7 @@ async function catDetail(id){
   const own = getBud().filter(y=>y.cm===id && y.q>0), nOwn = own.reduce((a,y)=>a+y.q,0);
   bOpen(btLbl(c.t), `
     <div class="bhead">${c.img||tp?.img||MEDIA.d?.sealed?.[c.i]?`<img src="${esc(c.img||tp?.img||MEDIA.d.sealed[c.i])}" alt="" onerror="this.remove()">`:""}<div><h2>${esc(qFr)}</h2><p class="psub">${esc(btLbl(c.t))} · ${esc(c.n)}</p></div></div>
-    <div class="total" style="margin-top:12px"><div class="plabel"><span>Cote Cardmarket</span><span>${nOwn?`Tu en as ${nOwn}`:"Pas dans ton budget"}</span></div><div class="pmain">${bE(cmMarket(c))}</div></div>
+    <div class="total" style="margin-top:12px"><div class="plabel"><span>Cote Cardmarket</span><span>${nOwn?`Tu en as ${nOwn}`:"Pas dans ton stock"}</span></div><div class="pmain">${bE(cmMarket(c))}</div></div>
     <button class="btn btn-y" id="cdAdd" style="width:100%">Je l'ai : ajouter à mon budget</button>
     ${own.length?`<button class="btn btn-g" id="cdMine" style="width:100%;margin-top:8px">Voir mon produit</button>`:""}
     <h3 class="bh">Prix neuf en magasin</h3>
@@ -5350,7 +5350,7 @@ function renderHome(){
   const al = $("#alertBadge")?.hidden ? 0 : ($("#alertBadge")?.textContent || 0), bs = budStats(rows);
   const CH = `<svg class="mch" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg>`;
   const ic = d => `<span class="mi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${d}</svg></span>`;
-  $("#hLinks").innerHTML = `<button data-hgo="budgetView">${ic('<path d="M19 7V5a2 2 0 0 0-2-2H5a2 2 0 0 0 0 4h15a1 1 0 0 1 1 1v4h-3a2 2 0 0 0 0 4h3a1 1 0 0 0 1-1v-2"/><path d="M3 5v14a2 2 0 0 0 2 2h15a1 1 0 0 0 1-1v-4"/>')}<span class="mt"><b>Budget</b><small>${bs.n ? `${bs.n} produit${bs.n>1?"s":""} · plus-value ${bs.pnl>=0?"+":"−"}${eurN(Math.abs(bs.pnl))} €` : "Scellés et gradées, prix payé et valeur"}</small></span>${CH}</button>
+  $("#hLinks").innerHTML = `<button data-hgo="budgetView">${ic('<path d="M19 7V5a2 2 0 0 0-2-2H5a2 2 0 0 0 0 4h15a1 1 0 0 1 1 1v4h-3a2 2 0 0 0 0 4h3a1 1 0 0 0 1-1v-2"/><path d="M3 5v14a2 2 0 0 0 2 2h15a1 1 0 0 0 1-1v-4"/>')}<span class="mt"><b>Stock</b><small>${bs.n ? `${bs.n} produit${bs.n>1?"s":""} · plus-value ${bs.pnl>=0?"+":"−"}${eurN(Math.abs(bs.pnl))} €` : "Scellés et gradées, prix payé et valeur"}</small></span>${CH}</button>
     <button data-hsub="alertView">${ic('<path d="M6 8a6 6 0 1 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.9 1.9 0 0 0 3.4 0"/>')}<span class="mt"><b>Alertes réassort</b><small>${al ? `${al} nouvelle${al>1?"s":""}` : "Précommandes et réassorts repérés"}</small></span>${CH}</button>
     <button data-hsub="playView">${ic('<path d="M6 11h4M8 9v4"/><path d="M15 12h.01M18 10h.01"/><path d="M17.3 5H6.7a4 4 0 0 0-4 3.6l-.7 6.9A3 3 0 0 0 5 19c1 0 1.9-.5 2.5-1.3L9 16h6l1.5 1.7c.6.8 1.5 1.3 2.5 1.3a3 3 0 0 0 3-3.5l-.7-6.9A4 4 0 0 0 17.3 5z"/>')}<span class="mt"><b>Jouer</b><small>Comprendre la crypto avec les cartes</small></span>${CH}</button>`;
   $("#hLinks").querySelectorAll("[data-hgo]").forEach(b=>b.onclick=()=>selectTab(b.dataset.hgo));
@@ -5938,7 +5938,7 @@ function openAvatar(){
     <div style="margin-top:6px;color:var(--muted);font-size:14px">Niveau <b style="color:var(--fg)">${lv}</b> · ${xp.toLocaleString("fr-FR")} XP</div>
     <div class="lvbar"><i style="width:${pc}%"></i></div><div style="font-size:12px;color:var(--muted)">${lv>=50 ? "Niveau maximum !" : `${(b-xp).toLocaleString("fr-FR")} XP avant le niveau ${lv+1}`}</div>
     <div class="lvlist"><div><span>Carte ajoutée</span><b>+10 XP</b></div><div><span>… cotée 5 € et plus</span><b>+30 XP</b></div><div><span>… cotée 20 € et plus</span><b>+60 XP</b></div><div><span>… cotée 100 € et plus</span><b>+150 XP</b></div>
-    <div><span>Produit scellé (Budget)</span><b>+40 XP</b></div><div><span>Carte gradée</span><b>+100 XP</b></div><div><span>Extension complétée</span><b>+500 XP</b></div></div>
+    <div><span>Produit scellé (Stock)</span><b>+40 XP</b></div><div><span>Carte gradée</span><b>+100 XP</b></div><div><span>Extension complétée</span><b>+500 XP</b></div></div>
     <p class="fine" style="margin-top:12px">Ton compagnon grandit avec ta collection. Une carte retirée lui retire ses XP.</p></div>`;
   $("#petRen").onclick = ()=>{
     const b = $("#petRen"), box = document.createElement("div"); box.style.cssText = "display:flex;gap:8px;margin-top:10px;justify-content:center";

@@ -48,30 +48,40 @@ function typeOf(name, c) {
 const pr = new Map(pg.priceGuides.map(x => [x.idProduct, x]));
 const r2 = v => v == null ? undefined : Math.round(v * 100) / 100;
 
-// rapprochement avec TCGplayer (nom anglais, même type)
+// rapprochement avec TCGplayer (nom anglais, même type), un pour un :
+// on note toutes les paires plausibles (mots du nom Cardmarket présents à 75 % côté TCGplayer), puis on garde les plus ressemblantes
+// d'abord (indice de Jaccard), chaque produit ne servant qu'une fois. Ainsi l'ETB classique ne prend plus l'ETB « Pokémon Center ».
 const tp = readJSON("sealed.json", {items: []}).items.filter(x => !x.lg);
 const toks = s => new Set(s.toLowerCase().replace(/pok[eé]mon|tcg|the|and|&|scarlet|violet|sword|shield|mega evolution/g, " ").replace(/booster box/g, "display").replace(/[^a-z0-9]+/g, " ").split(" ").filter(w => w.length > 1));
 const tpIdx = tp.map(x => ({x, k: toks(x.n + " " + (x.g || "").replace(/^[A-Z0-9]+:\s*/, ""))}));
-function match(name, t) {
-  const a = toks(name); let best = null, bs = 0;
-  for (const {x, k} of tpIdx) {
-    if (x.t !== t) continue;
-    let inter = 0; for (const w of a) if (k.has(w)) inter++;
-    const s = inter / Math.max(a.size, 1);
-    if (s > bs) { bs = s; best = x; }
+function matchAll(list) {
+  const pairs = [];
+  for (const it of list) {
+    const a = toks(it.n); if (!a.size) continue;
+    for (const {x, k} of tpIdx) {
+      if (x.t !== it.t) continue;
+      let inter = 0; for (const w of a) if (k.has(w)) inter++;
+      if (!inter || inter / a.size < .75) continue;
+      const j = inter / (a.size + k.size - inter);
+      if (j >= .5) pairs.push([j, it, x]);
+    }
   }
-  return bs >= .75 ? best : null;
+  pairs.sort((p, q) => q[0] - p[0]);
+  const usedC = new Set(), usedT = new Set();
+  for (const [, it, x] of pairs) {
+    if (usedC.has(it) || usedT.has(x.i)) continue;
+    usedC.add(it); usedT.add(x.i); it.tp = x.i; if (x.img) it.img = x.img;
+  }
 }
 
 const items = [];
 for (const p of cat.products) {
   const t = typeOf(p.name, p.categoryName); if (!t) continue;
   const g = pr.get(p.idProduct); if (!g || (g.avg == null && g.trend == null && g.low == null)) continue;
-  const x = {i: p.idProduct, n: p.name, t, c: p.categoryName.replace(/^Pok[eé]mon /, ""), e: p.idExpansion, d: (p.dateAdded || "").slice(0, 10),
-    a: r2(g.avg), lo: r2(g.low), tr: r2(g.trend), a1: r2(g.avg1), a7: r2(g.avg7), a30: r2(g.avg30)};
-  const m = match(p.name, t); if (m) { x.tp = m.i; if (m.img) x.img = m.img; }
-  items.push(x);
+  items.push({i: p.idProduct, n: p.name, t, c: p.categoryName.replace(/^Pok[eé]mon /, ""), e: p.idExpansion, d: (p.dateAdded || "").slice(0, 10),
+    a: r2(g.avg), lo: r2(g.low), tr: r2(g.trend), a1: r2(g.avg1), a7: r2(g.avg7), a30: r2(g.avg30)});
 }
+matchAll(items);
 console.log(`${items.length} produits cotés · ${items.filter(x => x.tp).length} reliés à TCGplayer`);
 const prev = readJSON("cm-sealed.json", null);
 if (prev?.items?.length && items.length < prev.items.length * .8) { console.error(`Trop peu de produits (${items.length} contre ${prev.items.length}), non publié`); process.exit(1); }

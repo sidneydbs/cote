@@ -979,11 +979,21 @@ html{background:var(--panel)}
 .tmstage{position:relative;width:100%;height:300px;display:grid;place-items:center}
 .tmglow{position:absolute;width:230px;height:230px;border-radius:50%;background:radial-gradient(circle, color-mix(in srgb, var(--tmc) 55%, transparent) 0%, transparent 68%);transition:background .3s}
 .tmone{position:relative;width:210px;height:210px;cursor:pointer}
-.tmone svg{width:100%;height:100%;filter:drop-shadow(0 12px 18px rgba(0,0,0,.5));animation:tmWob 2.4s ease-in-out infinite}
+.tmone{z-index:2;animation:tmFloat 3s ease-in-out infinite}
+.tmone svg{width:100%;height:100%;display:block}
+.tmfx{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:1}
+.tmshadow{position:absolute;bottom:18px;width:130px;height:18px;border-radius:50%;background:rgba(0,0,0,.6);filter:blur(5px);animation:tmShad 3s ease-in-out infinite;z-index:1}
+@keyframes tmFloat{0%,100%{transform:translateY(8px) rotate(-4deg)}50%{transform:translateY(-18px) rotate(4deg)}}
+@keyframes tmShad{0%,100%{transform:scale(1);opacity:.85}50%{transform:scale(.68);opacity:.45}}
+.tmflash{position:absolute;inset:-20px;background:radial-gradient(circle, #fff 0%, color-mix(in srgb, var(--tmc) 70%, transparent) 30%, transparent 65%);opacity:0;pointer-events:none;z-index:4}
+.tmcar.open .tmone{animation:tmOpen2 .55s ease-in forwards}
+.tmcar.open .tmshadow{animation:none;opacity:0;transition:opacity .3s}
+.tmcar.open .tmflash{animation:tmFlash .9s ease-out .3s}
+@keyframes tmOpen2{0%{transform:translateY(-6px) scale(1)}35%{transform:translateY(-10px) scale(1.15) rotate(-8deg)}100%{transform:translateY(-10px) scale(.15);opacity:0}}
+@keyframes tmFlash{0%{opacity:0;transform:scale(.3)}30%{opacity:1}100%{opacity:0;transform:scale(1.5)}}
 .tmone.in-r{animation:tmInR .28s cubic-bezier(.2,.8,.2,1)}.tmone.in-l{animation:tmInL .28s cubic-bezier(.2,.8,.2,1)}
 @keyframes tmInR{from{transform:translateX(70px);opacity:0}to{transform:none;opacity:1}}
 @keyframes tmInL{from{transform:translateX(-70px);opacity:0}to{transform:none;opacity:1}}
-.tmone.open svg{animation:tmOpen .45s ease-in forwards}
 @keyframes tmOpen{0%{transform:scale(1)}40%{transform:scale(1.12) rotate(-6deg)}100%{transform:scale(.2);opacity:0;filter:brightness(3)}}
 .tmnav{height:56px;border-radius:14px;border:1px solid var(--line);background:var(--panel-2);color:var(--fg);font:800 28px/1 system-ui}
 .tmdots{display:flex;justify-content:center;gap:8px}.tmdots i{width:8px;height:8px;border-radius:50%;background:var(--line);transition:all .2s}.tmdots i.on{width:22px;border-radius:4px;background:var(--border-yellow)}
@@ -1167,7 +1177,7 @@ img.px.reveal{animation:stpRev .9s ease-out}
 </head>
 <body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="pb" viewBox="0 0 100 100"><defs><linearGradient id="pbV" x1="0" y1="0" x2="1" y2="1"><stop offset="0" style="stop-color:var(--pb1)"/><stop offset=".5" style="stop-color:var(--pb2)"/><stop offset="1" style="stop-color:var(--pb3)"/></linearGradient><radialGradient id="pbB" cx=".38" cy=".75" r=".75"><stop offset="0" style="stop-color:var(--pbb1)"/><stop offset="1" style="stop-color:var(--pbb2)"/></radialGradient><radialGradient id="pbC" cx=".4" cy=".35" r=".7"><stop offset="0" style="stop-color:var(--pbc1)"/><stop offset=".55" style="stop-color:var(--pbc2)"/><stop offset="1" style="stop-color:var(--pbc3)"/></radialGradient></defs><path d="M3 50a47 47 0 0 1 94 0z" fill="url(#pbV)"/><path d="M3 50a47 47 0 0 0 94 0z" fill="url(#pbB)"/><rect x="3" y="45.5" width="94" height="9" fill="#09080D"/><circle cx="50" cy="50" r="47" fill="none" stroke="#09080D" stroke-width="4"/><circle cx="50" cy="50" r="15.5" fill="#09080D"/><circle cx="50" cy="50" r="10" fill="url(#pbC)" style="stroke:var(--pb2)" stroke-width="2"/><path d="M19 33a35 35 0 0 1 17-15" fill="none" stroke="#fff" stroke-opacity=".38" stroke-width="4" stroke-linecap="round"/></symbol></svg>
-<script>window.__APPV="92";</script>
+<script>window.__APPV="93";</script>
 <div class="splash" id="splash" aria-hidden="true"><i class="hole"></i><i class="halo"></i><div class="bw"><svg class="b" viewBox="0 0 100 100"><use href="#pb"/></svg><svg class="t" viewBox="0 0 100 100"><use href="#pb"/></svg></div><i class="glow"></i></div>
 <script>setTimeout(function(){ if(window.__booted) return;
   var b=document.createElement("div"); b.setAttribute("role","alert");
@@ -1202,7 +1212,7 @@ img.px.reveal{animation:stpRev .9s ease-out}
   <!-- ===== EXTENSIONS ===== -->
   <section class="view" id="homeView">
     <div class="scroll">
-      <div class="homebar"><span id="avatSlot"><svg class="pball" viewBox="0 0 100 100" aria-hidden="true"><use href="#pb"/></svg></span><span class="brand">DEX<b>·</b>SCAN</span><button class="thbtn" id="themeBtn" aria-label="Changer de thème"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.6-.9 1.2-1.8-.5-1.1.2-2.2 1.4-2.2H17a4 4 0 0 0 4-4c0-5.5-4-10-9-10z"/><circle cx="7.5" cy="11" r="1.2"/><circle cx="10" cy="7" r="1.2"/><circle cx="15" cy="7" r="1.2"/></svg></button><span class="ver">v92</span></div>
+      <div class="homebar"><span id="avatSlot"><svg class="pball" viewBox="0 0 100 100" aria-hidden="true"><use href="#pb"/></svg></span><span class="brand">DEX<b>·</b>SCAN</span><button class="thbtn" id="themeBtn" aria-label="Changer de thème"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.6-.9 1.2-1.8-.5-1.1.2-2.2 1.4-2.2H17a4 4 0 0 0 4-4c0-5.5-4-10-9-10z"/><circle cx="7.5" cy="11" r="1.2"/><circle cx="10" cy="7" r="1.2"/><circle cx="15" cy="7" r="1.2"/></svg></button><span class="ver">v93</span></div>
       <div class="hhead"><div><span class="hdate" id="hDate"></span><h1 class="h1">Accueil</h1></div><button class="hsearch" id="hSearch" aria-label="Rechercher une carte"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></button></div>
       <div class="total htot" id="hTot"></div>
       <div class="hqa">
@@ -6234,19 +6244,49 @@ function teamOffer(){
   gameBox([`Niveau ${lv} !`, "Une nouvelle Poké Ball s'ouvre…\nUn compagnon veut rejoindre ton équipe !"], [{label:"Plus tard"}, {label:"Choisir", go:true, run:teamPick}]);
 }
 // une Poké Ball aux couleurs du thème qu'elle cache
-const tmBall = c => `<svg viewBox="0 0 100 100" aria-hidden="true"><path d="M4 50a46 46 0 0 1 92 0z" fill="${c}"/><path d="M4 50a46 46 0 0 0 92 0z" fill="#f2f0ec"/><path d="M4 50a46 46 0 0 1 92 0" fill="none" stroke="#111" stroke-width="0"/><rect x="4" y="45.5" width="92" height="9" fill="#141414"/><circle cx="50" cy="50" r="46" fill="none" stroke="#141414" stroke-width="5"/><circle cx="50" cy="50" r="14" fill="#141414"/><circle cx="50" cy="50" r="8.5" fill="#f2f0ec"/><path d="M22 30a32 32 0 0 1 16-12" stroke="rgba(255,255,255,.45)" stroke-width="5" stroke-linecap="round" fill="none"/></svg>`;
+// Poké Ball en relief (ombre, reflet) aux couleurs du thème qu'elle cache
+const tmBall = c => { const id = "tb"+Math.random().toString(36).slice(2,7);
+  return `<svg viewBox="0 0 100 100" aria-hidden="true"><defs>
+    <radialGradient id="t${id}" cx="35%" cy="25%" r="80%"><stop offset="0" stop-color="color-mix(in srgb, ${c} 45%, #fff)"/><stop offset=".38" stop-color="${c}"/><stop offset="1" stop-color="color-mix(in srgb, ${c} 55%, #000)"/></radialGradient>
+    <radialGradient id="b${id}" cx="35%" cy="25%" r="90%"><stop offset="0" stop-color="#fff"/><stop offset=".55" stop-color="#e9e6e0"/><stop offset="1" stop-color="#9c978f"/></radialGradient>
+    <radialGradient id="n${id}" cx="40%" cy="35%" r="70%"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#cfcac2"/></radialGradient>
+    <clipPath id="c${id}"><circle cx="50" cy="50" r="46"/></clipPath></defs>
+    <g clip-path="url(#c${id})"><rect width="100" height="50" fill="url(#t${id})"/><rect y="50" width="100" height="50" fill="url(#b${id})"/></g>
+    <rect x="3" y="45.5" width="94" height="9" fill="#141414"/><circle cx="50" cy="50" r="46" fill="none" stroke="#141414" stroke-width="5"/>
+    <circle cx="50" cy="50" r="15" fill="#141414"/><circle cx="50" cy="50" r="9.5" fill="url(#n${id})"/>
+    <ellipse cx="34" cy="24" rx="12" ry="6" fill="#fff" opacity=".55" transform="rotate(-30 34 24)"/></svg>`; };
+// étoiles qui tournent autour de la Ball (et gerbe d'étoiles à l'ouverture)
+function tmStars(cv, col){
+  const ps = [], bs = []; let run = true;
+  const star = (x, X, Y, r)=>{ x.beginPath(); for(let k=0;k<8;k++){ const a = k*Math.PI/4, rr = k%2 ? r*.4 : r; x.lineTo(X+Math.cos(a)*rr, Y+Math.sin(a)*rr); } x.closePath(); x.fill(); };
+  const tick = ()=>{
+    if(!run || !document.body.contains(cv)) return;
+    const dpr = Math.min(2, devicePixelRatio||1), W = cv.clientWidth, H = cv.clientHeight;
+    if(cv.width !== Math.round(W*dpr)){ cv.width = Math.round(W*dpr); cv.height = Math.round(H*dpr); }
+    const x = cv.getContext("2d"); x.setTransform(dpr,0,0,dpr,0,0); x.clearRect(0,0,W,H);
+    const c = col(), lt = `color-mix(in srgb, ${c} 40%, #fff)`;
+    if(Math.random() < .35) ps.push({a:Math.random()*Math.PI*2, d:105+Math.random()*30, life:1, sp:(Math.random()<.5?-1:1)*.012});
+    for(let k = ps.length-1; k>=0; k--){ const p = ps[k]; p.a += p.sp; p.life -= .008; if(p.life<=0){ ps.splice(k,1); continue; }
+      x.globalAlpha = Math.sin(p.life*Math.PI); x.fillStyle = lt; star(x, W/2+Math.cos(p.a)*p.d, H/2-14+Math.sin(p.a)*p.d*.45, 5*p.life+2); }
+    for(let k = bs.length-1; k>=0; k--){ const p = bs[k]; p.x += p.vx; p.y += p.vy; p.vx *= .95; p.vy *= .95; p.life -= .022; if(p.life<=0){ bs.splice(k,1); continue; }
+      x.globalAlpha = p.life; x.fillStyle = p.w ? "#fff" : lt; star(x, p.x, p.y, p.r); }
+    x.globalAlpha = 1; requestAnimationFrame(tick);
+  };
+  requestAnimationFrame(tick);
+  return {stop:()=>{ run = false; }, burst:()=>{ const W = cv.clientWidth, H = cv.clientHeight; for(let k=0;k<44;k++){ const a = Math.random()*Math.PI*2, v = 2+Math.random()*6; bs.push({x:W/2, y:H/2-14, vx:Math.cos(a)*v, vy:Math.sin(a)*v, life:1, r:3+Math.random()*5, w:Math.random()<.5}); } }};
+}
 function teamPick(){
   const left = STARTERS.filter(s=>!s.secret && !getTeam().some(x=>x.k===s.k));
   if(!left.length) return;
   let i = 0;
   $("#sheetTitle").textContent = "";
   // seulement la Poké Ball : on glisse pour en changer, on la touche pour l'ouvrir
-  $("#sheetBody").innerHTML = `<div class="tmcar" id="tmCar" role="group" aria-label="Glisse pour choisir une Poké Ball, touche-la pour l'ouvrir"><div class="tmstage"><div class="tmglow"></div><div class="tmone" id="tmOne" role="button" aria-label="Ouvrir cette Poké Ball"></div></div></div>`;
+  $("#sheetBody").innerHTML = `<div class="tmcar" id="tmCar" role="group" aria-label="Glisse pour choisir une Poké Ball, touche-la pour l'ouvrir"><div class="tmstage"><div class="tmglow"></div><canvas class="tmfx" id="tmFx"></canvas><div class="tmshadow"></div><div class="tmone" id="tmOne" role="button" aria-label="Ouvrir cette Poké Ball"></div><div class="tmflash"></div></div></div>`;
   openSheet();
-  const one = $("#tmOne"), car = $("#tmCar");
+  const one = $("#tmOne"), car = $("#tmCar"), fx = tmStars($("#tmFx"), ()=>THEMES[left[i].th]?.pb || "#c33");
   const show = d=>{
     i = (i + left.length + (d||0)) % left.length; const c = THEMES[left[i].th]?.pb || "#c33";
-    one.classList.remove("in-l","in-r"); void one.offsetWidth; if(d) one.classList.add(d>0?"in-r":"in-l");
+    one.classList.remove("in-l","in-r"); void one.offsetWidth; if(d){ one.classList.add(d>0?"in-r":"in-l"); clearTimeout(one._t); one._t = setTimeout(()=>one.classList.remove("in-l","in-r"), 300); }
     one.innerHTML = tmBall(c); car.style.setProperty("--tmc", c);
     try{ navigator.vibrate?.(5); }catch(e){}
   };
@@ -6255,7 +6295,7 @@ function teamPick(){
   car.addEventListener("touchend", e=>{ if(x0==null) return; const dx = e.changedTouches[0].clientX - x0, dy = Math.abs(e.changedTouches[0].clientY - y0); x0 = null;
     if(Math.abs(dx) > 35 && Math.abs(dx) > dy) show(dx < 0 ? 1 : -1); }, {passive:true});
   let opened = false;
-  one.onclick = ()=>{ if(opened) return; opened = true; one.classList.add("open"); setTimeout(()=>teamReveal(left[i].k), 450); };
+  one.onclick = ()=>{ if(opened) return; opened = true; car.classList.add("open"); try{ navigator.vibrate?.([10,40,30]); }catch(e){} setTimeout(()=>fx.burst(), 300); setTimeout(()=>{ fx.stop(); teamReveal(left[i].k); }, 900); };
   show(0);
 }
 function teamReveal(k){

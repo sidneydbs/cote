@@ -1115,7 +1115,7 @@ html{background:var(--panel)}
 </head>
 <body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="pb" viewBox="0 0 100 100"><defs><linearGradient id="pbV" x1="0" y1="0" x2="1" y2="1"><stop offset="0" style="stop-color:var(--pb1)"/><stop offset=".5" style="stop-color:var(--pb2)"/><stop offset="1" style="stop-color:var(--pb3)"/></linearGradient><radialGradient id="pbB" cx=".38" cy=".75" r=".75"><stop offset="0" style="stop-color:var(--pbb1)"/><stop offset="1" style="stop-color:var(--pbb2)"/></radialGradient><radialGradient id="pbC" cx=".4" cy=".35" r=".7"><stop offset="0" style="stop-color:var(--pbc1)"/><stop offset=".55" style="stop-color:var(--pbc2)"/><stop offset="1" style="stop-color:var(--pbc3)"/></radialGradient></defs><path d="M3 50a47 47 0 0 1 94 0z" fill="url(#pbV)"/><path d="M3 50a47 47 0 0 0 94 0z" fill="url(#pbB)"/><rect x="3" y="45.5" width="94" height="9" fill="#09080D"/><circle cx="50" cy="50" r="47" fill="none" stroke="#09080D" stroke-width="4"/><circle cx="50" cy="50" r="15.5" fill="#09080D"/><circle cx="50" cy="50" r="10" fill="url(#pbC)" style="stroke:var(--pb2)" stroke-width="2"/><path d="M19 33a35 35 0 0 1 17-15" fill="none" stroke="#fff" stroke-opacity=".38" stroke-width="4" stroke-linecap="round"/></symbol></svg>
-<script>window.__APPV="86";</script>
+<script>window.__APPV="87";</script>
 <div class="splash" id="splash" aria-hidden="true"><i class="hole"></i><i class="halo"></i><div class="bw"><svg class="b" viewBox="0 0 100 100"><use href="#pb"/></svg><svg class="t" viewBox="0 0 100 100"><use href="#pb"/></svg></div><i class="glow"></i></div>
 <script>setTimeout(function(){ if(window.__booted) return;
   var b=document.createElement("div"); b.setAttribute("role","alert");
@@ -1150,7 +1150,7 @@ html{background:var(--panel)}
   <!-- ===== EXTENSIONS ===== -->
   <section class="view" id="homeView">
     <div class="scroll">
-      <div class="homebar"><span id="avatSlot"><svg class="pball" viewBox="0 0 100 100" aria-hidden="true"><use href="#pb"/></svg></span><span class="brand">DEX<b>·</b>SCAN</span><button class="thbtn" id="themeBtn" aria-label="Changer de thème"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.6-.9 1.2-1.8-.5-1.1.2-2.2 1.4-2.2H17a4 4 0 0 0 4-4c0-5.5-4-10-9-10z"/><circle cx="7.5" cy="11" r="1.2"/><circle cx="10" cy="7" r="1.2"/><circle cx="15" cy="7" r="1.2"/></svg></button><span class="ver">v86</span></div>
+      <div class="homebar"><span id="avatSlot"><svg class="pball" viewBox="0 0 100 100" aria-hidden="true"><use href="#pb"/></svg></span><span class="brand">DEX<b>·</b>SCAN</span><button class="thbtn" id="themeBtn" aria-label="Changer de thème"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.6-.9 1.2-1.8-.5-1.1.2-2.2 1.4-2.2H17a4 4 0 0 0 4-4c0-5.5-4-10-9-10z"/><circle cx="7.5" cy="11" r="1.2"/><circle cx="10" cy="7" r="1.2"/><circle cx="15" cy="7" r="1.2"/></svg></button><span class="ver">v87</span></div>
       <div class="hhead"><div><span class="hdate" id="hDate"></span><h1 class="h1">Accueil</h1></div><button class="hsearch" id="hSearch" aria-label="Rechercher une carte"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></button></div>
       <div class="total htot" id="hTot"></div>
       <div class="hqa">
@@ -2665,7 +2665,6 @@ function showSealed(id){
       <div class="pmain"><div class="pbig">${esc(eurN(x.fr))}<small>€</small></div>${p!=null?`<span class="pchg ${p>=0?"up":"down"}">${p>=0?"▲ +":"▼ −"}${Math.abs(p).toFixed(1).replace(".",",")} % / 7 j</span>`:""}</div>
       <div class="psub">Tendance du marché${c.lo!=null?` · annonce la moins chère ${esc(sFr(c.lo))}`:""}${c.a!=null?` · prix moyen des ventes ${esc(sFr(c.a))}`:""}</div>
       ${mv.length?`<div class="colmove" style="margin-top:12px">${mv.map(([l,k])=>`<div class="mv flat"><span class="l">${l}</span><b>${esc(sFr(c[k]))}</b><span></span></div>`).join("")}</div>`:""}
-      <div class="links"><a href="https://www.cardmarket.com/fr/Pokemon/Products/Search?searchString=${encodeURIComponent(x.n)}" target="_blank" rel="noopener">${ico.ext}Voir sur Cardmarket</a></div>
     </div>`; })() : "";
   const ch = [["24 h","c1"],["7 jours","c7"],["30 jours","c30"]].map(([l,k])=>{ const p = sPct(x,k); if(p==null) return ""; const cls = Math.abs(p)<.05?"flat":p>0?"up":"down"; const dv = sEur(x.m - x[k]); return `<div class="mv ${cls}"><span class="l">${l}</span><b>${p>0?"▲":p<0?"▼":"■"} ${dv>0?"+":dv<0?"−":""}${eurN(Math.abs(dv))} ${sCur()}</b><span>${p>0?"+":p<0?"−":""}${Math.abs(p).toFixed(1).replace(".",",")} %</span></div>`; }).join("");
   const qn = encodeURIComponent(x.n), qFr = x.nf||x.n;
@@ -2680,15 +2679,10 @@ function showSealed(id){
       <div class="pmain"><div class="pbig">${esc(eurN(sEur(x.m)))}<small>${sCur()}</small></div></div>
       <div class="psub">${SEALED.data.usdEur?`${usd(x.m)} aux États-Unis · 1 $ = ${String(SEALED.data.usdEur.toFixed(4)).replace(".",",")} €`:""}${x.l!=null?` · annonces de ${esc(sFmt(x.l))} à ${esc(sFmt(x.h))}`:""}</div>
       ${ch?`<div class="colmove" style="margin-top:12px">${ch}</div>`:`<p class="psub" style="margin-top:10px">Les variations sur 24 h, 7 et 30 jours s'affichent après le premier jour de suivi.</p>`}
-      <div class="links">
-        ${x.url?`<a href="${esc(x.url)}" target="_blank" rel="noopener">${ico.ext}Voir sur TCGplayer</a>`:""}
-        <a href="https://www.cardmarket.com/fr/Pokemon/Products/Search?searchString=${qn}" target="_blank" rel="noopener">${ico.ext}Chercher sur Cardmarket</a>
-      </div>
     </div>`:""}
-    <h3 class="bh" style="margin-top:16px">Revente entre particuliers</h3>
+    <h3 class="bh" style="margin-top:16px">Ventes réalisées</h3>
     <div class="links bl">
-      <a href="${ebayFr(true, qFr)}" target="_blank" rel="noopener">${ico.ext}eBay.fr ventes terminées</a>
-      <a href="${ebayFr(false, qFr)}" target="_blank" rel="noopener">${ico.ext}eBay.fr annonces en cours</a>
+      <a href="${ebayFr(true, qFr)}" target="_blank" rel="noopener">${ico.ext}eBay ventes réalisées</a>
       <a href="https://www.vinted.fr/catalog?search_text=${enc(qFr)}&order=price_low_to_high" target="_blank" rel="noopener">${ico.ext}Vinted</a>
       <a href="https://www.leboncoin.fr/recherche?text=${enc(qFr)}&sort=price&order=asc" target="_blank" rel="noopener">${ico.ext}Leboncoin</a>
     </div>
@@ -5230,11 +5224,9 @@ function marketHTML(qFr, qEn, c, tp, link=true){ const row = brow; return `
       <p class="psub" style="margin:8px 0 0">Ventes conclues entre particuliers et revendeurs, surtout France et Allemagne, toutes langues confondues (Cardmarket ne sépare pas les boîtes FR et EN). « Annonce la moins chère » = vente en cours.</p></div>`
       : `<p class="psub">${BUD.cm?"Ce produit n'est pas relié à Cardmarket.":"Cotes Cardmarket en cours de chargement."} ${link?`<button class="btn btn-g" id="bdLink" style="padding:6px 10px;font-size:12.5px">Le relier</button>`:""}</p>`}
     <div class="links bl">
-      <a href="${ebayFr(true, qFr)}" target="_blank" rel="noopener">${ico.ext}eBay.fr ventes terminées</a>
-      <a href="${ebayFr(false, qFr)}" target="_blank" rel="noopener">${ico.ext}eBay.fr annonces en cours</a>
-      <a href="https://www.vinted.fr/catalog?search_text=${enc(qFr)}" target="_blank" rel="noopener">${ico.ext}Vinted</a>
-      <a href="https://www.leboncoin.fr/recherche?text=${enc(qFr)}" target="_blank" rel="noopener">${ico.ext}Leboncoin</a>
-      <a href="https://www.cardmarket.com/fr/Pokemon/Products/Search?searchString=${enc(qEn)}" target="_blank" rel="noopener">${ico.ext}Cardmarket</a>
+      <a href="${ebayFr(true, qFr)}" target="_blank" rel="noopener">${ico.ext}eBay ventes réalisées</a>
+      <a href="https://www.vinted.fr/catalog?search_text=${enc(qFr)}&order=price_low_to_high" target="_blank" rel="noopener">${ico.ext}Vinted</a>
+      <a href="https://www.leboncoin.fr/recherche?text=${enc(qFr)}&sort=price&order=asc" target="_blank" rel="noopener">${ico.ext}Leboncoin</a>
     </div>
 
     <h3 class="bh">Reste du monde</h3>
@@ -5243,7 +5235,6 @@ function marketHTML(qFr, qEn, c, tp, link=true){ const row = brow; return `
       <a href="https://www.ebay.com/sch/i.html?_nkw=${enc(qEn)}&LH_Sold=1&LH_Complete=1&_sop=13" target="_blank" rel="noopener">${ico.ext}eBay.com vendus</a>
       <a href="https://www.ebay.de/sch/i.html?_nkw=${enc(qEn)}&LH_Sold=1&LH_Complete=1&_sop=13" target="_blank" rel="noopener">${ico.ext}eBay.de vendus</a>
       <a href="https://www.ebay.co.uk/sch/i.html?_nkw=${enc(qEn)}&LH_Sold=1&LH_Complete=1&_sop=13" target="_blank" rel="noopener">${ico.ext}eBay.co.uk vendus</a>
-      ${tp?.url?`<a href="${esc(tp.url)}" target="_blank" rel="noopener">${ico.ext}TCGplayer</a>`:""}
     </div>`; }
 async function catDetail(id){
   await Promise.all([loadCM().catch(()=>{}), loadSealed().catch(()=>{}), loadFr()]);

@@ -244,6 +244,7 @@ html{background:var(--panel)}
 .ctile .own{position:absolute;bottom:4px;right:4px;width:16px;height:16px;border-radius:50%;background:var(--up);color:#06281a;display:grid;place-items:center;font:900 10px/1 var(--f-body)}
 .lgrow{margin:2px 0 12px}
 .cdpick button{min-width:46px}
+.lkh{margin:16px 0 8px;font:700 11px/1 var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
 /* v99 : fenêtre Nouveautés */
 #newsBox{position:fixed;inset:0;z-index:300;display:grid;place-items:center;padding:22px max(18px,env(safe-area-inset-right,0px)) 22px max(18px,env(safe-area-inset-left,0px));background:rgba(5,6,9,.62);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);animation:nwFade .3s both}
 #newsBox.out{animation:nwFade .25s reverse both}
@@ -1223,7 +1224,7 @@ img.px.reveal{animation:stpRev .9s ease-out}
 </head>
 <body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="pb" viewBox="0 0 100 100"><defs><linearGradient id="pbV" x1="0" y1="0" x2="1" y2="1"><stop offset="0" style="stop-color:var(--pb1)"/><stop offset=".5" style="stop-color:var(--pb2)"/><stop offset="1" style="stop-color:var(--pb3)"/></linearGradient><radialGradient id="pbB" cx=".38" cy=".75" r=".75"><stop offset="0" style="stop-color:var(--pbb1)"/><stop offset="1" style="stop-color:var(--pbb2)"/></radialGradient><radialGradient id="pbC" cx=".4" cy=".35" r=".7"><stop offset="0" style="stop-color:var(--pbc1)"/><stop offset=".55" style="stop-color:var(--pbc2)"/><stop offset="1" style="stop-color:var(--pbc3)"/></radialGradient></defs><path d="M3 50a47 47 0 0 1 94 0z" fill="url(#pbV)"/><path d="M3 50a47 47 0 0 0 94 0z" fill="url(#pbB)"/><rect x="3" y="45.5" width="94" height="9" fill="#09080D"/><circle cx="50" cy="50" r="47" fill="none" stroke="#09080D" stroke-width="4"/><circle cx="50" cy="50" r="15.5" fill="#09080D"/><circle cx="50" cy="50" r="10" fill="url(#pbC)" style="stroke:var(--pb2)" stroke-width="2"/><path d="M19 33a35 35 0 0 1 17-15" fill="none" stroke="#fff" stroke-opacity=".38" stroke-width="4" stroke-linecap="round"/></symbol></svg>
-<script>window.__APPV="99";</script>
+<script>window.__APPV="100";</script>
 <div class="splash" id="splash" aria-hidden="true"><i class="hole"></i><i class="halo"></i><div class="bw"><svg class="b" viewBox="0 0 100 100"><use href="#pb"/></svg><svg class="t" viewBox="0 0 100 100"><use href="#pb"/></svg></div><i class="glow"></i></div>
 <script>setTimeout(function(){ if(window.__booted) return;
   var b=document.createElement("div"); b.setAttribute("role","alert");
@@ -1258,7 +1259,7 @@ img.px.reveal{animation:stpRev .9s ease-out}
   <!-- ===== EXTENSIONS ===== -->
   <section class="view" id="homeView">
     <div class="scroll">
-      <div class="homebar"><span id="avatSlot"><svg class="pball" viewBox="0 0 100 100" aria-hidden="true"><use href="#pb"/></svg></span><span class="brand">DEX<b>·</b>SCAN</span><button class="thbtn" id="themeBtn" aria-label="Changer de thème"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.6-.9 1.2-1.8-.5-1.1.2-2.2 1.4-2.2H17a4 4 0 0 0 4-4c0-5.5-4-10-9-10z"/><circle cx="7.5" cy="11" r="1.2"/><circle cx="10" cy="7" r="1.2"/><circle cx="15" cy="7" r="1.2"/></svg></button><span class="ver">v99</span></div>
+      <div class="homebar"><span id="avatSlot"><svg class="pball" viewBox="0 0 100 100" aria-hidden="true"><use href="#pb"/></svg></span><span class="brand">DEX<b>·</b>SCAN</span><button class="thbtn" id="themeBtn" aria-label="Changer de thème"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.6-.9 1.2-1.8-.5-1.1.2-2.2 1.4-2.2H17a4 4 0 0 0 4-4c0-5.5-4-10-9-10z"/><circle cx="7.5" cy="11" r="1.2"/><circle cx="10" cy="7" r="1.2"/><circle cx="15" cy="7" r="1.2"/></svg></button><span class="ver">v100</span></div>
       <div class="hhead"><div><span class="hdate" id="hDate"></span><div class="htitle"><h1 class="h1">Accueil</h1><button class="hsearch hrank" id="hRank" aria-label="Classement"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 21h8M12 17v4"/><path d="M7 4h10v5a5 5 0 0 1-10 0z"/><path d="M17 5h3v2a3 3 0 0 1-3 3M7 5H4v2a3 3 0 0 0 3 3"/></svg></button></div></div><button class="hsearch" id="hSearch" aria-label="Rechercher une carte"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></button></div>
       <div class="total htot" id="hTot"></div>
       <div class="hqa">
@@ -1329,7 +1330,7 @@ img.px.reveal{animation:stpRev .9s ease-out}
           </div>
           <div id="grList"></div>
           <div class="section" style="margin-top:16px"><h4>Sociétés de gradation</h4><div class="gradegrid" id="grGuide"></div>
-          <p class="fine" style="margin-top:8px">Aucune base gratuite ne publie la cote des cartes gradées en euros. Indique la valeur que tu estimes (ventes eBay réalisées, Cardmarket, Vinted) : le PnL est calculé à partir de ton prix d'achat.</p></div>
+          <p class="fine" style="margin-top:8px">Aucune base gratuite ne publie la cote des cartes gradées en euros. Indique la valeur que tu estimes (ventes eBay réalisées, Cardmarket) : le PnL est calculé à partir de ton prix d'achat.</p></div>
         </div>
       </div>
       <div id="extSet" hidden></div>
@@ -2193,12 +2194,14 @@ function renderCard(){
     <a class="gradebtn hibtn" href="${esc(hiEb)}" target="_blank" rel="noopener"><b>Ventes eBay les plus chères</b><span>Ventes terminées de cette version, de la plus chère à la moins chère</span></a>
     <p class="fine" style="margin-top:8px">eBay ne permet plus de lire les ventes une par une : le bouton ouvre directement le classement, la vente record en premier.</p></div>`;
   const qName = encodeURIComponent(`${c.name} ${c.localId}${off?"/"+off:""}`);
-  const links = `<div class="links">
-    <a href="https://www.cardmarket.com/fr/Pokemon/Products/Search?searchString=${encodeURIComponent(c.name)}" target="_blank" rel="noopener">${ico.ext}Voir sur Cardmarket</a>
+  const links = `<h4 class="lkh">Ventes réalisées</h4><div class="links">
     <a href="${esc(ebayUrl(c,{jp:currentLg==="JP", ed:currentEd}))}" target="_blank" rel="noopener">${ico.ext}Ventes eBay réalisées${currentEd?" · "+esc(edLbl(currentEd)):PRINT_OF[c.id]?" · "+esc(REPRINTS[PRINT_OF[c.id].kind].lbl.toLowerCase()):""}</a>
-    <a href="${esc(ebayUrl(c,{jp:currentLg==="JP", ed:currentEd}).replace("&LH_Sold=1&LH_Complete=1","").replace(/_sop=\d+/,"_sop=15"))}" target="_blank" rel="noopener">${ico.ext}eBay en vente maintenant</a>
-    <a href="https://www.vinted.fr/catalog?search_text=${qName}&order=price_low_to_high" target="_blank" rel="noopener">${ico.ext}Vinted · en vente</a>
-    <a href="https://www.leboncoin.fr/recherche?text=${qName}&sort=price&order=asc" target="_blank" rel="noopener">${ico.ext}Leboncoin · en vente</a>
+  </div>
+  <h4 class="lkh">En vente maintenant</h4><div class="links">
+    <a href="https://www.cardmarket.com/fr/Pokemon/Products/Search?searchString=${encodeURIComponent(c.name)}" target="_blank" rel="noopener">${ico.ext}Cardmarket</a>
+    <a href="${esc(ebayUrl(c,{jp:currentLg==="JP", ed:currentEd}).replace("&LH_Sold=1&LH_Complete=1","").replace(/_sop=\d+/,"_sop=15"))}" target="_blank" rel="noopener">${ico.ext}eBay annonces</a>
+    <a href="https://www.vinted.fr/catalog?search_text=${qName}&order=price_low_to_high" target="_blank" rel="noopener">${ico.ext}Vinted</a>
+    <a href="https://www.leboncoin.fr/recherche?text=${qName}&sort=price&order=asc" target="_blank" rel="noopener">${ico.ext}Leboncoin</a>
   </div>`;
 
   const graded = `<div class="section"><h4>Cartes gradées · ventes eBay réalisées</h4><div class="gradegrid">${["PSA 10","PSA 9","CollectAura 10","CollectAura 9.5"].map(g=>`<a class="gradebtn" href="${esc(ebayUrl(c,{jp:currentLg==="JP", ed:currentEd, grade:g}))}" target="_blank" rel="noopener"><b>${esc(g)}</b><span>Voir les ventes terminées</span></a>`).join("")}<a class="gradebtn" href="${esc(ebayUrl(c,{jp:currentLg==="JP", ed:currentEd, grade:'(psa,pca,cgc,bgs,beckett,collectaura,"collect aura",ccc)'}))}" target="_blank" rel="noopener"><b>Toutes sociétés</b><span>Si une note n'a aucune vente</span></a><a class="gradebtn" href="${esc(ebayUrl(c,{jp:currentLg==="JP", ed:currentEd, sop:16, grade:'(psa,pca,cgc,bgs,beckett,collectaura,"collect aura",ccc)'}))}" target="_blank" rel="noopener"><b>Gradées les plus chères</b><span>Toutes sociétés, record en premier</span></a></div><p class="fine" style="margin-top:8px">Aucune base de prix gratuite ne suit les cartes gradées en euros, ni CollectAura : ces boutons ouvrent les dernières ventes conclues sur eBay pour cette note.</p><div class="addrow" style="margin-top:10px"><button class="btn btn-g" id="grLookCard">Toutes les notes</button><button class="btn btn-g" id="grFromCard">Ajouter en gradée</button></div></div>`;
@@ -6641,7 +6644,7 @@ if(rkProf()?.on) setTimeout(()=>rkColSync(), 6000);
    Nouvelle installation : rien (tout est neuf). Les versions purement techniques n'ont pas d'entrée ici. */
 const NEWS = [
   {v:99, items:[
-    ["M12 8v5l3 2M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0z", "Ventes en cours", "Sur chaque fiche : les ventes réalisées, et ce qui est en vente maintenant sur eBay, Vinted et Leboncoin."],
+    ["M12 8v5l3 2M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0z", "Ventes en cours", "Sur chaque fiche : les ventes réalisées (eBay), et à part ce qui est en vente maintenant sur eBay, Vinted et Leboncoin."],
     ["M12 3v12M7 8l5-5 5 5M5 13v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6", "Partager une fiche", "Chaque scellé et chaque produit de ton Stock a son bouton Partager, avec un lien qui rouvre la fiche."],
     ["M4 5h16v14H4zM8 9h8M8 13h5", "Partager ta collection", "Bouton Partager dans le Classeur : toute ta collection d'un seul lien, en images."],
     ["M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0z", "Collections des dresseurs", "Au classement, touche un dresseur puis « Voir sa collection » pour parcourir ses cartes."],

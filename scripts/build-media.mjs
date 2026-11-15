@@ -103,7 +103,7 @@ const TK = {"tk-dp-m": "tk3a", "tk-dp-l": "tk3b", "tk-hs-r": "tk4a", "tk-hs-g": 
 
 const OLD = readJSON("media.json", {});
 const media = {v: 2, built: new Date().toISOString(), sets: {}, cards: {}, sealed: {}};
-const audit = {built: media.built, sets: {total: ids.length, noLogo: [], noSymbol: []}, cards: {total: 0, tcgdex: 0, fallback: 0, missing: [], bySet: {}}, sealed: {total: 0, photo: 0, logo: 0, missing: 0}, tk: TK, diag};
+const audit = {built: media.built, sets: {total: ids.length, noLogo: [], noSymbol: []}, cards: {total: 0, tcgdex: 0, fallback: 0, manual: 0, missing: [], bySet: {}}, sealed: {total: 0, photo: 0, manual: 0, tcgplayer: 0, logo: 0, missing: 0}, tk: TK, diag};
 
 // 1. logos et symboles, copiés dans media/
 fs.mkdirSync("media/sets", {recursive: true});
@@ -115,7 +115,49 @@ function save(id, k, x) {
   if (!old || !old.equals(x.b)) fs.writeFileSync(f, x.b);
   keep.add(f); return f;
 }
+
+// images ajoutées à la main : extensions et cartes qu'aucune source habituelle ne fournit
+// scripts/media-sources.json liste ces sources (carte → scan, extension → logo/symbole) : scans Bulbapedia et Poképédia, logos PokéCardex.
+// On les copie une fois dans media/manual/ (les cartes réduites à 600 px et converties en WebP) ; si la copie échoue, l'app charge l'adresse d'origine.
+let sharp = null; try { sharp = (await import("sharp")).default; } catch (e) { console.log("sharp absent : images copiées sans conversion"); }
+fs.mkdirSync("media/manual", {recursive: true});
+const MSRC = readJSON("scripts/media-sources.json", {cards: {}, sets: {}, sealed: {}});
+const SMAP = {}, MREMOTE = {};
+const safe = id => id.replace(/[^\w.-]/g, "_");
+{
+  // wikis (MediaWiki) : vignette de la taille voulue si l'original est plus grand, sinon l'original
+  const thumb = (u, w) => {
+    const m = u.match(/^(https:\/\/(?:archives\.bulbagarden\.net\/media\/upload|www\.pokepedia\.fr\/images)\/)(\w\/\w\w\/)([^/]+)$/);
+    return m ? `${m[1]}thumb/${m[2]}${m[3]}/${w}px-${m[3]}` : null;
+  };
+  const have = base => fs.readdirSync("media/manual").find(x => x.replace(/\.(png|jpe?g|webp|gif)$/, "") === base);
+  const grab = async (u, base, card) => {
+    const h = have(base); if (h) return `media/manual/${h}`;
+    const x = await firstOk([thumb(u, card ? 600 : 400), u].filter(Boolean)); if (!x) return null;
+    let b = x.b, e = ext(x.ct);
+    if (sharp && card) { try { b = await sharp(x.b).resize({width: 600, withoutEnlargement: true}).webp({quality: 82}).toBuffer(); e = "webp"; } catch (err) { console.log("conversion impossible", base, String(err)); } }
+    const f = `media/manual/${base}.${e}`; fs.writeFileSync(f, b); return f;
+  };
+  let nc = 0, ns = 0;
+  await pool(Object.entries(MSRC.cards || {}), 4, async ([id, u]) => { if (await grab(u, `card-${safe(id)}`, true)) nc++; else MREMOTE[`card-${safe(id)}`] = u; });
+  for (const [id, o] of Object.entries(MSRC.sets || {})) for (const k of ["l", "s"]) if (o[k] && !(await grab(o[k], `set-${safe(id)}-${k}`))) MREMOTE[`set-${safe(id)}-${k}`] = o[k];
+  const files = {};
+  for (const [cm, u] of Object.entries(MSRC.sealed || {})) (files[u] ||= []).push(cm);
+  await pool(Object.entries(files), 4, async ([u, cms]) => { const f = await grab(u, `sealed-${safe(decodeURIComponent(u.split("/").pop())).replace(/\.(png|jpe?g|webp|gif)$/i, "")}`); for (const cm of cms) SMAP[cm] = f || u; if (f) ns++; });
+  console.log(`images ajoutées à la main : ${nc}/${Object.keys(MSRC.cards || {}).length} cartes copiées, ${ns} photos de produits, ${Object.keys(MREMOTE).length} laissées à leur adresse d'origine`);
+}
+const MAN = fs.readdirSync("media/manual");
+const manual = base => { const f = MAN.find(x => x.replace(/\.(png|jpe?g|webp|gif)$/, "") === base); return f ? `media/manual/${f}` : MREMOTE[base] || null; };
 await pool(ids, 4, async id => {
+  const ml = manual(`set-${safe(id)}-l`), ms = manual(`set-${safe(id)}-s`);
+  if (ml || ms) {
+    const f0 = fr.get(id), e0 = en.get(id);
+    const l0 = ml ? null : await firstOk([f0?.logo && f0.logo + ".png", e0?.logo && e0.logo + ".png"].filter(Boolean));
+    const s0 = ms ? null : await firstOk([f0?.symbol && f0.symbol + ".png", e0?.symbol && e0.symbol + ".png"].filter(Boolean));
+    media.sets[id] = {l: ml || (l0 ? save(id, "l", l0) : null), s: ms || (s0 ? save(id, "s", s0) : null), lu: l0?.u || null, su: s0?.u || null};
+    if (!media.sets[id].l) audit.sets.noLogo.push(id); if (!media.sets[id].s) audit.sets.noSymbol.push(id);
+    return;
+  }
   const f = fr.get(id), e = en.get(id), codes = [...sxCodes(id), ...(TK[id] ? [TK[id]] : [])];
   const tc = (o, k) => o?.[k] ? [o[k] + ".png", o[k] + ".webp"] : [];
   const logos = [...tc(f, "logo"), ...tc(e, "logo"), SRC.logo[id] && srcUrl(SRC.logo[id]),
@@ -129,7 +171,7 @@ await pool(ids, 4, async id => {
 for (const f of fs.readdirSync("media/sets")) if (!keep.has(`media/sets/${f}`)) fs.unlinkSync(`media/sets/${f}`);   // extensions disparues
 console.log(`logos : ${ids.length - audit.sets.noLogo.length}/${ids.length} · symboles : ${ids.length - audit.sets.noSymbol.length}/${ids.length}`);
 
-// 2. cartes sans image TCGdex (ni en français, ni en anglais) : Limitless, Scrydex, pokemontcg.io
+// 2. cartes sans image TCGdex (ni en français, ni en anglais) : ajout à la main, Limitless, Scrydex, pokemontcg.io
 const llUrl = (set, loc) => { const e = SRC.ll[set]; if (!e) return null; const c = typeof e === "string" ? e : e.c; let k = (typeof e === "object" && e.m && e.m[loc]) || loc; if (/^\d+$/.test(k)) k = String(k).padStart(3, "0"); return `https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/tpci/${c}/${c}_${k}_R_EN_SM.png`; };
 const cardSets = [...new Set([...frSets.map(s => s.id), ...enSets.map(s => s.id)])].filter(id => !isPocket(id));
 await pool(cardSets, 4, async sid => {
@@ -147,6 +189,8 @@ await pool(cardSets, 4, async sid => {
   for (const c of cards.values()) {
     audit.cards.total++;
     if (c.img) { audit.cards.tcgdex++; continue; }
+    const mc = manual(`card-${safe(c.id)}`);
+    if (mc) { media.cards[c.id] = mc; audit.cards.fallback++; audit.cards.manual++; continue; }
     const cands = [];
     if (SRC.ll[sid]) cands.push(["ll", llUrl(sid, c.localId)]);
     codes.forEach((code, i) => cands.push([`sx${i}`, `${SX}/${code}-${(i === 0 && sxm?.[c.localId]) || sxNum(c.localId)}/small`]));
@@ -165,25 +209,51 @@ await pool(cardSets, 4, async sid => {
     } else { audit.cards.missing.push(c.id); audit.cards.bySet[sid] = (audit.cards.bySet[sid] || 0) + 1; }
   }
 });
-console.log(`cartes : ${audit.cards.total} · TCGdex ${audit.cards.tcgdex} · secours ${audit.cards.fallback} · sans image ${audit.cards.missing.length}`);
+console.log(`cartes : ${audit.cards.total} · TCGdex ${audit.cards.tcgdex} · secours ${audit.cards.fallback} (dont ${audit.cards.manual} ajoutées à la main) · sans image ${audit.cards.missing.length}`);
 
-// 3. scellés Cardmarket sans photo : logo de leur extension, trouvée par le nom du produit
-//    ou par les autres produits de la même extension Cardmarket
+// 3. scellés Cardmarket sans photo :
+//    a) photo ajoutée à la main ; b) photo TCGplayer du même produit (anglais ou japonais, même sans prix), noms comparés mot à mot ;
+//    c) logo de leur extension, trouvée par le nom du produit ou par les autres produits de la même extension Cardmarket
 const cm = readJSON("cm-sealed.json", {items: []});
-const nameKey = s => s.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-z0-9]+/g, " ").trim();
+const nameKey = s => s.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/[^a-z0-9]+/g, " ").trim();
 const setNames = enSets.filter(s => s.name && s.name.length > 3 && !isPocket(s.id) && media.sets[s.id]?.l).map(s => [" " + nameKey(s.name) + " ", s.id]).sort((x, y) => y[0].length - x[0].length);
 const byExp = {};
 const findSet = n => { const k = " " + nameKey(n) + " "; return setNames.find(([nm]) => k.includes(nm))?.[1]; };
 for (const x of cm.items) { const s = findSet(x.n); if (s && x.e != null) { byExp[x.e] = byExp[x.e] || {}; byExp[x.e][s] = (byExp[x.e][s] || 0) + 1; } }
+// b) photos TCGplayer (tp-img.json, écrit par build-sealed.mjs : tous les produits non-cartes avec photo, cotés ou non)
+const TPI = readJSON("tp-img.json", null)?.items || readJSON("sealed.json", {items: []}).items.filter(x => x.img);
+const nk = s => s.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/pok[eé]mon|\btcg\b|\bthe\b|\band\b|&/g, " ").replace(/booster box/g, "display").replace(/booster pack/g, "booster").replace(/[^a-z0-9]+/g, " ").trim();
+const toks = s => new Set(nk(s).split(" ").filter(Boolean));
+const kindOf = s => { s = nk(s); if (/\bcase\b/.test(s)) return "case"; if (/display/.test(s)) return "display"; if (/\bbooster\b|\bpack\b/.test(s) && !/box|bundle|set\b|collection/.test(s)) return "booster"; if (/\bdeck\b|starter/.test(s)) return "deck"; if (/\bcoins?\b/.test(s)) return "coin"; if (/\btins?\b/.test(s)) return "tin"; return "x"; };
+const stripCode = s => s.replace(/^[A-Za-z0-9.\-]+:\s*/, "");
+const tpIdx = TPI.filter(p => p.img && p.n).map(p => ({p, k: toks(p.n + " " + stripCode(p.g || "")), kn: toks(p.n), kd: kindOf(p.n)}));
+function tpPhoto(name) {
+  if (/^C[A-Z0-9.]*C?:/.test(name)) return null;   // produits chinois : TCGplayer n'en vend pas, et la boîte japonaise n'est pas la même
+  let n = stripCode(name), kd = kindOf(n);
+  if (kd === "case") { n = n.replace(/\s*case\b/i, ""); kd = kindOf(n); }   // carton : photo de la boîte qu'il contient
+  const a = toks(n); if (!a.size) return null;
+  let best = null;
+  for (const x of tpIdx) {
+    if (kd !== "x" && x.kd !== kd) continue;
+    let hit = 0; for (const w of a) if (x.k.has(w)) hit++;
+    if (hit < a.size) continue;   // tous les mots du nom Cardmarket doivent être présents côté TCGplayer
+    const j = hit / new Set([...a, ...x.kn]).size;
+    if (j >= .7 && (!best || j > best.j || (j === best.j && x.p.lg === "JP"))) best = {p: x.p, j};
+  }
+  return best?.p.img || null;
+}
 for (const x of cm.items) {
   audit.sealed.total++;
   if (x.img) { audit.sealed.photo++; continue; }
+  if (SMAP[x.i]) { media.sealed[x.i] = SMAP[x.i]; audit.sealed.manual++; continue; }
+  const tp = tpPhoto(x.n);
+  if (tp) { media.sealed[x.i] = tp; audit.sealed.tcgplayer++; continue; }
   let s = findSet(x.n);
   if (!s && byExp[x.e]) s = Object.entries(byExp[x.e]).sort((a, b) => b[1] - a[1])[0][0];
   const l = s && media.sets[s]?.l;
-  if (l) { media.sealed[x.i] = l; audit.sealed.logo++; } else audit.sealed.missing++;
+  if (l) { media.sealed[x.i] = l; audit.sealed.logo++; } else { audit.sealed.missing++; (audit.sealed.list ||= []).push(x.n); }
 }
-console.log(`scellés : ${audit.sealed.total} · photo ${audit.sealed.photo} · logo d'extension ${audit.sealed.logo} · rien ${audit.sealed.missing}`);
+console.log(`scellés : ${audit.sealed.total} · photo ${audit.sealed.photo} · à la main ${audit.sealed.manual} · photo TCGplayer ${audit.sealed.tcgplayer} · logo d'extension ${audit.sealed.logo} · rien ${audit.sealed.missing}`);
 console.log("sources :", JSON.stringify(diag));
 
 audit.cards.missing = audit.cards.missing.slice(0, 3000);

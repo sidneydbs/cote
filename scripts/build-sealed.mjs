@@ -47,6 +47,8 @@ const CATS = [{id: 3, lg: "EN"}, {id: 85, lg: "JP"}];
 const items = [];
 // cartes japonaises à l'unité : une liste des extensions + un fichier par extension (jp/<groupId>.json)
 const jpSets = [];
+// photos de tous les produits non-cartes TCGplayer (cotés ou non, anglais et japonais) : servent d'image aux produits Cardmarket (build-media.mjs)
+const photos = [];
 fs.mkdirSync("jp", {recursive: true});
 const ext = (p, k) => (p.extendedData || []).find(e => e.name === k)?.value || "";
 for (const cat of CATS) {
@@ -57,6 +59,7 @@ for (const cat of CATS) {
   for (const g of groups) {
     const prods = (await getJSON(`${base}/${g.groupId}/products`))?.results || []; await sleep(110);
     const sealed = prods.filter(p => !isCard(p)).map(p => ({p, t: typeOf(p.name)})).filter(x => x.t);
+    for (const p of prods) if (!isCard(p) && p.imageUrl) photos.push({n: p.cleanName || p.name, g: g.name, img: p.imageUrl, ...(cat.lg !== "EN" ? {lg: cat.lg} : {})});
     const jpCards = cat.lg === "JP" ? prods.filter(isCard) : [];
     if (!sealed.length && !jpCards.length) continue;
     const prices = (await getJSON(`${base}/${g.groupId}/prices`))?.results || []; await sleep(110);
@@ -108,4 +111,6 @@ if (jpSets.length) fs.writeFileSync("jp/index.json", JSON.stringify({built: new 
 console.log(`cartes japonaises : ${jpSets.length} extensions, ${jpSets.reduce((a, x) => a + x.c, 0)} cartes`);
 fs.writeFileSync("sealed.json", JSON.stringify({v: 1, built: new Date().toISOString(), source: "TCGplayer via TCGCSV", currency: "USD", usdEur, items}));
 fs.writeFileSync("sealed-history.json", JSON.stringify(hist));
+fs.writeFileSync("tp-img.json", JSON.stringify({built: new Date().toISOString(), items: photos}));
+console.log(`tp-img.json : ${photos.length} photos de produits`);
 console.log(`sealed.json : ${items.length} produits · historique ${kept.length} jour(s)`);

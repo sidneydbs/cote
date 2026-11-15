@@ -2,7 +2,7 @@ name: Images (logos, cartes, scelles)
 on:
   workflow_dispatch:
   push:
-    paths: ["scripts/build-media.mjs", ".github/workflows/media.yml"]
+    paths: ["scripts/build-media.mjs", ".github/workflows/media.yml", "scripts/media-sources.json"]
   schedule:
     - cron: "37 */6 * * *"
 permissions:
@@ -17,6 +17,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 20
+      - run: npm install --no-save --no-package-lock sharp@0.33.5
       - run: node scripts/build-media.mjs
       - name: Publier
         run: |

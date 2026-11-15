@@ -22,7 +22,7 @@ jobs:
         run: |
           git config user.name "cote-bot"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add sealed.json sealed-history.json jp
+          git add sealed.json sealed-history.json tp-img.json jp
           git diff --cached --quiet || (git commit -m "Prix des produits scellés mis à jour" && git pull --rebase && git push)
       - name: Republier le site
         env:

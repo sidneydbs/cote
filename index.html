@@ -244,6 +244,7 @@ html{background:var(--panel)}
 .ctile .own{position:absolute;bottom:4px;right:4px;width:16px;height:16px;border-radius:50%;background:var(--up);color:#06281a;display:grid;place-items:center;font:900 10px/1 var(--f-body)}
 .lgrow{margin:2px 0 12px}
 .cdpick button{min-width:46px}
+.rkvalsw{display:flex;gap:10px;align-items:flex-start;margin-top:12px;padding:10px 12px;border:1px solid var(--line);border-radius:12px;background:var(--panel-2);color:var(--fg);cursor:pointer}.rkvalsw input{width:22px;height:22px;margin:0;flex:none;accent-color:var(--border-yellow)}.rkvalsw small{display:block;color:var(--muted);font-size:12.5px}
 .lkh{margin:16px 0 8px;font:700 11px/1 var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
 /* v99 : fenêtre Nouveautés */
 #newsBox{position:fixed;inset:0;z-index:300;display:grid;place-items:center;padding:22px max(18px,env(safe-area-inset-right,0px)) 22px max(18px,env(safe-area-inset-left,0px));background:rgba(5,6,9,.62);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);animation:nwFade .3s both}
@@ -1224,7 +1225,7 @@ img.px.reveal{animation:stpRev .9s ease-out}
 </head>
 <body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="pb" viewBox="0 0 100 100"><defs><linearGradient id="pbV" x1="0" y1="0" x2="1" y2="1"><stop offset="0" style="stop-color:var(--pb1)"/><stop offset=".5" style="stop-color:var(--pb2)"/><stop offset="1" style="stop-color:var(--pb3)"/></linearGradient><radialGradient id="pbB" cx=".38" cy=".75" r=".75"><stop offset="0" style="stop-color:var(--pbb1)"/><stop offset="1" style="stop-color:var(--pbb2)"/></radialGradient><radialGradient id="pbC" cx=".4" cy=".35" r=".7"><stop offset="0" style="stop-color:var(--pbc1)"/><stop offset=".55" style="stop-color:var(--pbc2)"/><stop offset="1" style="stop-color:var(--pbc3)"/></radialGradient></defs><path d="M3 50a47 47 0 0 1 94 0z" fill="url(#pbV)"/><path d="M3 50a47 47 0 0 0 94 0z" fill="url(#pbB)"/><rect x="3" y="45.5" width="94" height="9" fill="#09080D"/><circle cx="50" cy="50" r="47" fill="none" stroke="#09080D" stroke-width="4"/><circle cx="50" cy="50" r="15.5" fill="#09080D"/><circle cx="50" cy="50" r="10" fill="url(#pbC)" style="stroke:var(--pb2)" stroke-width="2"/><path d="M19 33a35 35 0 0 1 17-15" fill="none" stroke="#fff" stroke-opacity=".38" stroke-width="4" stroke-linecap="round"/></symbol></svg>
-<script>window.__APPV="100";</script>
+<script>window.__APPV="101";</script>
 <div class="splash" id="splash" aria-hidden="true"><i class="hole"></i><i class="halo"></i><div class="bw"><svg class="b" viewBox="0 0 100 100"><use href="#pb"/></svg><svg class="t" viewBox="0 0 100 100"><use href="#pb"/></svg></div><i class="glow"></i></div>
 <script>setTimeout(function(){ if(window.__booted) return;
   var b=document.createElement("div"); b.setAttribute("role","alert");
@@ -1259,7 +1260,7 @@ img.px.reveal{animation:stpRev .9s ease-out}
   <!-- ===== EXTENSIONS ===== -->
   <section class="view" id="homeView">
     <div class="scroll">
-      <div class="homebar"><span id="avatSlot"><svg class="pball" viewBox="0 0 100 100" aria-hidden="true"><use href="#pb"/></svg></span><span class="brand">DEX<b>·</b>SCAN</span><button class="thbtn" id="themeBtn" aria-label="Changer de thème"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.6-.9 1.2-1.8-.5-1.1.2-2.2 1.4-2.2H17a4 4 0 0 0 4-4c0-5.5-4-10-9-10z"/><circle cx="7.5" cy="11" r="1.2"/><circle cx="10" cy="7" r="1.2"/><circle cx="15" cy="7" r="1.2"/></svg></button><span class="ver">v100</span></div>
+      <div class="homebar"><span id="avatSlot"><svg class="pball" viewBox="0 0 100 100" aria-hidden="true"><use href="#pb"/></svg></span><span class="brand">DEX<b>·</b>SCAN</span><button class="thbtn" id="themeBtn" aria-label="Changer de thème"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.6-.9 1.2-1.8-.5-1.1.2-2.2 1.4-2.2H17a4 4 0 0 0 4-4c0-5.5-4-10-9-10z"/><circle cx="7.5" cy="11" r="1.2"/><circle cx="10" cy="7" r="1.2"/><circle cx="15" cy="7" r="1.2"/></svg></button><span class="ver">v101</span></div>
       <div class="hhead"><div><span class="hdate" id="hDate"></span><div class="htitle"><h1 class="h1">Accueil</h1><button class="hsearch hrank" id="hRank" aria-label="Classement"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 21h8M12 17v4"/><path d="M7 4h10v5a5 5 0 0 1-10 0z"/><path d="M17 5h3v2a3 3 0 0 1-3 3M7 5H4v2a3 3 0 0 0 3 3"/></svg></button></div></div><button class="hsearch" id="hSearch" aria-label="Rechercher une carte"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></button></div>
       <div class="total htot" id="hTot"></div>
       <div class="hqa">
@@ -6495,7 +6496,7 @@ function rkSetup(){
   $("#sheetTitle").textContent = p.on ? "Mon profil de dresseur" : "Rejoindre le classement";
   $("#sheetBody").innerHTML = `<div class="rkform">
     <label for="rkName">Ton pseudo</label><input id="rkName" maxlength="16" autocomplete="off" spellcheck="false" placeholder="Ex. Diwood" value="${esc(p.name||"")}">
-    <label class="rkchk"><input type="checkbox" id="rkVal" ${p.val?"checked":""}> <span>Montrer la valeur de ma collection<small>Sinon elle reste privée, seul ton niveau compte.</small></span></label>
+    <label class="rkchk"><input type="checkbox" id="rkVal" ${p.val?"checked":""}> <span>Montrer la valeur de ma collection<small>Le total et la cote de chaque carte. Sinon elle reste privée : on voit tes cartes, pas ce qu'elles valent.</small></span></label>
     <label class="rkchk"><input type="checkbox" id="rkCol" ${p.col!==false?"checked":""}> <span>Montrer mes cartes aux autres dresseurs<small>Ils voient ta collection en images depuis le classement, et tu peux la partager d'un lien.</small></span></label>
     <button class="btn btn-y" id="rkOk" style="width:100%;margin-top:6px">${p.on?"Enregistrer":"C'est parti !"}</button>
     ${p.on?`<button class="btn" id="rkOff" style="width:100%;margin-top:8px">Quitter le classement</button>`:""}
@@ -6509,7 +6510,7 @@ function rkSetup(){
     $("#rkOk").disabled = true; $("#rkOk").textContent = "Inscription…";
     const me = await rkSync(true);
     if(!me){ $("#rkOk").disabled = false; $("#rkOk").textContent = "Réessayer"; toast("Serveur injoignable, réessaie"); if(!p.on) store.set("rk", {...np, on:false}); return; }
-    store.set("rkColSig", ""); rkColSync(true);
+    store.set("rkColSig", ""); if(p.on && !!p.val !== np.val) await rkSetVal(np.val); else rkColSync(true);
     closeSheet(); toast(p.on ? "Profil mis à jour" : `Bienvenue ${name} !`);
     const pend = store.get("rkPend", ""); if(pend){ store.set("rkPend",""); await rkJoin(pend); }
     renderRank();
@@ -6605,10 +6606,12 @@ async function rkCollection(id){
   try{ d = await rkCall("/col/"+encodeURIComponent(id)); }
   catch(e){ $("#sheetBody").innerHTML = `<div class="empty"><b style="color:var(--fg)">${/priv|introuv/.test(e.message)?"Collection privée":"Collection indisponible"}</b><br>${/priv|introuv/.test(e.message)?"Ce dresseur n'a pas choisi de montrer ses cartes.":esc(e.message)}</div>`; return; }
   const pt = rkPet(d.pk), cards = d.cards||[];
-  const n = cards.reduce((a,c)=>a+(c[1]||1),0), val = cards.some(c=>c[6]!=null) ? cards.reduce((a,c)=>a+(c[6]||0)*(c[1]||1),0) : null;
+  const mine = me?.on && me.id===id;
+  const n = cards.reduce((a,c)=>a+(c[1]||1),0), val = mine ? getCol().reduce((a,x)=>a+(x.price||0)*(x.qty||1),0) : cards.some(c=>c[6]!=null) ? cards.reduce((a,c)=>a+(c[6]||0)*(c[1]||1),0) : null;
   $("#sheetTitle").textContent = `Collection de ${d.name}`;
-  $("#sheetBody").innerHTML = `<div class="rkcolhead">${pt?`<img class="px" src="${pt.img}" alt="">`:""}<div><b>${esc(d.name)}</b><small>Niv. ${d.lv||1} · ${n.toLocaleString("fr-FR")} carte${n>1?"s":""}${val!=null?` · ${eurN(val)} €`:""}</small></div>
+  $("#sheetBody").innerHTML = `<div class="rkcolhead">${pt?`<img class="px" src="${pt.img}" alt="">`:""}<div><b>${esc(d.name)}</b><small>Niv. ${d.lv||1} · ${n.toLocaleString("fr-FR")} carte${n>1?"s":""}${val!=null?` · ${eurN(val)} €${mine && !me.val?" (visible par toi seul)":""}`:""}</small></div>
       ${me?.on && me.id===id ? `<button class="btn btn-g" id="rkcShare">${SHARE_SVG}Partager</button>` : ""}</div>
+    ${me?.on && me.id===id ? `<label class="rkchk rkvalsw"><input type="checkbox" id="rkcVal" ${me.val?"checked":""}> <span>Montrer la valeur aux autres dresseurs<small>${me.val?"Ils voient le total et la cote de chaque carte.":"Ils voient tes cartes, mais ni le total ni les cotes."}</small></span></label>` : ""}
     ${cards.length>12?`<label class="ext-search" style="margin:12px 0 0"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><input id="rkcQ" type="search" placeholder="Chercher une carte" autocomplete="off" aria-label="Chercher dans cette collection"></label>`:""}
     <div class="rkcolgrid" id="rkcGrid"></div>
     <p class="fine">Cartes triées de la plus chère à la moins chère${val==null?" (ce dresseur garde ses cotes privées)":""}. Touche une carte pour ouvrir sa fiche.</p>`;
@@ -6620,7 +6623,20 @@ async function rkCollection(id){
     $("#rkcMore") && ($("#rkcMore").onclick = ()=>{ lim += 120; draw(); }); };
   $("#rkcQ") && $("#rkcQ").addEventListener("input", ()=>{ lim = 60; draw(); });
   $("#rkcShare") && ($("#rkcShare").onclick = ()=>shareCollection());
+  $("#rkcVal") && ($("#rkcVal").onchange = async e=>{ e.target.disabled = true; await rkSetVal(e.target.checked); rkCollection(id); });
   draw();
+}
+// montrer / cacher la valeur de sa collection : profil du classement + cotes de la collection visible, tout de suite
+async function rkSetVal(on){
+  const p = rkProf(); if(!p?.on) return;
+  store.set("rk", {...p, val:on}); RK.last = ""; RK.data = null; store.set("rkColSig", "");
+  const push = async ()=>{ const s = rkStats(), q = rkProf();
+    const j = await rkCall("/sync", {id:q.id, key:q.key, name:q.name, pet:petName(), pk:store.get("starter",""), xp:s.xp, cards:s.cards, sets:s.sets, val:q.val ? s.val : null}).catch(()=>null);
+    const c = await rkCall("/col", {id:q.id, key:q.key, cards:q.col===false ? [] : rkColPayload()}).catch(()=>null);
+    return !(j?.slow || c?.slow); };
+  // le serveur ignore deux envois à moins de 15 s d'écart : on renvoie après le délai si besoin
+  if(!await push()) setTimeout(push, 16000);
+  toast(on ? "Valeur visible au classement" : "Valeur cachée aux autres dresseurs");
 }
 async function shareCollection(){
   const p = rkProf();
@@ -6667,7 +6683,7 @@ function afterIntro(){
   const next = ()=>{
     if(colPendOpen()) return;
     const p = rkProf();
-    if(p?.on && p.col===undefined && starterOf()) setTimeout(()=>gameBox(["Nouveau : les dresseurs peuvent voir les collections des autres, en images.", "Tu montres la tienne ? Tu pourras changer d'avis dans ton profil de dresseur."],
+    if(p?.on && p.col===undefined && starterOf()) setTimeout(()=>gameBox(["Nouveau : les dresseurs peuvent voir les collections des autres, en images.", "Tu montres la tienne ? Ses valeurs restent cachées si tu le souhaites : tout se règle dans ta collection ou ton profil de dresseur."],
       [{label:"Oui, la montrer", go:true, run:()=>{ store.set("rk", {...rkProf(), col:true}); rkColSync(true); toast("Ta collection est visible au classement"); }},
        {label:"Non merci", run:()=>{ store.set("rk", {...rkProf(), col:false}); rkColSync(true); }}]), 400);
   };

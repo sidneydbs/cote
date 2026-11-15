@@ -1,5 +1,5 @@
 {
- "built": "2026-11-15T17:31:45.500Z",
+ "built": "2026-11-15T19:04:14.842Z",
  "sets": {
   "total": 209,
   "noLogo": [],
@@ -863,17 +863,12 @@
   "tk-xy-p": "tk9b",
   "tk-sm-l": "tk10a",
   "tk-sm-r": "tk10b",
-  "tk-ex-m": "tk2b",
-  "tk-ex-latia": "tk1a",
-  "tk-ex-latio": "tk1b"
+  "tk-ex-m": "tk2b"
  },
  "diag": {
   "archives.bulbagarden.net": {
-   "403": 14
-  },
-  "www.pokepedia.fr": {
-   "404": 16,
-   "ok": 47
+   "404": 4,
+   "ok": 7
   },
   "assets.tcgdex.net": {
    "404": 324,

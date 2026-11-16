@@ -29,7 +29,22 @@ try { usdEur = JSON.parse(fs.readFileSync("sealed.json", "utf8")).usdEur || usdE
 
 /* --- copie des fonctions de l'app (index.html) --- */
 function hasPrice(p){ return !!(p && ((p.cardmarket && (p.cardmarket.trend!=null||p.cardmarket["trend-holo"]!=null||p.cardmarket.avg!=null)) || (p.tcgplayer && Object.keys(p.tcgplayer).some(k=>typeof p.tcgplayer[k]==="object")))); }
+// cote gonflée par quelques ventes très chères sur une carte peu vendue : même règle que l'app (sanePricing)
+function sanePricing(d){
+  const p = d?.pricing, cm = p?.cardmarket; if(!cm || cm._tp) return d;
+  const tp = p.tcgplayer || {}, px = k => { const v = tp[k]; return v && typeof v==="object" ? (v.marketPrice ?? v.midPrice ?? 0) : 0; };
+  // marché US de la même version : normale ↔ normal / holofoil, reverse ↔ reverse-holofoil
+  const usOf = s => (s ? (px("reverse-holofoil") || px("holofoil")) : (px("normal") || px("holofoil") || px("unlimited") || px("unlimitedHolofoil"))) * usdEur;
+  for(const s of ["", "-holo"]){
+    const t = cm["trend"+s], a1 = cm["avg1"+s], lo = cm["low"+s];
+    if(!(t >= 30) || !(a1 > 0) || !(lo > 0)) continue;
+    const tE = usOf(s), ref = Math.max(a1, lo, tE >= 1 ? tE : 0);
+    if(ref >= 5 && t > 4*ref){ const v = Math.round(ref*100)/100; cm["trend"+s] = v; }
+  }
+  return d;
+}
 function fixPricing(d){
+  sanePricing(d);
   const p = d?.pricing, cm = p?.cardmarket, tp = p?.tcgplayer;
   if(!cm || !tp || cm._tp) return d;
   const sid = d.set?.id || String(d.id||"").replace(/-[^-]+$/,""); if(!/^(me|sv)/.test(sid)) return d;

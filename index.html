@@ -172,7 +172,10 @@ html{background:var(--panel)}
 .kv dd{margin:0;font:700 15px/1.1 var(--f-mono);font-variant-numeric:tabular-nums;overflow-wrap:anywhere}
 .nopx{padding:6px 0;color:var(--muted);line-height:1.5}
 .links{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:14px}
+.unsure{margin:10px 0 4px;padding:10px 12px;border-radius:12px;border:1px solid color-mix(in srgb,#ffb020 45%,transparent);background:color-mix(in srgb,#ffb020 10%,var(--panel));font-size:12.5px;line-height:1.45;color:var(--muted)}
+.unsure b{display:block;color:#ffc24a;font-size:13px;margin-bottom:3px}
 .links a{display:flex;align-items:center;justify-content:center;gap:6px;padding:12px;border-radius:12px;background:var(--panel-2);border:1px solid var(--line);color:var(--fg);text-decoration:none;font-weight:600;font-size:13px;text-align:center}
+.links.sold2 a{padding:8px 10px;font-size:12.5px;border-radius:10px;min-height:0}.links.sold2 a img,.links.sold2 a svg{width:16px;height:16px}
 .links a svg{width:15px;height:15px;flex:none}
 /* logo du site sur chaque lien externe (eBay, Cardmarket, Vinted…) : on affiche l'icône officielle du site */
 .brico{width:20px;height:20px;flex:none;border-radius:5px;background:#fff;padding:2px;box-sizing:border-box;object-fit:contain}
@@ -1314,7 +1317,7 @@ img.px.reveal{animation:stpRev .9s ease-out}
 </head>
 <body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="pb" viewBox="0 0 100 100"><defs><linearGradient id="pbV" x1="0" y1="0" x2="1" y2="1"><stop offset="0" style="stop-color:var(--pb1)"/><stop offset=".5" style="stop-color:var(--pb2)"/><stop offset="1" style="stop-color:var(--pb3)"/></linearGradient><radialGradient id="pbB" cx=".38" cy=".75" r=".75"><stop offset="0" style="stop-color:var(--pbb1)"/><stop offset="1" style="stop-color:var(--pbb2)"/></radialGradient><radialGradient id="pbC" cx=".4" cy=".35" r=".7"><stop offset="0" style="stop-color:var(--pbc1)"/><stop offset=".55" style="stop-color:var(--pbc2)"/><stop offset="1" style="stop-color:var(--pbc3)"/></radialGradient></defs><path d="M3 50a47 47 0 0 1 94 0z" fill="url(#pbV)"/><path d="M3 50a47 47 0 0 0 94 0z" fill="url(#pbB)"/><rect x="3" y="45.5" width="94" height="9" fill="#09080D"/><circle cx="50" cy="50" r="47" fill="none" stroke="#09080D" stroke-width="4"/><circle cx="50" cy="50" r="15.5" fill="#09080D"/><circle cx="50" cy="50" r="10" fill="url(#pbC)" style="stroke:var(--pb2)" stroke-width="2"/><path d="M19 33a35 35 0 0 1 17-15" fill="none" stroke="#fff" stroke-opacity=".38" stroke-width="4" stroke-linecap="round"/></symbol></svg>
-<script>window.__APPV="104";</script>
+<script>window.__APPV="105";</script>
 <div class="splash" id="splash" aria-hidden="true"><i class="hole"></i><i class="halo"></i><div class="bw"><svg class="b" viewBox="0 0 100 100"><use href="#pb"/></svg><svg class="t" viewBox="0 0 100 100"><use href="#pb"/></svg></div><i class="glow"></i></div>
 <script>setTimeout(function(){ if(window.__booted) return;
   var b=document.createElement("div"); b.setAttribute("role","alert");
@@ -1349,7 +1352,7 @@ img.px.reveal{animation:stpRev .9s ease-out}
   <!-- ===== EXTENSIONS ===== -->
   <section class="view" id="homeView">
     <div class="scroll">
-      <div class="homebar"><span id="avatSlot"><svg class="pball" viewBox="0 0 100 100" aria-hidden="true"><use href="#pb"/></svg></span><span class="brand">DEX<b>·</b>SCAN</span><button class="thbtn" id="themeBtn" aria-label="Changer de thème"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.6-.9 1.2-1.8-.5-1.1.2-2.2 1.4-2.2H17a4 4 0 0 0 4-4c0-5.5-4-10-9-10z"/><circle cx="7.5" cy="11" r="1.2"/><circle cx="10" cy="7" r="1.2"/><circle cx="15" cy="7" r="1.2"/></svg></button><span class="ver">v104</span></div>
+      <div class="homebar"><span id="avatSlot"><svg class="pball" viewBox="0 0 100 100" aria-hidden="true"><use href="#pb"/></svg></span><span class="brand">DEX<b>·</b>SCAN</span><button class="thbtn" id="themeBtn" aria-label="Changer de thème"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.6-.9 1.2-1.8-.5-1.1.2-2.2 1.4-2.2H17a4 4 0 0 0 4-4c0-5.5-4-10-9-10z"/><circle cx="7.5" cy="11" r="1.2"/><circle cx="10" cy="7" r="1.2"/><circle cx="15" cy="7" r="1.2"/></svg></button><span class="ver">v105</span></div>
       <div class="hhead"><div><span class="hdate" id="hDate"></span><div class="htitle"><h1 class="h1">Accueil</h1><button class="hsearch hrank" id="hRank" aria-label="Classement"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 21h8M12 17v4"/><path d="M7 4h10v5a5 5 0 0 1-10 0z"/><path d="M17 5h3v2a3 3 0 0 1-3 3M7 5H4v2a3 3 0 0 0 3 3"/></svg></button></div></div><button class="hsearch" id="hSearch" aria-label="Rechercher une carte"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></button></div>
       <div class="total htot" id="hTot"></div>
       <div class="hqa">
@@ -1389,8 +1392,8 @@ img.px.reveal{animation:stpRev .9s ease-out}
   <section class="view" id="extView" hidden>
     <div class="scroll" id="extScroll">
       <div id="extHome">
-        <button class="backbtn" id="exToCls"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="m15 18-6-6 6-6"/></svg>Mon classeur</button>
         <div class="clshead"><h1 class="h1">Explorer</h1><button class="chip" id="extLang" aria-label="Langue des cartes" hidden>Cartes FR</button><button class="hicon" id="extSearchBtn" aria-label="Rechercher"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></button><button class="hicon" id="extSetBtn" aria-label="Trier et filtrer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16M7 12h10M10 18h4"/></svg><i class="hbadge" hidden></i></button></div>
+      <div class="seg clsw3" role="group" aria-label="Classeur"><button data-cls3="graded">Mes gradées</button><button data-cls3="cards">Mes cartes</button><button data-cls3="explore">Explorer</button></div>
       
 
         <div class="seg exmode" role="group" aria-label="Type de produits"><button data-mode="cards" aria-pressed="true">Extensions</button><button data-mode="sealed" aria-pressed="false">Scellés</button><button data-mode="graded" aria-pressed="false">Cotes gradées</button><button data-mode="jp" aria-pressed="false">Japon</button></div>
@@ -1538,8 +1541,8 @@ img.px.reveal{animation:stpRev .9s ease-out}
   <!-- ===== COLLECTION ===== -->
   <section class="view" id="colView" hidden>
     <div class="scroll">
-      <div class="clshead"><h1 class="h1">Classeur</h1><button class="hicon" id="colExplore" aria-label="Explorer toutes les cartes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m15.5 8.5-2 5-5 2 2-5z"/></svg></button><button class="hicon" id="colSearchBtn" aria-label="Rechercher"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></button><button class="hicon" id="colSetBtn" aria-label="Trier et filtrer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16M7 12h10M10 18h4"/></svg><i class="hbadge" hidden></i></button><button class="hicon" id="colShareBtn" aria-label="Partager ma collection"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="m7 8 5-5 5 5"/><path d="M5 13v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6"/></svg></button></div>
-      <div class="seg clsw3" role="group" aria-label="Classeur"><button data-cls3="cards">Mes cartes</button><button data-cls3="graded">Mes gradées</button></div>
+      <div class="clshead"><h1 class="h1">Classeur</h1><button class="hicon" id="colSearchBtn" aria-label="Rechercher"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></button><button class="hicon" id="colSetBtn" aria-label="Trier et filtrer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16M7 12h10M10 18h4"/></svg><i class="hbadge" hidden></i></button><button class="hicon" id="colShareBtn" aria-label="Partager ma collection"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="m7 8 5-5 5 5"/><path d="M5 13v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6"/></svg></button></div>
+      <div class="seg clsw3" role="group" aria-label="Classeur"><button data-cls3="graded">Mes gradées</button><button data-cls3="cards">Mes cartes</button><button data-cls3="explore">Explorer</button></div>
       <div class="csum" id="colSum"></div>
 
       <div class="total" id="wallet">
@@ -1849,7 +1852,29 @@ function hasPrice(p){ return !!(p && ((p.cardmarket && (p.cardmarket.trend!=null
    (ex. Règne Delta : les Illustrations rares affichaient le prix de la commune, 0,05 € au lieu de 10 €).
    Si la cote Cardmarket vaut moins du quart du prix du marché US (TCGplayer), elle est fausse :
    on affiche alors le prix TCGplayer converti en euros, en le disant. Testé sur 10 extensions : aucune fausse alerte. */
+/* Cote gonflée : sur une carte qui se vend peu, quelques ventes de cartes gradées (ou très chères) faussent la tendance Cardmarket
+   (ex. Gengar Skyridge 10/144 : tendance 6 221 € alors qu'aucune annonce n'est sous 400 € et que la vente d'hier fait 325 €).
+   Si la tendance dépasse 4 fois le prix réellement observé (vente d'hier, annonce la moins chère, marché US), on retient ce prix
+   observé, par prudence, et la fiche explique pourquoi. La valeur de la collection suit cette cote prudente. */
+function sanePricing(d){
+  const p = d?.pricing, cm = p?.cardmarket; if(!cm || cm._tp) return d;
+  const tp = p.tcgplayer || {}, px = k => { const v = tp[k]; return v && typeof v==="object" ? (v.marketPrice ?? v.midPrice ?? 0) : 0; };
+  // marché US de la même version : normale ↔ normal / holofoil, reverse ↔ reverse-holofoil
+  const usOf = s => (s ? (px("reverse-holofoil") || px("holofoil")) : (px("normal") || px("holofoil") || px("unlimited") || px("unlimitedHolofoil"))) * (SEALED.data?.usdEur || 0.87);
+  for(const s of ["", "-holo"]){
+    const t = cm["trend"+s], a1 = cm["avg1"+s], lo = cm["low"+s];
+    if(!(t >= 30) || !(a1 > 0) || !(lo > 0)) continue;   // il faut une vente récente et une annonce pour comparer
+    const tE = usOf(s), ref = Math.max(a1, lo, tE >= 1 ? tE : 0);
+    if(ref >= 5 && t > 4*ref){
+      const v = Math.round(ref*100)/100;
+      (cm._unsure ||= {})[s||"n"] = {was:t, a1, lo, us: tE >= 1 ? Math.round(tE*100)/100 : null};
+      cm["trend"+s] = v;
+    }
+  }
+  return d;
+}
 function fixPricing(d){
+  sanePricing(d);
   const p = d?.pricing, cm = p?.cardmarket, tp = p?.tcgplayer;
   if(!cm || !tp || cm._tp) return d;
   // seulement les extensions récentes : sur les anciennes, TCGplayer mélange 1ère édition et Unlimited (prix sans rapport)
@@ -1948,6 +1973,20 @@ function ebayQuery(c, o={}){
   const inQ = all.slice(0, 10), rest = all.slice(10).filter(w=>!/[" ]/.test(w));
   return {q: (head + (inQ.length ? " "+inQ.map(w=>"-"+w).join(" ") : "")).trim(), ex: rest.join(" ")};
 }
+// nom anglais d'une carte (même identifiant chez TCGdex en anglais) : la recherche eBay US se fait en anglais
+const EN_NAME = store.get("enNames", {});
+async function enNameFix(c){
+  if(!c?.id || EN_NAME[c.id] || currentLg==="JP") return;
+  try{
+    const r = await fetch(`https://api.tcgdex.net/v2/en/cards/${encodeURIComponent(c.id)}`, {signal:AbortSignal.timeout(8000)}); if(!r.ok) return;
+    const n = (await r.json())?.name; if(!n) return;
+    EN_NAME[c.id] = n; const k = Object.keys(EN_NAME); if(k.length > 800) delete EN_NAME[k[0]]; store.set("enNames", EN_NAME);
+    const a = document.getElementById("ebUS"); if(a && current?.id===c.id) a.href = ebayUrl(c, {jp:currentLg==="JP", ed:currentEd, name:n}, "ebay.com");
+  }catch(e){}
+}
+// Cardmarket : la fiche exacte de la carte (identifiant produit Cardmarket fourni avec la cote), sinon une recherche nom + numéro
+const cmUrl = c => { const id = c?.pricing?.cardmarket?.idProduct;
+  return id ? `https://www.cardmarket.com/fr/Pokemon/Products?idProduct=${encodeURIComponent(id)}` : `https://www.cardmarket.com/fr/Pokemon/Products/Search?searchString=${encodeURIComponent(c.name+" "+(c.localId||""))}`; };
 const ebayUrl = (c, o={}, dom="ebay.fr") => { const r = ebayQuery(c, o); return `https://www.${dom}/sch/i.html?_nkw=${encodeURIComponent(r.q)}${r.ex?`&_ex_kw=${encodeURIComponent(r.ex)}`:""}&LH_Sold=1&LH_Complete=1&_sop=${o.sop||13}`; };
 
 /* ---------------- Fiche ---------------- */
@@ -2247,15 +2286,17 @@ function renderCard(){
     const trend = cmVal(cm,"trend",suf), a1=cmVal(cm,"avg1",suf), a7=cmVal(cm,"avg7",suf), a30=cmVal(cm,"avg30",suf), low=cmVal(cm,"low",suf), avg=cmVal(cm,"avg",suf);
     const big = trend ?? avg ?? a7;
     let delta = "";
-    if(big && a30){ const d=(big-a30)/a30*100; const cls = Math.abs(d)<1?"flat":d>0?"up":"down";
+    if(big && a30 && !cm._unsure?.[suf||"n"]){ const d=(big-a30)/a30*100; const cls = Math.abs(d)<1?"flat":d>0?"up":"down";
       delta = `<span class="delta ${cls}">${d>0?"+":""}${d.toFixed(1).replace(".",",")} % / 30 j</span>`; }
     const pts = [["Moy. 30 j",a30],["Moy. 7 j",a7],["Moy. 24 h",a1],["Tendance",trend]];
     const mx = Math.max(...pts.map(p=>p[1]||0)) || 1;
     const bars = pts.map(([l,v],i)=>`<div class="bar ${i===3?"last":""}"><b>${v?eur(v):"—"}</b><i style="height:${v?Math.max(6,v/mx*70):4}px"></i><em>${l}</em></div>`).join("");
+    const un = cm._unsure?.[suf||"n"];
     priceHTML = `
-      <div class="plabel"><span>${cm._tp?"Cote estimée":"Cote Cardmarket"}</span>${cm.updated?`<span>MAJ ${esc(ago(cm.updated))}</span>`:""}</div>
+      <div class="plabel"><span>${cm._tp?"Cote estimée":un?"Cote prudente":"Cote Cardmarket"}</span>${cm.updated?`<span>MAJ ${esc(ago(cm.updated))}</span>`:""}</div>
       <div class="pmain"><div class="pbig">${eur(big)}<small>€</small></div>${delta}</div>
-      <div class="psub">${cm._tp?`La cote Cardmarket reçue pour cette carte n'est pas cohérente (${eur(cm._bad)} €, prix d'une autre version de la carte). Cote calculée à partir des ventes du marché US (TCGplayer), convertie en euros.`:"Prix tendance, calculé par Cardmarket à partir des ventes réelles. Carte brute, état quasi neuf."}</div>
+      <div class="psub">${cm._tp?`La cote Cardmarket reçue pour cette carte n'est pas cohérente (${eur(cm._bad)} €, prix d'une autre version de la carte). Cote calculée à partir des ventes du marché US (TCGplayer), convertie en euros.`:un?"":"Prix tendance, calculé par Cardmarket à partir des ventes réelles. Carte brute, état quasi neuf."}</div>
+      ${un?`<div class="unsure"><b>⚠ Cote incertaine : peu de ventes</b>Cardmarket affiche une tendance de ${esc(eur(un.was))} €, faussée par quelques ventes très chères (souvent des cartes gradées). La vente d'hier est à ${esc(eur(un.a1))} € et l'annonce la moins chère à ${esc(eur(un.lo))} €${un.us?`, le marché US à ${esc(eur(un.us))} €`:""} : on retient ${esc(eur(big))} €. Vérifie les ventes eBay réalisées ci-dessous.</div>`:""}
       ${vs.length>1?`<div class="variant-tabs">${vs.map((v,i)=>`<button class="vt" data-vi="${i}" aria-pressed="${i===currentVariant}">${v.label}</button>`).join("")}</div>`:""}
       <div class="bars" aria-label="Évolution du prix moyen">${bars}</div>
       <dl class="grid2">
@@ -2287,11 +2328,14 @@ function renderCard(){
     <a class="gradebtn hibtn" href="${esc(hiEb)}" target="_blank" rel="noopener"><b>Ventes eBay les plus chères</b><span>Ventes terminées de cette version, de la plus chère à la moins chère</span></a>
     <p class="fine" style="margin-top:8px">eBay ne permet plus de lire les ventes une par une : le bouton ouvre directement le classement, la vente record en premier.</p></div>`;
   const qName = encodeURIComponent(`${c.name} ${c.localId}${off?"/"+off:""}`);
-  const links = `<h4 class="lkh">Ventes réalisées</h4><div class="links">
-    <a href="${esc(ebayUrl(c,{jp:currentLg==="JP", ed:currentEd}))}" target="_blank" rel="noopener">${ico.ext}Ventes eBay réalisées${currentEd?" · "+esc(edLbl(currentEd)):PRINT_OF[c.id]?" · "+esc(REPRINTS[PRINT_OF[c.id].kind].lbl.toLowerCase()):""}</a>
+  const vTag = currentEd ? " · "+esc(edLbl(currentEd)) : PRINT_OF[c.id] ? " · "+esc(REPRINTS[PRINT_OF[c.id].kind].lbl.toLowerCase()) : "";
+  const enN = EN_NAME[c.id];
+  const links = `<h4 class="lkh">Ventes réalisées${vTag}</h4><div class="links sold2">
+    <a href="${esc(ebayUrl(c,{jp:currentLg==="JP", ed:currentEd}))}" target="_blank" rel="noopener">${ico.ext}eBay France</a>
+    <a id="ebUS" href="${esc(ebayUrl(c,{jp:currentLg==="JP", ed:currentEd, name:enN||c.name}, "ebay.com"))}" target="_blank" rel="noopener">${ico.ext}eBay États-Unis</a>
   </div>
   <h4 class="lkh">En vente maintenant</h4><div class="links">
-    <a href="https://www.cardmarket.com/fr/Pokemon/Products/Search?searchString=${encodeURIComponent(c.name)}" target="_blank" rel="noopener">${ico.ext}Cardmarket</a>
+    <a href="${cmUrl(c)}" target="_blank" rel="noopener">${ico.ext}Cardmarket</a>
     <a href="${esc(ebayUrl(c,{jp:currentLg==="JP", ed:currentEd}).replace("&LH_Sold=1&LH_Complete=1","").replace(/_sop=\d+/,"_sop=15"))}" target="_blank" rel="noopener">${ico.ext}eBay annonces</a>
     <a href="https://www.vinted.fr/catalog?search_text=${qName}&order=price_low_to_high" target="_blank" rel="noopener">${ico.ext}Vinted</a>
     <a href="https://www.leboncoin.fr/recherche?text=${qName}&sort=price&order=asc" target="_blank" rel="noopener">${ico.ext}Leboncoin</a>
@@ -2355,6 +2399,7 @@ function renderCard(){
   $("#seeDiag") && ($("#seeDiag").onclick = ()=>renderDiag(dg));
   if(foilize($("#heroImg"), c)) $("#heroImg").addEventListener("click", ()=>{ if(!$("#heroImg")._f?.moved) openFoilView(c); });
 
+  enNameFix(c);
   $("#sheetBody").querySelectorAll(".vt").forEach(b=>b.onclick=()=>{ currentVariant=+b.dataset.vi; renderCard(); });
   $("#sheetBody").querySelectorAll(".alt").forEach(b=>b.onclick=()=>showCard(b.dataset.id));
   $("#sheetBody").querySelectorAll("[data-pid]").forEach(b=>b.onclick=()=>{ if(b.dataset.pid!==c.id) showCard(b.dataset.pid, currentAlts); });
@@ -5722,13 +5767,12 @@ let brandQ = false;
 new MutationObserver(()=>{ if(brandQ) return; brandQ = true; requestAnimationFrame(()=>{ brandQ = false; brandLinks(); }); }).observe(document.body, {childList:true, subtree:true});
 brandLinks();
 /* Classeur : Mes cartes / Gradées / Toutes */
-function syncCls3(){ const k = COLM.mode==="graded" ? "graded" : "cards"; document.querySelectorAll("[data-cls3]").forEach(b=>b.setAttribute("aria-pressed", b.dataset.cls3===k)); }
+function syncCls3(){ const k = curView()==="extView" ? "explore" : COLM.mode==="graded" ? "graded" : "cards"; document.querySelectorAll("[data-cls3]").forEach(b=>b.setAttribute("aria-pressed", b.dataset.cls3===k)); }
 document.querySelectorAll("[data-cls3]").forEach(b=>b.onclick=()=>{ const k = b.dataset.cls3;
-  if(curView()!=="colView") selectTab("colView"); setColMode(k); syncCls3(); });
+  if(k==="explore"){ openExplore(); syncCls3(); return; } if(curView()!=="colView") selectTab("colView"); setColMode(k); syncCls3(); });
 // piste B : le Classeur = ta collection ; le catalogue complet s'ouvre dans « Explorer »
 const openExplore = ()=>{ selectTab("extView"); if(!$("#extSet").hidden) showExtHome(); };
-$("#colExplore").onclick = openExplore; $("#colExplore2").onclick = openExplore;
-$("#exToCls").onclick = ()=>selectTab("colView");
+$("#colExplore2").onclick = openExplore;
 $("#grMine").onclick = ()=>{ selectTab("colView"); setColMode("graded"); syncCls3(); };
 $("#colSearchBtn").onclick = ()=>{ COLV.sq = !COLV.sq; const t = $("#colTools"); t.hidden = !COLV.sq; $("#colSearchBtn").setAttribute("aria-pressed", COLV.sq);
   if(COLV.sq) setTimeout(()=>$("#colQ").focus(), 50); else if(COLV.q){ COLV.q = ""; $("#colQ").value = ""; renderCol(); } };
@@ -6825,6 +6869,11 @@ if(rkProf()?.on) setTimeout(()=>rkColSync(), 6000);
    Après l'intro, une seule fois par version qui apporte quelque chose à l'utilisateur.
    Nouvelle installation : rien (tout est neuf). Les versions purement techniques n'ont pas d'entrée ici. */
 const NEWS = [
+  {v:105, items:[
+    ["M12 9v4M12 17h.01M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z", "Cotes plus fiables", "Sur une carte qui se vend peu, quelques ventes très chères ne gonflent plus la cote : la fiche affiche une cote prudente et explique pourquoi."],
+    ["M3 3h18v18H3zM3 9h18", "Ventes réalisées France et US", "Deux boutons eBay : ventes terminées en France et aux États-Unis."],
+    ["M9 18l6-6-6-6", "Classeur : Mes gradées · Mes cartes · Explorer", "Les trois espaces sont dans la même barre, ta collection au milieu. Le bouton Cardmarket ouvre la fiche exacte de la carte."]
+  ]},
   {v:104, items:[
     ["M3 7.5V18a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V9.5a2 2 0 0 0-2-2h-7.2L9.6 5.2", "Classeur = ta collection", "Le Classeur ne montre plus que tes cartes : Mes cartes et Mes gradées."],
     ["M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18zM15.5 8.5l-2 5-5 2 2-5z", "Nouveau : Explorer", "Toutes les extensions, les scellés, les cotes gradées et le Japon sont dans Explorer : bouton boussole en haut du Classeur."]

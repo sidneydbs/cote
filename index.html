@@ -331,6 +331,14 @@ html{background:var(--panel)}
 
 /* ---------- Produits scellés ---------- */
 .exmode{display:flex;width:100%;margin:2px 0 12px}
+.excta{display:flex;align-items:center;gap:12px;width:100%;margin:16px 0 6px;padding:13px 14px;border-radius:16px;border:1px dashed var(--line);background:var(--panel);color:var(--fg);text-align:left}
+.excta i{width:38px;height:38px;flex:none;border-radius:11px;background:var(--border-yellow);color:var(--on-acc);display:grid;place-items:center;font-style:normal;font-weight:800;font-size:20px}
+.excta i svg{width:22px;height:22px}.excta b{display:block;font:700 14.5px var(--f-body)}.excta small{display:block;color:var(--muted);font-size:12.5px;margin-top:2px}
+#gradedBox>.total,#gradedBox>#grList{display:none}#gradedBox .excta{margin:0 0 12px}
+#colView[data-cm="graded"] #colExplore2{display:none}
+#exToCls{margin:0 0 2px}
+#colView .clshead{gap:6px}#colView .clshead .h1{min-width:0}#colView .clshead .hicon{width:36px;height:36px}
+.exmode button{white-space:nowrap;font-size:12.5px;letter-spacing:-.01em}
 .exmode button{flex:1;padding-left:4px;padding-right:4px}
 .jpset{display:flex;gap:12px;align-items:center;width:100%;text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);background:none;color:var(--fg)}
 .jpset:last-child{border-bottom:0}
@@ -1306,7 +1314,7 @@ img.px.reveal{animation:stpRev .9s ease-out}
 </head>
 <body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="pb" viewBox="0 0 100 100"><defs><linearGradient id="pbV" x1="0" y1="0" x2="1" y2="1"><stop offset="0" style="stop-color:var(--pb1)"/><stop offset=".5" style="stop-color:var(--pb2)"/><stop offset="1" style="stop-color:var(--pb3)"/></linearGradient><radialGradient id="pbB" cx=".38" cy=".75" r=".75"><stop offset="0" style="stop-color:var(--pbb1)"/><stop offset="1" style="stop-color:var(--pbb2)"/></radialGradient><radialGradient id="pbC" cx=".4" cy=".35" r=".7"><stop offset="0" style="stop-color:var(--pbc1)"/><stop offset=".55" style="stop-color:var(--pbc2)"/><stop offset="1" style="stop-color:var(--pbc3)"/></radialGradient></defs><path d="M3 50a47 47 0 0 1 94 0z" fill="url(#pbV)"/><path d="M3 50a47 47 0 0 0 94 0z" fill="url(#pbB)"/><rect x="3" y="45.5" width="94" height="9" fill="#09080D"/><circle cx="50" cy="50" r="47" fill="none" stroke="#09080D" stroke-width="4"/><circle cx="50" cy="50" r="15.5" fill="#09080D"/><circle cx="50" cy="50" r="10" fill="url(#pbC)" style="stroke:var(--pb2)" stroke-width="2"/><path d="M19 33a35 35 0 0 1 17-15" fill="none" stroke="#fff" stroke-opacity=".38" stroke-width="4" stroke-linecap="round"/></symbol></svg>
-<script>window.__APPV="103";</script>
+<script>window.__APPV="104";</script>
 <div class="splash" id="splash" aria-hidden="true"><i class="hole"></i><i class="halo"></i><div class="bw"><svg class="b" viewBox="0 0 100 100"><use href="#pb"/></svg><svg class="t" viewBox="0 0 100 100"><use href="#pb"/></svg></div><i class="glow"></i></div>
 <script>setTimeout(function(){ if(window.__booted) return;
   var b=document.createElement("div"); b.setAttribute("role","alert");
@@ -1341,7 +1349,7 @@ img.px.reveal{animation:stpRev .9s ease-out}
   <!-- ===== EXTENSIONS ===== -->
   <section class="view" id="homeView">
     <div class="scroll">
-      <div class="homebar"><span id="avatSlot"><svg class="pball" viewBox="0 0 100 100" aria-hidden="true"><use href="#pb"/></svg></span><span class="brand">DEX<b>·</b>SCAN</span><button class="thbtn" id="themeBtn" aria-label="Changer de thème"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.6-.9 1.2-1.8-.5-1.1.2-2.2 1.4-2.2H17a4 4 0 0 0 4-4c0-5.5-4-10-9-10z"/><circle cx="7.5" cy="11" r="1.2"/><circle cx="10" cy="7" r="1.2"/><circle cx="15" cy="7" r="1.2"/></svg></button><span class="ver">v103</span></div>
+      <div class="homebar"><span id="avatSlot"><svg class="pball" viewBox="0 0 100 100" aria-hidden="true"><use href="#pb"/></svg></span><span class="brand">DEX<b>·</b>SCAN</span><button class="thbtn" id="themeBtn" aria-label="Changer de thème"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.6-.9 1.2-1.8-.5-1.1.2-2.2 1.4-2.2H17a4 4 0 0 0 4-4c0-5.5-4-10-9-10z"/><circle cx="7.5" cy="11" r="1.2"/><circle cx="10" cy="7" r="1.2"/><circle cx="15" cy="7" r="1.2"/></svg></button><span class="ver">v104</span></div>
       <div class="hhead"><div><span class="hdate" id="hDate"></span><div class="htitle"><h1 class="h1">Accueil</h1><button class="hsearch hrank" id="hRank" aria-label="Classement"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 21h8M12 17v4"/><path d="M7 4h10v5a5 5 0 0 1-10 0z"/><path d="M17 5h3v2a3 3 0 0 1-3 3M7 5H4v2a3 3 0 0 0 3 3"/></svg></button></div></div><button class="hsearch" id="hSearch" aria-label="Rechercher une carte"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></button></div>
       <div class="total htot" id="hTot"></div>
       <div class="hqa">
@@ -1381,10 +1389,11 @@ img.px.reveal{animation:stpRev .9s ease-out}
   <section class="view" id="extView" hidden>
     <div class="scroll" id="extScroll">
       <div id="extHome">
-        <div class="clshead"><h1 class="h1">Classeur</h1><button class="chip" id="extLang" aria-label="Langue des cartes" hidden>Cartes FR</button><button class="hicon" id="extSearchBtn" aria-label="Rechercher"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></button><button class="hicon" id="extSetBtn" aria-label="Trier et filtrer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16M7 12h10M10 18h4"/></svg><i class="hbadge" hidden></i></button></div>
-      <div class="seg clsw3" role="group" aria-label="Classeur"><button data-cls3="all">Séries/extensions</button><button data-cls3="cards">Mes cartes</button><button data-cls3="graded">Gradées</button></div>
+        <button class="backbtn" id="exToCls"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="m15 18-6-6 6-6"/></svg>Mon classeur</button>
+        <div class="clshead"><h1 class="h1">Explorer</h1><button class="chip" id="extLang" aria-label="Langue des cartes" hidden>Cartes FR</button><button class="hicon" id="extSearchBtn" aria-label="Rechercher"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></button><button class="hicon" id="extSetBtn" aria-label="Trier et filtrer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16M7 12h10M10 18h4"/></svg><i class="hbadge" hidden></i></button></div>
+      
 
-        <div class="seg exmode" role="group" aria-label="Type de produits"><button data-mode="cards" aria-pressed="true">Cartes</button><button data-mode="sealed" aria-pressed="false">Scellés</button><button data-mode="graded" aria-pressed="false">Gradées</button><button data-mode="jp" aria-pressed="false">Japon</button></div>
+        <div class="seg exmode" role="group" aria-label="Type de produits"><button data-mode="cards" aria-pressed="true">Extensions</button><button data-mode="sealed" aria-pressed="false">Scellés</button><button data-mode="graded" aria-pressed="false">Cotes gradées</button><button data-mode="jp" aria-pressed="false">Japon</button></div>
         <div id="cardsBox">
         <label class="ext-search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><input id="extQ" type="search" placeholder="Rechercher une extension (ex. 151)" autocomplete="off" aria-label="Rechercher une extension"></label>
         <div id="extList"></div>
@@ -1403,6 +1412,7 @@ img.px.reveal{animation:stpRev .9s ease-out}
           <div id="jpList"></div>
         </div>
         <div id="gradedBox" hidden>
+          <button class="excta" id="grMine"><i>›</i><span><b>Tes cartes gradées</b><small>Elles sont rangées dans Classeur › Mes gradées</small></span></button>
           <button class="lookbtn" id="grLook"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><span><b>Cote d'une carte gradée</b><small>Ventes réalisées par société et par note, même sans posséder la carte</small></span></button>
           <div class="total" style="margin-bottom:12px">
             <div class="plabel"><span>Mes cartes gradées</span><span id="grCount"></span></div>
@@ -1528,8 +1538,8 @@ img.px.reveal{animation:stpRev .9s ease-out}
   <!-- ===== COLLECTION ===== -->
   <section class="view" id="colView" hidden>
     <div class="scroll">
-      <div class="clshead"><h1 class="h1">Classeur</h1><button class="hicon" id="colSearchBtn" aria-label="Rechercher"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></button><button class="hicon" id="colSetBtn" aria-label="Trier et filtrer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16M7 12h10M10 18h4"/></svg><i class="hbadge" hidden></i></button><button class="hicon" id="colShareBtn" aria-label="Partager ma collection"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="m7 8 5-5 5 5"/><path d="M5 13v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6"/></svg></button></div>
-      <div class="seg clsw3" role="group" aria-label="Classeur"><button data-cls3="all">Séries/extensions</button><button data-cls3="cards">Mes cartes</button><button data-cls3="graded">Gradées</button></div>
+      <div class="clshead"><h1 class="h1">Classeur</h1><button class="hicon" id="colExplore" aria-label="Explorer toutes les cartes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m15.5 8.5-2 5-5 2 2-5z"/></svg></button><button class="hicon" id="colSearchBtn" aria-label="Rechercher"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></button><button class="hicon" id="colSetBtn" aria-label="Trier et filtrer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16M7 12h10M10 18h4"/></svg><i class="hbadge" hidden></i></button><button class="hicon" id="colShareBtn" aria-label="Partager ma collection"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="m7 8 5-5 5 5"/><path d="M5 13v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6"/></svg></button></div>
+      <div class="seg clsw3" role="group" aria-label="Classeur"><button data-cls3="cards">Mes cartes</button><button data-cls3="graded">Mes gradées</button></div>
       <div class="csum" id="colSum"></div>
 
       <div class="total" id="wallet">
@@ -1552,6 +1562,7 @@ img.px.reveal{animation:stpRev .9s ease-out}
       </div>
       <div class="fltbar" id="colFltBar"></div>
       <div id="colList"></div>
+      <button class="excta" id="colExplore2"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m15.5 8.5-2 5-5 2 2-5z"/></svg></i><span><b>Explorer toutes les cartes</b><small>Extensions, scellés, cotes gradées, Japon</small></span></button>
     </div>
   </section>
 
@@ -4519,7 +4530,7 @@ function renderExtList(){
   if(V==="folders" && groups.length){
     const g = !q && EX.fold ? groups.find(x=>x.se.name===EX.fold) : null; if(!g) EX.fold = null;
     const segs = ["Extensions", ...(q ? [`Recherche « ${EX.q.trim()} »`] : g ? [g.se.name] : [])];
-    const fbar = g ? fbkHTML("Séries/extensions", g.se.name, 0) : "";
+    const fbar = g ? fbkHTML("Explorer", g.se.name, 0) : "";
     let inner;
     if(!q && !g){
       inner = `<div class="fhead"><span>${groups.length} séries</span><b>${groups.reduce((a,x)=>a+x.sets.length,0)} extensions</b></div><div class="tgrid">${groups.map(({se, sets})=>{
@@ -4555,7 +4566,7 @@ function renderExtList(){
   extList.querySelectorAll("[data-upc]").forEach(b=>b.onclick=()=>showUpcoming(b.dataset.upc));
 }
 $("#extQ").addEventListener("input", e=>{ EX.q = e.target.value; if(EX.series) renderExtList(); });
-const BACK = `<button class="backbtn" id="exBack"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="m15 18-6-6 6-6"/></svg>Extensions</button>`;
+const BACK = `<button class="backbtn" id="exBack"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="m15 18-6-6 6-6"/></svg>Explorer</button>`;
 function bindBack(){ $("#exBack").onclick = showExtHome; }
 async function openSet(id){
   const gen = ++EX.gen; EX.set = {id, name:id}; EX.cards = []; EX.cq = "";
@@ -5690,7 +5701,7 @@ function selectTab(v){
     if(!camStarted){ camStarted = true; setTimeout(()=>{ getWorker().then(()=>{ if(!busy) status.textContent="Cadre la carte entière dans le rectangle"; }).catch(()=>{}); }, 800); }
   }
 }
-document.querySelectorAll(".tab").forEach(t=>t.onclick=()=>selectTab(t.dataset.v==="colView" ? (curView()==="extView" || curView()==="colView" ? curView() : store.get("clsV","colView")) : t.dataset.v));
+document.querySelectorAll(".tab").forEach(t=>t.onclick=()=>selectTab(t.dataset.v));
 document.querySelectorAll("[data-cls]").forEach(b=>b.onclick=()=>selectTab(b.dataset.cls));
 /* logos des sites : chaque lien vers un site extérieur reçoit l'icône du site, où qu'il soit dans l'app */
 const brandHost = h => h.replace(/^www\./,"").replace(/^(m|fr)\./,"");
@@ -5711,9 +5722,14 @@ let brandQ = false;
 new MutationObserver(()=>{ if(brandQ) return; brandQ = true; requestAnimationFrame(()=>{ brandQ = false; brandLinks(); }); }).observe(document.body, {childList:true, subtree:true});
 brandLinks();
 /* Classeur : Mes cartes / Gradées / Toutes */
-function syncCls3(){ const v = curView(), k = v==="extView" ? "all" : COLM.mode==="graded" ? "graded" : "cards"; document.querySelectorAll("[data-cls3]").forEach(b=>b.setAttribute("aria-pressed", b.dataset.cls3===k)); }
+function syncCls3(){ const k = COLM.mode==="graded" ? "graded" : "cards"; document.querySelectorAll("[data-cls3]").forEach(b=>b.setAttribute("aria-pressed", b.dataset.cls3===k)); }
 document.querySelectorAll("[data-cls3]").forEach(b=>b.onclick=()=>{ const k = b.dataset.cls3;
-  if(k==="all") selectTab("extView"); else { if(curView()!=="colView") selectTab("colView"); setColMode(k); } syncCls3(); });
+  if(curView()!=="colView") selectTab("colView"); setColMode(k); syncCls3(); });
+// piste B : le Classeur = ta collection ; le catalogue complet s'ouvre dans « Explorer »
+const openExplore = ()=>{ selectTab("extView"); if(!$("#extSet").hidden) showExtHome(); };
+$("#colExplore").onclick = openExplore; $("#colExplore2").onclick = openExplore;
+$("#exToCls").onclick = ()=>selectTab("colView");
+$("#grMine").onclick = ()=>{ selectTab("colView"); setColMode("graded"); syncCls3(); };
 $("#colSearchBtn").onclick = ()=>{ COLV.sq = !COLV.sq; const t = $("#colTools"); t.hidden = !COLV.sq; $("#colSearchBtn").setAttribute("aria-pressed", COLV.sq);
   if(COLV.sq) setTimeout(()=>$("#colQ").focus(), 50); else if(COLV.q){ COLV.q = ""; $("#colQ").value = ""; renderCol(); } };
 $("#colSetBtn").onclick = ()=>openColFilters();
@@ -6809,6 +6825,10 @@ if(rkProf()?.on) setTimeout(()=>rkColSync(), 6000);
    Après l'intro, une seule fois par version qui apporte quelque chose à l'utilisateur.
    Nouvelle installation : rien (tout est neuf). Les versions purement techniques n'ont pas d'entrée ici. */
 const NEWS = [
+  {v:104, items:[
+    ["M3 7.5V18a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V9.5a2 2 0 0 0-2-2h-7.2L9.6 5.2", "Classeur = ta collection", "Le Classeur ne montre plus que tes cartes : Mes cartes et Mes gradées."],
+    ["M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18zM15.5 8.5l-2 5-5 2 2-5z", "Nouveau : Explorer", "Toutes les extensions, les scellés, les cotes gradées et le Japon sont dans Explorer : bouton boussole en haut du Classeur."]
+  ]},
   {v:103, items:[
     ["M12 2l3 6 6 1-4.5 4.5L18 20l-6-3-6 3 1.5-6.5L3 9l6-1z", "Nouveaux compagnons", "Chauvombre, Cabraise, Axobulle, Planéclair et Capousse remplacent les anciens. Ton compagnon prend la nouvelle apparence de son type et garde son nom."],
     ["M12 3l2.5 5 5.5.8-4 3.9.9 5.5L12 15.6 7.1 18.2l.9-5.5-4-3.9 5.5-.8z", "Paliers de rareté", "Ton compagnon change d'allure en montant : Rare au niveau 10, Épique au 25, Légendaire au 50 avec sa carte holo. Les autres dresseurs le voient au classement."],
@@ -7024,7 +7044,7 @@ $("#hSearch").onclick = ()=>openSub("searchView");
 $("#hRank").onclick = ()=>openSub("rankView");
 $("#hqScan").onclick = ()=>selectTab("scanView");
 $("#hqSeal").onclick = ()=>{ selectTab("budgetView"); budForm(null, true); };
-$("#hqCls").onclick = ()=>selectTab(store.get("clsV","colView"));
+$("#hqCls").onclick = ()=>selectTab("colView");
 function gameBox(lines, actions){
   document.querySelector(".gbox")?.remove();
   const box = document.createElement("div"); box.className = "gbox"; box.setAttribute("role","dialog");

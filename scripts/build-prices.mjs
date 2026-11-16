@@ -39,7 +39,7 @@ function sanePricing(d){
     const t = cm["trend"+s], a1 = cm["avg1"+s], lo = cm["low"+s];
     if(!(t >= 30) || !(a1 > 0) || !(lo > 0)) continue;
     const tE = usOf(s), ref = Math.max(a1, lo, tE >= 1 ? tE : 0);
-    if(ref >= 5 && t > 4*ref){ const v = Math.round(ref*100)/100; cm["trend"+s] = v; }
+    if(ref >= 5 && t > 4*ref){ const v = Math.round(ref*100)/100; (cm._unsure ||= []).push({v: s || "normale", was: t, now: v, a1, lo, us: tE >= 1 ? Math.round(tE*100)/100 : null}); cm["trend"+s] = v; }
   }
   return d;
 }
@@ -76,6 +76,22 @@ console.log("cartes à relire :", cand.length);
 
 const r2 = x => x == null ? null : Math.round(x * 100) / 100;
 const P = {};
+// rapport d'audit (prices-audit.json) : cotes corrigées ou suspectes, extension par extension
+const A = {fixed: [], tp: [], gap: [], nocm: []}, byProd = new Map();
+function audit(sid, n, d){
+  const cm = d?.pricing?.cardmarket, tp = d?.pricing?.tcgplayer, name = d?.name || "";
+  const row = x => ({set: sid, n, name, ...x});
+  if (!cm) { if (tp) A.nocm.push(row({})); return; }
+  if (cm._unsure) for (const u of cm._unsure) A.fixed.push(row(u));
+  if (cm._tp) A.tp.push(row({now: cm.trend}));
+  if (cm.idProduct) { const k = cm.idProduct; (byProd.get(k) || byProd.set(k, []).get(k)).push(`${sid}-${n} ${name}`); }
+  // écart Europe / États-Unis : même version, les deux prix au-dessus de 5 €
+  if (tp && !cm._tp && !cm._unsure) {
+    const px = k => { const v = tp[k]; return v && typeof v === "object" ? (v.marketPrice ?? v.midPrice ?? 0) : 0; };
+    const us = (px("normal") || px("holofoil") || px("unlimited") || px("unlimitedHolofoil")) * usdEur, eu = cm.trend;
+    if (us >= 5 && eu >= 5 && (eu > 4 * us || us > 4 * eu)) A.gap.push(row({eu: r2(eu), us: r2(us), x: r2(Math.max(eu / us, us / eu))}));
+  }
+}
 let done = 0, priced = 0, failed = 0;
 await pool(cand, 12, async c => {
   const id = encodeURIComponent(`${c.sid}-${c.n}`);
@@ -87,6 +103,7 @@ await pool(cand, 12, async c => {
     else if (en === undefined && d === undefined) { failed++; return; }   // rien pu lire : la carte reste lue par l'app
   }
   if (++done % 2000 === 0) console.log(done, "/", cand.length);
+  if (d) audit(c.sid, c.n, d);
   const mi = d ? marketInfo(d) : null;
   (P[c.sid] ||= {})[c.n] = mi?.p ? (() => { const a = [r2(mi.p), r2(mi.a1), r2(mi.a7), r2(mi.a30)]; while (a.length > 1 && a[a.length - 1] == null) a.pop(); return a; })() : 0;
   if (mi?.p) priced++;
@@ -95,3 +112,11 @@ console.log("cartes cotées :", priced, "· échecs réseau :", failed);
 if (priced < 5000) { console.error("Trop peu de cartes cotées, rien n'est publié"); process.exit(1); }
 fs.writeFileSync("prices.json", JSON.stringify({v: 1, built: new Date().toISOString(), n: priced, p: P}));
 console.log("prices.json :", (fs.statSync("prices.json").size / 1024).toFixed(0), "Ko");
+// même fiche Cardmarket reliée à plusieurs cartes différentes : au moins une des cotes est celle d'une autre carte
+const dup = [...byProd.entries()].filter(([, l]) => l.length > 1).map(([id, l]) => ({idProduct: id, cards: l}));
+const bySet = {}; for (const k of ["fixed", "tp", "gap"]) for (const r of A[k]) ((bySet[r.set] ||= {fixed: 0, tp: 0, gap: 0, dup: 0})[k])++;
+for (const d of dup) { const sid = d.cards[0].split(" ")[0].replace(/-[^-]+$/, ""); (bySet[sid] ||= {fixed: 0, tp: 0, gap: 0, dup: 0}).dup += d.cards.length; }
+fs.writeFileSync("prices-audit.json", JSON.stringify({built: new Date().toISOString(), cards: done, priced,
+  total: {fixed: A.fixed.length, tp: A.tp.length, gap: A.gap.length, dup: dup.length, nocm: A.nocm.length},
+  bySet, fixed: A.fixed, tp: A.tp, gap: A.gap.sort((a, b) => b.x - a.x), dup, nocm: A.nocm.slice(0, 500)}, null, 1));
+console.log("audit :", JSON.stringify({fixed: A.fixed.length, tp: A.tp.length, gap: A.gap.length, dup: dup.length, nocm: A.nocm.length}));

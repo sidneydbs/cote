@@ -4,7 +4,8 @@ on:
   push:
     paths: ["scripts/build-prices.mjs", ".github/workflows/prices.yml"]
   schedule:
-    - cron: "23 1,9,17 * * *"
+    # heure de Paris (hiver, UTC+1) : 8 h, 10 h, 12 h, 15 h, 18 h, 20 h, 23 h, 2 h, 5 h. GitHub ne compte qu'en UTC : en heure d'été, tout arrive 1 h plus tard.
+    - cron: "0 1,4,7,9,11,14,17,19,22 * * *"
 permissions:
   contents: write
   pages: write
@@ -22,7 +23,7 @@ jobs:
         run: |
           git config user.name "cote-bot"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add prices.json prices-audit.json
+          git add prices.json prices-audit.json history
           git diff --cached --quiet || (git commit -m "Cotes de toutes les cartes mises à jour" && git pull --rebase && git push)
       - name: Republier le site
         env:

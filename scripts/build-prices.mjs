@@ -43,8 +43,24 @@ function sanePricing(d){
   }
   return d;
 }
+/* TCGdex relie souvent deux cartes différentes à la même fiche Cardmarket (version holo et non holo du même Pokémon, numéros H des
+   séries e-Card, étoiles brillantes…) : la cote reçue est alors celle de l'autre carte. Audit du 16/11/2026 : 730 fiches partagées,
+   ex. Pikachu ☆ 104/110 affiché 6 € pour 6 300 € aux États-Unis. Si la cote Europe et le marché US de la même version diffèrent de
+   plus de 4 fois, on retient le marché US converti en euros, et la fiche le dit. */
+function usPricing(d){
+  const p = d?.pricing, cm = p?.cardmarket, tp = p?.tcgplayer; if(!cm || !tp || cm._tp) return d;
+  const px = k => { const v = tp[k]; return v && typeof v==="object" ? (v.marketPrice ?? v.midPrice ?? 0) : 0; };
+  const us = (px("normal") || px("holofoil") || px("unlimited") || px("unlimitedHolofoil")) * usdEur, eu = cm.trend ?? cm.avg;
+  if(!(us >= 5) || !(eu > 0) || (cm._unsure && cm._unsure.length)) return d;
+  if(eu < us/4 || eu > us*4){
+    const v = Math.round(us*100)/100, info = {v:"normale", was:eu, now:v, us:v, kind:"us"};
+    (cm._unsure ||= []).push(info);
+    cm.trend = v;
+  }
+  return d;
+}
 function fixPricing(d){
-  sanePricing(d);
+  sanePricing(d); usPricing(d);
   const p = d?.pricing, cm = p?.cardmarket, tp = p?.tcgplayer;
   if(!cm || !tp || cm._tp) return d;
   const sid = d.set?.id || String(d.id||"").replace(/-[^-]+$/,""); if(!/^(me|sv)/.test(sid)) return d;

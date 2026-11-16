@@ -433,6 +433,38 @@ html{background:var(--panel)}
 .wper{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:4px;margin-top:10px;background:var(--panel-2);border-radius:12px;padding:4px}
 .wper button{min-height:36px;border-radius:9px;font:700 12.5px/1 var(--f-mono);color:var(--muted)}
 .wper button[aria-pressed="true"]{background:var(--fg);color:var(--ink)}
+/* courbe de la cote sur la fiche carte */
+.pxh{margin-top:14px;touch-action:none;user-select:none;-webkit-user-select:none}
+.pxh .pxhr{display:flex;justify-content:space-between;gap:8px;font:600 12px/1.3 var(--f-mono);color:var(--muted);min-height:16px}
+.pxh .pxhr .up{color:var(--up)}.pxh .pxhr .down{color:var(--down)}
+.pxh svg{display:block;width:100%;height:120px;margin-top:6px;cursor:crosshair}
+.pxh .wper{grid-template-columns:repeat(5,minmax(0,1fr))}
+.hnote{margin:8px 0 0}
+/* hausses et baisses du classeur */
+.wmov{margin-top:12px;display:grid;gap:4px}
+.wmov h5{margin:6px 0 2px;font:600 10.5px/1.2 var(--f-mono);color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+.mvrow{display:flex;align-items:center;gap:10px;width:100%;text-align:left;background:var(--panel-2);border:0;border-radius:10px;padding:6px 10px;color:var(--fg);min-width:0}
+.mvrow img{width:28px;height:39px;object-fit:cover;border-radius:3px;flex:none}
+.mvrow>span{flex:1;min-width:0;font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mvrow>span small{display:block;color:var(--muted);font-size:11px;overflow:hidden;text-overflow:ellipsis}
+.mvrow b{font:700 13px/1.25 var(--f-mono);text-align:right;flex:none}.mvrow b small{display:block;font-weight:500;color:var(--muted);font-size:11px}
+.mvrow b.up{color:var(--up)}.mvrow b.down{color:var(--down)}
+#wallet.min .wmov{display:none}
+.hmov{margin:10px 0 0}.hmov:empty{display:none}.pxallist{margin:10px 0 4px}
+/* alertes de prix */
+.pxalb{margin-top:12px;width:100%;padding:10px 12px;border-radius:12px;border:1px dashed var(--line);background:transparent;color:var(--fg);font-size:13.5px;text-align:left}
+.pxalb.on{border-style:solid;border-color:var(--border-yellow)}
+.pxalf{margin-top:8px;display:grid;gap:8px}
+.pxalf .two{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.pxalf label{display:grid;gap:4px;font-size:12px;color:var(--muted)}
+.pxalf input{background:var(--panel-2);border:1px solid var(--line);border-radius:10px;padding:10px;color:var(--fg);font-size:15px;min-width:0;width:100%}
+.pxallist{margin-top:10px;width:100%}
+.alrow{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid var(--line)}
+.alrow>button.go{display:flex;align-items:center;gap:10px;flex:1;min-width:0;text-align:left;background:none;border:0;color:var(--fg);padding:0}
+.alrow img{width:34px;height:47px;object-fit:cover;border-radius:4px;flex:none}
+.alrow .t{min-width:0;font-size:13.5px}.alrow .t small{display:block;color:var(--muted);font-size:11.5px}
+.alrow .t b.hit{color:var(--border-yellow)}
+.alrow .x{flex:none;width:34px;height:34px;border-radius:50%;border:1px solid var(--line);background:none;color:var(--muted)}
 .wstats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;margin-top:12px}
 .wstats div{background:var(--panel-2);border-radius:10px;padding:8px 10px;min-width:0}
 .wstats div.wide{grid-column:1/-1;display:flex;justify-content:space-between;align-items:center;gap:10px}
@@ -1331,7 +1363,7 @@ img.px.reveal{animation:stpRev .9s ease-out}
 </head>
 <body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="pb" viewBox="0 0 100 100"><defs><linearGradient id="pbV" x1="0" y1="0" x2="1" y2="1"><stop offset="0" style="stop-color:var(--pb1)"/><stop offset=".5" style="stop-color:var(--pb2)"/><stop offset="1" style="stop-color:var(--pb3)"/></linearGradient><radialGradient id="pbB" cx=".38" cy=".75" r=".75"><stop offset="0" style="stop-color:var(--pbb1)"/><stop offset="1" style="stop-color:var(--pbb2)"/></radialGradient><radialGradient id="pbC" cx=".4" cy=".35" r=".7"><stop offset="0" style="stop-color:var(--pbc1)"/><stop offset=".55" style="stop-color:var(--pbc2)"/><stop offset="1" style="stop-color:var(--pbc3)"/></radialGradient></defs><path d="M3 50a47 47 0 0 1 94 0z" fill="url(#pbV)"/><path d="M3 50a47 47 0 0 0 94 0z" fill="url(#pbB)"/><rect x="3" y="45.5" width="94" height="9" fill="#09080D"/><circle cx="50" cy="50" r="47" fill="none" stroke="#09080D" stroke-width="4"/><circle cx="50" cy="50" r="15.5" fill="#09080D"/><circle cx="50" cy="50" r="10" fill="url(#pbC)" style="stroke:var(--pb2)" stroke-width="2"/><path d="M19 33a35 35 0 0 1 17-15" fill="none" stroke="#fff" stroke-opacity=".38" stroke-width="4" stroke-linecap="round"/></symbol></svg>
-<script>window.__APPV="107";</script>
+<script>window.__APPV="108";</script>
 <div class="splash" id="splash" aria-hidden="true"><i class="hole"></i><i class="halo"></i><div class="bw"><svg class="b" viewBox="0 0 100 100"><use href="#pb"/></svg><svg class="t" viewBox="0 0 100 100"><use href="#pb"/></svg></div><i class="glow"></i></div>
 <script>setTimeout(function(){ if(window.__booted) return;
   var b=document.createElement("div"); b.setAttribute("role","alert");
@@ -1366,9 +1398,12 @@ img.px.reveal{animation:stpRev .9s ease-out}
   <!-- ===== EXTENSIONS ===== -->
   <section class="view" id="homeView">
     <div class="scroll">
-      <div class="homebar"><span id="avatSlot"><svg class="pball" viewBox="0 0 100 100" aria-hidden="true"><use href="#pb"/></svg></span><span class="brand">DEX<b>·</b>SCAN</span><button class="thbtn" id="themeBtn" aria-label="Changer de thème"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.6-.9 1.2-1.8-.5-1.1.2-2.2 1.4-2.2H17a4 4 0 0 0 4-4c0-5.5-4-10-9-10z"/><circle cx="7.5" cy="11" r="1.2"/><circle cx="10" cy="7" r="1.2"/><circle cx="15" cy="7" r="1.2"/></svg></button><span class="ver">v107</span></div>
+      <div class="homebar"><span id="avatSlot"><svg class="pball" viewBox="0 0 100 100" aria-hidden="true"><use href="#pb"/></svg></span><span class="brand">DEX<b>·</b>SCAN</span><button class="thbtn" id="themeBtn" aria-label="Changer de thème"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.6-.9 1.2-1.8-.5-1.1.2-2.2 1.4-2.2H17a4 4 0 0 0 4-4c0-5.5-4-10-9-10z"/><circle cx="7.5" cy="11" r="1.2"/><circle cx="10" cy="7" r="1.2"/><circle cx="15" cy="7" r="1.2"/></svg></button><span class="ver">v108</span></div>
+      <button class="banner" id="pxBanner" hidden></button>
       <div class="hhead"><div><span class="hdate" id="hDate"></span><div class="htitle"><h1 class="h1">Accueil</h1><button class="hsearch hrank" id="hRank" aria-label="Classement"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 21h8M12 17v4"/><path d="M7 4h10v5a5 5 0 0 1-10 0z"/><path d="M17 5h3v2a3 3 0 0 1-3 3M7 5H4v2a3 3 0 0 0 3 3"/></svg></button></div></div><button class="hsearch" id="hSearch" aria-label="Rechercher une carte"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></button></div>
       <div class="total htot" id="hTot"></div>
+      <div class="wmov hmov" id="hMov"></div>
+      <button class="btn btn-g pxallist" id="pxAlList" hidden></button>
       <div class="hqa">
         <button class="on" id="hqScan"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7V5a2 2 0 0 1 2-2h2M17 3h2a2 2 0 0 1 2 2v2M21 17v2a2 2 0 0 1-2 2h-2M7 21H5a2 2 0 0 1-2-2v-2"/><rect x="8" y="6" width="8" height="12" rx="1.5"/></svg>Scanner</button>
         <button id="hqSeal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8l9-5 9 5v8l-9 5-9-5z"/><path d="M3 8l9 5 9-5M12 13v8"/></svg>Ajouter un scellé</button>
@@ -1566,6 +1601,7 @@ img.px.reveal{animation:stpRev .9s ease-out}
         <div class="wchart" id="wChart" aria-label="Évolution de la valeur de ta collection"></div>
         <div class="wper" role="group" aria-label="Période"><button data-wp="1">24 H</button><button data-wp="7">7 J</button><button data-wp="30">30 J</button><button data-wp="all">Tout</button></div>
         <div class="wstats" id="wStats"></div>
+        <div class="wmov" id="wMov"></div>
         <div class="psub" id="colMeta" style="margin-top:10px">0 carte</div>
         <div class="psub" id="colUpd" style="margin-top:4px"></div>
         <div class="addrow"><button class="btn btn-g" id="refreshCol"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 12a9 9 0 1 1-3-6.7L21 8"/><path d="M21 3v5h-5"/></svg>Actualiser les cotes</button></div>
@@ -2046,7 +2082,11 @@ async function enNameFix(c){
 const CM_LANG = {EN:1, FR:2, DE:3, ES:4, IT:5, ZH:6, JP:7, PT:8, KO:10};
 const cmUrl = c => { const id = c?.pricing?.cardmarket?.idProduct, lg = CM_LANG[currentLg] || 2;
   return id ? `https://www.cardmarket.com/fr/Pokemon/Products?idProduct=${encodeURIComponent(id)}&language=${lg}` : `https://www.cardmarket.com/fr/Pokemon/Products/Search?searchString=${encodeURIComponent(c.name+" "+(c.localId||""))}`; };
-const ebayUrl = (c, o={}, dom="ebay.fr") => { const r = ebayQuery(c, dom==="ebay.com" ? {us:true, ...o} : o); return `https://www.${dom}/sch/i.html?_nkw=${encodeURIComponent(r.q)}${r.ex?`&_ex_kw=${encodeURIComponent(r.ex)}`:""}&LH_Sold=1&LH_Complete=1&_sop=${o.sop||13}`; };
+// filtre eBay « État » des cartes à l'unité : 4000 = Non gradée, 2750 = Gradée. Les mots exclus ne suffisent pas :
+// les vendeurs écrivent « CCC 9 », « Collect Aura 9.5 », « Noté 9.5 », « Gradé 10 », « PGS »… (test du 16/11/2026 sur eBay France)
+// Lieu de l'objet imposé (_salic : 71 = France, 1 = États-Unis) : sur téléphone, l'app eBay ouvre son propre site (celui
+// de ton pays) quel que soit le lien. Sans ce filtre, « eBay France » et « eBay États-Unis » montraient les mêmes ventes.
+const ebayUrl = (c, o={}, dom="ebay.fr") => { const r = ebayQuery(c, dom==="ebay.com" ? {us:true, ...o} : o); return `https://www.${dom}/sch/i.html?_nkw=${encodeURIComponent(r.q)}${r.ex?`&_ex_kw=${encodeURIComponent(r.ex)}`:""}&LH_ItemCondition=${o.grade!=null?2750:4000}&LH_LocatedIn=1&_salic=${dom==="ebay.com"?1:71}&LH_Sold=1&LH_Complete=1&_sop=${o.sop||13}`; };
 
 /* ---------------- Fiche ---------------- */
 let current = null, currentAlts = [], currentVariant = 0, currentEd = null;
@@ -2361,11 +2401,12 @@ function renderCard(){
       <div class="psub">${cm._tp?`La cote Cardmarket reçue pour cette carte n'est pas cohérente (${eur(cm._bad)} €, prix d'une autre version de la carte). Cote calculée à partir des ventes du marché US (TCGplayer), convertie en euros.`:un?"":"Prix tendance, calculé par Cardmarket à partir des ventes réelles. Carte brute, état quasi neuf."}</div>
       ${un?.kind==="us"?`<div class="unsure"><b>⚠ Cote estimée d'après le marché américain</b>La cote Cardmarket reçue pour cette carte (${esc(eur(un.was))} €) est celle d'une autre version (holo ou non holo du même Pokémon, par exemple). On retient le prix du marché US (TCGplayer) converti en euros : ${esc(eur(big))} €. Vérifie avec les ventes eBay réalisées ci-dessous.</div>`:un?`<div class="unsure"><b>⚠ Cote incertaine : peu de ventes</b>Cardmarket affiche une tendance de ${esc(eur(un.was))} €, faussée par quelques ventes très chères (souvent des cartes gradées). La vente d'hier est à ${esc(eur(un.a1))} € et l'annonce la moins chère à ${esc(eur(un.lo))} €${un.us?`, le marché US à ${esc(eur(un.us))} €`:""} : on retient ${esc(eur(big))} €. Vérifie les ventes eBay réalisées ci-dessous.</div>`:""}
       ${vs.length>1?`<div class="variant-tabs">${vs.map((v,i)=>`<button class="vt" data-vi="${i}" aria-pressed="${i===currentVariant}">${v.label}</button>`).join("")}</div>`:""}
-      <div class="bars" aria-label="Évolution du prix moyen">${bars}</div>
+      <div class="bars" id="pxBars" aria-label="Évolution du prix moyen">${bars}</div>
+      <div class="pxh" id="pxHist" hidden></div><p class="fine hnote" id="pxHNote"></p>
       <dl class="grid2">
         <div class="kv"><dt>Prix le plus bas en vente</dt><dd>${low?eur(low)+" €":"—"}</dd></div>
         <div class="kv"><dt>Prix de vente moyen</dt><dd>${avg?eur(avg)+" €":"—"}</dd></div>
-      </dl>`;
+      </dl><div id="pxAl"></div>`;
   } else {
     priceHTML = `<div class="plabel">Cote Cardmarket</div><p class="nopx">Pas encore de cote Cardmarket pour cette carte (sortie très récente ou carte rare peu échangée). Regarde les ventes eBay réalisées ci-dessous.</p>`;
   }
@@ -2465,6 +2506,7 @@ function renderCard(){
     ${c.description?`<div class="section"><h4>Pokédex</h4><p class="desc">${esc(c.description)}</p></div>`:""}
     <p class="fine">Données et cotes : ${c._src==="pokemontcg.io"?"pokemontcg.io (source de secours, fiche en anglais)":"TCGdex"} (Cardmarket mis à jour chaque jour, TCGplayer chaque heure). La cote correspond à une carte non gradée en très bon état ; une carte abîmée se vend moins cher, une carte gradée PSA/PCA bien plus cher. Identifiant : ${esc(c.id)}${dg && !dg.uncertain ? ` · <button id="seeDiag" style="text-decoration:underline;font-size:inherit;color:inherit">Voir la lecture du scan</button>` : ""}</p>`;
   $("#seeDiag") && ($("#seeDiag").onclick = ()=>renderDiag(dg));
+  cardHist(c, suf); renderPxAl(c);
   if(foilize($("#heroImg"), c)) $("#heroImg").addEventListener("click", ()=>{ if(!$("#heroImg")._f?.moved) openFoilView(c); });
 
   enNameFix(c);
@@ -2820,16 +2862,182 @@ document.addEventListener("visibilitychange", ()=>{ if(!document.hidden && !$("#
 setInterval(()=>{ if(!document.hidden && !$("#colView").hidden && colStale()) refreshColPrices(); }, 30*60e3);
 
 
+/* historique jour par jour (history/<extension>.json, écrit par GitHub à chaque relevé des cotes, depuis le 16/11/2026) :
+   { v:1, d0:"AAAA-MM-JJ", p:{ numéro:[cote en centimes par jour depuis d0, null = pas de cote] } } */
+const HIST = new Map(), HIST_START = "16 novembre 2026";
+const cNumOf = id => id.slice(id.lastIndexOf("-")+1);
+const dayOf = t => new Date(t).toISOString().slice(0,10);
+function loadHist(sid){
+  if(!HIST.has(sid)) HIST.set(sid, fetchT(`history/${encodeURIComponent(sid)}.json?d=${dayOf(Date.now())}`, 20000).then(r=>r.ok ? r.json() : null).then(j=>j && j.v===1 && j.p ? j : null).catch(()=>null));
+  return HIST.get(sid);
+}
+// points réels d'une carte : [{t, v}], un par jour (midi UTC)
+function histPts(h, n){
+  const row = h?.p?.[n]; if(!row) return [];
+  const t0 = Date.parse(h.d0+"T12:00:00Z"), out = [];
+  row.forEach((c,i)=>{ if(c!=null) out.push({t:t0+i*864e5, v:c/100}); });
+  return out;
+}
+/* courbe de prix : périodes, parcours au doigt (même principe que la courbe du classeur) */
+const HCH = {per: store.get("hPer","30")};
+function drawHist(box, all){
+  const per = HCH.per, from = per==="all" ? -Infinity : Date.now() - (+per)*864e5 - 6*36e5;
+  let l = all.filter(p=>p.t >= from); if(l.length < 2) l = all.slice(-2);
+  const W = 340, H = 120, P = 6, vs = l.map(p=>p.v), mn = Math.min(...vs), mx = Math.max(...vs), t0 = l[0].t, t1 = l[l.length-1].t;
+  const X = t => P + (t1>t0 ? (t-t0)/(t1-t0) : 1) * (W-2*P), Y = v => H-P - (mx>mn ? (v-mn)/(mx-mn) : .5) * (H-2*P);
+  const line = l.map(p=>`${X(p.t).toFixed(1)},${Y(p.v).toFixed(1)}`).join(" ");
+  const chg = (a, b, lbl) => { const d = b - a, pc = a ? d/a*100 : 0, cls = Math.abs(pc) < .05 ? "" : d > 0 ? "up" : "down", sg = d>0?"+":d<0?"−":"";
+    return `<span class="${cls}">${cls==="up"?"▲":cls==="down"?"▼":"■"} ${sg}${eurN(Math.abs(d))} € (${sg}${Math.abs(pc).toFixed(1).replace(".",",")} %)</span> ${esc(lbl)}`; };
+  const lbl = per==="all" ? "depuis le début" : `sur ${({30:"1 mois",90:"3 mois",180:"6 mois",365:"1 an"})[per]}`;
+  const up = l[l.length-1].v >= l[0].v, colr = up ? "var(--up)" : "var(--down)", hex = up ? "#2fd18b" : "#ff5b5b";
+  box.innerHTML = `<div class="pxhr"><span id="pxHRead">${chg(l[0].v, l[l.length-1].v, lbl)}</span><span id="pxHDate"></span></div>
+    <svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" role="img" aria-label="Évolution de la cote ${esc(lbl)}">
+      <defs><linearGradient id="pxg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${hex}" stop-opacity=".3"/><stop offset="1" stop-color="${hex}" stop-opacity="0"/></linearGradient></defs>
+      <polygon points="${X(t0).toFixed(1)},${H} ${line} ${X(t1).toFixed(1)},${H}" fill="url(#pxg)"/>
+      <polyline points="${line}" fill="none" stroke="${colr}" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round" vector-effect="non-scaling-stroke"/>
+      <line class="cur" x1="0" x2="0" y1="0" y2="${H}" stroke="var(--muted)" stroke-width="1" stroke-dasharray="3 3" vector-effect="non-scaling-stroke" opacity="0"/>
+      <circle class="dot" r="4" cx="${X(t1).toFixed(1)}" cy="${Y(l[l.length-1].v).toFixed(1)}" fill="${colr}"/>
+    </svg>
+    <div class="wper" role="group" aria-label="Période">${[["30","1 M"],["90","3 M"],["180","6 M"],["365","1 A"],["all","Tout"]].map(([k,t])=>`<button data-hp="${k}" aria-pressed="${k===per}">${t}</button>`).join("")}</div>
+    ${l.some(p=>p.est)?`<div class="wnote">Points avant le ${esc(HIST_START)} estimés d'après les moyennes Cardmarket</div>`:""}`;
+  box.querySelectorAll("[data-hp]").forEach(b=>b.onclick=()=>{ HCH.per = b.dataset.hp; store.set("hPer", HCH.per); drawHist(box, all); });
+  const svg = box.querySelector("svg"), cur = svg.querySelector(".cur"), dot = svg.querySelector(".dot"), base = box.querySelector("#pxHRead").innerHTML;
+  const show = ev=>{
+    const r = svg.getBoundingClientRect(), x = ((ev.touches?.[0]?.clientX ?? ev.clientX) - r.left) / r.width * W;
+    let b = l[0]; for(const p of l) if(Math.abs(X(p.t)-x) < Math.abs(X(b.t)-x)) b = p;
+    cur.setAttribute("x1", X(b.t)); cur.setAttribute("x2", X(b.t)); cur.setAttribute("opacity", 1); dot.setAttribute("cx", X(b.t)); dot.setAttribute("cy", Y(b.v));
+    box.querySelector("#pxHRead").innerHTML = `<b style="color:var(--fg)">${eurN(b.v)} €</b> · ${chg(l[0].v, b.v, "").replace(/ $/,"")}`;
+    box.querySelector("#pxHDate").textContent = new Date(b.t).toLocaleDateString("fr-FR",{day:"numeric",month:"short",year:"2-digit"}) + (b.est ? " · estimé" : "");
+  };
+  const reset = ()=>{ cur.setAttribute("opacity",0); dot.setAttribute("cx", X(t1)); dot.setAttribute("cy", Y(l[l.length-1].v)); box.querySelector("#pxHRead").innerHTML = base; box.querySelector("#pxHDate").textContent = ""; };
+  svg.addEventListener("pointerdown", e=>{ svg.setPointerCapture?.(e.pointerId); show(e); });
+  svg.addEventListener("pointermove", e=>{ if(e.pointerType==="mouse" || e.buttons) show(e); });
+  svg.addEventListener("pointerup", reset); svg.addEventListener("pointerleave", reset); svg.addEventListener("pointercancel", reset);
+}
+// fiche carte : la courbe remplace les 4 barres dès qu'il existe au moins un jour enregistré (version principale de la carte)
+async function cardHist(c, suf){
+  const box = $("#pxHist"), note = $("#pxHNote"); if(!box) return;
+  if(suf !== ""){ if(note) note.textContent = ""; return; }
+  const cm = c.pricing?.cardmarket, big = cmVal(cm,"trend","") ?? cmVal(cm,"avg","") ?? cmVal(cm,"avg7","");
+  const h = await loadHist(setIdOf(c.id)); if(current?.id !== c.id || !box.isConnected) return;
+  const today = dayOf(Date.now()), real = histPts(h, cNumOf(c.id)).filter(p=>dayOf(p.t) !== today);
+  if(!real.length || big == null){ if(note) note.textContent = `Courbe jour par jour en préparation : la cote de chaque carte est enregistrée chaque jour depuis le ${HIST_START}.`; return; }
+  const est = [[30,"avg30"],[7,"avg7"],[1,"avg1"]].map(([d,k])=>({t:Date.now()-d*864e5, v:cmVal(cm,k,""), est:true})).filter(p=>p.v!=null && !real.some(q=>Math.abs(q.t-p.t) < 864e5) && p.t < real[0].t);
+  const pts = [...est, ...real, {t:Date.now(), v:big}].sort((a,b)=>a.t-b.t);
+  $("#pxBars").hidden = true; box.hidden = false; if(note) note.textContent = "";
+  drawHist(box, pts);
+}
+
+/* ---------- Alertes de prix ----------
+   Un seuil « sous » et/ou « au-dessus de » par carte, sur la cote de la version principale (prices.json, 9 fois par jour).
+   Vérifiées à l'ouverture et au retour dans l'app. Une alerte déclenchée se réarme quand la cote repasse de l'autre côté. */
+const pxAls = () => store.get("pxAlerts", {});
+const alTxt = a => [a.below!=null?`sous ${eurN(a.below)} €`:"", a.above!=null?`au-dessus de ${eurN(a.above)} €`:""].filter(Boolean).join(" ou ");
+const alHit = (a, p) => (a.below!=null && p <= a.below) || (a.above!=null && p >= a.above);
+function renderPxAl(c){
+  const box = $("#pxAl"); if(!box) return;
+  const a = pxAls()[c.id], num = v => { const n = parseFloat(String(v).replace(",",".").replace(/[^\d.]/g,"")); return isFinite(n) && n > 0 ? n : null; };
+  const val = v => v!=null ? String(Math.round(v*100)/100).replace(".",",") : "";
+  box.innerHTML = `<button class="pxalb${a?" on":""}" id="pxAlBtn" aria-expanded="false">🔔 ${a ? "Alerte : "+esc(alTxt(a)) : "Créer une alerte de prix"}</button>
+    <div class="pxalf" id="pxAlF" hidden>
+      <div class="two"><label>Me prévenir si la cote passe sous<input id="pxBelow" inputmode="decimal" placeholder="€" value="${val(a?.below)}"></label><label>ou au-dessus de<input id="pxAbove" inputmode="decimal" placeholder="€" value="${val(a?.above)}"></label></div>
+      <div class="addrow" style="margin:0"><button class="btn btn-y" id="pxAlOk">Enregistrer</button>${a?`<button class="btn btn-g" id="pxAlDel">Supprimer</button>`:""}</div>
+      <p class="fine" style="margin:0">Vérifiée à chaque ouverture de l'app, sur la cote de la version principale de la carte (relue 9 fois par jour).</p>
+    </div>`;
+  $("#pxAlBtn").onclick = ()=>{ const f = $("#pxAlF"); f.hidden = !f.hidden; $("#pxAlBtn").setAttribute("aria-expanded", !f.hidden); if(!f.hidden) $("#pxBelow").focus(); };
+  $("#pxAlOk").onclick = ()=>{
+    const below = num($("#pxBelow").value), above = num($("#pxAbove").value), al = pxAls();
+    if(below==null && above==null){ delete al[c.id]; store.set("pxAlerts", al); renderPxAl(c); renderPxBanner(); toast("Alerte supprimée"); return; }
+    if(below!=null && above!=null && below >= above) return toast("Le seuil « sous » doit être plus bas que « au-dessus de »");
+    const cm = c.pricing?.cardmarket, p = cmVal(cm,"trend","") ?? cmVal(cm,"avg","") ?? null;
+    const n = {name:c.name, set:c.set?.name||"", no:c.localId||"", img:c.image ? c.image+"/low.webp" : "", below, above, t:Date.now(), last:p};
+    n.armed = !(p!=null && alHit(n, p));
+    al[c.id] = n; store.set("pxAlerts", al); renderPxAl(c); renderPxBanner();
+    toast(n.armed ? "Alerte enregistrée" : `Alerte enregistrée : la cote (${eurN(p)} €) est déjà ${below!=null && p<=below ? "sous" : "au-dessus de"} ce seuil, tu seras prévenu au prochain passage`);
+    if("Notification" in window && Notification.permission==="default") Notification.requestPermission().catch(()=>{});
+  };
+  $("#pxAlDel") && ($("#pxAlDel").onclick = ()=>{ const al = pxAls(); delete al[c.id]; store.set("pxAlerts", al); renderPxAl(c); renderPxBanner(); toast("Alerte supprimée"); });
+}
+let pxAlT = 0;
+async function checkPxAlerts(){
+  const al = pxAls(), ids = Object.keys(al); if(!ids.length || Date.now() - pxAlT < 6e4) return renderPxBanner();
+  pxAlT = Date.now();
+  await loadPrices(); if(!PRICES.d) return;
+  const fired = [];
+  for(const id of ids){
+    const a = al[id], b = bulkOf(id); if(!b?.p) continue;
+    a.last = b.p;
+    if(alHit(a, b.p)){ if(a.armed !== false){ a.armed = false; a.hitAt = Date.now(); a.hitV = b.p; fired.push([id, a]); } }
+    else a.armed = true;
+  }
+  store.set("pxAlerts", al); renderPxBanner();
+  if(!fired.length) return;
+  const msg = ([,a]) => `${a.name} : ${eurN(a.hitV)} € (${a.below!=null && a.hitV<=a.below ? "sous "+eurN(a.below) : "au-dessus de "+eurN(a.above)} €)`;
+  toast(fired.length > 1 ? `🔔 ${fired.length} alertes de prix déclenchées` : "🔔 "+msg(fired[0]));
+  if("Notification" in window && Notification.permission==="granted")
+    navigator.serviceWorker?.ready.then(r=>fired.forEach(f=>r.showNotification("Alerte de prix", {body: msg(f), tag:"pxa-"+f[0], icon:"icon-192.png"}))).catch(()=>{});
+}
+function renderPxBanner(){
+  const al = pxAls(), ids = Object.keys(al), hit = ids.filter(id=>al[id].hitAt && al[id].seen !== al[id].hitAt);
+  const bn = $("#pxBanner");
+  if(bn){ bn.hidden = !hit.length;
+    if(hit.length){ const a = al[hit[0]];
+      bn.innerHTML = `<span class="pill warn">🔔</span><span><b>${hit.length>1 ? hit.length+" alertes de prix" : esc(a.name)+" a atteint ton seuil"}</b> ${hit.length>1 ? "" : `${esc(eurN(a.hitV))} € (alerte ${esc(alTxt(a))}). `}<u>Voir</u></span>`;
+      bn.onclick = openPxAlerts; } }
+  const lb = $("#pxAlList");
+  if(lb){ lb.hidden = !ids.length; lb.textContent = `🔔 Mes alertes de prix (${ids.length})${hit.length ? " · "+hit.length+" déclenchée"+(hit.length>1?"s":"") : ""}`; lb.onclick = openPxAlerts; }
+}
+function openPxAlerts(){
+  const al = pxAls(); let ch = false;
+  for(const a of Object.values(al)) if(a.hitAt && a.seen !== a.hitAt){ a.seen = a.hitAt; ch = true; }
+  if(ch) store.set("pxAlerts", al);
+  renderPxBanner();
+  $("#sheetTitle").textContent = "Alertes de prix";
+  const rows = Object.entries(al).sort((a,b)=>(b[1].hitAt||0)-(a[1].hitAt||0));
+  $("#sheetBody").innerHTML = rows.length ? `<div>${rows.map(([id,a])=>`<div class="alrow"><button class="go" data-id="${esc(id)}">${a.img?`<img src="${esc(a.img)}" alt="" loading="lazy">`:""}<span class="t">${esc(a.name)}<small>${esc(a.set)}${a.no?" · n° "+esc(a.no):""}</small><small>Alerte ${esc(alTxt(a))} · cote ${a.last!=null?esc(eurN(a.last))+" €":"—"}</small>${a.hitAt?`<small><b class="hit">Déclenchée le ${esc(fmtDay(a.hitAt))} à ${esc(eurN(a.hitV))} €</b></small>`:""}</span></button><button class="x" data-del="${esc(id)}" aria-label="Supprimer l'alerte">✕</button></div>`).join("")}</div>
+    <p class="fine">Les alertes sont vérifiées quand tu ouvres l'app : la cote de chaque carte est relue 9 fois par jour. Pour en créer une, ouvre une carte et touche « Créer une alerte de prix ».</p>`
+    : `<div class="empty">Aucune alerte.<br>Ouvre une carte et touche « Créer une alerte de prix ».</div>`;
+  $("#sheetBody").querySelectorAll("[data-id]").forEach(b=>b.onclick=()=>showCard(b.dataset.id, []));
+  $("#sheetBody").querySelectorAll("[data-del]").forEach(b=>b.onclick=()=>{ const x = pxAls(); delete x[b.dataset.del]; store.set("pxAlerts", x); openPxAlerts(); });
+  openSheet();
+}
+setTimeout(checkPxAlerts, 4000);
+document.addEventListener("visibilitychange", ()=>{ if(!document.hidden) checkPxAlerts(); });
+
 /* ---------- En-tête façon wallet crypto : solde, PnL par période, courbe que l'on parcourt au doigt ----------
    Courbe = valeur des cartes que tu possèdes aujourd'hui, au fil du temps :
    points estimés à partir des moyennes Cardmarket (il y a 30 j, 7 j, 24 h) puis, jour après jour, les cotes réellement relues. */
-const WAL = {p: store.get("walP","1")};
+const WAL = {p: store.get("walP","1"), h: new Map()};
+// historique des cotes enregistré par GitHub, extension par extension : la courbe ne dépend plus des jours où l'app a été ouverte
+function walLoadHist(col){
+  const sids = [...new Set(col.map(x=>setIdOf(x.id)))].filter(s=>!WAL.h.has(s)); if(!sids.length) return;
+  sids.forEach(s=>WAL.h.set(s, null));
+  Promise.all(sids.map(s=>loadHist(s).then(h=>WAL.h.set(s, h)))).then(()=>{ if(!sids.some(s=>WAL.h.get(s))) return; renderWallet(getCol()); if(!$("#homeView").hidden) renderHome(); });
+}
+// cote d'une carte au début d'une période : jour enregistré le plus proche, sinon moyenne Cardmarket ; « tout » = prix d'achat
+function walPast(x, per){
+  if(per==="all") return x.buy ?? null;
+  const target = Date.now() - (+per)*864e5, real = histPts(WAL.h.get(setIdOf(x.id)), cNumOf(x.id)).filter(p=>p.t <= target + .5*864e5);
+  const p = real[real.length-1]; if(p && target - p.t < 3*864e5) return p.v;
+  return x[{1:"a1",7:"a7",30:"a30"}[per]] ?? null;
+}
+function walMovers(col, per){
+  const rows = col.filter(x=>x.price >= 1).map(x=>{ const f = walPast(x, per); return f > 0 ? {x, f, pc:(x.price-f)/f*100} : null; }).filter(o=>o && Math.abs(o.pc) >= 1);
+  const up = rows.filter(o=>o.pc>0).sort((a,b)=>b.pc-a.pc).slice(0,3), dn = rows.filter(o=>o.pc<0).sort((a,b)=>a.pc-b.pc).slice(0,3);
+  const lbl = per==="all" ? "depuis l'achat" : per==="1" ? "24 h" : per+" jours";
+  const row = o => `<button class="mvrow" data-mv="${esc(o.x.id)}">${colImg(o.x)?`<img src="${esc(colImg(o.x))}" alt="" loading="lazy">`:""}<span>${esc(o.x.name)}<small>${esc(o.x.set||setIdOf(o.x.id))} · ${esc(eurN(o.f))} € → ${esc(eurN(o.x.price))} €</small></span><b class="${o.pc>0?"up":"down"}">${o.pc>0?"▲ +":"▼ −"}${Math.abs(o.pc).toFixed(1).replace(".",",")} %</b></button>`;
+  return (up.length ? `<h5>Plus fortes hausses · ${lbl}</h5>${up.map(row).join("")}` : "") + (dn.length ? `<h5>Plus fortes baisses · ${lbl}</h5>${dn.map(row).join("")}` : "");
+}
 function walSeries(col){
   const now = Date.now(), D = 864e5;
   const valWith = f => col.reduce((a,x)=>{ const p = f(x); return a + ((p ?? x.price) || 0) * x.qty; }, 0);
   const pts = [];
-  for(const [n,k] of [[30,"a30"],[7,"a7"],[1,"a1"]]) if(col.some(x=>x[k]!=null)) pts.push({t: now-n*D, v: valWith(x=>x[k]), est:true});
-  const ph = store.get("colPxHist",{});
+  // jours enregistrés par GitHub (prioritaires sur les relevés faits par le téléphone)
+  const ph = {...store.get("colPxHist",{})}, srv = {};
+  for(const x of col) for(const p of histPts(WAL.h.get(setIdOf(x.id)), cNumOf(x.id))) (srv[dayOf(p.t)] ||= {})[x.id] = p.v;
+  for(const d of Object.keys(srv)) ph[d] = Object.assign({}, ph[d], srv[d]);
+  const first = Object.keys(ph).sort()[0], firstT = first ? Date.parse(first+"T12:00:00") : Infinity;
+  for(const [n,k] of [[30,"a30"],[7,"a7"],[1,"a1"]]) if(col.some(x=>x[k]!=null) && now-n*D < firstT) pts.push({t: now-n*D, v: valWith(x=>x[k]), est:true});
   for(const d of Object.keys(ph).sort()){
     if(d === new Date().toISOString().slice(0,10)) continue;   // le point d'aujourd'hui = la valeur actuelle
     const t = Date.parse(d+"T12:00:00");
@@ -2858,7 +3066,10 @@ function chgHTML(c){
 function renderWallet(col){
   const box = $("#wChart");
   document.querySelectorAll("[data-wp]").forEach(b=>b.setAttribute("aria-pressed", b.dataset.wp===WAL.p));
-  if(!col.length){ $("#wChg").innerHTML=""; box.innerHTML=""; $("#wStats").innerHTML=""; $("#wDate").textContent=""; return; }
+  if(!col.length){ $("#wChg").innerHTML=""; box.innerHTML=""; $("#wStats").innerHTML=""; $("#wMov").innerHTML=""; $("#wDate").textContent=""; renderPxBanner(); return; }
+  walLoadHist(col); renderPxBanner();
+  $("#wMov").innerHTML = walMovers(col, WAL.p);
+  $("#wMov").querySelectorAll("[data-mv]").forEach(b=>b.onclick=()=>showCard(b.dataset.mv, []));
   const pts = walSeries(col), per = WAL.p, l = walSlice(pts, per), c = walChange(col, pts, per);
   const total = col.reduce((a,x)=>a+(x.price||0)*x.qty,0);
   $("#wChg").innerHTML = chgHTML(c); $("#wDate").textContent = "";
@@ -2914,11 +3125,12 @@ function deltaChip(d){
   return `<div class="mv ${cls}" title="Variation de la valeur sur ${d.l}"><span class="l">${d.l}</span><b>${cls==="up"?"▲":cls==="down"?"▼":"■"} ${sign}${eurN(Math.abs(d.v))} €</b><span>${sign}${Math.abs(d.pc).toFixed(1).replace(".",",")} %</span></div>`;
 }
 function colSpark(){
-  const h = store.get("colHist",[]); if(h.length < 2) return "";
-  const vs = h.map(e=>e.v), mn = Math.min(...vs), mx = Math.max(...vs), W = 300, H = 46;
-  const pts = vs.map((v,i)=>`${(i/(vs.length-1)*W).toFixed(1)},${(H-4-(mx>mn?(v-mn)/(mx-mn):.5)*(H-8)).toFixed(1)}`).join(" ");
+  const col = getCol(); if(!col.length) return "";
+  const l = walSeries(col).filter(p=>p.t >= Date.now() - 31*864e5); if(l.length < 2) return "";
+  const W = 300, H = 46, vs = l.map(p=>p.v), mn = Math.min(...vs), mx = Math.max(...vs), t0 = l[0].t, t1 = l[l.length-1].t;
+  const pts = l.map(p=>`${((p.t-t0)/(t1-t0||1)*W).toFixed(1)},${(H-4-(mx>mn?(p.v-mn)/(mx-mn):.5)*(H-8)).toFixed(1)}`).join(" ");
   const up = vs[vs.length-1] >= vs[0];
-  return `<svg class="colspark" viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" role="img" aria-label="Évolution de ta collection sur ${h.length} jours"><polyline points="${pts}" fill="none" stroke="${up?"var(--up)":"var(--down)"}" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" vector-effect="non-scaling-stroke"/></svg><div class="psub" style="display:flex;justify-content:space-between"><span>${esc(new Date(h[0].d).toLocaleDateString("fr-FR",{day:"numeric",month:"short"}))}</span><span>Ta collection, ${h.length} jours</span><span>aujourd'hui</span></div>`;
+  return `<svg class="colspark" viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" role="img" aria-label="Évolution de la valeur de tes cartes sur 30 jours"><polyline points="${pts}" fill="none" stroke="${up?"var(--up)":"var(--down)"}" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" vector-effect="non-scaling-stroke"/></svg>`;
 }
 
 
@@ -3276,7 +3488,7 @@ async function jpCardSheet(b){
       <div class="psub">${c.l!=null?`Annonces de ${esc(jpFmt(c.l))} à ${esc(jpFmt(c.h))}`:"Pas encore de prix pour cette carte."}</div>
       <div class="links">
         ${c.url?`<a href="${esc(c.url)}" target="_blank" rel="noopener">${ico.ext}Voir sur TCGplayer</a>`:""}
-        <a href="https://www.ebay.fr/sch/i.html?_nkw=${q}&LH_Sold=1&LH_Complete=1&_sop=13" target="_blank" rel="noopener">${ico.ext}Ventes eBay réalisées</a>
+        <a href="https://www.ebay.fr/sch/i.html?_nkw=${q}&LH_ItemCondition=4000&LH_Sold=1&LH_Complete=1&_sop=13" target="_blank" rel="noopener">${ico.ext}Ventes eBay réalisées</a>
         <a href="https://www.cardmarket.com/fr/Pokemon/Products/Search?searchString=${encodeURIComponent(c.n)}" target="_blank" rel="noopener">${ico.ext}Cardmarket</a>
       </div>
     </div>
@@ -4731,7 +4943,7 @@ async function openSet(id){
   if(!EX.cards.length){ $("#cgrid").outerHTML = `<div class="empty">La liste des cartes de cette extension n'est pas encore disponible.</div>`; renderExStats(); return; }
   renderTiles(); renderExStats(); loadExPrices(gen);
 }
-/* cotes de toutes les cartes en un seul fichier (prices.json, relu 3 fois par jour par GitHub) :
+/* cotes de toutes les cartes en un seul fichier (prices.json, relu 9 fois par jour par GitHub) :
    une extension affiche ses prix d'un coup, sans demander la fiche de chaque carte. Les cartes absentes du fichier
    (extension toute neuve) sont encore lues une par une. */
 const PRICES = {d:null, p:null};
@@ -5776,6 +5988,11 @@ function renderHome(){
     ${colSpark()}${mk.d.length ? `<div class="mvs">${mk.d.map(deltaChip).join("")}</div>` : ""}
     ${!n && !own.length ? `<div class="hb" style="margin-top:8px">Scanne ta première carte ou ajoute un produit scellé pour voir ta valeur ici.</div>` : ""}`;
   el.onclick = e=>{ if(!e.target.closest("button")) selectTab("colView"); };
+  // tes cartes qui bougent le plus sur 7 jours (cotes enregistrées chaque jour), et tes alertes de prix
+  walLoadHist(col);
+  $("#hMov").innerHTML = col.length ? walMovers(col, "7") : "";
+  $("#hMov").querySelectorAll("[data-mv]").forEach(b=>b.onclick=()=>showCard(b.dataset.mv, []));
+  renderPxBanner();
   // extensions ouvertes récemment, avec ton avancement
   const rec = store.get("recentSets",[]), OWN = ownIndex();
   $("#hRecent").innerHTML = rec.length
@@ -6939,6 +7156,12 @@ if(rkProf()?.on) setTimeout(()=>rkColSync(), 6000);
    Après l'intro, une seule fois par version qui apporte quelque chose à l'utilisateur.
    Nouvelle installation : rien (tout est neuf). Les versions purement techniques n'ont pas d'entrée ici. */
 const NEWS = [
+  {v:108, items:[
+    ["M3 17l6-6 4 4 8-8M14 7h7v7", "Courbe de prix", "Chaque fiche carte a sa courbe : 1 mois, 3 mois, 6 mois, 1 an. La cote de chaque carte est enregistrée chaque jour."],
+    ["M6 8a6 6 0 1 1 12 0c0 7 3 9 3 9H3s3-2 3-9M10.3 21a1.9 1.9 0 0 0 3.4 0", "Alertes de prix", "Sur une fiche carte, choisis un seuil : l'Accueil te prévient quand la cote passe dessous ou dessus."],
+    ["M12 20V10M18 20V4M6 20v-4", "Tes cartes qui bougent", "L'Accueil montre tes plus fortes hausses et baisses de la semaine."],
+    ["M11 4a7 7 0 1 0 0 14 7 7 0 0 0 0-14zM20 20l-3.5-3.5", "Ventes eBay sans les gradées", "Les boutons eBay n'affichent plus les cartes gradées, et eBay États-Unis ne montre que des vendeurs américains."]
+  ]},
   {v:107, items:[
     ["M12 9v4M12 17h.01M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z", "Cotes corrigées avec le marché américain", "Quand la cote Cardmarket d'une carte est très éloignée du prix américain, la fiche affiche une cote estimée et le signale."],
     ["M3 3h18v18H3zM3 9h18", "Cardmarket dans ta langue", "Le bouton Cardmarket ouvre les annonces dans la langue choisie sur la fiche."],

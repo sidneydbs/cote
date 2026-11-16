@@ -22,7 +22,7 @@ jobs:
         run: |
           git config user.name "cote-bot"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add prices.json
+          git add prices.json prices-audit.json
           git diff --cached --quiet || (git commit -m "Cotes de toutes les cartes mises à jour" && git pull --rebase && git push)
       - name: Republier le site
         env:

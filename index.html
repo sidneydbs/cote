@@ -172,6 +172,20 @@ html{background:var(--panel)}
 .kv dd{margin:0;font:700 15px/1.1 var(--f-mono);font-variant-numeric:tabular-nums;overflow-wrap:anywhere}
 .nopx{padding:6px 0;color:var(--muted);line-height:1.5}
 .links{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:14px}
+.ddrow{display:flex;gap:8px;margin:12px 0 4px;flex-wrap:wrap;align-items:flex-start}
+.dd{position:relative}
+.dd>summary{list-style:none;display:inline-flex;align-items:center;gap:6px;padding:7px 11px;border-radius:999px;border:1px solid var(--line);background:var(--panel);cursor:pointer;color:var(--fg);font-size:13px;white-space:nowrap}
+.dd>summary::-webkit-details-marker{display:none}
+.dd>summary small{color:var(--muted);font-size:11px}.dd>summary b{font:700 13px var(--f-mono)}.dd>summary span{color:var(--muted);font-size:12.5px}
+.dd>summary i{font-style:normal;color:var(--muted);font-size:11px;transition:transform .15s}.dd[open]>summary i{transform:rotate(180deg)}
+.dd[open]>summary{border-color:var(--border-yellow)}
+.ddm{position:absolute;z-index:6;left:0;top:calc(100% + 6px);min-width:220px;max-height:300px;overflow:auto;padding:6px;border-radius:14px;border:1px solid var(--line);background:var(--panel-2);box-shadow:0 14px 34px rgba(0,0,0,.55);display:grid;gap:2px}
+.dd:last-child .ddm{left:auto;right:0}
+.ddm button{display:flex;align-items:baseline;gap:8px;width:100%;text-align:left;padding:9px 10px;border:0;border-radius:10px;background:transparent;color:var(--fg)}
+.ddm button b{font:700 13px var(--f-mono);min-width:44px}.ddm button span{color:var(--muted);font-size:12.5px}
+.ddm button[aria-pressed="true"]{background:color-mix(in srgb,var(--border-yellow) 18%,transparent)}
+.ddm p{margin:6px 8px 4px;color:var(--muted);font-size:12px}
+.ddnote{margin:4px 0 0;color:var(--muted);font-size:12px}
 .unsure{margin:10px 0 4px;padding:10px 12px;border-radius:12px;border:1px solid color-mix(in srgb,#ffb020 45%,transparent);background:color-mix(in srgb,#ffb020 10%,var(--panel));font-size:12.5px;line-height:1.45;color:var(--muted)}
 .unsure b{display:block;color:#ffc24a;font-size:13px;margin-bottom:3px}
 .links a{display:flex;align-items:center;justify-content:center;gap:6px;padding:12px;border-radius:12px;background:var(--panel-2);border:1px solid var(--line);color:var(--fg);text-decoration:none;font-weight:600;font-size:13px;text-align:center}
@@ -1317,7 +1331,7 @@ img.px.reveal{animation:stpRev .9s ease-out}
 </head>
 <body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="pb" viewBox="0 0 100 100"><defs><linearGradient id="pbV" x1="0" y1="0" x2="1" y2="1"><stop offset="0" style="stop-color:var(--pb1)"/><stop offset=".5" style="stop-color:var(--pb2)"/><stop offset="1" style="stop-color:var(--pb3)"/></linearGradient><radialGradient id="pbB" cx=".38" cy=".75" r=".75"><stop offset="0" style="stop-color:var(--pbb1)"/><stop offset="1" style="stop-color:var(--pbb2)"/></radialGradient><radialGradient id="pbC" cx=".4" cy=".35" r=".7"><stop offset="0" style="stop-color:var(--pbc1)"/><stop offset=".55" style="stop-color:var(--pbc2)"/><stop offset="1" style="stop-color:var(--pbc3)"/></radialGradient></defs><path d="M3 50a47 47 0 0 1 94 0z" fill="url(#pbV)"/><path d="M3 50a47 47 0 0 0 94 0z" fill="url(#pbB)"/><rect x="3" y="45.5" width="94" height="9" fill="#09080D"/><circle cx="50" cy="50" r="47" fill="none" stroke="#09080D" stroke-width="4"/><circle cx="50" cy="50" r="15.5" fill="#09080D"/><circle cx="50" cy="50" r="10" fill="url(#pbC)" style="stroke:var(--pb2)" stroke-width="2"/><path d="M19 33a35 35 0 0 1 17-15" fill="none" stroke="#fff" stroke-opacity=".38" stroke-width="4" stroke-linecap="round"/></symbol></svg>
-<script>window.__APPV="105";</script>
+<script>window.__APPV="106";</script>
 <div class="splash" id="splash" aria-hidden="true"><i class="hole"></i><i class="halo"></i><div class="bw"><svg class="b" viewBox="0 0 100 100"><use href="#pb"/></svg><svg class="t" viewBox="0 0 100 100"><use href="#pb"/></svg></div><i class="glow"></i></div>
 <script>setTimeout(function(){ if(window.__booted) return;
   var b=document.createElement("div"); b.setAttribute("role","alert");
@@ -1352,7 +1366,7 @@ img.px.reveal{animation:stpRev .9s ease-out}
   <!-- ===== EXTENSIONS ===== -->
   <section class="view" id="homeView">
     <div class="scroll">
-      <div class="homebar"><span id="avatSlot"><svg class="pball" viewBox="0 0 100 100" aria-hidden="true"><use href="#pb"/></svg></span><span class="brand">DEX<b>·</b>SCAN</span><button class="thbtn" id="themeBtn" aria-label="Changer de thème"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.6-.9 1.2-1.8-.5-1.1.2-2.2 1.4-2.2H17a4 4 0 0 0 4-4c0-5.5-4-10-9-10z"/><circle cx="7.5" cy="11" r="1.2"/><circle cx="10" cy="7" r="1.2"/><circle cx="15" cy="7" r="1.2"/></svg></button><span class="ver">v105</span></div>
+      <div class="homebar"><span id="avatSlot"><svg class="pball" viewBox="0 0 100 100" aria-hidden="true"><use href="#pb"/></svg></span><span class="brand">DEX<b>·</b>SCAN</span><button class="thbtn" id="themeBtn" aria-label="Changer de thème"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.6-.9 1.2-1.8-.5-1.1.2-2.2 1.4-2.2H17a4 4 0 0 0 4-4c0-5.5-4-10-9-10z"/><circle cx="7.5" cy="11" r="1.2"/><circle cx="10" cy="7" r="1.2"/><circle cx="15" cy="7" r="1.2"/></svg></button><span class="ver">v106</span></div>
       <div class="hhead"><div><span class="hdate" id="hDate"></span><div class="htitle"><h1 class="h1">Accueil</h1><button class="hsearch hrank" id="hRank" aria-label="Classement"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 21h8M12 17v4"/><path d="M7 4h10v5a5 5 0 0 1-10 0z"/><path d="M17 5h3v2a3 3 0 0 1-3 3M7 5H4v2a3 3 0 0 0 3 3"/></svg></button></div></div><button class="hsearch" id="hSearch" aria-label="Rechercher une carte"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></button></div>
       <div class="total htot" id="hTot"></div>
       <div class="hqa">
@@ -1952,23 +1966,50 @@ const ebGrade = g => String(g||"").trim()
   .replace(/\b(\d+)[.,](\d)\b/, (m,a,b)=>`(${a}.${b},"${a},${b}")`);
 /* recherche eBay d'une version précise.
    o.name : nom à chercher (par défaut celui de la fiche) · o.ed : édition · o.grade : « PSA 10 » (sinon on exclut les cartes gradées) */
+/* Numéro tel qu'il est imprimé sur la carte, donc tel que les vendeurs l'écrivent. Vérifié sur eBay : « Pikachu 049/203 » donne 855 ventes,
+   « Pikachu 49/203 » seulement 54. Épée et Bouclier, Écarlate et Violet et Méga-Évolution impriment 3 chiffres (049/203, 001/025) ;
+   toutes les extensions d'avant impriment le numéro sans zéro (4/102, 10/144).
+   Renvoie {no, extra} : extra = mots en plus quand le numéro seul ne suffit pas (promos, galeries). */
+const EB_SUB = {TG:"TG30", GG:"GG70"};   // Galerie des Dresseurs, Galerie de Galar : TG01/TG30, GG01/GG70
+function ebNo(c){
+  const sid = setIdOf(c?.id||""), raw = decodeURIComponent(String(c?.localId||"")), off = c?.off ?? c?.set?.cardCount?.official;
+  const pad3 = /^(swsh|sv|me|cel25$)/.test(sid) && !/p$/.test(sid);
+  const P3 = n => String(+n).padStart(3,"0");
+  if(sid==="svp" || sid==="mep") return {no: /^\d+$/.test(raw) ? P3(raw) : raw, extra: `(${sid},promo)`};          // 027 + SVP
+  if(sid==="basep" || sid==="np") return {no: "", extra: '(promo,"black star")'};                                   // n° 1 à 53 : trop court pour chercher
+  if(/p$/.test(sid)) return {no: raw, extra: ""};                                                                   // SWSH001, SM01, XY01, BW01, DP01, HGSS01
+  if(/^20\d\d/.test(sid)) return {no: /^\d+$/.test(raw) && off ? `${+raw}/${off}` : raw, extra: "(mcdonalds,mcdonald,mcdo)"};
+  if(/^\d+$/.test(raw)) return {no: off ? (pad3 ? `${P3(raw)}/${P3(off)}` : `${+raw}/${off}`) : (pad3 ? P3(raw) : String(+raw)), extra: ""};
+  const m = raw.match(/^([A-Z]+)(\d+)$/);
+  if(m){
+    const tot = EB_SUB[m[1]] || (m[1]==="SV" ? (sid==="sma" ? "SV94" : sid==="swsh4.5" ? "SV122" : "") : m[1]==="RC" ? (sid==="g1" ? "RC32" : "RC25") : m[1]==="H" ? "H32" : "");
+    return {no: tot ? `(${raw},${raw}/${tot})` : raw, extra: ""};
+  }
+  return {no: raw, extra: ""};
+}
+/* recherche eBay d'une version précise.
+   o.name : nom à chercher (par défaut celui de la fiche) · o.ed : édition · o.grade : « PSA 10 » (sinon on exclut les cartes gradées)
+   o.us : recherche sur ebay.com (carte anglaise : mots anglais, cartes japonaises écartées) · o.rev : true = reverse, false = pas reverse */
 function ebayQuery(c, o={}){
-  const id = c?.id || "", pr = PRINT_OF[id], off = c?.off ?? c?.set?.cardCount?.official;
-  let no = pr ? pr.no : String(c?.localId||"");
-  if(!pr && no && !no.includes("/") && off && /^\d+$/.test(no)) no = `${no}/${off}`;
-  const inc = [o.name ?? c?.name ?? "", no], exc = [...EB_FAKE];
+  const id = c?.id || "", pr = PRINT_OF[id], n = ebNo(c);
+  const inc = [o.name ?? c?.name ?? "", pr ? pr.no : n.no, pr ? "" : n.extra];
+  // peu de mots exclus, les plus utiles d'abord : trop d'exclusions cachent de vraies ventes
+  const exc = o.us ? ["lot","proxy"] : ["lot","proxy"];
   if(pr){ const k = REPRINTS[pr.kind]; inc.push(k.inc); exc.push(...k.exc, "evolutions", "reprint"); }
   else if(PRINT_GROUP[id] || ED_SETS.test(setIdOf(id))) exc.push(...EB_REPR);
   const ed = o.ed;
   if(ed==="1ed") inc.push(`(${EB_1ED.join(",")})`), exc.push("shadowless");
   else if(ed==="sl") inc.push("shadowless"), exc.push(...EB_1ED);
   else if(ed==="unl") exc.push(...EB_1ED, "shadowless");
-  if(o.grade) inc.push(o.grade.startsWith("(") ? o.grade : ebGrade(o.grade)); else exc.push(...EB_GRADED);
-  if(o.jp) inc.push("japanese");
-  // Sur téléphone, eBay refuse (« mots-clés génériques ») une recherche avec trop d'exclusions :
-  // les 10 plus importantes vont dans la recherche, les autres dans le paramètre d'exclusion d'eBay (_ex_kw).
-  const PRIO = ["psa","pca","cgc","collectaura","1st","1re",'"edition 1"',"shadowless","30th",'"30 ans"',"anniversaire","celebrations","25th",'"25 ans"',"30e","celebration","proxy","lot"];
-  const all = [...new Set(exc)].sort((x,y)=>{ const i = PRIO.indexOf(x), j = PRIO.indexOf(y); return (i<0?99:i)-(j<0?99:j); });
+  if(o.grade) inc.push(o.grade.startsWith("(") ? o.grade : ebGrade(o.grade)); else exc.unshift(...(o.us ? ["psa","cgc","bgs","graded"] : ["psa","pca","cgc","bgs","collectaura","gradee"]));
+  if(o.jp) inc.push("japanese"); else if(o.us) exc.push("japanese","korean");
+  if(o.rev === true) inc.push("reverse"); else if(o.rev === false) exc.push("reverse");
+  const PRIO = ["psa","pca","cgc","bgs","collectaura","1st","1re",'"edition 1"',"shadowless","reverse","japanese","30th",'"30 ans"',"anniversaire","celebrations","25th","lot","graded","gradee","proxy","korean"];
+  // ebay.com : pas de mots français dans les exclusions
+  const FR_ONLY = ["1re","1ere",'"edition 1"','"30 ans"',"anniversaire","30e","gradee","pca","collectaura"];
+  const all = [...new Set(exc)].filter(w=>!o.us || !FR_ONLY.includes(w)).sort((x,y)=>{ const i = PRIO.indexOf(x), j = PRIO.indexOf(y); return (i<0?99:i)-(j<0?99:j); });
+  // « Dracaufeu-ex » : les vendeurs écrivent « Dracaufeu ex »
+  inc[0] = String(inc[0]).replace(/-(ex|EX|GX|V|VMAX|VSTAR|V-UNION)\b/g, " $1");
   const head = inc.filter(Boolean).join(" ").replace(/\s+/g," ").trim();
   const inQ = all.slice(0, 10), rest = all.slice(10).filter(w=>!/[" ]/.test(w));
   return {q: (head + (inQ.length ? " "+inQ.map(w=>"-"+w).join(" ") : "")).trim(), ex: rest.join(" ")};
@@ -1981,18 +2022,19 @@ async function enNameFix(c){
     const r = await fetch(`https://api.tcgdex.net/v2/en/cards/${encodeURIComponent(c.id)}`, {signal:AbortSignal.timeout(8000)}); if(!r.ok) return;
     const n = (await r.json())?.name; if(!n) return;
     EN_NAME[c.id] = n; const k = Object.keys(EN_NAME); if(k.length > 800) delete EN_NAME[k[0]]; store.set("enNames", EN_NAME);
-    const a = document.getElementById("ebUS"); if(a && current?.id===c.id) a.href = ebayUrl(c, {jp:currentLg==="JP", ed:currentEd, name:n}, "ebay.com");
+    const a = document.getElementById("ebUS"); if(a && current?.id===c.id) a.href = ebayUrl(c, {jp:currentLg==="JP", ed:currentEd, rev:a.dataset.rev==="1" ? true : a.dataset.rev==="0" ? false : undefined, name:n}, "ebay.com");
   }catch(e){}
 }
 // Cardmarket : la fiche exacte de la carte (identifiant produit Cardmarket fourni avec la cote), sinon une recherche nom + numéro
 const cmUrl = c => { const id = c?.pricing?.cardmarket?.idProduct;
   return id ? `https://www.cardmarket.com/fr/Pokemon/Products?idProduct=${encodeURIComponent(id)}` : `https://www.cardmarket.com/fr/Pokemon/Products/Search?searchString=${encodeURIComponent(c.name+" "+(c.localId||""))}`; };
-const ebayUrl = (c, o={}, dom="ebay.fr") => { const r = ebayQuery(c, o); return `https://www.${dom}/sch/i.html?_nkw=${encodeURIComponent(r.q)}${r.ex?`&_ex_kw=${encodeURIComponent(r.ex)}`:""}&LH_Sold=1&LH_Complete=1&_sop=${o.sop||13}`; };
+const ebayUrl = (c, o={}, dom="ebay.fr") => { const r = ebayQuery(c, dom==="ebay.com" ? {us:true, ...o} : o); return `https://www.${dom}/sch/i.html?_nkw=${encodeURIComponent(r.q)}${r.ex?`&_ex_kw=${encodeURIComponent(r.ex)}`:""}&LH_Sold=1&LH_Complete=1&_sop=${o.sop||13}`; };
 
 /* ---------------- Fiche ---------------- */
 let current = null, currentAlts = [], currentVariant = 0, currentEd = null;
 /* langue de l'exemplaire qu'on ajoute à la collection (mémorisée d'une carte à l'autre) */
 const CARD_LG = {FR:"Français", EN:"Anglais", JP:"Japonais", DE:"Allemand", IT:"Italien", ES:"Espagnol", PT:"Portugais", KO:"Coréen", ZH:"Chinois"};
+const LG_FLAG = {FR:"🇫🇷", EN:"🇬🇧", JP:"🇯🇵", DE:"🇩🇪", IT:"🇮🇹", ES:"🇪🇸", PT:"🇵🇹", KO:"🇰🇷", ZH:"🇨🇳"};
 let currentLg = store.get("addLg", "FR");
 /* état d'une carte (normes Cardmarket) ; la cote du marché correspond à NM, les autres états valent moins */
 const CONDS = [["M","Mint","Parfaite",1.1],["NM","Near Mint","Quasi parfaite",1],["EX","Excellent","Petits défauts",.85],["GD","Good","Usure nette",.7],["LP","Light Played","Jouée",.6],["PL","Played","Très jouée",.45],["PO","Poor","Abîmée",.25]];
@@ -2002,6 +2044,7 @@ const ownConds = x => x?.conds ? Object.entries(x.conds).filter(([,n])=>n>0) : [
 // valeur estimée des exemplaires selon leur état (sans état noté : NM)
 function condValue(x){ if(!x?.price) return null; const cs = ownConds(x), n = cs.reduce((a,[,v])=>a+v,0); return cs.reduce((a,[k,v])=>a+x.price*(CONDF[k]??1)*v,0) + x.price*Math.max(0,(x.qty||1)-n); }
 const ownLgs = x => x?.lgs ? Object.entries(x.lgs).filter(([,n])=>n>0) : [];
+document.addEventListener("click", e=>{ if(!e.target.closest?.(".dd")) document.querySelectorAll(".dd[open]").forEach(d=>d.open = false); });
 function openSheet(){ const s=$("#sheet"); s.classList.add("open"); s.setAttribute("aria-hidden","false"); requestAnimationFrame(()=>FOIL.wake()); }
 function closeSheet(){ const s=$("#sheet"); s.classList.remove("open"); s.setAttribute("aria-hidden","true"); resumeCamera(); }
 $("#closeSheet").onclick = closeSheet;
@@ -2013,8 +2056,10 @@ async function showCard(id, alts, diag=null){
   $("#sheetBody").innerHTML = `<div class="empty"><span class="loader"></span><br><br>Récupération de la cote…</div>`;
   openSheet();
   try{
+    const enP = enNameFix({id}).catch(()=>{});   // nom anglais demandé en même temps : le lien eBay États-Unis est juste dès l'ouverture
     const card = await getCard(id);
     if(!card) throw new Error("introuvable");
+    await Promise.race([enP, new Promise(r=>setTimeout(r, 700))]);
     current = card; renderCard();
     checkSecret(card, !!diag);
   }catch(e){
@@ -2328,15 +2373,16 @@ function renderCard(){
     <a class="gradebtn hibtn" href="${esc(hiEb)}" target="_blank" rel="noopener"><b>Ventes eBay les plus chères</b><span>Ventes terminées de cette version, de la plus chère à la moins chère</span></a>
     <p class="fine" style="margin-top:8px">eBay ne permet plus de lire les ventes une par une : le bouton ouvre directement le classement, la vente record en premier.</p></div>`;
   const qName = encodeURIComponent(`${c.name} ${c.localId}${off?"/"+off:""}`);
+  const vLbl = vs[currentVariant]?.label, rev = vLbl==="Reverse" ? true : (vLbl==="Normale" && c.variants?.reverse && vs.length>1) ? false : undefined;
   const vTag = currentEd ? " · "+esc(edLbl(currentEd)) : PRINT_OF[c.id] ? " · "+esc(REPRINTS[PRINT_OF[c.id].kind].lbl.toLowerCase()) : "";
   const enN = EN_NAME[c.id];
   const links = `<h4 class="lkh">Ventes réalisées${vTag}</h4><div class="links sold2">
-    <a href="${esc(ebayUrl(c,{jp:currentLg==="JP", ed:currentEd}))}" target="_blank" rel="noopener">${ico.ext}eBay France</a>
-    <a id="ebUS" href="${esc(ebayUrl(c,{jp:currentLg==="JP", ed:currentEd, name:enN||c.name}, "ebay.com"))}" target="_blank" rel="noopener">${ico.ext}eBay États-Unis</a>
+    <a href="${esc(ebayUrl(c,{jp:currentLg==="JP", ed:currentEd, rev}))}" target="_blank" rel="noopener">${ico.ext}eBay France</a>
+    <a id="ebUS" data-rev="${rev===true?1:rev===false?0:""}" href="${esc(ebayUrl(c,{jp:currentLg==="JP", ed:currentEd, rev, name:enN||c.name}, "ebay.com"))}" target="_blank" rel="noopener">${ico.ext}eBay États-Unis</a>
   </div>
   <h4 class="lkh">En vente maintenant</h4><div class="links">
     <a href="${cmUrl(c)}" target="_blank" rel="noopener">${ico.ext}Cardmarket</a>
-    <a href="${esc(ebayUrl(c,{jp:currentLg==="JP", ed:currentEd}).replace("&LH_Sold=1&LH_Complete=1","").replace(/_sop=\d+/,"_sop=15"))}" target="_blank" rel="noopener">${ico.ext}eBay annonces</a>
+    <a href="${esc(ebayUrl(c,{jp:currentLg==="JP", ed:currentEd, rev}).replace("&LH_Sold=1&LH_Complete=1","").replace(/_sop=\d+/,"_sop=15"))}" target="_blank" rel="noopener">${ico.ext}eBay annonces</a>
     <a href="https://www.vinted.fr/catalog?search_text=${qName}&order=price_low_to_high" target="_blank" rel="noopener">${ico.ext}Vinted</a>
     <a href="https://www.leboncoin.fr/recherche?text=${qName}&sort=price&order=asc" target="_blank" rel="noopener">${ico.ext}Leboncoin</a>
   </div>`;
@@ -2379,8 +2425,14 @@ function renderCard(){
     </div>
     ${inCol?`<div class="colqty"><button id="colMinus" aria-label="Retirer un exemplaire">−</button><span>Dans ta collection : <b style="color:var(--fg)">×${inCol.qty}</b>${ownEd.length?`<small class="edown">${ownEd.map(([k,n])=>`${esc(edLbl(k))} ×${n}`).join(" · ")}</small>`:""}${ownLgs(inCol).length?`<small class="edown">${ownLgs(inCol).map(([k,n])=>`${esc(CARD_LG[k]||k)} ×${n}`).join(" · ")}</small>`:""}${ownConds(inCol).length?`<small class="edown">État : ${ownConds(inCol).map(([k,n])=>`${esc(k)} ×${n}`).join(" · ")}${inCol.price?` · valeur selon l'état ≈ ${esc(eurN(condValue(inCol)))} €`:""}</small>`:""}</span><button id="colPlus" aria-label="Ajouter un exemplaire">+</button></div>
     <div class="buyrow"><label for="buyIn">Prix d'achat (par carte)</label><span class="buyin"><input id="buyIn" type="text" inputmode="decimal" value="${inCol.buy!=null?String(Math.round(inCol.buy*100)/100).replace(".",","):""}" placeholder="0,00"> €</span>${(()=>{ const p = pnlOf(inCol); return p ? `<b class="tpnl ${pnlCls(p)}">PnL ${esc(pnlTxt(p))}</b>` : ""; })()}</div>`:""}
-    <div class="lgrow"><span>État de ta carte</span><div class="lgpick cdpick" role="group" aria-label="État de la carte">${CONDS.map(([k,n,d])=>`<button data-cond="${k}" aria-pressed="${k===currentCond}" title="${esc(n+" · "+d)}">${k}</button>`).join("")}</div><small>${esc((CONDS.find(c=>c[0]===currentCond)||CONDS[1])[1])} : ${esc((CONDS.find(c=>c[0]===currentCond)||CONDS[1])[2].toLowerCase())}${currentCond!=="NM"?` · vaut environ ${Math.round((CONDF[currentCond]||1)*100)} % de la cote`:" · c'est l'état de la cote affichée"}. <a href="#" id="condHelp">C'est quoi ?</a></small></div>
-    <div class="lgrow"><span>Langue de ta carte</span><div class="lgpick" role="group" aria-label="Langue de la carte">${Object.entries(CARD_LG).map(([k,t])=>`<button data-lg="${k}" aria-pressed="${k===currentLg}" title="${esc(t)}">${k}</button>`).join("")}</div>${currentLg==="JP"?`<small>La cote affichée est celle des cartes occidentales : les ventes eBay ci-dessous cherchent maintenant la version japonaise.</small>`:""}</div>
+    <div class="ddrow">
+      <details class="dd"><summary aria-label="État de ta carte"><small>État</small><b>${esc(currentCond)}</b><span>${esc((CONDS.find(c=>c[0]===currentCond)||CONDS[1])[2])}</span><i>▾</i></summary>
+        <div class="ddm" role="group" aria-label="État de la carte">${CONDS.map(([k,n,d])=>`<button data-cond="${k}" aria-pressed="${k===currentCond}"><b>${k}</b><span>${esc(n)} · ${esc(d.toLowerCase())}</span></button>`).join("")}
+        <p>${currentCond!=="NM"?`Vaut environ ${Math.round((CONDF[currentCond]||1)*100)} % de la cote.`:"C'est l'état de la cote affichée."} <a href="#" id="condHelp">C'est quoi ?</a></p></div></details>
+      <details class="dd"><summary aria-label="Langue de ta carte"><small>Langue</small><b>${esc(currentLg)}</b><span>${LG_FLAG[currentLg]||""}</span><i>▾</i></summary>
+        <div class="ddm" role="group" aria-label="Langue de la carte">${Object.entries(CARD_LG).map(([k,t])=>`<button data-lg="${k}" aria-pressed="${k===currentLg}"><b>${k} ${LG_FLAG[k]||""}</b><span>${esc(t)}</span></button>`).join("")}</div></details>
+    </div>
+    ${currentLg==="JP"?`<p class="ddnote">La cote affichée est celle des cartes occidentales : les ventes eBay ci-dessous cherchent la version japonaise.</p>`:""}
     <div class="addrow">
       <button class="btn btn-y" id="addCol">${inCol?"Ajouter un exemplaire"+(currentEd?" "+esc(edLbl(currentEd)):"")+" · "+esc(currentCond)+" · "+esc(CARD_LG[currentLg])+" ("+inCol.qty+")":"Ajouter à ma collection"+(currentEd?" · "+esc(edLbl(currentEd)):"")+" · "+esc(currentCond)+" · "+esc(CARD_LG[currentLg])}</button>
       <button class="btn btn-g" id="rescan">Scanner une autre</button>
@@ -2400,6 +2452,8 @@ function renderCard(){
   if(foilize($("#heroImg"), c)) $("#heroImg").addEventListener("click", ()=>{ if(!$("#heroImg")._f?.moved) openFoilView(c); });
 
   enNameFix(c);
+  // menus État / Langue : un seul ouvert à la fois, fermé en touchant ailleurs
+  $("#sheetBody").querySelectorAll(".dd").forEach(d=>d.addEventListener("toggle", ()=>{ if(d.open) $("#sheetBody").querySelectorAll(".dd").forEach(o=>{ if(o!==d) o.open = false; }); }));
   $("#sheetBody").querySelectorAll(".vt").forEach(b=>b.onclick=()=>{ currentVariant=+b.dataset.vi; renderCard(); });
   $("#sheetBody").querySelectorAll(".alt").forEach(b=>b.onclick=()=>showCard(b.dataset.id));
   $("#sheetBody").querySelectorAll("[data-pid]").forEach(b=>b.onclick=()=>{ if(b.dataset.pid!==c.id) showCard(b.dataset.pid, currentAlts); });
@@ -6869,6 +6923,10 @@ if(rkProf()?.on) setTimeout(()=>rkColSync(), 6000);
    Après l'intro, une seule fois par version qui apporte quelque chose à l'utilisateur.
    Nouvelle installation : rien (tout est neuf). Les versions purement techniques n'ont pas d'entrée ici. */
 const NEWS = [
+  {v:106, items:[
+    ["M11 4a7 7 0 1 0 0 14 7 7 0 0 0 0-14zM20 20l-3.5-3.5", "Ventes eBay bien plus justes", "La recherche utilise le numéro tel qu'il est imprimé (049/203), le nom anglais sur eBay États-Unis et la version reverse quand tu la regardes."],
+    ["M6 9l6 6 6-6", "État et langue en menus", "Sur la fiche d'une carte, deux petits menus déroulants remplacent les rangées de boutons."]
+  ]},
   {v:105, items:[
     ["M12 9v4M12 17h.01M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z", "Cotes plus fiables", "Sur une carte qui se vend peu, quelques ventes très chères ne gonflent plus la cote : la fiche affiche une cote prudente et explique pourquoi."],
     ["M3 3h18v18H3zM3 9h18", "Ventes réalisées France et US", "Deux boutons eBay : ventes terminées en France et aux États-Unis."],

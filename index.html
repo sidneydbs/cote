@@ -183,6 +183,8 @@ html{background:var(--panel)}
 .dd:last-child .ddm{left:auto;right:0}
 .ddm button{display:flex;align-items:baseline;gap:8px;width:100%;text-align:left;padding:9px 10px;border:0;border-radius:10px;background:transparent;color:var(--fg)}
 .ddm button b{font:700 13px var(--f-mono);min-width:44px}.ddm button span{color:var(--muted);font-size:12.5px}
+.ddm button[hidden]{display:none}
+.sdd{margin:10px 0 2px}.sdd .dd>summary b{font:700 13px var(--f-body)}
 .ddm button[aria-pressed="true"]{background:color-mix(in srgb,var(--border-yellow) 18%,transparent)}
 .ddm p{margin:6px 8px 4px;color:var(--muted);font-size:12px}
 .ddnote{margin:4px 0 0;color:var(--muted);font-size:12px}
@@ -1363,7 +1365,7 @@ img.px.reveal{animation:stpRev .9s ease-out}
 </head>
 <body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="pb" viewBox="0 0 100 100"><defs><linearGradient id="pbV" x1="0" y1="0" x2="1" y2="1"><stop offset="0" style="stop-color:var(--pb1)"/><stop offset=".5" style="stop-color:var(--pb2)"/><stop offset="1" style="stop-color:var(--pb3)"/></linearGradient><radialGradient id="pbB" cx=".38" cy=".75" r=".75"><stop offset="0" style="stop-color:var(--pbb1)"/><stop offset="1" style="stop-color:var(--pbb2)"/></radialGradient><radialGradient id="pbC" cx=".4" cy=".35" r=".7"><stop offset="0" style="stop-color:var(--pbc1)"/><stop offset=".55" style="stop-color:var(--pbc2)"/><stop offset="1" style="stop-color:var(--pbc3)"/></radialGradient></defs><path d="M3 50a47 47 0 0 1 94 0z" fill="url(#pbV)"/><path d="M3 50a47 47 0 0 0 94 0z" fill="url(#pbB)"/><rect x="3" y="45.5" width="94" height="9" fill="#09080D"/><circle cx="50" cy="50" r="47" fill="none" stroke="#09080D" stroke-width="4"/><circle cx="50" cy="50" r="15.5" fill="#09080D"/><circle cx="50" cy="50" r="10" fill="url(#pbC)" style="stroke:var(--pb2)" stroke-width="2"/><path d="M19 33a35 35 0 0 1 17-15" fill="none" stroke="#fff" stroke-opacity=".38" stroke-width="4" stroke-linecap="round"/></symbol></svg>
-<script>window.__APPV="108";</script>
+<script>window.__APPV="109";</script>
 <div class="splash" id="splash" aria-hidden="true"><i class="hole"></i><i class="halo"></i><div class="bw"><svg class="b" viewBox="0 0 100 100"><use href="#pb"/></svg><svg class="t" viewBox="0 0 100 100"><use href="#pb"/></svg></div><i class="glow"></i></div>
 <script>setTimeout(function(){ if(window.__booted) return;
   var b=document.createElement("div"); b.setAttribute("role","alert");
@@ -1398,7 +1400,7 @@ img.px.reveal{animation:stpRev .9s ease-out}
   <!-- ===== EXTENSIONS ===== -->
   <section class="view" id="homeView">
     <div class="scroll">
-      <div class="homebar"><span id="avatSlot"><svg class="pball" viewBox="0 0 100 100" aria-hidden="true"><use href="#pb"/></svg></span><span class="brand">DEX<b>·</b>SCAN</span><button class="thbtn" id="themeBtn" aria-label="Changer de thème"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.6-.9 1.2-1.8-.5-1.1.2-2.2 1.4-2.2H17a4 4 0 0 0 4-4c0-5.5-4-10-9-10z"/><circle cx="7.5" cy="11" r="1.2"/><circle cx="10" cy="7" r="1.2"/><circle cx="15" cy="7" r="1.2"/></svg></button><span class="ver">v108</span></div>
+      <div class="homebar"><span id="avatSlot"><svg class="pball" viewBox="0 0 100 100" aria-hidden="true"><use href="#pb"/></svg></span><span class="brand">DEX<b>·</b>SCAN</span><button class="thbtn" id="themeBtn" aria-label="Changer de thème"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.6-.9 1.2-1.8-.5-1.1.2-2.2 1.4-2.2H17a4 4 0 0 0 4-4c0-5.5-4-10-9-10z"/><circle cx="7.5" cy="11" r="1.2"/><circle cx="10" cy="7" r="1.2"/><circle cx="15" cy="7" r="1.2"/></svg></button><span class="ver">v109</span></div>
       <button class="banner" id="pxBanner" hidden></button>
       <div class="hhead"><div><span class="hdate" id="hDate"></span><div class="htitle"><h1 class="h1">Accueil</h1><button class="hsearch hrank" id="hRank" aria-label="Classement"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 21h8M12 17v4"/><path d="M7 4h10v5a5 5 0 0 1-10 0z"/><path d="M17 5h3v2a3 3 0 0 1-3 3M7 5H4v2a3 3 0 0 0 3 3"/></svg></button></div></div><button class="hsearch" id="hSearch" aria-label="Rechercher une carte"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></button></div>
       <div class="total htot" id="hTot"></div>
@@ -1452,8 +1454,10 @@ img.px.reveal{animation:stpRev .9s ease-out}
         </div>
         <div id="sealedBox" hidden>
           <label class="ext-search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><input id="sealQ" type="search" placeholder="Rechercher (ex. 151, Évolutions Prismatiques, ETB)" autocomplete="off" aria-label="Rechercher un produit scellé"></label>
-          <div class="schips" id="sealTypes"></div>
-          <div class="schips" id="sealLang" style="margin-top:6px"><button data-sl="all">Toutes langues</button><button data-sl="EN">Anglais</button><button data-sl="JP">Japonais</button></div>
+          <div class="ddrow sdd">
+            <details class="dd" id="sealTypeDD"><summary aria-label="Type de produit"><small>Type</small><b id="sealTypeLbl">Tous</b><i>▾</i></summary><div class="ddm" id="sealTypes" role="group" aria-label="Type de produit"></div></details>
+            <details class="dd" id="sealLangDD"><summary aria-label="Langue"><small>Langue</small><b id="sealLangLbl">Toutes</b><i>▾</i></summary><div class="ddm" id="sealLang" role="group" aria-label="Langue"><button data-sl="all">Toutes langues</button><button data-sl="EN">Anglais</button><button data-sl="JP">Japonais</button></div></details>
+          </div>
           <div class="tools" style="margin-top:8px"><div class="seg" role="group" aria-label="Tri" style="width:100%;display:flex"><button data-ss="recent">Récents</button><button data-ss="price">Prix ↓</button><button data-ss="up">Hausse</button><button data-ss="down">Baisse</button></div></div>
           <p class="psub" id="sealMeta" style="margin:0 0 10px"></p>
           <div id="sealList"></div>
@@ -3164,9 +3168,16 @@ function setExMode(m){
 }
 document.querySelectorAll(".exmode button").forEach(b=>b.onclick=()=>setExMode(b.dataset.mode));
 $("#sealTypes").innerHTML = STYPES.map(([k,l])=>`<button data-st="${k}" aria-pressed="${SEALED.t===k}">${l}</button>`).join("");
-$("#sealTypes").querySelectorAll("button").forEach(b=>b.onclick=()=>{ SEALED.t=b.dataset.st; store.set("sealT",SEALED.t); SEALED.n=60; $("#sealTypes").querySelectorAll("button").forEach(x=>x.setAttribute("aria-pressed", x===b)); renderSealed(); });
+// Type et Langue : menus déroulants (comme État et Langue sur la fiche d'une carte)
+const SL_LBL = {all:"Toutes", EN:"Anglais", JP:"Japonais"};
+const sealDDLbl = ()=>{ $("#sealTypeLbl").textContent = SEALED.t==="all" ? "Tous" : (STYPE_LBL[SEALED.t]||"Tous"); $("#sealLangLbl").textContent = SL_LBL[SEALED.lg] || "Toutes"; };
+const sealDDs = ["#sealTypeDD","#sealLangDD"];
+sealDDs.forEach(k=>$(k).addEventListener("toggle", ()=>{ if($(k).open) sealDDs.forEach(o=>{ if(o!==k) $(o).open = false; }); }));
+document.addEventListener("click", e=>{ if(!e.target.closest(".sdd")) sealDDs.forEach(k=>{ if($(k)) $(k).open = false; }); });
+$("#sealTypes").querySelectorAll("button").forEach(b=>b.onclick=()=>{ SEALED.t=b.dataset.st; store.set("sealT",SEALED.t); SEALED.n=60; $("#sealTypes").querySelectorAll("button").forEach(x=>x.setAttribute("aria-pressed", x===b)); $("#sealTypeDD").open = false; sealDDLbl(); renderSealed(); });
 document.querySelectorAll("[data-ss]").forEach(b=>{ b.setAttribute("aria-pressed", b.dataset.ss===SEALED.sort); b.onclick=()=>{ SEALED.sort=b.dataset.ss; store.set("sealSort",SEALED.sort); SEALED.n=60; document.querySelectorAll("[data-ss]").forEach(x=>x.setAttribute("aria-pressed", x===b)); renderSealed(); }; });
-document.querySelectorAll("[data-sl]").forEach(b=>{ b.setAttribute("aria-pressed", b.dataset.sl===SEALED.lg); b.onclick=()=>{ SEALED.lg=b.dataset.sl; store.set("sealLg",SEALED.lg); SEALED.n=60; document.querySelectorAll("[data-sl]").forEach(x=>x.setAttribute("aria-pressed",x===b)); renderSealed(); }; });
+document.querySelectorAll("[data-sl]").forEach(b=>{ b.setAttribute("aria-pressed", b.dataset.sl===SEALED.lg); b.onclick=()=>{ SEALED.lg=b.dataset.sl; store.set("sealLg",SEALED.lg); SEALED.n=60; document.querySelectorAll("[data-sl]").forEach(x=>x.setAttribute("aria-pressed",x===b)); $("#sealLangDD").open = false; sealDDLbl(); renderSealed(); }; });
+sealDDLbl();
 let sealQT=null; $("#sealQ").addEventListener("input", e=>{ SEALED.q=e.target.value; SEALED.n=60; clearTimeout(sealQT); sealQT=setTimeout(renderSealed,150); });
 /* Prix français : Cardmarket (la place de marché de référence en France), relié à chaque produit TCGplayer quand c'est le même,
    plus tous les produits vendus seulement en Europe. SEALED.all = la liste fusionnée, chaque produit a son prix FR (fr) et/ou US (m). */
@@ -3199,7 +3210,7 @@ async function renderSealed(){
   const D = SEALED.data, q = norm(SEALED.q), ALL = sealMerge();
   let l = ALL.filter(x => (SEALED.t==="all" || x.t===SEALED.t) && (SEALED.lg==="all" || (x.lg||"EN")===SEALED.lg) && (!q || q.split(/\s+/).every(w=>x.sq.includes(w))));
   // n'affiche que les types présents dans les données
-  if(!SEALED.typesDone){ SEALED.typesDone = true; const have = new Set(D.items.map(x=>x.t)); $("#sealTypes").querySelectorAll("button").forEach(b=>{ if(b.dataset.st!=="all" && !have.has(b.dataset.st)) b.hidden = true; }); if(!D.items.some(x=>x.lg==="JP")) $("#sealLang").hidden = true; }
+  if(!SEALED.typesDone){ SEALED.typesDone = true; const have = new Set(D.items.map(x=>x.t)); $("#sealTypes").querySelectorAll("button").forEach(b=>{ if(b.dataset.st!=="all" && !have.has(b.dataset.st)) b.hidden = true; }); if(!D.items.some(x=>x.lg==="JP")) $("#sealLangDD").hidden = true; }
   // variation : Cardmarket (tendance contre la moyenne 7 jours) d'abord, sinon TCGplayer
   const frPct = x => { const c = x.cmx; return c && c.tr!=null && c.a7 ? (c.tr - c.a7) / c.a7 * 100 : null; };
   const k7 = x => frPct(x) ?? sPct(x,"c7") ?? sPct(x,"c1");

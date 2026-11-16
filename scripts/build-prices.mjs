@@ -1,8 +1,9 @@
 // Cotes de toutes les cartes, en un seul fichier : l'app affiche les prix d'une extension d'un coup,
 // au lieu de demander la fiche de chaque carte une par une à TCGdex (jusqu'à 300 requêtes par extension).
-// Relu 3 fois par jour par GitHub. Même calcul que l'app : fiche FR (sinon EN), variante principale,
+// Relu 9 fois par jour par GitHub (8 h, 10 h, 12 h, 15 h, 18 h, 20 h, 23 h, 2 h, 5 h, heure de Paris). Même calcul que l'app : fiche FR (sinon EN), variante principale,
 // cote Cardmarket incohérente remplacée par le prix TCGplayer en € (extensions Écarlate et Violet / Méga-Évolution).
 // Sortie : prices.json { v, built, n, p: { idExtension: { numéro: [cote, moy. 1 j, moy. 7 j, moy. 30 j] | 0 } } }
+//   + history/<idExtension>.json : la cote de chaque jour, pour les courbes de l'app.
 //   0 = carte relue, sans cote.
 import fs from "node:fs";
 
@@ -128,6 +129,29 @@ console.log("cartes cotées :", priced, "· échecs réseau :", failed);
 if (priced < 5000) { console.error("Trop peu de cartes cotées, rien n'est publié"); process.exit(1); }
 fs.writeFileSync("prices.json", JSON.stringify({v: 1, built: new Date().toISOString(), n: priced, p: P}));
 console.log("prices.json :", (fs.statSync("prices.json").size / 1024).toFixed(0), "Ko");
+// historique jour par jour : history/<extension>.json { v: 1, d0: "AAAA-MM-JJ", p: { numéro: [cote en centimes, un nombre par jour depuis d0] } }
+//   null = pas de cote ce jour-là. Relancé 9 fois par jour : seule la case du jour est réécrite, le fichier ne change que si la cote bouge.
+//   Une carte non relue (échec réseau) garde ses jours précédents.
+{
+  const day = new Date().toISOString().slice(0, 10), dn = s => Math.round(Date.parse(s + "T00:00:00Z") / 864e5);
+  fs.mkdirSync("history", {recursive: true});
+  let files = 0, kb = 0;
+  for (const [sid, cards] of Object.entries(P)) {
+    const f = `history/${sid}.json`;
+    let h = null; try { h = JSON.parse(fs.readFileSync(f, "utf8")); } catch (e) {}
+    if (!h || h.v !== 1 || !h.d0) h = {v: 1, d0: day, p: {}};
+    const i = dn(day) - dn(h.d0); if (i < 0) continue;
+    for (const [n, a] of Object.entries(cards)) {
+      const c = a ? Math.round(a[0] * 100) : null, row = h.p[n] || [];
+      if (c == null && !row.length) continue;
+      while (row.length < i) row.push(null);
+      row[i] = c; h.p[n] = row;
+    }
+    if (!Object.keys(h.p).length) continue;
+    const txt = JSON.stringify(h); fs.writeFileSync(f, txt); files++; kb += txt.length / 1024;
+  }
+  console.log("historique :", files, "extensions,", kb.toFixed(0), "Ko");
+}
 // même fiche Cardmarket reliée à plusieurs cartes différentes : au moins une des cotes est celle d'une autre carte
 const dup = [...byProd.entries()].filter(([, l]) => l.length > 1).map(([id, l]) => ({idProduct: id, cards: l}));
 const bySet = {}; for (const k of ["fixed", "tp", "gap"]) for (const r of A[k]) ((bySet[r.set] ||= {fixed: 0, tp: 0, gap: 0, dup: 0})[k])++;

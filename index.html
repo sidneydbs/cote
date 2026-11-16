@@ -468,11 +468,22 @@ html{background:var(--panel)}
 .wper button{min-height:36px;border-radius:9px;font:700 12.5px/1 var(--f-mono);color:var(--muted)}
 .wper button[aria-pressed="true"]{background:var(--fg);color:var(--ink)}
 /* courbe de la cote sur la fiche carte */
-.pxh{margin-top:14px;touch-action:none;user-select:none;-webkit-user-select:none}
-.pxh .pxhr{display:flex;justify-content:space-between;gap:8px;font:600 12px/1.3 var(--f-mono);color:var(--muted);min-height:16px}
-.pxh .pxhr .up{color:var(--up)}.pxh .pxhr .down{color:var(--down)}
-.pxh svg{display:block;width:100%;height:120px;margin-top:6px;cursor:crosshair}
-.pxh .wper{grid-template-columns:repeat(5,minmax(0,1fr))}
+.pxh{margin-top:14px;user-select:none;-webkit-user-select:none}
+.pxh .pxhr{display:flex;justify-content:space-between;align-items:center;gap:8px;font:600 12px/1.3 var(--f-mono);color:var(--muted);min-height:24px;flex-wrap:wrap}
+.pxh .pxbadge{display:inline-flex;align-items:center;gap:4px;padding:3px 9px;border-radius:999px;font:700 12.5px var(--f-mono)}
+.pxh .pxbadge.up{background:color-mix(in srgb,var(--up) 16%,transparent);color:var(--up)}
+.pxh .pxbadge.down{background:color-mix(in srgb,var(--down) 16%,transparent);color:var(--down)}
+.pxh .pxbadge.flat{background:var(--panel-2);color:var(--muted)}
+.pxh .pxplot{position:relative;margin:10px 0 0;padding:0 0 22px}
+.pxh svg{display:block;width:100%;height:170px;cursor:crosshair;touch-action:pan-y}
+.pxh .pxy{position:absolute;right:0;font:600 10.5px var(--f-mono);color:var(--muted);transform:translateY(-50%);background:var(--panel);padding:0 3px;pointer-events:none;white-space:nowrap}
+.pxh .pxy.hi{transform:translateY(-120%)}.pxh .pxy.lo{transform:translateY(20%)}
+.pxh .pxx{position:absolute;bottom:0;font:600 10.5px var(--f-mono);color:var(--muted);transform:translateX(-50%);white-space:nowrap;pointer-events:none}
+.pxh .pxx.start{transform:none}.pxh .pxx.end{transform:translateX(-100%)}
+.pxh .pxtip{position:absolute;top:0;min-width:150px;padding:9px 11px;border-radius:12px;background:var(--ink);border:1px solid var(--line);box-shadow:0 10px 26px rgba(0,0,0,.5);pointer-events:none;display:grid;gap:3px;font-size:12px;z-index:2}
+.pxh .pxtip b{font:700 15px var(--f-mono);color:var(--border-yellow)}
+.pxh .pxtip span{color:var(--muted)}
+.pxh .wper{grid-template-columns:repeat(5,minmax(0,1fr));margin-top:10px}
 .hnote{margin:8px 0 0}
 /* hausses et baisses du classeur */
 .wmov{margin-top:12px;display:grid;gap:4px}
@@ -1397,7 +1408,7 @@ img.px.reveal{animation:stpRev .9s ease-out}
 </head>
 <body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="pb" viewBox="0 0 100 100"><defs><linearGradient id="pbV" x1="0" y1="0" x2="1" y2="1"><stop offset="0" style="stop-color:var(--pb1)"/><stop offset=".5" style="stop-color:var(--pb2)"/><stop offset="1" style="stop-color:var(--pb3)"/></linearGradient><radialGradient id="pbB" cx=".38" cy=".75" r=".75"><stop offset="0" style="stop-color:var(--pbb1)"/><stop offset="1" style="stop-color:var(--pbb2)"/></radialGradient><radialGradient id="pbC" cx=".4" cy=".35" r=".7"><stop offset="0" style="stop-color:var(--pbc1)"/><stop offset=".55" style="stop-color:var(--pbc2)"/><stop offset="1" style="stop-color:var(--pbc3)"/></radialGradient></defs><path d="M3 50a47 47 0 0 1 94 0z" fill="url(#pbV)"/><path d="M3 50a47 47 0 0 0 94 0z" fill="url(#pbB)"/><rect x="3" y="45.5" width="94" height="9" fill="#09080D"/><circle cx="50" cy="50" r="47" fill="none" stroke="#09080D" stroke-width="4"/><circle cx="50" cy="50" r="15.5" fill="#09080D"/><circle cx="50" cy="50" r="10" fill="url(#pbC)" style="stroke:var(--pb2)" stroke-width="2"/><path d="M19 33a35 35 0 0 1 17-15" fill="none" stroke="#fff" stroke-opacity=".38" stroke-width="4" stroke-linecap="round"/></symbol></svg>
-<script>window.__APPV="110";</script>
+<script>window.__APPV="111";</script>
 <div class="splash" id="splash" aria-hidden="true"><i class="hole"></i><i class="halo"></i><div class="bw"><svg class="b" viewBox="0 0 100 100"><use href="#pb"/></svg><svg class="t" viewBox="0 0 100 100"><use href="#pb"/></svg></div><i class="glow"></i></div>
 <script>setTimeout(function(){ if(window.__booted) return;
   var b=document.createElement("div"); b.setAttribute("role","alert");
@@ -1432,7 +1443,7 @@ img.px.reveal{animation:stpRev .9s ease-out}
   <!-- ===== EXTENSIONS ===== -->
   <section class="view" id="homeView">
     <div class="scroll">
-      <div class="homebar"><span id="avatSlot"><svg class="pball" viewBox="0 0 100 100" aria-hidden="true"><use href="#pb"/></svg></span><span class="brand">DEX<b>·</b>SCAN</span><button class="thbtn" id="themeBtn" aria-label="Changer de thème"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.6-.9 1.2-1.8-.5-1.1.2-2.2 1.4-2.2H17a4 4 0 0 0 4-4c0-5.5-4-10-9-10z"/><circle cx="7.5" cy="11" r="1.2"/><circle cx="10" cy="7" r="1.2"/><circle cx="15" cy="7" r="1.2"/></svg></button><span class="ver">v110</span></div>
+      <div class="homebar"><span id="avatSlot"><svg class="pball" viewBox="0 0 100 100" aria-hidden="true"><use href="#pb"/></svg></span><span class="brand">DEX<b>·</b>SCAN</span><button class="thbtn" id="themeBtn" aria-label="Changer de thème"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.6-.9 1.2-1.8-.5-1.1.2-2.2 1.4-2.2H17a4 4 0 0 0 4-4c0-5.5-4-10-9-10z"/><circle cx="7.5" cy="11" r="1.2"/><circle cx="10" cy="7" r="1.2"/><circle cx="15" cy="7" r="1.2"/></svg></button><span class="ver">v111</span></div>
       <button class="banner" id="pxBanner" hidden></button>
       <div class="hhead"><div><span class="hdate" id="hDate"></span><div class="htitle"><h1 class="h1">Accueil</h1><button class="hsearch hrank" id="hRank" aria-label="Classement"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 21h8M12 17v4"/><path d="M7 4h10v5a5 5 0 0 1-10 0z"/><path d="M17 5h3v2a3 3 0 0 1-3 3M7 5H4v2a3 3 0 0 0 3 3"/></svg></button></div></div><button class="hsearch" id="hSearch" aria-label="Rechercher une carte"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></button></div>
       <div class="total htot" id="hTot"></div>
@@ -2144,16 +2155,23 @@ function closeSheet(){ const s=$("#sheet"); s.classList.remove("open"); s.setAtt
 $("#closeSheet").onclick = closeSheet;
 
 let currentDiag = null;
+const CARDS = new Map();   // fiches déjà ouvertes (30 dernières) : revenir en arrière n'attend plus le réseau
 async function showCard(id, alts, diag=null){
   currentAlts = alts || currentAlts; currentVariant = 0; currentDiag = diag; currentEd = null;
+  const memo = CARDS.get(id);
+  if(memo && Date.now() - memo.t < 30*60e3){
+    openSheet(); current = memo.card; renderCard(); $("#sheetBody").scrollTop = 0;
+    enNameFix({id}).catch(()=>{}); checkSecret(memo.card, !!diag); return;
+  }
   $("#sheetTitle").textContent = "Chargement…";
   $("#sheetBody").innerHTML = `<div class="empty"><span class="loader"></span><br><br>Récupération de la cote…</div>`;
   openSheet();
   try{
-    const enP = enNameFix({id}).catch(()=>{});   // nom anglais demandé en même temps : le lien eBay États-Unis est juste dès l'ouverture
+    const enP = EN_NAME[id] ? null : enNameFix({id}).catch(()=>{});   // nom anglais demandé en même temps : le lien eBay États-Unis est juste dès l'ouverture
     const card = await getCard(id);
     if(!card) throw new Error("introuvable");
-    await Promise.race([enP, new Promise(r=>setTimeout(r, 700))]);
+    if(enP) await Promise.race([enP, new Promise(r=>setTimeout(r, 350))]);
+    CARDS.delete(id); CARDS.set(id, {card, t:Date.now()}); if(CARDS.size > 30) CARDS.delete(CARDS.keys().next().value);
     current = card; renderCard();
     checkSecret(card, !!diag);
   }catch(e){
@@ -2936,49 +2954,67 @@ function histPts(h, n){
 /* courbe de prix : périodes, parcours au doigt (même principe que la courbe du classeur) */
 const HCH = {per: store.get("hPer","30")};
 function drawHist(box, all){
+  // courbe de la cote : période choisie, lignes du plus haut et du plus bas, dates, bulle d'info au doigt
+  const PER = [["7","7 J"],["30","30 J"],["90","90 J"],["365","1 A"],["all","Tout"]];
+  if(!PER.some(p=>p[0]===HCH.per)) HCH.per = "30";
   const per = HCH.per, from = per==="all" ? -Infinity : Date.now() - (+per)*864e5 - 6*36e5;
   let l = all.filter(p=>p.t >= from); if(l.length < 2) l = all.slice(-2);
-  const W = 340, H = 120, P = 6, vs = l.map(p=>p.v), mn = Math.min(...vs), mx = Math.max(...vs), t0 = l[0].t, t1 = l[l.length-1].t;
-  const X = t => P + (t1>t0 ? (t-t0)/(t1-t0) : 1) * (W-2*P), Y = v => H-P - (mx>mn ? (v-mn)/(mx-mn) : .5) * (H-2*P);
+  const W = 340, H = 170, P = 10, vs = l.map(p=>p.v), mn = Math.min(...vs), mx = Math.max(...vs), t0 = l[0].t, t1 = l[l.length-1].t;
+  const pad = (mx - mn) * .12 || mx * .05 || 1, lo = Math.max(0, mn - pad), hi = mx + pad;
+  const X = t => (t1>t0 ? (t-t0)/(t1-t0) : 1) * W, Y = v => P + (1 - (v-lo)/(hi-lo)) * (H-2*P);
   const line = l.map(p=>`${X(p.t).toFixed(1)},${Y(p.v).toFixed(1)}`).join(" ");
-  const chg = (a, b, lbl) => { const d = b - a, pc = a ? d/a*100 : 0, cls = Math.abs(pc) < .05 ? "" : d > 0 ? "up" : "down", sg = d>0?"+":d<0?"−":"";
-    return `<span class="${cls}">${cls==="up"?"▲":cls==="down"?"▼":"■"} ${sg}${eurN(Math.abs(d))} € (${sg}${Math.abs(pc).toFixed(1).replace(".",",")} %)</span> ${esc(lbl)}`; };
-  const lbl = per==="all" ? "depuis le début" : `sur ${({30:"1 mois",90:"3 mois",180:"6 mois",365:"1 an"})[per]}`;
-  const up = l[l.length-1].v >= l[0].v, colr = up ? "var(--up)" : "var(--down)", hex = up ? "#2fd18b" : "#ff5b5b";
-  box.innerHTML = `<div class="pxhr"><span id="pxHRead">${chg(l[0].v, l[l.length-1].v, lbl)}</span><span id="pxHDate"></span></div>
-    <svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" role="img" aria-label="Évolution de la cote ${esc(lbl)}">
-      <defs><linearGradient id="pxg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${hex}" stop-opacity=".3"/><stop offset="1" stop-color="${hex}" stop-opacity="0"/></linearGradient></defs>
-      <polygon points="${X(t0).toFixed(1)},${H} ${line} ${X(t1).toFixed(1)},${H}" fill="url(#pxg)"/>
-      <polyline points="${line}" fill="none" stroke="${colr}" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round" vector-effect="non-scaling-stroke"/>
-      <line class="cur" x1="0" x2="0" y1="0" y2="${H}" stroke="var(--muted)" stroke-width="1" stroke-dasharray="3 3" vector-effect="non-scaling-stroke" opacity="0"/>
-      <circle class="dot" r="4" cx="${X(t1).toFixed(1)}" cy="${Y(l[l.length-1].v).toFixed(1)}" fill="${colr}"/>
-    </svg>
-    <div class="wper" role="group" aria-label="Période">${[["30","1 M"],["90","3 M"],["180","6 M"],["365","1 A"],["all","Tout"]].map(([k,t])=>`<button data-hp="${k}" aria-pressed="${k===per}">${t}</button>`).join("")}</div>
-    ${l.some(p=>p.est)?`<div class="wnote">Points avant le ${esc(HIST_START)} estimés d'après les moyennes Cardmarket</div>`:""}`;
+  const first = l[0].v, last = l[l.length-1].v, d = last - first, pc = first ? d/first*100 : 0;
+  const cls = Math.abs(pc) < .05 ? "flat" : d > 0 ? "up" : "down", colr = cls==="down" ? "var(--down)" : "var(--up)", hex = cls==="down" ? "#ff5b5b" : "#2fd18b";
+  const perLbl = PER.find(p=>p[0]===per)[1];
+  const fmtD = t => new Date(t).toLocaleDateString("fr-FR",{day:"2-digit",month:"2-digit"});
+  const iHi = vs.indexOf(mx), iLo = vs.indexOf(mn);
+  const xl = l.length > 2 ? [l[0], l[Math.floor((l.length-1)/2)], l[l.length-1]] : [l[0], l[l.length-1]];
+  box.innerHTML = `<div class="pxhr"><span class="pxbadge ${cls}">${cls==="up"?"▲":cls==="down"?"▼":"■"} ${d>0?"+":d<0?"−":""}${Math.abs(pc).toFixed(1).replace(".",",")} % (${perLbl})</span><span id="pxHRead">${d>0?"+":d<0?"−":""}${eurN(Math.abs(d))} €</span></div>
+    <div class="pxplot">
+      <svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" role="img" aria-label="Évolution de la cote sur ${esc(perLbl)} : de ${eurN(first)} € à ${eurN(last)} €">
+        <defs><linearGradient id="pxg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${hex}" stop-opacity=".28"/><stop offset="1" stop-color="${hex}" stop-opacity="0"/></linearGradient></defs>
+        <line x1="0" x2="${W}" y1="${Y(mx).toFixed(1)}" y2="${Y(mx).toFixed(1)}" stroke="var(--muted)" stroke-width="1" stroke-dasharray="4 4" opacity=".55" vector-effect="non-scaling-stroke"/>
+        <line x1="0" x2="${W}" y1="${Y(mn).toFixed(1)}" y2="${Y(mn).toFixed(1)}" stroke="var(--muted)" stroke-width="1" stroke-dasharray="4 4" opacity=".55" vector-effect="non-scaling-stroke"/>
+        <polygon points="0,${H} ${line} ${W},${H}" fill="url(#pxg)"/>
+        <polyline points="${line}" fill="none" stroke="${colr}" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round" vector-effect="non-scaling-stroke"/>
+        <line class="cur" x1="0" x2="0" y1="0" y2="${H}" stroke="var(--muted)" stroke-width="1" stroke-dasharray="3 3" vector-effect="non-scaling-stroke" opacity="0"/>
+      </svg>
+      <span class="pxdot" style="position:absolute;width:10px;height:10px;margin:-5px 0 0 -5px;border-radius:50%;background:${colr};box-shadow:0 0 0 3px var(--panel);left:${(X(t1)/W*100).toFixed(2)}%;top:${Y(last).toFixed(1)}px;pointer-events:none"></span>
+      <span class="pxy hi" style="top:${Y(mx).toFixed(1)}px">Haut ${eurN(mx)} €</span>
+      ${iLo!==iHi?`<span class="pxy lo" style="top:${Y(mn).toFixed(1)}px">Bas ${eurN(mn)} €</span>`:""}
+      ${xl.map((p,i)=>`<span class="pxx${i===0?" start":i===xl.length-1?" end":""}" style="left:${(X(p.t)/W*100).toFixed(2)}%">${fmtD(p.t)}</span>`).join("")}
+      <div class="pxtip" hidden></div>
+    </div>
+    <div class="wper" role="group" aria-label="Période">${PER.map(([k,t])=>`<button data-hp="${k}" aria-pressed="${k===per}">${t}</button>`).join("")}</div>
+    ${l.some(p=>p.est)?`<div class="wnote">Avant le ${esc(HIST_START)}, les points sont les moyennes Cardmarket (30 jours, 7 jours, 24 h) : la courbe jour par jour se remplit chaque jour.</div>`:""}`;
   box.querySelectorAll("[data-hp]").forEach(b=>b.onclick=()=>{ HCH.per = b.dataset.hp; store.set("hPer", HCH.per); drawHist(box, all); });
-  const svg = box.querySelector("svg"), cur = svg.querySelector(".cur"), dot = svg.querySelector(".dot"), base = box.querySelector("#pxHRead").innerHTML;
+  const svg = box.querySelector("svg"), cur = svg.querySelector(".cur"), dot = box.querySelector(".pxdot"), tip = box.querySelector(".pxtip"), plot = box.querySelector(".pxplot");
   const show = ev=>{
-    const r = svg.getBoundingClientRect(), x = ((ev.touches?.[0]?.clientX ?? ev.clientX) - r.left) / r.width * W;
+    const r = svg.getBoundingClientRect(), x = ((ev.clientX ?? 0) - r.left) / r.width * W;
     let b = l[0]; for(const p of l) if(Math.abs(X(p.t)-x) < Math.abs(X(b.t)-x)) b = p;
-    cur.setAttribute("x1", X(b.t)); cur.setAttribute("x2", X(b.t)); cur.setAttribute("opacity", 1); dot.setAttribute("cx", X(b.t)); dot.setAttribute("cy", Y(b.v));
-    box.querySelector("#pxHRead").innerHTML = `<b style="color:var(--fg)">${eurN(b.v)} €</b> · ${chg(l[0].v, b.v, "").replace(/ $/,"")}`;
-    box.querySelector("#pxHDate").textContent = new Date(b.t).toLocaleDateString("fr-FR",{day:"numeric",month:"short",year:"2-digit"}) + (b.est ? " · estimé" : "");
+    const px = X(b.t)/W*100;
+    cur.setAttribute("x1", X(b.t)); cur.setAttribute("x2", X(b.t)); cur.setAttribute("opacity", 1);
+    dot.style.left = px.toFixed(2)+"%"; dot.style.top = Y(b.v).toFixed(1)+"px";
+    tip.hidden = false;
+    tip.innerHTML = `<span>${new Date(b.t).toLocaleDateString("fr-FR",{day:"2-digit",month:"2-digit",year:"numeric"})}</span><b>${eurN(b.v)} €</b><span>${b.est ? esc(b.lbl || "estimé") : b.t >= Date.now() - 36e5 ? "cote actuelle" : "cote du jour"}</span>`;
+    const tw = tip.offsetWidth, pw = plot.offsetWidth, left = px/100*pw;
+    tip.style.left = Math.max(0, Math.min(pw - tw, left < pw/2 ? left + 12 : left - tw - 12)) + "px";
   };
-  const reset = ()=>{ cur.setAttribute("opacity",0); dot.setAttribute("cx", X(t1)); dot.setAttribute("cy", Y(l[l.length-1].v)); box.querySelector("#pxHRead").innerHTML = base; box.querySelector("#pxHDate").textContent = ""; };
-  svg.addEventListener("pointerdown", e=>{ svg.setPointerCapture?.(e.pointerId); show(e); });
-  svg.addEventListener("pointermove", e=>{ if(e.pointerType==="mouse" || e.buttons) show(e); });
-  svg.addEventListener("pointerup", reset); svg.addEventListener("pointerleave", reset); svg.addEventListener("pointercancel", reset);
+  const reset = ()=>{ cur.setAttribute("opacity",0); dot.style.left = (X(t1)/W*100).toFixed(2)+"%"; dot.style.top = Y(last).toFixed(1)+"px"; tip.hidden = true; };
+  svg.addEventListener("pointerdown", e=>show(e));
+  svg.addEventListener("pointermove", e=>{ if(e.pointerType==="mouse" || e.buttons || e.pressure) show(e); });
+  svg.addEventListener("pointerup", ()=>setTimeout(reset, 1600)); svg.addEventListener("pointerleave", reset); svg.addEventListener("pointercancel", reset);
 }
 // fiche carte : la courbe remplace les 4 barres dès qu'il existe au moins un jour enregistré (version principale de la carte)
 async function cardHist(c, suf){
   const box = $("#pxHist"), note = $("#pxHNote"); if(!box) return;
-  if(suf !== ""){ if(note) note.textContent = ""; return; }
-  const cm = c.pricing?.cardmarket, big = cmVal(cm,"trend","") ?? cmVal(cm,"avg","") ?? cmVal(cm,"avg7","");
-  const h = await loadHist(setIdOf(c.id)); if(current?.id !== c.id || !box.isConnected) return;
+  const cm = c.pricing?.cardmarket, v = k => cmVal(cm,k,suf), big = v("trend") ?? v("avg") ?? v("avg7");
+  const h = suf === "" ? await loadHist(setIdOf(c.id)) : null; if(current?.id !== c.id || !box.isConnected) return;
   const today = dayOf(Date.now()), real = histPts(h, cNumOf(c.id)).filter(p=>dayOf(p.t) !== today);
-  if(!real.length || big == null){ if(note) note.textContent = `Courbe jour par jour en préparation : la cote de chaque carte est enregistrée chaque jour depuis le ${HIST_START}.`; return; }
-  const est = [[30,"avg30"],[7,"avg7"],[1,"avg1"]].map(([d,k])=>({t:Date.now()-d*864e5, v:cmVal(cm,k,""), est:true})).filter(p=>p.v!=null && !real.some(q=>Math.abs(q.t-p.t) < 864e5) && p.t < real[0].t);
-  const pts = [...est, ...real, {t:Date.now(), v:big}].sort((a,b)=>a.t-b.t);
+  const est = [[30,"avg30","moyenne des ventes sur 30 jours"],[7,"avg7","moyenne des ventes sur 7 jours"],[1,"avg1","moyenne des ventes sur 24 h"]]
+    .map(([d,k,lbl])=>({t:Date.now()-d*864e5, v:v(k), est:true, lbl})).filter(p=>p.v!=null && !real.some(q=>Math.abs(q.t-p.t) < 864e5) && (!real.length || p.t < real[0].t));
+  const pts = [...est, ...real, ...(big!=null ? [{t:Date.now(), v:big}] : [])].sort((a,b)=>a.t-b.t);
+  if(pts.length < 2){ if(note) note.textContent = `Courbe jour par jour en préparation : la cote de chaque carte est enregistrée chaque jour depuis le ${HIST_START}.`; return; }
   $("#pxBars").hidden = true; box.hidden = false; if(note) note.textContent = "";
   drawHist(box, pts);
 }
@@ -6198,10 +6234,14 @@ $("#closeSheet").onclick = ()=>closeSheet();
 /* bouton retour du téléphone / du navigateur */
 history.replaceState({dex:0}, "");
 history.pushState({dex:1}, "");
+const STANDALONE = navigator.standalone === true || matchMedia("(display-mode: standalone)").matches;
 window.addEventListener("popstate", ()=>{
+  if(G.on && G.lock) return history.pushState({dex:1}, "");   // le geste de l'app est déjà en train de revenir
   if(navBack()) history.pushState({dex:1}, "");
   else if(curView()!=="homeView"){ selectTab("homeView"); history.pushState({dex:1}, ""); }
-  else history.back();   // déjà sur l'Accueil, rien à fermer : on laisse sortir de l'app
+  // déjà sur l'Accueil, rien à fermer : dans l'app installée on reste (sortir relançait l'app sur la Poké Ball d'ouverture)
+  else if(STANDALONE) history.pushState({dex:1}, "");
+  else history.back();
 });
 /* ---------- gestes ---------- */
 function goTab(dir){
@@ -6219,6 +6259,10 @@ function hScrollable(el){
   return false;
 }
 const G = {on:false};
+document.addEventListener("touchstart", e=>{
+  const x = e.touches[0]?.clientX ?? 99;
+  if(e.touches.length===1 && (x < 18 || x > innerWidth - 18) && e.cancelable && !e.target.closest("button,a,summary,input,textarea,select,label,[data-noswipe]")) e.preventDefault();
+}, {passive:false});
 function layerFor(t){ return t==="gov" ? $("#gov") : (t==="card" || t==="sheet") ? $("#sheet") : null; }
 document.addEventListener("touchstart", e=>{
   if(e.touches.length!==1 || G.busy){ G.on = false; return; }
@@ -6236,7 +6280,7 @@ document.addEventListener("touchmove", e=>{
     if(Math.abs(G.dx)>14 && Math.abs(G.dx)>Math.abs(G.dy)*1.4) G.lock = "h";
     else if(G.sheetTop && G.dy>14 && G.dy>Math.abs(G.dx)*1.4) G.lock = "v";
     else if(Math.abs(G.dy)>14){ G.on = false; return; }
-    if(G.lock){ G.layer.style.transition = "none"; }
+    if(G.lock){ G.layer.style.transition = "none"; G.layer.style.willChange = "transform"; }
   }
   if(!G.lock) return;
   if(e.cancelable) e.preventDefault();
@@ -6249,7 +6293,7 @@ document.addEventListener("touchmove", e=>{
 function settle(el, to, done){
   G.busy = true;
   el.style.transition = "transform .15s cubic-bezier(.2,.8,.2,1)"; el.style.transform = to;
-  setTimeout(()=>{ try{ done && done(); }catch(e){} el.style.transition = "none"; el.style.transform = ""; void el.offsetWidth; el.style.transition = ""; G.busy = false; }, 150);
+  setTimeout(()=>{ try{ done && done(); }catch(e){} el.style.transition = "none"; el.style.transform = ""; el.style.willChange = ""; void el.offsetWidth; el.style.transition = ""; G.busy = false; }, 150);
 }
 document.addEventListener("touchend", ()=>{
   if(!G.on || !G.lock){ G.on = false; return; }
@@ -7218,6 +7262,10 @@ if(rkProf()?.on) setTimeout(()=>rkColSync(), 6000);
    Après l'intro, une seule fois par version qui apporte quelque chose à l'utilisateur.
    Nouvelle installation : rien (tout est neuf). Les versions purement techniques n'ont pas d'entrée ici. */
 const NEWS = [
+  {v:111, items:[
+    ["M3 17l6-6 4 4 8-8M14 7h7v7", "Vraie courbe de prix", "Les barres sont remplacées par une courbe : 7 jours, 30 jours, 90 jours, 1 an, avec le plus haut, le plus bas, et le prix du jour en glissant le doigt."],
+    ["M15 18l-6-6 6-6", "Retour en glissant réparé", "Le retour d'une carte à la précédente est instantané, et glisser depuis le bord de l'écran ne relance plus l'app sur la Poké Ball."]
+  ]},
   {v:110, items:[
     ["M4 4h7v16H4zM14 4h6v7h-6zM14 14h6v6h-6z", "Nouvelle fiche carte", "La carte en grand, la cote juste à côté, et des tuiles à toucher : ventes France, ventes États-Unis, annonces Cardmarket et eBay, gradées, ajout à ta collection."]
   ]},

@@ -244,6 +244,7 @@ html{background:var(--panel)}
 .ctile .own{position:absolute;bottom:4px;right:4px;width:16px;height:16px;border-radius:50%;background:var(--up);color:#06281a;display:grid;place-items:center;font:900 10px/1 var(--f-body)}
 .lgrow{margin:2px 0 12px}
 .cdpick button{min-width:46px}
+.fxsort{margin:2px 0 10px}
 /* fiche produit en onglets */
 .pfhero{display:flex;gap:14px;align-items:center}
 .pfph{width:84px;height:84px;flex:none;border-radius:14px;background:var(--panel-2) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cg fill='none' stroke='%23888' stroke-width='6' opacity='.55'%3E%3Ccircle cx='50' cy='50' r='42'/%3E%3Cpath d='M8 50h30M62 50h30'/%3E%3Ccircle cx='50' cy='50' r='12'/%3E%3C/g%3E%3C/svg%3E") center/48% no-repeat;border:1px solid var(--line);overflow:hidden}
@@ -1030,7 +1031,7 @@ html{background:var(--panel)}
 .stp h2{margin:0;font:800 26px/1.05 var(--f-display);font-stretch:125%;letter-spacing:.01em}
 .stp .lede{margin:6px 0 0;color:var(--muted);font-size:14px}
 .stp-stage{position:relative;width:260px;height:270px;margin:8px 0 2px}
-.stp-spr{position:absolute;left:50%;top:6px;width:196px;height:196px;margin-left:-98px;transform-origin:50% 100%;transition:transform .35s cubic-bezier(.3,1.6,.5,1),opacity .2s}
+.stp-spr{position:absolute;left:50%;top:6px;width:192px;height:192px;margin-left:-96px;transform-origin:50% 100%;transition:transform .35s cubic-bezier(.3,1.6,.5,1),opacity .2s}
 .stp-spr.hide{transform:scale(.2) translateY(260px);opacity:0}
 
 .stp-spr.lock{filter:brightness(0) opacity(.8)}
@@ -1090,10 +1091,53 @@ img.px.lock{filter:brightness(0) opacity(.8)}
 img.px.reveal{animation:stpRev .9s ease-out}
 .tmrow{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
 .tmmini{display:flex;flex-direction:column;align-items:center;gap:2px;padding:8px 4px;border-radius:14px;border:2px solid var(--line);background:var(--panel-2);color:var(--fg);min-width:0}
-.tmmini img{width:56px!important;height:56px!important}.tmmini b{font-size:12.5px;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.tmmini small{font-size:10.5px;color:var(--muted)}
+.tmmini img{width:64px!important;height:64px!important}.tmmini b{font-size:12.5px;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.tmmini small{font-size:10.5px;color:var(--muted)}
 .tmmini.on{border-color:var(--border-yellow)}.tmmini.lockd{opacity:.6}
 .thtile.lock2 .sw{filter:grayscale(1) brightness(.5)}
 .lvbig{font:900 30px/1 var(--f-display);color:var(--border-yellow);margin:10px 0 2px}
+/* compagnon : paliers de rareté (Commun 1, Rare 10, Épique 25, Légendaire 50) */
+.pet{position:relative;display:inline-grid;place-items:center;--pc:#a77bff;--pc2:#e3d4ff}
+.pet>img{position:relative;z-index:2}
+.pet.t1>img{filter:drop-shadow(0 0 6px var(--pc))}
+.pet.t2>img{filter:drop-shadow(0 0 1.5px var(--pc2)) drop-shadow(0 0 12px var(--pc))}
+.pet.t3>img{filter:drop-shadow(0 0 1.5px #fff) drop-shadow(0 0 10px var(--pc)) drop-shadow(0 0 22px #ffd84a)}
+.pet .ph{position:absolute;inset:-9%;border-radius:50%;z-index:1;pointer-events:none;-webkit-mask:radial-gradient(circle,transparent 60%,#000 62%,#000 67%,transparent 69%);mask:radial-gradient(circle,transparent 60%,#000 62%,#000 67%,transparent 69%);animation:petspin 8s linear infinite}
+.pet.t2 .ph{background:conic-gradient(transparent,var(--pc),transparent 30%,var(--pc) 50%,transparent 60%,var(--pc) 80%,transparent)}
+.pet.t3 .ph{background:conic-gradient(#ffd84a,var(--pc),#7fe3ff,#ff6bd6,#ffd84a);animation-duration:5s}
+.pet>img.pcr{width:34%!important;height:auto!important}
+.pet .pcr{position:absolute;left:50%;top:-8%;width:34%;transform:translateX(-50%);z-index:3;image-rendering:pixelated;filter:drop-shadow(0 0 6px #ffb300)}
+.pet .pp{position:absolute;inset:0;z-index:1;pointer-events:none}
+.pet .pp i{position:absolute;bottom:12%;width:4px;height:4px;background:var(--pc2);box-shadow:0 0 6px var(--pc);opacity:0;animation:petup 2.8s linear infinite}
+.pet .pp i:nth-child(2n){width:3px;height:3px;background:var(--pc)}
+@keyframes petspin{to{transform:rotate(360deg)}}
+@keyframes petup{0%{opacity:0;transform:translateY(0)}15%{opacity:1}100%{opacity:0;transform:translateY(-120px)}}
+.avat .pet{width:34px;height:34px;border-radius:50%;background:var(--panel-2)}
+.avat .pet img{width:32px;height:32px}
+.avat .pet.t3{box-shadow:0 0 0 2px #ffd84a,0 0 10px #ffb300}.avat .pet.t2{box-shadow:0 0 0 2px var(--pc)}.avat .pet.t1{box-shadow:0 0 0 1.5px color-mix(in srgb,var(--pc) 70%,transparent)}
+.lvsheet .pet{width:176px;height:176px;margin:6px auto 0}.lvsheet .pet>img{width:160px;height:160px}
+.rkspr .pet,.rkcolhead .pet{width:100%;height:100%}.rkspr .pet .ph{inset:-14%}
+.pettag{display:inline-block;margin-top:8px;padding:4px 9px;border-radius:7px;font:800 11px/1 var(--f-mono);letter-spacing:.08em;background:var(--panel-2);color:var(--muted)}
+.pettag.t1{color:#7fe3ff}.pettag.t2{color:#d58bff}.pettag.t3{color:#2a1a00;background:#ffd84a}
+.pettiers{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin:14px 0 2px}
+.pettiers div{padding:7px 2px;border-radius:10px;border:1px solid var(--line);background:var(--panel-2);font:800 10.5px/1.25 var(--f-mono);color:var(--muted)}
+.pettiers div small{display:block;font:600 10px var(--f-body)}
+.pettiers div.on{border-color:var(--pc);color:var(--fg);background:color-mix(in srgb,var(--pc) 16%,var(--panel-2))}
+.pettiers div.done{color:var(--fg)}
+.holo{display:grid;place-items:center;margin:16px 0 4px;perspective:900px}
+.holo .hc{position:relative;width:210px;height:300px;border-radius:14px;padding:9px;background:linear-gradient(145deg,#ffe58a,#d9a520 40%,#fff2b8 55%,#c08a12);box-shadow:0 16px 36px rgba(0,0,0,.5),0 0 28px color-mix(in srgb,var(--pc) 45%,transparent);transition:transform .12s ease-out;animation:hcsway 6s ease-in-out infinite}
+.holo .hc.live{animation:none}
+.holo .hin{height:100%;border-radius:8px;overflow:hidden;background:linear-gradient(170deg,color-mix(in srgb,var(--pc) 55%,#140f22),#140f22 70%);display:grid;grid-template-rows:auto 1fr auto;padding:8px;gap:6px;text-align:left}
+.holo .htop{display:flex;justify-content:space-between;font:800 11px var(--f-mono);color:#fff}.holo .htop span{color:#ffd84a}
+.holo .hart{border-radius:6px;border:2px solid #ffe58a;background:radial-gradient(circle at 50% 60%,color-mix(in srgb,var(--pc) 70%,#fff) 0,var(--pc) 25%,#120d20 75%);display:grid;place-items:center}
+.holo .hart img{width:128px;height:128px}
+.holo .htx{font:600 10.5px/1.35 var(--f-body);color:#e9e2ff}.holo .htx b{display:flex;justify-content:space-between;font:800 10px var(--f-mono);color:#fff;margin-bottom:3px}
+.holo .hfoil{position:absolute;inset:0;border-radius:14px;pointer-events:none;mix-blend-mode:color-dodge;opacity:.5;background:linear-gradient(115deg,transparent 20%,rgba(255,0,170,.55) 32%,rgba(0,255,230,.55) 42%,rgba(255,255,0,.5) 52%,rgba(120,80,255,.5) 62%,transparent 75%);background-size:260% 260%;background-position:var(--fx,50%) var(--fy,50%);animation:hcfoil 6s ease-in-out infinite}
+.holo .hc.live .hfoil{animation:none}
+@keyframes hcsway{0%,100%{transform:rotateY(-12deg) rotateX(6deg)}50%{transform:rotateY(12deg) rotateX(-4deg)}}
+@keyframes hcfoil{0%,100%{background-position:10% 30%}50%{background-position:90% 70%}}
+.holo-lock{margin-top:14px;padding:12px;border-radius:14px;border:1px dashed var(--line);color:var(--muted);font-size:13px}
+@media (prefers-reduced-motion:reduce){.pet .ph,.pet .pp i,.holo .hc,.holo .hfoil{animation:none}}
+
 .rkhead{display:flex;align-items:center;justify-content:space-between;gap:10px}
 .rkme{height:40px;padding:0 14px;border-radius:12px;border:1px solid var(--line);background:var(--panel);color:var(--fg);font-weight:700;font-size:13px}
 .rkjoin{text-align:center;padding:10px 4px}.rkjoin img{width:120px;height:120px}.rkjoin h3{margin:6px 0 6px;font-size:20px}
@@ -1110,7 +1154,7 @@ img.px.reveal{animation:stpRev .9s ease-out}
 .rklist{display:flex;flex-direction:column;gap:6px}
 .rkrow{display:grid;grid-template-columns:30px 44px 1fr auto;gap:10px;align-items:center;padding:6px 12px 6px 8px;border-radius:14px;background:var(--panel);border:1px solid var(--line);color:var(--fg);text-align:left;width:100%}
 .rkpos{font:800 15px/1 var(--f-mono);color:var(--muted);text-align:center}
-.rkspr img{width:44px;height:44px;display:block}
+.rkspr img{width:32px;height:32px;display:block}
 .rkn{min-width:0}.rkn b{display:block;font-size:15px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.rkn small{display:block;font-size:12px;color:var(--muted);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .rksc{text-align:right}.rksc b{display:block;font:800 15px/1.1 var(--f-mono);color:var(--border-yellow)}.rksc small{font:600 11.5px/1.3 var(--f-mono);color:var(--muted)}
 .rkmine{margin-top:12px;padding-top:10px;border-top:1px dashed var(--line)}
@@ -1262,7 +1306,7 @@ img.px.reveal{animation:stpRev .9s ease-out}
 </head>
 <body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="pb" viewBox="0 0 100 100"><defs><linearGradient id="pbV" x1="0" y1="0" x2="1" y2="1"><stop offset="0" style="stop-color:var(--pb1)"/><stop offset=".5" style="stop-color:var(--pb2)"/><stop offset="1" style="stop-color:var(--pb3)"/></linearGradient><radialGradient id="pbB" cx=".38" cy=".75" r=".75"><stop offset="0" style="stop-color:var(--pbb1)"/><stop offset="1" style="stop-color:var(--pbb2)"/></radialGradient><radialGradient id="pbC" cx=".4" cy=".35" r=".7"><stop offset="0" style="stop-color:var(--pbc1)"/><stop offset=".55" style="stop-color:var(--pbc2)"/><stop offset="1" style="stop-color:var(--pbc3)"/></radialGradient></defs><path d="M3 50a47 47 0 0 1 94 0z" fill="url(#pbV)"/><path d="M3 50a47 47 0 0 0 94 0z" fill="url(#pbB)"/><rect x="3" y="45.5" width="94" height="9" fill="#09080D"/><circle cx="50" cy="50" r="47" fill="none" stroke="#09080D" stroke-width="4"/><circle cx="50" cy="50" r="15.5" fill="#09080D"/><circle cx="50" cy="50" r="10" fill="url(#pbC)" style="stroke:var(--pb2)" stroke-width="2"/><path d="M19 33a35 35 0 0 1 17-15" fill="none" stroke="#fff" stroke-opacity=".38" stroke-width="4" stroke-linecap="round"/></symbol></svg>
-<script>window.__APPV="102";</script>
+<script>window.__APPV="103";</script>
 <div class="splash" id="splash" aria-hidden="true"><i class="hole"></i><i class="halo"></i><div class="bw"><svg class="b" viewBox="0 0 100 100"><use href="#pb"/></svg><svg class="t" viewBox="0 0 100 100"><use href="#pb"/></svg></div><i class="glow"></i></div>
 <script>setTimeout(function(){ if(window.__booted) return;
   var b=document.createElement("div"); b.setAttribute("role","alert");
@@ -1297,7 +1341,7 @@ img.px.reveal{animation:stpRev .9s ease-out}
   <!-- ===== EXTENSIONS ===== -->
   <section class="view" id="homeView">
     <div class="scroll">
-      <div class="homebar"><span id="avatSlot"><svg class="pball" viewBox="0 0 100 100" aria-hidden="true"><use href="#pb"/></svg></span><span class="brand">DEX<b>·</b>SCAN</span><button class="thbtn" id="themeBtn" aria-label="Changer de thème"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.6-.9 1.2-1.8-.5-1.1.2-2.2 1.4-2.2H17a4 4 0 0 0 4-4c0-5.5-4-10-9-10z"/><circle cx="7.5" cy="11" r="1.2"/><circle cx="10" cy="7" r="1.2"/><circle cx="15" cy="7" r="1.2"/></svg></button><span class="ver">v102</span></div>
+      <div class="homebar"><span id="avatSlot"><svg class="pball" viewBox="0 0 100 100" aria-hidden="true"><use href="#pb"/></svg></span><span class="brand">DEX<b>·</b>SCAN</span><button class="thbtn" id="themeBtn" aria-label="Changer de thème"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.6-.9 1.2-1.8-.5-1.1.2-2.2 1.4-2.2H17a4 4 0 0 0 4-4c0-5.5-4-10-9-10z"/><circle cx="7.5" cy="11" r="1.2"/><circle cx="10" cy="7" r="1.2"/><circle cx="15" cy="7" r="1.2"/></svg></button><span class="ver">v103</span></div>
       <div class="hhead"><div><span class="hdate" id="hDate"></span><div class="htitle"><h1 class="h1">Accueil</h1><button class="hsearch hrank" id="hRank" aria-label="Classement"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 21h8M12 17v4"/><path d="M7 4h10v5a5 5 0 0 1-10 0z"/><path d="M17 5h3v2a3 3 0 0 1-3 3M7 5H4v2a3 3 0 0 0 3 3"/></svg></button></div></div><button class="hsearch" id="hSearch" aria-label="Rechercher une carte"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></button></div>
       <div class="total htot" id="hTot"></div>
       <div class="hqa">
@@ -2524,6 +2568,8 @@ function colFolders(groups, by, OWNI, gen, list){
   const s = g && F.set ? g.sets.find(x=>x.id===F.set) : null; if(!s) F.set = null;
   let inner;
   if(!s && COLV.sel) selEnd(false);
+  // 3 rangements visibles d'un coup d'œil (Avancement reste dans « Trier et filtrer »)
+  const xsort = `<div class="fchips fxsort" role="group" aria-label="Ranger les extensions">${[["serie","Par série"],["value","Valeur"],["recent","Récentes"]].map(([k,l])=>`<button data-fxs="${k}" aria-pressed="${COLV.sort===k}">${l}</button>`).join("")}</div>`;
   if(s){
     // une extension ouverte : avancement, filtre Toutes / Possédées / Manquantes, puis les cartes
     const st = setStats(s, OWNI.get(s.id)), v = val(s), show = CF.show;
@@ -2537,10 +2583,10 @@ function colFolders(groups, by, OWNI, gen, list){
       + `<div class="fhead"><span>${g.sets.length} extension${g.sets.length>1?"s":""}</span><b>${sv?eurS(sv)+" · ":""}${ss.pc} %</b></div><div class="tgrid">${g.sets.map(x=>{
       const st = setStats(x, OWNI.get(x.id)), v = val(x); return fSetHTML(x, `${st.have}/${st.total||"?"}`, st.pc, `data-cfset="${esc(x.id)}"`); }).join("")}</div>`;
   } else if(flat){
-    inner = `<div class="fhead"><span>Mes extensions · ${esc(g.name.toLowerCase())}</span><b>${g.sets.length}</b></div><div class="tgrid">${g.sets.map(x=>{
+    inner = xsort + `<div class="fhead"><span>Mes extensions · ${esc(g.name.toLowerCase())}</span><b>${g.sets.length}</b></div><div class="tgrid">${g.sets.map(x=>{
       const st = setStats(x, OWNI.get(x.id)), v = val(x); return fSetHTML(x, `${st.have}/${st.total||"?"}`, st.pc, `data-cfset="${esc(x.id)}"`); }).join("")}</div>`;
   } else {
-    inner = `<div class="fhead"><span>Mes séries</span><b>${groups.length}</b></div><div class="tgrid">${groups.map(x=>{
+    inner = xsort + `<div class="fhead"><span>Mes séries</span><b>${groups.length}</b></div><div class="tgrid">${groups.map(x=>{
       const v = x.sets.reduce((a,y)=>a+val(y),0), ss = serStats(x.sets, OWNI), n = x.sets.reduce((a,y)=>a+by.get(y.id).reduce((b,z)=>b+z.qty,0),0);
       return fSerHTML(x.name, x.sets, `${n} carte${n>1?"s":""}`, ss.pc, `data-cfser="${esc(x.name)}"`); }).join("")}</div>`;
   }
@@ -2552,6 +2598,7 @@ function colFolders(groups, by, OWNI, gen, list){
   list.querySelectorAll("[data-fsel]").forEach(b=>b.onclick=()=>{ if(COLV.sel) selEnd(); else { COLV.sel = new Map(); if(CF.show==="own"){ CF.show = "miss"; if(!COLV.pdx){ COLV.pdx = true; store.set("colPdx", true); } store.set("colFlt", CF); } renderCol(); selBar(); } });
   list.querySelectorAll("[data-fsort]").forEach(b=>b.onclick=()=>{ CF.sort = b.dataset.fsort; store.set("colFlt", CF);
     if(CF.sort==="price" && typeof loadPrices==="function") loadPrices().then(()=>renderCol()); else renderCol(); });
+  list.querySelectorAll("[data-fxs]").forEach(b=>b.onclick=()=>{ if(COLV.sort===b.dataset.fxs) return; COLV.sort = b.dataset.fxs; store.set("colSort", COLV.sort); F.ser = F.set = null; renderCol(); top(); });
   list.querySelectorAll("[data-fshow]").forEach(b=>b.onclick=()=>{ CF.show = b.dataset.fshow; if(CF.show!=="own" && !COLV.pdx){ COLV.pdx = true; store.set("colPdx", true); } store.set("colFlt", CF); renderCol(); });
   if(s){ const box = list.querySelector(".colset"); fillColSet(box, by.get(s.id), gen); }
 }
@@ -6167,12 +6214,12 @@ const SHARE_ICO = `<svg viewBox="0 0 24 24" width="18" height="18" fill="none" s
    (chacun applique son thème en direct), « Je choisis » l'envoie dans le coin haut gauche de l'Accueil :
    c'est le niveau du compte, qui monte avec la collection. Le 6e starter est le secret de Kanto (carte n°151). */
 const STARTERS = [
-  {k:"brumelin", n:"BRUMELIN", th:"spectre", t:"SPECTRE", d:"Chaton de brume violette. Le bout de sa queue brille comme une lanterne.", img:"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAAcCAYAAAByDd+UAAAB60lEQVR4Xu2Wv0vDQBTHn1JQcFIUBAeFKrSjIKWb3bp010EsTrVSMKBI/wiHDMHqVAod2q1DB7vpFoq7GSw4Cgqudap8L75wSS6/CgqKHygX7pL3ve+7d3cl+s3omlU3e+M62lg+En/wz59H16xL/GSjM9/hmkXyhQ0R3rx7Jk3PnONZKbi5uDt5er8PnUzUO7IzFlOCQGZvPEEb5D7OO0HM8oCc706eqN0ciMDeD9GHMbwzDSlvvo2WHca8faHaXouMbtklij6MUX51Gj17DeV8G63KGYLGxeiWKWq9A6sU6UoixiQRTamcnDbWRffawjZdHPZ8r0SNh+EUjReIhRE1HoRrrwWldD8zpo4174vB/UlSqnSIQDIQQ1CkEi2jmkQUrjVEtYltoKhSFNPWUkG0Ych7V1W9vuMLH+TSVREztxN/d7Pz/usdXb990PHyHJVWCj5RX5WKWY3IEY0LO2cxtCoCqxQMH8y4egJ2GSQGHIe6Zl1J0RtGq1Ll1Cahny1S6XEgWtUa4iwVQnx3MXymwiWvpfzMGeAxeWv0s8XA643PUtmdI35wVHRcDkcNu5DSVdcEuB94HbEZTc+csJHIG5/LnINxFbNQuzmwZ/J1s8vINz6AcKSgCp5ErXzjiHmXBH8rGNnhj/MJZVj6zNkMNMEAAAAASUVORK5CYII="},
-  {k:"pandabraise", n:"PANDABRAISE", th:"feu", t:"FEU", d:"Panda roux toujours en feu. Ses oreilles et sa queue crépitent quand il est content.", img:"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAAcCAYAAAByDd+UAAABnklEQVR4XmNgIAD+dxn8J6QGHfy/4ECyHorA/yiB/wQtJaiA2oAoVw12MBpqAwO0eFhIykOkqkcBIM2giCbWEFLVgwALRjh2XWC4esSGQdvmCNE+verHw6C96cv/a1/+MBKKFwwFIFevc5EgpA8DBO15wUCMhUzIOmGWqS85A8bEAJhakCNxRQVyeYziQ3J9BwPE+JIJV20AcnnSqS8EPUmsOhhgYiy7gDWirdU0CFoGArjU4QpezFTKwMCw484HhqO37hBl4VGoqokWKuB4DNrzApy6YSkdPSGhJBqQJCge8AGQj3D5CiUOodkL3acYPgRZOuvBj//5OGw9eusGVplZD34QlS1wZlSYy9IUOPD6GGQRCMCCDqQPVBAwlBmACg8MR2CNQ1j2AMXlqndYlcAByEEeKgLguEOOL2yWgQBKHIIAcl4kZBkIgCyDAZjen2kJOEMFw0JywbktObBUysDhMIERVzFHNQsfTFhDXEmD7iNY1gDFHzEApo6YYg0nANdz0LallZQARv1ISB4fIJgtkJM8MkDO0Ljia1AAALC57gUQfAGWAAAAAElFTkSuQmCC"},
-  {k:"ornibulle", n:"ORNIBULLE", th:"eau", t:"EAU", d:"Bébé ornithorynque. Il souffle des bulles pour dire bonjour.", img:"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAAcCAYAAAByDd+UAAABz0lEQVR4Xs2Wv0vDUBDHX0R0cNChijgIbkVEHQpJFwn9C8TFTsHJuaPgkkVwdHbqZkdHpyCCkCGDiJTODlGKQ2aXJxe8+F5y70ckhX6glL5f37t7d/fK2Dwy+uQxfJqwbaGJQ0z04yw1rWkMEOOcpxVRGJiVJaQYWAFuzUoUKe7QcZytxuKowcE59GzkrRXCS22P6zZ/T+JifxnM6v6m44lzi/hDFAJArBPeaJ1OwgHXiVKQFqLYVW8v33MZvSmFk3Cg9bSMsQ51Yv9BK+ivr7Dk4rxy7vOpS47rwBwp7pBieeeg1rgKELtzVxmLs1QSxMwK/G6+t3N9S56hGleRJ2ScpfAtJQ0IBn7X/Rq2a11P62xinTiSIGQnio1fX6xEd/cP83W2ouQdghgeZKLOWqBSh6KXtth6RwoCYpfB4i+D9SkWfrkVUl2I9BBbmkoMEUWBjd6xZNc0umcnw4cPGMTWaew0NoCBZTEE6g/EpMIX6s81NWyK96dHpV3lZ0/roa6PinMQOhX4TwJDSt4hhGf7yLeJZu4dCophhTEqaSp1CIumjBUPr0oYwygeLO5TvZPK5j0OJr8dhA4XdqRW9BeIuo+xBNSU7i+GaX5u+AHGY+eL25yffwAAAABJRU5ErkJggg=="},
-  {k:"fureclair", n:"FURÉCLAIR", th:"electrik", t:"ÉLECTRIK", d:"Furet chargé d'électricité. Il file comme l'éclair dessiné sur son front.", img:"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAAcCAYAAAByDd+UAAAB10lEQVR4Xs2Wv0oDQRDG98RC0CInFlZHDKlVrILVVSl8iMQypfgEPoGktFTfwcYq5VXB9KKSKkXQFBZ2J9+es8zu7T8Pgv7guCMzu9/O7MwQIf4T5VteNj3Pr9digaSBaPTa1v6xJtBEjAiuNcXWxQY2hthH0ZIa+F6XmAZSsC6xWvZMMTjQE4o25Bu8Kjgcnt2Wi2UpH1/UsJEf1pi+JMYD2vRF0B/ciezkQojp2BkpfMDj/VD0B0L6rhZPCX6r3nmZ9lY/30JIAwenkiIWZtc38tejy5HVPp+O1cYAkXExIKuUg1NhoYtYMZC0JwlFS9QEfUAMUVKkHGQlpsprgr6U+tIJYkSdEc4ehvKxYabV52viTel2euBNMcfla/ahagsab6gqYG6AsreBtvAdDCOT9gRK0DR0T6/U/lys062ifnl+lW/Vfw4ghr2TduWg+pAiRCmbheOKDlDjA7MPbag7RL9ADE7Ui9SPfFMXtt61tUlt0nBCLcIxo5MZm2yJNP/Spo9TkIv5UsrTSqIkJrKRSDv6uPMO7ybokZ3XAooabb475DZMGjxmGjnBO9zZ60n/3ax6m7zPC80eqtRowc9loV0+QProQLBThVtPFkvor0bI/ud8AyLjOYarI8yhAAAAAElFTkSuQmCC"},
-  {k:"fougefaon", n:"FOUGEFAON", th:"plante", t:"PLANTE", d:"Faon des sous-bois. Ses bois sont des fougères et une vigne pousse sur son dos.", img:"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAAcCAYAAAByDd+UAAACA0lEQVR4Xu2WMUhCQRjHT2mShgZxiAbbpCGkJRARcQinxgYnEYmICKdmpwZpkIiIEHGKaIyGaIgQkVrEKRwdoiEaGqLV+H/0vb533b1TEFr8weO9d/d93/++e9/dO6VmzJgWZ8PKCLFWFufp7oLt2G9iEADOmfPMyCWKftjB3mUbNo2ER3lx11OFjTXPRB+9fIcd7EFQlkbBnXg9xCoIst8tUxZ45gzkO/pZDEh/HS+wCQSNVn8zRBbHqYZ6fv0MoU8Xeq/2qM8Y7AdjJ2fBzlIYQRkejBTSfcfKEE7d+wbZpnJlz6dZSf8JAEr1jtcu/UzZWtOXomBw3TKKMYnNoveMQdqmdo6tUNZ4bm+3aRBwSOXK1MajdhEkxFCVQkyWP8OjRHbruyd06XC7awZ8ggBlzdnZWI6vGrts7SZoSl1CYBpiwPuGLvpHh2rwdusrDnCplErE8tRnQ9aHcacxIcWS6RJdANXpEpP14RRE4ch1BvqdJl0S2NiWgqyPwG1IwjuIvkTGWQqSsQQhVswuqZtsTNU+IsYpb/eHqvXw4txLw/xB+a7DYplknDbvg4Uvn4lpbQYRRhDbwtdJXg0oQ4j2txLU/XS6R3dkb0JPKMz/rqB/mA5EIQ5hKW5ikoQ8MK21QmL0WMv7jhBoR5vrGGL7XFYQOB6N0CXPLNw+zlnm3/gGhDUcsalRlQ4AAAAASUVORK5CYII="},
-  {k:"macaneige", n:"MACANEIGE", th:"kanto", t:"KANTO", d:"Bébé macaque des neiges, sa serviette sur la tête. Il ne sort que pour les vrais dresseurs.", img:"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAAcCAYAAAByDd+UAAABkUlEQVR4Xs2Vv0oEQQzGd8RqD9RCQVs7/xRXytnIoe/gI/oUh5VYXqGioIKVe2ihYD/yzV2W2VwmycIh/mC5291MMvkyyVaVg6vbr+gwWw0I1vzE6A3qtVPxOnFvjhx6HWu4fcQY/7ZO2LV7d05WqZwbrty6Z+Xh9q4q98NnEyQ/yDCEEPB7ebIl2iyBYBbWhnJcGb4d7HmEcKGmSTu//3hXnR3tzDdUktaFJOXjc6Oq20faDp665eQbsYIuSYoFkoQkG6dkW5LXdWgQbDLcF0uBd1aNi9DwRZbN+Sip1vlf1+l5+25xTyXA85KkNHXW8uhozuu7bzmTwaDznN9bA/3seHM+CEqGVEsu5/hmmpZMRsN26Xj6mmSFrTZ1kFAnQwk4gsOWeqNK1wIKZkGjzWx8OhDWKdWyc9OnH/lh6f1pomDWdAFkw4NKH3WxhnRgnl5mrRqzi9N0EfwetpCfguafJlPSXMo+GVLfmgEk+tSPsOYoUNsilxTgJOILDvip5bYlzLagGYp+402NjLT3/4JfaRRT/4W+9t8AAAAASUVORK5CYII=", secret:true}
+  {k:"brumelin", n:"CHAUVOMBRE", th:"spectre", t:"SPECTRE", d:"Chauve-souris d'ombre. Ses ailes laissent une traînée de brume violette quand elle file dans la nuit.", img:"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAACiUlEQVR4XtVWTUhVQRQ+itAmEBRsldeVC10KkYRCEYQPBHcK7ZIyol0QhGiUKCgtRdRw0cLF2z0QlCAKbCEGLSNo5bNF4CIo2rR68s3ru++8uTP3zlxq0QcX3n1z5nzf+ZlzR+R/QF9Pf6OMTuwruzcFHLy4c2IcxTjjPu71BdAVGtnjqUNjulYbb5x9P+3w7aNIZS959p2hAt5/fG1M4diXCfyPdZLX3/0qdB8sAMgTQXLa0bYIhQKQvrXauIyN3HKKYG8w6lBiIrgHCAphOWxgHSL6f16T6o9Kbv0BI0DXNK9hNHkeQJ4HzdeFl9HL86n9kSybI6OF/ClDmuayILHmy5SAi1qIbrAYTHfvS1Uq6QzQxERbE95/eC9dgDEem/zRToJZ4NThW6MvQvNkMqAXN9e3M0SXehMnOeBaM1n4WpFXq3XnvtxjCDE8Xhpjn1vOMGz0wNFrhI88PQUxMIKe1DNTDiIQrVz9FOMufg7Y4/XG7WFD+HY3jpgoHETDo4nsr2Sdg3huI5HqRtPV1oNmWWKFmCOGLv12dpyqevZ8R54uzpr3k99vmqlVYNRTSyJfPogMXhGpLbQMtAhMw4ELN80i/KKxNZcRQAOQ8TfJCYog+dCkv9TrM62MQQBg++V7J6YciPHwt4Y9mmNSTHKXX3KaHnDNfwriOiaaXQoXGL3vQ6T9As6bDcriEmXfdibnWkNpb6vZhDglPnKXX+/Vygc4YSaS6xczZjymIZ9ioPBCYgOZYW3/BtoEHLxsBF2/Q0QgSyG36DYBE3c7oksSCzvIwkkYipAbMGAHGd0DQMgF5Z81oQt29KHkpU5BXvQg9pH7GrxU0+lZYCMm+lIZAHzHMJYcOAea83pHbMXSKgAAAABJRU5ErkJggg=="},
+  {k:"pandabraise", n:"CABRAISE", th:"feu", t:"FEU", d:"Cabri têtu aux cornes de braise. Il fonce tête baissée et ses cornes crépitent quand il s'énerve.", img:"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAChElEQVR4XtVWPUhbURQ+SkcnhUaCxEkImA6BTjrUoeBUEBGltFuHLl2EDkKnDgWHjl1acMxgoVOhIDgkguAgOMQh0MnQBi1VHDoKT777em7Ou+/+xskPHi/JyT3nO+d899xLdB/wcLKWjcIT60ZdqwEH2ZfZZEe8LrR23JcZnFxsj6m/4B2bjVwH7L/tO9d6CZgwHXGJJTEzePfvGT39WKM/V/08EwMPfBUoYHmeHu3hl0xnc7I0o//SbFNZJ8vzRK0zbwgrKwmdEZwR0WDz2usQaLZ/0cVJg7qtH97sgegKVJqnhYx9QGU6z49ovVcLkg1qAL2rbGXRwSW+1v+NRkDuX3yWvb4LbHOhoAFWMwdEL2Xw6rdDqkzNOqvBdjPz9d6E4i39Aqiu1oAtUzNzBPfBZQehuem6XjokQpkikFrmn+c9B4880xjkPibyFjAB07FkzXAHTwdaozXA/Y9R7pPPr5zROq93SjYEsukCGigNItu8l4tl8HcbLfqw+0K/GSYJFqEEj+aoSVgiMPXMW+/O2oq2I7jrHACiBlEhAxG80nipnPDbBAe3VTUZcPJ7dUE92eBAP+rcF99hby9M6hNS3idsRIItuMs2RQX4PsHAWJctiT6MJLAVlRgNLQzebCVXNqgBE67gQPX9orLz/IB4kbEPQQKpUxKVSRlWUS2QDp1D6PJ7cvmBaBHKWYASVz9t5wFFYNcAYiGaAkwiYLsTKBL/CSA4954rZs4B20CKaoEXeieUzwCGLTAjiQAuKAxUBNtO6mNoLx8+LkRrAA4eTw/5Hp/fFA4plNu0A77skzQgnTNAguGyhwgE5wBnIYNJIAAelz2EqBYwzMPEzC5kt+EWQqpoS0fAT+0AAAAASUVORK5CYII="},
+  {k:"ornibulle", n:"AXOBULLE", th:"eau", t:"EAU", d:"Axolotl rieur. Ses branchies frisées lâchent des bulles à chaque éclat de rire.", img:"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAACQUlEQVR4Xu1WoU4DQRDdkhNVNIGkdRAMuAskeAwBQ5GIOgSyJIhKFLKiCf0GEDhSVFODJ6GpA0OCK4KkqLoj765zne7N7C2FBNOnmu7OvDdvdmfPmAUW+GcU5uEvr6xFWtzH5/uPchaQzCeIk+7fDlTdvVqYrvnkLUSt+6hyVXcGgdxFqgFiJBG8mFgAT0BiKHBe8ofnJGuxORVBxMPLdkoZt4D/QSAh81RO4CIAiWcJC7wFHL8h5xg35DMD3kBSJeHmsGQqq+u5onz3kSOxAz4AuQ9oH9lPgAuS04HpdKd5qwfxb2z8K/szAB94JrxBpd8RD4hdgWkMzNGO24M4Run3DCbk4J69BcwNLNLhGby0TLh1EeeAiIw4BTwOwJUcbleT3RO3kzlgEfO+IQmBRCCRfbLt/+w4rBNSEcYkZ4DaAPDJVW6GkTk+TQOpepDzhIB21ahynrfS76TDL/ct4JOQWz8a380YXyqeiI3gkxCgfDSmvV4uBLkq1KCRAygG615zAPZhM1qQdxM02E6SuECNYJAepPpeKRP69jVKqyPQA0Rzxb5BuS2wyZEA5NXNrPTOqzHtx0QEgTsmvZDOFkjkLkCU5Az1XLoRagu074DuWdZ6ANXboOpdg0ttgX1ouJXnu1MRNjFcuH4aZUhpbthfSKoD2NirhZnrh2o2luVGuMi170OvQ0h0fBZIvbYPoFY1R64AQJuGebAHkQSvOUCwDxN/D+aZlICXA+QCJ5HGrGtdg7cAEkGJ8r73tUNn4xuBYU2VvxWMAwAAAABJRU5ErkJggg=="},
+  {k:"fureclair", n:"PLANÉCLAIR", th:"electrik", t:"ÉLECTRIK", d:"Écureuil volant chargé d'électricité. Il plane d'arbre en arbre en laissant des étincelles.", img:"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAACfUlEQVR4Xu1XPUsDQRDdiNgIFgZioURII1jYxxSKxVUWFnZaCSkEf4AfhZX+BRH/QgoLq1Ra6PUWgo1g0EJBC8HGRnmbvL25dW7vEgQtfHBcTHZm3r752NWYv47KePUTz6A882yHQo5hXF9tGzx5jjTQPmQbJCDRLwkGz8Nw3gLgdGvDvldM28StKJiO59dOicFhV1vbD4YoRMBXQiJuRVYdAgTxN0nP1adN3MrmUDgFGhD86XzKvglJhhidPPlWB59vu1bJUjY3E8wjgxMTiw+p4Nfxfcr1+2PTpsePF1QABnJ3gwCBQ3AEKImEVsmnxzMu79g1wN3zNwnIn7V7wBEojR0G0+GkLk+n8i2l52++/CEU7oIsp1rR9YNcAn5gSIrW0oDfigCpZUGmCMiRKSv27vLC+a01FuxnEENumWMZXFsPSP8k4Qj4BceJ163idUcAu6cqWnAf7ALFv11qCy9rbrPX83pcA9PENpa1wg2AnKt8jSGmnKv+3qApUuEyOH3AXqaJrZlqPZkjGZy9zgIMkdCCy00QahECfmDg5ePKGFNNKb2zHZnl5Aiw2Ny7dWsg+cRi96ygj5vemTUbJb4KHUYwkLvXggNHBzNqPXQ3oMMSkGMYi0MGPw1LgGMYeZHy+ChSgP1CTUF5ZN7lDWrctDvBU+0suY98g68mNiiHnDqKecqh8BDchyw+Bsdbfo/+p21IVVUBFBwfzVhWO4PyjTTJVLGA6U8CtacSQC+zn2EIJzINCNBYSnRHcCjA7zBkNOUAeT1D7eWehgSV4AEESBIEZ39IdgmVgJRQu81UTNNeKP3RCvj3Pv+fEt+fegvKOpZ9/PS6f/wKvgB+eXTyTY3ZTwAAAABJRU5ErkJggg=="},
+  {k:"fougefaon", n:"CAPOUSSE", th:"plante", t:"PLANTE", d:"Capybara zen. Une pousse grandit sur sa tête : il l'arrose en restant sous la pluie.", img:"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAACDUlEQVR4XsWXsU4CQRCGV2MlVhBFG2jsLAyJNhaKkRfARGNtrGgMCc9gRUJoqIwdkUjEF5CImlBoYUy0o4FKNFCB7Zk5sge3tzszd8TwJeTgdpn5Z3ZmDoSYMXN+/K+EY5a6/7vfsW1gaxhsAeDg+GnfY+tm98G+Z1qTAk2wBJicUzx2X0X3aICKWKCM6ADDKnvRbe19ClYG5BlHq0see4NbSwwrQ6Fbo6IHWAJ0BSYJnYRsASaoGiCPAJyfJcO2/ctG32UQ1ta2IqJVGXruj78jLEwEmgEscsl6PiZauY4xAxKTCDIDV9kEavxC9NA97+2OKNZ6/tsQoqeccwABAIjQZWGeYwRovrVdVx2cPSrkEUigAOEF7CTiWgHqHhk9BlvA+WHEsWMyzNkTOANAOrWKRjPJ3f2X6zOIK9a8LanNgFqAELF0vrh8YBvOZPP2tVTIud5L0qm6R4QO4xwAEaB6Mx5zBEjnXMrXZWdr4C7gFJLK70+dfWTGIoSehTOThaVGD06SmU/Hd6O0YUyMKXqA1QVwDCog6KU6qgcTaiHqQAfRKAujMfrRfEadqcj9WPQA+TCaZhxTYxhgj+JpgDoyPVmNNRD0YeS3a9AuOC2Mu0BFLUy/jiWBj0A6hCvlHCtEdhfooBxzCDwHMOdyfANUG7IE+I3Uz36yBiaH0X/A+l8AcH4h66D+F8ycPwOTGDkzMVr9AAAAAElFTkSuQmCC"},
+  {k:"macaneige", n:"TANUKAMI", th:"kanto", t:"KANTO", d:"Tanuki farceur, une feuille sur la tête et un foulard rouge. Il ne sort que pour les vrais dresseurs.", img:"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAACx0lEQVR4XsWXzUuVQRTGj2IQbrSEMkSFcOFCSvrYRAUJGX0QCCLRIqjAwIWQ/RuC4CIo0KCFRASCZFAtxBIXfYiKwSX6oCS6BCltJAhSnrk+b+edO/POvBL4g8uF986c55kzZ868V2Sbqdiq/p7dTev23B8rX3PHC06gkA6OZz0vTpV5f3hyyjzjWNdcm0wDCDDce8DM6b+7mMx1iWtoRM/1ZacyZgtuTyxJa31lElAz9+qjMwTEMW/+y3KmRJQBgoAhsHqKx1AVM6jvYltqWP/mXoOWwaYk5YBpP3awRmYXfgXDRxmwoYjhvYj01qaGMO0wESLagL2X7c2NTtG8eE+BPgEQt9PJ1cEIzfnGgNGnq86TECxCLT797rMUin9NQIrZ4q4xWQQN6FXtrWtOxeJvMWN8RNcAQC+wGbh1VgZEpPvKA++YLWcA6bWPIHl0/5LZjrbOMfN5PDni1LHno7b4wYRgK752ZpcpNN2EfGLgwvnriRGIYxEsQF3YAO096jKiCdLRXWpMWPmHt/ek5fBV8w2e3BlKxrFAYQCk+scmQQPAdfUuPbucMgFgxAUuIvtYA2Q22sD4jrLrXxrbT6T0ludflul3/SlJuO4H9JKgAa7+zdHjztW5oBGI4+SgWF0nCASLkAHyGNAceT3jNQFj3j6AldM1vhGIsOBcoA6wXfb2AH0kUaCF4mq4ExKaYfH5sM0hc9wCiPJDcnXCWEzhqYzRPFu2vqZzGchKvQZZYmv2webkNVB6ifxXB7wFffz++Tz5aWfdaSkUx2Rt7bsc2t+QPGdn1EQfQ3axczdupgJoYQBxgI7IN2l0UsKuyLfk4Bawi7GtdqiV+oA4xmcJk2AGgN2Ks04C7gcXvv8FQQO6H8x9+pbErq7elzICYey5Dcb5xEFUJyTaAEBwpBn76hInWSaiMuBbmc1/zwCJ/SccO06zASBQglRsBHw3AAAAAElFTkSuQmCC", secret:true}
 ];
 const starterOf = () => STARTERS.find(x=>x.k===store.get("starter", null)) || null;
 // XP : chaque carte (plus elle vaut cher, plus elle rapporte), scellés, gradées, extensions complétées
@@ -6187,13 +6234,39 @@ function acctXP(){
 const lvNeed = l => 50 * (l-1) * (l-1);                      // XP pour atteindre le niveau l (niveau 10 ≈ 300 cartes)
 const lvOf = xp => Math.min(50, Math.floor(Math.sqrt(xp/50)) + 1);
 function petName(){ const st = starterOf(); return (store.get("starterName", "") || "").trim() || st?.n || ""; }
+// paliers de rareté du compagnon : se voient sur l'Accueil, la fiche et le classement
+const PET_COL = {spectre:["#a77bff","#e3d4ff"], feu:["#ff7a2f","#ffd2a8"], eau:["#3fb8e8","#c9f1ff"], electrik:["#ffd23a","#fff4b8"], plante:["#5fd06a","#d4ffcf"], kanto:["#ff4d5e","#ffffff"]};
+const PET_TIERS = [["Commun",1],["Rare",10],["Épique",25],["Légendaire",50]];
+const petTier = lv => lv>=50 ? 3 : lv>=25 ? 2 : lv>=10 ? 1 : 0;
+const PET_CROWN = "data:image/svg+xml,"+encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 8" shape-rendering="crispEdges"><g fill="#ffd84a"><rect x="0" y="2" width="2" height="6"/><rect x="2" y="5" width="2" height="3"/><rect x="4" y="3" width="2" height="5"/><rect x="6" y="0" width="4" height="8"/><rect x="10" y="3" width="2" height="5"/><rect x="12" y="5" width="2" height="3"/><rect x="14" y="2" width="2" height="6"/></g><rect x="7" y="1" width="2" height="2" fill="#fff6c9"/><rect x="7" y="5" width="2" height="2" fill="#ff5a7a"/></svg>');
+function petArt(st, lv, big){
+  if(!st) return ""; const t = petTier(lv||1), [c,c2] = PET_COL[st.th] || PET_COL.spectre;
+  const pp = big && t>=2 ? `<span class="pp">${[12,30,48,66,84,22,58,76].map((x,i)=>`<i style="left:${x}%;animation-delay:${(i*.37).toFixed(2)}s"></i>`).join("")}</span>` : "";
+  return `<span class="pet t${t}" style="--pc:${c};--pc2:${c2}">${t>=2?'<span class="ph"></span>':""}${pp}${t>=3?`<img class="pcr" src="${PET_CROWN}" alt="">`:""}<img class="px" src="${st.img}" alt=""></span>`;
+}
+const petTag = lv => { const t = petTier(lv||1); return `<span class="pettag t${t}">${PET_TIERS[t][0].toUpperCase()}</span>`; };
+function petTiersHTML(lv){
+  const t = petTier(lv);
+  return `<div class="pettiers">${PET_TIERS.map(([n,l],i)=>`<div class="${i===t?"on":i<t?"done":""}">${n}<small>Niv. ${l}</small></div>`).join("")}</div>`;
+}
+function petHolo(st, lv){
+  if(lv < 50) return `<div class="holo-lock">🔒 Carte holo de ${esc(petName())} : se débloque au niveau 50 (Légendaire).</div>`;
+  return `<div class="holo"><div class="hc" id="petHolo"><div class="hin"><div class="htop"><b>${esc(petName())}</b><span>NIV. ${lv}</span></div>
+    <div class="hart"><img class="px" src="${st.img}" alt=""></div><div class="htx"><b><span>TYPE ${esc(st.t)}</span><span>★ LÉGENDAIRE</span></b>${esc(st.d)}</div></div><div class="hfoil"></div></div></div>`;
+}
+function petHoloWire(){
+  const h = $("#petHolo"); if(!h) return; const box = h.parentElement;
+  box.addEventListener("pointermove", e=>{ const r = box.getBoundingClientRect(), x = (e.clientX-r.left)/r.width, y = (e.clientY-r.top)/r.height;
+    h.classList.add("live"); h.style.transform = `rotateY(${(x-.5)*28}deg) rotateX(${(.5-y)*24}deg)`; h.style.setProperty("--fx", x*100+"%"); h.style.setProperty("--fy", y*100+"%"); });
+  box.addEventListener("pointerleave", ()=>{ h.classList.remove("live"); h.style.transform = ""; });
+}
 function renderAvatar(){
   const slot = $("#avatSlot"), st = starterOf(); if(!slot || !st) return;
   const xp = acctXP(), lv = lvOf(xp);
-  slot.innerHTML = `<button class="avat" id="avat" aria-label="${esc(petName())}, niveau ${lv}"><img class="px" src="${st.img}" alt=""><b>Niv. ${lv}<small>${esc(petName())}</small></b></button>`;
+  slot.innerHTML = `<button class="avat" id="avat" aria-label="${esc(petName())}, niveau ${lv}">${petArt(st, lv)}<b>Niv. ${lv}<small>${esc(petName())}</small></b></button>`;
   $("#avat").onclick = openAvatar;
   const prev = store.get("lvl", 0);
-  if(prev && lv > prev && !$("#stp")) setTimeout(()=>gameBox([`${petName()} passe au niveau ${lv} !`, lv===10||lv===25 ? "Quelque chose se prépare… Son évolution approche !" : "Continue à faire grandir ta collection."], [{label:"Super !", go:true, run:()=>setTimeout(()=>{ try{ teamOffer(); }catch(e){} }, 500)}]), 600);
+  if(prev && lv > prev && !$("#stp")) setTimeout(()=>gameBox([`${petName()} passe au niveau ${lv} !`, lv===10||lv===25||lv===50 ? `Nouveau palier : ${PET_TIERS[petTier(lv)][0]} ! Son allure change, va voir sa fiche.${lv===50?" Sa carte holo est débloquée.":""}` : "Continue à faire grandir ta collection."], [{label:"Super !", go:true, run:()=>setTimeout(()=>{ try{ teamOffer(); }catch(e){} }, 500)}]), 600);
   if(lv !== prev) store.set("lvl", lv);
   try{ rkSoon(); }catch(e){}
 }
@@ -6201,17 +6274,18 @@ function openAvatar(){
   const st = starterOf(); if(!st) return;
   const xp = acctXP(), lv = lvOf(xp), a = lvNeed(lv), b = lvNeed(lv+1), pc = lv>=50 ? 100 : Math.round((xp-a)/(b-a)*100);
   $("#sheetTitle").textContent = "Ton compagnon";
-  $("#sheetBody").innerHTML = `<div class="lvsheet"><img class="px" src="${st.img}" alt=""><div class="stp-name" style="margin-top:4px">${esc(petName())}</div><div style="font-size:12px;color:var(--muted);margin-top:4px">${esc(st.n)} · ${esc(st.t)}</div>
+  $("#sheetBody").innerHTML = `<div class="lvsheet">${petArt(st, lv, true)}<div class="stp-name" style="margin-top:4px">${esc(petName())}</div><div style="font-size:12px;color:var(--muted);margin-top:4px">${esc(st.n)} · ${esc(st.t)}</div>${petTag(lv)}
     <button class="btn" id="petRen" style="margin-top:10px;padding:8px 14px">Renommer</button>
     <div style="margin-top:6px;color:var(--muted);font-size:14px">Niveau <b style="color:var(--fg)">${lv}</b> · ${xp.toLocaleString("fr-FR")} XP</div>
     <div class="lvbar"><i style="width:${pc}%"></i></div><div style="font-size:12px;color:var(--muted)">${lv>=50 ? "Niveau maximum !" : `${(b-xp).toLocaleString("fr-FR")} XP avant le niveau ${lv+1}`}</div>
+    <div style="--pc:${(PET_COL[st.th]||PET_COL.spectre)[0]}">${petTiersHTML(lv)}${petHolo(st, lv)}</div>
     <div class="lvlist"><div><span>Carte ajoutée</span><b>+10 XP</b></div><div><span>… cotée 5 € et plus</span><b>+30 XP</b></div><div><span>… cotée 20 € et plus</span><b>+60 XP</b></div><div><span>… cotée 100 € et plus</span><b>+150 XP</b></div>
     <div><span>Produit scellé (Stock)</span><b>+40 XP</b></div><div><span>Carte gradée</span><b>+100 XP</b></div><div><span>Extension complétée</span><b>+500 XP</b></div></div>
     ${teamHTML()}
     <button class="btn btn-y" id="petRank" style="width:100%;margin-top:14px">🏆 Voir le classement</button>
     <p class="fine" style="margin-top:12px">Ton compagnon grandit avec ta collection. Une carte retirée lui retire ses XP.</p></div>`;
   $("#petRank").onclick = ()=>{ closeSheet(); openSub("rankView"); };
-  teamBind();
+  teamBind(); petHoloWire();
   $("#petRen").onclick = ()=>{
     const b = $("#petRen"), box = document.createElement("div"); box.style.cssText = "display:flex;gap:8px;margin-top:10px;justify-content:center";
     box.innerHTML = `<input id="petNm" maxlength="12" value="${esc(petName())}" autocomplete="off" spellcheck="false" style="width:170px;height:42px;border-radius:12px;border:2px solid var(--border-yellow);background:var(--panel);color:var(--fg);font:800 16px/1 var(--f-display);text-align:center"><button class="btn btn-y" id="petOk" style="padding:0 16px">OK</button>`;
@@ -6358,7 +6432,7 @@ $("#themeBtn").onclick = openThemes;
 $("#mTheme").onclick = openThemes;
 /* ---------------- Équipe de compagnons : un nouveau compagnon (et son thème) aux niveaux 5, 10, 15 et 20 ----------------
    L'équipe (cote:team) garde les compagnons obtenus et leur nom. Le compagnon actif reste cote:starter / cote:starterName.
-   Chaque compagnon débloque son thème ; Macaneige (Kanto) arrive en scannant Mew. */
+   Chaque compagnon débloque son thème ; Tanukami (Kanto) arrive en scannant Mew. */
 const UNLOCK_LV = [5, 10, 15, 20];
 function getTeam(){
   let t = store.get("team", null);
@@ -6512,13 +6586,13 @@ const rkPet = pk => STARTERS.find(x=>x.k===pk) || null;
 const rkScore = (r, by) => by==="week" ? `+${r.wxp.toLocaleString("fr-FR")} XP` : by==="cards" ? `${r.cards.toLocaleString("fr-FR")} carte${r.cards>1?"s":""}` : by==="sets" ? `${r.sets} ext.` : by==="val" ? `${eurN(r.val)} €` : `${r.xp.toLocaleString("fr-FR")} XP`;
 function rkRow(r, i, me){
   const pt = rkPet(r.pk);
-  return `<button class="rkrow${r.id===me?" me":""}" data-pid="${esc(r.id)}"><span class="rkpos">${i}</span><span class="rkspr">${pt?`<img class="px" src="${pt.img}" alt="">`:""}</span>
+  return `<button class="rkrow${r.id===me?" me":""}" data-pid="${esc(r.id)}"><span class="rkpos">${i}</span><span class="rkspr">${petArt(pt, r.lv)}</span>
     <span class="rkn"><b>${esc(r.name)}</b><small>${esc(r.pet||pt?.n||"")}${pt?` · ${esc(pt.t)}`:""}</small></span>
     <span class="rksc"><b>Niv. ${r.lv}</b><small>${esc(rkScore(r, RK.by))}</small></span></button>`;
 }
 function rkPodium(rows, me){
   const p = [rows[1], rows[0], rows[2]], h = [2,1,3];
-  return `<div class="rkpod">${p.map((r,k)=>r?`<button class="rkpc p${h[k]}${r.id===me?" me":""}" data-pid="${esc(r.id)}"><span class="rkcr">${["🥈","🥇","🥉"][k]}</span>${rkPet(r.pk)?`<img class="px" src="${rkPet(r.pk).img}" alt="">`:""}<b>${esc(r.name)}</b><small>Niv. ${r.lv} · ${esc(rkScore(r, RK.by))}</small><span class="rkst">${h[k]}</span></button>`:`<span class="rkpc empty"></span>`).join("")}</div>`;
+  return `<div class="rkpod">${p.map((r,k)=>r?`<button class="rkpc p${h[k]}${r.id===me?" me":""}" data-pid="${esc(r.id)}"><span class="rkcr">${["🥈","🥇","🥉"][k]}</span>${petArt(rkPet(r.pk), r.lv)}<b>${esc(r.name)}</b><small>Niv. ${r.lv} · ${esc(rkScore(r, RK.by))}</small><span class="rkst">${h[k]}</span></button>`:`<span class="rkpc empty"></span>`).join("")}</div>`;
 }
 async function renderRank(){
   const el = $("#rankBody"), p = rkProf();
@@ -6557,9 +6631,9 @@ async function renderRank(){
 function rkPlayer(r){
   if(!r) return; const pt = rkPet(r.pk);
   $("#sheetTitle").textContent = "Dresseur";
-  $("#sheetBody").innerHTML = `<div class="lvsheet">${pt?`<img class="px" src="${pt.img}" alt="">`:""}<div class="stp-name" style="margin-top:4px">${esc(r.name)}</div>
+  $("#sheetBody").innerHTML = `<div class="lvsheet">${petArt(pt, r.lv, true)}<div class="stp-name" style="margin-top:4px">${esc(r.name)}</div>
     <div style="font-size:13px;color:var(--muted);margin-top:4px">${esc(r.pet||pt?.n||"")}${pt?` · ${esc(pt.n)} · ${esc(pt.t)}`:""}</div>
-    <div class="lvbig">Niv. ${r.lv}</div>
+    <div class="lvbig">Niv. ${r.lv}</div>${petTag(r.lv)}
     <div class="lvlist"><div><span>XP</span><b>${r.xp.toLocaleString("fr-FR")}</b></div><div><span>Cette semaine</span><b>+${r.wxp.toLocaleString("fr-FR")}</b></div>
     <div><span>Cartes</span><b>${r.cards.toLocaleString("fr-FR")}</b></div><div><span>Extensions complètes</span><b>${r.sets}</b></div>
     ${r.val!=null?`<div><span>Valeur de la collection</span><b>${eurN(r.val)} €</b></div>`:""}</div></div>
@@ -6685,7 +6759,7 @@ async function rkCollection(id){
   const mine = me?.on && me.id===id;
   const n = cards.reduce((a,c)=>a+(c[1]||1),0), val = mine ? getCol().reduce((a,x)=>a+(x.price||0)*(x.qty||1),0) : cards.some(c=>c[6]!=null) ? cards.reduce((a,c)=>a+(c[6]||0)*(c[1]||1),0) : null;
   $("#sheetTitle").textContent = `Collection de ${d.name}`;
-  $("#sheetBody").innerHTML = `<div class="rkcolhead">${pt?`<img class="px" src="${pt.img}" alt="">`:""}<div><b>${esc(d.name)}</b><small>Niv. ${d.lv||1} · ${n.toLocaleString("fr-FR")} carte${n>1?"s":""}${val!=null?` · ${eurN(val)} €${mine && !me.val?" (visible par toi seul)":""}`:""}</small></div>
+  $("#sheetBody").innerHTML = `<div class="rkcolhead">${pt?`<span style="width:48px;height:48px;flex:none">${petArt(pt, d.lv||1)}</span>`:""}<div><b>${esc(d.name)}</b><small>Niv. ${d.lv||1} · ${n.toLocaleString("fr-FR")} carte${n>1?"s":""}${val!=null?` · ${eurN(val)} €${mine && !me.val?" (visible par toi seul)":""}`:""}</small></div>
       ${me?.on && me.id===id ? `<button class="btn btn-g" id="rkcShare">${SHARE_SVG}Partager</button>` : ""}</div>
     ${me?.on && me.id===id ? `<label class="rkchk rkvalsw"><input type="checkbox" id="rkcVal" ${me.val?"checked":""}> <span>Montrer la valeur aux autres dresseurs<small>${me.val?"Ils voient le total et la cote de chaque carte.":"Ils voient tes cartes, mais ni le total ni les cotes."}</small></span></label>` : ""}
     ${cards.length>12?`<label class="ext-search" style="margin:12px 0 0"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><input id="rkcQ" type="search" placeholder="Chercher une carte" autocomplete="off" aria-label="Chercher dans cette collection"></label>`:""}
@@ -6735,6 +6809,11 @@ if(rkProf()?.on) setTimeout(()=>rkColSync(), 6000);
    Après l'intro, une seule fois par version qui apporte quelque chose à l'utilisateur.
    Nouvelle installation : rien (tout est neuf). Les versions purement techniques n'ont pas d'entrée ici. */
 const NEWS = [
+  {v:103, items:[
+    ["M12 2l3 6 6 1-4.5 4.5L18 20l-6-3-6 3 1.5-6.5L3 9l6-1z", "Nouveaux compagnons", "Chauvombre, Cabraise, Axobulle, Planéclair et Capousse remplacent les anciens. Ton compagnon prend la nouvelle apparence de son type et garde son nom."],
+    ["M12 3l2.5 5 5.5.8-4 3.9.9 5.5L12 15.6 7.1 18.2l.9-5.5-4-3.9 5.5-.8z", "Paliers de rareté", "Ton compagnon change d'allure en montant : Rare au niveau 10, Épique au 25, Légendaire au 50 avec sa carte holo. Les autres dresseurs le voient au classement."],
+    ["M4 6h16M4 12h10M4 18h6", "Classeur mieux rangé", "Dans Mes cartes : range tes dossiers par série, par valeur ou par ajouts récents en un geste."]
+  ]},
   {v:102, items:[
     ["M4 4h16v16H4zM4 10h16M10 10v10", "Fiches produit plus claires", "La cote et ton gain en haut, le reste rangé en onglets : Marché, Acheter, Mon achat."],
     ["M12 3l9 5-9 5-9-5zM6 10v5c0 2 3 4 6 4s6-2 6-4v-5", "Jouer devient Apprends", "Dans Plus : comprendre la finance traditionnelle avec les cartes."]
@@ -6966,9 +7045,9 @@ function checkSecret(card, viaScan){
   try{ navigator.vibrate?.([60,40,120]); }catch(e){}
   setTimeout(()=>gameBox([
     "Oh ! Un thème sauvage apparaît !",
-    "Tu as scanné MEW, le Pokémon n°151.\nMACANEIGE rejoint ton équipe et le thème secret KANTO est débloqué !",
+    "Tu as scanné MEW, le Pokémon n°151.\nTANUKAMI rejoint ton équipe et le thème secret KANTO est débloqué !",
     "Rouge et blanc, comme au tout début de l'aventure.\nEn faire ton compagnon ?"
-  ],[{label:"Plus tard"},{label:"Oui !",go:true,run:()=>{ setTeam(getTeam()); teamActivate("macaneige"); toast("Macaneige est ton compagnon ★"); }}]), 700);
+  ],[{label:"Plus tard"},{label:"Oui !",go:true,run:()=>{ setTeam(getTeam()); teamActivate("macaneige"); toast("Tanukami est ton compagnon ★"); }}]), 700);
 }
 
 window.__cote = {setTheme, openThemes, checkSecret, verifyMatch, detectCard, findCards, parseNumber, showCard, processCard, analyzeQuality, renderDiag, openHealth, checkHealth, selectTab, openSet, showExtHome, EX, loadIndex, matchImage, CARDSIG, numCandidates};

@@ -1,0 +1,12580 @@
+{
+ "built": "2026-11-16T03:34:23.368Z",
+ "cards": 21437,
+ "priced": 20341,
+ "total": {
+  "fixed": 99,
+  "tp": 31,
+  "gap": 370,
+  "dup": 730,
+  "nocm": 615
+ },
+ "bySet": {
+  "basep": {
+   "fixed": 1,
+   "tp": 0,
+   "gap": 0,
+   "dup": 0
+  },
+  "base3": {
+   "fixed": 1,
+   "tp": 0,
+   "gap": 0,
+   "dup": 0
+  },
+  "neo1": {
+   "fixed": 1,
+   "tp": 0,
+   "gap": 0,
+   "dup": 18
+  },
+  "neo3": {
+   "fixed": 1,
+   "tp": 0,
+   "gap": 5,
+   "dup": 10
+  },
+  "neo2": {
+   "fixed": 3,
+   "tp": 0,
+   "gap": 7,
+   "dup": 33
+  },
+  "neo4": {
+   "fixed": 2,
+   "tp": 0,
+   "gap": 1,
+   "dup": 0
+  },
+  "ecard1": {
+   "fixed": 16,
+   "tp": 0,
+   "gap": 13,
+   "dup": 81
+  },
+  "ecard2": {
+   "fixed": 7,
+   "tp": 0,
+   "gap": 55,
+   "dup": 40
+  },
+  "ex3": {
+   "fixed": 2,
+   "tp": 0,
+   "gap": 2,
+   "dup": 0
+  },
+  "ex4": {
+   "fixed": 3,
+   "tp": 0,
+   "gap": 4,
+   "dup": 0
+  },
+  "ex5": {
+   "fixed": 2,
+   "tp": 0,
+   "gap": 2,
+   "dup": 0
+  },
+  "ex8": {
+   "fixed": 3,
+   "tp": 0,
+   "gap": 4,
+   "dup": 7
+  },
+  "ex9": {
+   "fixed": 1,
+   "tp": 0,
+   "gap": 2,
+   "dup": 0
+  },
+  "exu": {
+   "fixed": 1,
+   "tp": 0,
+   "gap": 0,
+   "dup": 12
+  },
+  "ex10": {
+   "fixed": 1,
+   "tp": 0,
+   "gap": 6,
+   "dup": 0
+  },
+  "ex11": {
+   "fixed": 8,
+   "tp": 0,
+   "gap": 8,
+   "dup": 20
+  },
+  "pop1": {
+   "fixed": 2,
+   "tp": 0,
+   "gap": 0,
+   "dup": 0
+  },
+  "ex12": {
+   "fixed": 1,
+   "tp": 0,
+   "gap": 1,
+   "dup": 0
+  },
+  "pop3": {
+   "fixed": 1,
+   "tp": 0,
+   "gap": 2,
+   "dup": 0
+  },
+  "ex13": {
+   "fixed": 5,
+   "tp": 0,
+   "gap": 2,
+   "dup": 10
+  },
+  "ex14": {
+   "fixed": 3,
+   "tp": 0,
+   "gap": 1,
+   "dup": 0
+  },
+  "ex15": {
+   "fixed": 7,
+   "tp": 0,
+   "gap": 0,
+   "dup": 8
+  },
+  "dp2": {
+   "fixed": 1,
+   "tp": 0,
+   "gap": 3,
+   "dup": 2
+  },
+  "dp3": {
+   "fixed": 1,
+   "tp": 0,
+   "gap": 4,
+   "dup": 0
+  },
+  "dp6": {
+   "fixed": 1,
+   "tp": 0,
+   "gap": 6,
+   "dup": 20
+  },
+  "pl3": {
+   "fixed": 2,
+   "tp": 0,
+   "gap": 8,
+   "dup": 6
+  },
+  "bw3": {
+   "fixed": 1,
+   "tp": 0,
+   "gap": 0,
+   "dup": 0
+  },
+  "xyp": {
+   "fixed": 7,
+   "tp": 0,
+   "gap": 0,
+   "dup": 67
+  },
+  "bw9": {
+   "fixed": 1,
+   "tp": 0,
+   "gap": 2,
+   "dup": 14
+  },
+  "g1": {
+   "fixed": 2,
+   "tp": 0,
+   "gap": 0,
+   "dup": 14
+  },
+  "smp": {
+   "fixed": 2,
+   "tp": 0,
+   "gap": 5,
+   "dup": 31
+  },
+  "sm7": {
+   "fixed": 1,
+   "tp": 0,
+   "gap": 0,
+   "dup": 17
+  },
+  "lc": {
+   "fixed": 1,
+   "tp": 0,
+   "gap": 0,
+   "dup": 0
+  },
+  "ex7": {
+   "fixed": 1,
+   "tp": 0,
+   "gap": 3,
+   "dup": 0
+  },
+  "ecard3": {
+   "fixed": 4,
+   "tp": 0,
+   "gap": 65,
+   "dup": 18
+  },
+  "pl4": {
+   "fixed": 2,
+   "tp": 0,
+   "gap": 5,
+   "dup": 48
+  },
+  "svp": {
+   "fixed": 0,
+   "tp": 2,
+   "gap": 0,
+   "dup": 0
+  },
+  "sv06": {
+   "fixed": 0,
+   "tp": 1,
+   "gap": 0,
+   "dup": 0
+  },
+  "me06": {
+   "fixed": 0,
+   "tp": 28,
+   "gap": 0,
+   "dup": 12
+  },
+  "ex1": {
+   "fixed": 0,
+   "tp": 0,
+   "gap": 2,
+   "dup": 0
+  },
+  "ex2": {
+   "fixed": 0,
+   "tp": 0,
+   "gap": 2,
+   "dup": 182
+  },
+  "ex6": {
+   "fixed": 0,
+   "tp": 0,
+   "gap": 2,
+   "dup": 0
+  },
+  "pop2": {
+   "fixed": 0,
+   "tp": 0,
+   "gap": 1,
+   "dup": 0
+  },
+  "ex16": {
+   "fixed": 0,
+   "tp": 0,
+   "gap": 4,
+   "dup": 0
+  },
+  "dp1": {
+   "fixed": 0,
+   "tp": 0,
+   "gap": 4,
+   "dup": 0
+  },
+  "dp4": {
+   "fixed": 0,
+   "tp": 0,
+   "gap": 2,
+   "dup": 4
+  },
+  "pop7": {
+   "fixed": 0,
+   "tp": 0,
+   "gap": 1,
+   "dup": 0
+  },
+  "dp5": {
+   "fixed": 0,
+   "tp": 0,
+   "gap": 7,
+   "dup": 18
+  },
+  "dp7": {
+   "fixed": 0,
+   "tp": 0,
+   "gap": 1,
+   "dup": 20
+  },
+  "pl1": {
+   "fixed": 0,
+   "tp": 0,
+   "gap": 4,
+   "dup": 22
+  },
+  "hgssp": {
+   "fixed": 0,
+   "tp": 0,
+   "gap": 4,
+   "dup": 0
+  },
+  "hgss1": {
+   "fixed": 0,
+   "tp": 0,
+   "gap": 9,
+   "dup": 16
+  },
+  "pl2": {
+   "fixed": 0,
+   "tp": 0,
+   "gap": 6,
+   "dup": 10
+  },
+  "tk-hs-g": {
+   "fixed": 0,
+   "tp": 0,
+   "gap": 1,
+   "dup": 0
+  },
+  "hgss2": {
+   "fixed": 0,
+   "tp": 0,
+   "gap": 6,
+   "dup": 0
+  },
+  "hgss3": {
+   "fixed": 0,
+   "tp": 0,
+   "gap": 7,
+   "dup": 0
+  },
+  "hgss4": {
+   "fixed": 0,
+   "tp": 0,
+   "gap": 1,
+   "dup": 12
+  },
+  "col1": {
+   "fixed": 0,
+   "tp": 0,
+   "gap": 16,
+   "dup": 4
+  },
+  "bw4": {
+   "fixed": 0,
+   "tp": 0,
+   "gap": 4,
+   "dup": 0
+  },
+  "bw5": {
+   "fixed": 0,
+   "tp": 0,
+   "gap": 2,
+   "dup": 0
+  },
+  "bw6": {
+   "fixed": 0,
+   "tp": 0,
+   "gap": 1,
+   "dup": 0
+  },
+  "bw7": {
+   "fixed": 0,
+   "tp": 0,
+   "gap": 3,
+   "dup": 0
+  },
+  "bw10": {
+   "fixed": 0,
+   "tp": 0,
+   "gap": 1,
+   "dup": 6
+  },
+  "xy1": {
+   "fixed": 0,
+   "tp": 0,
+   "gap": 3,
+   "dup": 22
+  },
+  "xy3": {
+   "fixed": 0,
+   "tp": 0,
+   "gap": 4,
+   "dup": 18
+  },
+  "xy2": {
+   "fixed": 0,
+   "tp": 0,
+   "gap": 1,
+   "dup": 27
+  },
+  "xy5": {
+   "fixed": 0,
+   "tp": 0,
+   "gap": 5,
+   "dup": 70
+  },
+  "xy4": {
+   "fixed": 0,
+   "tp": 0,
+   "gap": 3,
+   "dup": 20
+  },
+  "xy7": {
+   "fixed": 0,
+   "tp": 0,
+   "gap": 8,
+   "dup": 32
+  },
+  "xy6": {
+   "fixed": 0,
+   "tp": 0,
+   "gap": 3,
+   "dup": 40
+  },
+  "2015xy": {
+   "fixed": 0,
+   "tp": 0,
+   "gap": 1,
+   "dup": 0
+  },
+  "xy8": {
+   "fixed": 0,
+   "tp": 0,
+   "gap": 2,
+   "dup": 25
+  },
+  "2016xy": {
+   "fixed": 0,
+   "tp": 0,
+   "gap": 6,
+   "dup": 0
+  },
+  "sm3": {
+   "fixed": 0,
+   "tp": 0,
+   "gap": 1,
+   "dup": 0
+  },
+  "sm3.5": {
+   "fixed": 0,
+   "tp": 0,
+   "gap": 1,
+   "dup": 2
+  },
+  "sm5": {
+   "fixed": 0,
+   "tp": 0,
+   "gap": 3,
+   "dup": 38
+  },
+  "sm9": {
+   "fixed": 0,
+   "tp": 0,
+   "gap": 1,
+   "dup": 14
+  },
+  "sm10": {
+   "fixed": 0,
+   "tp": 0,
+   "gap": 5,
+   "dup": 32
+  },
+  "sm11": {
+   "fixed": 0,
+   "tp": 0,
+   "gap": 1,
+   "dup": 28
+  },
+  "sm115": {
+   "fixed": 0,
+   "tp": 0,
+   "gap": 1,
+   "dup": 2
+  },
+  "swshp": {
+   "fixed": 0,
+   "tp": 0,
+   "gap": 4,
+   "dup": 0
+  },
+  "sv10.5b": {
+   "fixed": 0,
+   "tp": 0,
+   "gap": 1,
+   "dup": 0
+  },
+  "base4": {
+   "fixed": 0,
+   "tp": 0,
+   "gap": 1,
+   "dup": 0
+  },
+  "ru1": {
+   "fixed": 0,
+   "tp": 0,
+   "gap": 2,
+   "dup": 2
+  },
+  "2018sm": {
+   "fixed": 0,
+   "tp": 0,
+   "gap": 5,
+   "dup": 0
+  },
+  "bw11": {
+   "fixed": 0,
+   "tp": 0,
+   "gap": 1,
+   "dup": 0
+  },
+  "tk-dp-l": {
+   "fixed": 0,
+   "tp": 0,
+   "gap": 0,
+   "dup": 22
+  },
+  "tk-hs-r": {
+   "fixed": 0,
+   "tp": 0,
+   "gap": 0,
+   "dup": 58
+  },
+  "tk-bw-z": {
+   "fixed": 0,
+   "tp": 0,
+   "gap": 0,
+   "dup": 60
+  },
+  "bw8": {
+   "fixed": 0,
+   "tp": 0,
+   "gap": 0,
+   "dup": 29
+  },
+  "xy0": {
+   "fixed": 0,
+   "tp": 0,
+   "gap": 0,
+   "dup": 2
+  },
+  "xy9": {
+   "fixed": 0,
+   "tp": 0,
+   "gap": 0,
+   "dup": 7
+  },
+  "xy10": {
+   "fixed": 0,
+   "tp": 0,
+   "gap": 0,
+   "dup": 23
+  },
+  "xy11": {
+   "fixed": 0,
+   "tp": 0,
+   "gap": 0,
+   "dup": 10
+  },
+  "xy12": {
+   "fixed": 0,
+   "tp": 0,
+   "gap": 0,
+   "dup": 2
+  },
+  "tk-sm-l": {
+   "fixed": 0,
+   "tp": 0,
+   "gap": 0,
+   "dup": 28
+  },
+  "sm2": {
+   "fixed": 0,
+   "tp": 0,
+   "gap": 0,
+   "dup": 8
+  },
+  "sm6": {
+   "fixed": 0,
+   "tp": 0,
+   "gap": 0,
+   "dup": 16
+  },
+  "2018sm-fr": {
+   "fixed": 0,
+   "tp": 0,
+   "gap": 0,
+   "dup": 2
+  },
+  "sm7.5": {
+   "fixed": 0,
+   "tp": 0,
+   "gap": 0,
+   "dup": 4
+  },
+  "sm8": {
+   "fixed": 0,
+   "tp": 0,
+   "gap": 0,
+   "dup": 27
+  },
+  "sm12": {
+   "fixed": 0,
+   "tp": 0,
+   "gap": 0,
+   "dup": 24
+  },
+  "swsh1": {
+   "fixed": 0,
+   "tp": 0,
+   "gap": 0,
+   "dup": 47
+  },
+  "2021swsh": {
+   "fixed": 0,
+   "tp": 0,
+   "gap": 0,
+   "dup": 6
+  },
+  "cel25cc": {
+   "fixed": 0,
+   "tp": 0,
+   "gap": 0,
+   "dup": 4
+  },
+  "swsh11": {
+   "fixed": 0,
+   "tp": 0,
+   "gap": 0,
+   "dup": 2
+  }
+ },
+ "fixed": [
+  {
+   "set": "basep",
+   "n": "35",
+   "name": "Pichu",
+   "v": "normale",
+   "was": 101.83,
+   "now": 24.99,
+   "a1": 24.99,
+   "lo": 12.95,
+   "us": null
+  },
+  {
+   "set": "base3",
+   "n": "9",
+   "name": "Kabutops",
+   "v": "normale",
+   "was": 118.26,
+   "now": 26.09,
+   "a1": 26.09,
+   "lo": 7,
+   "us": null
+  },
+  {
+   "set": "neo1",
+   "n": "9",
+   "name": "Lugia",
+   "v": "normale",
+   "was": 682.96,
+   "now": 164,
+   "a1": 164,
+   "lo": 40,
+   "us": null
+  },
+  {
+   "set": "neo3",
+   "n": "65",
+   "name": "Léviator Brillant",
+   "v": "normale",
+   "was": 836.77,
+   "now": 199,
+   "a1": 199,
+   "lo": 60,
+   "us": null
+  },
+  {
+   "set": "neo2",
+   "n": "6",
+   "name": "Kabutops",
+   "v": "normale",
+   "was": 117.14,
+   "now": 27.5,
+   "a1": 27.5,
+   "lo": 7,
+   "us": null
+  },
+  {
+   "set": "neo2",
+   "n": "8",
+   "name": "Tarpaud",
+   "v": "normale",
+   "was": 69.3,
+   "now": 8,
+   "a1": 5,
+   "lo": 8,
+   "us": null
+  },
+  {
+   "set": "neo2",
+   "n": "25",
+   "name": "Kabutops",
+   "v": "normale",
+   "was": 117.14,
+   "now": 27.5,
+   "a1": 27.5,
+   "lo": 7,
+   "us": 13.45
+  },
+  {
+   "set": "neo4",
+   "n": "7",
+   "name": "Démolosse obscur",
+   "v": "normale",
+   "was": 128.85,
+   "now": 30,
+   "a1": 30,
+   "lo": 23,
+   "us": null
+  },
+  {
+   "set": "neo4",
+   "n": "111",
+   "name": "Raichu brillant",
+   "v": "normale",
+   "was": 510.74,
+   "now": 120,
+   "a1": 120,
+   "lo": 120,
+   "us": null
+  },
+  {
+   "set": "ecard1",
+   "n": "6",
+   "name": "Dracaufeu",
+   "v": "normale",
+   "was": 434.51,
+   "now": 90.48,
+   "a1": 12.5,
+   "lo": 27,
+   "us": 90.48
+  },
+  {
+   "set": "ecard1",
+   "n": "35",
+   "name": "Arbok",
+   "v": "normale",
+   "was": 90.59,
+   "now": 14.28,
+   "a1": 8.99,
+   "lo": 2.5,
+   "us": 14.28
+  },
+  {
+   "set": "ecard1",
+   "n": "38",
+   "name": "Papilusion",
+   "v": "normale",
+   "was": 130.94,
+   "now": 31.53,
+   "a1": 6,
+   "lo": 3,
+   "us": 31.53
+  },
+  {
+   "set": "ecard1",
+   "n": "43",
+   "name": "Dracolosse",
+   "v": "normale",
+   "was": 923.28,
+   "now": 109.38,
+   "a1": 64,
+   "lo": 38.35,
+   "us": 109.38
+  },
+  {
+   "set": "ecard1",
+   "n": "46",
+   "name": "Aligatueur",
+   "v": "normale",
+   "was": 295.38,
+   "now": 39.99,
+   "a1": 39.99,
+   "lo": 11.99,
+   "us": 20.95
+  },
+  {
+   "set": "ecard1",
+   "n": "45",
+   "name": "Rapasdepic",
+   "v": "normale",
+   "was": 139,
+   "now": 11.32,
+   "a1": 10,
+   "lo": 4.5,
+   "us": 11.32
+  },
+  {
+   "set": "ecard1",
+   "n": "44",
+   "name": "Triopikeur",
+   "v": "normale",
+   "was": 88.73,
+   "now": 15,
+   "a1": 15,
+   "lo": 3,
+   "us": 13.37
+  },
+  {
+   "set": "ecard1",
+   "n": "48",
+   "name": "Ectoplasma",
+   "v": "normale",
+   "was": 738.78,
+   "now": 173.73,
+   "a1": 45,
+   "lo": 68,
+   "us": 173.73
+  },
+  {
+   "set": "ecard1",
+   "n": "47",
+   "name": "Aligatueur",
+   "v": "normale",
+   "was": 295.38,
+   "now": 40.41,
+   "a1": 39.99,
+   "lo": 11.99,
+   "us": 40.41
+  },
+  {
+   "set": "ecard1",
+   "n": "53",
+   "name": "Méganium",
+   "v": "normale",
+   "was": 155.78,
+   "now": 34.7,
+   "a1": 34.7,
+   "lo": 8,
+   "us": 15.16
+  },
+  {
+   "set": "ecard1",
+   "n": "56",
+   "name": "Mewtwo",
+   "v": "normale",
+   "was": 932.25,
+   "now": 99.9,
+   "a1": 99.9,
+   "lo": 30,
+   "us": 90.47
+  },
+  {
+   "set": "ecard1",
+   "n": "54",
+   "name": "Méganium",
+   "v": "normale",
+   "was": 155.78,
+   "now": 34.7,
+   "a1": 34.7,
+   "lo": 8,
+   "us": 15.83
+  },
+  {
+   "set": "ecard1",
+   "n": "55",
+   "name": "Mew",
+   "v": "normale",
+   "was": 932.25,
+   "now": 168.08,
+   "a1": 99.9,
+   "lo": 30,
+   "us": 168.08
+  },
+  {
+   "set": "ecard1",
+   "n": "61",
+   "name": "Raichu",
+   "v": "normale",
+   "was": 250.44,
+   "now": 54,
+   "a1": 54,
+   "lo": 7.5,
+   "us": 20.73
+  },
+  {
+   "set": "ecard1",
+   "n": "62",
+   "name": "Galopa",
+   "v": "normale",
+   "was": 81.83,
+   "now": 18,
+   "a1": 18,
+   "lo": 3.9,
+   "us": 17.46
+  },
+  {
+   "set": "ecard1",
+   "n": "69",
+   "name": "Raflésia",
+   "v": "normale",
+   "was": 47.29,
+   "now": 10,
+   "a1": 10,
+   "lo": 3,
+   "us": 5.1
+  },
+  {
+   "set": "ecard2",
+   "n": "12",
+   "name": "Noadkoko",
+   "v": "normale",
+   "was": 158.6,
+   "now": 35.99,
+   "a1": 35.99,
+   "lo": 18.48,
+   "us": 8.74
+  },
+  {
+   "set": "ecard2",
+   "n": "24",
+   "name": "Nidoking",
+   "v": "normale",
+   "was": 155.53,
+   "now": 15.42,
+   "a1": 9,
+   "lo": 12,
+   "us": 15.42
+  },
+  {
+   "set": "ecard2",
+   "n": "23",
+   "name": "Grotadmorv",
+   "v": "normale",
+   "was": 259.71,
+   "now": 19.68,
+   "a1": 14.99,
+   "lo": 14.89,
+   "us": 19.68
+  },
+  {
+   "set": "ecard2",
+   "n": "36",
+   "name": "Simularbre",
+   "v": "normale",
+   "was": 359.11,
+   "now": 56.66,
+   "a1": 55,
+   "lo": 16,
+   "us": 56.66
+  },
+  {
+   "set": "ecard2",
+   "n": "35",
+   "name": "Steelix",
+   "v": "normale",
+   "was": 743.82,
+   "now": 134.9,
+   "a1": 134.9,
+   "lo": 40,
+   "us": 58.03
+  },
+  {
+   "set": "ecard2",
+   "n": "39",
+   "name": "Togetic",
+   "v": "normale",
+   "was": 465.53,
+   "now": 64.99,
+   "a1": 64.99,
+   "lo": 10,
+   "us": 39.3
+  },
+  {
+   "set": "ecard2",
+   "n": "149",
+   "name": "Lugia",
+   "v": "normale",
+   "was": 4634.17,
+   "now": 1000,
+   "a1": 1000,
+   "lo": 775,
+   "us": 452.41
+  },
+  {
+   "set": "ex3",
+   "n": "25",
+   "name": "Galifeu",
+   "v": "-holo",
+   "was": 53.71,
+   "now": 9.11,
+   "a1": 6,
+   "lo": 0.29,
+   "us": 9.11
+  },
+  {
+   "set": "ex3",
+   "n": "65",
+   "name": "Gobou",
+   "v": "-holo",
+   "was": 284.31,
+   "now": 67.86,
+   "a1": 14.75,
+   "lo": 0.99,
+   "us": 67.86
+  },
+  {
+   "set": "ex4",
+   "n": "25",
+   "name": "Carvanha de Team Aqua",
+   "v": "-holo",
+   "was": 96.91,
+   "now": 22.62,
+   "a1": 6,
+   "lo": 2.9,
+   "us": 22.62
+  },
+  {
+   "set": "ex4",
+   "n": "24",
+   "name": "Cacnea de Team Aqua",
+   "v": "-holo",
+   "was": 132.27,
+   "now": 28,
+   "a1": 28,
+   "lo": 5.95,
+   "us": 12.53
+  },
+  {
+   "set": "ex4",
+   "n": "74",
+   "name": "Sort de force",
+   "v": "-holo",
+   "was": 37.74,
+   "now": 9.35,
+   "a1": 9.35,
+   "lo": 0.4,
+   "us": 5.75
+  },
+  {
+   "set": "ex5",
+   "n": "6",
+   "name": "Brouhabam",
+   "v": "normale",
+   "was": 130.19,
+   "now": 24.21,
+   "a1": 5.99,
+   "lo": 2.89,
+   "us": 24.21
+  },
+  {
+   "set": "ex5",
+   "n": "94",
+   "name": "Kyogre ex",
+   "v": "normale",
+   "was": 1124.38,
+   "now": 232.99,
+   "a1": 9.99,
+   "lo": 12,
+   "us": 232.99
+  },
+  {
+   "set": "ex8",
+   "n": "107",
+   "name": "Rayquaza ☆",
+   "v": "normale",
+   "was": 91.76,
+   "now": 5,
+   "a1": 5,
+   "lo": 0.8,
+   "us": null
+  },
+  {
+   "set": "ex8",
+   "n": "107",
+   "name": "Rayquaza ☆",
+   "v": "-holo",
+   "was": 478.87,
+   "now": 80,
+   "a1": 80,
+   "lo": 10,
+   "us": null
+  },
+  {
+   "set": "ex8",
+   "n": "40",
+   "name": "Métang",
+   "v": "-holo",
+   "was": 90.7,
+   "now": 18.97,
+   "a1": 5.34,
+   "lo": 2.48,
+   "us": 18.97
+  },
+  {
+   "set": "ex9",
+   "n": "60",
+   "name": "Pikachu",
+   "v": "normale",
+   "was": 126.12,
+   "now": 14.38,
+   "a1": 0.65,
+   "lo": 0.2,
+   "us": 14.38
+  },
+  {
+   "set": "exu",
+   "n": "A",
+   "name": "Zarbi",
+   "v": "normale",
+   "was": 329.01,
+   "now": 48.4,
+   "a1": 7,
+   "lo": 3.5,
+   "us": 48.4
+  },
+  {
+   "set": "ex10",
+   "n": "27",
+   "name": "Ho-Oh",
+   "v": "normale",
+   "was": 67.16,
+   "now": 8.29,
+   "a1": 3.75,
+   "lo": 0.05,
+   "us": 8.29
+  },
+  {
+   "set": "ex11",
+   "n": "5",
+   "name": "Pyroli δ",
+   "v": "-holo",
+   "was": 593.61,
+   "now": 75,
+   "a1": 75,
+   "lo": 24.99,
+   "us": null
+  },
+  {
+   "set": "ex11",
+   "n": "3",
+   "name": "Dracolosse δ",
+   "v": "normale",
+   "was": 216.2,
+   "now": 37,
+   "a1": 37,
+   "lo": 19,
+   "us": null
+  },
+  {
+   "set": "ex11",
+   "n": "9",
+   "name": "Latios δ",
+   "v": "normale",
+   "was": 91.38,
+   "now": 19.98,
+   "a1": 19.98,
+   "lo": 5,
+   "us": null
+  },
+  {
+   "set": "ex11",
+   "n": "14",
+   "name": "Drattak δ",
+   "v": "-holo",
+   "was": 58.51,
+   "now": 12.99,
+   "a1": 12.99,
+   "lo": 2.95,
+   "us": null
+  },
+  {
+   "set": "ex11",
+   "n": "13",
+   "name": "Rayquaza δ",
+   "v": "-holo",
+   "was": 869.23,
+   "now": 87.99,
+   "a1": 87.99,
+   "lo": 34.99,
+   "us": null
+  },
+  {
+   "set": "ex11",
+   "n": "16",
+   "name": "Tyranocif δ",
+   "v": "normale",
+   "was": 726.52,
+   "now": 60,
+   "a1": 60,
+   "lo": 14.99,
+   "us": null
+  },
+  {
+   "set": "ex11",
+   "n": "17",
+   "name": "Noctali δ",
+   "v": "-holo",
+   "was": 990.77,
+   "now": 90,
+   "a1": 90,
+   "lo": 75,
+   "us": null
+  },
+  {
+   "set": "ex11",
+   "n": "24",
+   "name": "Grahyena δ",
+   "v": "-holo",
+   "was": 51.59,
+   "now": 5,
+   "a1": 2,
+   "lo": 5,
+   "us": null
+  },
+  {
+   "set": "pop1",
+   "n": "1",
+   "name": "Braségali",
+   "v": "normale",
+   "was": 118.27,
+   "now": 24.95,
+   "a1": 24.95,
+   "lo": 4.98,
+   "us": 20.64
+  },
+  {
+   "set": "pop1",
+   "n": "4",
+   "name": "Jungko",
+   "v": "normale",
+   "was": 84.78,
+   "now": 19.3,
+   "a1": 4.6,
+   "lo": 1,
+   "us": 19.3
+  },
+  {
+   "set": "ex12",
+   "n": "12",
+   "name": "Tengalice",
+   "v": "-holo",
+   "was": 89.62,
+   "now": 21.9,
+   "a1": 12,
+   "lo": 2.99,
+   "us": 21.9
+  },
+  {
+   "set": "pop3",
+   "n": "6",
+   "name": "Aquali",
+   "v": "normale",
+   "was": 251.43,
+   "now": 34.5,
+   "a1": 34.5,
+   "lo": 6.99,
+   "us": 30.17
+  },
+  {
+   "set": "ex13",
+   "n": "14",
+   "name": "Roucarnage δ",
+   "v": "normale",
+   "was": 37,
+   "now": 5.95,
+   "a1": 5.95,
+   "lo": 3.8,
+   "us": null
+  },
+  {
+   "set": "ex13",
+   "n": "11",
+   "name": "Latias δ",
+   "v": "normale",
+   "was": 72.77,
+   "now": 9.99,
+   "a1": 9.99,
+   "lo": 5,
+   "us": null
+  },
+  {
+   "set": "ex13",
+   "n": "67",
+   "name": "Kabuto δ",
+   "v": "-holo",
+   "was": 47.77,
+   "now": 8,
+   "a1": 1,
+   "lo": 8,
+   "us": null
+  },
+  {
+   "set": "ex13",
+   "n": "69",
+   "name": "Magicarpe δ",
+   "v": "-holo",
+   "was": 88.9,
+   "now": 12.48,
+   "a1": 7,
+   "lo": 12.48,
+   "us": null
+  },
+  {
+   "set": "ex13",
+   "n": "76",
+   "name": "Pichu δ",
+   "v": "-holo",
+   "was": 293.13,
+   "now": 29.99,
+   "a1": 29.99,
+   "lo": 9.99,
+   "us": null
+  },
+  {
+   "set": "ex14",
+   "n": "2",
+   "name": "Tortank δ",
+   "v": "-holo",
+   "was": 226.68,
+   "now": 19.99,
+   "a1": 19.99,
+   "lo": 19.98,
+   "us": null
+  },
+  {
+   "set": "ex14",
+   "n": "4",
+   "name": "Dracaufeu δ",
+   "v": "normale",
+   "was": 300.23,
+   "now": 60,
+   "a1": 60,
+   "lo": 44.99,
+   "us": null
+  },
+  {
+   "set": "ex14",
+   "n": "49",
+   "name": "Salamèche δ",
+   "v": "-holo",
+   "was": 78.8,
+   "now": 19.48,
+   "a1": 3,
+   "lo": 19.48,
+   "us": null
+  },
+  {
+   "set": "ex15",
+   "n": "5",
+   "name": "Milobellus δ",
+   "v": "-holo",
+   "was": 287.82,
+   "now": 15,
+   "a1": 15,
+   "lo": 7,
+   "us": null
+  },
+  {
+   "set": "ex15",
+   "n": "6",
+   "name": "Nidoking δ",
+   "v": "-holo",
+   "was": 89.96,
+   "now": 19.5,
+   "a1": 19.5,
+   "lo": 4.95,
+   "us": null
+  },
+  {
+   "set": "ex15",
+   "n": "3",
+   "name": "Scarhino δ",
+   "v": "-holo",
+   "was": 56.24,
+   "now": 8,
+   "a1": 8,
+   "lo": 6,
+   "us": null
+  },
+  {
+   "set": "ex15",
+   "n": "24",
+   "name": "Vibraninf δ",
+   "v": "-holo",
+   "was": 58.37,
+   "now": 9.99,
+   "a1": 9.99,
+   "lo": 4.5,
+   "us": null
+  },
+  {
+   "set": "ex15",
+   "n": "90",
+   "name": "Altaria ex δ",
+   "v": "normale",
+   "was": 92.09,
+   "now": 20,
+   "a1": 20,
+   "lo": 14.95,
+   "us": null
+  },
+  {
+   "set": "ex15",
+   "n": "42",
+   "name": "Vibraninf δ",
+   "v": "-holo",
+   "was": 58.37,
+   "now": 9.99,
+   "a1": 9.99,
+   "lo": 4.5,
+   "us": null
+  },
+  {
+   "set": "ex15",
+   "n": "63",
+   "name": "Kokiyas δ",
+   "v": "-holo",
+   "was": 38.23,
+   "now": 7.5,
+   "a1": 7.5,
+   "lo": 1.9,
+   "us": null
+  },
+  {
+   "set": "dp2",
+   "n": "10",
+   "name": "Corboss",
+   "v": "normale",
+   "was": 35.03,
+   "now": 6.71,
+   "a1": 0.98,
+   "lo": 0.49,
+   "us": 6.71
+  },
+  {
+   "set": "dp3",
+   "n": "46",
+   "name": "Reptincel",
+   "v": "-holo",
+   "was": 109.14,
+   "now": 12.56,
+   "a1": 8,
+   "lo": 0.2,
+   "us": 12.56
+  },
+  {
+   "set": "dp6",
+   "n": "16",
+   "name": "Spiritomb",
+   "v": "normale",
+   "was": 68.24,
+   "now": 11.86,
+   "a1": 4,
+   "lo": 0.3,
+   "us": 11.86
+  },
+  {
+   "set": "pl3",
+   "n": "9",
+   "name": "Regigigas FB",
+   "v": "normale",
+   "was": 80.66,
+   "now": 18.95,
+   "a1": 14.95,
+   "lo": 18.95,
+   "us": 14.31
+  },
+  {
+   "set": "pl3",
+   "n": "SH9",
+   "name": "Yanma",
+   "v": "normale",
+   "was": 80.66,
+   "now": 18.95,
+   "a1": 14.95,
+   "lo": 18.95,
+   "us": null
+  },
+  {
+   "set": "bw3",
+   "n": "43",
+   "name": "Victini",
+   "v": "normale",
+   "was": 50.95,
+   "now": 10.54,
+   "a1": 0.84,
+   "lo": 0.1,
+   "us": 10.54
+  },
+  {
+   "set": "xyp",
+   "n": "XY113",
+   "name": "Manaphy",
+   "v": "normale",
+   "was": 56.12,
+   "now": 10,
+   "a1": 10,
+   "lo": 5,
+   "us": null
+  },
+  {
+   "set": "xyp",
+   "n": "XY160",
+   "name": "Kyurem Noir",
+   "v": "normale",
+   "was": 34.06,
+   "now": 8.44,
+   "a1": 8.44,
+   "lo": 5,
+   "us": null
+  },
+  {
+   "set": "xyp",
+   "n": "XY190",
+   "name": "Manaphy",
+   "v": "normale",
+   "was": 56.12,
+   "now": 10,
+   "a1": 10,
+   "lo": 5,
+   "us": null
+  },
+  {
+   "set": "xyp",
+   "n": "XY202",
+   "name": "Pikachu",
+   "v": "normale",
+   "was": 1129.64,
+   "now": 94.95,
+   "a1": 94.95,
+   "lo": 7,
+   "us": null
+  },
+  {
+   "set": "xyp",
+   "n": "XY40",
+   "name": "Métamorph",
+   "v": "normale",
+   "was": 65.64,
+   "now": 13,
+   "a1": 13,
+   "lo": 8,
+   "us": null
+  },
+  {
+   "set": "xyp",
+   "n": "XY78",
+   "name": "Latias",
+   "v": "normale",
+   "was": 66.29,
+   "now": 13.95,
+   "a1": 13.95,
+   "lo": 9,
+   "us": null
+  },
+  {
+   "set": "xyp",
+   "n": "XY95",
+   "name": "Pikachu",
+   "v": "normale",
+   "was": 1129.64,
+   "now": 94.95,
+   "a1": 94.95,
+   "lo": 7,
+   "us": null
+  },
+  {
+   "set": "bw9",
+   "n": "48",
+   "name": "Mentali",
+   "v": "normale",
+   "was": 85.6,
+   "now": 7.84,
+   "a1": 3,
+   "lo": 0.02,
+   "us": 7.84
+  },
+  {
+   "set": "g1",
+   "n": "RC28",
+   "name": "Pyroli-EX",
+   "v": "normale",
+   "was": 68.09,
+   "now": 16,
+   "a1": 16,
+   "lo": 12,
+   "us": null
+  },
+  {
+   "set": "g1",
+   "n": "RC6",
+   "name": "Pyroli-EX",
+   "v": "normale",
+   "was": 68.09,
+   "now": 16,
+   "a1": 16,
+   "lo": 12,
+   "us": null
+  },
+  {
+   "set": "smp",
+   "n": "SM247",
+   "name": "Reshiram et Dracaufeu GX",
+   "v": "normale",
+   "was": 162.67,
+   "now": 36.53,
+   "a1": 19.99,
+   "lo": 20,
+   "us": 36.53
+  },
+  {
+   "set": "smp",
+   "n": "SM248",
+   "name": "Pikachu et Zekrom GX",
+   "v": "normale",
+   "was": 275.65,
+   "now": 65,
+   "a1": 65,
+   "lo": 64.8,
+   "us": 32.07
+  },
+  {
+   "set": "sm7",
+   "n": "108",
+   "name": "Latios ◇",
+   "v": "normale",
+   "was": 95.52,
+   "now": 11.75,
+   "a1": 11.75,
+   "lo": 1.5,
+   "us": null
+  },
+  {
+   "set": "lc",
+   "n": "88",
+   "name": "Psyduck",
+   "v": "normale",
+   "was": 38.71,
+   "now": 9.59,
+   "a1": 3.54,
+   "lo": 0.99,
+   "us": 9.59
+  },
+  {
+   "set": "ex7",
+   "n": "11",
+   "name": "Jumpluff",
+   "v": "normale",
+   "was": 83.8,
+   "now": 15.85,
+   "a1": 11.25,
+   "lo": 4.8,
+   "us": 15.85
+  },
+  {
+   "set": "ecard3",
+   "n": "10",
+   "name": "Gengar",
+   "v": "normale",
+   "was": 6221.9,
+   "now": 400,
+   "a1": 325,
+   "lo": 400,
+   "us": null
+  },
+  {
+   "set": "ecard3",
+   "n": "13",
+   "name": "Jolteon",
+   "v": "normale",
+   "was": 387.75,
+   "now": 84.95,
+   "a1": 84.95,
+   "lo": 49,
+   "us": 54.23
+  },
+  {
+   "set": "ecard3",
+   "n": "22",
+   "name": "Nidoqueen",
+   "v": "normale",
+   "was": 292.19,
+   "now": 40,
+   "a1": 40,
+   "lo": 35,
+   "us": 27.52
+  },
+  {
+   "set": "ecard3",
+   "n": "33",
+   "name": "Vaporeon",
+   "v": "normale",
+   "was": 1074.57,
+   "now": 120,
+   "a1": 108,
+   "lo": 120,
+   "us": 86.93
+  },
+  {
+   "set": "pl4",
+   "n": "SH10",
+   "name": "Bagon",
+   "v": "normale",
+   "was": 75.95,
+   "now": 13,
+   "a1": 13,
+   "lo": 9.99,
+   "us": null
+  },
+  {
+   "set": "pl4",
+   "n": "52",
+   "name": "Bagon",
+   "v": "normale",
+   "was": 75.95,
+   "now": 13,
+   "a1": 13,
+   "lo": 9.99,
+   "us": null
+  }
+ ],
+ "tp": [
+  {
+   "set": "svp",
+   "n": "076",
+   "name": "Poussacha",
+   "now": 11.46
+  },
+  {
+   "set": "svp",
+   "n": "150",
+   "name": "Hôtel \" Au paradis des Pokémon \"",
+   "now": 537.41
+  },
+  {
+   "set": "sv06",
+   "n": "019",
+   "name": "Vert-de-Fer",
+   "now": 1.04
+  },
+  {
+   "set": "me06",
+   "n": "104",
+   "name": "Maskadra",
+   "now": 1.67
+  },
+  {
+   "set": "me06",
+   "n": "106",
+   "name": "Caninos",
+   "now": 14.5
+  },
+  {
+   "set": "me06",
+   "n": "105",
+   "name": "Poussacha",
+   "now": 9.06
+  },
+  {
+   "set": "me06",
+   "n": "108",
+   "name": "Élekable",
+   "now": 3.28
+  },
+  {
+   "set": "me06",
+   "n": "107",
+   "name": "Maganon",
+   "now": 3.13
+  },
+  {
+   "set": "me06",
+   "n": "109",
+   "name": "Wattapik",
+   "now": 2.47
+  },
+  {
+   "set": "me06",
+   "n": "110",
+   "name": "Amovénus",
+   "now": 2.86
+  },
+  {
+   "set": "me06",
+   "n": "112",
+   "name": "Zorua",
+   "now": 6.26
+  },
+  {
+   "set": "me06",
+   "n": "113",
+   "name": "Sepiatop",
+   "now": 4.08
+  },
+  {
+   "set": "me06",
+   "n": "111",
+   "name": "Groudon",
+   "now": 17.55
+  },
+  {
+   "set": "me06",
+   "n": "114",
+   "name": "Évoli",
+   "now": 19.89
+  },
+  {
+   "set": "me06",
+   "n": "121",
+   "name": "Raikou‑ex",
+   "now": 3.75
+  },
+  {
+   "set": "me06",
+   "n": "116",
+   "name": "Altaria",
+   "now": 4.04
+  },
+  {
+   "set": "me06",
+   "n": "115",
+   "name": "Azurill",
+   "now": 6.3
+  },
+  {
+   "set": "me06",
+   "n": "117",
+   "name": "Kecleon",
+   "now": 30.38
+  },
+  {
+   "set": "me06",
+   "n": "118",
+   "name": "Méga-Sarmuraï‑ex",
+   "now": 4.02
+  },
+  {
+   "set": "me06",
+   "n": "125",
+   "name": "Millepertuis",
+   "now": 2.11
+  },
+  {
+   "set": "me06",
+   "n": "136",
+   "name": "Raikou‑ex",
+   "now": 119.21
+  },
+  {
+   "set": "me06",
+   "n": "128",
+   "name": "Engouement de la MC",
+   "now": 1.69
+  },
+  {
+   "set": "me06",
+   "n": "127",
+   "name": "Veste Personnalisée",
+   "now": 1.02
+  },
+  {
+   "set": "me06",
+   "n": "135",
+   "name": "Méga-Sarmuraï‑ex",
+   "now": 22.06
+  },
+  {
+   "set": "me06",
+   "n": "130",
+   "name": "Entraînement de Lévy et Tatia",
+   "now": 1.47
+  },
+  {
+   "set": "me06",
+   "n": "131",
+   "name": "Confiance d'Amaryllis",
+   "now": 4.09
+  },
+  {
+   "set": "me06",
+   "n": "140",
+   "name": "Confiance d'Amaryllis",
+   "now": 28.65
+  },
+  {
+   "set": "me06",
+   "n": "137",
+   "name": "Méga-Golemastoc‑ex",
+   "now": 24.23
+  },
+  {
+   "set": "me06",
+   "n": "138",
+   "name": "Méga-Rayquaza‑ex",
+   "now": 274.71
+  },
+  {
+   "set": "me06",
+   "n": "139",
+   "name": "Millepertuis",
+   "now": 18.77
+  },
+  {
+   "set": "me06",
+   "n": "141",
+   "name": "Méga-Rayquaza‑ex",
+   "now": 198.87
+  }
+ ],
+ "gap": [
+  {
+   "set": "ex13",
+   "n": "104",
+   "name": "Pikachu ☆",
+   "eu": 6.34,
+   "us": 6331.72,
+   "x": 998.69
+  },
+  {
+   "set": "ex10",
+   "n": "17",
+   "name": "Typhlosion",
+   "eu": 8.33,
+   "us": 886.55,
+   "x": 106.43
+  },
+  {
+   "set": "xy4",
+   "n": "122",
+   "name": "Dialga EX",
+   "eu": 10.43,
+   "us": 953.56,
+   "x": 91.42
+  },
+  {
+   "set": "ecard2",
+   "n": "H11",
+   "name": "Démolosse",
+   "eu": 16.61,
+   "us": 1422.35,
+   "x": 85.63
+  },
+  {
+   "set": "ecard2",
+   "n": "148",
+   "name": "Hyporoi",
+   "eu": 5.67,
+   "us": 442.45,
+   "x": 78.03
+  },
+  {
+   "set": "ecard2",
+   "n": "H19",
+   "name": "Feunard",
+   "eu": 8.56,
+   "us": 570.03,
+   "x": 66.59
+  },
+  {
+   "set": "ecard3",
+   "n": "147",
+   "name": "Crobat",
+   "eu": 19.73,
+   "us": 1221.49,
+   "x": 61.91
+  },
+  {
+   "set": "ecard2",
+   "n": "150",
+   "name": "Nidoking",
+   "eu": 6.4,
+   "us": 361.92,
+   "x": 56.55
+  },
+  {
+   "set": "ecard2",
+   "n": "H22",
+   "name": "Roigada",
+   "eu": 10.6,
+   "us": 542.88,
+   "x": 51.21
+  },
+  {
+   "set": "xy4",
+   "n": "114",
+   "name": "Ectoplasma EX",
+   "eu": 16,
+   "us": 734.53,
+   "x": 45.91
+  },
+  {
+   "set": "sm115",
+   "n": "9",
+   "name": "Dracaufeu-GX",
+   "eu": 437.98,
+   "us": 9.94,
+   "x": 44.05
+  },
+  {
+   "set": "ecard3",
+   "n": "H08",
+   "name": "Forretress",
+   "eu": 5.11,
+   "us": 203.57,
+   "x": 39.84
+  },
+  {
+   "set": "col1",
+   "n": "SL1",
+   "name": "Deoxys",
+   "eu": 19.43,
+   "us": 769.09,
+   "x": 39.58
+  },
+  {
+   "set": "ecard3",
+   "n": "H28",
+   "name": "Starmie",
+   "eu": 13.28,
+   "us": 520.94,
+   "x": 39.23
+  },
+  {
+   "set": "ecard2",
+   "n": "H14",
+   "name": "Hyporoi",
+   "eu": 5.67,
+   "us": 194.03,
+   "x": 34.22
+  },
+  {
+   "set": "ecard2",
+   "n": "H25",
+   "name": "Suicune",
+   "eu": 14.93,
+   "us": 488.59,
+   "x": 32.73
+  },
+  {
+   "set": "ecard2",
+   "n": "H18",
+   "name": "Nidoking",
+   "eu": 6.4,
+   "us": 208.99,
+   "x": 32.66
+  },
+  {
+   "set": "ecard3",
+   "n": "H27",
+   "name": "Rhydon",
+   "eu": 8.89,
+   "us": 271.44,
+   "x": 30.53
+  },
+  {
+   "set": "ecard2",
+   "n": "H17",
+   "name": "Grotadmorv",
+   "eu": 8.21,
+   "us": 243.85,
+   "x": 29.7
+  },
+  {
+   "set": "ecard2",
+   "n": "H30",
+   "name": "Empiflor",
+   "eu": 5.68,
+   "us": 158.34,
+   "x": 27.88
+  },
+  {
+   "set": "ecard2",
+   "n": "H07",
+   "name": "Électrode",
+   "eu": 5.49,
+   "us": 152.7,
+   "x": 27.82
+  },
+  {
+   "set": "ecard3",
+   "n": "H15",
+   "name": "Machamp",
+   "eu": 14.9,
+   "us": 380.01,
+   "x": 25.5
+  },
+  {
+   "set": "ecard3",
+   "n": "H05",
+   "name": "Crobat",
+   "eu": 19.73,
+   "us": 497.64,
+   "x": 25.22
+  },
+  {
+   "set": "2016xy",
+   "n": "7",
+   "name": "Baggiguane",
+   "eu": 7.26,
+   "us": 180.95,
+   "x": 24.92
+  },
+  {
+   "set": "2016xy",
+   "n": "8",
+   "name": "Rondoudou",
+   "eu": 6.36,
+   "us": 158.34,
+   "x": 24.9
+  },
+  {
+   "set": "sm10",
+   "n": "205",
+   "name": "Gardevoir et Nymphali GX",
+   "eu": 25.48,
+   "us": 601.98,
+   "x": 23.63
+  },
+  {
+   "set": "ecard2",
+   "n": "H23",
+   "name": "Steelix",
+   "eu": 13.14,
+   "us": 307.59,
+   "x": 23.41
+  },
+  {
+   "set": "ecard3",
+   "n": "H14",
+   "name": "Ledian",
+   "eu": 7.84,
+   "us": 180.96,
+   "x": 23.08
+  },
+  {
+   "set": "ecard2",
+   "n": "H04",
+   "name": "Azumarill",
+   "eu": 5.72,
+   "us": 131.19,
+   "x": 22.94
+  },
+  {
+   "set": "ecard3",
+   "n": "H13",
+   "name": "Kabutops",
+   "eu": 16.28,
+   "us": 361.91,
+   "x": 22.23
+  },
+  {
+   "set": "ecard2",
+   "n": "H01",
+   "name": "Pharamp",
+   "eu": 14.79,
+   "us": 316.68,
+   "x": 21.41
+  },
+  {
+   "set": "xy7",
+   "n": "94",
+   "name": "Lugia EX",
+   "eu": 12.74,
+   "us": 269.79,
+   "x": 21.18
+  },
+  {
+   "set": "sm3.5",
+   "n": "78",
+   "name": "Mewtwo GX",
+   "eu": 35.55,
+   "us": 743.3,
+   "x": 20.91
+  },
+  {
+   "set": "col1",
+   "n": "SL4",
+   "name": "Groudon",
+   "eu": 27.39,
+   "us": 570.03,
+   "x": 20.81
+  },
+  {
+   "set": "smp",
+   "n": "SM166",
+   "name": "Magicarpe et Wailord GX",
+   "eu": 8.12,
+   "us": 167.89,
+   "x": 20.68
+  },
+  {
+   "set": "xy2",
+   "n": "100",
+   "name": "Dracaufeu EX",
+   "eu": 13.33,
+   "us": 271.68,
+   "x": 20.38
+  },
+  {
+   "set": "ecard2",
+   "n": "H27",
+   "name": "Togetic",
+   "eu": 8.47,
+   "us": 166.09,
+   "x": 19.61
+  },
+  {
+   "set": "ecard3",
+   "n": "H07",
+   "name": "Flareon",
+   "eu": 27.71,
+   "us": 533.74,
+   "x": 19.26
+  },
+  {
+   "set": "hgss1",
+   "n": "108",
+   "name": "Aligatueur",
+   "eu": 6.08,
+   "us": 114.45,
+   "x": 18.82
+  },
+  {
+   "set": "dp5",
+   "n": "5",
+   "name": "Givrali",
+   "eu": 14.3,
+   "us": 266.73,
+   "x": 18.65
+  },
+  {
+   "set": "ecard2",
+   "n": "H26",
+   "name": "Tentacruel",
+   "eu": 8.54,
+   "us": 157.35,
+   "x": 18.42
+  },
+  {
+   "set": "ecard2",
+   "n": "H32",
+   "name": "Electhor",
+   "eu": 17.32,
+   "us": 316.67,
+   "x": 18.28
+  },
+  {
+   "set": "ecard2",
+   "n": "H31",
+   "name": "Rafflesia",
+   "eu": 7.66,
+   "us": 136.73,
+   "x": 17.85
+  },
+  {
+   "set": "ecard3",
+   "n": "H22",
+   "name": "Piloswine",
+   "eu": 15.67,
+   "us": 276.42,
+   "x": 17.64
+  },
+  {
+   "set": "ecard3",
+   "n": "H19",
+   "name": "Magneton",
+   "eu": 10.38,
+   "us": 180.96,
+   "x": 17.43
+  },
+  {
+   "set": "hgss1",
+   "n": "110",
+   "name": "Typhlosion",
+   "eu": 6.82,
+   "us": 116.71,
+   "x": 17.11
+  },
+  {
+   "set": "col1",
+   "n": "SL8",
+   "name": "Palkia",
+   "eu": 18.77,
+   "us": 316.68,
+   "x": 16.87
+  },
+  {
+   "set": "ex1",
+   "n": "98",
+   "name": "Tygnon ex",
+   "eu": 6.73,
+   "us": 113.39,
+   "x": 16.85
+  },
+  {
+   "set": "2016xy",
+   "n": "5",
+   "name": "Kaiminus",
+   "eu": 7.84,
+   "us": 131.2,
+   "x": 16.73
+  },
+  {
+   "set": "ecard3",
+   "n": "H26",
+   "name": "Raikou",
+   "eu": 20.32,
+   "us": 339.3,
+   "x": 16.7
+  },
+  {
+   "set": "2016xy",
+   "n": "10",
+   "name": "Dedenne",
+   "eu": 6.06,
+   "us": 100.42,
+   "x": 16.57
+  },
+  {
+   "set": "ecard3",
+   "n": "H20",
+   "name": "Moltres",
+   "eu": 25.84,
+   "us": 425.25,
+   "x": 16.46
+  },
+  {
+   "set": "ecard2",
+   "n": "H16",
+   "name": "Magnéton",
+   "eu": 7.46,
+   "us": 122.15,
+   "x": 16.37
+  },
+  {
+   "set": "ecard2",
+   "n": "H05",
+   "name": "Joliflor",
+   "eu": 8.05,
+   "us": 126.66,
+   "x": 15.73
+  },
+  {
+   "set": "ecard3",
+   "n": "H23",
+   "name": "Politoed",
+   "eu": 14.45,
+   "us": 226.2,
+   "x": 15.65
+  },
+  {
+   "set": "ecard3",
+   "n": "35",
+   "name": "Xatu",
+   "eu": 141.17,
+   "us": 9.09,
+   "x": 15.52
+  },
+  {
+   "set": "ecard2",
+   "n": "H13",
+   "name": "Cotovol",
+   "eu": 9.79,
+   "us": 151.53,
+   "x": 15.48
+  },
+  {
+   "set": "col1",
+   "n": "9",
+   "name": "Ho-Oh",
+   "eu": 542.31,
+   "us": 35.51,
+   "x": 15.27
+  },
+  {
+   "set": "ecard1",
+   "n": "15",
+   "name": "Krabboss",
+   "eu": 7.91,
+   "us": 116.7,
+   "x": 14.75
+  },
+  {
+   "set": "sm5",
+   "n": "157",
+   "name": "Phyllali GX",
+   "eu": 6,
+   "us": 87.15,
+   "x": 14.53
+  },
+  {
+   "set": "hgssp",
+   "n": "HGSS10",
+   "name": "Latias",
+   "eu": 28.96,
+   "us": 417.49,
+   "x": 14.42
+  },
+  {
+   "set": "xy3",
+   "n": "108",
+   "name": "Dracolosse EX",
+   "eu": 10.31,
+   "us": 148.04,
+   "x": 14.36
+  },
+  {
+   "set": "ecard3",
+   "n": "11",
+   "name": "Gyarados",
+   "eu": 906.28,
+   "us": 63.7,
+   "x": 14.23
+  },
+  {
+   "set": "hgss4",
+   "n": "92",
+   "name": "Celebi",
+   "eu": 7.64,
+   "us": 105.39,
+   "x": 13.79
+  },
+  {
+   "set": "pl2",
+   "n": "3",
+   "name": "Darkrai G Niv. 58",
+   "eu": 6.49,
+   "us": 87.93,
+   "x": 13.55
+  },
+  {
+   "set": "ecard3",
+   "n": "107",
+   "name": "Swinub",
+   "eu": 6.14,
+   "us": 82.88,
+   "x": 13.5
+  },
+  {
+   "set": "ecard3",
+   "n": "29",
+   "name": "Rhydon",
+   "eu": 322.47,
+   "us": 24.49,
+   "x": 13.17
+  },
+  {
+   "set": "ex4",
+   "n": "6",
+   "name": "Kaimorse de Team Aqua",
+   "eu": 131.38,
+   "us": 10.02,
+   "x": 13.12
+  },
+  {
+   "set": "ex10",
+   "n": "103",
+   "name": "Aligatueur ex",
+   "eu": 11.07,
+   "us": 144.76,
+   "x": 13.08
+  },
+  {
+   "set": "xy1",
+   "n": "142",
+   "name": "Tortank EX",
+   "eu": 12.21,
+   "us": 159.76,
+   "x": 13.08
+  },
+  {
+   "set": "ecard2",
+   "n": "H15",
+   "name": "Lanturn",
+   "eu": 9.71,
+   "us": 126.67,
+   "x": 13.05
+  },
+  {
+   "set": "ecard3",
+   "n": "15",
+   "name": "Ledian",
+   "eu": 228.63,
+   "us": 17.93,
+   "x": 12.75
+  },
+  {
+   "set": "bw4",
+   "n": "102",
+   "name": "Zoroark",
+   "eu": 28.52,
+   "us": 361.91,
+   "x": 12.69
+  },
+  {
+   "set": "col1",
+   "n": "SL5",
+   "name": "Ho-Oh",
+   "eu": 53.84,
+   "us": 678.59,
+   "x": 12.6
+  },
+  {
+   "set": "ecard2",
+   "n": "34",
+   "name": "Roigada",
+   "eu": 411.32,
+   "us": 34.14,
+   "x": 12.05
+  },
+  {
+   "set": "ecard3",
+   "n": "16",
+   "name": "Machamp",
+   "eu": 511.4,
+   "us": 42.55,
+   "x": 12.02
+  },
+  {
+   "set": "ecard1",
+   "n": "42",
+   "name": "Crustabri",
+   "eu": 193.44,
+   "us": 16.28,
+   "x": 11.88
+  },
+  {
+   "set": "bw9",
+   "n": "115",
+   "name": "Ghetis",
+   "eu": 6.71,
+   "us": 79.67,
+   "x": 11.87
+  },
+  {
+   "set": "ecard3",
+   "n": "9",
+   "name": "Forretress",
+   "eu": 152.01,
+   "us": 12.97,
+   "x": 11.72
+  },
+  {
+   "set": "ex8",
+   "n": "108",
+   "name": "Raikou ex de Rocket",
+   "eu": 177.74,
+   "us": 2081.06,
+   "x": 11.71
+  },
+  {
+   "set": "sm5",
+   "n": "159",
+   "name": "Givrali GX",
+   "eu": 6.54,
+   "us": 76.19,
+   "x": 11.65
+  },
+  {
+   "set": "pl3",
+   "n": "8",
+   "name": "Rayquaza C",
+   "eu": 21.11,
+   "us": 242.61,
+   "x": 11.49
+  },
+  {
+   "set": "ecard2",
+   "n": "H08",
+   "name": "Entei",
+   "eu": 50.8,
+   "us": 578.17,
+   "x": 11.38
+  },
+  {
+   "set": "xy7",
+   "n": "84",
+   "name": "Jungko EX",
+   "eu": 5.15,
+   "us": 58.33,
+   "x": 11.33
+  },
+  {
+   "set": "xy7",
+   "n": "87",
+   "name": "Pharamp EX",
+   "eu": 6.54,
+   "us": 73.55,
+   "x": 11.25
+  },
+  {
+   "set": "ecard2",
+   "n": "H12",
+   "name": "Hypnomade",
+   "eu": 20.84,
+   "us": 228.46,
+   "x": 10.96
+  },
+  {
+   "set": "col1",
+   "n": "SL2",
+   "name": "Dialga",
+   "eu": 27.49,
+   "us": 294.95,
+   "x": 10.73
+  },
+  {
+   "set": "ex11",
+   "n": "36",
+   "name": "Métamorph",
+   "eu": 13.29,
+   "us": 141.93,
+   "x": 10.68
+  },
+  {
+   "set": "2016xy",
+   "n": "1",
+   "name": "Goupix",
+   "eu": 5.83,
+   "us": 61.97,
+   "x": 10.63
+  },
+  {
+   "set": "hgssp",
+   "n": "HGSS19",
+   "name": "Raikou",
+   "eu": 5.12,
+   "us": 53.57,
+   "x": 10.46
+  },
+  {
+   "set": "hgss1",
+   "n": "123",
+   "name": "Léviator",
+   "eu": 32.17,
+   "us": 334.41,
+   "x": 10.4
+  },
+  {
+   "set": "xy1",
+   "n": "141",
+   "name": "Florizarre EX",
+   "eu": 10.97,
+   "us": 113.56,
+   "x": 10.35
+  },
+  {
+   "set": "ex10",
+   "n": "106",
+   "name": "Meganium ex",
+   "eu": 10.93,
+   "us": 112.89,
+   "x": 10.33
+  },
+  {
+   "set": "ru1",
+   "n": "12",
+   "name": "Lucario",
+   "eu": 262.5,
+   "us": 2712.45,
+   "x": 10.33
+  },
+  {
+   "set": "pl3",
+   "n": "60",
+   "name": "Carchacrok C",
+   "eu": 98.84,
+   "us": 9.66,
+   "x": 10.23
+  },
+  {
+   "set": "ecard3",
+   "n": "H21",
+   "name": "Nidoqueen",
+   "eu": 21.09,
+   "us": 214.88,
+   "x": 10.19
+  },
+  {
+   "set": "sm10",
+   "n": "201",
+   "name": "Amphinobi et Zoroark GX",
+   "eu": 33.03,
+   "us": 335.27,
+   "x": 10.15
+  },
+  {
+   "set": "ecard2",
+   "n": "6",
+   "name": "Leuphorie",
+   "eu": 140.1,
+   "us": 13.86,
+   "x": 10.11
+  },
+  {
+   "set": "2016xy",
+   "n": "12",
+   "name": "Évoli",
+   "eu": 10.76,
+   "us": 108.57,
+   "x": 10.09
+  },
+  {
+   "set": "ex10",
+   "n": "110",
+   "name": "Typhlosion ex",
+   "eu": 19.74,
+   "us": 198.92,
+   "x": 10.08
+  },
+  {
+   "set": "pl1",
+   "n": "2",
+   "name": "Tortank",
+   "eu": 8.52,
+   "us": 84.53,
+   "x": 9.92
+  },
+  {
+   "set": "ecard2",
+   "n": "38",
+   "name": "Tentacruel",
+   "eu": 161.94,
+   "us": 16.44,
+   "x": 9.85
+  },
+  {
+   "set": "ecard2",
+   "n": "H06",
+   "name": "Leuphorie",
+   "eu": 8.44,
+   "us": 81.98,
+   "x": 9.71
+  },
+  {
+   "set": "ecard2",
+   "n": "H21",
+   "name": "Cizayox",
+   "eu": 17.62,
+   "us": 171,
+   "x": 9.7
+  },
+  {
+   "set": "bw7",
+   "n": "145",
+   "name": "Kyurem Noir-EX",
+   "eu": 85.13,
+   "us": 815.2,
+   "x": 9.58
+  },
+  {
+   "set": "ecard2",
+   "n": "19",
+   "name": "Hyporoi",
+   "eu": 163.12,
+   "us": 17.13,
+   "x": 9.52
+  },
+  {
+   "set": "ecard3",
+   "n": "H29",
+   "name": "Steelix",
+   "eu": 16.22,
+   "us": 153.82,
+   "x": 9.48
+  },
+  {
+   "set": "ecard3",
+   "n": "145",
+   "name": "Celebi",
+   "eu": 914.21,
+   "us": 8595.69,
+   "x": 9.4
+  },
+  {
+   "set": "neo3",
+   "n": "22",
+   "name": "Raikou",
+   "eu": 139.3,
+   "us": 14.87,
+   "x": 9.37
+  },
+  {
+   "set": "ex7",
+   "n": "7",
+   "name": "Dark Marowak",
+   "eu": 19.43,
+   "us": 181.11,
+   "x": 9.32
+  },
+  {
+   "set": "ecard3",
+   "n": "8",
+   "name": "Flareon",
+   "eu": 648.29,
+   "us": 70.11,
+   "x": 9.25
+  },
+  {
+   "set": "ecard3",
+   "n": "H25",
+   "name": "Raichu",
+   "eu": 25.2,
+   "us": 228.1,
+   "x": 9.05
+  },
+  {
+   "set": "dp7",
+   "n": "97",
+   "name": "Heatran",
+   "eu": 7.49,
+   "us": 67.61,
+   "x": 9.03
+  },
+  {
+   "set": "neo3",
+   "n": "16",
+   "name": "Celebi",
+   "eu": 137.71,
+   "us": 15.33,
+   "x": 8.98
+  },
+  {
+   "set": "hgss3",
+   "n": "17",
+   "name": "Phyllali",
+   "eu": 145.85,
+   "us": 16.25,
+   "x": 8.98
+  },
+  {
+   "set": "hgss3",
+   "n": "THREE",
+   "name": "Lithographie d’Alph",
+   "eu": 16.48,
+   "us": 147.57,
+   "x": 8.95
+  },
+  {
+   "set": "ecard1",
+   "n": "41",
+   "name": "Mélodelfe",
+   "eu": 82.13,
+   "us": 9.22,
+   "x": 8.91
+  },
+  {
+   "set": "bw9",
+   "n": "122",
+   "name": "Hyper Ball",
+   "eu": 123.5,
+   "us": 1085.33,
+   "x": 8.79
+  },
+  {
+   "set": "pl3",
+   "n": "13",
+   "name": "Florizarre",
+   "eu": 5.09,
+   "us": 44.5,
+   "x": 8.74
+  },
+  {
+   "set": "ecard2",
+   "n": "10",
+   "name": "Entei",
+   "eu": 474.01,
+   "us": 54.27,
+   "x": 8.73
+  },
+  {
+   "set": "ecard3",
+   "n": "H18",
+   "name": "Magneton",
+   "eu": 10.38,
+   "us": 90.47,
+   "x": 8.72
+  },
+  {
+   "set": "hgss1",
+   "n": "12",
+   "name": "Roigada",
+   "eu": 7.38,
+   "us": 63.85,
+   "x": 8.65
+  },
+  {
+   "set": "neo2",
+   "n": "24",
+   "name": "Malosse",
+   "eu": 132.89,
+   "us": 15.38,
+   "x": 8.64
+  },
+  {
+   "set": "neo2",
+   "n": "35",
+   "name": "Qulbutoké",
+   "eu": 49.01,
+   "us": 5.68,
+   "x": 8.63
+  },
+  {
+   "set": "ex11",
+   "n": "39",
+   "name": "Métamorph",
+   "eu": 13.29,
+   "us": 111.88,
+   "x": 8.42
+  },
+  {
+   "set": "neo2",
+   "n": "20",
+   "name": "Mentali",
+   "eu": 252.64,
+   "us": 30.08,
+   "x": 8.4
+  },
+  {
+   "set": "ex2",
+   "n": "96",
+   "name": "Gardevoir ex",
+   "eu": 32.66,
+   "us": 273.45,
+   "x": 8.37
+  },
+  {
+   "set": "sm10",
+   "n": "192",
+   "name": "Cancrelove et Mouscoto GX",
+   "eu": 9.93,
+   "us": 82.6,
+   "x": 8.32
+  },
+  {
+   "set": "dp3",
+   "n": "14",
+   "name": "Lugia",
+   "eu": 48.06,
+   "us": 394.68,
+   "x": 8.21
+  },
+  {
+   "set": "ex4",
+   "n": "94",
+   "name": "Suicune ex",
+   "eu": 84.56,
+   "us": 690.37,
+   "x": 8.16
+  },
+  {
+   "set": "dp3",
+   "n": "131",
+   "name": "Gardevoir",
+   "eu": 37.98,
+   "us": 309.25,
+   "x": 8.14
+  },
+  {
+   "set": "xy7",
+   "n": "98",
+   "name": "M-Rayquaza EX",
+   "eu": 125.46,
+   "us": 1010.67,
+   "x": 8.06
+  },
+  {
+   "set": "neo3",
+   "n": "18",
+   "name": "Ho-oh",
+   "eu": 223.32,
+   "us": 27.75,
+   "x": 8.05
+  },
+  {
+   "set": "ecard3",
+   "n": "4",
+   "name": "Articuno",
+   "eu": 854.37,
+   "us": 106.22,
+   "x": 8.04
+  },
+  {
+   "set": "ex6",
+   "n": "106",
+   "name": "Mélodelfe ex",
+   "eu": 59.14,
+   "us": 475.02,
+   "x": 8.03
+  },
+  {
+   "set": "xy7",
+   "n": "91",
+   "name": "Tyranocif EX",
+   "eu": 12.27,
+   "us": 98.57,
+   "x": 8.03
+  },
+  {
+   "set": "ecard2",
+   "n": "40",
+   "name": "Tyranocif",
+   "eu": 1386.28,
+   "us": 175.72,
+   "x": 7.89
+  },
+  {
+   "set": "dp6",
+   "n": "1",
+   "name": "Deoxys Forme Normale",
+   "eu": 10.85,
+   "us": 85.55,
+   "x": 7.88
+  },
+  {
+   "set": "neo3",
+   "n": "17",
+   "name": "Entei",
+   "eu": 151.21,
+   "us": 19.39,
+   "x": 7.8
+  },
+  {
+   "set": "sm5",
+   "n": "165",
+   "name": "Palkia GX",
+   "eu": 6.3,
+   "us": 48.98,
+   "x": 7.77
+  },
+  {
+   "set": "sm10",
+   "n": "197",
+   "name": "Grotadmorv et Grotadmorv d’Alola GX",
+   "eu": 12.62,
+   "us": 97.52,
+   "x": 7.73
+  },
+  {
+   "set": "dp6",
+   "n": "14",
+   "name": "Rayquaza",
+   "eu": 52.51,
+   "us": 404.9,
+   "x": 7.71
+  },
+  {
+   "set": "ecard2",
+   "n": "14",
+   "name": "Démolosse",
+   "eu": 477.04,
+   "us": 62.04,
+   "x": 7.69
+  },
+  {
+   "set": "dp6",
+   "n": "11",
+   "name": "Mewtwo",
+   "eu": 20.01,
+   "us": 153.48,
+   "x": 7.67
+  },
+  {
+   "set": "ecard3",
+   "n": "32",
+   "name": "Umbreon",
+   "eu": 2637.72,
+   "us": 343.75,
+   "x": 7.67
+  },
+  {
+   "set": "ecard3",
+   "n": "26",
+   "name": "Poliwrath",
+   "eu": 471.91,
+   "us": 61.93,
+   "x": 7.62
+  },
+  {
+   "set": "pl1",
+   "n": "10",
+   "name": "Giratina",
+   "eu": 17.38,
+   "us": 132.31,
+   "x": 7.61
+  },
+  {
+   "set": "xy1",
+   "n": "143",
+   "name": "Emolga EX",
+   "eu": 6.61,
+   "us": 50.22,
+   "x": 7.6
+  },
+  {
+   "set": "ex8",
+   "n": "1",
+   "name": "Altaria",
+   "eu": 45.06,
+   "us": 6.02,
+   "x": 7.49
+  },
+  {
+   "set": "neo3",
+   "n": "27",
+   "name": "Suicune",
+   "eu": 154.62,
+   "us": 20.68,
+   "x": 7.48
+  },
+  {
+   "set": "dp6",
+   "n": "2",
+   "name": "Dracolosse",
+   "eu": 26.86,
+   "us": 200.27,
+   "x": 7.46
+  },
+  {
+   "set": "ecard2",
+   "n": "26",
+   "name": "Octillery",
+   "eu": 87.65,
+   "us": 11.83,
+   "x": 7.41
+  },
+  {
+   "set": "hgss2",
+   "n": "94",
+   "name": "Suicune & Entei LÉGENDE (haut)",
+   "eu": 41.58,
+   "us": 307.64,
+   "x": 7.4
+  },
+  {
+   "set": "bw10",
+   "n": "103",
+   "name": "Viridium",
+   "eu": 17.13,
+   "us": 126.73,
+   "x": 7.4
+  },
+  {
+   "set": "hgssp",
+   "n": "HGSS11",
+   "name": "Latios",
+   "eu": 61.5,
+   "us": 453.06,
+   "x": 7.37
+  },
+  {
+   "set": "ecard2",
+   "n": "33",
+   "name": "Flagadoss",
+   "eu": 16.47,
+   "us": 119.43,
+   "x": 7.25
+  },
+  {
+   "set": "dp2",
+   "n": "17",
+   "name": "Tyranocif",
+   "eu": 8.83,
+   "us": 63.87,
+   "x": 7.23
+  },
+  {
+   "set": "ecard2",
+   "n": "44",
+   "name": "Electhor",
+   "eu": 460.24,
+   "us": 63.96,
+   "x": 7.2
+  },
+  {
+   "set": "xy5",
+   "n": "147",
+   "name": "Wailord EX",
+   "eu": 7.36,
+   "us": 52.74,
+   "x": 7.17
+  },
+  {
+   "set": "pl1",
+   "n": "122",
+   "name": "Dialga G NIV.X",
+   "eu": 49.6,
+   "us": 355.09,
+   "x": 7.16
+  },
+  {
+   "set": "col1",
+   "n": "12",
+   "name": "Kyogre",
+   "eu": 477.95,
+   "us": 66.71,
+   "x": 7.16
+  },
+  {
+   "set": "ecard1",
+   "n": "98",
+   "name": "Salamèche",
+   "eu": 8,
+   "us": 56.97,
+   "x": 7.12
+  },
+  {
+   "set": "ex4",
+   "n": "95",
+   "name": "Laggron ex",
+   "eu": 69.39,
+   "us": 494,
+   "x": 7.12
+  },
+  {
+   "set": "xy3",
+   "n": "107",
+   "name": "Lucario EX",
+   "eu": 17.83,
+   "us": 126.52,
+   "x": 7.1
+  },
+  {
+   "set": "xy5",
+   "n": "155",
+   "name": "Gardevoir EX",
+   "eu": 9.52,
+   "us": 67.62,
+   "x": 7.1
+  },
+  {
+   "set": "neo2",
+   "n": "34",
+   "name": "Ursaring",
+   "eu": 42.13,
+   "us": 6.02,
+   "x": 7
+  },
+  {
+   "set": "xy5",
+   "n": "149",
+   "name": "PrimoKyogre EX",
+   "eu": 47.08,
+   "us": 325.85,
+   "x": 6.92
+  },
+  {
+   "set": "hgss3",
+   "n": "90",
+   "name": "Rayquaza & Deoxys LÉGENDE",
+   "eu": 78.54,
+   "us": 542.88,
+   "x": 6.91
+  },
+  {
+   "set": "ecard3",
+   "n": "148",
+   "name": "Golem",
+   "eu": 664.09,
+   "us": 4524.48,
+   "x": 6.81
+  },
+  {
+   "set": "col1",
+   "n": "SL7",
+   "name": "Lugia",
+   "eu": 66.82,
+   "us": 452.74,
+   "x": 6.78
+  },
+  {
+   "set": "sm11",
+   "n": "218",
+   "name": "Ramoloss et Psykokwak GX",
+   "eu": 54.67,
+   "us": 369.74,
+   "x": 6.76
+  },
+  {
+   "set": "xy7",
+   "n": "93",
+   "name": "Giratina EX",
+   "eu": 22.7,
+   "us": 153.34,
+   "x": 6.75
+  },
+  {
+   "set": "col1",
+   "n": "SL6",
+   "name": "Kyogre",
+   "eu": 50.7,
+   "us": 341.56,
+   "x": 6.74
+  },
+  {
+   "set": "ecard1",
+   "n": "33",
+   "name": "Alakazam",
+   "eu": 163.1,
+   "us": 24.29,
+   "x": 6.71
+  },
+  {
+   "set": "ecard2",
+   "n": "4",
+   "name": "Azumarill",
+   "eu": 209.17,
+   "us": 31.3,
+   "x": 6.68
+  },
+  {
+   "set": "swshp",
+   "n": "SWSH122",
+   "name": "Lainergie",
+   "eu": 44.7,
+   "us": 6.76,
+   "x": 6.61
+  },
+  {
+   "set": "dp6",
+   "n": "8",
+   "name": "Luxray",
+   "eu": 6.45,
+   "us": 42.49,
+   "x": 6.59
+  },
+  {
+   "set": "ecard3",
+   "n": "5",
+   "name": "Beedrill",
+   "eu": 212.06,
+   "us": 32.57,
+   "x": 6.51
+  },
+  {
+   "set": "ecard3",
+   "n": "H04",
+   "name": "Beedrill",
+   "eu": 27.81,
+   "us": 180.95,
+   "x": 6.51
+  },
+  {
+   "set": "ecard3",
+   "n": "6",
+   "name": "Crobat",
+   "eu": 335.9,
+   "us": 51.78,
+   "x": 6.49
+  },
+  {
+   "set": "ru1",
+   "n": "5",
+   "name": "Starmie",
+   "eu": 53.08,
+   "us": 337.74,
+   "x": 6.36
+  },
+  {
+   "set": "ecard3",
+   "n": "H02",
+   "name": "Arcanine",
+   "eu": 36.56,
+   "us": 232.22,
+   "x": 6.35
+  },
+  {
+   "set": "bw7",
+   "n": "149",
+   "name": "Carolina",
+   "eu": 31.64,
+   "us": 200.23,
+   "x": 6.33
+  },
+  {
+   "set": "2015xy",
+   "n": "3",
+   "name": "Poussifeu",
+   "eu": 13.66,
+   "us": 86.48,
+   "x": 6.33
+  },
+  {
+   "set": "pl4",
+   "n": "17",
+   "name": "Gengar",
+   "eu": 14.52,
+   "us": 91.96,
+   "x": 6.33
+  },
+  {
+   "set": "xy8",
+   "n": "163",
+   "name": "Mewtwo EX",
+   "eu": 33.65,
+   "us": 212.37,
+   "x": 6.31
+  },
+  {
+   "set": "dp5",
+   "n": "14",
+   "name": "Electhor",
+   "eu": 8.77,
+   "us": 55.19,
+   "x": 6.29
+  },
+  {
+   "set": "xy3",
+   "n": "105",
+   "name": "Scarhino EX",
+   "eu": 5.82,
+   "us": 36.6,
+   "x": 6.29
+  },
+  {
+   "set": "ecard1",
+   "n": "27",
+   "name": "Airmure",
+   "eu": 28.26,
+   "us": 177.29,
+   "x": 6.27
+  },
+  {
+   "set": "ex9",
+   "n": "91",
+   "name": "Cacturne ex",
+   "eu": 83.38,
+   "us": 13.57,
+   "x": 6.14
+  },
+  {
+   "set": "ex5",
+   "n": "11",
+   "name": "Métalosse",
+   "eu": 6.78,
+   "us": 41.58,
+   "x": 6.13
+  },
+  {
+   "set": "pop3",
+   "n": "17",
+   "name": "Ho-Oh ex",
+   "eu": 18.58,
+   "us": 113.1,
+   "x": 6.09
+  },
+  {
+   "set": "ecard1",
+   "n": "52",
+   "name": "Magby",
+   "eu": 60.13,
+   "us": 9.89,
+   "x": 6.08
+  },
+  {
+   "set": "xy8",
+   "n": "164",
+   "name": "Mewtwo EX",
+   "eu": 33.65,
+   "us": 202.51,
+   "x": 6.02
+  },
+  {
+   "set": "dp6",
+   "n": "4",
+   "name": "Giratina",
+   "eu": 14.3,
+   "us": 85.76,
+   "x": 6
+  },
+  {
+   "set": "ecard3",
+   "n": "92",
+   "name": "Sandshrew",
+   "eu": 6.54,
+   "us": 39.21,
+   "x": 5.99
+  },
+  {
+   "set": "ecard1",
+   "n": "57",
+   "name": "Feunard",
+   "eu": 155.11,
+   "us": 26.07,
+   "x": 5.95
+  },
+  {
+   "set": "dp5",
+   "n": "4",
+   "name": "Dialga",
+   "eu": 7.63,
+   "us": 45.41,
+   "x": 5.95
+  },
+  {
+   "set": "ecard2",
+   "n": "H24",
+   "name": "Simularbre",
+   "eu": 25.71,
+   "us": 152,
+   "x": 5.91
+  },
+  {
+   "set": "col1",
+   "n": "3",
+   "name": "Dialga",
+   "eu": 203.22,
+   "us": 34.38,
+   "x": 5.91
+  },
+  {
+   "set": "ex4",
+   "n": "9",
+   "name": "Groudon de Team Magma",
+   "eu": 23.14,
+   "us": 136.46,
+   "x": 5.9
+  },
+  {
+   "set": "ecard3",
+   "n": "67",
+   "name": "Igglybuff",
+   "eu": 12.1,
+   "us": 71.41,
+   "x": 5.9
+  },
+  {
+   "set": "ecard2",
+   "n": "H09",
+   "name": "Mentali",
+   "eu": 61.64,
+   "us": 363.12,
+   "x": 5.89
+  },
+  {
+   "set": "ecard2",
+   "n": "25",
+   "name": "Feunard",
+   "eu": 282.81,
+   "us": 48.11,
+   "x": 5.88
+  },
+  {
+   "set": "ecard2",
+   "n": "49",
+   "name": "Ortide",
+   "eu": 6.48,
+   "us": 38.12,
+   "x": 5.88
+  },
+  {
+   "set": "ecard3",
+   "n": "53",
+   "name": "Dunsparce",
+   "eu": 6.71,
+   "us": 39.46,
+   "x": 5.88
+  },
+  {
+   "set": "ecard2",
+   "n": "3",
+   "name": "Migalos",
+   "eu": 72.23,
+   "us": 12.31,
+   "x": 5.87
+  },
+  {
+   "set": "hgss1",
+   "n": "13",
+   "name": "Qulbutoké",
+   "eu": 5.71,
+   "us": 33.51,
+   "x": 5.87
+  },
+  {
+   "set": "hgssp",
+   "n": "HGSS02",
+   "name": "Lugia",
+   "eu": 75.24,
+   "us": 439.73,
+   "x": 5.84
+  },
+  {
+   "set": "ecard2",
+   "n": "30",
+   "name": "Maraiste",
+   "eu": 20.91,
+   "us": 120.58,
+   "x": 5.77
+  },
+  {
+   "set": "ecard3",
+   "n": "21",
+   "name": "Moltres",
+   "eu": 390.28,
+   "us": 67.67,
+   "x": 5.77
+  },
+  {
+   "set": "ecard3",
+   "n": "48",
+   "name": "Cleffa",
+   "eu": 7.1,
+   "us": 40.85,
+   "x": 5.75
+  },
+  {
+   "set": "pl2",
+   "n": "7",
+   "name": "Jirachi Niv. 39",
+   "eu": 9.25,
+   "us": 53.08,
+   "x": 5.74
+  },
+  {
+   "set": "pop2",
+   "n": "6",
+   "name": "Florizarre",
+   "eu": 137.79,
+   "us": 24.1,
+   "x": 5.72
+  },
+  {
+   "set": "pop3",
+   "n": "16",
+   "name": "Pichu Bros.",
+   "eu": 19.7,
+   "us": 112.54,
+   "x": 5.71
+  },
+  {
+   "set": "hgss3",
+   "n": "10",
+   "name": "Noctali",
+   "eu": 27.23,
+   "us": 155.36,
+   "x": 5.71
+  },
+  {
+   "set": "ecard3",
+   "n": "78",
+   "name": "Meowth",
+   "eu": 24.54,
+   "us": 140.25,
+   "x": 5.71
+  },
+  {
+   "set": "ecard2",
+   "n": "48",
+   "name": "Fouinar",
+   "eu": 11.93,
+   "us": 67.85,
+   "x": 5.69
+  },
+  {
+   "set": "tk-hs-g",
+   "n": "30",
+   "name": "Léviator",
+   "eu": 7.24,
+   "us": 40.95,
+   "x": 5.66
+  },
+  {
+   "set": "ecard3",
+   "n": "7",
+   "name": "Dewgong",
+   "eu": 250.15,
+   "us": 44.33,
+   "x": 5.64
+  },
+  {
+   "set": "ex11",
+   "n": "40",
+   "name": "Métamorph",
+   "eu": 13.29,
+   "us": 74.81,
+   "x": 5.63
+  },
+  {
+   "set": "ecard3",
+   "n": "123",
+   "name": "Desert Shaman",
+   "eu": 5.55,
+   "us": 30.76,
+   "x": 5.54
+  },
+  {
+   "set": "neo2",
+   "n": "32",
+   "name": "Noctali",
+   "eu": 613.46,
+   "us": 111.41,
+   "x": 5.51
+  },
+  {
+   "set": "dp5",
+   "n": "32",
+   "name": "Noctali",
+   "eu": 11.92,
+   "us": 65.11,
+   "x": 5.46
+  },
+  {
+   "set": "hgss1",
+   "n": "7",
+   "name": "Feunard",
+   "eu": 11.15,
+   "us": 60.91,
+   "x": 5.46
+  },
+  {
+   "set": "hgss3",
+   "n": "2",
+   "name": "Mentali",
+   "eu": 14.98,
+   "us": 81.57,
+   "x": 5.45
+  },
+  {
+   "set": "ecard3",
+   "n": "118",
+   "name": "Zubat",
+   "eu": 6.48,
+   "us": 35.34,
+   "x": 5.45
+  },
+  {
+   "set": "ecard3",
+   "n": "12",
+   "name": "Houndoom",
+   "eu": 586.06,
+   "us": 107.69,
+   "x": 5.44
+  },
+  {
+   "set": "ex8",
+   "n": "4",
+   "name": "Camérupt",
+   "eu": 5.94,
+   "us": 32.15,
+   "x": 5.41
+  },
+  {
+   "set": "ex10",
+   "n": "13",
+   "name": "Flagadoss",
+   "eu": 9.75,
+   "us": 52.14,
+   "x": 5.35
+  },
+  {
+   "set": "ex11",
+   "n": "63",
+   "name": "Métamorph",
+   "eu": 13.29,
+   "us": 70.96,
+   "x": 5.34
+  },
+  {
+   "set": "swshp",
+   "n": "SWSH123",
+   "name": "Artikodin de Galar",
+   "eu": 51.09,
+   "us": 9.6,
+   "x": 5.32
+  },
+  {
+   "set": "ecard3",
+   "n": "1",
+   "name": "Aerodactyl",
+   "eu": 16.83,
+   "us": 89.57,
+   "x": 5.32
+  },
+  {
+   "set": "dp2",
+   "n": "14",
+   "name": "Créfollet",
+   "eu": 5.08,
+   "us": 26.95,
+   "x": 5.3
+  },
+  {
+   "set": "sm9",
+   "n": "184",
+   "name": "Pikachu et Zekrom GX",
+   "eu": 42.42,
+   "us": 224.95,
+   "x": 5.3
+  },
+  {
+   "set": "ecard3",
+   "n": "61",
+   "name": "Granbull",
+   "eu": 5.35,
+   "us": 28.37,
+   "x": 5.3
+  },
+  {
+   "set": "neo2",
+   "n": "28",
+   "name": "Tartard",
+   "eu": 42.77,
+   "us": 8.09,
+   "x": 5.29
+  },
+  {
+   "set": "ecard1",
+   "n": "68",
+   "name": "Florizarre",
+   "eu": 161.45,
+   "us": 30.57,
+   "x": 5.28
+  },
+  {
+   "set": "ecard3",
+   "n": "14",
+   "name": "Kabutops",
+   "eu": 381.79,
+   "us": 72.38,
+   "x": 5.28
+  },
+  {
+   "set": "xy6",
+   "n": "103",
+   "name": "Trioxhydre EX",
+   "eu": 7.11,
+   "us": 37.31,
+   "x": 5.25
+  },
+  {
+   "set": "ecard2",
+   "n": "15",
+   "name": "Démolosse",
+   "eu": 16.61,
+   "us": 86.93,
+   "x": 5.23
+  },
+  {
+   "set": "xy6",
+   "n": "101",
+   "name": "Latios EX",
+   "eu": 11.6,
+   "us": 60.63,
+   "x": 5.23
+  },
+  {
+   "set": "xy7",
+   "n": "89",
+   "name": "Hoopa EX",
+   "eu": 9.12,
+   "us": 47.43,
+   "x": 5.2
+  },
+  {
+   "set": "ex3",
+   "n": "10",
+   "name": "Drattak",
+   "eu": 78.59,
+   "us": 407.16,
+   "x": 5.18
+  },
+  {
+   "set": "ecard3",
+   "n": "30",
+   "name": "Starmie",
+   "eu": 335.17,
+   "us": 64.75,
+   "x": 5.18
+  },
+  {
+   "set": "hgss2",
+   "n": "85",
+   "name": "Hyporoi",
+   "eu": 23.01,
+   "us": 118.8,
+   "x": 5.16
+  },
+  {
+   "set": "pl3",
+   "n": "7",
+   "name": "Métalosse",
+   "eu": 59.09,
+   "us": 11.47,
+   "x": 5.15
+  },
+  {
+   "set": "ex10",
+   "n": "15",
+   "name": "Simularbre",
+   "eu": 10.32,
+   "us": 53.01,
+   "x": 5.14
+  },
+  {
+   "set": "ex11",
+   "n": "35",
+   "name": "Métamorph",
+   "eu": 13.29,
+   "us": 68.33,
+   "x": 5.14
+  },
+  {
+   "set": "ecard1",
+   "n": "51",
+   "name": "Mackogneur",
+   "eu": 48.63,
+   "us": 9.48,
+   "x": 5.13
+  },
+  {
+   "set": "hgss1",
+   "n": "4",
+   "name": "Léviator",
+   "eu": 32.17,
+   "us": 165.08,
+   "x": 5.13
+  },
+  {
+   "set": "col1",
+   "n": "2",
+   "name": "Deoxys",
+   "eu": 281.49,
+   "us": 54.82,
+   "x": 5.13
+  },
+  {
+   "set": "col1",
+   "n": "SL9",
+   "name": "Raikou",
+   "eu": 123.82,
+   "us": 632.45,
+   "x": 5.11
+  },
+  {
+   "set": "col1",
+   "n": "19",
+   "name": "Palkia",
+   "eu": 120.16,
+   "us": 23.58,
+   "x": 5.1
+  },
+  {
+   "set": "smp",
+   "n": "SM226",
+   "name": "Dracaufeu",
+   "eu": 331.23,
+   "us": 64.97,
+   "x": 5.1
+  },
+  {
+   "set": "2018sm",
+   "n": "5",
+   "name": "Slowpoke",
+   "eu": 7.39,
+   "us": 37.7,
+   "x": 5.1
+  },
+  {
+   "set": "2018sm",
+   "n": "11",
+   "name": "Eevee",
+   "eu": 7.83,
+   "us": 39.92,
+   "x": 5.1
+  },
+  {
+   "set": "ex16",
+   "n": "9",
+   "name": "Gardevoir",
+   "eu": 6.93,
+   "us": 35.31,
+   "x": 5.09
+  },
+  {
+   "set": "ex11",
+   "n": "37",
+   "name": "Métamorph",
+   "eu": 13.29,
+   "us": 66.95,
+   "x": 5.04
+  },
+  {
+   "set": "ecard3",
+   "n": "138",
+   "name": "Oracle",
+   "eu": 5.05,
+   "us": 25.46,
+   "x": 5.04
+  },
+  {
+   "set": "ex14",
+   "n": "91",
+   "name": "Delcatty ex",
+   "eu": 21.83,
+   "us": 109.71,
+   "x": 5.03
+  },
+  {
+   "set": "smp",
+   "n": "SM159",
+   "name": "Électhor",
+   "eu": 84.3,
+   "us": 16.78,
+   "x": 5.03
+  },
+  {
+   "set": "ecard2",
+   "n": "51",
+   "name": "Caninos",
+   "eu": 12.07,
+   "us": 60.64,
+   "x": 5.02
+  },
+  {
+   "set": "hgss1",
+   "n": "1",
+   "name": "Arcanin",
+   "eu": 15.04,
+   "us": 75.57,
+   "x": 5.02
+  },
+  {
+   "set": "pl2",
+   "n": "8",
+   "name": "Lucario GL Niv. 32",
+   "eu": 5.5,
+   "us": 27.4,
+   "x": 4.98
+  },
+  {
+   "set": "smp",
+   "n": "SM160",
+   "name": "Nidoqueen",
+   "eu": 49.63,
+   "us": 9.96,
+   "x": 4.98
+  },
+  {
+   "set": "pl3",
+   "n": "71",
+   "name": "Négapi",
+   "eu": 5.07,
+   "us": 25.18,
+   "x": 4.97
+  },
+  {
+   "set": "ecard2",
+   "n": "90",
+   "name": "Excelangue",
+   "eu": 6.06,
+   "us": 30.07,
+   "x": 4.96
+  },
+  {
+   "set": "ex16",
+   "n": "11",
+   "name": "Mackogneur",
+   "eu": 5.39,
+   "us": 26.75,
+   "x": 4.96
+  },
+  {
+   "set": "pop7",
+   "n": "4",
+   "name": "Latios",
+   "eu": 5.71,
+   "us": 28.32,
+   "x": 4.96
+  },
+  {
+   "set": "ex7",
+   "n": "36",
+   "name": "Dark Gyarados",
+   "eu": 9.34,
+   "us": 46.28,
+   "x": 4.96
+  },
+  {
+   "set": "hgss2",
+   "n": "87",
+   "name": "Steelix",
+   "eu": 26.5,
+   "us": 131.16,
+   "x": 4.95
+  },
+  {
+   "set": "hgss3",
+   "n": "82",
+   "name": "Demolosse",
+   "eu": 63.73,
+   "us": 315.16,
+   "x": 4.95
+  },
+  {
+   "set": "ecard3",
+   "n": "37",
+   "name": "Kabuto",
+   "eu": 5.67,
+   "us": 28.05,
+   "x": 4.95
+  },
+  {
+   "set": "dp1",
+   "n": "6",
+   "name": "Lucario",
+   "eu": 11.66,
+   "us": 57.61,
+   "x": 4.94
+  },
+  {
+   "set": "2018sm",
+   "n": "2",
+   "name": "Psyduck",
+   "eu": 17.22,
+   "us": 84.79,
+   "x": 4.92
+  },
+  {
+   "set": "sm3",
+   "n": "150",
+   "name": "Dracaufeu GX",
+   "eu": 159.23,
+   "us": 781.99,
+   "x": 4.91
+  },
+  {
+   "set": "hgss1",
+   "n": "11",
+   "name": "Caratroc",
+   "eu": 5.93,
+   "us": 29.05,
+   "x": 4.9
+  },
+  {
+   "set": "ecard2",
+   "n": "141",
+   "name": "Garde faiblesse",
+   "eu": 12.18,
+   "us": 59.39,
+   "x": 4.88
+  },
+  {
+   "set": "ex12",
+   "n": "14",
+   "name": "Wailord",
+   "eu": 12.35,
+   "us": 60.28,
+   "x": 4.88
+  },
+  {
+   "set": "ex13",
+   "n": "111",
+   "name": "Mew",
+   "eu": 92.86,
+   "us": 452.4,
+   "x": 4.87
+  },
+  {
+   "set": "ecard3",
+   "n": "34",
+   "name": "Wigglytuff",
+   "eu": 14,
+   "us": 67.85,
+   "x": 4.85
+  },
+  {
+   "set": "ecard1",
+   "n": "59",
+   "name": "Roucarnage",
+   "eu": 125.89,
+   "us": 26,
+   "x": 4.84
+  },
+  {
+   "set": "dp5",
+   "n": "11",
+   "name": "Palkia",
+   "eu": 13.88,
+   "us": 66.71,
+   "x": 4.81
+  },
+  {
+   "set": "ecard3",
+   "n": "25",
+   "name": "Politoed",
+   "eu": 276.77,
+   "us": 57.66,
+   "x": 4.8
+  },
+  {
+   "set": "pl4",
+   "n": "AR1",
+   "name": "Arceus",
+   "eu": 12.79,
+   "us": 61.26,
+   "x": 4.79
+  },
+  {
+   "set": "ex11",
+   "n": "114",
+   "name": "Azumarill",
+   "eu": 19.86,
+   "us": 94.96,
+   "x": 4.78
+  },
+  {
+   "set": "pl2",
+   "n": "113",
+   "name": "Pikachu volant Niv. 12",
+   "eu": 64.05,
+   "us": 306.12,
+   "x": 4.78
+  },
+  {
+   "set": "ecard3",
+   "n": "94",
+   "name": "Seel",
+   "eu": 8.03,
+   "us": 38.42,
+   "x": 4.78
+  },
+  {
+   "set": "bw11",
+   "n": "RC22",
+   "name": "Reshiram",
+   "eu": 157.96,
+   "us": 33.03,
+   "x": 4.78
+  },
+  {
+   "set": "ecard1",
+   "n": "67",
+   "name": "Florizarre",
+   "eu": 161.45,
+   "us": 33.96,
+   "x": 4.75
+  },
+  {
+   "set": "bw7",
+   "n": "108",
+   "name": "Métamorph",
+   "eu": 12.61,
+   "us": 59.88,
+   "x": 4.75
+  },
+  {
+   "set": "xy4",
+   "n": "34",
+   "name": "Ectoplasma EX",
+   "eu": 16,
+   "us": 76.04,
+   "x": 4.75
+  },
+  {
+   "set": "dp5",
+   "n": "6",
+   "name": "Kabutops",
+   "eu": 7.12,
+   "us": 33.67,
+   "x": 4.73
+  },
+  {
+   "set": "ecard1",
+   "n": "95",
+   "name": "Bulbizarre",
+   "eu": 15.2,
+   "us": 71.34,
+   "x": 4.69
+  },
+  {
+   "set": "bw4",
+   "n": "94",
+   "name": "Shaymin-EX",
+   "eu": 32.44,
+   "us": 151.7,
+   "x": 4.68
+  },
+  {
+   "set": "bw5",
+   "n": "103",
+   "name": "Entei-EX",
+   "eu": 77.4,
+   "us": 361.91,
+   "x": 4.68
+  },
+  {
+   "set": "ecard2",
+   "n": "37",
+   "name": "Suicune",
+   "eu": 278.39,
+   "us": 60.22,
+   "x": 4.62
+  },
+  {
+   "set": "dp1",
+   "n": "11",
+   "name": "Palkia",
+   "eu": 6.99,
+   "us": 32.32,
+   "x": 4.62
+  },
+  {
+   "set": "col1",
+   "n": "SL10",
+   "name": "Rayquaza",
+   "eu": 137.22,
+   "us": 633.37,
+   "x": 4.62
+  },
+  {
+   "set": "ecard2",
+   "n": "108",
+   "name": "Ramoloss",
+   "eu": 7.12,
+   "us": 32.83,
+   "x": 4.61
+  },
+  {
+   "set": "sm10",
+   "n": "204",
+   "name": "Gardevoir et Nymphali GX",
+   "eu": 25.48,
+   "us": 116.8,
+   "x": 4.58
+  },
+  {
+   "set": "pl2",
+   "n": "112",
+   "name": "Pikachu Niv. 12",
+   "eu": 74.86,
+   "us": 342.16,
+   "x": 4.57
+  },
+  {
+   "set": "ecard3",
+   "n": "100",
+   "name": "Snorlax",
+   "eu": 36.67,
+   "us": 167.25,
+   "x": 4.56
+  },
+  {
+   "set": "xy5",
+   "n": "151",
+   "name": "Primo-Groudon EX",
+   "eu": 46.03,
+   "us": 209.21,
+   "x": 4.55
+  },
+  {
+   "set": "ecard3",
+   "n": "50",
+   "name": "Diglett",
+   "eu": 9.28,
+   "us": 42.16,
+   "x": 4.54
+  },
+  {
+   "set": "ecard2",
+   "n": "29",
+   "name": "Colossinge",
+   "eu": 20.61,
+   "us": 93.2,
+   "x": 4.52
+  },
+  {
+   "set": "ex16",
+   "n": "6",
+   "name": "Dracaufeu",
+   "eu": 90.12,
+   "us": 407.16,
+   "x": 4.52
+  },
+  {
+   "set": "xy6",
+   "n": "52",
+   "name": "Dracolosse",
+   "eu": 5.98,
+   "us": 26.97,
+   "x": 4.51
+  },
+  {
+   "set": "base4",
+   "n": "3",
+   "name": "Chansey",
+   "eu": 6.73,
+   "us": 30.14,
+   "x": 4.48
+  },
+  {
+   "set": "dp1",
+   "n": "1",
+   "name": "Dialga",
+   "eu": 9.06,
+   "us": 40.54,
+   "x": 4.47
+  },
+  {
+   "set": "ecard2",
+   "n": "131",
+   "name": "Parc Pokémon",
+   "eu": 6.14,
+   "us": 27.35,
+   "x": 4.45
+  },
+  {
+   "set": "ex3",
+   "n": "11",
+   "name": "Munja",
+   "eu": 14.47,
+   "us": 64.37,
+   "x": 4.45
+  },
+  {
+   "set": "neo4",
+   "n": "50",
+   "name": "Feunard lumineux",
+   "eu": 6.42,
+   "us": 28.41,
+   "x": 4.43
+  },
+  {
+   "set": "ex5",
+   "n": "5",
+   "name": "Électrode",
+   "eu": 8.53,
+   "us": 37.79,
+   "x": 4.43
+  },
+  {
+   "set": "dp4",
+   "n": "103",
+   "name": "Cresselia",
+   "eu": 14.49,
+   "us": 64.24,
+   "x": 4.43
+  },
+  {
+   "set": "neo2",
+   "n": "31",
+   "name": "Tyranocif",
+   "eu": 104.88,
+   "us": 23.71,
+   "x": 4.42
+  },
+  {
+   "set": "xy7",
+   "n": "86",
+   "name": "Kyurem EX",
+   "eu": 9.07,
+   "us": 40.11,
+   "x": 4.42
+  },
+  {
+   "set": "ecard3",
+   "n": "28",
+   "name": "Raikou",
+   "eu": 359.32,
+   "us": 81.41,
+   "x": 4.41
+  },
+  {
+   "set": "ex1",
+   "n": "3",
+   "name": "Braségali",
+   "eu": 23.8,
+   "us": 104.38,
+   "x": 4.39
+  },
+  {
+   "set": "pl3",
+   "n": "12",
+   "name": "Laggron",
+   "eu": 5.5,
+   "us": 24.13,
+   "x": 4.39
+  },
+  {
+   "set": "hgss2",
+   "n": "93",
+   "name": "Raikou & Suicune LÉGENDE (bas)",
+   "eu": 53.07,
+   "us": 233.01,
+   "x": 4.39
+  },
+  {
+   "set": "ecard3",
+   "n": "57",
+   "name": "Gastly",
+   "eu": 9.93,
+   "us": 43.58,
+   "x": 4.39
+  },
+  {
+   "set": "pl3",
+   "n": "1",
+   "name": "Absol G",
+   "eu": 8.58,
+   "us": 37.47,
+   "x": 4.37
+  },
+  {
+   "set": "xy3",
+   "n": "64",
+   "name": "Brutalibré EX",
+   "eu": 6.5,
+   "us": 28.43,
+   "x": 4.37
+  },
+  {
+   "set": "hgss2",
+   "n": "90",
+   "name": "Entei & Raikou LÉGENDE (haut)",
+   "eu": 65.02,
+   "us": 282.89,
+   "x": 4.35
+  },
+  {
+   "set": "2018sm",
+   "n": "7",
+   "name": "Cubone",
+   "eu": 5.54,
+   "us": 23.94,
+   "x": 4.32
+  },
+  {
+   "set": "ex11",
+   "n": "64",
+   "name": "Métamorph",
+   "eu": 13.29,
+   "us": 57.27,
+   "x": 4.31
+  },
+  {
+   "set": "ecard3",
+   "n": "52",
+   "name": "Dugtrio",
+   "eu": 8.05,
+   "us": 34.62,
+   "x": 4.3
+  },
+  {
+   "set": "ecard3",
+   "n": "104",
+   "name": "Staryu",
+   "eu": 8.02,
+   "us": 34.45,
+   "x": 4.3
+  },
+  {
+   "set": "ecard3",
+   "n": "115",
+   "name": "Weedle",
+   "eu": 6.4,
+   "us": 27.51,
+   "x": 4.3
+  },
+  {
+   "set": "smp",
+   "n": "SM187",
+   "name": "Ossatueur d’Alola GX",
+   "eu": 5.07,
+   "us": 21.62,
+   "x": 4.27
+  },
+  {
+   "set": "ecard3",
+   "n": "87",
+   "name": "Poliwag",
+   "eu": 8.48,
+   "us": 36.19,
+   "x": 4.27
+  },
+  {
+   "set": "pl4",
+   "n": "AR4",
+   "name": "Arceus",
+   "eu": 12.79,
+   "us": 54.61,
+   "x": 4.27
+  },
+  {
+   "set": "ex8",
+   "n": "23",
+   "name": "Ténéfix",
+   "eu": 10.08,
+   "us": 42.92,
+   "x": 4.26
+  },
+  {
+   "set": "dp3",
+   "n": "5",
+   "name": "Libegon",
+   "eu": 6.07,
+   "us": 25.78,
+   "x": 4.25
+  },
+  {
+   "set": "dp2",
+   "n": "122",
+   "name": "Lucario",
+   "eu": 46.12,
+   "us": 195.48,
+   "x": 4.24
+  },
+  {
+   "set": "hgss2",
+   "n": "95",
+   "name": "Suicune & Entei LÉGENDE (bas)",
+   "eu": 48.27,
+   "us": 204.18,
+   "x": 4.23
+  },
+  {
+   "set": "swshp",
+   "n": "SWSH296",
+   "name": "Festival des Champions",
+   "eu": 96.36,
+   "us": 407.16,
+   "x": 4.23
+  },
+  {
+   "set": "col1",
+   "n": "7",
+   "name": "Léviator",
+   "eu": 28.36,
+   "us": 119.6,
+   "x": 4.22
+  },
+  {
+   "set": "2018sm",
+   "n": "4",
+   "name": "Pikachu",
+   "eu": 9.07,
+   "us": 38.27,
+   "x": 4.22
+  },
+  {
+   "set": "xy5",
+   "n": "153",
+   "name": "Galeking EX",
+   "eu": 9.93,
+   "us": 41.78,
+   "x": 4.21
+  },
+  {
+   "set": "bw6",
+   "n": "92",
+   "name": "Giratina-EX",
+   "eu": 7.74,
+   "us": 32.49,
+   "x": 4.2
+  },
+  {
+   "set": "ecard3",
+   "n": "79",
+   "name": "Murkrow",
+   "eu": 5.81,
+   "us": 24.43,
+   "x": 4.2
+  },
+  {
+   "set": "ex2",
+   "n": "98",
+   "name": "Raichu ex",
+   "eu": 113.61,
+   "us": 475.02,
+   "x": 4.18
+  },
+  {
+   "set": "pl1",
+   "n": "129",
+   "name": "Tygnon",
+   "eu": 7.55,
+   "us": 31.56,
+   "x": 4.18
+  },
+  {
+   "set": "dp4",
+   "n": "106",
+   "name": "Palkia",
+   "eu": 51.45,
+   "us": 213.78,
+   "x": 4.16
+  },
+  {
+   "set": "pl3",
+   "n": "76",
+   "name": "Posipi",
+   "eu": 5.03,
+   "us": 20.82,
+   "x": 4.14
+  },
+  {
+   "set": "ecard2",
+   "n": "42",
+   "name": "Empiflor",
+   "eu": 61.11,
+   "us": 14.81,
+   "x": 4.13
+  },
+  {
+   "set": "ex6",
+   "n": "105",
+   "name": "Dracaufeu ex",
+   "eu": 1866.64,
+   "us": 452.41,
+   "x": 4.13
+  },
+  {
+   "set": "ecard3",
+   "n": "91",
+   "name": "Rhyhorn",
+   "eu": 5,
+   "us": 20.65,
+   "x": 4.13
+  },
+  {
+   "set": "ex9",
+   "n": "15",
+   "name": "Kyogre",
+   "eu": 6.43,
+   "us": 26.52,
+   "x": 4.12
+  },
+  {
+   "set": "ecard3",
+   "n": "99",
+   "name": "Slugma",
+   "eu": 5.99,
+   "us": 24.62,
+   "x": 4.11
+  },
+  {
+   "set": "ex16",
+   "n": "96",
+   "name": "Drattak ex",
+   "eu": 63.31,
+   "us": 259.35,
+   "x": 4.1
+  },
+  {
+   "set": "bw5",
+   "n": "26",
+   "name": "Kyogre-EX",
+   "eu": 21.66,
+   "us": 88.35,
+   "x": 4.08
+  },
+  {
+   "set": "pl4",
+   "n": "AR7",
+   "name": "Arceus",
+   "eu": 12.79,
+   "us": 52.16,
+   "x": 4.08
+  },
+  {
+   "set": "pl2",
+   "n": "106",
+   "name": "Gallame 4 Niv. X",
+   "eu": 33.56,
+   "us": 136.61,
+   "x": 4.07
+  },
+  {
+   "set": "swshp",
+   "n": "SWSH036",
+   "name": "Galvagla",
+   "eu": 35.6,
+   "us": 8.75,
+   "x": 4.07
+  },
+  {
+   "set": "bw4",
+   "n": "95",
+   "name": "Reshiram-EX",
+   "eu": 100.21,
+   "us": 407.16,
+   "x": 4.06
+  },
+  {
+   "set": "col1",
+   "n": "6",
+   "name": "Groudon",
+   "eu": 200.51,
+   "us": 49.47,
+   "x": 4.05
+  },
+  {
+   "set": "ecard2",
+   "n": "75",
+   "name": "Évoli",
+   "eu": 14.36,
+   "us": 58,
+   "x": 4.04
+  },
+  {
+   "set": "bw4",
+   "n": "96",
+   "name": "Kyurem-EX",
+   "eu": 52.69,
+   "us": 212.86,
+   "x": 4.04
+  },
+  {
+   "set": "ecard2",
+   "n": "H28",
+   "name": "Tyranocif",
+   "eu": 44.69,
+   "us": 179.97,
+   "x": 4.03
+  },
+  {
+   "set": "dp1",
+   "n": "4",
+   "name": "Pingoléon",
+   "eu": 6.69,
+   "us": 26.95,
+   "x": 4.03
+  },
+  {
+   "set": "dp5",
+   "n": "7",
+   "name": "Phyllali",
+   "eu": 21.92,
+   "us": 88.23,
+   "x": 4.03
+  },
+  {
+   "set": "ex7",
+   "n": "19",
+   "name": "Dark Tyranitar",
+   "eu": 19.28,
+   "us": 77.69,
+   "x": 4.03
+  },
+  {
+   "set": "pl4",
+   "n": "AR5",
+   "name": "Arceus",
+   "eu": 12.79,
+   "us": 51.38,
+   "x": 4.02
+  },
+  {
+   "set": "hgss3",
+   "n": "84",
+   "name": "Cizayox",
+   "eu": 38.52,
+   "us": 154.5,
+   "x": 4.01
+  },
+  {
+   "set": "sv10.5b",
+   "n": "139",
+   "name": "Tic",
+   "eu": 20.93,
+   "us": 5.22,
+   "x": 4.01
+  },
+  {
+   "set": "dp3",
+   "n": "7",
+   "name": "Gardevoir",
+   "eu": 15.34,
+   "us": 61.42,
+   "x": 4
+  }
+ ],
+ "dup": [
+  {
+   "idProduct": 274404,
+   "cards": [
+    "neo1-4 Aligatueur",
+    "neo1-5 Aligatueur"
+   ]
+  },
+  {
+   "idProduct": 274410,
+   "cards": [
+    "neo1-10 Méganium",
+    "neo1-11 Méganium"
+   ]
+  },
+  {
+   "idProduct": 274417,
+   "cards": [
+    "neo1-17 Typhlosion",
+    "neo1-18 Typhlosion"
+   ]
+  },
+  {
+   "idProduct": 274428,
+   "cards": [
+    "neo1-28 Macronium",
+    "neo1-29 Macronium"
+   ]
+  },
+  {
+   "idProduct": 274431,
+   "cards": [
+    "neo1-31 Crocrodil",
+    "neo1-32 Crocrodil"
+   ]
+  },
+  {
+   "idProduct": 274446,
+   "cards": [
+    "neo1-47 Feurisson",
+    "neo1-46 Feurisson"
+   ]
+  },
+  {
+   "idProduct": 274453,
+   "cards": [
+    "neo1-53 Germignon",
+    "neo1-54 Germignon"
+   ]
+  },
+  {
+   "idProduct": 274456,
+   "cards": [
+    "neo1-56 Héricendre",
+    "neo1-57 Héricendre"
+   ]
+  },
+  {
+   "idProduct": 274480,
+   "cards": [
+    "neo1-80 Kaiminus",
+    "neo1-81 Kaiminus"
+   ]
+  },
+  {
+   "idProduct": 274589,
+   "cards": [
+    "neo3-3 Celebi",
+    "neo3-16 Celebi"
+   ]
+  },
+  {
+   "idProduct": 274592,
+   "cards": [
+    "neo3-6 Entei",
+    "neo3-17 Entei"
+   ]
+  },
+  {
+   "idProduct": 274593,
+   "cards": [
+    "neo3-7 Ho-oh",
+    "neo3-18 Ho-oh"
+   ]
+  },
+  {
+   "idProduct": 274599,
+   "cards": [
+    "neo3-13 Raikou",
+    "neo3-22 Raikou"
+   ]
+  },
+  {
+   "idProduct": 274600,
+   "cards": [
+    "neo3-14 Suicune",
+    "neo3-27 Suicune"
+   ]
+  },
+  {
+   "idProduct": 274516,
+   "cards": [
+    "neo2-5 Malosse",
+    "neo2-24 Malosse",
+    "neo2-39 Malosse"
+   ]
+  },
+  {
+   "idProduct": 274513,
+   "cards": [
+    "neo2-2 Foretress",
+    "neo2-21 Foretress"
+   ]
+  },
+  {
+   "idProduct": 274512,
+   "cards": [
+    "neo2-1 Mentali",
+    "neo2-20 Mentali"
+   ]
+  },
+  {
+   "idProduct": 274514,
+   "cards": [
+    "neo2-3 Kapoera",
+    "neo2-22 Kapoera"
+   ]
+  },
+  {
+   "idProduct": 274520,
+   "cards": [
+    "neo2-9 Tartard",
+    "neo2-28 Tartard"
+   ]
+  },
+  {
+   "idProduct": 274515,
+   "cards": [
+    "neo2-4 Démolosse",
+    "neo2-23 Démolosse"
+   ]
+  },
+  {
+   "idProduct": 274518,
+   "cards": [
+    "neo2-7 Magnéti",
+    "neo2-26 Magnéti"
+   ]
+  },
+  {
+   "idProduct": 274517,
+   "cards": [
+    "neo2-6 Kabutops",
+    "neo2-25 Kabutops"
+   ]
+  },
+  {
+   "idProduct": 274519,
+   "cards": [
+    "neo2-8 Tarpaud",
+    "neo2-27 Tarpaud"
+   ]
+  },
+  {
+   "idProduct": 274521,
+   "cards": [
+    "neo2-10 Cizayox",
+    "neo2-29 Cizayox"
+   ]
+  },
+  {
+   "idProduct": 274522,
+   "cards": [
+    "neo2-11 Queulorior",
+    "neo2-30 Queulorior"
+   ]
+  },
+  {
+   "idProduct": 274526,
+   "cards": [
+    "neo2-15 Ursaring",
+    "neo2-34 Ursaring"
+   ]
+  },
+  {
+   "idProduct": 274527,
+   "cards": [
+    "neo2-16 Qulbutoké",
+    "neo2-35 Qulbutoké"
+   ]
+  },
+  {
+   "idProduct": 274524,
+   "cards": [
+    "neo2-13 Noctali",
+    "neo2-32 Noctali"
+   ]
+  },
+  {
+   "idProduct": 274523,
+   "cards": [
+    "neo2-12 Tyranocif",
+    "neo2-31 Tyranocif"
+   ]
+  },
+  {
+   "idProduct": 274528,
+   "cards": [
+    "neo2-17 Yanma",
+    "neo2-36 Yanma"
+   ]
+  },
+  {
+   "idProduct": 274876,
+   "cards": [
+    "ecard1-1 Alakazam",
+    "ecard1-33 Alakazam"
+   ]
+  },
+  {
+   "idProduct": 274878,
+   "cards": [
+    "ecard1-3 Arbok",
+    "ecard1-35 Arbok"
+   ]
+  },
+  {
+   "idProduct": 274877,
+   "cards": [
+    "ecard1-2 Pharamp",
+    "ecard1-34 Pharamp"
+   ]
+  },
+  {
+   "idProduct": 274879,
+   "cards": [
+    "ecard1-4 Tortank",
+    "ecard1-37 Tortank",
+    "ecard1-36 Tortank"
+   ]
+  },
+  {
+   "idProduct": 274880,
+   "cards": [
+    "ecard1-5 Papilusion",
+    "ecard1-38 Papilusion"
+   ]
+  },
+  {
+   "idProduct": 274882,
+   "cards": [
+    "ecard1-7 Mélodelfe",
+    "ecard1-41 Mélodelfe"
+   ]
+  },
+  {
+   "idProduct": 274881,
+   "cards": [
+    "ecard1-6 Dracaufeu",
+    "ecard1-40 Dracaufeu",
+    "ecard1-39 Dracaufeu"
+   ]
+  },
+  {
+   "idProduct": 274883,
+   "cards": [
+    "ecard1-8 Crustabri",
+    "ecard1-42 Crustabri"
+   ]
+  },
+  {
+   "idProduct": 274884,
+   "cards": [
+    "ecard1-9 Dracolosse",
+    "ecard1-43 Dracolosse"
+   ]
+  },
+  {
+   "idProduct": 274886,
+   "cards": [
+    "ecard1-11 Rapasdepic",
+    "ecard1-45 Rapasdepic"
+   ]
+  },
+  {
+   "idProduct": 274885,
+   "cards": [
+    "ecard1-10 Triopikeur",
+    "ecard1-44 Triopikeur"
+   ]
+  },
+  {
+   "idProduct": 274887,
+   "cards": [
+    "ecard1-12 Aligatueur",
+    "ecard1-46 Aligatueur",
+    "ecard1-47 Aligatueur"
+   ]
+  },
+  {
+   "idProduct": 274888,
+   "cards": [
+    "ecard1-13 Ectoplasma",
+    "ecard1-48 Ectoplasma"
+   ]
+  },
+  {
+   "idProduct": 274890,
+   "cards": [
+    "ecard1-15 Krabboss",
+    "ecard1-50 Krabboss"
+   ]
+  },
+  {
+   "idProduct": 274889,
+   "cards": [
+    "ecard1-14 Grolem",
+    "ecard1-49 Grolem"
+   ]
+  },
+  {
+   "idProduct": 274894,
+   "cards": [
+    "ecard1-19 Mew",
+    "ecard1-56 Mewtwo",
+    "ecard1-55 Mew"
+   ]
+  },
+  {
+   "idProduct": 274891,
+   "cards": [
+    "ecard1-16 Mackogneur",
+    "ecard1-51 Mackogneur"
+   ]
+  },
+  {
+   "idProduct": 274892,
+   "cards": [
+    "ecard1-17 Magby",
+    "ecard1-52 Magby"
+   ]
+  },
+  {
+   "idProduct": 274893,
+   "cards": [
+    "ecard1-18 Méganium",
+    "ecard1-53 Méganium",
+    "ecard1-54 Méganium"
+   ]
+  },
+  {
+   "idProduct": 274902,
+   "cards": [
+    "ecard1-27 Airmure",
+    "ecard1-63 Airmure"
+   ]
+  },
+  {
+   "idProduct": 274897,
+   "cards": [
+    "ecard1-22 Pichu",
+    "ecard1-58 Pichu"
+   ]
+  },
+  {
+   "idProduct": 274901,
+   "cards": [
+    "ecard1-26 Galopa",
+    "ecard1-62 Galopa"
+   ]
+  },
+  {
+   "idProduct": 274898,
+   "cards": [
+    "ecard1-23 Roucarnage",
+    "ecard1-59 Roucarnage"
+   ]
+  },
+  {
+   "idProduct": 274896,
+   "cards": [
+    "ecard1-21 Feunard",
+    "ecard1-57 Feunard"
+   ]
+  },
+  {
+   "idProduct": 274900,
+   "cards": [
+    "ecard1-25 Raichu",
+    "ecard1-61 Raichu"
+   ]
+  },
+  {
+   "idProduct": 274907,
+   "cards": [
+    "ecard1-32 Smogogo",
+    "ecard1-70 Smogogo"
+   ]
+  },
+  {
+   "idProduct": 274905,
+   "cards": [
+    "ecard1-30 Florizarre",
+    "ecard1-67 Florizarre",
+    "ecard1-68 Florizarre"
+   ]
+  },
+  {
+   "idProduct": 274899,
+   "cards": [
+    "ecard1-24 Tartard",
+    "ecard1-60 Tartard"
+   ]
+  },
+  {
+   "idProduct": 274904,
+   "cards": [
+    "ecard1-29 Tyranocif",
+    "ecard1-66 Tyranocif"
+   ]
+  },
+  {
+   "idProduct": 274906,
+   "cards": [
+    "ecard1-31 Raflésia",
+    "ecard1-69 Raflésia"
+   ]
+  },
+  {
+   "idProduct": 274903,
+   "cards": [
+    "ecard1-28 Typhlosion",
+    "ecard1-64 Typhlosion",
+    "ecard1-65 Typhlosion"
+   ]
+  },
+  {
+   "idProduct": 274969,
+   "cards": [
+    "ecard1-95 Bulbizarre",
+    "ecard1-94 Bulbizarre"
+   ]
+  },
+  {
+   "idProduct": 274972,
+   "cards": [
+    "ecard1-97 Salamèche",
+    "ecard1-98 Salamèche"
+   ]
+  },
+  {
+   "idProduct": 274974,
+   "cards": [
+    "ecard1-100 Germignon",
+    "ecard1-99 Germignon"
+   ]
+  },
+  {
+   "idProduct": 274979,
+   "cards": [
+    "ecard1-104 Héricendre",
+    "ecard1-105 Héricendre"
+   ]
+  },
+  {
+   "idProduct": 275006,
+   "cards": [
+    "ecard1-131 Carapuce",
+    "ecard1-132 Carapuce"
+   ]
+  },
+  {
+   "idProduct": 275009,
+   "cards": [
+    "ecard1-134 Kaiminus",
+    "ecard1-135 Kaiminus"
+   ]
+  },
+  {
+   "idProduct": 275086,
+   "cards": [
+    "ecard2-15 Démolosse",
+    "ecard2-H11 Démolosse"
+   ]
+  },
+  {
+   "idProduct": 275084,
+   "cards": [
+    "ecard2-13 Noadkoko",
+    "ecard2-H10 Noadkoko"
+   ]
+  },
+  {
+   "idProduct": 275092,
+   "cards": [
+    "ecard2-21 Lanturn",
+    "ecard2-H15 Lanturn"
+   ]
+  },
+  {
+   "idProduct": 275091,
+   "cards": [
+    "ecard2-148 Hyporoi",
+    "ecard2-H14 Hyporoi"
+   ]
+  },
+  {
+   "idProduct": 275096,
+   "cards": [
+    "ecard2-150 Nidoking",
+    "ecard2-H18 Nidoking"
+   ]
+  },
+  {
+   "idProduct": 275117,
+   "cards": [
+    "ecard2-45 Chétiflor",
+    "ecard2-68 Chétiflor"
+   ]
+  },
+  {
+   "idProduct": 275122,
+   "cards": [
+    "ecard2-50b Akwakwak",
+    "ecard2-50a Akwakwak"
+   ]
+  },
+  {
+   "idProduct": 275130,
+   "cards": [
+    "ecard2-57 Insécateur",
+    "ecard2-106 Insécateur"
+   ]
+  },
+  {
+   "idProduct": 275124,
+   "cards": [
+    "ecard2-51 Caninos",
+    "ecard2-80 Caninos"
+   ]
+  },
+  {
+   "idProduct": 275125,
+   "cards": [
+    "ecard2-52 Magnéti",
+    "ecard2-91 Magnéti"
+   ]
+  },
+  {
+   "idProduct": 275135,
+   "cards": [
+    "ecard2-62 Mimigal",
+    "ecard2-111 Mimigal"
+   ]
+  },
+  {
+   "idProduct": 275139,
+   "cards": [
+    "ecard2-66 Axoloto",
+    "ecard2-117 Axoloto"
+   ]
+  },
+  {
+   "idProduct": 275137,
+   "cards": [
+    "ecard2-64 Voltorbe",
+    "ecard2-115 Voltorbe"
+   ]
+  },
+  {
+   "idProduct": 275143,
+   "cards": [
+    "ecard2-70 Loupio",
+    "ecard2-71 Loupio"
+   ]
+  },
+  {
+   "idProduct": 275147,
+   "cards": [
+    "ecard2-74b Soporifik",
+    "ecard2-74a Soporifik"
+   ]
+  },
+  {
+   "idProduct": 275150,
+   "cards": [
+    "ecard2-77 Nœufnœuf",
+    "ecard2-76 Nœufnœuf"
+   ]
+  },
+  {
+   "idProduct": 275158,
+   "cards": [
+    "ecard2-84 Hypotrempe",
+    "ecard2-85 Hypotrempe"
+   ]
+  },
+  {
+   "idProduct": 275160,
+   "cards": [
+    "ecard2-86 Malosse",
+    "ecard2-87 Malosse"
+   ]
+  },
+  {
+   "idProduct": 275169,
+   "cards": [
+    "ecard2-95a M.Mime",
+    "ecard2-95b M.Mime"
+   ]
+  },
+  {
+   "idProduct": 275179,
+   "cards": [
+    "ecard2-103b Porygon",
+    "ecard2-103a Porygon"
+   ]
+  },
+  {
+   "idProduct": 275778,
+   "cards": [
+    "ex2-1 Armaldo",
+    "ex4-1 Cacturne de Team Aqua"
+   ]
+  },
+  {
+   "idProduct": 275779,
+   "cards": [
+    "ex2-2 Cacturne",
+    "ex4-2 Colhomard de Team Aqua"
+   ]
+  },
+  {
+   "idProduct": 275780,
+   "cards": [
+    "ex2-3 Vacilys",
+    "ex4-3 Kyogre de Team Aqua"
+   ]
+  },
+  {
+   "idProduct": 275781,
+   "cards": [
+    "ex2-4 Téraclope",
+    "ex4-4 Elecsprint de Team Aqua"
+   ]
+  },
+  {
+   "idProduct": 275782,
+   "cards": [
+    "ex2-5 Pyroli",
+    "ex4-5 Sharpedo de Team Aqua"
+   ]
+  },
+  {
+   "idProduct": 275783,
+   "cards": [
+    "ex2-6 Voltali",
+    "ex4-6 Kaimorse de Team Aqua"
+   ]
+  },
+  {
+   "idProduct": 275785,
+   "cards": [
+    "ex2-8 Séléroc",
+    "ex4-8 Kaorine de Team Magma"
+   ]
+  },
+  {
+   "idProduct": 275784,
+   "cards": [
+    "ex2-7 Ludicolo",
+    "ex4-7 Galeking de Team Magma"
+   ]
+  },
+  {
+   "idProduct": 275787,
+   "cards": [
+    "ex2-10 Ténéfix",
+    "ex4-10 Démolosse de Team Magma"
+   ]
+  },
+  {
+   "idProduct": 275786,
+   "cards": [
+    "ex2-9 Mysdibule",
+    "ex4-9 Groudon de Team Magma"
+   ]
+  },
+  {
+   "idProduct": 275789,
+   "cards": [
+    "ex2-12 Tengalice",
+    "ex4-12 Chartor de Team Magma"
+   ]
+  },
+  {
+   "idProduct": 275788,
+   "cards": [
+    "ex2-11 Séviper",
+    "ex4-11 Rhinoféros de Team Magma"
+   ]
+  },
+  {
+   "idProduct": 275790,
+   "cards": [
+    "ex2-13 Solaroc",
+    "ex4-13 Raichu"
+   ]
+  },
+  {
+   "idProduct": 275793,
+   "cards": [
+    "ex2-16 Mentali",
+    "ex4-16 Phogleur de Team Aqua"
+   ]
+  },
+  {
+   "idProduct": 275792,
+   "cards": [
+    "ex2-15 Arcanin",
+    "ex4-15 Grahyena de Team Aqua"
+   ]
+  },
+  {
+   "idProduct": 275794,
+   "cards": [
+    "ex2-17 Akwakwak",
+    "ex4-17 Seviper de Team Aqua"
+   ]
+  },
+  {
+   "idProduct": 275791,
+   "cards": [
+    "ex2-14 Mangriff",
+    "ex4-14 Colhomard de Team Aqua"
+   ]
+  },
+  {
+   "idProduct": 275795,
+   "cards": [
+    "ex2-18 Kecleon",
+    "ex4-18 Sharpedo de Team Aqua"
+   ]
+  },
+  {
+   "idProduct": 275797,
+   "cards": [
+    "ex2-20 Pichu",
+    "ex4-20 Galegon de Team Magma"
+   ]
+  },
+  {
+   "idProduct": 275796,
+   "cards": [
+    "ex2-19 Amonistar",
+    "ex4-19 Camerupt de Team Magma"
+   ]
+  },
+  {
+   "idProduct": 275798,
+   "cards": [
+    "ex2-21 Sablaireau",
+    "ex4-21 Grahyena de Team Magma"
+   ]
+  },
+  {
+   "idProduct": 275801,
+   "cards": [
+    "ex2-24 Noctali",
+    "ex4-24 Cacnea de Team Aqua"
+   ]
+  },
+  {
+   "idProduct": 275800,
+   "cards": [
+    "ex2-23 Steelix",
+    "ex4-23 Mangriff de Team Magma"
+   ]
+  },
+  {
+   "idProduct": 275802,
+   "cards": [
+    "ex2-25 Aquali",
+    "ex4-25 Carvanha de Team Aqua"
+   ]
+  },
+  {
+   "idProduct": 275803,
+   "cards": [
+    "ex2-26 Qulbutoké",
+    "ex4-26 Écrapince de Team Aqua"
+   ]
+  },
+  {
+   "idProduct": 275872,
+   "cards": [
+    "ex2-95 Galeking ex",
+    "ex4-95 Laggron ex"
+   ]
+  },
+  {
+   "idProduct": 275871,
+   "cards": [
+    "ex2-94 Ptera ex",
+    "ex4-94 Suicune ex"
+   ]
+  },
+  {
+   "idProduct": 275799,
+   "cards": [
+    "ex2-22 Tengalice",
+    "ex4-22 Rhinoféros de Team Magma"
+   ]
+  },
+  {
+   "idProduct": 275805,
+   "cards": [
+    "ex2-28 Anorith",
+    "ex4-28 Lanturn de Team Aqua"
+   ]
+  },
+  {
+   "idProduct": 275807,
+   "cards": [
+    "ex2-30 Azumarill",
+    "ex4-30 Grahyena de Team Aqua"
+   ]
+  },
+  {
+   "idProduct": 275808,
+   "cards": [
+    "ex2-31 Azurill",
+    "ex4-31 Phogleur de Team Aqua"
+   ]
+  },
+  {
+   "idProduct": 275806,
+   "cards": [
+    "ex2-29 Arbok",
+    "ex4-29 Elecsprint de Team Aqua"
+   ]
+  },
+  {
+   "idProduct": 275809,
+   "cards": [
+    "ex2-32 Balbuto",
+    "ex4-32 Balbuto de Team Magma"
+   ]
+  },
+  {
+   "idProduct": 275804,
+   "cards": [
+    "ex2-27 Anorith",
+    "ex4-27 Dynavolt de Team Aqua"
+   ]
+  },
+  {
+   "idProduct": 275811,
+   "cards": [
+    "ex2-34 Delcatty",
+    "ex4-34 Démolosse de Team Magma"
+   ]
+  },
+  {
+   "idProduct": 275810,
+   "cards": [
+    "ex2-33 Chapignon",
+    "ex4-33 Kaorine de Team Magma"
+   ]
+  },
+  {
+   "idProduct": 275812,
+   "cards": [
+    "ex2-35 Elektek",
+    "ex4-35 Malosse de Team Magma"
+   ]
+  },
+  {
+   "idProduct": 275813,
+   "cards": [
+    "ex2-36 Élekid",
+    "ex4-36 Galegon de Team Magma"
+   ]
+  },
+  {
+   "idProduct": 275816,
+   "cards": [
+    "ex2-39 Kabuto",
+    "ex4-39 Bulbizarre"
+   ]
+  },
+  {
+   "idProduct": 275817,
+   "cards": [
+    "ex2-40 Kirlia",
+    "ex4-40 Osselait"
+   ]
+  },
+  {
+   "idProduct": 275814,
+   "cards": [
+    "ex2-37 Rapasdepic",
+    "ex4-37 Grahyena de Team Magma"
+   ]
+  },
+  {
+   "idProduct": 275821,
+   "cards": [
+    "ex2-44 Linéon",
+    "ex4-44 Psykokwak"
+   ]
+  },
+  {
+   "idProduct": 275819,
+   "cards": [
+    "ex2-42 Lilia",
+    "ex4-42 Miaouss"
+   ]
+  },
+  {
+   "idProduct": 275820,
+   "cards": [
+    "ex2-43 Lilia",
+    "ex4-43 Pikachu"
+   ]
+  },
+  {
+   "idProduct": 275815,
+   "cards": [
+    "ex2-38 Lumivole",
+    "ex4-38 Rhinocorne de Team Magma"
+   ]
+  },
+  {
+   "idProduct": 275818,
+   "cards": [
+    "ex2-41 Galegon",
+    "ex4-41 Rondoudou"
+   ]
+  },
+  {
+   "idProduct": 275824,
+   "cards": [
+    "ex2-47 Cornèbre",
+    "ex4-47 Carvanha de Team Aqua"
+   ]
+  },
+  {
+   "idProduct": 275823,
+   "cards": [
+    "ex2-46 Lombre",
+    "ex4-46 Carapuce"
+   ]
+  },
+  {
+   "idProduct": 275822,
+   "cards": [
+    "ex2-45 Lombre",
+    "ex4-45 Ramoloss"
+   ]
+  },
+  {
+   "idProduct": 275827,
+   "cards": [
+    "ex2-50 Bekipan",
+    "ex4-50 Écrapince de Team Aqua"
+   ]
+  },
+  {
+   "idProduct": 275828,
+   "cards": [
+    "ex2-51 Feurisson",
+    "ex4-51 Écrapince de Team Aqua"
+   ]
+  },
+  {
+   "idProduct": 275832,
+   "cards": [
+    "ex2-55 Xatu",
+    "ex4-55 Medhyena de Team Aqua"
+   ]
+  },
+  {
+   "idProduct": 275831,
+   "cards": [
+    "ex2-54 Okéoké",
+    "ex4-54 Medhyena de Team Aqua"
+   ]
+  },
+  {
+   "idProduct": 275863,
+   "cards": [
+    "ex2-86 Double guérison totale",
+    "ex4-86 Énergie Magma"
+   ]
+  },
+  {
+   "idProduct": 275826,
+   "cards": [
+    "ex2-49 Pifeuil",
+    "ex4-49 Loupio de Team Aqua"
+   ]
+  },
+  {
+   "idProduct": 275829,
+   "cards": [
+    "ex2-52 Vigoroth",
+    "ex4-52 Dynavolt de Team Aqua"
+   ]
+  },
+  {
+   "idProduct": 275825,
+   "cards": [
+    "ex2-48 Pifeuil",
+    "ex4-48 Carvanha de Team Aqua"
+   ]
+  },
+  {
+   "idProduct": 275830,
+   "cards": [
+    "ex2-53 Muciole",
+    "ex4-53 Dynavolt de Team Aqua"
+   ]
+  },
+  {
+   "idProduct": 275864,
+   "cards": [
+    "ex2-87 Annette surfe sur le net",
+    "ex4-87 Énergie Magma"
+   ]
+  },
+  {
+   "idProduct": 275866,
+   "cards": [
+    "ex2-89 Timmy au dressage",
+    "ex4-89 Brasegali ex"
+   ]
+  },
+  {
+   "idProduct": 275833,
+   "cards": [
+    "ex2-56 Galekid",
+    "ex4-56 Obalie de Team Aqua"
+   ]
+  },
+  {
+   "idProduct": 275865,
+   "cards": [
+    "ex2-88 Super bonbon",
+    "ex4-88 Double Énergie Multicolore"
+   ]
+  },
+  {
+   "idProduct": 275837,
+   "cards": [
+    "ex2-60 Insolourdo",
+    "ex4-60 Balbuto de Team Magma"
+   ]
+  },
+  {
+   "idProduct": 275836,
+   "cards": [
+    "ex2-59 Héricendre",
+    "ex4-59 Galekid de Team Magma"
+   ]
+  },
+  {
+   "idProduct": 275834,
+   "cards": [
+    "ex2-57 Cacnea",
+    "ex4-57 Obalie de Team Aqua"
+   ]
+  },
+  {
+   "idProduct": 275838,
+   "cards": [
+    "ex2-61 Skelénox",
+    "ex4-61 Balbuto de Team Magma"
+   ]
+  },
+  {
+   "idProduct": 275840,
+   "cards": [
+    "ex2-63 Evoli",
+    "ex4-63 Malosse de Team Magma"
+   ]
+  },
+  {
+   "idProduct": 275839,
+   "cards": [
+    "ex2-62 Skelénox",
+    "ex4-62 Malosse de Team Magma"
+   ]
+  },
+  {
+   "idProduct": 275835,
+   "cards": [
+    "ex2-58 Cacnea",
+    "ex4-58 Galekid de Team Magma"
+   ]
+  },
+  {
+   "idProduct": 275841,
+   "cards": [
+    "ex2-64 Abo",
+    "ex4-64 Chamallot de Team Magma"
+   ]
+  },
+  {
+   "idProduct": 275842,
+   "cards": [
+    "ex2-65 Caninos",
+    "ex4-65 Medhyena de Team Magma"
+   ]
+  },
+  {
+   "idProduct": 275843,
+   "cards": [
+    "ex2-66 Nénupiot",
+    "ex4-66 Medhyena de Team Magma"
+   ]
+  },
+  {
+   "idProduct": 275844,
+   "cards": [
+    "ex2-67 Nénupiot",
+    "ex4-67 Rhinocorne de Team Magma"
+   ]
+  },
+  {
+   "idProduct": 275846,
+   "cards": [
+    "ex2-69 Natu",
+    "ex4-69 Manipulateur de Team Aqua"
+   ]
+  },
+  {
+   "idProduct": 275845,
+   "cards": [
+    "ex2-68 Marill",
+    "ex4-68 Rhinocorne de Team Magma"
+   ]
+  },
+  {
+   "idProduct": 275848,
+   "cards": [
+    "ex2-71 Onix",
+    "ex4-71 Arthur"
+   ]
+  },
+  {
+   "idProduct": 275847,
+   "cards": [
+    "ex2-70 Amonita",
+    "ex4-70 Manipulateur de Team Magma"
+   ]
+  },
+  {
+   "idProduct": 275850,
+   "cards": [
+    "ex2-73 Psykokwak",
+    "ex4-73 Max"
+   ]
+  },
+  {
+   "idProduct": 275849,
+   "cards": [
+    "ex2-72 Pikachu",
+    "ex4-72 Double boule"
+   ]
+  },
+  {
+   "idProduct": 275851,
+   "cards": [
+    "ex2-74 Tarsal",
+    "ex4-74 Sort de force"
+   ]
+  },
+  {
+   "idProduct": 275852,
+   "cards": [
+    "ex2-75 Sabelette",
+    "ex4-75 Boule de Team Aqua"
+   ]
+  },
+  {
+   "idProduct": 275853,
+   "cards": [
+    "ex2-76 Grainipiot",
+    "ex4-76 Raclée de Team Aqua"
+   ]
+  },
+  {
+   "idProduct": 275854,
+   "cards": [
+    "ex2-77 Grainipiot",
+    "ex4-77 Conspirateur de Team Aqua"
+   ]
+  },
+  {
+   "idProduct": 275856,
+   "cards": [
+    "ex2-79 Skitty",
+    "ex4-79 Machine Technique 01 de Team Aqua"
+   ]
+  },
+  {
+   "idProduct": 275857,
+   "cards": [
+    "ex2-80 Parecool",
+    "ex4-80 Boule de Team Magma"
+   ]
+  },
+  {
+   "idProduct": 275858,
+   "cards": [
+    "ex2-81 Piafabec",
+    "ex4-81 Raclée de Team Magma"
+   ]
+  },
+  {
+   "idProduct": 275859,
+   "cards": [
+    "ex2-82 Kraknoix",
+    "ex4-82 Conspirateur de Team Magma"
+   ]
+  },
+  {
+   "idProduct": 275860,
+   "cards": [
+    "ex2-83 Wailmer",
+    "ex4-83 Cachette de Team Magma"
+   ]
+  },
+  {
+   "idProduct": 275861,
+   "cards": [
+    "ex2-84 Goélise",
+    "ex4-84 Machine Technique 01 de Team Magma"
+   ]
+  },
+  {
+   "idProduct": 275862,
+   "cards": [
+    "ex2-85 Zigzaton",
+    "ex4-85 Point d'échange"
+   ]
+  },
+  {
+   "idProduct": 275855,
+   "cards": [
+    "ex2-78 Balignon",
+    "ex4-78 Cachette de Team Aqua"
+   ]
+  },
+  {
+   "idProduct": 276419,
+   "cards": [
+    "ex8-16 Deoxys",
+    "ex8-17 Deoxys",
+    "ex8-18 Deoxys",
+    "ex8-98 Deoxys ex",
+    "ex8-99 Deoxys ex"
+   ]
+  },
+  {
+   "idProduct": 276425,
+   "cards": [
+    "ex8-22 Rayquaza",
+    "ex8-107 Rayquaza ☆"
+   ]
+  },
+  {
+   "idProduct": 276638,
+   "cards": [
+    "exu-! Zarbi",
+    "exu-O Zarbi"
+   ]
+  },
+  {
+   "idProduct": 276636,
+   "cards": [
+    "exu-M Zarbi",
+    "exu-V Zarbi"
+   ]
+  },
+  {
+   "idProduct": 276640,
+   "cards": [
+    "exu-Q Zarbi",
+    "exu-Y Zarbi"
+   ]
+  },
+  {
+   "idProduct": 276637,
+   "cards": [
+    "exu-N Zarbi",
+    "exu-X Zarbi"
+   ]
+  },
+  {
+   "idProduct": 276639,
+   "cards": [
+    "exu-P Zarbi",
+    "exu-Z Zarbi"
+   ]
+  },
+  {
+   "idProduct": 276635,
+   "cards": [
+    "exu-W Zarbi",
+    "exu-L Zarbi"
+   ]
+  },
+  {
+   "idProduct": 276778,
+   "cards": [
+    "ex11-15 Staross δ",
+    "ex11-30 Staross δ"
+   ]
+  },
+  {
+   "idProduct": 276798,
+   "cards": [
+    "ex11-35 Métamorph",
+    "ex11-36 Métamorph",
+    "ex11-38 Métamorph",
+    "ex11-37 Métamorph",
+    "ex11-40 Métamorph",
+    "ex11-39 Métamorph",
+    "ex11-61 Métamorph",
+    "ex11-62 Métamorph",
+    "ex11-63 Métamorph",
+    "ex11-64 Métamorph"
+   ]
+  },
+  {
+   "idProduct": 276804,
+   "cards": [
+    "ex11-42 Draco δ",
+    "ex11-41 Draco δ"
+   ]
+  },
+  {
+   "idProduct": 276816,
+   "cards": [
+    "ex11-53 Drackhaus δ",
+    "ex11-54 Drackhaus δ"
+   ]
+  },
+  {
+   "idProduct": 276820,
+   "cards": [
+    "ex11-57 Draby δ",
+    "ex11-58 Draby δ"
+   ]
+  },
+  {
+   "idProduct": 276828,
+   "cards": [
+    "ex11-65 Minidraco δ",
+    "ex11-66 Minidraco δ"
+   ]
+  },
+  {
+   "idProduct": 276973,
+   "cards": [
+    "ex13-3 Deoxys δ",
+    "ex13-4 Deoxys δ",
+    "ex13-5 Deoxys δ",
+    "ex13-6 Deoxys δ"
+   ]
+  },
+  {
+   "idProduct": 276986,
+   "cards": [
+    "ex13-16 Rayquaza δ",
+    "ex13-26 Rayquaza δ"
+   ]
+  },
+  {
+   "idProduct": 277048,
+   "cards": [
+    "ex13-104 Pikachu ☆",
+    "ex13-78 Pikachu"
+   ]
+  },
+  {
+   "idProduct": 277081,
+   "cards": [
+    "ex13-103 Mewtwo ☆",
+    "ex13-111 Mew"
+   ]
+  },
+  {
+   "idProduct": 277229,
+   "cards": [
+    "ex15-24 Vibraninf δ",
+    "ex15-42 Vibraninf δ"
+   ]
+  },
+  {
+   "idProduct": 277227,
+   "cards": [
+    "ex15-22 Hypocéan δ",
+    "ex15-37 Hypocéan δ"
+   ]
+  },
+  {
+   "idProduct": 277236,
+   "cards": [
+    "ex15-31 Hypotrempe δ",
+    "ex15-50 Hypotrempe δ"
+   ]
+  },
+  {
+   "idProduct": 277273,
+   "cards": [
+    "ex15-68 Kraknoix δ",
+    "ex15-69 Kraknoix δ"
+   ]
+  },
+  {
+   "idProduct": 278010,
+   "cards": [
+    "tk-dp-l-1 Racaillou",
+    "tk-dp-m-1 Mustébouée"
+   ]
+  },
+  {
+   "idProduct": 278012,
+   "cards": [
+    "tk-dp-l-2 Gravalanch",
+    "tk-dp-m-2 Mustéflott"
+   ]
+  },
+  {
+   "idProduct": 278013,
+   "cards": [
+    "tk-dp-l-3 Lucario",
+    "tk-dp-m-3 Poissirène"
+   ]
+  },
+  {
+   "idProduct": 278016,
+   "cards": [
+    "tk-dp-l-4 Machopeur",
+    "tk-dp-m-4 Manaphy"
+   ]
+  },
+  {
+   "idProduct": 278017,
+   "cards": [
+    "tk-dp-l-5 Machoc",
+    "tk-dp-m-5 Tiplouf"
+   ]
+  },
+  {
+   "idProduct": 278020,
+   "cards": [
+    "tk-dp-l-6 Riolu",
+    "tk-dp-m-6 Prinplouf"
+   ]
+  },
+  {
+   "idProduct": 278022,
+   "cards": [
+    "tk-dp-l-7 Etourmi",
+    "tk-dp-m-7 Poissoroy"
+   ]
+  },
+  {
+   "idProduct": 278026,
+   "cards": [
+    "tk-dp-l-9 Potion",
+    "tk-dp-m-9 Sombre Ball"
+   ]
+  },
+  {
+   "idProduct": 278028,
+   "cards": [
+    "tk-dp-l-10 Balle rapide",
+    "tk-dp-m-10 Recherche d'énergie"
+   ]
+  },
+  {
+   "idProduct": 278023,
+   "cards": [
+    "tk-dp-l-8 Recherche d'énergie",
+    "tk-dp-m-8 Kaiminus"
+   ]
+  },
+  {
+   "idProduct": 278029,
+   "cards": [
+    "tk-dp-l-11 Énergie Combat",
+    "tk-dp-m-11 Potion"
+   ]
+  },
+  {
+   "idProduct": 277687,
+   "cards": [
+    "dp2-58 Parasect",
+    "dp2-92 Paras"
+   ]
+  },
+  {
+   "idProduct": 277905,
+   "cards": [
+    "dp4-3 Darkrai",
+    "dp4-4 Darkrai"
+   ]
+  },
+  {
+   "idProduct": 277908,
+   "cards": [
+    "dp4-6 Porygon-Z",
+    "dp4-81 Porygon"
+   ]
+  },
+  {
+   "idProduct": 278055,
+   "cards": [
+    "dp5-6 Kabutops",
+    "dp5-67 Kabuto"
+   ]
+  },
+  {
+   "idProduct": 278054,
+   "cards": [
+    "dp5-5 Givrali",
+    "dp5-20 Givrali"
+   ]
+  },
+  {
+   "idProduct": 278056,
+   "cards": [
+    "dp5-7 Phyllali",
+    "dp5-24 Phyllali"
+   ]
+  },
+  {
+   "idProduct": 278061,
+   "cards": [
+    "dp5-12 Phione",
+    "dp5-27 Phione"
+   ]
+  },
+  {
+   "idProduct": 278099,
+   "cards": [
+    "dp5-51 Capumain",
+    "dp5-50 Capumain"
+   ]
+  },
+  {
+   "idProduct": 278105,
+   "cards": [
+    "dp5-56 Ouisticram",
+    "dp5-57 Ouisticram"
+   ]
+  },
+  {
+   "idProduct": 278111,
+   "cards": [
+    "dp5-62 Evoli",
+    "dp5-63 Evoli"
+   ]
+  },
+  {
+   "idProduct": 278120,
+   "cards": [
+    "dp5-71 Tiplouf",
+    "dp5-72 Tiplouf"
+   ]
+  },
+  {
+   "idProduct": 278126,
+   "cards": [
+    "dp5-77 Tortipouss",
+    "dp5-78 Tortipouss"
+   ]
+  },
+  {
+   "idProduct": 278155,
+   "cards": [
+    "dp6-6 Heatran",
+    "dp6-30 Heatran"
+   ]
+  },
+  {
+   "idProduct": 278154,
+   "cards": [
+    "dp6-5 Scorvol",
+    "dp6-55 Scorvol"
+   ]
+  },
+  {
+   "idProduct": 278164,
+   "cards": [
+    "dp6-15 Regigigas",
+    "dp6-37 Regigigas"
+   ]
+  },
+  {
+   "idProduct": 278207,
+   "cards": [
+    "dp6-58 Lanturn",
+    "dp6-59 Lanturn"
+   ]
+  },
+  {
+   "idProduct": 278213,
+   "cards": [
+    "dp6-65 Métang",
+    "dp6-64 Métang"
+   ]
+  },
+  {
+   "idProduct": 278232,
+   "cards": [
+    "dp6-83 Terhal",
+    "dp6-84 Terhal"
+   ]
+  },
+  {
+   "idProduct": 278236,
+   "cards": [
+    "dp6-87 Loupio",
+    "dp6-88 Loupio"
+   ]
+  },
+  {
+   "idProduct": 278243,
+   "cards": [
+    "dp6-95 Scorplane",
+    "dp6-94 Scorplane"
+   ]
+  },
+  {
+   "idProduct": 278245,
+   "cards": [
+    "dp6-97 Ortide",
+    "dp6-96 Ortide"
+   ]
+  },
+  {
+   "idProduct": 278260,
+   "cards": [
+    "dp6-112 Mystherbe",
+    "dp6-111 Mystherbe"
+   ]
+  },
+  {
+   "idProduct": 278299,
+   "cards": [
+    "dp7-1 Noctunoir",
+    "dp7-17 Noctunoir"
+   ]
+  },
+  {
+   "idProduct": 278303,
+   "cards": [
+    "dp7-5 Magnézone",
+    "dp7-6 Magnézone"
+   ]
+  },
+  {
+   "idProduct": 278332,
+   "cards": [
+    "dp7-34 Téraclope",
+    "dp7-35 Téraclope"
+   ]
+  },
+  {
+   "idProduct": 278334,
+   "cards": [
+    "dp7-37 Électrode",
+    "dp7-36 Électrode"
+   ]
+  },
+  {
+   "idProduct": 278340,
+   "cards": [
+    "dp7-43 Magnéton",
+    "dp7-42 Magnéton"
+   ]
+  },
+  {
+   "idProduct": 278298,
+   "cards": [
+    "dp7-60 Skelénox",
+    "dp7-59 Skelénox",
+    "dp7-SH2 Skelénox"
+   ]
+  },
+  {
+   "idProduct": 278297,
+   "cards": [
+    "dp7-58 Baudrive",
+    "dp7-SH1 Baudrive"
+   ]
+  },
+  {
+   "idProduct": 278364,
+   "cards": [
+    "dp7-67 Magnéti",
+    "dp7-66 Magnéti"
+   ]
+  },
+  {
+   "idProduct": 278296,
+   "cards": [
+    "dp7-80 Voltorbe",
+    "dp7-81 Voltorbe",
+    "dp7-SH3 Voltorbe"
+   ]
+  },
+  {
+   "idProduct": 278426,
+   "cards": [
+    "pl1-5 Dialga",
+    "pl1-6 Dialga",
+    "pl1-23 Dialga"
+   ]
+  },
+  {
+   "idProduct": 278430,
+   "cards": [
+    "pl1-9 Giratina",
+    "pl1-10 Giratina",
+    "pl1-27 Giratina",
+    "pl1-28 Giratina"
+   ]
+  },
+  {
+   "idProduct": 278433,
+   "cards": [
+    "pl1-12 Palkia G",
+    "pl1-37 Palkia"
+   ]
+  },
+  {
+   "idProduct": 278435,
+   "cards": [
+    "pl1-14 Shaymin",
+    "pl1-15 Shaymin",
+    "pl1-38 Shaymin"
+   ]
+  },
+  {
+   "idProduct": 278419,
+   "cards": [
+    "pl1-SH4 Nénupiot",
+    "pl1-81 Nénupiot"
+   ]
+  },
+  {
+   "idProduct": 278421,
+   "cards": [
+    "pl1-SH5 Tylton",
+    "pl1-97 Tylton"
+   ]
+  },
+  {
+   "idProduct": 278420,
+   "cards": [
+    "pl1-SH6 Goupix",
+    "pl1-102 Goupix"
+   ]
+  },
+  {
+   "idProduct": 278464,
+   "cards": [
+    "pl1-43 Vortente",
+    "pl1-68 Vortente"
+   ]
+  },
+  {
+   "idProduct": 278547,
+   "cards": [
+    "pl1-126 Shaymin",
+    "pl1-127 Shaymin"
+   ]
+  },
+  {
+   "idProduct": 278690,
+   "cards": [
+    "pl3-8 Rayquaza C",
+    "pl3-SH8 Relicanth"
+   ]
+  },
+  {
+   "idProduct": 278689,
+   "cards": [
+    "pl3-7 Métalosse",
+    "pl3-SH7 Milobellus"
+   ]
+  },
+  {
+   "idProduct": 278691,
+   "cards": [
+    "pl3-9 Regigigas FB",
+    "pl3-SH9 Yanma"
+   ]
+  },
+  {
+   "idProduct": 278976,
+   "cards": [
+    "hgss1-4 Léviator",
+    "hgss1-123 Léviator"
+   ]
+  },
+  {
+   "idProduct": 278986,
+   "cards": [
+    "hgss1-14 Pharamp",
+    "hgss1-105 Pharamp"
+   ]
+  },
+  {
+   "idProduct": 278992,
+   "cards": [
+    "hgss1-20 Aligatueur",
+    "hgss1-108 Aligatueur"
+   ]
+  },
+  {
+   "idProduct": 279004,
+   "cards": [
+    "hgss1-32 Typhlosion",
+    "hgss1-110 Typhlosion"
+   ]
+  },
+  {
+   "idProduct": 279008,
+   "cards": [
+    "hgss1-36 Leuphorie",
+    "hgss1-106 Leuphorie"
+   ]
+  },
+  {
+   "idProduct": 279026,
+   "cards": [
+    "hgss1-54 Zarbi",
+    "hgss1-55 Zarbi"
+   ]
+  },
+  {
+   "idProduct": 279083,
+   "cards": [
+    "hgss1-111 Ho-Oh LÉGENDAIRE",
+    "hgss1-112 Ho-Oh LÉGENDAIRE"
+   ]
+  },
+  {
+   "idProduct": 278572,
+   "cards": [
+    "pl2-3 Darkrai G Niv. 58",
+    "pl2-RT3 Motisma Chaleur Niv. 46"
+   ]
+  },
+  {
+   "idProduct": 279085,
+   "cards": [
+    "hgss1-114 Lugia LÉGENDAIRE",
+    "hgss1-113 Lugia LÉGENDAIRE"
+   ]
+  },
+  {
+   "idProduct": 278570,
+   "cards": [
+    "pl2-1 Arcanin Niv. 53",
+    "pl2-RT1 Motisma Hélice Niv. 46"
+   ]
+  },
+  {
+   "idProduct": 278569,
+   "cards": [
+    "pl2-2 Bastiodon GL Niv. 41",
+    "pl2-RT2 Motisma Froid Niv. 46"
+   ]
+  },
+  {
+   "idProduct": 278574,
+   "cards": [
+    "pl2-6 Momartik GL Niv. 44",
+    "pl2-RT6 Le choix de Pluton"
+   ]
+  },
+  {
+   "idProduct": 278571,
+   "cards": [
+    "pl2-4 Mustéflott GL Niv. 37",
+    "pl2-RT4 Motisma Tonte Niv. 46"
+   ]
+  },
+  {
+   "idProduct": 279098,
+   "cards": [
+    "tk-hs-r-2 Pikachu",
+    "tk-hs-g-2 Énergie Eau"
+   ]
+  },
+  {
+   "idProduct": 279112,
+   "cards": [
+    "tk-hs-r-5 Énergie Électrique",
+    "tk-hs-g-5 Léo"
+   ]
+  },
+  {
+   "idProduct": 279113,
+   "cards": [
+    "tk-hs-r-4 Miaouss",
+    "tk-hs-g-4 Énergie Eau"
+   ]
+  },
+  {
+   "idProduct": 279125,
+   "cards": [
+    "tk-hs-r-1 Lait Meumeu",
+    "tk-hs-g-1 Kaiminus"
+   ]
+  },
+  {
+   "idProduct": 279119,
+   "cards": [
+    "tk-hs-r-3 Lainergie",
+    "tk-hs-g-3 Énergie Eau"
+   ]
+  },
+  {
+   "idProduct": 279115,
+   "cards": [
+    "tk-hs-r-7 Énergie Électrique",
+    "tk-hs-g-7 Énergie Eau"
+   ]
+  },
+  {
+   "idProduct": 279117,
+   "cards": [
+    "tk-hs-r-8 Énergie Électrique",
+    "tk-hs-g-8 Énergie Eau"
+   ]
+  },
+  {
+   "idProduct": 279105,
+   "cards": [
+    "tk-hs-r-10 Énergie Électrique",
+    "tk-hs-g-10 Énergie Eau"
+   ]
+  },
+  {
+   "idProduct": 279116,
+   "cards": [
+    "tk-hs-r-9 Énergie Électrique",
+    "tk-hs-g-9 Énergie Eau"
+   ]
+  },
+  {
+   "idProduct": 279104,
+   "cards": [
+    "tk-hs-r-11 Énergie Électrique",
+    "tk-hs-g-11 Énergie Eau"
+   ]
+  },
+  {
+   "idProduct": 279106,
+   "cards": [
+    "tk-hs-r-12 Miaouss",
+    "tk-hs-g-12 Magicarpe"
+   ]
+  },
+  {
+   "idProduct": 279107,
+   "cards": [
+    "tk-hs-r-13 Wattouat",
+    "tk-hs-g-13 Crocrodil"
+   ]
+  },
+  {
+   "idProduct": 279108,
+   "cards": [
+    "tk-hs-r-15 Énergie Électrique",
+    "tk-hs-g-15 Marill"
+   ]
+  },
+  {
+   "idProduct": 279109,
+   "cards": [
+    "tk-hs-r-14 Énergie Électrique",
+    "tk-hs-g-14 Kaiminus"
+   ]
+  },
+  {
+   "idProduct": 279102,
+   "cards": [
+    "tk-hs-r-17 Lainergie",
+    "tk-hs-g-17 Crocrodil"
+   ]
+  },
+  {
+   "idProduct": 279103,
+   "cards": [
+    "tk-hs-r-16 Pikachu",
+    "tk-hs-g-16 Énergie Eau"
+   ]
+  },
+  {
+   "idProduct": 279114,
+   "cards": [
+    "tk-hs-r-6 Énergie Électrique",
+    "tk-hs-g-6 Énergie Eau"
+   ]
+  },
+  {
+   "idProduct": 279097,
+   "cards": [
+    "tk-hs-r-18 Énergie Électrique",
+    "tk-hs-g-18 Léo"
+   ]
+  },
+  {
+   "idProduct": 279096,
+   "cards": [
+    "tk-hs-r-19 Raichu",
+    "tk-hs-g-19 Magicarpe"
+   ]
+  },
+  {
+   "idProduct": 279110,
+   "cards": [
+    "tk-hs-r-23 Énergie Électrique",
+    "tk-hs-g-23 Poké Ball"
+   ]
+  },
+  {
+   "idProduct": 279111,
+   "cards": [
+    "tk-hs-r-24 Échange",
+    "tk-hs-g-24 Marill"
+   ]
+  },
+  {
+   "idProduct": 279121,
+   "cards": [
+    "tk-hs-r-25 Poké Ball",
+    "tk-hs-g-25 Méthode d'entraînement du Prof. Orme"
+   ]
+  },
+  {
+   "idProduct": 279120,
+   "cards": [
+    "tk-hs-r-26 Lait Meumeu",
+    "tk-hs-g-26 Énergie Eau"
+   ]
+  },
+  {
+   "idProduct": 279100,
+   "cards": [
+    "tk-hs-r-22 Collectionneur de Pokémon",
+    "tk-hs-g-22 Communication Pokémon"
+   ]
+  },
+  {
+   "idProduct": 279122,
+   "cards": [
+    "tk-hs-r-27 Collectionneur de Pokémon",
+    "tk-hs-g-27 Communication Pokémon"
+   ]
+  },
+  {
+   "idProduct": 279124,
+   "cards": [
+    "tk-hs-r-29 Échange d’Énergie",
+    "tk-hs-g-29 Énergie Eau"
+   ]
+  },
+  {
+   "idProduct": 279101,
+   "cards": [
+    "tk-hs-r-21 Copieuse",
+    "tk-hs-g-21 Échange d’Énergie"
+   ]
+  },
+  {
+   "idProduct": 279123,
+   "cards": [
+    "tk-hs-r-28 Énergie Électrique",
+    "tk-hs-g-28 Échange"
+   ]
+  },
+  {
+   "idProduct": 279118,
+   "cards": [
+    "tk-hs-r-30 Raichu",
+    "tk-hs-g-30 Léviator"
+   ]
+  },
+  {
+   "idProduct": 279533,
+   "cards": [
+    "hgss4-3 Celebi",
+    "hgss4-92 Celebi"
+   ]
+  },
+  {
+   "idProduct": 279556,
+   "cards": [
+    "hgss4-26 Mackogneur",
+    "hgss4-95 Mackogneur"
+   ]
+  },
+  {
+   "idProduct": 279564,
+   "cards": [
+    "hgss4-34 Électrode",
+    "hgss4-93 Électrode"
+   ]
+  },
+  {
+   "idProduct": 279584,
+   "cards": [
+    "hgss4-54 Yanmega",
+    "hgss4-98 Yanmega"
+   ]
+  },
+  {
+   "idProduct": 279629,
+   "cards": [
+    "hgss4-99 Darkrai & Cresselia LÉGENDE",
+    "hgss4-100 Darkrai & Cresselia LÉGENDE"
+   ]
+  },
+  {
+   "idProduct": 279631,
+   "cards": [
+    "hgss4-101 Palkia & Dialga LÉGENDE",
+    "hgss4-102 Palkia & Dialga LÉGENDE"
+   ]
+  },
+  {
+   "idProduct": 279729,
+   "cards": [
+    "col1-86 Énergie Obscurité",
+    "col1-94 Énergie Obscurité"
+   ]
+  },
+  {
+   "idProduct": 279730,
+   "cards": [
+    "col1-87 Énergie Métal",
+    "col1-95 Énergie Métal"
+   ]
+  },
+  {
+   "idProduct": 280081,
+   "cards": [
+    "tk-bw-z-4 Chinchidou",
+    "tk-bw-e-4 Échange d’Énergie"
+   ]
+  },
+  {
+   "idProduct": 280083,
+   "cards": [
+    "tk-bw-z-7 Énergie Obscurité",
+    "tk-bw-e-7 Énergie Combat"
+   ]
+  },
+  {
+   "idProduct": 280066,
+   "cards": [
+    "tk-bw-z-2 Miradar",
+    "tk-bw-e-2 Énergie Combat"
+   ]
+  },
+  {
+   "idProduct": 280093,
+   "cards": [
+    "tk-bw-z-1 Chacripan",
+    "tk-bw-e-1 Ponchiot"
+   ]
+  },
+  {
+   "idProduct": 280087,
+   "cards": [
+    "tk-bw-z-3 Énergie Obscurité",
+    "tk-bw-e-3 Énergie Combat"
+   ]
+  },
+  {
+   "idProduct": 280082,
+   "cards": [
+    "tk-bw-z-6 Énergie Obscurité",
+    "tk-bw-e-6 Énergie Combat"
+   ]
+  },
+  {
+   "idProduct": 280080,
+   "cards": [
+    "tk-bw-z-5 Énergie Obscurité",
+    "tk-bw-e-5 Énergie Combat"
+   ]
+  },
+  {
+   "idProduct": 280084,
+   "cards": [
+    "tk-bw-z-9 Énergie Obscurité",
+    "tk-bw-e-9 Énergie Combat"
+   ]
+  },
+  {
+   "idProduct": 280085,
+   "cards": [
+    "tk-bw-z-8 Énergie Obscurité",
+    "tk-bw-e-8 Énergie Combat"
+   ]
+  },
+  {
+   "idProduct": 280076,
+   "cards": [
+    "tk-bw-z-15 Colombeau",
+    "tk-bw-e-15 Potion"
+   ]
+  },
+  {
+   "idProduct": 280073,
+   "cards": [
+    "tk-bw-z-10 Énergie Obscurité",
+    "tk-bw-e-10 Énergie Combat"
+   ]
+  },
+  {
+   "idProduct": 280077,
+   "cards": [
+    "tk-bw-z-14 Poichigeon",
+    "tk-bw-e-14 Ouvrifier"
+   ]
+  },
+  {
+   "idProduct": 280075,
+   "cards": [
+    "tk-bw-z-13 Zorua",
+    "tk-bw-e-13 Rototaupe"
+   ]
+  },
+  {
+   "idProduct": 280071,
+   "cards": [
+    "tk-bw-z-16 Récupération d’Énergie",
+    "tk-bw-e-16 PlusPower"
+   ]
+  },
+  {
+   "idProduct": 280074,
+   "cards": [
+    "tk-bw-z-12 Ratentif",
+    "tk-bw-e-12 Nanméouïe"
+   ]
+  },
+  {
+   "idProduct": 280072,
+   "cards": [
+    "tk-bw-z-11 PlusPower",
+    "tk-bw-e-11 Charpenti"
+   ]
+  },
+  {
+   "idProduct": 280070,
+   "cards": [
+    "tk-bw-z-17 Zoroark",
+    "tk-bw-e-17 Minotaupe"
+   ]
+  },
+  {
+   "idProduct": 280067,
+   "cards": [
+    "tk-bw-z-20 Énergie Obscurité",
+    "tk-bw-e-20 Énergie Combat"
+   ]
+  },
+  {
+   "idProduct": 280064,
+   "cards": [
+    "tk-bw-z-19 Chinchidou",
+    "tk-bw-e-19 Ponchien"
+   ]
+  },
+  {
+   "idProduct": 280069,
+   "cards": [
+    "tk-bw-z-21 Poichigeon",
+    "tk-bw-e-21 Recherche d’Énergie"
+   ]
+  },
+  {
+   "idProduct": 280078,
+   "cards": [
+    "tk-bw-z-23 Zorua",
+    "tk-bw-e-23 Potion"
+   ]
+  },
+  {
+   "idProduct": 280068,
+   "cards": [
+    "tk-bw-z-22 Énergie Obscurité",
+    "tk-bw-e-22 Énergie Combat"
+   ]
+  },
+  {
+   "idProduct": 280089,
+   "cards": [
+    "tk-bw-z-25 Chacripan",
+    "tk-bw-e-25 Rototaupe"
+   ]
+  },
+  {
+   "idProduct": 280065,
+   "cards": [
+    "tk-bw-z-18 Communication Pokémon",
+    "tk-bw-e-18 Nanméouïe"
+   ]
+  },
+  {
+   "idProduct": 280090,
+   "cards": [
+    "tk-bw-z-27 Recherche d’Énergie",
+    "tk-bw-e-27 Ponchiot"
+   ]
+  },
+  {
+   "idProduct": 280092,
+   "cards": [
+    "tk-bw-z-29 Ratentif",
+    "tk-bw-e-29 Charpenti"
+   ]
+  },
+  {
+   "idProduct": 280088,
+   "cards": [
+    "tk-bw-z-26 Énergie Obscurité",
+    "tk-bw-e-26 Énergie Combat"
+   ]
+  },
+  {
+   "idProduct": 280091,
+   "cards": [
+    "tk-bw-z-28 Énergie Obscurité",
+    "tk-bw-e-28 Énergie Combat"
+   ]
+  },
+  {
+   "idProduct": 280079,
+   "cards": [
+    "tk-bw-z-24 Énergie Obscurité",
+    "tk-bw-e-24 Communication Pokémon"
+   ]
+  },
+  {
+   "idProduct": 280086,
+   "cards": [
+    "tk-bw-z-30 Zoroark",
+    "tk-bw-e-30 Minotaupe"
+   ]
+  },
+  {
+   "idProduct": 280782,
+   "cards": [
+    "bw8-42 Magnéti",
+    "bw8-43 Magnéti"
+   ]
+  },
+  {
+   "idProduct": 280792,
+   "cards": [
+    "bw8-53 Nosferapti",
+    "bw8-52 Nosferapti"
+   ]
+  },
+  {
+   "idProduct": 280796,
+   "cards": [
+    "bw8-56 Smogo",
+    "bw8-57 Smogo"
+   ]
+  },
+  {
+   "idProduct": 280803,
+   "cards": [
+    "bw8-64 Miamiasme",
+    "bw8-65 Miamiasme",
+    "bw8-63 Miamiasme"
+   ]
+  },
+  {
+   "idProduct": 280808,
+   "cards": [
+    "bw8-68 Lewsor",
+    "bw8-69 Lewsor"
+   ]
+  },
+  {
+   "idProduct": 280815,
+   "cards": [
+    "bw8-76 Riolu",
+    "bw8-75 Riolu"
+   ]
+  },
+  {
+   "idProduct": 280822,
+   "cards": [
+    "bw8-82 Chacripan",
+    "bw8-83 Chacripan"
+   ]
+  },
+  {
+   "idProduct": 280850,
+   "cards": [
+    "bw8-110 Ratentif",
+    "bw8-111 Ratentif"
+   ]
+  },
+  {
+   "idProduct": 280784,
+   "cards": [
+    "bw8-45 Magnéton",
+    "bw8-44 Magnéton"
+   ]
+  },
+  {
+   "idProduct": 280817,
+   "cards": [
+    "bw8-77 Lucario",
+    "bw8-78 Lucario"
+   ]
+  },
+  {
+   "idProduct": 280831,
+   "cards": [
+    "bw8-91 Fermite",
+    "bw8-92 Fermite"
+   ]
+  },
+  {
+   "idProduct": 280852,
+   "cards": [
+    "bw8-112 Miradar",
+    "bw8-113 Miradar"
+   ]
+  },
+  {
+   "idProduct": 280858,
+   "cards": [
+    "bw8-118 Nikolaï",
+    "bw8-135 Nikolaï"
+   ]
+  },
+  {
+   "idProduct": 280806,
+   "cards": [
+    "bw8-66 Miasmax",
+    "bw8-67 Miasmax"
+   ]
+  },
+  {
+   "idProduct": 554275,
+   "cards": [
+    "xyp-XY101 Mewtwo",
+    "xyp-XY107 Mewtwo EX",
+    "xyp-XY125 Mewtwo-EX",
+    "xyp-XY192 Mew"
+   ]
+  },
+  {
+   "idProduct": 289556,
+   "cards": [
+    "xyp-XY106 Léviator EX",
+    "xyp-XY109 Léviator",
+    "xyp-XY60 Léviator"
+   ]
+  },
+  {
+   "idProduct": 289787,
+   "cards": [
+    "xyp-XY112 Jirachi",
+    "xyp-XY67a Jirachi"
+   ]
+  },
+  {
+   "idProduct": 295150,
+   "cards": [
+    "xyp-XY120 Meloetta",
+    "xyp-XY193 Meloetta"
+   ]
+  },
+  {
+   "idProduct": 291576,
+   "cards": [
+    "xyp-XY113 Manaphy",
+    "xyp-XY190 Manaphy"
+   ]
+  },
+  {
+   "idProduct": 291578,
+   "cards": [
+    "xyp-XY115 Shaymin",
+    "xyp-XY188 Shaymin"
+   ]
+  },
+  {
+   "idProduct": 293189,
+   "cards": [
+    "xyp-XY118 Keldeo",
+    "xyp-XY191 Keldeo"
+   ]
+  },
+  {
+   "idProduct": 295149,
+   "cards": [
+    "xyp-XY119 Genesect",
+    "xyp-XY196 Genesect"
+   ]
+  },
+  {
+   "idProduct": 289806,
+   "cards": [
+    "xyp-XY116 Arceus",
+    "xyp-XY197 Arceus",
+    "xyp-XY83 Arceus"
+   ]
+  },
+  {
+   "idProduct": 289804,
+   "cards": [
+    "xyp-XY128 Kyurem Blanc",
+    "xyp-XY81 Kyurem Blanc"
+   ]
+  },
+  {
+   "idProduct": 552809,
+   "cards": [
+    "xyp-XY14 Desséliande",
+    "xyp-XY94 Desséliande"
+   ]
+  },
+  {
+   "idProduct": 554190,
+   "cards": [
+    "xyp-XY124 Pikachu EX",
+    "xyp-XY89 Pikachu",
+    "xyp-XY84 Pikachu EX"
+   ]
+  },
+  {
+   "idProduct": 553491,
+   "cards": [
+    "xyp-XY147 Hoopa",
+    "xyp-XY71 Hoopa EX",
+    "xyp-XY85 Hoopa EX"
+   ]
+  },
+  {
+   "idProduct": 552954,
+   "cards": [
+    "xyp-XY149 Xerneas EX",
+    "xyp-XY31 Xerneas"
+   ]
+  },
+  {
+   "idProduct": 552959,
+   "cards": [
+    "xyp-XY150 Yveltal EX",
+    "xyp-XY32 Yveltal"
+   ]
+  },
+  {
+   "idProduct": 553958,
+   "cards": [
+    "xyp-XY164 Volcanion",
+    "xyp-XY145 Volcanion",
+    "xyp-XY185 Volcanion"
+   ]
+  },
+  {
+   "idProduct": 552849,
+   "cards": [
+    "xyp-XY17 Dracaufeu EX",
+    "xyp-XY29 Dracaufeu EX"
+   ]
+  },
+  {
+   "idProduct": 293006,
+   "cards": [
+    "xyp-XY177 Marion",
+    "xyp-XY177a Marion"
+   ]
+  },
+  {
+   "idProduct": 553429,
+   "cards": [
+    "xyp-XY187 Celebi",
+    "xyp-XY93 Celebi"
+   ]
+  },
+  {
+   "idProduct": 552884,
+   "cards": [
+    "xyp-XY194 Darkrai",
+    "xyp-XY22 Darkrai"
+   ]
+  },
+  {
+   "idProduct": 678788,
+   "cards": [
+    "xyp-XY20 Amphinobi EX",
+    "xyp-XY24 Amphinobi"
+   ]
+  },
+  {
+   "idProduct": 553364,
+   "cards": [
+    "xyp-XY195 Jirachi",
+    "xyp-XY67 Jirachi"
+   ]
+  },
+  {
+   "idProduct": 289809,
+   "cards": [
+    "xyp-XY202 Pikachu",
+    "xyp-XY95 Pikachu"
+   ]
+  },
+  {
+   "idProduct": 554217,
+   "cards": [
+    "xyp-XY204 Badge",
+    "xyp-XY203 Badge",
+    "xyp-XY205 Badge",
+    "xyp-XY206 Badge",
+    "xyp-XY207 Badge",
+    "xyp-XY208 Badge",
+    "xyp-XY210 Badge"
+   ]
+  },
+  {
+   "idProduct": 709547,
+   "cards": [
+    "xyp-XY27 Festival des Champions",
+    "xyp-XY91 Festival des Champions"
+   ]
+  },
+  {
+   "idProduct": 553449,
+   "cards": [
+    "xyp-XY72 Latios EX",
+    "xyp-XY65 Latios"
+   ]
+  },
+  {
+   "idProduct": 553219,
+   "cards": [
+    "xyp-XY64 Rayquaza",
+    "xyp-XY66 Rayquaza EX",
+    "xyp-XY73 Rayquaza EX"
+   ]
+  },
+  {
+   "idProduct": 280932,
+   "cards": [
+    "bw9-54 Tutafeh",
+    "bw9-55 Tutafeh"
+   ]
+  },
+  {
+   "idProduct": 280949,
+   "cards": [
+    "bw9-72 Scalpion",
+    "bw9-71 Scalpion"
+   ]
+  },
+  {
+   "idProduct": 280953,
+   "cards": [
+    "bw9-75 Solochi",
+    "bw9-76 Solochi"
+   ]
+  },
+  {
+   "idProduct": 280967,
+   "cards": [
+    "bw9-89 Évoli",
+    "bw9-90 Évoli"
+   ]
+  },
+  {
+   "idProduct": 280951,
+   "cards": [
+    "bw9-74 Scalproie",
+    "bw9-73 Scalproie"
+   ]
+  },
+  {
+   "idProduct": 280934,
+   "cards": [
+    "bw9-57 Tutankafer",
+    "bw9-56 Tutankafer"
+   ]
+  },
+  {
+   "idProduct": 280979,
+   "cards": [
+    "bw9-101 Ghetis",
+    "bw9-115 Ghetis"
+   ]
+  },
+  {
+   "idProduct": 281070,
+   "cards": [
+    "bw10-50 Mackogneur",
+    "bw10-49 Mackogneur"
+   ]
+  },
+  {
+   "idProduct": 281102,
+   "cards": [
+    "bw10-81 Iris",
+    "bw10-101 Iris"
+   ]
+  },
+  {
+   "idProduct": 281106,
+   "cards": [
+    "bw10-85 Super Bonbon",
+    "bw10-105 Super Bonbon"
+   ]
+  },
+  {
+   "idProduct": 281298,
+   "cards": [
+    "xy0-33 Couafarel",
+    "xy0-32 Couafarel"
+   ]
+  },
+  {
+   "idProduct": 281338,
+   "cards": [
+    "xy1-1 Florizarre EX",
+    "xy1-141 Florizarre EX"
+   ]
+  },
+  {
+   "idProduct": 281366,
+   "cards": [
+    "xy1-29 Tortank EX",
+    "xy1-142 Tortank EX"
+   ]
+  },
+  {
+   "idProduct": 281417,
+   "cards": [
+    "xy1-145 Airmure EX",
+    "xy1-80 Airmure EX"
+   ]
+  },
+  {
+   "idProduct": 281383,
+   "cards": [
+    "xy1-143 Emolga EX",
+    "xy1-46 Emolga EX"
+   ]
+  },
+  {
+   "idProduct": 281415,
+   "cards": [
+    "xy1-144 Yveltal EX",
+    "xy1-78 Yveltal"
+   ]
+  },
+  {
+   "idProduct": 281433,
+   "cards": [
+    "xy1-146 Xerneas EX",
+    "xy1-96 Xerneas"
+   ]
+  },
+  {
+   "idProduct": 281424,
+   "cards": [
+    "xy1-87 Rondoudou",
+    "xy1-88 Rondoudou"
+   ]
+  },
+  {
+   "idProduct": 281411,
+   "cards": [
+    "xy1-75 Sepiatop",
+    "xy1-74 Sepiatop"
+   ]
+  },
+  {
+   "idProduct": 281413,
+   "cards": [
+    "xy1-76 Sepiatroce",
+    "xy1-77 Sepiatroce"
+   ]
+  },
+  {
+   "idProduct": 281426,
+   "cards": [
+    "xy1-89 Grodoudou",
+    "xy1-90 Grodoudou"
+   ]
+  },
+  {
+   "idProduct": 281422,
+   "cards": [
+    "xy1-86 Exagide",
+    "xy1-85 Exagide"
+   ]
+  },
+  {
+   "idProduct": 281723,
+   "cards": [
+    "xy3-60 Pandespiègle",
+    "xy3-59 Pandespiègle"
+   ]
+  },
+  {
+   "idProduct": 281733,
+   "cards": [
+    "xy3-70 Mélofée",
+    "xy3-69 Mélofée"
+   ]
+  },
+  {
+   "idProduct": 281752,
+   "cards": [
+    "xy3-88 Journaliste des Combats",
+    "xy3-109 Journaliste des Combats"
+   ]
+  },
+  {
+   "idProduct": 281756,
+   "cards": [
+    "xy3-92 Chercheur de Fossiles",
+    "xy3-110 Chercheur de Fossiles"
+   ]
+  },
+  {
+   "idProduct": 281759,
+   "cards": [
+    "xy3-95 Cornélia",
+    "xy3-111 Cornélia"
+   ]
+  },
+  {
+   "idProduct": 281668,
+   "cards": [
+    "xy3-4 Scarhino EX",
+    "xy3-105 Scarhino EX"
+   ]
+  },
+  {
+   "idProduct": 281684,
+   "cards": [
+    "xy3-20 Crapustule EX",
+    "xy3-106 Crapustule EX"
+   ]
+  },
+  {
+   "idProduct": 281718,
+   "cards": [
+    "xy3-54 Lucario EX",
+    "xy3-107 Lucario EX"
+   ]
+  },
+  {
+   "idProduct": 281738,
+   "cards": [
+    "xy3-74 Dracolosse EX",
+    "xy3-108 Dracolosse EX"
+   ]
+  },
+  {
+   "idProduct": 281501,
+   "cards": [
+    "xy2-18 Hélionceau",
+    "xy2-19 Hélionceau"
+   ]
+  },
+  {
+   "idProduct": 281533,
+   "cards": [
+    "xy2-51 Farfuret",
+    "xy2-50 Farfuret"
+   ]
+  },
+  {
+   "idProduct": 281536,
+   "cards": [
+    "xy2-53 Moufouette",
+    "xy2-54 Moufouette"
+   ]
+  },
+  {
+   "idProduct": 281545,
+   "cards": [
+    "xy2-62 Flabébé",
+    "xy2-63 Flabébé"
+   ]
+  },
+  {
+   "idProduct": 281571,
+   "cards": [
+    "xy2-88 Forgeron",
+    "xy2-88a Forgeron"
+   ]
+  },
+  {
+   "idProduct": 281547,
+   "cards": [
+    "xy2-65 Floette",
+    "xy2-64 Floette"
+   ]
+  },
+  {
+   "idProduct": 281573,
+   "cards": [
+    "xy2-90 Lysandre",
+    "xy2-104 Lysandre"
+   ]
+  },
+  {
+   "idProduct": 281577,
+   "cards": [
+    "xy2-94 Fan Club Pokémon",
+    "xy2-106 Fan Club Pokémon"
+   ]
+  },
+  {
+   "idProduct": 281576,
+   "cards": [
+    "xy2-93 Dame du Centre Pokémon",
+    "xy2-105 Dame du Centre Pokémon"
+   ]
+  },
+  {
+   "idProduct": 281494,
+   "cards": [
+    "xy2-11 Dracaufeu EX",
+    "xy2-12 Dracaufeu EX",
+    "xy2-100 Dracaufeu EX"
+   ]
+  },
+  {
+   "idProduct": 281524,
+   "cards": [
+    "xy2-41 Coatox EX",
+    "xy2-102 Coatox EX"
+   ]
+  },
+  {
+   "idProduct": 281518,
+   "cards": [
+    "xy2-35 Magnézone EX",
+    "xy2-101 Magnézone EX"
+   ]
+  },
+  {
+   "idProduct": 281561,
+   "cards": [
+    "xy2-78 Kangourex EX",
+    "xy2-103 Kangourex EX"
+   ]
+  },
+  {
+   "idProduct": 273556,
+   "cards": [
+    "xy5-25 Poussifeu",
+    "xy5-26 Poussifeu"
+   ]
+  },
+  {
+   "idProduct": 273590,
+   "cards": [
+    "xy5-59 Dynavolt",
+    "xy5-60 Dynavolt"
+   ]
+  },
+  {
+   "idProduct": 273601,
+   "cards": [
+    "xy5-70 Tentacool",
+    "xy5-71 Tentacool"
+   ]
+  },
+  {
+   "idProduct": 273576,
+   "cards": [
+    "xy5-46 Obalie",
+    "xy5-45 Obalie"
+   ]
+  },
+  {
+   "idProduct": 273647,
+   "cards": [
+    "xy5-116 Keunotor",
+    "xy5-117 Keunotor"
+   ]
+  },
+  {
+   "idProduct": 273651,
+   "cards": [
+    "xy5-120 Sapereau",
+    "xy5-121 Sapereau"
+   ]
+  },
+  {
+   "idProduct": 273571,
+   "cards": [
+    "xy5-40 Barbicha",
+    "xy5-41 Barbicha"
+   ]
+  },
+  {
+   "idProduct": 273582,
+   "cards": [
+    "xy5-51 Rosabyss",
+    "xy5-52 Rosabyss"
+   ]
+  },
+  {
+   "idProduct": 273554,
+   "cards": [
+    "xy5-23 Volcaropod",
+    "xy5-24 Volcaropod"
+   ]
+  },
+  {
+   "idProduct": 273594,
+   "cards": [
+    "xy5-63 Lampéroie",
+    "xy5-64 Lampéroie"
+   ]
+  },
+  {
+   "idProduct": 273599,
+   "cards": [
+    "xy5-68 Nidoqueen",
+    "xy5-69 Nidoqueen"
+   ]
+  },
+  {
+   "idProduct": 273655,
+   "cards": [
+    "xy5-124 Dernier Recours d'Arthur",
+    "xy5-157 Dernier Recours d'Arthur"
+   ]
+  },
+  {
+   "idProduct": 273656,
+   "cards": [
+    "xy5-125 Scuba Ball",
+    "xy5-161 Scuba Ball"
+   ]
+  },
+  {
+   "idProduct": 273664,
+   "cards": [
+    "xy5-133 Ruse de Max",
+    "xy5-158 Ruse de Max"
+   ]
+  },
+  {
+   "idProduct": 273665,
+   "cards": [
+    "xy5-134 Observations du Professeur Seko",
+    "xy5-159 Observations du Professeur Seko"
+   ]
+  },
+  {
+   "idProduct": 273672,
+   "cards": [
+    "xy5-141 Senior et Junior",
+    "xy5-160 Senior et Junior"
+   ]
+  },
+  {
+   "idProduct": 273673,
+   "cards": [
+    "xy5-142 Vulné-Assurance",
+    "xy5-164 VulnéAssurance"
+   ]
+  },
+  {
+   "idProduct": 273543,
+   "cards": [
+    "xy5-12 Ludicolo",
+    "xy5-37 Ludicolo"
+   ]
+  },
+  {
+   "idProduct": 273539,
+   "cards": [
+    "xy5-9 Jungko",
+    "xy5-8 Jungko"
+   ]
+  },
+  {
+   "idProduct": 273566,
+   "cards": [
+    "xy5-35 Laggron",
+    "xy5-36 Laggron"
+   ]
+  },
+  {
+   "idProduct": 273584,
+   "cards": [
+    "xy5-53 Kyogre",
+    "xy5-148 Kyogre EX"
+   ]
+  },
+  {
+   "idProduct": 273607,
+   "cards": [
+    "xy5-76 Rhinastoc",
+    "xy5-77 Rhinastoc"
+   ]
+  },
+  {
+   "idProduct": 273611,
+   "cards": [
+    "xy5-80 Charmina",
+    "xy5-81 Charmina"
+   ]
+  },
+  {
+   "idProduct": 273627,
+   "cards": [
+    "xy5-96 Minotaupe",
+    "xy5-97 Minotaupe"
+   ]
+  },
+  {
+   "idProduct": 273634,
+   "cards": [
+    "xy5-103 Azumarill",
+    "xy5-104 Azumarill"
+   ]
+  },
+  {
+   "idProduct": 273615,
+   "cards": [
+    "xy5-84 Groudon",
+    "xy5-150 Groudon EX"
+   ]
+  },
+  {
+   "idProduct": 273638,
+   "cards": [
+    "xy5-108 Hyporoi",
+    "xy5-107 Hyporoi"
+   ]
+  },
+  {
+   "idProduct": 273550,
+   "cards": [
+    "xy5-19 Desséliande EX",
+    "xy5-145 Desséliande EX"
+   ]
+  },
+  {
+   "idProduct": 273622,
+   "cards": [
+    "xy5-91 Sharpedo EX",
+    "xy5-152 Sharpedo EX"
+   ]
+  },
+  {
+   "idProduct": 273569,
+   "cards": [
+    "xy5-38 Wailord EX",
+    "xy5-147 Wailord EX"
+   ]
+  },
+  {
+   "idProduct": 273560,
+   "cards": [
+    "xy5-29 Camérupt EX",
+    "xy5-146 Camérupt EX"
+   ]
+  },
+  {
+   "idProduct": 273624,
+   "cards": [
+    "xy5-93 Galeking EX",
+    "xy5-153 Galeking EX"
+   ]
+  },
+  {
+   "idProduct": 273617,
+   "cards": [
+    "xy5-86 Primo-Groudon EX",
+    "xy5-151 Primo-Groudon EX"
+   ]
+  },
+  {
+   "idProduct": 273586,
+   "cards": [
+    "xy5-55 PrimoKyogre EX",
+    "xy5-149 PrimoKyogre EX"
+   ]
+  },
+  {
+   "idProduct": 273636,
+   "cards": [
+    "xy5-105 Gardevoir EX",
+    "xy5-155 Gardevoir EX"
+   ]
+  },
+  {
+   "idProduct": 281833,
+   "cards": [
+    "xy4-29 Galvaran",
+    "xy4-28 Galvaran"
+   ]
+  },
+  {
+   "idProduct": 281871,
+   "cards": [
+    "xy4-65a Exagide EX",
+    "xy4-65 Exagide EX"
+   ]
+  },
+  {
+   "idProduct": 281897,
+   "cards": [
+    "xy4-91 A.Z.",
+    "xy4-117 A.Z."
+   ]
+  },
+  {
+   "idProduct": 281906,
+   "cards": [
+    "xy4-99 Atout de Lysandre",
+    "xy4-118 Atout de Lysandre"
+   ]
+  },
+  {
+   "idProduct": 281827,
+   "cards": [
+    "xy4-23 Élecsprint EX",
+    "xy4-113 Élecsprint EX"
+   ]
+  },
+  {
+   "idProduct": 281840,
+   "cards": [
+    "xy4-34 Ectoplasma EX",
+    "xy4-114 Ectoplasma EX"
+   ]
+  },
+  {
+   "idProduct": 281917,
+   "cards": [
+    "xy4-110 Xanthin",
+    "xy4-119 Xanthin"
+   ]
+  },
+  {
+   "idProduct": 281864,
+   "cards": [
+    "xy4-58 Sepiatroce EX",
+    "xy4-115 Sepiatroce EX"
+   ]
+  },
+  {
+   "idProduct": 281873,
+   "cards": [
+    "xy4-67 Florges EX",
+    "xy4-116 Florges EX"
+   ]
+  },
+  {
+   "idProduct": 281868,
+   "cards": [
+    "xy4-62 Dialga EX",
+    "xy4-122 Dialga EX"
+   ]
+  },
+  {
+   "idProduct": 284212,
+   "cards": [
+    "xy7-31 Balbuto",
+    "xy7-32 Balbuto"
+   ]
+  },
+  {
+   "idProduct": 284216,
+   "cards": [
+    "xy7-41 Golemastoc",
+    "xy7-35 Golemastoc"
+   ]
+  },
+  {
+   "idProduct": 284245,
+   "cards": [
+    "xy7-64 Porygon",
+    "xy7-67 Porygon-Z"
+   ]
+  },
+  {
+   "idProduct": 284191,
+   "cards": [
+    "xy7-10 Apireine",
+    "xy7-11 Apireine"
+   ]
+  },
+  {
+   "idProduct": 284256,
+   "cards": [
+    "xy7-75 Mystimaniac",
+    "xy7-75a Mystimaniac"
+   ]
+  },
+  {
+   "idProduct": 284195,
+   "cards": [
+    "xy7-15 Entei",
+    "xy7-14 Entei"
+   ]
+  },
+  {
+   "idProduct": 284198,
+   "cards": [
+    "xy7-17 Pyrax",
+    "xy7-18 Pyrax"
+   ]
+  },
+  {
+   "idProduct": 284230,
+   "cards": [
+    "xy7-49 Métalosse",
+    "xy7-50 Métalosse"
+   ]
+  },
+  {
+   "idProduct": 284188,
+   "cards": [
+    "xy7-7 Jungko EX",
+    "xy7-84 Jungko EX"
+   ]
+  },
+  {
+   "idProduct": 284206,
+   "cards": [
+    "xy7-25 Kyurem EX",
+    "xy7-86 Kyurem EX"
+   ]
+  },
+  {
+   "idProduct": 284208,
+   "cards": [
+    "xy7-27 Pharamp EX",
+    "xy7-87 Pharamp EX"
+   ]
+  },
+  {
+   "idProduct": 284217,
+   "cards": [
+    "xy7-36 Hoopa EX",
+    "xy7-89 Hoopa EX"
+   ]
+  },
+  {
+   "idProduct": 284238,
+   "cards": [
+    "xy7-57 Giratina EX",
+    "xy7-93 Giratina EX"
+   ]
+  },
+  {
+   "idProduct": 284249,
+   "cards": [
+    "xy7-68 Lugia EX",
+    "xy7-94 Lugia EX"
+   ]
+  },
+  {
+   "idProduct": 284218,
+   "cards": [
+    "xy7-37 Mackogneur EX",
+    "xy7-90 Mackogneur EX"
+   ]
+  },
+  {
+   "idProduct": 284223,
+   "cards": [
+    "xy7-42 Tyranocif EX",
+    "xy7-91 Tyranocif EX"
+   ]
+  },
+  {
+   "idProduct": 282695,
+   "cards": [
+    "xy6-27 Natu",
+    "xy6-28 Natu"
+   ]
+  },
+  {
+   "idProduct": 282722,
+   "cards": [
+    "xy6-55 Draby",
+    "xy6-54 Draby"
+   ]
+  },
+  {
+   "idProduct": 282675,
+   "cards": [
+    "xy6-7 Papinox",
+    "xy6-8 Papinox"
+   ]
+  },
+  {
+   "idProduct": 282721,
+   "cards": [
+    "xy6-53 Altaria",
+    "xy6-74 Altaria"
+   ]
+  },
+  {
+   "idProduct": 282748,
+   "cards": [
+    "xy6-80 Déflaisan",
+    "xy6-81 Déflaisan"
+   ]
+  },
+  {
+   "idProduct": 282760,
+   "cards": [
+    "xy6-92a Courrier du Dresseur",
+    "xy6-92 Courrier du Dresseur"
+   ]
+  },
+  {
+   "idProduct": 282762,
+   "cards": [
+    "xy6-94 Timmy",
+    "xy6-107 Timmy"
+   ]
+  },
+  {
+   "idProduct": 282764,
+   "cards": [
+    "xy6-96 Alizée",
+    "xy6-108 Alizée"
+   ]
+  },
+  {
+   "idProduct": 282684,
+   "cards": [
+    "xy6-16 Artikodin",
+    "xy6-17 Artikodin"
+   ]
+  },
+  {
+   "idProduct": 282699,
+   "cards": [
+    "xy6-31 Branette",
+    "xy6-32 Branette"
+   ]
+  },
+  {
+   "idProduct": 282713,
+   "cards": [
+    "xy6-46 Togekiss",
+    "xy6-45 Togekiss"
+   ]
+  },
+  {
+   "idProduct": 282719,
+   "cards": [
+    "xy6-52 Dracolosse",
+    "xy6-51 Dracolosse"
+   ]
+  },
+  {
+   "idProduct": 282739,
+   "cards": [
+    "xy6-71 Hélédelle",
+    "xy6-72 Hélédelle"
+   ]
+  },
+  {
+   "idProduct": 282745,
+   "cards": [
+    "xy6-77a Shaymin EX",
+    "xy6-77 Shaymin EX",
+    "xy6-106 Shaymin EX"
+   ]
+  },
+  {
+   "idProduct": 282694,
+   "cards": [
+    "xy6-26 Fulguris EX",
+    "xy6-98 Fulguris EX"
+   ]
+  },
+  {
+   "idProduct": 282728,
+   "cards": [
+    "xy6-60 Rayquaza EX",
+    "xy6-75 Rayquaza EX",
+    "xy6-104 Rayquaza EX"
+   ]
+  },
+  {
+   "idProduct": 282702,
+   "cards": [
+    "xy6-34 Gallame EX",
+    "xy6-99 Gallame EX"
+   ]
+  },
+  {
+   "idProduct": 282726,
+   "cards": [
+    "xy6-58 Latios EX",
+    "xy6-101 Latios EX"
+   ]
+  },
+  {
+   "idProduct": 282730,
+   "cards": [
+    "xy6-62 Trioxhydre EX",
+    "xy6-103 Trioxhydre EX"
+   ]
+  },
+  {
+   "idProduct": 286253,
+   "cards": [
+    "xy8-7 Marisson",
+    "xy8-8 Marisson",
+    "xy8-9 Marisson"
+   ]
+  },
+  {
+   "idProduct": 286277,
+   "cards": [
+    "xy8-31 Rémoraid",
+    "xy8-32 Rémoraid"
+   ]
+  },
+  {
+   "idProduct": 286297,
+   "cards": [
+    "xy8-52 Magnéti",
+    "xy8-51 Magnéti"
+   ]
+  },
+  {
+   "idProduct": 286314,
+   "cards": [
+    "xy8-68 Tarsal",
+    "xy8-100 Tarsal"
+   ]
+  },
+  {
+   "idProduct": 286335,
+   "cards": [
+    "xy8-90 Zorua",
+    "xy8-89 Zorua"
+   ]
+  },
+  {
+   "idProduct": 286354,
+   "cards": [
+    "xy8-108 Coupenotte",
+    "xy8-109 Coupenotte"
+   ]
+  },
+  {
+   "idProduct": 286361,
+   "cards": [
+    "xy8-115 Doduo",
+    "xy8-116 Doduo"
+   ]
+  },
+  {
+   "idProduct": 286377,
+   "cards": [
+    "xy8-132 Sonistrelle",
+    "xy8-131 Sonistrelle"
+   ]
+  },
+  {
+   "idProduct": 286392,
+   "cards": [
+    "xy8-146 Lettre du Professeur",
+    "xy8-146a Lettre du Professeur"
+   ]
+  },
+  {
+   "idProduct": 286307,
+   "cards": [
+    "xy8-61 Mewtwo EX",
+    "xy8-62 Mewtwo EX",
+    "xy8-158 Mewtwo EX",
+    "xy8-157 Mewtwo EX",
+    "xy8-163 Mewtwo EX",
+    "xy8-164 Mewtwo EX"
+   ]
+  },
+  {
+   "idProduct": 288197,
+   "cards": [
+    "xy9-22 Kokiyas",
+    "xy9-23 Kokiyas"
+   ]
+  },
+  {
+   "idProduct": 288273,
+   "cards": [
+    "xy9-98 Terreur",
+    "xy9-98a Terreur",
+    "xy9-98b Terreur"
+   ]
+  },
+  {
+   "idProduct": 288282,
+   "cards": [
+    "xy9-107 Professeur Platane",
+    "xy9-107a Professeur Platane"
+   ]
+  },
+  {
+   "idProduct": 288405,
+   "cards": [
+    "g1-11 Dracaufeu-EX",
+    "g1-RC5 Dracaufeu"
+   ]
+  },
+  {
+   "idProduct": 288464,
+   "cards": [
+    "g1-RC29 Pikachu",
+    "g1-26 Pikachu"
+   ]
+  },
+  {
+   "idProduct": 288530,
+   "cards": [
+    "g1-RC32 Nymphali-EX",
+    "g1-RC21 Nymphali-EX"
+   ]
+  },
+  {
+   "idProduct": 288515,
+   "cards": [
+    "g1-RC28 Pyroli-EX",
+    "g1-RC6 Pyroli-EX"
+   ]
+  },
+  {
+   "idProduct": 288475,
+   "cards": [
+    "g1-37 Mistigrix-EX",
+    "g1-RC15 Mistigrix"
+   ]
+  },
+  {
+   "idProduct": 288465,
+   "cards": [
+    "g1-RC9 Raichu",
+    "g1-27 Raichu"
+   ]
+  },
+  {
+   "idProduct": 288508,
+   "cards": [
+    "g1-73 Sbire de la Team Flare",
+    "g1-73a Sbire de la Team Flare"
+   ]
+  },
+  {
+   "idProduct": 289829,
+   "cards": [
+    "xy10-3 Cheniselle",
+    "xy10-44 Cheniselle",
+    "xy10-59 Cheniselle"
+   ]
+  },
+  {
+   "idProduct": 289873,
+   "cards": [
+    "xy10-52 Zygarde",
+    "xy10-53 Zygarde"
+   ]
+  },
+  {
+   "idProduct": 289925,
+   "cards": [
+    "xy10-105 N",
+    "xy10-105a N"
+   ]
+  },
+  {
+   "idProduct": 289931,
+   "cards": [
+    "xy10-111a Sannah",
+    "xy10-111 Sannah"
+   ]
+  },
+  {
+   "idProduct": 289836,
+   "cards": [
+    "xy10-10 Feunnec",
+    "xy10-11 Feunnec"
+   ]
+  },
+  {
+   "idProduct": 290534,
+   "cards": [
+    "xy10-41 Embrylex",
+    "xy10-40 Embrylex"
+   ]
+  },
+  {
+   "idProduct": 290536,
+   "cards": [
+    "xy10-45 Riolu",
+    "xy10-46 Riolu"
+   ]
+  },
+  {
+   "idProduct": 289907,
+   "cards": [
+    "xy10-87 Chinchidou",
+    "xy10-86 Chinchidou"
+   ]
+  },
+  {
+   "idProduct": 289867,
+   "cards": [
+    "xy10-43a Regirock EX",
+    "xy10-43 Regirock EX"
+   ]
+  },
+  {
+   "idProduct": 289869,
+   "cards": [
+    "xy10-47 Lucario",
+    "xy10-63 Lucario"
+   ]
+  },
+  {
+   "idProduct": 289875,
+   "cards": [
+    "xy10-54a Zygarde EX",
+    "xy10-54 Zygarde EX"
+   ]
+  },
+  {
+   "idProduct": 291527,
+   "cards": [
+    "xy11-23 Némélios",
+    "xy11-24 Némélios TURBO"
+   ]
+  },
+  {
+   "idProduct": 291531,
+   "cards": [
+    "xy11-34 Gamblast",
+    "xy11-35 Gamblast TURBO"
+   ]
+  },
+  {
+   "idProduct": 291480,
+   "cards": [
+    "xy11-65 Yveltal",
+    "xy11-66 Yveltal TURBO"
+   ]
+  },
+  {
+   "idProduct": 291547,
+   "cards": [
+    "xy11-86 Trioxhydre",
+    "xy11-87 Trioxhydre TURBO"
+   ]
+  },
+  {
+   "idProduct": 291546,
+   "cards": [
+    "xy11-82 Xerneas TURBO",
+    "xy11-81 Xerneas"
+   ]
+  },
+  {
+   "idProduct": 293413,
+   "cards": [
+    "xy12-60 Mackogneur TURBO",
+    "xy12-59 Mackogneur"
+   ]
+  },
+  {
+   "idProduct": 295296,
+   "cards": [
+    "smp-SM04 Pikachu",
+    "smp-SM76 Pikachu",
+    "smp-SM81 Pikachu"
+   ]
+  },
+  {
+   "idProduct": 321167,
+   "cards": [
+    "smp-SM107 Necrozma Crinière du Couchant",
+    "smp-SM124 Necrozma Crinière du Couchant"
+   ]
+  },
+  {
+   "idProduct": 321166,
+   "cards": [
+    "smp-SM106 Necrozma Ailes de l’Aurore",
+    "smp-SM123 Necrozma Ailes de l’Aurore"
+   ]
+  },
+  {
+   "idProduct": 313448,
+   "cards": [
+    "smp-SM148 Festival des Champions",
+    "smp-SM231 Festival des Champions",
+    "smp-SM78 Festival des Champions"
+   ]
+  },
+  {
+   "idProduct": 368851,
+   "cards": [
+    "smp-SM158 Dracaufeu",
+    "smp-SM226 Dracaufeu"
+   ]
+  },
+  {
+   "idProduct": 369353,
+   "cards": [
+    "smp-SM174 Évoli GX",
+    "smp-SM175 Évoli GX",
+    "smp-SM176 Évoli GX",
+    "smp-SM233 Évoli GX",
+    "smp-SM242 Évoli GX"
+   ]
+  },
+  {
+   "idProduct": 369468,
+   "cards": [
+    "smp-SM168 Pikachu et Zekrom GX",
+    "smp-SM248 Pikachu et Zekrom GX"
+   ]
+  },
+  {
+   "idProduct": 371773,
+   "cards": [
+    "smp-SM180 Ama-Ama",
+    "smp-SM209 Ama-Ama"
+   ]
+  },
+  {
+   "idProduct": 397969,
+   "cards": [
+    "smp-SM201 Reshiram et Dracaufeu GX",
+    "smp-SM247 Reshiram et Dracaufeu GX"
+   ]
+  },
+  {
+   "idProduct": 377529,
+   "cards": [
+    "smp-SM205 Terrakium",
+    "smp-SM223 Terrakium"
+   ]
+  },
+  {
+   "idProduct": 298284,
+   "cards": [
+    "smp-SM30 Tokorico",
+    "smp-SM31 Tokorico"
+   ]
+  },
+  {
+   "idProduct": 298287,
+   "cards": [
+    "smp-SM33 Tokorico GX",
+    "smp-SM50 Tokorico GX"
+   ]
+  },
+  {
+   "idProduct": 301978,
+   "cards": [
+    "smp-SM57 Ho-Oh GX",
+    "smp-SM80 Ho-Oh GX"
+   ]
+  },
+  {
+   "idProduct": 297245,
+   "cards": [
+    "tk-sm-l-14 Rocabot",
+    "tk-sm-r-14 Pikachu"
+   ]
+  },
+  {
+   "idProduct": 297242,
+   "cards": [
+    "tk-sm-l-11 Passerouge",
+    "tk-sm-r-11 Nosferapti"
+   ]
+  },
+  {
+   "idProduct": 297246,
+   "cards": [
+    "tk-sm-l-15 Picassaut",
+    "tk-sm-r-15 Potion"
+   ]
+  },
+  {
+   "idProduct": 297244,
+   "cards": [
+    "tk-sm-l-13 Braisillon",
+    "tk-sm-r-13 Piafabec"
+   ]
+  },
+  {
+   "idProduct": 297260,
+   "cards": [
+    "tk-sm-l-29 Rocabot",
+    "tk-sm-r-29 Pikachu"
+   ]
+  },
+  {
+   "idProduct": 297253,
+   "cards": [
+    "tk-sm-l-18 Makuhita",
+    "tk-sm-r-18 Chelours"
+   ]
+  },
+  {
+   "idProduct": 297254,
+   "cards": [
+    "tk-sm-l-19 Tili",
+    "tk-sm-r-19 Tili"
+   ]
+  },
+  {
+   "idProduct": 297257,
+   "cards": [
+    "tk-sm-l-23 Tili",
+    "tk-sm-r-23 Tili"
+   ]
+  },
+  {
+   "idProduct": 297258,
+   "cards": [
+    "tk-sm-l-25 Super Ball",
+    "tk-sm-r-25 Super Ball"
+   ]
+  },
+  {
+   "idProduct": 297241,
+   "cards": [
+    "tk-sm-l-4 Piclairon",
+    "tk-sm-r-4 Nounourson"
+   ]
+  },
+  {
+   "idProduct": 297255,
+   "cards": [
+    "tk-sm-l-21 Super Ball",
+    "tk-sm-r-21 Super Ball"
+   ]
+  },
+  {
+   "idProduct": 297247,
+   "cards": [
+    "tk-sm-l-16 Lougaroc",
+    "tk-sm-r-16 Larvibule"
+   ]
+  },
+  {
+   "idProduct": 297261,
+   "cards": [
+    "tk-sm-l-30 Lougaroc",
+    "tk-sm-r-30 Raichu d’Alola"
+   ]
+  },
+  {
+   "idProduct": 297256,
+   "cards": [
+    "tk-sm-l-22 Bazoucan",
+    "tk-sm-r-22 Soporifik"
+   ]
+  },
+  {
+   "idProduct": 297523,
+   "cards": [
+    "sm2-62 Machoc",
+    "sm2-63 Machoc"
+   ]
+  },
+  {
+   "idProduct": 296848,
+   "cards": [
+    "sm2-126 Pectorius",
+    "sm2-143 Pectorius"
+   ]
+  },
+  {
+   "idProduct": 297478,
+   "cards": [
+    "sm2-14 Plumeline",
+    "sm2-46 Plumeline",
+    "sm2-55 Plumeline",
+    "sm2-56 Plumeline"
+   ]
+  },
+  {
+   "idProduct": 301167,
+   "cards": [
+    "sm3.5-39 Mewtwo GX",
+    "sm3.5-78 Mewtwo GX"
+   ]
+  },
+  {
+   "idProduct": 315938,
+   "cards": [
+    "sm5-6 Tortipouss",
+    "sm5-7 Tortipouss"
+   ]
+  },
+  {
+   "idProduct": 315951,
+   "cards": [
+    "sm5-20 Ouisticram",
+    "sm5-21 Ouisticram"
+   ]
+  },
+  {
+   "idProduct": 315962,
+   "cards": [
+    "sm5-31 Tiplouf",
+    "sm5-32 Tiplouf"
+   ]
+  },
+  {
+   "idProduct": 315975,
+   "cards": [
+    "sm5-46 Lixy",
+    "sm5-45 Lixy"
+   ]
+  },
+  {
+   "idProduct": 316007,
+   "cards": [
+    "sm5-80 Magnéti",
+    "sm5-81 Magnéti"
+   ]
+  },
+  {
+   "idProduct": 316022,
+   "cards": [
+    "sm5-96 Griknot",
+    "sm5-97 Griknot"
+   ]
+  },
+  {
+   "idProduct": 316030,
+   "cards": [
+    "sm5-104 Évoli",
+    "sm5-105 Évoli"
+   ]
+  },
+  {
+   "idProduct": 316047,
+   "cards": [
+    "sm5-122 Skateboard Évasion",
+    "sm5-167 Skateboard Évasion"
+   ]
+  },
+  {
+   "idProduct": 316054,
+   "cards": [
+    "sm5-129 Trèfle Manquant",
+    "sm5-168 Trèfle Manquant"
+   ]
+  },
+  {
+   "idProduct": 315946,
+   "cards": [
+    "sm5-15 Shaymin",
+    "sm5-111 Shaymin"
+   ]
+  },
+  {
+   "idProduct": 315829,
+   "cards": [
+    "sm5-90 Necrozma Crinière du Couchant GX",
+    "sm5-163 Necrozma Crinière du Couchant GX"
+   ]
+  },
+  {
+   "idProduct": 315828,
+   "cards": [
+    "sm5-63 Necrozma Ailes de l’Aurore GX",
+    "sm5-161 Necrozma Ailes de l’Aurore GX"
+   ]
+  },
+  {
+   "idProduct": 316026,
+   "cards": [
+    "sm5-100 Dialga GX",
+    "sm5-164 Dialga GX"
+   ]
+  },
+  {
+   "idProduct": 316027,
+   "cards": [
+    "sm5-101 Palkia GX",
+    "sm5-165 Palkia GX"
+   ]
+  },
+  {
+   "idProduct": 315503,
+   "cards": [
+    "sm5-13 Phyllali GX",
+    "sm5-157 Phyllali GX"
+   ]
+  },
+  {
+   "idProduct": 315504,
+   "cards": [
+    "sm5-39 Givrali GX",
+    "sm5-159 Givrali GX"
+   ]
+  },
+  {
+   "idProduct": 316064,
+   "cards": [
+    "sm5-140 Cancrelove GX",
+    "sm5-158 Cancrelove GX"
+   ]
+  },
+  {
+   "idProduct": 316066,
+   "cards": [
+    "sm5-142 Câblifère GX",
+    "sm5-160 Câblifère GX"
+   ]
+  },
+  {
+   "idProduct": 316068,
+   "cards": [
+    "sm5-162 Bamboiselle GX",
+    "sm5-144 Bamboiselle GX"
+   ]
+  },
+  {
+   "idProduct": 355526,
+   "cards": [
+    "sm6-5 Lépidonille",
+    "sm6-6 Lépidonille"
+   ]
+  },
+  {
+   "idProduct": 355541,
+   "cards": [
+    "sm6-22 Grenousse",
+    "sm6-21 Grenousse"
+   ]
+  },
+  {
+   "idProduct": 355534,
+   "cards": [
+    "sm6-15 Feunnec",
+    "sm6-14 Feunnec"
+   ]
+  },
+  {
+   "idProduct": 355565,
+   "cards": [
+    "sm6-46 Monorpale",
+    "sm6-47 Monorpale"
+   ]
+  },
+  {
+   "idProduct": 355597,
+   "cards": [
+    "sm6-84 Flabébé",
+    "sm6-83 Flabébé"
+   ]
+  },
+  {
+   "idProduct": 355605,
+   "cards": [
+    "sm6-91 Mucuscule",
+    "sm6-92 Mucuscule"
+   ]
+  },
+  {
+   "idProduct": 327209,
+   "cards": [
+    "sm6-103 Clem",
+    "sm6-128 Clem"
+   ]
+  },
+  {
+   "idProduct": 327207,
+   "cards": [
+    "sm6-71 Zygarde",
+    "sm6-73 Zygarde GX"
+   ]
+  },
+  {
+   "idProduct": 362810,
+   "cards": [
+    "2018sm-fr-39 Passerouge",
+    "2018sm-fr-38 Passerouge"
+   ]
+  },
+  {
+   "idProduct": 361254,
+   "cards": [
+    "sm7-8 Arcko",
+    "sm7-7 Arcko"
+   ]
+  },
+  {
+   "idProduct": 361279,
+   "cards": [
+    "sm7-33 Gobou",
+    "sm7-32 Gobou"
+   ]
+  },
+  {
+   "idProduct": 361258,
+   "cards": [
+    "sm7-11 Grainipiot",
+    "sm7-12 Grainipiot"
+   ]
+  },
+  {
+   "idProduct": 361336,
+   "cards": [
+    "sm7-92 Terhal",
+    "sm7-93 Terhal"
+   ]
+  },
+  {
+   "idProduct": 361344,
+   "cards": [
+    "sm7-103 Draby",
+    "sm7-104 Draby"
+   ]
+  },
+  {
+   "idProduct": 361355,
+   "cards": [
+    "sm7-116 Chuchmur",
+    "sm7-117 Chuchmur"
+   ]
+  },
+  {
+   "idProduct": 361277,
+   "cards": [
+    "sm7-30 Plumeline",
+    "sm7-55 Plumeline"
+   ]
+  },
+  {
+   "idProduct": 361312,
+   "cards": [
+    "sm7-68 Deoxys",
+    "sm7-69 Deoxys",
+    "sm7-67 Deoxys"
+   ]
+  },
+  {
+   "idProduct": 363487,
+   "cards": [
+    "sm7.5-16 Hypotrempe",
+    "sm7.5-15 Hypotrempe"
+   ]
+  },
+  {
+   "idProduct": 363506,
+   "cards": [
+    "sm7.5-34 Minidraco",
+    "sm7.5-35 Minidraco"
+   ]
+  },
+  {
+   "idProduct": 365573,
+   "cards": [
+    "sm8-6 Germignon",
+    "sm8-5 Germignon"
+   ]
+  },
+  {
+   "idProduct": 365578,
+   "cards": [
+    "sm8-11 Granivol",
+    "sm8-12 Granivol"
+   ]
+  },
+  {
+   "idProduct": 365679,
+   "cards": [
+    "sm8-40 Héricendre",
+    "sm8-39 Héricendre"
+   ]
+  },
+  {
+   "idProduct": 365702,
+   "cards": [
+    "sm8-64 Otaquin",
+    "sm8-65 Otaquin"
+   ]
+  },
+  {
+   "idProduct": 365706,
+   "cards": [
+    "sm8-68 Vorastérie",
+    "sm8-105 Vorastérie"
+   ]
+  },
+  {
+   "idProduct": 365713,
+   "cards": [
+    "sm8-75 Wattouat",
+    "sm8-76 Wattouat"
+   ]
+  },
+  {
+   "idProduct": 365722,
+   "cards": [
+    "sm8-84 Dedenne",
+    "sm8-142 Dedenne"
+   ]
+  },
+  {
+   "idProduct": 365751,
+   "cards": [
+    "sm8-114 Embrylex",
+    "sm8-115 Embrylex"
+   ]
+  },
+  {
+   "idProduct": 365754,
+   "cards": [
+    "sm8-117 Strassie",
+    "sm8-143 Strassie"
+   ]
+  },
+  {
+   "idProduct": 365799,
+   "cards": [
+    "sm8-163 Picassaut",
+    "sm8-164 Picassaut"
+   ]
+  },
+  {
+   "idProduct": 364940,
+   "cards": [
+    "sm8-59 Suicune",
+    "sm8-60 Suicune GX"
+   ]
+  },
+  {
+   "idProduct": 365727,
+   "cards": [
+    "sm8-91 Zarbi",
+    "sm8-90 Zarbi",
+    "sm8-92 Zarbi"
+   ]
+  },
+  {
+   "idProduct": 365797,
+   "cards": [
+    "sm8-161 Kecleon",
+    "sm8-162 Kecleon"
+   ]
+  },
+  {
+   "idProduct": 368935,
+   "cards": [
+    "sm9-2 Aspicot",
+    "sm9-3 Aspicot"
+   ]
+  },
+  {
+   "idProduct": 368944,
+   "cards": [
+    "sm9-11 Salamèche",
+    "sm9-12 Salamèche"
+   ]
+  },
+  {
+   "idProduct": 368954,
+   "cards": [
+    "sm9-23 Carapuce",
+    "sm9-22 Carapuce"
+   ]
+  },
+  {
+   "idProduct": 368965,
+   "cards": [
+    "sm9-34 Racaillou d’Alola",
+    "sm9-35 Racaillou d’Alola"
+   ]
+  },
+  {
+   "idProduct": 369044,
+   "cards": [
+    "sm9-116 Minidraco",
+    "sm9-117 Minidraco"
+   ]
+  },
+  {
+   "idProduct": 369048,
+   "cards": [
+    "sm9-121 Roucool",
+    "sm9-122 Roucool"
+   ]
+  },
+  {
+   "idProduct": 369042,
+   "cards": [
+    "sm9-114 Noadkoko d’Alola",
+    "sm9-115 Noadkoko d’Alola"
+   ]
+  },
+  {
+   "idProduct": 370785,
+   "cards": [
+    "sm10-1 Cancrelove et Mouscoto GX",
+    "sm10-192 Cancrelove et Mouscoto GX",
+    "sm10-191 Cancrelove et Mouscoto GX"
+   ]
+  },
+  {
+   "idProduct": 370786,
+   "cards": [
+    "sm10-61 Grotadmorv et Grotadmorv d’Alola GX",
+    "sm10-196 Grotadmorv et Grotadmorv d’Alola GX",
+    "sm10-197 Grotadmorv et Grotadmorv d’Alola GX"
+   ]
+  },
+  {
+   "idProduct": 370788,
+   "cards": [
+    "sm10-107 Amphinobi et Zoroark GX",
+    "sm10-201 Amphinobi et Zoroark GX",
+    "sm10-200 Amphinobi et Zoroark GX"
+   ]
+  },
+  {
+   "idProduct": 370787,
+   "cards": [
+    "sm10-82 Marshadow et Mackogneur GX",
+    "sm10-81 Marshadow"
+   ]
+  },
+  {
+   "idProduct": 370790,
+   "cards": [
+    "sm10-130 Gardevoir et Nymphali GX",
+    "sm10-205 Gardevoir et Nymphali GX",
+    "sm10-204 Gardevoir et Nymphali GX"
+   ]
+  },
+  {
+   "idProduct": 372373,
+   "cards": [
+    "sm10-198 Marshadow et Mackogneur GX",
+    "sm10-199 Marshadow et Mackogneur GX"
+   ]
+  },
+  {
+   "idProduct": 372298,
+   "cards": [
+    "sm10-5 Mystherbe",
+    "sm10-6 Mystherbe"
+   ]
+  },
+  {
+   "idProduct": 372302,
+   "cards": [
+    "sm10-9 Mimitoss",
+    "sm10-10 Mimitoss"
+   ]
+  },
+  {
+   "idProduct": 372318,
+   "cards": [
+    "sm10-26 Flamiaou",
+    "sm10-27 Flamiaou"
+   ]
+  },
+  {
+   "idProduct": 372327,
+   "cards": [
+    "sm10-37 Ptitard",
+    "sm10-36 Ptitard"
+   ]
+  },
+  {
+   "idProduct": 372355,
+   "cards": [
+    "sm10-67 Fantominus",
+    "sm10-68 Fantominus"
+   ]
+  },
+  {
+   "idProduct": 372383,
+   "cards": [
+    "sm10-92 Rhinocorne",
+    "sm10-93 Rhinocorne"
+   ]
+  },
+  {
+   "idProduct": 372403,
+   "cards": [
+    "sm10-113 Mascaïman",
+    "sm10-114 Mascaïman"
+   ]
+  },
+  {
+   "idProduct": 372442,
+   "cards": [
+    "sm10-154 Porygon",
+    "sm10-155 Porygon"
+   ]
+  },
+  {
+   "idProduct": 377496,
+   "cards": [
+    "sm11-146 Carchacrok et Giratina GX",
+    "sm11-114 Carchacrok"
+   ]
+  },
+  {
+   "idProduct": 388547,
+   "cards": [
+    "sm11-152 Dracolosse GX",
+    "sm11-151 Dracolosse"
+   ]
+  },
+  {
+   "idProduct": 387862,
+   "cards": [
+    "sm11-7 Larveyette",
+    "sm11-6 Larveyette"
+   ]
+  },
+  {
+   "idProduct": 387967,
+   "cards": [
+    "sm11-27 Funécire",
+    "sm11-28 Funécire"
+   ]
+  },
+  {
+   "idProduct": 387997,
+   "cards": [
+    "sm11-33 Tritox",
+    "sm11-98 Tritox"
+   ]
+  },
+  {
+   "idProduct": 388097,
+   "cards": [
+    "sm11-56 Pikachu",
+    "sm11-55 Pikachu"
+   ]
+  },
+  {
+   "idProduct": 388137,
+   "cards": [
+    "sm11-64 Anchwatt",
+    "sm11-63 Anchwatt"
+   ]
+  },
+  {
+   "idProduct": 388262,
+   "cards": [
+    "sm11-92 Monorpale",
+    "sm11-93 Monorpale"
+   ]
+  },
+  {
+   "idProduct": 388432,
+   "cards": [
+    "sm11-128 Cornèbre",
+    "sm11-129 Cornèbre"
+   ]
+  },
+  {
+   "idProduct": 388372,
+   "cards": [
+    "sm11-115 Riolu",
+    "sm11-116 Riolu"
+   ]
+  },
+  {
+   "idProduct": 388527,
+   "cards": [
+    "sm11-148 Minidraco",
+    "sm11-147 Minidraco"
+   ]
+  },
+  {
+   "idProduct": 388622,
+   "cards": [
+    "sm11-167 Parecool",
+    "sm11-168 Parecool"
+   ]
+  },
+  {
+   "idProduct": 388537,
+   "cards": [
+    "sm11-149 Draco",
+    "sm11-150 Draco"
+   ]
+  },
+  {
+   "idProduct": 388002,
+   "cards": [
+    "sm11-34 Malamandre",
+    "sm11-99 Malamandre"
+   ]
+  },
+  {
+   "idProduct": 394597,
+   "cards": [
+    "sm115-38 Mélofée",
+    "sm115-39 Mélofée"
+   ]
+  },
+  {
+   "idProduct": 398504,
+   "cards": [
+    "sm12-54 Tiplouf",
+    "sm12-239 Tiplouf"
+   ]
+  },
+  {
+   "idProduct": 398534,
+   "cards": [
+    "sm12-66 Pikachu",
+    "sm12-241 Pikachu"
+   ]
+  },
+  {
+   "idProduct": 398539,
+   "cards": [
+    "sm12-68 Magnéti",
+    "sm12-242 Magnéti"
+   ]
+  },
+  {
+   "idProduct": 398544,
+   "cards": [
+    "sm12-76 Smogo",
+    "sm12-243 Smogo"
+   ]
+  },
+  {
+   "idProduct": 398524,
+   "cards": [
+    "sm12-29 Chartor",
+    "sm12-237 Chartor"
+   ]
+  },
+  {
+   "idProduct": 398514,
+   "cards": [
+    "sm12-96 Mimiqui",
+    "sm12-245 Mimiqui"
+   ]
+  },
+  {
+   "idProduct": 398529,
+   "cards": [
+    "sm12-44 Dimoret",
+    "sm12-238 Dimoret"
+   ]
+  },
+  {
+   "idProduct": 398509,
+   "cards": [
+    "sm12-62 Froussardine",
+    "sm12-240 Froussardine"
+   ]
+  },
+  {
+   "idProduct": 398549,
+   "cards": [
+    "sm12-82 Gallame",
+    "sm12-244 Gallame"
+   ]
+  },
+  {
+   "idProduct": 398554,
+   "cards": [
+    "sm12-115 Minotaupe",
+    "sm12-246 Minotaupe"
+   ]
+  },
+  {
+   "idProduct": 398559,
+   "cards": [
+    "sm12-139 Steelix",
+    "sm12-247 Steelix"
+   ]
+  },
+  {
+   "idProduct": 398519,
+   "cards": [
+    "sm12-176 Mastouffe",
+    "sm12-248 Mastouffe"
+   ]
+  },
+  {
+   "idProduct": 427191,
+   "cards": [
+    "swsh1-115 Dolman V",
+    "swsh1-114 Dolman"
+   ]
+  },
+  {
+   "idProduct": 436189,
+   "cards": [
+    "swsh1-2 Rosélia",
+    "swsh1-3 Rosélia"
+   ]
+  },
+  {
+   "idProduct": 436249,
+   "cards": [
+    "swsh1-17 Larvadar",
+    "swsh1-16 Larvadar"
+   ]
+  },
+  {
+   "idProduct": 436339,
+   "cards": [
+    "swsh1-37 Grillepattes",
+    "swsh1-38 Grillepattes"
+   ]
+  },
+  {
+   "idProduct": 436364,
+   "cards": [
+    "swsh1-43 Krabby",
+    "swsh1-42 Krabby"
+   ]
+  },
+  {
+   "idProduct": 436379,
+   "cards": [
+    "swsh1-45 Poissirène",
+    "swsh1-46 Poissirène"
+   ]
+  },
+  {
+   "idProduct": 436469,
+   "cards": [
+    "swsh1-67 Loupio",
+    "swsh1-68 Loupio"
+   ]
+  },
+  {
+   "idProduct": 436494,
+   "cards": [
+    "swsh1-73 Voltoutou",
+    "swsh1-74 Voltoutou"
+   ]
+  },
+  {
+   "idProduct": 436599,
+   "cards": [
+    "swsh1-96 Rhinocorne",
+    "swsh1-97 Rhinocorne"
+   ]
+  },
+  {
+   "idProduct": 436654,
+   "cards": [
+    "swsh1-108 Dunaja",
+    "swsh1-107 Dunaja"
+   ]
+  },
+  {
+   "idProduct": 436624,
+   "cards": [
+    "swsh1-101 Balbuto",
+    "swsh1-102 Balbuto"
+   ]
+  },
+  {
+   "idProduct": 436674,
+   "cards": [
+    "swsh1-112 Poulpaf",
+    "swsh1-111 Poulpaf"
+   ]
+  },
+  {
+   "idProduct": 436819,
+   "cards": [
+    "swsh1-146 Chinchidou",
+    "swsh1-145 Chinchidou"
+   ]
+  },
+  {
+   "idProduct": 436854,
+   "cards": [
+    "swsh1-153 Moumouton",
+    "swsh1-152 Moumouton"
+   ]
+  },
+  {
+   "idProduct": 427196,
+   "cards": [
+    "swsh1-15 Gorythmic",
+    "swsh1-14 Gorythmic"
+   ]
+  },
+  {
+   "idProduct": 427226,
+   "cards": [
+    "swsh1-36 Pyrobut",
+    "swsh1-35 Pyrobut",
+    "swsh1-34 Pyrobut"
+   ]
+  },
+  {
+   "idProduct": 427216,
+   "cards": [
+    "swsh1-59 Lézargus",
+    "swsh1-58 Lézargus"
+   ]
+  },
+  {
+   "idProduct": 427241,
+   "cards": [
+    "swsh1-48 Lokhlass",
+    "swsh1-50 Lokhlass VMAX"
+   ]
+  },
+  {
+   "idProduct": 436664,
+   "cards": [
+    "swsh1-109 Dunaconda",
+    "swsh1-110 Dunaconda"
+   ]
+  },
+  {
+   "idProduct": 436234,
+   "cards": [
+    "swsh1-12 Badabouin",
+    "swsh1-13 Badabouin"
+   ]
+  },
+  {
+   "idProduct": 436319,
+   "cards": [
+    "swsh1-32 Lapyro",
+    "swsh1-33 Lapyro"
+   ]
+  },
+  {
+   "idProduct": 436419,
+   "cards": [
+    "swsh1-56 Arrozard",
+    "swsh1-57 Arrozard"
+   ]
+  },
+  {
+   "idProduct": 436504,
+   "cards": [
+    "swsh1-76 Fulgudog",
+    "swsh1-75 Fulgudog"
+   ]
+  },
+  {
+   "idProduct": 538808,
+   "cards": [
+    "2021swsh-4 Tortipouss",
+    "2021swsh-5 Vipélierre"
+   ]
+  },
+  {
+   "idProduct": 538918,
+   "cards": [
+    "2021swsh-15 Flamiaou",
+    "2021swsh-16 Flambino"
+   ]
+  },
+  {
+   "idProduct": 538968,
+   "cards": [
+    "2021swsh-21 Moustillon",
+    "2021swsh-20 Tiplouf"
+   ]
+  },
+  {
+   "idProduct": 576747,
+   "cards": [
+    "cel25cc-CC020 Reshiram",
+    "cel25-2 Reshiram"
+   ]
+  },
+  {
+   "idProduct": 576755,
+   "cards": [
+    "cel25cc-CC021 Zekrom",
+    "cel25-10 Zekrom"
+   ]
+  },
+  {
+   "idProduct": 670816,
+   "cards": [
+    "swsh11-130 Giratina V",
+    "swsh11-201 Giratina VSTAR"
+   ]
+  },
+  {
+   "idProduct": 918926,
+   "cards": [
+    "me06-097 Sommet Légendaire",
+    "me06-096 Sommet Légendaire"
+   ]
+  },
+  {
+   "idProduct": 918895,
+   "cards": [
+    "me06-069 Méga-Sepiatroce‑ex",
+    "me06-123 Méga-Sepiatroce‑ex"
+   ]
+  },
+  {
+   "idProduct": 918868,
+   "cards": [
+    "me06-047 Méga-Golemastoc‑ex",
+    "me06-122 Méga-Golemastoc‑ex"
+   ]
+  },
+  {
+   "idProduct": 918838,
+   "cards": [
+    "me06-023 Motisma Chaleur‑ex",
+    "me06-119 Motisma Chaleur‑ex"
+   ]
+  },
+  {
+   "idProduct": 918845,
+   "cards": [
+    "me06-029 Froussardine‑ex",
+    "me06-120 Froussardine‑ex"
+   ]
+  },
+  {
+   "idProduct": 918916,
+   "cards": [
+    "me06-088 Flambusard‑ex",
+    "me06-124 Flambusard‑ex"
+   ]
+  },
+  {
+   "idProduct": 275276,
+   "cards": [
+    "ecard3-18 Magcargo",
+    "ecard3-H17 Magcargo",
+    "ecard3-H16 Magcargo"
+   ]
+  },
+  {
+   "idProduct": 275277,
+   "cards": [
+    "ecard3-20 Magneton",
+    "ecard3-H19 Magneton",
+    "ecard3-H18 Magneton"
+   ]
+  },
+  {
+   "idProduct": 275252,
+   "cards": [
+    "ecard3-33 Vaporeon",
+    "ecard3-H31 Vaporeon"
+   ]
+  },
+  {
+   "idProduct": 275264,
+   "cards": [
+    "ecard3-147 Crobat",
+    "ecard3-H05 Crobat"
+   ]
+  },
+  {
+   "idProduct": 275272,
+   "cards": [
+    "ecard3-150 Kabutops",
+    "ecard3-H13 Kabutops"
+   ]
+  },
+  {
+   "idProduct": 275301,
+   "cards": [
+    "ecard3-43 Piloswine",
+    "ecard3-H22 Piloswine"
+   ]
+  },
+  {
+   "idProduct": 275288,
+   "cards": [
+    "ecard3-44 Starmie",
+    "ecard3-H28 Starmie"
+   ]
+  },
+  {
+   "idProduct": 275267,
+   "cards": [
+    "ecard3-56 Forretress",
+    "ecard3-H08 Forretress"
+   ]
+  },
+  {
+   "idProduct": 278876,
+   "cards": [
+    "pl4-4 Kabutops",
+    "pl4-67 Kabuto"
+   ]
+  },
+  {
+   "idProduct": 278886,
+   "cards": [
+    "pl4-14 Bronzong",
+    "pl4-33 Bronzong"
+   ]
+  },
+  {
+   "idProduct": 278888,
+   "cards": [
+    "pl4-17 Gengar",
+    "pl4-16 Gengar"
+   ]
+  },
+  {
+   "idProduct": 278894,
+   "cards": [
+    "pl4-22 Manectric",
+    "pl4-44 Manectric"
+   ]
+  },
+  {
+   "idProduct": 278896,
+   "cards": [
+    "pl4-24 Pelipper",
+    "pl4-45 Pelipper"
+   ]
+  },
+  {
+   "idProduct": 278861,
+   "cards": [
+    "pl4-AR2 Arceus",
+    "pl4-AR1 Arceus",
+    "pl4-AR3 Arceus",
+    "pl4-AR4 Arceus",
+    "pl4-AR5 Arceus",
+    "pl4-AR6 Arceus",
+    "pl4-AR7 Arceus",
+    "pl4-AR8 Arceus",
+    "pl4-AR9 Arceus"
+   ]
+  },
+  {
+   "idProduct": 278900,
+   "cards": [
+    "pl4-28 Rapidash",
+    "pl4-47 Rapidash"
+   ]
+  },
+  {
+   "idProduct": 278902,
+   "cards": [
+    "pl4-30 Sceptile",
+    "pl4-31 Sceptile"
+   ]
+  },
+  {
+   "idProduct": 278869,
+   "cards": [
+    "pl4-SH11 Ponyta",
+    "pl4-46 Ponyta",
+    "pl4-72 Ponyta"
+   ]
+  },
+  {
+   "idProduct": 278870,
+   "cards": [
+    "pl4-SH10 Bagon",
+    "pl4-52 Bagon"
+   ]
+  },
+  {
+   "idProduct": 278872,
+   "cards": [
+    "pl4-SH12 Shinx",
+    "pl4-74 Shinx"
+   ]
+  },
+  {
+   "idProduct": 278910,
+   "cards": [
+    "pl4-39 Grovyle",
+    "pl4-38 Grovyle"
+   ]
+  },
+  {
+   "idProduct": 278908,
+   "cards": [
+    "pl4-36 Gastly",
+    "pl4-64 Gastly"
+   ]
+  },
+  {
+   "idProduct": 278912,
+   "cards": [
+    "pl4-40 Gulpin",
+    "pl4-66 Gulpin"
+   ]
+  },
+  {
+   "idProduct": 278913,
+   "cards": [
+    "pl4-41 Haunter",
+    "pl4-42 Haunter"
+   ]
+  },
+  {
+   "idProduct": 278906,
+   "cards": [
+    "pl4-54 Bronzor",
+    "pl4-34 Bronzor"
+   ]
+  },
+  {
+   "idProduct": 278934,
+   "cards": [
+    "pl4-62 Electrike",
+    "pl4-63 Electrike"
+   ]
+  },
+  {
+   "idProduct": 278950,
+   "cards": [
+    "pl4-79 Treecko",
+    "pl4-78 Treecko"
+   ]
+  },
+  {
+   "idProduct": 278948,
+   "cards": [
+    "pl4-76 Tangela",
+    "pl4-77 Tangela"
+   ]
+  },
+  {
+   "idProduct": 278952,
+   "cards": [
+    "pl4-80 Wingull",
+    "pl4-81 Wingull"
+   ]
+  },
+  {
+   "idProduct": 278850,
+   "cards": [
+    "ru1-9 Mewtwo",
+    "ru1-10 Mew"
+   ]
+  }
+ ],
+ "nocm": [
+  {
+   "set": "neo4",
+   "n": "93",
+   "name": "Multi expédition"
+  },
+  {
+   "set": "np",
+   "n": "3",
+   "name": "Arcko"
+  },
+  {
+   "set": "np",
+   "n": "4",
+   "name": "Massko"
+  },
+  {
+   "set": "np",
+   "n": "25",
+   "name": "Libegon"
+  },
+  {
+   "set": "np",
+   "n": "26",
+   "name": "Vent tropical"
+  },
+  {
+   "set": "np",
+   "n": "9",
+   "name": "Galifeu"
+  },
+  {
+   "set": "np",
+   "n": "10",
+   "name": "Gobou"
+  },
+  {
+   "set": "np",
+   "n": "29",
+   "name": "Celebi"
+  },
+  {
+   "set": "np",
+   "n": "30",
+   "name": "Suicune"
+  },
+  {
+   "set": "np",
+   "n": "36",
+   "name": "Raz-de-marée tropical"
+  },
+  {
+   "set": "np",
+   "n": "33",
+   "name": "Electhor ex"
+  },
+  {
+   "set": "np",
+   "n": "37",
+   "name": "Kyogre ex"
+  },
+  {
+   "set": "np",
+   "n": "31",
+   "name": "Sulfura ex"
+  },
+  {
+   "set": "np",
+   "n": "32",
+   "name": "Artikodin ex"
+  },
+  {
+   "set": "np",
+   "n": "39",
+   "name": "Rayquaza ex"
+  },
+  {
+   "set": "np",
+   "n": "38",
+   "name": "Groudon ex"
+  },
+  {
+   "set": "np",
+   "n": "8",
+   "name": "Poussifeu"
+  },
+  {
+   "set": "ex8",
+   "n": "105",
+   "name": "Latias ☆"
+  },
+  {
+   "set": "pop2",
+   "n": "8",
+   "name": "La compassion de M. Briney"
+  },
+  {
+   "set": "ex10",
+   "n": "114",
+   "name": "Raikou ☆"
+  },
+  {
+   "set": "ex10",
+   "n": "115",
+   "name": "Suicune ☆"
+  },
+  {
+   "set": "ex10",
+   "n": "113",
+   "name": "Entei ☆"
+  },
+  {
+   "set": "ex11",
+   "n": "113",
+   "name": "Metalosse ☆"
+  },
+  {
+   "set": "ex11",
+   "n": "112",
+   "name": "Kyogre ☆"
+  },
+  {
+   "set": "ex11",
+   "n": "111",
+   "name": "Groudon ☆"
+  },
+  {
+   "set": "ex12",
+   "n": "91",
+   "name": "Regirock ☆"
+  },
+  {
+   "set": "tk-ex-p",
+   "n": "8",
+   "name": "Recherche d'énergie"
+  },
+  {
+   "set": "tk-ex-p",
+   "n": "10",
+   "name": "La découverte du Professeur Kosmo"
+  },
+  {
+   "set": "tk-ex-p",
+   "n": "9",
+   "name": "Potion"
+  },
+  {
+   "set": "tk-ex-p",
+   "n": "11",
+   "name": "Énergie Électrique"
+  },
+  {
+   "set": "tk-ex-m",
+   "n": "11",
+   "name": "Énergie Feu"
+  },
+  {
+   "set": "ex14",
+   "n": "100",
+   "name": "Celebi ☆"
+  },
+  {
+   "set": "ex16",
+   "n": "101",
+   "name": "Voltali ☆"
+  },
+  {
+   "set": "ex16",
+   "n": "100",
+   "name": "Pyroli ☆"
+  },
+  {
+   "set": "ex16",
+   "n": "102",
+   "name": "Aquali ☆"
+  },
+  {
+   "set": "pl1",
+   "n": "8",
+   "name": "Gardevoir"
+  },
+  {
+   "set": "hgss1",
+   "n": "19",
+   "name": "Canarticho"
+  },
+  {
+   "set": "hgss1",
+   "n": "26",
+   "name": "Méganium"
+  },
+  {
+   "set": "hgss1",
+   "n": "96",
+   "name": "Poké Gear3.0"
+  },
+  {
+   "set": "hgss3",
+   "n": "88",
+   "name": "Kyogre & Groudon LÉGENDE"
+  },
+  {
+   "set": "hgss4",
+   "n": "70",
+   "name": "Nidoran♂"
+  },
+  {
+   "set": "hgss4",
+   "n": "69",
+   "name": "Nidoran♀"
+  },
+  {
+   "set": "xy1",
+   "n": "2",
+   "name": "M Florizarre EX"
+  },
+  {
+   "set": "xy1",
+   "n": "30",
+   "name": "M Tortank EX"
+  },
+  {
+   "set": "xy3",
+   "n": "5",
+   "name": "M-Scarhino EX"
+  },
+  {
+   "set": "xy3",
+   "n": "55",
+   "name": "M-Lucario EX"
+  },
+  {
+   "set": "xy3",
+   "n": "113",
+   "name": "M-Lucario EX"
+  },
+  {
+   "set": "tk-xy-sy",
+   "n": "2",
+   "name": "Énergie Fée"
+  },
+  {
+   "set": "tk-xy-sy",
+   "n": "1",
+   "name": "Passerouge"
+  },
+  {
+   "set": "tk-xy-sy",
+   "n": "4",
+   "name": "Échange"
+  },
+  {
+   "set": "tk-xy-sy",
+   "n": "5",
+   "name": "Énergie Fée"
+  },
+  {
+   "set": "tk-xy-sy",
+   "n": "3",
+   "name": "Énergie Fée"
+  },
+  {
+   "set": "tk-xy-sy",
+   "n": "7",
+   "name": "Énergie Fée"
+  },
+  {
+   "set": "tk-xy-sy",
+   "n": "6",
+   "name": "Énergie Fée"
+  },
+  {
+   "set": "tk-xy-sy",
+   "n": "8",
+   "name": "Énergie Fée"
+  },
+  {
+   "set": "tk-xy-sy",
+   "n": "12",
+   "name": "Énergie Fée"
+  },
+  {
+   "set": "tk-xy-sy",
+   "n": "9",
+   "name": "Énergie Fée"
+  },
+  {
+   "set": "tk-xy-sy",
+   "n": "11",
+   "name": "Snubbull"
+  },
+  {
+   "set": "tk-xy-sy",
+   "n": "10",
+   "name": "Énergie Fée"
+  },
+  {
+   "set": "tk-xy-sy",
+   "n": "14",
+   "name": "Granbull"
+  },
+  {
+   "set": "tk-xy-sy",
+   "n": "13",
+   "name": "Évoli"
+  },
+  {
+   "set": "tk-xy-sy",
+   "n": "16",
+   "name": "Couafarel"
+  },
+  {
+   "set": "tk-xy-sy",
+   "n": "18",
+   "name": "Énergie Fée"
+  },
+  {
+   "set": "tk-xy-sy",
+   "n": "17",
+   "name": "Énergie Fée"
+  },
+  {
+   "set": "tk-xy-sy",
+   "n": "19",
+   "name": "Passerouge"
+  },
+  {
+   "set": "tk-xy-sy",
+   "n": "21",
+   "name": "Évoli"
+  },
+  {
+   "set": "tk-xy-sy",
+   "n": "24",
+   "name": "Potion"
+  },
+  {
+   "set": "tk-xy-sy",
+   "n": "22",
+   "name": "Couafarel"
+  },
+  {
+   "set": "tk-xy-sy",
+   "n": "20",
+   "name": "Potion"
+  },
+  {
+   "set": "tk-xy-sy",
+   "n": "25",
+   "name": "Énergie Fée"
+  },
+  {
+   "set": "tk-xy-sy",
+   "n": "29",
+   "name": "Granbull"
+  },
+  {
+   "set": "tk-xy-sy",
+   "n": "27",
+   "name": "Snubbull"
+  },
+  {
+   "set": "tk-xy-sy",
+   "n": "30",
+   "name": "Nymphali"
+  },
+  {
+   "set": "tk-xy-sy",
+   "n": "15",
+   "name": "Nymphali"
+  },
+  {
+   "set": "tk-xy-n",
+   "n": "1",
+   "name": "Spoink"
+  },
+  {
+   "set": "tk-xy-n",
+   "n": "4",
+   "name": "Sapereau"
+  },
+  {
+   "set": "tk-xy-n",
+   "n": "5",
+   "name": "Énergie Psy"
+  },
+  {
+   "set": "tk-xy-n",
+   "n": "6",
+   "name": "Énergie Psy"
+  },
+  {
+   "set": "tk-xy-n",
+   "n": "8",
+   "name": "Énergie Psy"
+  },
+  {
+   "set": "tk-xy-n",
+   "n": "10",
+   "name": "Énergie Psy"
+  },
+  {
+   "set": "tk-xy-n",
+   "n": "9",
+   "name": "Énergie Psy"
+  },
+  {
+   "set": "xy3",
+   "n": "112",
+   "name": "M-Scarhino EX"
+  },
+  {
+   "set": "tk-xy-n",
+   "n": "7",
+   "name": "Énergie Psy"
+  },
+  {
+   "set": "tk-xy-n",
+   "n": "11",
+   "name": "Pitrouille"
+  },
+  {
+   "set": "tk-xy-n",
+   "n": "12",
+   "name": "Sonistrelle"
+  },
+  {
+   "set": "tk-xy-n",
+   "n": "15",
+   "name": "Potion"
+  },
+  {
+   "set": "tk-xy-n",
+   "n": "20",
+   "name": "Couafarel"
+  },
+  {
+   "set": "tk-xy-n",
+   "n": "17",
+   "name": "Énergie Psy"
+  },
+  {
+   "set": "tk-xy-n",
+   "n": "22",
+   "name": "Énergie Obscurité"
+  },
+  {
+   "set": "tk-xy-n",
+   "n": "19",
+   "name": "Énergie Obscurité"
+  },
+  {
+   "set": "tk-xy-n",
+   "n": "26",
+   "name": "Énergie Obscurité"
+  },
+  {
+   "set": "tk-xy-n",
+   "n": "25",
+   "name": "Énergie Psy"
+  },
+  {
+   "set": "tk-xy-n",
+   "n": "18",
+   "name": "Pitrouille"
+  },
+  {
+   "set": "tk-xy-n",
+   "n": "16",
+   "name": "Abo"
+  },
+  {
+   "set": "tk-xy-n",
+   "n": "27",
+   "name": "Potion"
+  },
+  {
+   "set": "tk-xy-n",
+   "n": "28",
+   "name": "Énergie Obscurité"
+  },
+  {
+   "set": "tk-xy-n",
+   "n": "2",
+   "name": "Banshitrouye"
+  },
+  {
+   "set": "tk-xy-n",
+   "n": "13",
+   "name": "Bruyverne"
+  },
+  {
+   "set": "tk-xy-n",
+   "n": "3",
+   "name": "Arbok"
+  },
+  {
+   "set": "tk-xy-n",
+   "n": "30",
+   "name": "Bruyverne"
+  },
+  {
+   "set": "xy2",
+   "n": "13",
+   "name": "M-Dracaufeu EX"
+  },
+  {
+   "set": "xy2",
+   "n": "69",
+   "name": "M-Dracaufeu EX"
+  },
+  {
+   "set": "xy2",
+   "n": "79",
+   "name": "M-Kangourex EX"
+  },
+  {
+   "set": "xy2",
+   "n": "109",
+   "name": "M-Kangourex EX"
+  },
+  {
+   "set": "xy2",
+   "n": "108",
+   "name": "M-Dracaufeu EX"
+  },
+  {
+   "set": "xy2",
+   "n": "107",
+   "name": "M-Dracaufeu EX"
+  },
+  {
+   "set": "xy5",
+   "n": "94",
+   "name": "M-Galeking EX"
+  },
+  {
+   "set": "xy5",
+   "n": "106",
+   "name": "M-Gardevoir EX"
+  },
+  {
+   "set": "xy5",
+   "n": "154",
+   "name": "M-Galeking EX"
+  },
+  {
+   "set": "xy5",
+   "n": "156",
+   "name": "M-Gardevoir EX"
+  },
+  {
+   "set": "tk-xy-latio",
+   "n": "2",
+   "name": "Énergie Combat"
+  },
+  {
+   "set": "tk-xy-latio",
+   "n": "1",
+   "name": "Skitty"
+  },
+  {
+   "set": "tk-xy-latio",
+   "n": "3",
+   "name": "Énergie Combat"
+  },
+  {
+   "set": "tk-xy-latio",
+   "n": "8",
+   "name": "Énergie Combat"
+  },
+  {
+   "set": "tk-xy-latio",
+   "n": "6",
+   "name": "Énergie Combat"
+  },
+  {
+   "set": "tk-xy-latio",
+   "n": "7",
+   "name": "Énergie Combat"
+  },
+  {
+   "set": "tk-xy-latio",
+   "n": "5",
+   "name": "Énergie Combat"
+  },
+  {
+   "set": "tk-xy-latio",
+   "n": "10",
+   "name": "Énergie Combat"
+  },
+  {
+   "set": "tk-xy-latio",
+   "n": "9",
+   "name": "Énergie Combat"
+  },
+  {
+   "set": "tk-xy-latio",
+   "n": "11",
+   "name": "Machoc"
+  },
+  {
+   "set": "tk-xy-latio",
+   "n": "15",
+   "name": "Rhinocorne"
+  },
+  {
+   "set": "tk-xy-latio",
+   "n": "16",
+   "name": "Énergie Psy"
+  },
+  {
+   "set": "tk-xy-latio",
+   "n": "17",
+   "name": "Énergie Combat"
+  },
+  {
+   "set": "tk-xy-latio",
+   "n": "18",
+   "name": "Énergie Psy"
+  },
+  {
+   "set": "tk-xy-latio",
+   "n": "21",
+   "name": "Potion"
+  },
+  {
+   "set": "tk-xy-latio",
+   "n": "27",
+   "name": "Skitty"
+  },
+  {
+   "set": "tk-xy-latio",
+   "n": "23",
+   "name": "Rhinocorne"
+  },
+  {
+   "set": "tk-xy-latio",
+   "n": "26",
+   "name": "Solaroc"
+  },
+  {
+   "set": "tk-xy-latio",
+   "n": "12",
+   "name": "Solaroc"
+  },
+  {
+   "set": "tk-xy-latio",
+   "n": "4",
+   "name": "Rhinoféros"
+  },
+  {
+   "set": "tk-xy-latio",
+   "n": "29",
+   "name": "Énergie Psy"
+  },
+  {
+   "set": "tk-xy-latio",
+   "n": "28",
+   "name": "Machoc"
+  },
+  {
+   "set": "tk-xy-latio",
+   "n": "25",
+   "name": "Rhinoféros"
+  },
+  {
+   "set": "tk-xy-latio",
+   "n": "20",
+   "name": "Vélo Cross"
+  },
+  {
+   "set": "tk-xy-latio",
+   "n": "22",
+   "name": "Machopeur"
+  },
+  {
+   "set": "tk-xy-latio",
+   "n": "14",
+   "name": "Machopeur"
+  },
+  {
+   "set": "tk-xy-latio",
+   "n": "13",
+   "name": "Latios"
+  },
+  {
+   "set": "tk-xy-latio",
+   "n": "30",
+   "name": "Latios"
+  },
+  {
+   "set": "tk-xy-latio",
+   "n": "24",
+   "name": "Delcatty"
+  },
+  {
+   "set": "tk-xy-b",
+   "n": "1",
+   "name": "Passerouge"
+  },
+  {
+   "set": "tk-xy-latio",
+   "n": "19",
+   "name": "Delcatty"
+  },
+  {
+   "set": "tk-xy-b",
+   "n": "5",
+   "name": "Énergie Métal"
+  },
+  {
+   "set": "tk-xy-b",
+   "n": "6",
+   "name": "Énergie Métal"
+  },
+  {
+   "set": "tk-xy-b",
+   "n": "13",
+   "name": "Scalpion"
+  },
+  {
+   "set": "tk-xy-b",
+   "n": "12",
+   "name": "Keunotor"
+  },
+  {
+   "set": "tk-xy-b",
+   "n": "11",
+   "name": "Monorpale"
+  },
+  {
+   "set": "tk-xy-b",
+   "n": "15",
+   "name": "Parecool"
+  },
+  {
+   "set": "tk-xy-b",
+   "n": "17",
+   "name": "Ratentif"
+  },
+  {
+   "set": "tk-xy-b",
+   "n": "21",
+   "name": "Scalpion"
+  },
+  {
+   "set": "tk-xy-b",
+   "n": "25",
+   "name": "Potion"
+  },
+  {
+   "set": "tk-xy-b",
+   "n": "8",
+   "name": "Énergie Métal"
+  },
+  {
+   "set": "tk-xy-b",
+   "n": "26",
+   "name": "Parecool"
+  },
+  {
+   "set": "tk-xy-b",
+   "n": "27",
+   "name": "Monorpale"
+  },
+  {
+   "set": "tk-xy-b",
+   "n": "4",
+   "name": "Vigoroth"
+  },
+  {
+   "set": "tk-xy-b",
+   "n": "29",
+   "name": "Potion"
+  },
+  {
+   "set": "tk-xy-b",
+   "n": "20",
+   "name": "Trovato"
+  },
+  {
+   "set": "tk-xy-b",
+   "n": "23",
+   "name": "Dimoclès"
+  },
+  {
+   "set": "tk-xy-b",
+   "n": "14",
+   "name": "Dimoclès"
+  },
+  {
+   "set": "tk-xy-b",
+   "n": "28",
+   "name": "Vigoroth"
+  },
+  {
+   "set": "tk-xy-b",
+   "n": "19",
+   "name": "Tierno"
+  },
+  {
+   "set": "tk-xy-b",
+   "n": "16",
+   "name": "Scalproie"
+  },
+  {
+   "set": "tk-xy-b",
+   "n": "30",
+   "name": "Scalproie"
+  },
+  {
+   "set": "xy4",
+   "n": "35",
+   "name": "M-Ectoplasma EX"
+  },
+  {
+   "set": "xy4",
+   "n": "24",
+   "name": "M-Élecsprint EX"
+  },
+  {
+   "set": "tk-xy-w",
+   "n": "5",
+   "name": "Énergie Fée"
+  },
+  {
+   "set": "tk-xy-w",
+   "n": "1",
+   "name": "Sucroquin"
+  },
+  {
+   "set": "tk-xy-w",
+   "n": "4",
+   "name": "Fouinette"
+  },
+  {
+   "set": "xy4",
+   "n": "121",
+   "name": "M-Ectoplasma EX"
+  },
+  {
+   "set": "tk-xy-w",
+   "n": "8",
+   "name": "Énergie Fée"
+  },
+  {
+   "set": "tk-xy-w",
+   "n": "9",
+   "name": "Énergie Fée"
+  },
+  {
+   "set": "xy4",
+   "n": "120",
+   "name": "M-Élecsprint EX"
+  },
+  {
+   "set": "tk-xy-w",
+   "n": "7",
+   "name": "Énergie Fée"
+  },
+  {
+   "set": "tk-xy-w",
+   "n": "11",
+   "name": "Roucool"
+  },
+  {
+   "set": "tk-xy-w",
+   "n": "12",
+   "name": "Rondoudou"
+  },
+  {
+   "set": "tk-xy-w",
+   "n": "13",
+   "name": "Mélofée"
+  },
+  {
+   "set": "tk-xy-w",
+   "n": "15",
+   "name": "Potion"
+  },
+  {
+   "set": "tk-xy-w",
+   "n": "17",
+   "name": "Énergie Fée"
+  },
+  {
+   "set": "tk-xy-w",
+   "n": "20",
+   "name": "Potion"
+  },
+  {
+   "set": "tk-xy-w",
+   "n": "21",
+   "name": "Énergie Fée"
+  },
+  {
+   "set": "tk-xy-w",
+   "n": "18",
+   "name": "Sucroquin"
+  },
+  {
+   "set": "tk-xy-w",
+   "n": "19",
+   "name": "Mélofée"
+  },
+  {
+   "set": "tk-xy-w",
+   "n": "25",
+   "name": "Rondoudou"
+  },
+  {
+   "set": "tk-xy-w",
+   "n": "22",
+   "name": "Énergie Fée"
+  },
+  {
+   "set": "tk-xy-w",
+   "n": "29",
+   "name": "Roucool"
+  },
+  {
+   "set": "tk-xy-w",
+   "n": "23",
+   "name": "Roucoups"
+  },
+  {
+   "set": "tk-xy-w",
+   "n": "16",
+   "name": "Mélodelfe"
+  },
+  {
+   "set": "tk-xy-w",
+   "n": "24",
+   "name": "Trovato"
+  },
+  {
+   "set": "tk-xy-w",
+   "n": "26",
+   "name": "Tierno"
+  },
+  {
+   "set": "tk-xy-w",
+   "n": "2",
+   "name": "Roucoups"
+  },
+  {
+   "set": "tk-xy-w",
+   "n": "14",
+   "name": "Grodoudou"
+  },
+  {
+   "set": "tk-xy-w",
+   "n": "30",
+   "name": "Grodoudou"
+  },
+  {
+   "set": "tk-xy-w",
+   "n": "28",
+   "name": "Mélodelfe"
+  },
+  {
+   "set": "xy6",
+   "n": "35",
+   "name": "M-Gallame EX"
+  },
+  {
+   "set": "xy6",
+   "n": "59",
+   "name": "M-Latios EX"
+  },
+  {
+   "set": "xy6",
+   "n": "61",
+   "name": "M-Rayquaza EX"
+  },
+  {
+   "set": "xy6",
+   "n": "76",
+   "name": "M-Rayquaza EX"
+  },
+  {
+   "set": "xy6",
+   "n": "102",
+   "name": "M-Latios EX"
+  },
+  {
+   "set": "xy6",
+   "n": "100",
+   "name": "M-Gallame EX"
+  },
+  {
+   "set": "xy6",
+   "n": "105",
+   "name": "M-Rayquaza EX"
+  },
+  {
+   "set": "tk-xy-latia",
+   "n": "1",
+   "name": "Énergie Plante"
+  },
+  {
+   "set": "tk-xy-latia",
+   "n": "2",
+   "name": "Énergie Plante"
+  },
+  {
+   "set": "tk-xy-latia",
+   "n": "10",
+   "name": "Énergie Psy"
+  },
+  {
+   "set": "tk-xy-latia",
+   "n": "7",
+   "name": "Arcko"
+  },
+  {
+   "set": "tk-xy-latia",
+   "n": "3",
+   "name": "Énergie Plante"
+  },
+  {
+   "set": "tk-xy-latia",
+   "n": "8",
+   "name": "Énergie Psy"
+  },
+  {
+   "set": "tk-xy-latia",
+   "n": "5",
+   "name": "Énergie Plante"
+  },
+  {
+   "set": "tk-xy-latia",
+   "n": "9",
+   "name": "Énergie Psy"
+  },
+  {
+   "set": "tk-xy-latia",
+   "n": "13",
+   "name": "Saquedeneu"
+  },
+  {
+   "set": "tk-xy-latia",
+   "n": "15",
+   "name": "Potion"
+  },
+  {
+   "set": "tk-xy-latia",
+   "n": "11",
+   "name": "Nénupiot"
+  },
+  {
+   "set": "tk-xy-latia",
+   "n": "16",
+   "name": "Arakdo"
+  },
+  {
+   "set": "tk-xy-latia",
+   "n": "19",
+   "name": "Énergie Plante"
+  },
+  {
+   "set": "tk-xy-latia",
+   "n": "17",
+   "name": "Énergie Psy"
+  },
+  {
+   "set": "tk-xy-latia",
+   "n": "24",
+   "name": "Arcko"
+  },
+  {
+   "set": "tk-xy-latia",
+   "n": "23",
+   "name": "Nénupiot"
+  },
+  {
+   "set": "tk-xy-latia",
+   "n": "26",
+   "name": "Saquedeneu"
+  },
+  {
+   "set": "tk-xy-latia",
+   "n": "28",
+   "name": "Énergie Psy"
+  },
+  {
+   "set": "tk-xy-latia",
+   "n": "22",
+   "name": "Énergie Psy"
+  },
+  {
+   "set": "tk-xy-latia",
+   "n": "4",
+   "name": "Passerouge"
+  },
+  {
+   "set": "tk-xy-latia",
+   "n": "6",
+   "name": "Lombre"
+  },
+  {
+   "set": "tk-xy-latia",
+   "n": "14",
+   "name": "Latias"
+  },
+  {
+   "set": "tk-xy-latia",
+   "n": "18",
+   "name": "Massko"
+  },
+  {
+   "set": "tk-xy-latia",
+   "n": "30",
+   "name": "Latias"
+  },
+  {
+   "set": "tk-xy-latia",
+   "n": "20",
+   "name": "Vélo Cross"
+  },
+  {
+   "set": "tk-xy-latia",
+   "n": "21",
+   "name": "Lombre"
+  },
+  {
+   "set": "tk-xy-latia",
+   "n": "29",
+   "name": "Vélo Cross"
+  },
+  {
+   "set": "tk-xy-latia",
+   "n": "27",
+   "name": "Massko"
+  },
+  {
+   "set": "tk-xy-latia",
+   "n": "12",
+   "name": "Bouldeneu"
+  },
+  {
+   "set": "tk-xy-latia",
+   "n": "25",
+   "name": "Bouldeneu"
+  },
+  {
+   "set": "xy8",
+   "n": "22",
+   "name": "M-Démolosse EX"
+  },
+  {
+   "set": "xy8",
+   "n": "35",
+   "name": "M-Oniglali EX"
+  },
+  {
+   "set": "xy8",
+   "n": "63",
+   "name": "M-Mewtwo EX"
+  },
+  {
+   "set": "xy8",
+   "n": "64",
+   "name": "M-Mewtwo EX"
+  },
+  {
+   "set": "xy8",
+   "n": "156",
+   "name": "M-Oniglali EX"
+  },
+  {
+   "set": "xy8",
+   "n": "154",
+   "name": "M-Démolosse EX"
+  },
+  {
+   "set": "xy8",
+   "n": "160",
+   "name": "M-Mewtwo EX"
+  },
+  {
+   "set": "xy8",
+   "n": "159",
+   "name": "M-Mewtwo EX"
+  },
+  {
+   "set": "xy9",
+   "n": "27",
+   "name": "M-Léviator EX"
+  },
+  {
+   "set": "xy9",
+   "n": "77",
+   "name": "M-Cizayox EX"
+  },
+  {
+   "set": "xy9",
+   "n": "115",
+   "name": "M-Léviator EX"
+  },
+  {
+   "set": "xy9",
+   "n": "120",
+   "name": "M-Cizayox EX"
+  },
+  {
+   "set": "g1",
+   "n": "2",
+   "name": "M-Florizarre-EX"
+  },
+  {
+   "set": "g1",
+   "n": "18",
+   "name": "M-Tortank-EX"
+  },
+  {
+   "set": "g1",
+   "n": "12",
+   "name": "M-Dracaufeu-EX"
+  },
+  {
+   "set": "tk-xy-su",
+   "n": "1",
+   "name": "Énergie Eau"
+  },
+  {
+   "set": "tk-xy-su",
+   "n": "2",
+   "name": "Énergie Eau"
+  },
+  {
+   "set": "tk-xy-su",
+   "n": "5",
+   "name": "Énergie Eau"
+  },
+  {
+   "set": "tk-xy-su",
+   "n": "9",
+   "name": "Énergie Eau"
+  },
+  {
+   "set": "tk-xy-su",
+   "n": "7",
+   "name": "Couaneton"
+  },
+  {
+   "set": "tk-xy-su",
+   "n": "8",
+   "name": "Énergie Eau"
+  },
+  {
+   "set": "tk-xy-su",
+   "n": "3",
+   "name": "Énergie Eau"
+  },
+  {
+   "set": "tk-xy-su",
+   "n": "13",
+   "name": "Poissirène"
+  },
+  {
+   "set": "tk-xy-su",
+   "n": "11",
+   "name": "Grenousse"
+  },
+  {
+   "set": "tk-xy-su",
+   "n": "16",
+   "name": "Tiplouf"
+  },
+  {
+   "set": "tk-xy-su",
+   "n": "23",
+   "name": "Grenousse"
+  },
+  {
+   "set": "tk-xy-su",
+   "n": "4",
+   "name": "Évoli"
+  },
+  {
+   "set": "tk-xy-su",
+   "n": "28",
+   "name": "Énergie Eau"
+  },
+  {
+   "set": "tk-xy-su",
+   "n": "22",
+   "name": "Énergie Eau"
+  },
+  {
+   "set": "tk-xy-su",
+   "n": "17",
+   "name": "Énergie Eau"
+  },
+  {
+   "set": "tk-xy-su",
+   "n": "24",
+   "name": "Couaneton"
+  },
+  {
+   "set": "tk-xy-su",
+   "n": "26",
+   "name": "Poissirène"
+  },
+  {
+   "set": "tk-xy-su",
+   "n": "19",
+   "name": "Énergie Eau"
+  },
+  {
+   "set": "tk-xy-su",
+   "n": "14",
+   "name": "Suicune"
+  },
+  {
+   "set": "tk-xy-su",
+   "n": "30",
+   "name": "Suicune"
+  },
+  {
+   "set": "tk-xy-su",
+   "n": "6",
+   "name": "Croâporal"
+  },
+  {
+   "set": "tk-xy-su",
+   "n": "12",
+   "name": "Poissoroy"
+  },
+  {
+   "set": "tk-xy-p",
+   "n": "1",
+   "name": "Chaglam"
+  },
+  {
+   "set": "tk-xy-su",
+   "n": "29",
+   "name": "Tierno"
+  },
+  {
+   "set": "tk-xy-su",
+   "n": "20",
+   "name": "Tierno"
+  },
+  {
+   "set": "tk-xy-su",
+   "n": "21",
+   "name": "Croâporal"
+  },
+  {
+   "set": "tk-xy-su",
+   "n": "27",
+   "name": "Lakmécygne"
+  },
+  {
+   "set": "tk-xy-su",
+   "n": "25",
+   "name": "Poissoroy"
+  },
+  {
+   "set": "tk-xy-su",
+   "n": "15",
+   "name": "Potion"
+  },
+  {
+   "set": "tk-xy-p",
+   "n": "2",
+   "name": "Énergie Électrique"
+  },
+  {
+   "set": "tk-xy-p",
+   "n": "3",
+   "name": "Énergie Électrique"
+  },
+  {
+   "set": "tk-xy-p",
+   "n": "8",
+   "name": "Énergie Électrique"
+  },
+  {
+   "set": "tk-xy-su",
+   "n": "18",
+   "name": "Lakmécygne"
+  },
+  {
+   "set": "tk-xy-p",
+   "n": "12",
+   "name": "Zébibron"
+  },
+  {
+   "set": "tk-xy-p",
+   "n": "9",
+   "name": "Énergie Électrique"
+  },
+  {
+   "set": "tk-xy-p",
+   "n": "5",
+   "name": "Énergie Électrique"
+  },
+  {
+   "set": "tk-xy-p",
+   "n": "6",
+   "name": "Énergie Électrique"
+  },
+  {
+   "set": "tk-xy-p",
+   "n": "10",
+   "name": "Énergie Électrique"
+  },
+  {
+   "set": "tk-xy-p",
+   "n": "15",
+   "name": "Élektek"
+  },
+  {
+   "set": "tk-xy-p",
+   "n": "19",
+   "name": "Chaffreux"
+  },
+  {
+   "set": "tk-xy-p",
+   "n": "20",
+   "name": "Tierno"
+  },
+  {
+   "set": "tk-xy-p",
+   "n": "17",
+   "name": "Énergie Électrique"
+  },
+  {
+   "set": "tk-xy-p",
+   "n": "27",
+   "name": "Chaglam"
+  },
+  {
+   "set": "tk-xy-p",
+   "n": "23",
+   "name": "Élektek"
+  },
+  {
+   "set": "tk-xy-p",
+   "n": "29",
+   "name": "Énergie Électrique"
+  },
+  {
+   "set": "tk-xy-p",
+   "n": "4",
+   "name": "Élekable"
+  },
+  {
+   "set": "tk-xy-p",
+   "n": "18",
+   "name": "Énergie Électrique"
+  },
+  {
+   "set": "tk-xy-p",
+   "n": "26",
+   "name": "Zébibron"
+  },
+  {
+   "set": "tk-xy-p",
+   "n": "21",
+   "name": "Potion"
+  },
+  {
+   "set": "tk-xy-p",
+   "n": "24",
+   "name": "Chaffreux"
+  },
+  {
+   "set": "tk-xy-p",
+   "n": "11",
+   "name": "Dynavolt"
+  },
+  {
+   "set": "tk-xy-p",
+   "n": "25",
+   "name": "Élekable"
+  },
+  {
+   "set": "tk-xy-p",
+   "n": "22",
+   "name": "Élecsprint"
+  },
+  {
+   "set": "tk-xy-p",
+   "n": "7",
+   "name": "Nirondelle"
+  },
+  {
+   "set": "tk-xy-p",
+   "n": "14",
+   "name": "Pikachu Catcheur"
+  },
+  {
+   "set": "tk-xy-p",
+   "n": "28",
+   "name": "Dynavolt"
+  },
+  {
+   "set": "tk-xy-p",
+   "n": "30",
+   "name": "Pikachu Catcheur"
+  },
+  {
+   "set": "tk-xy-p",
+   "n": "16",
+   "name": "Passerouge"
+  },
+  {
+   "set": "tk-xy-p",
+   "n": "13",
+   "name": "Élecsprint"
+  },
+  {
+   "set": "tk-xy-su",
+   "n": "10",
+   "name": "Énergie Eau"
+  },
+  {
+   "set": "xy10",
+   "n": "26",
+   "name": "M-Alakazam EX"
+  },
+  {
+   "set": "xy10",
+   "n": "69",
+   "name": "M-Altaria EX"
+  },
+  {
+   "set": "xy10",
+   "n": "85",
+   "name": "M-Nanméouïe EX"
+  },
+  {
+   "set": "xy10",
+   "n": "121",
+   "name": "M-Altaria EX"
+  },
+  {
+   "set": "xy10",
+   "n": "118",
+   "name": "M-Alakazam EX"
+  },
+  {
+   "set": "xy11",
+   "n": "68",
+   "name": "M-Steelix EX"
+  },
+  {
+   "set": "xy11",
+   "n": "79",
+   "name": "M-Gardevoir EX"
+  },
+  {
+   "set": "xy11",
+   "n": "109",
+   "name": "M-Steelix EX"
+  },
+  {
+   "set": "xy11",
+   "n": "112",
+   "name": "M-Gardevoir EX"
+  },
+  {
+   "set": "xy12",
+   "n": "2",
+   "name": "M-Florizarre EX"
+  },
+  {
+   "set": "xy12",
+   "n": "27",
+   "name": "M-Flagadoss EX"
+  },
+  {
+   "set": "xy12",
+   "n": "22",
+   "name": "M-Tortank EX"
+  },
+  {
+   "set": "xy12",
+   "n": "102",
+   "name": "M-Tortank EX"
+  },
+  {
+   "set": "xy12",
+   "n": "101",
+   "name": "M-Dracaufeu EX"
+  },
+  {
+   "set": "xy12",
+   "n": "100",
+   "name": "M-Florizarre EX"
+  },
+  {
+   "set": "xy12",
+   "n": "65",
+   "name": "M-Roucarnage EX"
+  },
+  {
+   "set": "xy12",
+   "n": "13",
+   "name": "M-Dracaufeu EX"
+  },
+  {
+   "set": "xy12",
+   "n": "105",
+   "name": "M-Roucarnage EX"
+  },
+  {
+   "set": "sv06.5",
+   "n": "097",
+   "name": "Sablier du Pouvoir"
+  },
+  {
+   "set": "sv06.5",
+   "n": "096",
+   "name": "Urne Terrestre"
+  },
+  {
+   "set": "sv06.5",
+   "n": "095",
+   "name": "Pêchaminus-ex"
+  },
+  {
+   "set": "sv06.5",
+   "n": "098",
+   "name": "Énergie Darkness de base"
+  },
+  {
+   "set": "sv06.5",
+   "n": "099",
+   "name": "Énergie Metal de base"
+  },
+  {
+   "set": "me06",
+   "n": "101",
+   "name": "Boulette de Riz Savoureuse"
+  },
+  {
+   "set": "me06",
+   "n": "090",
+   "name": "Lanterne Aventure"
+  },
+  {
+   "set": "me06",
+   "n": "095",
+   "name": "Pyroconduit Légendaire"
+  },
+  {
+   "set": "me06",
+   "n": "094",
+   "name": "Pyroconduit Légendaire"
+  },
+  {
+   "set": "me06",
+   "n": "099",
+   "name": "Fosse Légendaire"
+  },
+  {
+   "set": "me06",
+   "n": "098",
+   "name": "Fosse Légendaire"
+  },
+  {
+   "set": "me06",
+   "n": "126",
+   "name": "Lanterne Aventure"
+  },
+  {
+   "set": "lc",
+   "n": "7",
+   "name": "Dark Raichu"
+  },
+  {
+   "set": "lc",
+   "n": "82",
+   "name": "Nidoran ♀"
+  },
+  {
+   "set": "lc",
+   "n": "83",
+   "name": "Nidoran ♂"
+  },
+  {
+   "set": "gym2",
+   "n": "1",
+   "name": "Blaine's Arcanine"
+  },
+  {
+   "set": "gym2",
+   "n": "2",
+   "name": "Blaine's Charizard"
+  },
+  {
+   "set": "gym2",
+   "n": "3",
+   "name": "Brock's Ninetales"
+  },
+  {
+   "set": "gym2",
+   "n": "5",
+   "name": "Giovanni's Gyarados"
+  },
+  {
+   "set": "gym2",
+   "n": "4",
+   "name": "Erika's Venusaur"
+  },
+  {
+   "set": "gym2",
+   "n": "6",
+   "name": "Giovanni's Machamp"
+  },
+  {
+   "set": "gym2",
+   "n": "7",
+   "name": "Giovanni's Nidoking"
+  },
+  {
+   "set": "gym2",
+   "n": "8",
+   "name": "Giovanni's Persian"
+  },
+  {
+   "set": "gym2",
+   "n": "9",
+   "name": "Koga's Beedrill"
+  },
+  {
+   "set": "gym2",
+   "n": "10",
+   "name": "Koga's Ditto"
+  },
+  {
+   "set": "gym2",
+   "n": "12",
+   "name": "Misty's Golduck"
+  },
+  {
+   "set": "gym2",
+   "n": "13",
+   "name": "Misty's Gyarados"
+  },
+  {
+   "set": "gym2",
+   "n": "14",
+   "name": "Rocket's Mewtwo"
+  },
+  {
+   "set": "gym2",
+   "n": "15",
+   "name": "Rocket's Zapdos"
+  },
+  {
+   "set": "gym2",
+   "n": "11",
+   "name": "Lt. Surge's Raichu"
+  },
+  {
+   "set": "gym2",
+   "n": "18",
+   "name": "Giovanni"
+  },
+  {
+   "set": "gym2",
+   "n": "19",
+   "name": "Koga"
+  },
+  {
+   "set": "gym2",
+   "n": "16",
+   "name": "Sabrina's Alakazam"
+  },
+  {
+   "set": "gym2",
+   "n": "17",
+   "name": "Blaine"
+  },
+  {
+   "set": "gym2",
+   "n": "21",
+   "name": "Blaine's Ninetales"
+  },
+  {
+   "set": "gym2",
+   "n": "23",
+   "name": "Giovanni's Nidoqueen"
+  },
+  {
+   "set": "gym2",
+   "n": "25",
+   "name": "Koga's Arbok"
+  },
+  {
+   "set": "gym2",
+   "n": "22",
+   "name": "Brock's Dugtrio"
+  },
+  {
+   "set": "gym2",
+   "n": "26",
+   "name": "Koga's Muk"
+  },
+  {
+   "set": "gym2",
+   "n": "27",
+   "name": "Koga's Pidgeotto"
+  },
+  {
+   "set": "gym2",
+   "n": "24",
+   "name": "Giovanni's Pinsir"
+  },
+  {
+   "set": "gym2",
+   "n": "29",
+   "name": "Sabrina's Gengar"
+  },
+  {
+   "set": "gym2",
+   "n": "28",
+   "name": "Lt. Surge's Jolteon"
+  },
+  {
+   "set": "gym2",
+   "n": "30",
+   "name": "Sabrina's Golduck"
+  },
+  {
+   "set": "gym2",
+   "n": "101",
+   "name": "Brock's Protection"
+  },
+  {
+   "set": "gym2",
+   "n": "100",
+   "name": "Blaine"
+  },
+  {
+   "set": "gym2",
+   "n": "102",
+   "name": "Chaos Gym"
+  },
+  {
+   "set": "gym2",
+   "n": "103",
+   "name": "Erika's Kindness"
+  },
+  {
+   "set": "gym2",
+   "n": "104",
+   "name": "Giovanni"
+  },
+  {
+   "set": "gym2",
+   "n": "107",
+   "name": "Lt. Surge's Secret Plan"
+  },
+  {
+   "set": "gym2",
+   "n": "106",
+   "name": "Koga"
+  },
+  {
+   "set": "gym2",
+   "n": "108",
+   "name": "Misty's Wish"
+  },
+  {
+   "set": "gym2",
+   "n": "109",
+   "name": "Resistance Gym"
+  },
+  {
+   "set": "gym2",
+   "n": "105",
+   "name": "Giovanni's Last Resort"
+  },
+  {
+   "set": "gym2",
+   "n": "110",
+   "name": "Sabrina"
+  },
+  {
+   "set": "gym2",
+   "n": "32",
+   "name": "Blaine's Dodrio"
+  },
+  {
+   "set": "gym2",
+   "n": "31",
+   "name": "Blaine's Charmeleon"
+  },
+  {
+   "set": "gym2",
+   "n": "33",
+   "name": "Blaine's Rapidash"
+  },
+  {
+   "set": "gym2",
+   "n": "34",
+   "name": "Brock's Graveler"
+  },
+  {
+   "set": "gym2",
+   "n": "35",
+   "name": "Brock's Primeape"
+  },
+  {
+   "set": "gym2",
+   "n": "38",
+   "name": "Erika's Bellsprout"
+  },
+  {
+   "set": "gym2",
+   "n": "36",
+   "name": "Brock's Sandslash"
+  },
+  {
+   "set": "gym2",
+   "n": "37",
+   "name": "Brock's Vulpix"
+  },
+  {
+   "set": "gym2",
+   "n": "39",
+   "name": "Erika's Bulbasaur"
+  },
+  {
+   "set": "gym2",
+   "n": "40",
+   "name": "Erika's Clefairy"
+  },
+  {
+   "set": "gym2",
+   "n": "41",
+   "name": "Erika's Ivysaur"
+  },
+  {
+   "set": "gym2",
+   "n": "43",
+   "name": "Giovanni's Meowth"
+  },
+  {
+   "set": "gym2",
+   "n": "44",
+   "name": "Giovanni's Nidorina"
+  },
+  {
+   "set": "gym2",
+   "n": "45",
+   "name": "Giovanni's Nidorino"
+  },
+  {
+   "set": "gym2",
+   "n": "42",
+   "name": "Giovanni's Machoke"
+  },
+  {
+   "set": "gym2",
+   "n": "46",
+   "name": "Koga's Golbat"
+  },
+  {
+   "set": "gym2",
+   "n": "48",
+   "name": "Koga's Koffing"
+  },
+  {
+   "set": "gym2",
+   "n": "47",
+   "name": "Koga's Kakuna"
+  },
+  {
+   "set": "gym2",
+   "n": "49",
+   "name": "Koga's Pidgey"
+  },
+  {
+   "set": "gym2",
+   "n": "51",
+   "name": "Lt. Surge's Eevee"
+  },
+  {
+   "set": "gym2",
+   "n": "52",
+   "name": "Lt. Surge's Electrode"
+  },
+  {
+   "set": "gym2",
+   "n": "55",
+   "name": "Sabrina's Haunter"
+  },
+  {
+   "set": "gym2",
+   "n": "54",
+   "name": "Misty's Dewgong"
+  },
+  {
+   "set": "gym2",
+   "n": "50",
+   "name": "Koga's Weezing"
+  },
+  {
+   "set": "gym2",
+   "n": "53",
+   "name": "Lt. Surge's Raticate"
+  },
+  {
+   "set": "gym2",
+   "n": "57",
+   "name": "Sabrina's Jynx"
+  },
+  {
+   "set": "gym2",
+   "n": "20",
+   "name": "Sabrina"
+  },
+  {
+   "set": "gym2",
+   "n": "56",
+   "name": "Sabrina's Hypno"
+  },
+  {
+   "set": "gym2",
+   "n": "58",
+   "name": "Sabrina's Kadabra"
+  },
+  {
+   "set": "gym2",
+   "n": "59",
+   "name": "Sabrina's Mr. Mime"
+  },
+  {
+   "set": "gym2",
+   "n": "111",
+   "name": "Blaine's Quiz #2"
+  },
+  {
+   "set": "gym2",
+   "n": "112",
+   "name": "Blaine's Quiz #3"
+  },
+  {
+   "set": "gym2",
+   "n": "113",
+   "name": "Cinnabar City Gym"
+  },
+  {
+   "set": "gym2",
+   "n": "114",
+   "name": "Fuchsia City Gym"
+  },
+  {
+   "set": "gym2",
+   "n": "119",
+   "name": "Rocket's Minefield Gym"
+  },
+  {
+   "set": "gym2",
+   "n": "116",
+   "name": "Master Ball"
+  },
+  {
+   "set": "gym2",
+   "n": "118",
+   "name": "Misty's Tears"
+  },
+  {
+   "set": "gym2",
+   "n": "121",
+   "name": "Sabrina's Psychic Control"
+  },
+  {
+   "set": "gym2",
+   "n": "122",
+   "name": "Saffron City Gym"
+  },
+  {
+   "set": "gym2",
+   "n": "120",
+   "name": "Rocket's Secret Experiment"
+  },
+  {
+   "set": "gym2",
+   "n": "115",
+   "name": "Koga's Ninja Trick"
+  },
+  {
+   "set": "gym2",
+   "n": "60",
+   "name": "Blaine's Charmander"
+  },
+  {
+   "set": "gym2",
+   "n": "123",
+   "name": "Viridian City Gym"
+  },
+  {
+   "set": "gym2",
+   "n": "65",
+   "name": "Blaine's Rhyhorn"
+  },
+  {
+   "set": "gym2",
+   "n": "61",
+   "name": "Blaine's Doduo"
+  },
+  {
+   "set": "gym2",
+   "n": "63",
+   "name": "Blaine's Mankey"
+  },
+  {
+   "set": "gym2",
+   "n": "67",
+   "name": "Brock's Diglett"
+  },
+  {
+   "set": "gym2",
+   "n": "64",
+   "name": "Blaine's Ponyta"
+  },
+  {
+   "set": "gym2",
+   "n": "62",
+   "name": "Blaine's Growlithe"
+  },
+  {
+   "set": "gym2",
+   "n": "69",
+   "name": "Erika's Jigglypuff"
+  },
+  {
+   "set": "gym2",
+   "n": "68",
+   "name": "Brock's Geodude"
+  },
+  {
+   "set": "gym2",
+   "n": "66",
+   "name": "Blaine's Vulpix"
+  },
+  {
+   "set": "gym2",
+   "n": "71",
+   "name": "Erika's Paras"
+  },
+  {
+   "set": "gym2",
+   "n": "70",
+   "name": "Erika's Oddish"
+  },
+  {
+   "set": "gym2",
+   "n": "73",
+   "name": "Giovanni's Magikarp"
+  },
+  {
+   "set": "gym2",
+   "n": "75",
+   "name": "Giovanni's Nidoran ♀"
+  },
+  {
+   "set": "gym2",
+   "n": "74",
+   "name": "Giovanni's Meowth"
+  },
+  {
+   "set": "gym2",
+   "n": "77",
+   "name": "Koga's Ekans"
+  },
+  {
+   "set": "gym2",
+   "n": "76",
+   "name": "Giovanni's Nidoran ♂"
+  },
+  {
+   "set": "gym2",
+   "n": "72",
+   "name": "Giovanni's Machop"
+  },
+  {
+   "set": "gym2",
+   "n": "79",
+   "name": "Koga's Koffing"
+  },
+  {
+   "set": "gym2",
+   "n": "78",
+   "name": "Koga's Grimer"
+  },
+  {
+   "set": "gym2",
+   "n": "80",
+   "name": "Koga's Pidgey"
+  },
+  {
+   "set": "gym2",
+   "n": "83",
+   "name": "Koga's Zubat"
+  },
+  {
+   "set": "gym2",
+   "n": "81",
+   "name": "Koga's Tangela"
+  },
+  {
+   "set": "gym2",
+   "n": "82",
+   "name": "Koga's Weedle"
+  },
+  {
+   "set": "gym2",
+   "n": "84",
+   "name": "Lt. Surge's Pikachu"
+  },
+  {
+   "set": "gym2",
+   "n": "86",
+   "name": "Lt. Surge's Voltorb"
+  },
+  {
+   "set": "gym2",
+   "n": "88",
+   "name": "Misty's Magikarp"
+  },
+  {
+   "set": "gym2",
+   "n": "89",
+   "name": "Misty's Poliwag"
+  },
+  {
+   "set": "gym2",
+   "n": "85",
+   "name": "Lt. Surge's Rattata"
+  },
+  {
+   "set": "gym2",
+   "n": "87",
+   "name": "Misty's Horsea"
+  },
+  {
+   "set": "gym2",
+   "n": "91",
+   "name": "Misty's Seel"
+  },
+  {
+   "set": "gym2",
+   "n": "90",
+   "name": "Misty's Psyduck"
+  },
+  {
+   "set": "gym2",
+   "n": "94",
+   "name": "Sabrina's Abra"
+  },
+  {
+   "set": "gym2",
+   "n": "93",
+   "name": "Sabrina's Abra"
+  },
+  {
+   "set": "gym2",
+   "n": "95",
+   "name": "Sabrina's Drowzee"
+  },
+  {
+   "set": "gym2",
+   "n": "97",
+   "name": "Sabrina's Gastly"
+  },
+  {
+   "set": "gym2",
+   "n": "92",
+   "name": "Misty's Staryu"
+  },
+  {
+   "set": "gym2",
+   "n": "99",
+   "name": "Sabrina's Psyduck"
+  },
+  {
+   "set": "gym2",
+   "n": "98",
+   "name": "Sabrina's Porygon"
+  },
+  {
+   "set": "gym2",
+   "n": "126",
+   "name": "Warp Point"
+  },
+  {
+   "set": "gym2",
+   "n": "96",
+   "name": "Sabrina's Gastly"
+  },
+  {
+   "set": "gym2",
+   "n": "117",
+   "name": "Max Revive"
+  },
+  {
+   "set": "gym2",
+   "n": "125",
+   "name": "Transparent Walls"
+  },
+  {
+   "set": "gym2",
+   "n": "129",
+   "name": "Grass Energy"
+  },
+  {
+   "set": "gym2",
+   "n": "127",
+   "name": "Fighting Energy"
+  },
+  {
+   "set": "gym2",
+   "n": "130",
+   "name": "Lightning Energy"
+  },
+  {
+   "set": "gym2",
+   "n": "131",
+   "name": "Psychic Energy"
+  },
+  {
+   "set": "gym2",
+   "n": "132",
+   "name": "Water Energy"
+  },
+  {
+   "set": "gym2",
+   "n": "128",
+   "name": "Fire Energy"
+  },
+  {
+   "set": "gym1",
+   "n": "3",
+   "name": "Erika's Clefable"
+  },
+  {
+   "set": "gym1",
+   "n": "1",
+   "name": "Blaine's Moltres"
+  },
+  {
+   "set": "gym1",
+   "n": "2",
+   "name": "Brock's Rhydon"
+  },
+  {
+   "set": "gym1",
+   "n": "5",
+   "name": "Erika's Vileplume"
+  },
+  {
+   "set": "gym1",
+   "n": "4",
+   "name": "Erika's Dragonair"
+  },
+  {
+   "set": "gym1",
+   "n": "6",
+   "name": "Lt. Surge's Electabuzz"
+  },
+  {
+   "set": "gym1",
+   "n": "8",
+   "name": "Lt. Surge's Magneton"
+  },
+  {
+   "set": "gym1",
+   "n": "11",
+   "name": "Rocket's Hitmonchan"
+  },
+  {
+   "set": "gym1",
+   "n": "9",
+   "name": "Misty's Seadra"
+  },
+  {
+   "set": "gym1",
+   "n": "10",
+   "name": "Misty's Tentacruel"
+  },
+  {
+   "set": "gym1",
+   "n": "7",
+   "name": "Lt. Surge's Fearow"
+  },
+  {
+   "set": "gym1",
+   "n": "12",
+   "name": "Rocket's Moltres"
+  },
+  {
+   "set": "gym1",
+   "n": "17",
+   "name": "Lt. Surge"
+  },
+  {
+   "set": "gym1",
+   "n": "13",
+   "name": "Rocket's Scyther"
+  },
+  {
+   "set": "gym1",
+   "n": "15",
+   "name": "Brock"
+  },
+  {
+   "set": "gym1",
+   "n": "14",
+   "name": "Sabrina's Gengar"
+  },
+  {
+   "set": "gym1",
+   "n": "19",
+   "name": "The Rocket's Trap"
+  },
+  {
+   "set": "gym1",
+   "n": "16",
+   "name": "Erika"
+  },
+  {
+   "set": "gym1",
+   "n": "20",
+   "name": "Brock's Golem"
+  },
+  {
+   "set": "gym1",
+   "n": "18",
+   "name": "Misty"
+  },
+  {
+   "set": "gym1",
+   "n": "22",
+   "name": "Brock's Rhyhorn"
+  },
+  {
+   "set": "gym1",
+   "n": "21",
+   "name": "Brock's Onix"
+  },
+  {
+   "set": "gym1",
+   "n": "23",
+   "name": "Brock's Sandslash"
+  },
+  {
+   "set": "gym1",
+   "n": "24",
+   "name": "Brock's Zubat"
+  },
+  {
+   "set": "gym1",
+   "n": "25",
+   "name": "Erika's Clefairy"
+  },
+  {
+   "set": "gym1",
+   "n": "27",
+   "name": "Lt. Surge's Electabuzz"
+  },
+  {
+   "set": "gym1",
+   "n": "28",
+   "name": "Lt. Surge's Raichu"
+  },
+  {
+   "set": "gym1",
+   "n": "30",
+   "name": "Misty's Goldeen"
+  },
+  {
+   "set": "gym1",
+   "n": "32",
+   "name": "Misty's Tentacool"
+  },
+  {
+   "set": "gym1",
+   "n": "33",
+   "name": "Rocket's Snorlax"
+  },
+  {
+   "set": "gym1",
+   "n": "26",
+   "name": "Erika's Victreebel"
+  },
+  {
+   "set": "gym1",
+   "n": "29",
+   "name": "Misty's Cloyster"
+  }
+ ]
+}

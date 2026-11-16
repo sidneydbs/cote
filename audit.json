@@ -1,5 +1,5 @@
 {
- "built": "2026-11-15T19:04:14.842Z",
+ "built": "2026-11-16T07:11:46.110Z",
  "sets": {
   "total": 209,
   "noLogo": [],
@@ -14,11 +14,11 @@
   "bySet": {}
  },
  "sealed": {
-  "total": 4635,
-  "photo": 1313,
+  "total": 4636,
+  "photo": 1311,
   "manual": 0,
-  "tcgplayer": 689,
-  "logo": 1810,
+  "tcgplayer": 691,
+  "logo": 1811,
   "missing": 823,
   "list": [
    "EX Trainer Kit",
@@ -866,17 +866,14 @@
   "tk-ex-m": "tk2b"
  },
  "diag": {
-  "archives.bulbagarden.net": {
-   "404": 4,
-   "ok": 7
-  },
   "assets.tcgdex.net": {
-   "404": 324,
-   "ok": 150
+   "404": 321,
+   "503": 50,
+   "ok": 149
   },
   "images.pokemontcg.io": {
    "404": 35,
-   "ok": 509
+   "ok": 510
   },
   "images.scrydex.com": {
    "404": 16,

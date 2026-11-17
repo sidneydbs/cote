@@ -156,6 +156,7 @@ html{background:var(--panel)}
 .dtile.add{background:color-mix(in srgb,var(--border-yellow) 12%,var(--panel));border:1.5px solid var(--border-yellow);color:var(--border-yellow)}
 .dtile.add b{font-size:14px}.dtile.add .tv{font-size:12.5px;color:var(--up)}
 .dtile.small{min-height:76px}
+.rkfr{font-style:normal;font-size:.85em}
 .bpendh{margin:0 0 8px;font:700 11.5px var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
 .bpend{display:flex;flex-direction:column;gap:6px;margin:0 0 14px}
 .bpend>div{display:flex;gap:10px;align-items:baseline;padding:9px 11px;border-radius:12px;background:rgba(0,0,0,.22);border:1px solid var(--line);font-size:14px;line-height:1.35;color:var(--fg)}
@@ -1661,7 +1662,7 @@ img.px.reveal{animation:stpRev .9s ease-out}
   }
   fit(); addEventListener("resize", fit); addEventListener("orientationchange", function(){ setTimeout(fit, 300); });
 })();</script>
-<script>window.__APPV="137";</script>
+<script>window.__APPV="138";</script>
 <div class="splash" id="splash" aria-hidden="true"><i class="hole"></i><i class="halo"></i><div class="bw"><svg class="b" viewBox="0 0 100 100"><use href="#pb"/></svg><svg class="t" viewBox="0 0 100 100"><use href="#pb"/></svg></div><i class="glow"></i></div>
 <script>setTimeout(function(){ if(window.__booted) return;
   var b=document.createElement("div"); b.setAttribute("role","alert");
@@ -1696,7 +1697,7 @@ img.px.reveal{animation:stpRev .9s ease-out}
   <!-- ===== EXTENSIONS ===== -->
   <section class="view" id="homeView">
     <div class="scroll">
-      <div class="homebar"><span id="avatSlot"><svg class="pball" viewBox="0 0 100 100" aria-hidden="true"><use href="#pb"/></svg></span><span class="brand">DEX<b>·</b>SCAN</span><button class="thbtn" id="themeBtn" aria-label="Changer de thème"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.6-.9 1.2-1.8-.5-1.1.2-2.2 1.4-2.2H17a4 4 0 0 0 4-4c0-5.5-4-10-9-10z"/><circle cx="7.5" cy="11" r="1.2"/><circle cx="10" cy="7" r="1.2"/><circle cx="15" cy="7" r="1.2"/></svg></button><span class="ver" id="hVer">v137</span></div>
+      <div class="homebar"><span id="avatSlot"><svg class="pball" viewBox="0 0 100 100" aria-hidden="true"><use href="#pb"/></svg></span><span class="brand">DEX<b>·</b>SCAN</span><button class="thbtn" id="themeBtn" aria-label="Changer de thème"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.6-.9 1.2-1.8-.5-1.1.2-2.2 1.4-2.2H17a4 4 0 0 0 4-4c0-5.5-4-10-9-10z"/><circle cx="7.5" cy="11" r="1.2"/><circle cx="10" cy="7" r="1.2"/><circle cx="15" cy="7" r="1.2"/></svg></button><span class="ver" id="hVer">v138</span></div>
       <button class="banner" id="pxBanner" hidden></button>
       <div class="hhead"><div><span class="hdate" id="hDate"></span><div class="htitle"><h1 class="h1">Accueil</h1><button class="hsearch hrank" id="hRank" aria-label="Classement"><svg viewBox="0 0 24 24" fill="none" stroke="url(#hrkG)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><defs><linearGradient id="hrkG" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFF4C2"/><stop offset=".35" stop-color="#FFD86E"/><stop offset=".65" stop-color="#7CF3FF"/><stop offset="1" stop-color="#E2B8FF"/></linearGradient></defs><path d="M8 21h8M12 17v4"/><path d="M7 4h10v5a5 5 0 0 1-10 0z"/><path d="M17 5h3v2a3 3 0 0 1-3 3M7 5H4v2a3 3 0 0 0 3 3"/></svg></button></div></div><button class="hsearch" id="hSearch" aria-label="Rechercher une carte"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></button></div>
       <div class="total htot" id="hTot"></div>
@@ -7505,11 +7506,20 @@ async function rkSync(force){
 // appelé à chaque changement de collection (via renderAvatar) : on regroupe les envois
 function rkSoon(){ if(!rkProf()?.on) return; clearTimeout(RK.t); RK.t = setTimeout(()=>rkSync(), 5000); clearTimeout(RK.ct); RK.ct = setTimeout(()=>rkColSync(), 25000); }
 const rkPet = pk => STARTERS.find(x=>x.k===pk) || null;
+// amis : liste gardée sur ce téléphone (id + pseudo + compagnon), onglet « Amis » du classement
+const rkFr = () => store.get("rkFr", []);
+const rkIsFr = id => rkFr().some(x=>x.id===id);
+function rkFrToggle(r){
+  const l = rkFr(), on = l.some(x=>x.id===r.id);
+  store.set("rkFr", on ? l.filter(x=>x.id!==r.id) : [{id:r.id, name:r.name, pk:r.pk, t:Date.now()}, ...l]);
+  toast(on ? `${r.name} n'est plus dans tes amis` : `${r.name} ajouté à tes amis ⭐`);
+  return !on;
+}
 const rkScore = (r, by) => by==="week" ? `+${r.wxp.toLocaleString("fr-FR")} XP` : by==="cards" ? `${r.cards.toLocaleString("fr-FR")} carte${r.cards>1?"s":""}` : by==="sets" ? `${r.sets} ext.` : by==="val" ? `${eurN(r.val)} €` : `${r.xp.toLocaleString("fr-FR")} XP`;
 function rkRow(r, i, me){
   const pt = rkPet(r.pk);
   return `<button class="rkrow${r.id===me?" me":""}" data-pid="${esc(r.id)}"><span class="rkpos">${i}</span><span class="rkspr">${petArt(pt, r.lv)}</span>
-    <span class="rkn"><b>${esc(r.name)}</b><small>${esc(r.pet||pt?.n||"")}${pt?` · ${esc(pt.t)}`:""}</small></span>
+    <span class="rkn"><b>${esc(r.name)}${r.id!==me && rkIsFr(r.id)?` <i class="rkfr">⭐</i>`:""}</b><small>${esc(r.pet||pt?.n||"")}${pt?` · ${esc(pt.t)}`:""}</small></span>
     <span class="rksc"><b>Niv. ${r.lv}</b><small>${esc(rkScore(r, RK.by))}</small></span></button>`;
 }
 function rkPodium(rows, me){
@@ -7523,15 +7533,16 @@ async function renderRank(){
   $("#rankMe").hidden = false;
   // ligues : Tous + mes ligues + ajouter
   const lgs = store.get("rkLgs", []);
-  if(RK.l && !lgs.some(x=>x.code===RK.l)){ RK.l = ""; store.set("rkL",""); }
-  $("#rankScope").innerHTML = `<button data-rl="" aria-pressed="${!RK.l}">🌍 Tous</button>${lgs.map(x=>`<button data-rl="${esc(x.code)}" aria-pressed="${RK.l===x.code}">${esc(x.name)}</button>`).join("")}<button data-rladd>＋ Ligue</button>`;
+  if(RK.l && RK.l!=="@amis" && !lgs.some(x=>x.code===RK.l)){ RK.l = ""; store.set("rkL",""); }
+  $("#rankScope").innerHTML = `<button data-rl="" aria-pressed="${!RK.l}">🌍 Tous</button><button data-rl="@amis" aria-pressed="${RK.l==="@amis"}">⭐ Amis${rkFr().length?` · ${rkFr().length}`:""}</button>${lgs.map(x=>`<button data-rl="${esc(x.code)}" aria-pressed="${RK.l===x.code}">${esc(x.name)}</button>`).join("")}<button data-rladd>＋ Ligue</button>`;
   $("#rankScope").querySelectorAll("[data-rl]").forEach(b=>b.onclick=()=>{ RK.l = b.dataset.rl; store.set("rkL", RK.l); renderRank(); });
   $("#rankScope").querySelector("[data-rladd]").onclick = rkLeagueSheet;
   document.querySelectorAll("[data-rkby]").forEach(b=>{ b.setAttribute("aria-pressed", b.dataset.rkby===RK.by); b.onclick = ()=>{ RK.by = b.dataset.rkby; store.set("rkBy", RK.by); renderRank(); }; });
   if(!RK.data || RK.data.key !== RK.by+"|"+RK.l) el.innerHTML = `<div class="empty"><span class="loader"></span> Chargement du classement…</div>`;
   const gen = RK.gen = (RK.gen||0)+1;
   await rkSync();
-  let d; try{ d = await rkCall(`/top?by=${RK.by}${RK.l?`&l=${RK.l}`:""}&me=${p.id}`); }
+  const fr = RK.l==="@amis", lq = fr ? "" : RK.l;
+  let d; try{ d = await rkCall(`/top?by=${RK.by}${lq?`&l=${lq}`:""}&me=${p.id}`); if(fr){ const ids = new Set([p.id, ...rkFr().map(x=>x.id)]); const all = [...d.rows, ...(d.mine && !d.rows.some(r=>r.id===d.mine.id) ? [d.mine] : [])]; d = {...d, rows:all.filter(r=>ids.has(r.id)), mine:null, league:null, total:0, fr:true}; d.total = d.rows.length; } }
   catch(e){ if(gen===RK.gen) el.innerHTML = `<div class="empty"><b style="color:var(--fg)">Classement indisponible</b><br>${esc(e.message)}<br><br><button class="btn btn-y" id="rkRetry">Réessayer</button></div>`; $("#rkRetry") && ($("#rkRetry").onclick = renderRank); return; }
   if(gen!==RK.gen) return;
   RK.data = {key:RK.by+"|"+RK.l, ...d};
@@ -7543,8 +7554,9 @@ async function renderRank(){
     store.set("rkAbove", above);
   }
   const lbl = {xp:"par niveau", week:"de la semaine", cards:"par nombre de cartes", sets:"par extensions complétées", val:"par valeur (joueurs qui la montrent)"}[RK.by];
-  el.innerHTML = `<p class="psub" style="margin:0 0 10px">${d.league?`Ligue <b>${esc(d.league.name)}</b> · code <b class="rkcode">${esc(d.league.code)}</b> · `:""}${d.total} dresseur${d.total>1?"s":""} · classement ${lbl}${RK.by==="week"?" (remis à zéro chaque lundi)":""}</p>
-    ${rows.length ? rkPodium(rows, p.id) + `<div class="rklist">${rows.slice(3).map((r,i)=>rkRow(r, i+4, p.id)).join("")}</div>` : `<div class="empty">Personne pour l'instant. Invite tes amis !</div>`}
+  el.innerHTML = `<p class="psub" style="margin:0 0 10px">${d.fr?`Toi et tes amis · `:""}${d.league?`Ligue <b>${esc(d.league.name)}</b> · code <b class="rkcode">${esc(d.league.code)}</b> · `:""}${d.total} dresseur${d.total>1?"s":""} · classement ${lbl}${RK.by==="week"?" (remis à zéro chaque lundi)":""}</p>
+    ${d.fr && !rkFr().length ? `<div class="empty" style="padding:30px 12px"><div style="font-size:40px">⭐</div><b style="color:var(--fg)">Pas encore d'amis</b><br>Dans « Tous », touche un dresseur puis « Ajouter en ami ». Tu retrouveras ici votre classement rien qu'entre vous.</div>` : ""}
+    ${d.fr && !rkFr().length ? "" : rows.length ? rkPodium(rows, p.id) + `<div class="rklist">${rows.slice(3).map((r,i)=>rkRow(r, i+4, p.id)).join("")}</div>` : `<div class="empty">Personne pour l'instant. Invite tes amis !</div>`}
     ${mine && myI<0 ? `<div class="rklist rkmine">${rkRow(mine, mine.rank, p.id)}</div>` : ""}
     ${d.league?`<button class="btn" id="rkInv" style="width:100%;margin-top:14px">Inviter des amis dans cette ligue</button>`:""}`;
   el.querySelectorAll("[data-pid]").forEach(b=>b.onclick=()=>rkPlayer(rows.find(r=>r.id===b.dataset.pid) || mine));
@@ -7559,8 +7571,10 @@ function rkPlayer(r){
     <div class="lvlist"><div><span>XP</span><b>${r.xp.toLocaleString("fr-FR")}</b></div><div><span>Cette semaine</span><b>+${r.wxp.toLocaleString("fr-FR")}</b></div>
     <div><span>Cartes</span><b>${r.cards.toLocaleString("fr-FR")}</b></div><div><span>Extensions complètes</span><b>${r.sets}</b></div>
     ${r.val!=null?`<div><span>Valeur de la collection</span><b>${eurN(r.val)} €</b></div>`:""}</div></div>
-    <button class="btn btn-y" id="rkSeeCol" style="width:100%;margin-top:14px">Voir ${r.id===rkProf()?.id?"ma":"sa"} collection</button>`;
+    ${r.id!==rkProf()?.id?`<button class="btn ${rkIsFr(r.id)?"btn-g":"btn-y"}" id="rkFrB" style="width:100%;margin-top:14px">${rkIsFr(r.id)?"✓ Dans tes amis · retirer":"⭐ Ajouter en ami"}</button>`:""}
+    <button class="btn ${r.id!==rkProf()?.id?"btn-g":"btn-y"}" id="rkSeeCol" style="width:100%;margin-top:${r.id!==rkProf()?.id?8:14}px">Voir ${r.id===rkProf()?.id?"ma":"sa"} collection</button>`;
   openSheet();
+  $("#rkFrB") && ($("#rkFrB").onclick = ()=>{ const on = rkFrToggle(r), b = $("#rkFrB"); b.className = "btn "+(on?"btn-g":"btn-y"); b.textContent = on ? "✓ Dans tes amis · retirer" : "⭐ Ajouter en ami"; RK.data = null; renderRank(); });
   $("#rkSeeCol").onclick = ()=>rkCollection(r.id);
 }
 function rkSetup(){
@@ -7795,6 +7809,7 @@ async function betaPublishFlow(){
 }
 /* Journal des modifications de la Bêta : la carte « Version Bêta » liste celles que les copains n'ont pas encore */
 const BETA_LOG = [
+  {v:138, t:"Classement : ajouter des dresseurs en amis, onglet « ⭐ Amis »"},
   {v:137, t:"Le Fil : « Ça drop quoi aujourd’hui ? » pour lancer une publication"},
   {v:136, t:"Le Fil en ligne pour tout le monde, annoncé dans « Quoi de neuf »"},
   {v:135, t:"Le Fil relié à son serveur en ligne : les publications sont partagées entre tous"},

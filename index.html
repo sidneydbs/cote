@@ -1208,7 +1208,18 @@ html{background:var(--panel)}
 .stp.opened .stp-spr{display:block}
 .stp.opened .tmone,.stp.opened .tmshadow{visibility:hidden}
 .stp-type,.stp > .stp-go{display:none!important}
-.stp-stage + .stp-nav{margin:0 0 10px}
+.stp-nav{display:none!important}
+/* indicateur de swipe : un point lumineux glisse d'un côté à l'autre, les chevrons clignotent doucement */
+.stp-swipe{display:flex;align-items:center;gap:10px;height:22px;margin:2px 0 6px;color:var(--border-yellow);animation:stpBlink 2.4s ease-in-out infinite}
+.stp-swipe i{font:600 20px/1 system-ui;font-style:normal;opacity:.35;animation:stpChevL 2.4s ease-in-out infinite}
+.stp-swipe i:last-child{animation-name:stpChevR}
+.stp-swipe span{position:relative;width:92px;height:2px;border-radius:2px;background:linear-gradient(90deg,transparent,color-mix(in srgb,currentColor 45%,transparent),transparent)}
+.stp-swipe span::after{content:"";position:absolute;top:50%;left:0;width:8px;height:8px;margin:-4px 0 0 -4px;border-radius:50%;background:currentColor;box-shadow:0 0 10px currentColor,0 0 22px currentColor;animation:stpDot 2.4s cubic-bezier(.65,0,.35,1) infinite}
+.stp.opening .stp-swipe,.stp.opened .stp-swipe{opacity:0;animation:none;transition:opacity .3s}
+@keyframes stpDot{0%,100%{left:8%}50%{left:92%}}
+@keyframes stpChevL{0%,100%{opacity:.85;transform:translateX(-3px)}50%{opacity:.2;transform:none}}
+@keyframes stpChevR{0%,100%{opacity:.2;transform:none}50%{opacity:.85;transform:translateX(3px)}}
+@keyframes stpBlink{0%,100%{opacity:1}50%{opacity:.55}}
 .stp-hint{font-size:13px;color:var(--muted);margin-top:6px;min-height:16px}
 .stp.opening .stp-nav,.stp.opened .stp-nav,.stp.opened > .stp-go,.stp.opening > .stp-go{visibility:hidden}
 @keyframes stpw{0%,70%,100%{transform:rotate(0)}76%{transform:rotate(-12deg)}84%{transform:rotate(10deg)}92%{transform:rotate(-5deg)}}
@@ -1486,7 +1497,7 @@ img.px.reveal{animation:stpRev .9s ease-out}
   }
   fit(); addEventListener("resize", fit); addEventListener("orientationchange", function(){ setTimeout(fit, 300); });
 })();</script>
-<script>window.__APPV="117";</script>
+<script>window.__APPV="118";</script>
 <div class="splash" id="splash" aria-hidden="true"><i class="hole"></i><i class="halo"></i><div class="bw"><svg class="b" viewBox="0 0 100 100"><use href="#pb"/></svg><svg class="t" viewBox="0 0 100 100"><use href="#pb"/></svg></div><i class="glow"></i></div>
 <script>setTimeout(function(){ if(window.__booted) return;
   var b=document.createElement("div"); b.setAttribute("role","alert");
@@ -1521,7 +1532,7 @@ img.px.reveal{animation:stpRev .9s ease-out}
   <!-- ===== EXTENSIONS ===== -->
   <section class="view" id="homeView">
     <div class="scroll">
-      <div class="homebar"><span id="avatSlot"><svg class="pball" viewBox="0 0 100 100" aria-hidden="true"><use href="#pb"/></svg></span><span class="brand">DEX<b>·</b>SCAN</span><button class="thbtn" id="themeBtn" aria-label="Changer de thème"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.6-.9 1.2-1.8-.5-1.1.2-2.2 1.4-2.2H17a4 4 0 0 0 4-4c0-5.5-4-10-9-10z"/><circle cx="7.5" cy="11" r="1.2"/><circle cx="10" cy="7" r="1.2"/><circle cx="15" cy="7" r="1.2"/></svg></button><span class="ver">v117</span></div>
+      <div class="homebar"><span id="avatSlot"><svg class="pball" viewBox="0 0 100 100" aria-hidden="true"><use href="#pb"/></svg></span><span class="brand">DEX<b>·</b>SCAN</span><button class="thbtn" id="themeBtn" aria-label="Changer de thème"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.6-.9 1.2-1.8-.5-1.1.2-2.2 1.4-2.2H17a4 4 0 0 0 4-4c0-5.5-4-10-9-10z"/><circle cx="7.5" cy="11" r="1.2"/><circle cx="10" cy="7" r="1.2"/><circle cx="15" cy="7" r="1.2"/></svg></button><span class="ver">v118</span></div>
       <button class="banner" id="pxBanner" hidden></button>
       <div class="hhead"><div><span class="hdate" id="hDate"></span><div class="htitle"><h1 class="h1">Accueil</h1><button class="hsearch hrank" id="hRank" aria-label="Classement"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 21h8M12 17v4"/><path d="M7 4h10v5a5 5 0 0 1-10 0z"/><path d="M17 5h3v2a3 3 0 0 1-3 3M7 5H4v2a3 3 0 0 0 3 3"/></svg></button></div></div><button class="hsearch" id="hSearch" aria-label="Rechercher une carte"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></button></div>
       <div class="total htot" id="hTot"></div>
@@ -6845,10 +6856,11 @@ function starterPicker(){
   const el = document.createElement("div"); el.id = "stp"; el.className = "stp empty";
   el.innerHTML = `<h2>CHOISIS TON STARTER</h2><p class="lede">Swipe gauche ou droite</p>
     <div class="stp-stage"><div class="tmcar" id="stpCar"><div class="tmstage"><div class="tmglow"></div><canvas class="tmfx" id="stpFx"></canvas><div class="tmshadow"></div><div class="tmone" id="stpOne" role="button" aria-label="Ouvrir cette Poké Ball"></div><div class="tmflash"></div></div></div><img class="stp-spr px hide" alt=""></div>
+    <div class="stp-swipe" aria-hidden="true"><i>‹</i><span></span><i>›</i></div>
     <div class="stp-nav"><button data-d="-1" aria-label="Précédent">‹</button><div class="stp-dots">${STARTERS.map(()=>"<i></i>").join("")}</div><button data-d="1" aria-label="Suivant">›</button></div>
-    <div class="stp-name">???</div><span class="stp-type">?</span><div class="stp-hint"></div>
+    <div class="stp-name"></div><span class="stp-type">?</span><div class="stp-hint"></div>
     <button class="stp-go" disabled>Glisse pour choisir un élément</button>
-    <div class="stp-namer"><label for="stpNm">Donne-lui un nom</label><input id="stpNm" maxlength="12" autocomplete="off" autocapitalize="characters" spellcheck="false"><button class="stp-go" id="stpOk">C'est son nom !</button></div>`;
+    <div class="stp-namer"><label for="stpNm">Choisis son nom</label><input id="stpNm" maxlength="12" autocomplete="off" autocapitalize="words" spellcheck="false" placeholder="Son nom"><button class="stp-go" id="stpOk">C'est son nom !</button></div>`;
   document.body.appendChild(el);
   let i = -1;
   const spr = el.querySelector(".stp-spr"), go = el.querySelector(".stp-go"), nm = el.querySelector("#stpNm");
@@ -6864,7 +6876,7 @@ function starterPicker(){
     spr.removeAttribute("src");
     const c = ballCol(); one.innerHTML = tmBall(c); car.style.setProperty("--tmc", c);
     one.classList.remove("in-l","in-r"); void one.offsetWidth; if(show.d){ one.classList.add(show.d>0?"in-r":"in-l"); clearTimeout(one._t); one._t = setTimeout(()=>one.classList.remove("in-l","in-r"), 300); }
-    el.querySelector(".stp-name").textContent = "???";
+    el.querySelector(".stp-name").textContent = "";
     el.querySelector(".stp-hint").textContent = lock ? "Verrouillé · carte n°151" : "Touche la balle pour l'ouvrir";
     el.querySelector(".stp-type").textContent = lock ? "SECRET" : st.t;
     el.querySelectorAll(".stp-dots i").forEach((d,j)=>d.classList.toggle("on", j===i));
@@ -6889,15 +6901,15 @@ function starterPicker(){
     setTimeout(()=>{
       el.classList.remove("opening"); el.classList.add("opened");
       spr.src = st.img; spr.classList.remove("hide","lock"); spr.classList.add("reveal");
-      el.querySelector(".stp-name").textContent = st.n; el.querySelector(".stp-hint").textContent = "";
+      el.querySelector(".stp-name").textContent = ""; el.querySelector(".stp-hint").textContent = "";
       try{ navigator.vibrate?.([20,40,30]); }catch(e){}
-      setTimeout(()=>{ el.classList.add("naming"); nm.value = st.n; nm.focus(); nm.select(); }, 1000);
+      setTimeout(()=>{ el.classList.add("naming"); nm.value = ""; okb.disabled = true; nm.focus(); }, 1000);
       setTimeout(()=>fx.stop(), 1600);
     }, 900);
   };
   const finish = ()=>{
     const st = STARTERS[i]; if(!st || !el.classList.contains("naming")) return;
-    const name = nm.value.trim().replace(/\s+/g," ").slice(0,12) || st.n;
+    const name = nm.value.trim().replace(/\s+/g," ").slice(0,12); if(!name){ nm.focus(); return; }
     nm.blur(); el.classList.remove("naming"); el.querySelector(".stp-name").textContent = name.toUpperCase();
     store.set("starterName", name);
     store.set("starter", st.k); store.set("starterT", Date.now()); store.set("lvl", lvOf(acctXP()));
@@ -6918,7 +6930,8 @@ function starterPicker(){
     }, 800);
   };
   one.onclick = ()=>{ if(i >= 0) go.onclick(); };
-  el.querySelector("#stpOk").onclick = finish;
+  const okb = el.querySelector("#stpOk"); okb.onclick = finish;
+  nm.addEventListener("input", ()=>{ okb.disabled = !nm.value.trim(); });
   nm.addEventListener("keydown", e=>{ if(e.key==="Enter"){ e.preventDefault(); finish(); } });
 }
 
@@ -7125,7 +7138,7 @@ function teamReveal(k){
   $("#sheetTitle").textContent = "Nouveau compagnon";
   $("#sheetBody").innerHTML = `<div class="lvsheet"><img class="px reveal" src="${s.img}" alt=""><div class="stp-name" style="margin-top:4px">${esc(s.n)}</div>
     <div style="font-size:13px;color:var(--muted);margin-top:4px">${esc(s.t)} · thème ${esc(THEMES[s.th]?.name||"")} débloqué</div>
-    <div class="rkform" style="text-align:left;margin-top:14px"><label for="tmNm">Donne-lui un nom</label><input id="tmNm" maxlength="12" autocomplete="off" spellcheck="false" value="${esc(s.n)}"></div>
+    <div class="rkform" style="text-align:left;margin-top:14px"><label for="tmNm">Choisis son nom</label><input id="tmNm" maxlength="12" autocomplete="off" spellcheck="false" placeholder="Son nom"></div>
     <button class="btn btn-y" id="tmSwap" style="width:100%">En faire mon compagnon</button>
     <button class="btn" id="tmKeep" style="width:100%;margin-top:8px">Garder ${esc(petName() || cur?.n || "")}</button>
     <p class="fine" style="margin-top:10px">Il reste dans ton équipe : tu pourras changer de compagnon quand tu veux en touchant ton compagnon en haut à gauche.</p></div>`;

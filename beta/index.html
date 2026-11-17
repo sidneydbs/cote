@@ -156,6 +156,10 @@ html{background:var(--panel)}
 .dtile.add{background:color-mix(in srgb,var(--border-yellow) 12%,var(--panel));border:1.5px solid var(--border-yellow);color:var(--border-yellow)}
 .dtile.add b{font-size:14px}.dtile.add .tv{font-size:12.5px;color:var(--up)}
 .dtile.small{min-height:76px}
+.bpendh{margin:0 0 8px;font:700 11.5px var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.bpend{display:flex;flex-direction:column;gap:6px;margin:0 0 14px}
+.bpend>div{display:flex;gap:10px;align-items:baseline;padding:9px 11px;border-radius:12px;background:rgba(0,0,0,.22);border:1px solid var(--line);font-size:14px;line-height:1.35;color:var(--fg)}
+.bpv{flex:none;font:800 11.5px var(--f-mono);color:var(--on-acc);background:var(--border-yellow);padding:2px 7px;border-radius:7px}
 #addCol.dtile.add{position:relative;isolation:isolate;overflow:hidden;border:0;color:#fff;background:linear-gradient(90deg,#FF7AA8,#FFD86E,#7CF3B0,#7CD8FF,#C49BFF,#FF7AA8) 0 0/300% 300%;animation:hrkFoil 5s linear infinite,hrkGlow 2.6s ease-in-out infinite alternate;backdrop-filter:none;-webkit-backdrop-filter:none}
 #addCol.dtile.add::before{content:"";position:absolute;inset:2px;border-radius:14px;z-index:-1;background:linear-gradient(90deg,rgba(255,122,168,.16),rgba(255,216,110,.1),rgba(124,243,176,.1),rgba(124,216,255,.16),rgba(196,155,255,.2),rgba(255,122,168,.16)) 0 0/300% 300%,radial-gradient(circle at 25% 15%,#3A2F5C,#120E22 75%);animation:hrkFoil 7s linear infinite}
 #addCol.dtile.add::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;mix-blend-mode:color-dodge;opacity:.55;background:linear-gradient(115deg,transparent 40%,rgba(255,255,255,.85) 49%,transparent 58%) 0 0/300% 100% no-repeat,linear-gradient(115deg,transparent 18%,rgba(255,0,170,.45) 34%,rgba(0,255,230,.45) 44%,rgba(255,255,0,.4) 54%,rgba(120,80,255,.4) 64%,transparent 80%) 0 0/260% 260%;animation:hrkGlint 3.4s ease-in-out infinite}
@@ -1657,7 +1661,7 @@ img.px.reveal{animation:stpRev .9s ease-out}
   }
   fit(); addEventListener("resize", fit); addEventListener("orientationchange", function(){ setTimeout(fit, 300); });
 })();</script>
-<script>window.__APPV="133";</script>
+<script>window.__APPV="134";</script>
 <div class="splash" id="splash" aria-hidden="true"><i class="hole"></i><i class="halo"></i><div class="bw"><svg class="b" viewBox="0 0 100 100"><use href="#pb"/></svg><svg class="t" viewBox="0 0 100 100"><use href="#pb"/></svg></div><i class="glow"></i></div>
 <script>setTimeout(function(){ if(window.__booted) return;
   var b=document.createElement("div"); b.setAttribute("role","alert");
@@ -1692,7 +1696,7 @@ img.px.reveal{animation:stpRev .9s ease-out}
   <!-- ===== EXTENSIONS ===== -->
   <section class="view" id="homeView">
     <div class="scroll">
-      <div class="homebar"><span id="avatSlot"><svg class="pball" viewBox="0 0 100 100" aria-hidden="true"><use href="#pb"/></svg></span><span class="brand">DEX<b>·</b>SCAN</span><button class="thbtn" id="themeBtn" aria-label="Changer de thème"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.6-.9 1.2-1.8-.5-1.1.2-2.2 1.4-2.2H17a4 4 0 0 0 4-4c0-5.5-4-10-9-10z"/><circle cx="7.5" cy="11" r="1.2"/><circle cx="10" cy="7" r="1.2"/><circle cx="15" cy="7" r="1.2"/></svg></button><span class="ver" id="hVer">v133</span></div>
+      <div class="homebar"><span id="avatSlot"><svg class="pball" viewBox="0 0 100 100" aria-hidden="true"><use href="#pb"/></svg></span><span class="brand">DEX<b>·</b>SCAN</span><button class="thbtn" id="themeBtn" aria-label="Changer de thème"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.6-.9 1.2-1.8-.5-1.1.2-2.2 1.4-2.2H17a4 4 0 0 0 4-4c0-5.5-4-10-9-10z"/><circle cx="7.5" cy="11" r="1.2"/><circle cx="10" cy="7" r="1.2"/><circle cx="15" cy="7" r="1.2"/></svg></button><span class="ver" id="hVer">v134</span></div>
       <button class="banner" id="pxBanner" hidden></button>
       <div class="hhead"><div><span class="hdate" id="hDate"></span><div class="htitle"><h1 class="h1">Accueil</h1><button class="hsearch hrank" id="hRank" aria-label="Classement"><svg viewBox="0 0 24 24" fill="none" stroke="url(#hrkG)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><defs><linearGradient id="hrkG" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFF4C2"/><stop offset=".35" stop-color="#FFD86E"/><stop offset=".65" stop-color="#7CF3FF"/><stop offset="1" stop-color="#E2B8FF"/></linearGradient></defs><path d="M8 21h8M12 17v4"/><path d="M7 4h10v5a5 5 0 0 1-10 0z"/><path d="M17 5h3v2a3 3 0 0 1-3 3M7 5H4v2a3 3 0 0 0 3 3"/></svg></button></div></div><button class="hsearch" id="hSearch" aria-label="Rechercher une carte"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></button></div>
       <div class="total htot" id="hTot"></div>
@@ -7775,6 +7779,7 @@ async function betaPublishFlow(){
     <div class="total" style="text-align:center"><div class="plabel" style="justify-content:center"><span>Pour tous les utilisateurs</span></div>
       <div class="pmain" style="justify-content:center;font:800 30px var(--f-mono)">v${pv??"?"} → v${v}</div>
       <p class="psub" style="margin:4px 0 0">Ils l'auront à leur prochaine ouverture de Dex Scan, avec la fenêtre « Quoi de neuf ».</p></div>
+    ${betaPending(pv).length?`<p class="sk-th">Modifications envoyées</p>${betaPendHTML(betaPending(pv))}`:""}
     ${news.length?`<p class="sk-th">Ce qu'ils vont voir</p><div class="mlist" style="margin-bottom:14px">${news.map(n=>`<div style="padding:10px 12px"><b>${esc(n[1])}</b><br><small class="psub">${esc(n[2])}</small></div>`).join("")}</div>`:`<p class="psub">Aucune nouveauté annoncée pour cette version : la mise à jour se fera sans fenêtre « Quoi de neuf ».</p>`}
     <button class="btn btn-y" id="bpGo" style="width:100%">Publier la v${v}</button>
     <p class="psub" id="bpLog" style="text-align:center;margin:10px 0 0"></p>
@@ -7788,6 +7793,22 @@ async function betaPublishFlow(){
     }catch(e){ b.disabled = false; $("#bpLog").innerHTML = `<span class="down">${esc(e.message)}</span>`; }
   };
 }
+/* Journal des modifications de la Bêta : la carte « Version Bêta » liste celles que les copains n'ont pas encore */
+const BETA_LOG = [
+  {v:134, t:"Carte Bêta : liste des modifications en attente de publication"},
+  {v:133, t:"Bouton « Ajouter à ma collection » holographique sur la fiche carte"},
+  {v:133, t:"Bouton Classement : reflet holo sans coupure de couleur"},
+  {v:132, t:"Bouton Classement holographique sur l'Accueil"},
+  {v:131, t:"Classeur : rangement et disposition toujours visibles"},
+  {v:130, t:"Le Fil ne garde que Réassorts et Nouveautés"},
+  {v:128, t:"Le Fil : publier sans choisir de type"},
+  {v:127, t:"Accueil en 2 onglets « Ma collection | Le Fil »"},
+  {v:126, t:"Compagnon Cristalis (thème Glass)"},
+  {v:125, t:"Une Poké Ball par thème"},
+  {v:124, t:"Tous les starters au choix, titre « Starter thème »"}
+];
+const betaPending = pv => BETA_LOG.filter(x=>x.v>(pv||0) && x.v<=+window.__APPV);
+const betaPendHTML = l => `<div class="bpend">${l.map(x=>`<div><span class="bpv">v${x.v}</span><span>${esc(x.t)}</span></div>`).join("")}</div>`;
 async function betaCard(){
   if(!window.__BETA) return;
   let el = $("#betaCard");
@@ -7796,6 +7817,7 @@ async function betaCard(){
   el.innerHTML = `<div class="plabel"><span>🧪 Version Bêta</span><span>tes copains : v${pv??"?"}</span></div>
     <div class="pmain" style="font:800 26px var(--f-mono)">v${v}</div>
     <p class="psub" style="margin:0 0 12px">${done?"Tout le monde a déjà cette version.":"Visible seulement ici. Ses données sont séparées de ta vraie app."}</p>
+    ${(()=>{ const l = done ? [] : betaPending(pv); return l.length ? `<p class="bpendh">En attente de publication · ${l.length}</p>${betaPendHTML(l)}` : ""; })()}
     <button class="btn ${done?"btn-g":"btn-y"}" id="betaPub" style="width:100%" ${done?"disabled":""}>${done?"Déjà publiée":"🚀 Publier pour tout le monde"}</button>`;
   $("#betaPub").onclick = betaPublishFlow;
 }

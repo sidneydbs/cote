@@ -4,7 +4,8 @@ on:
   push:
     paths: ["scripts/build-rarities.mjs", ".github/workflows/rarities.yml"]
   schedule:
-    - cron: "41 5,13,21 * * *"
+    # toutes les heures (à h+13)
+    - cron: "13 * * * *"
 permissions:
   contents: write
   pages: write

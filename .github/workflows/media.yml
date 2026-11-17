@@ -4,7 +4,8 @@ on:
   push:
     paths: ["scripts/build-media.mjs", ".github/workflows/media.yml", "scripts/media-sources.json"]
   schedule:
-    - cron: "37 */6 * * *"
+    # toutes les 3 heures
+    - cron: "37 */3 * * *"
 permissions:
   contents: write
   pages: write

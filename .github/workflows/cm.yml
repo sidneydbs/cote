@@ -4,7 +4,8 @@ on:
   push:
     paths: ["scripts/build-cm.mjs", ".github/workflows/cm.yml"]
   schedule:
-    - cron: "23 7,15,23 * * *"
+    # toutes les heures (à h+23)
+    - cron: "23 * * * *"
 permissions:
   contents: write
   pages: write

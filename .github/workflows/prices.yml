@@ -4,8 +4,8 @@ on:
   push:
     paths: ["scripts/build-prices.mjs", ".github/workflows/prices.yml"]
   schedule:
-    # heure de Paris (hiver, UTC+1) : 8 h, 10 h, 12 h, 15 h, 18 h, 20 h, 23 h, 2 h, 5 h. GitHub ne compte qu'en UTC : en heure d'été, tout arrive 1 h plus tard.
-    - cron: "0 1,4,7,9,11,14,17,19,22 * * *"
+    # toutes les heures (à h+7)
+    - cron: "7 * * * *"
 permissions:
   contents: write
   pages: write

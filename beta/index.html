@@ -7931,7 +7931,7 @@ function homeSeg(){
 }
 (async()=>{
   if(window.__BETA){ homeSeg(); }
-  else { try{ await fdApi("?f=all&peek=1"); FEED.live = true; homeSeg(); }catch(e){} }   // en production : seulement quand le serveur est prêt
+  else { try{ const j = await fdApi("?f=all&peek=1"); if(!Array.isArray(j.posts)) throw 0; FEED.live = true; homeSeg(); }catch(e){} }   // en production : seulement quand le serveur est prêt
   if($("#hseg") && !FEED.on){ fdLoad(); }
   setInterval(()=>{ if(document.visibilityState==="visible" && $("#hseg") && FEED.live) fdLoad(); }, 120000);
 })();

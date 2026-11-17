@@ -53,8 +53,16 @@ button{font:inherit;color:inherit;border:0;background:none;cursor:pointer}
 button:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--border-yellow);outline-offset:2px}
 input,select{font:inherit;color:var(--fg)}
 .app{position:fixed;inset:0;display:flex;flex-direction:column}
+/* app installée sur iPhone : la hauteur donnée par iOS oublie parfois la zone de la barre d'accueil (bande noire sous les onglets).
+   --appH (calculée au démarrage) étire l'app et les grands panneaux jusqu'au vrai bas de l'écran. */
+.app,.sheet,.gov,#foilView,#newsBox{height:var(--appH,auto)}
+html.fullh .app,html.fullh .sheet,html.fullh .gov,html.fullh #foilView,html.fullh #newsBox{bottom:auto}
+/* bande sous l'heure et la batterie : le contenu qui défile passe dessous au lieu de s'y superposer */
+.app::before{content:"";position:fixed;left:0;right:0;top:0;height:var(--safe-t);z-index:15;pointer-events:none;background:var(--ink)}
+:root[data-theme="verre"] .app::before{background:rgba(11,12,18,.55);-webkit-backdrop-filter:blur(18px) saturate(160%);backdrop-filter:blur(18px) saturate(160%)}
+#scanView{z-index:16}
 .view{flex:1;min-height:0;position:relative;overflow:hidden}
-.scroll{position:absolute;inset:0;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:calc(var(--safe-t) + 18px) max(16px,env(safe-area-inset-right,0px)) 24px max(16px,env(safe-area-inset-left,0px))}
+.scroll{position:absolute;inset:0;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:calc(var(--safe-t) + 18px) max(16px,env(safe-area-inset-right,0px)) 44px max(16px,env(safe-area-inset-left,0px))}
 
 /* ---------- Scanner ---------- */
 #scanView{background:#000}
@@ -1102,7 +1110,8 @@ html{background:var(--panel)}
 :root[data-theme="kanto"]{--ink:#FBF8F3;--panel:#FFFFFF;--panel-2:#F3EEE6;--line:#E6DCD0;--fg:#1B1B1B;--muted:#7A6F66;--border-yellow:#E3350D;--border-deep:#A8240A;--on-acc:#FFFFFF;--t-fill:#FFFFFF;--t-stroke:#E3350D;--t-shadow:#1B1B1B;--pb1:#FF6A4D;--pb2:#E3350D;--pb3:#A8240A;--pbb1:#FFFFFF;--pbb2:#E4DED6;--pbc1:#FFFFFF;--pbc2:#F4F4F4;--pbc3:#D6D6D6;--soft:#3A3330;--sp1:#FFD9CF;--up:#1E9E5A;--down:#D62F14;color-scheme:light;}
 /* ---- Verre (essai) : halos de couleur au fond, verre dépoli sur ce qui flotte au-dessus ---- */
 :root[data-theme="verre"]{--ink:#0B0C12;--panel:rgba(255,255,255,.07);--panel-2:rgba(255,255,255,.11);--line:rgba(255,255,255,.15);--fg:#F4F5F8;--muted:#AEB3C2;--border-yellow:#F2C230;--border-deep:#C9941A;--on-acc:#1A1408;--t-fill:#121212;--t-stroke:#FFE98A;--t-shadow:#8A6A00;--pb1:#FFE98A;--pb2:#F2C230;--pb3:#8A6A00;--pbb1:#2B2735;--pbb2:#09080D;--pbc1:#F1E6FF;--pbc2:#B98CFF;--pbc3:#F2C230;--soft:#D4D6DE;--sp1:#3A3000;
-  --vhalo:radial-gradient(70vmax 70vmax at -10% -5%,rgba(242,194,48,.34),transparent 60%),radial-gradient(70vmax 70vmax at 110% 45%,rgba(123,77,255,.36),transparent 60%),radial-gradient(60vmax 60vmax at 5% 105%,rgba(25,195,166,.26),transparent 60%)}
+  --va:242,194,48;--vh1:242,194,48;--vh2:123,77,255;--vh3:25,195,166;--vi:1;--vtx:#FFF4CC;
+  --vhalo:radial-gradient(70vmax 70vmax at -10% -5%,rgba(var(--vh1),calc(.34*var(--vi))),transparent 60%),radial-gradient(70vmax 70vmax at 110% 45%,rgba(var(--vh2),calc(.36*var(--vi))),transparent 60%),radial-gradient(60vmax 60vmax at 5% 105%,rgba(var(--vh3),calc(.26*var(--vi))),transparent 60%)}
 :root[data-theme="verre"] body,:root[data-theme="verre"] .sheet{background:var(--vhalo),#0B0C12;background-attachment:fixed}
 :root[data-theme="verre"] :is(.tabs,.sheet-bar,.gbar,.total,.price,.dcote,.dtile,.hqa button,.mlist,.btn-g,.mvrow,.dd>summary,.wper,.seg,.colqty>button){
   -webkit-backdrop-filter:blur(22px) saturate(170%);backdrop-filter:blur(22px) saturate(170%);
@@ -1111,8 +1120,18 @@ html{background:var(--panel)}
   box-shadow:inset 0 1px 0 rgba(255,255,255,.38),inset 1px 0 0 rgba(255,255,255,.08),0 14px 34px -14px rgba(0,0,0,.65)}
 :root[data-theme="verre"] .tabs{background-color:rgba(12,13,20,.5);border-top-color:rgba(255,255,255,.14)}
 :root[data-theme="verre"] .sheet-bar,:root[data-theme="verre"] .gbar{background-color:rgba(12,13,20,.45)}
-:root[data-theme="verre"] :is(.hqa button.on,.dtile.add,.dcote){background-image:linear-gradient(145deg,rgba(242,194,48,.34),rgba(242,194,48,.12) 50%,rgba(242,194,48,.2));border-color:rgba(255,226,140,.5)}
-:root[data-theme="verre"] .hqa button.on{background-color:transparent;color:#FFF4CC}
+:root[data-theme="verre"] :is(.hqa button.on,.dtile.add,.dcote){background-image:linear-gradient(145deg,rgba(var(--va),.34),rgba(var(--va),.12) 50%,rgba(var(--va),.2));border-color:rgba(var(--va),.55)}
+:root[data-theme="verre"] .hqa button.on{background-color:transparent;color:var(--vtx)}
+.vcol{margin:4px 0 14px;padding:12px;border-radius:16px;background:var(--panel);border:1px solid var(--line)}
+.vcol b{display:block;font-size:14px;margin-bottom:10px}
+.vsw{display:flex;flex-wrap:wrap;gap:10px}
+.vsw button,.vsw label{width:40px;height:40px;border-radius:50%;border:2px solid rgba(255,255,255,.18);padding:0;cursor:pointer;position:relative;display:grid;place-items:center;box-shadow:inset 0 1px 0 rgba(255,255,255,.4)}
+.vsw [aria-pressed="true"]{outline:3px solid var(--fg);outline-offset:2px}
+.vsw label{background:conic-gradient(#f44,#fd4,#4d6,#4cf,#86f,#f4c,#f44)}
+.vsw label input{position:absolute;inset:0;opacity:0;width:100%;height:100%;cursor:pointer}
+.vsw label span{width:16px;height:16px;border-radius:50%;background:var(--ink);display:grid;place-items:center;font:800 13px/1 var(--f-body);color:var(--fg)}
+.vint{display:flex;align-items:center;gap:10px;margin-top:12px;font-size:13px;color:var(--muted)}
+.vint input{flex:1;accent-color:var(--border-yellow)}
 /* thèmes clairs : petits textes et ombres adaptés */
 :root[data-theme="plante"] .total,:root[data-theme="kanto"] .total,:root[data-theme="plante"] .sets,:root[data-theme="kanto"] .sets{box-shadow:0 2px 10px rgba(0,0,0,.06)}
 :root[data-theme="plante"] .tag,:root[data-theme="kanto"] .tag{color:var(--soft)}
@@ -1424,7 +1443,24 @@ img.px.reveal{animation:stpRev .9s ease-out}
 </head>
 <body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="pb" viewBox="0 0 100 100"><defs><linearGradient id="pbV" x1="0" y1="0" x2="1" y2="1"><stop offset="0" style="stop-color:var(--pb1)"/><stop offset=".5" style="stop-color:var(--pb2)"/><stop offset="1" style="stop-color:var(--pb3)"/></linearGradient><radialGradient id="pbB" cx=".38" cy=".75" r=".75"><stop offset="0" style="stop-color:var(--pbb1)"/><stop offset="1" style="stop-color:var(--pbb2)"/></radialGradient><radialGradient id="pbC" cx=".4" cy=".35" r=".7"><stop offset="0" style="stop-color:var(--pbc1)"/><stop offset=".55" style="stop-color:var(--pbc2)"/><stop offset="1" style="stop-color:var(--pbc3)"/></radialGradient></defs><path d="M3 50a47 47 0 0 1 94 0z" fill="url(#pbV)"/><path d="M3 50a47 47 0 0 0 94 0z" fill="url(#pbB)"/><rect x="3" y="45.5" width="94" height="9" fill="#09080D"/><circle cx="50" cy="50" r="47" fill="none" stroke="#09080D" stroke-width="4"/><circle cx="50" cy="50" r="15.5" fill="#09080D"/><circle cx="50" cy="50" r="10" fill="url(#pbC)" style="stroke:var(--pb2)" stroke-width="2"/><path d="M19 33a35 35 0 0 1 17-15" fill="none" stroke="#fff" stroke-opacity=".38" stroke-width="4" stroke-linecap="round"/></symbol></svg>
-<script>window.__APPV="112";</script>
+<script>(function(){
+  // app installée (écran d'accueil) : étirer jusqu'au vrai bas de l'écran si iOS donne une hauteur trop courte
+  var sa = navigator.standalone === true || (window.matchMedia && matchMedia("(display-mode: standalone)").matches);
+  if(!sa) return;
+  function fit(){
+    var por = innerHeight >= innerWidth, sh = por ? Math.max(screen.height, screen.width) : Math.min(screen.height, screen.width);
+    var gap = sh - innerHeight, r = document.documentElement;
+    if(gap > 0 && gap < 120){
+      r.style.setProperty("--appH", sh + "px"); r.classList.add("fullh");
+      // zone de la barre d'accueil non signalée par iOS : on la réserve nous-mêmes sous les onglets
+      var pr = document.createElement("div"); pr.style.cssText = "position:fixed;bottom:0;height:env(safe-area-inset-bottom,0px);visibility:hidden";
+      document.documentElement.appendChild(pr); var sb = pr.offsetHeight; pr.remove();
+      if(sb < gap) r.style.setProperty("--safe-b", Math.max(sb, Math.min(34, gap)) + "px");
+    } else { r.style.removeProperty("--appH"); r.classList.remove("fullh"); }
+  }
+  fit(); addEventListener("resize", fit); addEventListener("orientationchange", function(){ setTimeout(fit, 300); });
+})();</script>
+<script>window.__APPV="113";</script>
 <div class="splash" id="splash" aria-hidden="true"><i class="hole"></i><i class="halo"></i><div class="bw"><svg class="b" viewBox="0 0 100 100"><use href="#pb"/></svg><svg class="t" viewBox="0 0 100 100"><use href="#pb"/></svg></div><i class="glow"></i></div>
 <script>setTimeout(function(){ if(window.__booted) return;
   var b=document.createElement("div"); b.setAttribute("role","alert");
@@ -1459,7 +1495,7 @@ img.px.reveal{animation:stpRev .9s ease-out}
   <!-- ===== EXTENSIONS ===== -->
   <section class="view" id="homeView">
     <div class="scroll">
-      <div class="homebar"><span id="avatSlot"><svg class="pball" viewBox="0 0 100 100" aria-hidden="true"><use href="#pb"/></svg></span><span class="brand">DEX<b>·</b>SCAN</span><button class="thbtn" id="themeBtn" aria-label="Changer de thème"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.6-.9 1.2-1.8-.5-1.1.2-2.2 1.4-2.2H17a4 4 0 0 0 4-4c0-5.5-4-10-9-10z"/><circle cx="7.5" cy="11" r="1.2"/><circle cx="10" cy="7" r="1.2"/><circle cx="15" cy="7" r="1.2"/></svg></button><span class="ver">v112</span></div>
+      <div class="homebar"><span id="avatSlot"><svg class="pball" viewBox="0 0 100 100" aria-hidden="true"><use href="#pb"/></svg></span><span class="brand">DEX<b>·</b>SCAN</span><button class="thbtn" id="themeBtn" aria-label="Changer de thème"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.6-.9 1.2-1.8-.5-1.1.2-2.2 1.4-2.2H17a4 4 0 0 0 4-4c0-5.5-4-10-9-10z"/><circle cx="7.5" cy="11" r="1.2"/><circle cx="10" cy="7" r="1.2"/><circle cx="15" cy="7" r="1.2"/></svg></button><span class="ver">v113</span></div>
       <button class="banner" id="pxBanner" hidden></button>
       <div class="hhead"><div><span class="hdate" id="hDate"></span><div class="htitle"><h1 class="h1">Accueil</h1><button class="hsearch hrank" id="hRank" aria-label="Classement"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 21h8M12 17v4"/><path d="M7 4h10v5a5 5 0 0 1-10 0z"/><path d="M17 5h3v2a3 3 0 0 1-3 3M7 5H4v2a3 3 0 0 0 3 3"/></svg></button></div></div><button class="hsearch" id="hSearch" aria-label="Rechercher une carte"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></button></div>
       <div class="total htot" id="hTot"></div>
@@ -6779,7 +6815,7 @@ function starterPicker(){
   const show = ()=>{
     const st = STARTERS[i], lock = !!(st.secret && !store.get("kanto", false));   // !! : toggle(x, undefined) basculerait au lieu de retirer
     el.classList.remove("empty"); document.documentElement.classList.toggle("nostart", lock);
-    if(!lock){ document.documentElement.dataset.theme = st.th; const m = document.querySelector('meta[name="theme-color"]'); if(m && THEMES[st.th]) m.content = THEMES[st.th].ink; }
+    if(!lock){ document.documentElement.dataset.theme = st.th; try{ applyVerre(); }catch(e){} const m = document.querySelector('meta[name="theme-color"]'); if(m && THEMES[st.th]) m.content = THEMES[st.th].ink; }
     spr.classList.add("hide");
     setTimeout(()=>{ spr.src = st.img; spr.classList.add("lock"); spr.classList.remove("hide"); }, 160);   // tous en silhouette : on ne le découvre qu'une fois choisi
     el.querySelector(".stp-name").textContent = lock ? "???" : st.n;
@@ -6873,9 +6909,35 @@ document.addEventListener("visibilitychange", ()=>{ if(!document.hidden) checkUp
 
 /* ---------------- Thèmes (dont Kanto, secret : se débloque en scannant Mew, le n°151) ---------------- */
 const THEMES = {"verre": {"name": "Verre", "desc": "Verre dépoli, à l'essai", "ink": "#0B0C12", "panel": "#1A1C26", "acc": "#F2C230", "fg": "#F4F5F8", "pb": "#F2C230", "bottom": "#1a1a1a"}, "spectre": {"name": "Spectre", "desc": "Nuit violette", "ink": "#0E0B14", "panel": "#1A1524", "acc": "#9B5CFF", "fg": "#F1EAFF", "pb": "#7B2FF7", "bottom": "#1a1a1a"}, "feu": {"name": "Feu", "desc": "Braise, orange et rouge", "ink": "#120B09", "panel": "#1F1410", "acc": "#FF6B2C", "fg": "#FFF1E8", "pb": "#E8361C", "bottom": "#1a1a1a"}, "eau": {"name": "Eau", "desc": "Bleu abyssal et turquoise", "ink": "#07111C", "panel": "#0E1C2C", "acc": "#29B6F6", "fg": "#E6F4FF", "pb": "#1478D4", "bottom": "#1a1a1a"}, "electrik": {"name": "Électrik", "desc": "Graphite et jaune foudre", "ink": "#0F0F10", "panel": "#1B1B1E", "acc": "#FFD43B", "fg": "#F7F7F2", "pb": "#F2C230", "bottom": "#1a1a1a"}, "plante": {"name": "Plante", "desc": "Clair, crème et vert", "ink": "#F4F1E8", "panel": "#FFFFFF", "acc": "#2F9E44", "fg": "#1E2A1F", "pb": "#2F9E44", "bottom": "#1a1a1a"}, "kanto": {"name": "Kanto", "desc": "Rouge et blanc des origines", "ink": "#FBF8F3", "panel": "#FFFFFF", "acc": "#E3350D", "fg": "#1B1B1B", "pb": "#E3350D", "bottom": "#FFFFFF"}};
+/* ---- couleur du thème Verre : une teinte au choix (ou personnalisée) + intensité des halos ---- */
+const VCOLS = {or:{n:"Or",a:"#F2C230",h:["#F2C230","#7B4DFF","#19C3A6"]},violet:{n:"Violet",a:"#A77BFF",h:["#A77BFF","#FF5CAA","#408CFF"]},bleu:{n:"Bleu",a:"#4FB8FF",h:["#4FB8FF","#19C3A6","#7B4DFF"]},vert:{n:"Vert",a:"#3FD07A",h:["#3FD07A","#F2C230","#19A0C8"]},rose:{n:"Rose",a:"#FF6FB5",h:["#FF6FB5","#FFA03C","#7B4DFF"]},rouge:{n:"Rouge",a:"#FF5A4A",h:["#FF5A4A","#F2C230","#B432A0"]},givre:{n:"Givre",a:"#DCE6F5",h:["#B4C8E6","#788CBE","#C8D2E6"]}};
+const VPROPS = ["--va","--vh1","--vh2","--vh3","--vi","--vtx","--border-yellow","--border-deep","--on-acc","--pb1","--pb2","--pb3","--pbc3","--t-stroke","--t-shadow"];
+const hexRgb = h=>{ h=h.replace("#",""); if(h.length===3) h=h.replace(/./g,"$&$&"); const n=parseInt(h,16); return [n>>16&255,n>>8&255,n&255]; };
+const rgbHex = a=>"#"+a.map(v=>Math.round(Math.max(0,Math.min(255,v))).toString(16).padStart(2,"0")).join("");
+const mixRgb = (a,b,t)=>a.map((v,i)=>v+(b[i]-v)*t);
+function rgbHsl([r,g,b]){ r/=255;g/=255;b/=255; const mx=Math.max(r,g,b),mn=Math.min(r,g,b),l=(mx+mn)/2; let h=0,s=0; if(mx!==mn){ const d=mx-mn; s=l>.5?d/(2-mx-mn):d/(mx+mn); h=mx===r?(g-b)/d+(g<b?6:0):mx===g?(b-r)/d+2:(r-g)/d+4; h*=60; } return [h,s,l]; }
+function hslRgb(h,s,l){ h=((h%360)+360)%360; const c=(1-Math.abs(2*l-1))*s,x=c*(1-Math.abs((h/60)%2-1)),m=l-c/2; const [r,g,b]=h<60?[c,x,0]:h<120?[x,c,0]:h<180?[0,c,x]:h<240?[0,x,c]:h<300?[x,0,c]:[c,0,x]; return [(r+m)*255,(g+m)*255,(b+m)*255]; }
+function verreCfg(){ const c = store.get("verreCol", null) || {k:"or"}; const p = VCOLS[c.k];
+  if(p) return {a:p.a, h:p.h, i:c.i ?? 1};
+  const a = /^#[0-9a-f]{6}$/i.test(c.a||"") ? c.a : "#F2C230", [hh,ss] = rgbHsl(hexRgb(a)), S=Math.max(.45,ss);
+  return {a, h:[a, rgbHex(hslRgb(hh+150,S,.6)), rgbHex(hslRgb(hh-110,S,.5))], i:c.i ?? 1}; }
+function applyVerre(){
+  const r = document.documentElement.style;
+  if(document.documentElement.dataset.theme !== "verre"){ VPROPS.forEach(p=>r.removeProperty(p)); return; }
+  const c = verreCfg(), a = hexRgb(c.a), lum = (.2126*a[0]+.7152*a[1]+.0722*a[2])/255;
+  const W=[255,255,255], K=[0,0,0], deep = mixRgb(a,K,.28), light = mixRgb(a,W,.45);
+  const set = (k,v)=>r.setProperty(k,v);
+  set("--va", a.join(",")); c.h.forEach((h,i)=>set("--vh"+(i+1), hexRgb(h).join(","))); set("--vi", String(c.i));
+  set("--vtx", rgbHex(mixRgb(a,W,.78))); set("--border-yellow", c.a); set("--border-deep", rgbHex(deep));
+  set("--on-acc", lum>.55 ? "#16130A" : "#FFFFFF"); set("--pb1", rgbHex(light)); set("--pb2", c.a); set("--pb3", rgbHex(mixRgb(a,K,.55)));
+  set("--pbc3", c.a); set("--t-stroke", rgbHex(light)); set("--t-shadow", rgbHex(mixRgb(a,K,.55)));
+  THEMES.verre.acc = THEMES.verre.pb = c.a;
+}
+function setVerre(o){ store.set("verreCol", {...(store.get("verreCol", null)||{k:"or"}), ...o}); applyVerre(); }
+applyVerre();
 function setTheme(k){
   if(!THEMES[k] || (k==="kanto" && !store.get("kanto",false))) k = "spectre";
-  document.documentElement.dataset.theme = k; store.set("theme", k);
+  document.documentElement.dataset.theme = k; store.set("theme", k); applyVerre();
   const m = document.querySelector('meta[name="theme-color"]'); if(m) m.content = THEMES[k].ink;
   if(!$("#colView").hidden) renderCol();
 }
@@ -6883,7 +6945,9 @@ function swatch(t){ return `<div class="sw" style="background:${t.ink}"><svg vie
 function openThemes(){
   const cur = document.documentElement.dataset.theme, ok = store.get("kanto", false);
   $("#sheetTitle").textContent = "Thème";
-  $("#sheetBody").innerHTML = `<p class="lede" style="margin:0 0 8px">Chaque compagnon de ton équipe débloque son thème. Un nouveau compagnon arrive aux niveaux 5, 10, 15 et 20.</p><div class="thgrid">${
+  $("#sheetBody").innerHTML = `<p class="lede" style="margin:0 0 8px">Chaque compagnon de ton équipe débloque son thème. Un nouveau compagnon arrive aux niveaux 5, 10, 15 et 20.</p>${cur==="verre" ? (()=>{ const vc = store.get("verreCol", null)||{k:"or"}, cf = verreCfg();
+    return `<div class="vcol"><b>Couleur du verre</b><div class="vsw">${Object.entries(VCOLS).map(([k,p])=>`<button data-vc="${k}" aria-pressed="${vc.k===k}" aria-label="${p.n}" title="${p.n}" style="background:radial-gradient(circle at 30% 25%,#fff8,transparent 45%),linear-gradient(140deg,${p.h[0]},${p.h[1]})"></button>`).join("")}<label aria-pressed="${vc.k==="perso"}" title="Couleur personnalisée"${vc.k==="perso"?` style="background:${cf.a}"`:""}><span>+</span><input type="color" id="vcPick" value="${cf.a}" aria-label="Couleur personnalisée"></label></div>
+    <div class="vint"><span>Halos discrets</span><input type="range" id="vcInt" min="0.3" max="1.8" step="0.05" value="${cf.i}" aria-label="Intensité des halos"><span>forts</span></div></div>`; })() : ""}<div class="thgrid">${
     Object.entries(THEMES).map(([k,t])=> k==="kanto" && !ok
       ? `<button class="thtile lock" data-th="lock"><div class="sw">???</div><b>Thème secret</b><small>Le Pokémon fabuleux n°151 garde ce secret. Scanne sa carte…</small></button>`
       : !themeOpen(k)
@@ -6895,6 +6959,9 @@ function openThemes(){
     if(b.dataset.th==="lock2"){ if(teamPending()){ closeSheet(); setTimeout(teamPick, 300); } else toast(nextUnlockLv() ? `Monte au niveau ${nextUnlockLv()} pour un nouveau compagnon` : "Bientôt…"); return; }
     setTheme(b.dataset.th); openThemes();
   });
+  $("#sheetBody").querySelectorAll("[data-vc]").forEach(b=>b.onclick=()=>{ setVerre({k:b.dataset.vc}); const sc=$("#sheetBody").scrollTop; openThemes(); $("#sheetBody").scrollTop=sc; });
+  const vp = $("#vcPick"); if(vp){ vp.oninput = ()=>{ setVerre({k:"perso", a:vp.value}); vp.parentElement.style.background = vp.value; $("#sheetBody").querySelectorAll(".vsw [aria-pressed]").forEach(x=>x.setAttribute("aria-pressed", x===vp.parentElement)); }; }
+  const vi = $("#vcInt"); if(vi) vi.oninput = ()=>setVerre({i:+vi.value});
   openSheet();
 }
 $("#themeBtn").onclick = openThemes;
@@ -7278,6 +7345,10 @@ if(rkProf()?.on) setTimeout(()=>rkColSync(), 6000);
    Après l'intro, une seule fois par version qui apporte quelque chose à l'utilisateur.
    Nouvelle installation : rien (tout est neuf). Les versions purement techniques n'ont pas d'entrée ici. */
 const NEWS = [
+  {v:113, items:[
+    ["M12 3a9 9 0 1 0 0 18c1.1 0 1.6-.9 1.2-1.8-.5-1.1.2-2.2 1.4-2.2H17a4 4 0 0 0 4-4c0-5.5-4-10-9-10z", "Verre à ta couleur", "Avec le thème Verre, choisis sa teinte (7 au choix ou la tienne) et la force des halos, depuis la palette en haut de l'Accueil."],
+    ["M4 20h16M7 16h10", "Barre du bas bien en bas", "Dans l'app installée, la barre d'onglets touche maintenant le bas de l'écran, et rien ne passe plus sous l'heure en haut."]
+  ]},
   {v:112, items:[
     ["M12 3l8 4.5v9L12 21l-8-4.5v-9z", "Thème Verre", "Un thème à l'essai : verre dépoli sur des halos de couleur. Touche la palette en haut de l'Accueil pour l'essayer."],
     ["M4 4h16v16H4z", "Cartes manquantes plus visibles", "Dans ton classeur, les cartes qui te manquent gardent leurs couleurs, avec un cadre en pointillés et une pastille « Manquante »."]

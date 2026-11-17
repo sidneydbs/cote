@@ -410,6 +410,7 @@ html{background:var(--panel)}
 .jpcard .rr{display:block;font:500 10.5px/1.2 var(--f-mono);color:var(--muted);margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 #sealedBox .seg button{flex:1}
 .schips{display:flex;gap:6px;overflow-x:auto;padding-bottom:2px;scrollbar-width:none}
+#budF{margin-bottom:12px}
 .schips::-webkit-scrollbar{display:none}
 .schips button{flex:none;padding:8px 12px;border-radius:999px;background:var(--panel);border:1px solid var(--line);font-weight:600;font-size:13px;color:var(--muted);min-height:36px}
 .schips button[aria-pressed="true"]{background:var(--fg);color:var(--ink);border-color:var(--fg)}
@@ -505,7 +506,17 @@ html{background:var(--panel)}
 .mvrow b{font:700 13px/1.25 var(--f-mono);text-align:right;flex:none}.mvrow b small{display:block;font-weight:500;color:var(--muted);font-size:11px}
 .mvrow b.up{color:var(--up)}.mvrow b.down{color:var(--down)}
 #wallet.min .wmov{display:none}
-.hmov{margin:10px 0 0}.hmov:empty{display:none}.pxallist{margin:10px 0 4px}
+.hmov{margin:12px 0 18px}.hmov:empty{display:none}
+.wmov h5{display:flex;justify-content:space-between;align-items:center}
+.wmov h5 span{display:flex;gap:8px}.wmov h5 em{font-style:normal}.wmov h5 em.up{color:var(--up)}.wmov h5 em.down{color:var(--down)}
+.mvstrip{display:flex;gap:8px;overflow-x:auto;margin:0 -16px;padding:2px 16px 4px;scrollbar-width:none;scroll-snap-type:x proximity}
+.mvstrip::-webkit-scrollbar{display:none}
+#wMov .mvstrip{margin:0;padding:2px 0 4px}
+.mvt{flex:none;width:76px;display:flex;flex-direction:column;align-items:center;gap:3px;padding:6px 4px 6px;border-radius:12px;background:var(--panel-2);border:1px solid var(--line);color:var(--fg);scroll-snap-align:start}
+.mvt img,.mvt i{width:44px;height:61px;object-fit:cover;border-radius:4px;display:block;background:var(--panel)}
+.mvt b{font:700 11.5px/1.1 var(--f-mono);white-space:nowrap}.mvt.up b{color:var(--up)}.mvt.down b{color:var(--down)}
+.mvt small{font:500 10.5px/1.1 var(--f-mono);color:var(--muted);white-space:nowrap}
+.mvsep{flex:none;width:1px;align-self:stretch;margin:6px 2px;background:var(--line)}.pxallist{margin:10px 0 4px}
 /* alertes de prix */
 .pxalb{margin-top:12px;width:100%;padding:10px 12px;border-radius:12px;border:1px dashed var(--line);background:transparent;color:var(--fg);font-size:13.5px;text-align:left}
 .pxalb.on{border-style:solid;border-color:var(--border-yellow)}
@@ -1112,7 +1123,7 @@ html{background:var(--panel)}
   --va:242,194,48;--vh1:242,194,48;--vh2:123,77,255;--vh3:25,195,166;--vi:1;--vtx:#FFF4CC;
   --vhalo:radial-gradient(70vmax 70vmax at -10% -5%,rgba(var(--vh1),calc(.34*var(--vi))),transparent 60%),radial-gradient(70vmax 70vmax at 110% 45%,rgba(var(--vh2),calc(.36*var(--vi))),transparent 60%),radial-gradient(60vmax 60vmax at 5% 105%,rgba(var(--vh3),calc(.26*var(--vi))),transparent 60%)}
 :root[data-theme="verre"] body,:root[data-theme="verre"] .sheet{background:var(--vhalo),#0B0C12;background-attachment:fixed}
-:root[data-theme="verre"] :is(.tabs,.sheet-bar,.gbar,.total,.price,.dcote,.dtile,.hqa button,.mlist,.btn-g,.mvrow,.dd>summary,.wper,.seg,.colqty>button){
+:root[data-theme="verre"] :is(.tabs,.sheet-bar,.gbar,.total,.price,.dcote,.dtile,.hqa button,.mlist,.btn-g,.mvrow,.mvt,.dd>summary,.wper,.seg,.colqty>button){
   -webkit-backdrop-filter:blur(22px) saturate(170%);backdrop-filter:blur(22px) saturate(170%);
   background-image:linear-gradient(145deg,rgba(255,255,255,.15),rgba(255,255,255,.04) 45%,rgba(255,255,255,.08));
   border-color:rgba(255,255,255,.17);
@@ -1454,7 +1465,7 @@ img.px.reveal{animation:stpRev .9s ease-out}
   }
   fit(); addEventListener("resize", fit); addEventListener("orientationchange", function(){ setTimeout(fit, 300); });
 })();</script>
-<script>window.__APPV="115";</script>
+<script>window.__APPV="116";</script>
 <div class="splash" id="splash" aria-hidden="true"><i class="hole"></i><i class="halo"></i><div class="bw"><svg class="b" viewBox="0 0 100 100"><use href="#pb"/></svg><svg class="t" viewBox="0 0 100 100"><use href="#pb"/></svg></div><i class="glow"></i></div>
 <script>setTimeout(function(){ if(window.__booted) return;
   var b=document.createElement("div"); b.setAttribute("role","alert");
@@ -1489,7 +1500,7 @@ img.px.reveal{animation:stpRev .9s ease-out}
   <!-- ===== EXTENSIONS ===== -->
   <section class="view" id="homeView">
     <div class="scroll">
-      <div class="homebar"><span id="avatSlot"><svg class="pball" viewBox="0 0 100 100" aria-hidden="true"><use href="#pb"/></svg></span><span class="brand">DEX<b>·</b>SCAN</span><button class="thbtn" id="themeBtn" aria-label="Changer de thème"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.6-.9 1.2-1.8-.5-1.1.2-2.2 1.4-2.2H17a4 4 0 0 0 4-4c0-5.5-4-10-9-10z"/><circle cx="7.5" cy="11" r="1.2"/><circle cx="10" cy="7" r="1.2"/><circle cx="15" cy="7" r="1.2"/></svg></button><span class="ver">v115</span></div>
+      <div class="homebar"><span id="avatSlot"><svg class="pball" viewBox="0 0 100 100" aria-hidden="true"><use href="#pb"/></svg></span><span class="brand">DEX<b>·</b>SCAN</span><button class="thbtn" id="themeBtn" aria-label="Changer de thème"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.6-.9 1.2-1.8-.5-1.1.2-2.2 1.4-2.2H17a4 4 0 0 0 4-4c0-5.5-4-10-9-10z"/><circle cx="7.5" cy="11" r="1.2"/><circle cx="10" cy="7" r="1.2"/><circle cx="15" cy="7" r="1.2"/></svg></button><span class="ver">v116</span></div>
       <button class="banner" id="pxBanner" hidden></button>
       <div class="hhead"><div><span class="hdate" id="hDate"></span><div class="htitle"><h1 class="h1">Accueil</h1><button class="hsearch hrank" id="hRank" aria-label="Classement"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 21h8M12 17v4"/><path d="M7 4h10v5a5 5 0 0 1-10 0z"/><path d="M17 5h3v2a3 3 0 0 1-3 3M7 5H4v2a3 3 0 0 0 3 3"/></svg></button></div></div><button class="hsearch" id="hSearch" aria-label="Rechercher une carte"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></button></div>
       <div class="total htot" id="hTot"></div>
@@ -3159,11 +3170,16 @@ function walPast(x, per){
   return x[{1:"a1",7:"a7",30:"a30"}[per]] ?? null;
 }
 function walMovers(col, per){
-  const rows = col.filter(x=>x.price >= 1).map(x=>{ const f = walPast(x, per); return f > 0 ? {x, f, pc:(x.price-f)/f*100} : null; }).filter(o=>o && Math.abs(o.pc) >= 1);
-  const up = rows.filter(o=>o.pc>0).sort((a,b)=>b.pc-a.pc).slice(0,3), dn = rows.filter(o=>o.pc<0).sort((a,b)=>a.pc-b.pc).slice(0,3);
+  // filtre les relevés aberrants (ancien prix quasi nul → +26 000 %)
+  const rows = col.filter(x=>x.price >= 1).map(x=>{ const f = walPast(x, per); return f >= 1 ? {x, f, pc:(x.price-f)/f*100} : null; })
+    .filter(o=>o && Math.abs(o.pc) >= 1 && Math.abs(o.pc) <= 900);
+  const up = rows.filter(o=>o.pc>0).sort((a,b)=>b.pc-a.pc).slice(0,5), dn = rows.filter(o=>o.pc<0).sort((a,b)=>a.pc-b.pc).slice(0,5);
+  if(!up.length && !dn.length) return "";
   const lbl = per==="all" ? "depuis l'achat" : per==="1" ? "24 h" : per+" jours";
-  const row = o => `<button class="mvrow" data-mv="${esc(o.x.id)}">${colImg(o.x)?`<img src="${esc(colImg(o.x))}" alt="" loading="lazy">`:""}<span>${esc(o.x.name)}<small>${esc(o.x.set||setIdOf(o.x.id))} · ${esc(eurN(o.f))} € → ${esc(eurN(o.x.price))} €</small></span><b class="${o.pc>0?"up":"down"}">${o.pc>0?"▲ +":"▼ −"}${Math.abs(o.pc).toFixed(1).replace(".",",")} %</b></button>`;
-  return (up.length ? `<h5>Plus fortes hausses · ${lbl}</h5>${up.map(row).join("")}` : "") + (dn.length ? `<h5>Plus fortes baisses · ${lbl}</h5>${dn.map(row).join("")}` : "");
+  const pc = v => (v>0?"+":"−")+Math.abs(v).toFixed(Math.abs(v)>=100?0:1).replace(".",",")+" %";
+  const tile = o => { const im = colImg(o.x), c = o.pc>0 ? "up" : "down";
+    return `<button class="mvt ${c}" data-mv="${esc(o.x.id)}" aria-label="${esc(o.x.name)} : ${esc(pc(o.pc))}, ${esc(eurN(o.x.price))} €">${im?`<img src="${esc(im)}" alt="" loading="lazy">`:`<i></i>`}<b>${o.pc>0?"▲":"▼"} ${esc(pc(o.pc))}</b><small>${esc(eurN(o.x.price))} €</small></button>`; };
+  return `<h5>Hausse de mes actifs · ${lbl}<span>${up.length?`<em class="up">▲ ${up.length}</em>`:""}${dn.length?`<em class="down">▼ ${dn.length}</em>`:""}</span></h5><div class="mvstrip">${up.map(tile).join("")}${up.length&&dn.length?'<span class="mvsep" aria-hidden="true"></span>':""}${dn.map(tile).join("")}</div>`;
 }
 function walSeries(col){
   const now = Date.now(), D = 864e5;
@@ -7343,6 +7359,9 @@ if(rkProf()?.on) setTimeout(()=>rkColSync(), 6000);
    Après l'intro, une seule fois par version qui apporte quelque chose à l'utilisateur.
    Nouvelle installation : rien (tout est neuf). Les versions purement techniques n'ont pas d'entrée ici. */
 const NEWS = [
+  {v:116, items:[
+    ["M3 17l6-6 4 4 8-8M14 7h7v7", "Hausse de mes actifs", "Les hausses et baisses de tes cartes tiennent dans un bandeau compact : glisse de côté, touche une carte pour ouvrir sa fiche."]
+  ]},
   {v:113, items:[
     ["M12 3a9 9 0 1 0 0 18c1.1 0 1.6-.9 1.2-1.8-.5-1.1.2-2.2 1.4-2.2H17a4 4 0 0 0 4-4c0-5.5-4-10-9-10z", "Verre à ta couleur", "Avec le thème Verre, choisis sa teinte (7 au choix ou la tienne) et la force des halos, depuis la palette en haut de l'Accueil."],
     ["M4 20h16M7 16h10", "Barre du bas bien en bas", "Dans l'app installée, la barre d'onglets touche maintenant le bas de l'écran, et rien ne passe plus sous l'heure en haut."]

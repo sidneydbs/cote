@@ -313,7 +313,7 @@ details>summary{list-style:none;cursor:pointer}.more{margin-top:10px;padding-top
 .mu{color:var(--mu);font-size:13px}
 </style>
 <h1>Réglages du guetteur</h1><p class="mu" id="sub">Réservé au propriétaire.</p>
-<div id="login" hidden class="card"><label>Clé d'accès</label><input id="key" type="password" autocomplete="off"><button class="y" id="go" style="width:100%;margin-top:10px">Entrer</button></div>
+<div id="login" hidden class="card"><label>Clé d'accès</label><input id="key" type="text" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" placeholder="Colle ta clé ici"><button class="y" id="go" style="width:100%;margin-top:10px">Entrer</button></div>
 <div id="app" hidden>
  <h2>Sources</h2><div id="list"></div>
  <h2>Ajouter une source</h2><div class="card">
@@ -338,7 +338,7 @@ details>summary{list-style:none;cursor:pointer}.more{margin-top:10px;padding-top
 <script>
 const $=s=>document.querySelector(s);let K="",C=null,E=[],dirty=false;
 const toast=t=>{const e=$("#toast");e.textContent=t;e.style.display="block";clearTimeout(e._t);e._t=setTimeout(()=>e.style.display="none",2600)};
-try{const m=location.hash.match(/k=([^&]+)/);if(m){localStorage.setItem("gk",decodeURIComponent(m[1]));history.replaceState(null,"",location.pathname)}K=localStorage.getItem("gk")||""}catch(e){}
+try{const m=location.hash.match(/k=([^&]+)/)||location.search.match(/[?&]k=([^&]+)/);if(m){localStorage.setItem("gk",decodeURIComponent(m[1]));history.replaceState(null,"",location.pathname)}K=localStorage.getItem("gk")||""}catch(e){}
 async function call(p,o={}){const r=await fetch("/api/"+p,{...o,headers:{"x-admin":K,"content-type":"application/json"}});const j=await r.json().catch(()=>({error:"réponse illisible"}));if(r.status===403){try{localStorage.removeItem("gk")}catch(e){}K="";show()}if(j.error)throw new Error(j.error);return j}
 const esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const TY={page:"page",shopify:"Shopify",boutique:"boutique",produit:"fiche produit",rss:"RSS"};

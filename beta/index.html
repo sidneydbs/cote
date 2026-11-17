@@ -1191,6 +1191,7 @@ html{background:var(--panel)}
 .fd-rp{font-size:12.5px;color:var(--muted);margin:0 0 4px 54px;display:flex;gap:6px;align-items:center}
 .fd-quote{margin-top:10px;border:1px solid var(--line);border-radius:14px;padding:10px 12px}
 .fd-quote .fd-h{font-size:13px}.fd-quote p{margin:4px 0 0;font-size:14px;line-height:1.4}
+.fc-meta{display:flex;align-items:center;gap:8px;margin:8px 0 0;flex-wrap:wrap}.fc-meta .fd-tag{margin:0;cursor:pointer}.fc-meta #fcInfo{font-size:12.5px;color:var(--fg);font-weight:600}.fc-meta #fcN{margin-left:auto;font-size:12px;color:var(--muted)}#fcT{margin-top:8px}
 .hcolHide{display:none!important}
 .fx-seg{display:flex;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:4px;margin:0 0 14px}
 .fx-seg button{flex:1;padding:10px;border-radius:10px;font-weight:800;font-size:15px;color:var(--muted);display:flex;align-items:center;justify-content:center;gap:6px}.fx-seg button.on{background:var(--border-yellow);color:var(--on-acc)}
@@ -1638,7 +1639,7 @@ img.px.reveal{animation:stpRev .9s ease-out}
   }
   fit(); addEventListener("resize", fit); addEventListener("orientationchange", function(){ setTimeout(fit, 300); });
 })();</script>
-<script>window.__APPV="127";</script>
+<script>window.__APPV="128";</script>
 <div class="splash" id="splash" aria-hidden="true"><i class="hole"></i><i class="halo"></i><div class="bw"><svg class="b" viewBox="0 0 100 100"><use href="#pb"/></svg><svg class="t" viewBox="0 0 100 100"><use href="#pb"/></svg></div><i class="glow"></i></div>
 <script>setTimeout(function(){ if(window.__booted) return;
   var b=document.createElement("div"); b.setAttribute("role","alert");
@@ -1673,7 +1674,7 @@ img.px.reveal{animation:stpRev .9s ease-out}
   <!-- ===== EXTENSIONS ===== -->
   <section class="view" id="homeView">
     <div class="scroll">
-      <div class="homebar"><span id="avatSlot"><svg class="pball" viewBox="0 0 100 100" aria-hidden="true"><use href="#pb"/></svg></span><span class="brand">DEX<b>·</b>SCAN</span><button class="thbtn" id="themeBtn" aria-label="Changer de thème"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.6-.9 1.2-1.8-.5-1.1.2-2.2 1.4-2.2H17a4 4 0 0 0 4-4c0-5.5-4-10-9-10z"/><circle cx="7.5" cy="11" r="1.2"/><circle cx="10" cy="7" r="1.2"/><circle cx="15" cy="7" r="1.2"/></svg></button><span class="ver" id="hVer">v127</span></div>
+      <div class="homebar"><span id="avatSlot"><svg class="pball" viewBox="0 0 100 100" aria-hidden="true"><use href="#pb"/></svg></span><span class="brand">DEX<b>·</b>SCAN</span><button class="thbtn" id="themeBtn" aria-label="Changer de thème"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.6-.9 1.2-1.8-.5-1.1.2-2.2 1.4-2.2H17a4 4 0 0 0 4-4c0-5.5-4-10-9-10z"/><circle cx="7.5" cy="11" r="1.2"/><circle cx="10" cy="7" r="1.2"/><circle cx="15" cy="7" r="1.2"/></svg></button><span class="ver" id="hVer">v128</span></div>
       <button class="banner" id="pxBanner" hidden></button>
       <div class="hhead"><div><span class="hdate" id="hDate"></span><div class="htitle"><h1 class="h1">Accueil</h1><button class="hsearch hrank" id="hRank" aria-label="Classement"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 21h8M12 17v4"/><path d="M7 4h10v5a5 5 0 0 1-10 0z"/><path d="M17 5h3v2a3 3 0 0 1-3 3M7 5H4v2a3 3 0 0 0 3 3"/></svg></button></div></div><button class="hsearch" id="hSearch" aria-label="Rechercher une carte"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></button></div>
       <div class="total htot" id="hTot"></div>
@@ -7865,28 +7866,46 @@ function renderFeed(){
   FEED.seen = Date.now(); store.set("feedSeen", FEED.seen); fdBadge();
 }
 function fdBadge(){ const b = $("#hsegN"); if(!b) return; const n = (FEED.posts||[]).filter(x=>x.t>FEED.seen && !x.demo).length; b.textContent = n; b.hidden = !n || FEED.on; }
-/* nouvelle publication : type, texte, photo, et pour un réassort la boutique et le prix */
+/* nouvelle publication : on écrit, c'est tout. Le type (réassort, nouveauté, pull…), la boutique et le prix
+   sont devinés dans le texte ; la pastille « Classé » permet de corriger si besoin. */
+const FGUESS = [
+  ["re",   /r[ée]assort|restock|\ben rayon\b|\bdispo\b|remis en|de retour|en stock|arrivage|\brayon\b/i],
+  ["bad",  /rupture|[ée]puis[ée]|\bbots?\b|annul|scalp|arnaque|report[ée]|hausse de prix|plus de stock|sold ?out/i],
+  ["new",  /sortie|annonc|pr[ée]commande|pr[ée]co\b|nouvelle? (extension|s[ée]rie|display|etb|coffret)|visuel|date de sortie|leak|r[ée]v[ée]l/i],
+  ["pull", /\bpull|ouvert|ouverture|j'ai (eu|chop|tir)|chop[ée]|\bhit\b|\bsir\b|\bsar\b|alt ?art|full ?art|gold|mon (display|etb|booster)/i]];
+function fdGuess(t){ for(const [k, re] of FGUESS) if(re.test(t)) return k; return "talk"; }
+function fdShop(t){ const n = norm(t);
+  for(const sh of SHOPS){ if(/^(Autre|Boutique spécialisée)$/.test(sh)) continue; const k = norm(sh); const i = n.indexOf(k); if(i<0) continue;
+    const after = t.slice(t.toLowerCase().indexOf(sh.toLowerCase().split(" ")[0]) + sh.length).match(/^\s+([A-ZÀ-Ý][\wÀ-ÿ'-]+)/);
+    return sh + (after && !/^(Je|Il|Elle|On|Un|Une|Le|La|Les|Des|Du|De|Et|Avec|Limite)$/.test(after[1]) ? " "+after[1] : ""); }
+  return ""; }
+function fdPrice(t){ const m = t.match(/(\d{1,4}(?:[.,]\d{1,2})?)\s?(?:€|euros?\b)/i); return m ? parseFloat(m[1].replace(",", ".")) : null; }
 function fdCompose(){
-  const d = {tag:"re", text:"", img:null, shop:"", price:null};
+  const d = {tag:"talk", text:"", img:null, forced:false};
   bOpen("Nouvelle publication", `
-    <label class="blab">C'est quoi ?</label>
-    <div class="schips bwrap" id="fcT">${Object.entries(FTAGS).map(([k,[i,t]])=>`<button data-ft="${k}" aria-pressed="${d.tag===k}">${i} ${t}</button>`).join("")}</div>
-    <textarea class="binp" id="fcX" maxlength="500" rows="5" placeholder="Raconte : où, quoi, combien… Ajoute des #mots-clés" style="margin-top:12px;resize:vertical;min-height:110px;font:16px/1.4 var(--f-body)"></textarea>
-    <p class="psub" id="fcN" style="text-align:right;margin:4px 0 0">0 / 500</p>
-    <div id="fcRe"><div class="brow"><div><label class="blab" for="fcS">Boutique</label><input class="binp" id="fcS" list="bfShops2" placeholder="Leclerc Albi…"><datalist id="bfShops2">${SHOPS.map(s=>`<option value="${esc(s)}">`).join("")}</datalist></div>
-      <div><label class="blab" for="fcP">Prix</label><input class="binp" id="fcP" inputmode="decimal" placeholder="54,90"></div></div></div>
+    <textarea class="binp" id="fcX" maxlength="500" rows="6" placeholder="Un réassort, un pull, une info ? Écris comme tu parles : « ETB Flammes Fantasmagoriques en rayon chez Leclerc Albi, 54,90 € »" style="resize:vertical;min-height:140px;font:16px/1.45 var(--f-body)"></textarea>
+    <div class="fc-meta"><button class="fd-tag t-talk" id="fcTag" type="button"></button><span id="fcInfo"></span><span id="fcN">0 / 500</span></div>
+    <div class="schips bwrap" id="fcT" hidden>${Object.entries(FTAGS).map(([k,[i,t]])=>`<button data-ft="${k}">${i} ${t}</button>`).join("")}</div>
     <div class="bphoto" id="fcPh" style="margin-top:14px"><span>📷</span><small>Ajouter une photo (facultatif)</small></div>
     <input type="file" id="fcF" accept="image/*" hidden>
     <button class="btn btn-y" id="fcGo" style="width:100%;margin-top:16px" disabled>Publier</button>
     <p class="fine" style="text-align:center">Publié avec ton pseudo « ${esc(fdMe()?.name||"")} » et ton compagnon. Reste poli et dans le thème du TCG.</p>`);
-  const ok = ()=>{ $("#fcGo").disabled = !(d.text.trim().length>2 || d.img); $("#fcRe").hidden = d.tag!=="re"; };
-  $("#fcT").querySelectorAll("[data-ft]").forEach(b=>b.onclick=()=>{ d.tag = b.dataset.ft; $("#fcT").querySelectorAll("[data-ft]").forEach(y=>y.setAttribute("aria-pressed", y===b)); ok(); });
-  $("#fcX").oninput = e=>{ d.text = e.target.value; $("#fcN").textContent = `${d.text.length} / 500`; ok(); };
+  const upd = ()=>{
+    if(!d.forced) d.tag = fdGuess(d.text);
+    const tg = FTAGS[d.tag], shop = d.tag==="re" ? fdShop(d.text) : "", pr = d.tag==="re" ? fdPrice(d.text) : null;
+    d.shop = shop; d.price = pr;
+    const b = $("#fcTag"); b.className = "fd-tag "+tg[2]; b.textContent = `${tg[0]} ${tg[1]} ✎`;
+    $("#fcInfo").textContent = [shop && "🛒 "+shop, pr!=null && bE(pr)].filter(Boolean).join(" · ");
+    $("#fcN").textContent = `${d.text.length} / 500`;
+    $("#fcT").querySelectorAll("[data-ft]").forEach(y=>y.setAttribute("aria-pressed", y.dataset.ft===d.tag));
+    $("#fcGo").disabled = !(d.text.trim().length>2 || d.img); };
+  $("#fcTag").onclick = ()=>{ $("#fcT").hidden = !$("#fcT").hidden; };
+  $("#fcT").querySelectorAll("[data-ft]").forEach(b=>b.onclick=()=>{ d.tag = b.dataset.ft; d.forced = true; $("#fcT").hidden = true; upd(); });
+  $("#fcX").oninput = e=>{ d.text = e.target.value; upd(); };
   $("#fcPh").onclick = ()=>$("#fcF").click();
-  $("#fcF").onchange = async e=>{ const f = e.target.files?.[0]; if(!f) return; d.img = await fdShrink(f); if(d.img){ $("#fcPh").innerHTML = `<img src="${d.img}" alt="">`; } ok(); };
+  $("#fcF").onchange = async e=>{ const f = e.target.files?.[0]; if(!f) return; d.img = await fdShrink(f); if(d.img){ $("#fcPh").innerHTML = `<img src="${d.img}" alt="">`; } upd(); };
   $("#fcGo").onclick = async ()=>{
     const b = $("#fcGo"); b.disabled = true; b.textContent = "Publication…";
-    d.shop = d.tag==="re" ? $("#fcS").value.trim() : ""; d.price = d.tag==="re" ? num($("#fcP").value) : null;
     const me = fdMe(), st = starterOf(), base = {tag:d.tag, text:d.text.trim().slice(0,500), img:d.img, shop:d.shop||undefined, price:d.price??undefined};
     try{
       if(FEED.live){ const j = await fdApi("/post", {id:me.id, key:me.key, ...base}); FEED.posts.unshift(j.post); }
@@ -7894,7 +7913,7 @@ function fdCompose(){
       $("#gov").hidden = true; $("#gov").dataset.mode = ""; FEED.f = "all"; renderFeed(); toast("Publié !");
     }catch(e){ b.disabled = false; b.textContent = "Publier"; toast(e.message); }
   };
-  ok();
+  upd(); setTimeout(()=>$("#fcX").focus(), 60);
 }
 /* photo : 1080 px max, JPEG ~80 % (≈150-250 Ko) */
 function fdShrink(file){ return new Promise(res=>{ const u = URL.createObjectURL(file), im = new Image();

@@ -1,5 +1,5 @@
 {
- "built": "2026-11-17T21:17:03.153Z",
+ "built": "2026-11-17T23:06:19.947Z",
  "sets": {
   "total": 209,
   "noLogo": [],
@@ -864,9 +864,10 @@
   "tk-xy-p": "tk9b",
   "tk-sm-l": "tk10a",
   "tk-sm-r": "tk10b",
+  "tk-ex-latio": "tk1b",
+  "tk-ex-latia": "tk1a",
   "tk-ex-p": "tk2a",
-  "tk-ex-m": "tk2b",
-  "tk-ex-latio": "tk1b"
+  "tk-ex-m": "tk2b"
  },
  "diag": {
   "assets.tcgdex.net": {
@@ -880,8 +881,7 @@
   "images.scrydex.com": {
    "404": 16,
    "ok": 1119,
-   "absente": 202,
-   "réseau": 4
+   "absente": 202
   },
   "limitlesstcg.nyc3.cdn.digitaloceanspaces.com": {
    "403": 1,

@@ -1661,7 +1661,7 @@ img.px.reveal{animation:stpRev .9s ease-out}
   }
   fit(); addEventListener("resize", fit); addEventListener("orientationchange", function(){ setTimeout(fit, 300); });
 })();</script>
-<script>window.__APPV="136";</script>
+<script>window.__APPV="137";</script>
 <div class="splash" id="splash" aria-hidden="true"><i class="hole"></i><i class="halo"></i><div class="bw"><svg class="b" viewBox="0 0 100 100"><use href="#pb"/></svg><svg class="t" viewBox="0 0 100 100"><use href="#pb"/></svg></div><i class="glow"></i></div>
 <script>setTimeout(function(){ if(window.__booted) return;
   var b=document.createElement("div"); b.setAttribute("role","alert");
@@ -1696,7 +1696,7 @@ img.px.reveal{animation:stpRev .9s ease-out}
   <!-- ===== EXTENSIONS ===== -->
   <section class="view" id="homeView">
     <div class="scroll">
-      <div class="homebar"><span id="avatSlot"><svg class="pball" viewBox="0 0 100 100" aria-hidden="true"><use href="#pb"/></svg></span><span class="brand">DEX<b>·</b>SCAN</span><button class="thbtn" id="themeBtn" aria-label="Changer de thème"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.6-.9 1.2-1.8-.5-1.1.2-2.2 1.4-2.2H17a4 4 0 0 0 4-4c0-5.5-4-10-9-10z"/><circle cx="7.5" cy="11" r="1.2"/><circle cx="10" cy="7" r="1.2"/><circle cx="15" cy="7" r="1.2"/></svg></button><span class="ver" id="hVer">v136</span></div>
+      <div class="homebar"><span id="avatSlot"><svg class="pball" viewBox="0 0 100 100" aria-hidden="true"><use href="#pb"/></svg></span><span class="brand">DEX<b>·</b>SCAN</span><button class="thbtn" id="themeBtn" aria-label="Changer de thème"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.6-.9 1.2-1.8-.5-1.1.2-2.2 1.4-2.2H17a4 4 0 0 0 4-4c0-5.5-4-10-9-10z"/><circle cx="7.5" cy="11" r="1.2"/><circle cx="10" cy="7" r="1.2"/><circle cx="15" cy="7" r="1.2"/></svg></button><span class="ver" id="hVer">v137</span></div>
       <button class="banner" id="pxBanner" hidden></button>
       <div class="hhead"><div><span class="hdate" id="hDate"></span><div class="htitle"><h1 class="h1">Accueil</h1><button class="hsearch hrank" id="hRank" aria-label="Classement"><svg viewBox="0 0 24 24" fill="none" stroke="url(#hrkG)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><defs><linearGradient id="hrkG" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFF4C2"/><stop offset=".35" stop-color="#FFD86E"/><stop offset=".65" stop-color="#7CF3FF"/><stop offset="1" stop-color="#E2B8FF"/></linearGradient></defs><path d="M8 21h8M12 17v4"/><path d="M7 4h10v5a5 5 0 0 1-10 0z"/><path d="M17 5h3v2a3 3 0 0 1-3 3M7 5H4v2a3 3 0 0 0 3 3"/></svg></button></div></div><button class="hsearch" id="hSearch" aria-label="Rechercher une carte"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></button></div>
       <div class="total htot" id="hTot"></div>
@@ -7795,6 +7795,7 @@ async function betaPublishFlow(){
 }
 /* Journal des modifications de la Bêta : la carte « Version Bêta » liste celles que les copains n'ont pas encore */
 const BETA_LOG = [
+  {v:137, t:"Le Fil : « Ça drop quoi aujourd’hui ? » pour lancer une publication"},
   {v:136, t:"Le Fil en ligne pour tout le monde, annoncé dans « Quoi de neuf »"},
   {v:135, t:"Le Fil relié à son serveur en ligne : les publications sont partagées entre tous"},
   {v:134, t:"Carte Bêta : liste des modifications en attente de publication"},
@@ -7896,7 +7897,7 @@ function renderFeed(){
     ${FEED.live===false?`<p class="fd-off">Aperçu : le Fil n'est pas encore relié au serveur. Ce que tu publies reste sur ce téléphone.</p>`:""}
     <div class="fd-tabs fd-tabs3">${[["all","Pour toi"],["re","Réassorts"],["new","Nouveautés"]].map(([k,t])=>`<button data-ff="${k}" class="${FEED.f===k?"on":""}">${t}</button>`).join("")}</div>
     ${nRe?`<button class="fd-live" data-ff="re"><span class="dot"></span><span><b>${nRe} réassort${nRe>1?"s":""}</b> signalé${nRe>1?"s":""} dans la dernière heure</span><span style="margin-left:auto;color:var(--muted)">Voir ›</span></button>`:""}
-    <button class="fd-comp" id="fdNew"><span class="fd-av">${starterOf()?`<img src="${pImg(starterOf())}" alt="">`:"🙂"}</span><span class="fd-ph">${p?"Un réassort ou une nouveauté ?":"Crée ton profil de dresseur pour publier"}</span><span class="btn btn-y">${p?"Publier":"Créer"}</span></button>
+    <button class="fd-comp" id="fdNew"><span class="fd-av">${starterOf()?`<img src="${pImg(starterOf())}" alt="">`:"🙂"}</span><span class="fd-ph">${p?"Ça drop quoi aujourd’hui ?":"Crée ton profil de dresseur pour publier"}</span><span class="btn btn-y">${p?"Publier":"Créer"}</span></button>
     ${l.length ? l.map(fdPostHTML).join("") : `<div class="empty" style="padding:40px 12px">Rien ici pour l'instant. Sois le premier à publier !</div>`}
     <div style="height:30px"></div>`;
   el.querySelectorAll("[data-ff]").forEach(b=>b.onclick=()=>{ FEED.f = b.dataset.ff; renderFeed(); });
@@ -7927,7 +7928,7 @@ function fdPrice(t){ const m = t.match(/(\d{1,4}(?:[.,]\d{1,2})?)\s?(?:€|euros
 function fdCompose(){
   const d = {tag:"new", text:"", img:null, forced:false};
   bOpen("Nouvelle publication", `
-    <textarea class="binp" id="fcX" maxlength="500" rows="6" placeholder="Un réassort ou une nouveauté ? Écris comme tu parles : « ETB Flammes Fantasmagoriques en rayon chez Leclerc Albi, 54,90 € »" style="resize:vertical;min-height:140px;font:16px/1.45 var(--f-body)"></textarea>
+    <textarea class="binp" id="fcX" maxlength="500" rows="6" placeholder="Ça drop quoi aujourd’hui ? Écris comme tu parles : « ETB Flammes Fantasmagoriques en rayon chez Leclerc Albi, 54,90 € »" style="resize:vertical;min-height:140px;font:16px/1.45 var(--f-body)"></textarea>
     <div class="fc-meta"><button class="fd-tag t-new" id="fcTag" type="button"></button><span id="fcInfo"></span><span id="fcN">0 / 500</span></div>
     <div class="schips bwrap" id="fcT" hidden>${Object.entries(FTAGS).map(([k,[i,t]])=>`<button data-ft="${k}">${i} ${t}</button>`).join("")}</div>
     <div class="bphoto" id="fcPh" style="margin-top:14px"><span>📷</span><small>Ajouter une photo (facultatif)</small></div>

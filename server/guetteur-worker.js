@@ -5,20 +5,28 @@
    Liaisons du Worker : DB (base D1), SELF (le Worker lui-même), NTFY_TOPIC (canal ntfy, gardé secret).
    Réglages : guetteur-config.txt (même format que config.json du PC, sans le canal ntfy). */
 import RAW from "./guetteur-config.txt";
-const CFG = JSON.parse(RAW);
+const BASE = JSON.parse(RAW);
+let CFG, POKE, HOT, STOCK, NOPE, TCG_RE, FORT, SOURCES, CFGV = null;
+// réglages : ceux enregistrés depuis /reglages (base D1, ligne « cfg ») remplacent ceux du fichier
+function setup(cfg){
+  CFG = cfg; POKE = new RegExp(CFG.motsPokemon, "i"); HOT = new RegExp(CFG.motsUrgents, "i"); STOCK = new RegExp(CFG.motsStock, "i"); NOPE = new RegExp(CFG.motsExclus, "i");
+  TCG_RE = CFG.tcg ? new RegExp(`(^|[^a-z0-9])(${[...CFG.tcg.produits, ...CFG.tcg.extensions].map(motRe).join("|")})(?=$|[^a-z0-9])` + (CFG.tcg.codes ? `|${CFG.tcg.codes}` : ""), "i") : /./;
+  FORT = new RegExp(CFG.motsTCGforts || "(?!)", "i"); SOURCES = CFG.sources.filter(s => s.actif !== false);
+}
+async function loadCfg(env){
+  const r = await env.DB.prepare("SELECT v,t FROM st WHERE k='cfg'").first();
+  const v = r ? r.t : 0; if (v === CFGV && CFG) return;
+  setup(r ? JSON.parse(r.v) : BASE); CFGV = v;
+}
 
 const UA = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Safari/537.36 DexScanGuetteur/1.0";
-const POKE = new RegExp(CFG.motsPokemon, "i"), HOT = new RegExp(CFG.motsUrgents, "i"), STOCK = new RegExp(CFG.motsStock, "i"), NOPE = new RegExp(CFG.motsExclus, "i");
 const sansAcc = x => String(x).normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
 const motRe = w => sansAcc(w).replace(/[.*+?^${}()|[\]\\]/g, "\\$&").replace(/[\s\-–'’&]+/g, "[\\s\\-–'’&]*");
-const TCG_RE = CFG.tcg ? new RegExp(`(^|[^a-z0-9])(${[...CFG.tcg.produits, ...CFG.tcg.extensions].map(motRe).join("|")})(?=$|[^a-z0-9])` + (CFG.tcg.codes ? `|${CFG.tcg.codes}` : ""), "i") : /./;
 const TCG = t => TCG_RE.test(sansAcc(t));
-const FORT = new RegExp(CFG.motsTCGforts || "(?!)", "i");
 const exclu = t => NOPE.test(t) && !(FORT.test(t) && !/peluche|carte cadeau|jeu vid[ée]o|switch|sleeves?|blind ?box/i.test(t));
 const decode = s => String(s || "").replace(/<!\[CDATA\[([\s\S]*?)\]\]>/g, "$1").replace(/<[^>]+>/g, " ")
   .replace(/&amp;/g, "&").replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&quot;/g, '"').replace(/&#0?39;|&apos;/g, "'")
   .replace(/&#(\d+);/g, (_, n) => String.fromCharCode(+n)).replace(/&nbsp;/g, " ").replace(/\s+/g, " ").trim();
-const SOURCES = CFG.sources.filter(s => s.actif !== false);
 const MAX_SEEN = 1500, MAX_BODY = 700000;
 const httpErr = (st, m) => Object.assign(new Error(m || "HTTP " + st), {status: st});
 const prixTxt = p => p ? ` — ${(+p).toFixed(2).replace(".", ",")} €` : "";
@@ -176,8 +184,8 @@ async function runProduit(env, src, st){                    // fiche produit pr�
 }
 
 // ---------- une source = une exécution ----------
-async function runSource(env, i){
-  const src = SOURCES[i]; if (!src) return "source inconnue";
+async function runSource(env, nom){
+  const src = CFG.sources.find(s => s.nom === nom); if (!src) return "source inconnue";
   const k = "s:" + src.nom, st = (await getSt(env, k)) || {}, now = Date.now();
   if (now < (st.pause || 0)) return "en pause";
   try {
@@ -197,22 +205,22 @@ async function runSource(env, i){
 async function etats(env){
   const rows = (await env.DB.prepare("SELECT k,v FROM st WHERE k LIKE 's:%'").all()).results || [];
   const m = Object.fromEntries(rows.map(r => [r.k.slice(2), JSON.parse(r.v)]));
-  return SOURCES.map((s, i) => ({i, nom: s.nom, type: s.type, ...(({ok, err, last, next, pause}) => ({ok: ok || 0, err: err || 0, last: last || "", next: next || 0, pause: pause || 0}))(m[s.nom] || {})}));
+  return CFG.sources.map((s, i) => ({i, actif: s.actif !== false, nom: s.nom, type: s.type, ...(({ok, err, last, next, pause}) => ({ok: ok || 0, err: err || 0, last: last || "", next: next || 0, pause: pause || 0}))(m[s.nom] || {})}));
 }
 async function bilan(env, label){
-  const l = await etats(env), ok = l.filter(s => s.ok > 0 && !(s.pause > Date.now())), ko = l.filter(s => !(s.ok > 0) || s.pause > Date.now());
+  const l = (await etats(env)).filter(s => s.actif), ok = l.filter(s => s.ok > 0 && !(s.pause > Date.now())), ko = l.filter(s => !(s.ok > 0) || s.pause > Date.now());
   await notify(env, {title: `Guetteur en ligne ${label} · ${ok.length}/${l.length} sources OK`,
     message: (ok.length ? "OK : " + ok.map(s => s.nom).join(", ") : "") + (ko.length ? "\nBloquées : " + ko.map(s => `${s.nom} (${s.last || "pas encore lue"})`).join(", ") : ""), priority: 2, tags: ["eyes"]});
 }
 
 export default {
   async scheduled(ev, env, ctx){
-    const now = Date.now();
+    await loadCfg(env); const now = Date.now();
     const rows = (await env.DB.prepare("SELECT k,v FROM st WHERE k LIKE 's:%'").all()).results || [];
     const nx = Object.fromEntries(rows.map(r => { const v = JSON.parse(r.v); return [r.k.slice(2), Math.max(v.next || 0, v.pause || 0)]; }));
-    const due = SOURCES.map((s, i) => ({i, at: nx[s.nom] || 0})).filter(x => x.at <= now).sort((a, b) => a.at - b.at).slice(0, 30);
+    const due = SOURCES.map(s => ({nom: s.nom, at: nx[s.nom] || 0})).filter(x => x.at <= now).sort((a, b) => a.at - b.at).slice(0, 30);
     // chaque source dans sa propre exécution (limites de temps séparées)
-    ctx.waitUntil(Promise.allSettled(due.map(x => env.SELF.fetch(`https://guetteur/run?i=${x.i}`, {method: "POST", headers: {"x-cron": env.CRON_KEY || ""}}))));
+    ctx.waitUntil(Promise.allSettled(due.map(x => env.SELF.fetch(`https://guetteur/run?n=${encodeURIComponent(x.nom)}`, {method: "POST", headers: {"x-cron": env.CRON_KEY || ""}}))));
     // bilans : 15 min après la mise en ligne, puis toutes les 6 h
     const meta = (await getSt(env, "meta")) || {start: now};
     if (!meta.start) meta.start = now;
@@ -222,13 +230,15 @@ export default {
     if (new Date().getUTCMinutes() === 0) ctx.waitUntil(env.DB.prepare("DELETE FROM log WHERE t < ?").bind(now - 14 * 864e5).run());
   },
   async fetch(req, env){
-    const u = new URL(req.url);
+    const u = new URL(req.url); await loadCfg(env);
+    if (u.pathname === "/reglages") return new Response(PAGE, {headers: {"content-type": "text/html; charset=utf-8", "cache-control": "no-store", "x-robots-tag": "noindex"}});
+    if (u.pathname.startsWith("/api/")) return api(req, env, u);
     if (u.pathname === "/run" && req.method === "POST"){
       if ((req.headers.get("x-cron") || "") !== (env.CRON_KEY || "")) return new Response("non", {status: 403});
-      return new Response(await runSource(env, +u.searchParams.get("i")));
+      return new Response(await runSource(env, u.searchParams.get("n")));
     }
     if (u.pathname === "/etat"){
-      const l = await etats(env), logs = (await env.DB.prepare("SELECT t,l FROM log ORDER BY t DESC LIMIT 40").all()).results || [];
+      const l = (await etats(env)).filter(s => s.actif), logs = (await env.DB.prepare("SELECT t,l FROM log ORDER BY t DESC LIMIT 40").all()).results || [];
       const f = t => t ? new Date(t).toLocaleTimeString("fr-FR", {timeZone: "Europe/Paris"}) : "—";
       const esc = s => String(s).replace(/[&<>]/g, c => ({"&": "&amp;", "<": "&lt;", ">": "&gt;"}[c]));
       return new Response(`<!doctype html><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>Guetteur en ligne</title>
@@ -239,3 +249,132 @@ export default {
     return new Response("Guetteur Dex Scan · /etat", {headers: {"content-type": "text/plain; charset=utf-8"}});
   }
 };
+
+// ---------- réglages (réservés au propriétaire : clé ADMIN_KEY) ----------
+async function admin(req, env){
+  const k = req.headers.get("x-admin") || "", a = new TextEncoder().encode(k), b = new TextEncoder().encode(env.ADMIN_KEY || "");
+  return !!env.ADMIN_KEY && a.length === b.length && crypto.subtle.timingSafeEqual(a, b);
+}
+const TYPES = ["boutique", "shopify", "rss", "page", "produit"];
+function valide(c){
+  if (!c || !Array.isArray(c.sources)) throw new Error("réglages illisibles");
+  for (const k of ["motsPokemon", "motsUrgents", "motsStock", "motsExclus", "motsTCGforts"]) { try { new RegExp(c[k] || "(?!)", "i"); } catch (e) { throw new Error(`« ${k} » : expression invalide`); } }
+  const noms = new Set();
+  c.sources = c.sources.map(s => {
+    const nom = String(s.nom || "").trim().slice(0, 80); if (!nom) throw new Error("une source n'a pas de nom");
+    if (noms.has(nom)) throw new Error(`deux sources s'appellent « ${nom} »`); noms.add(nom);
+    if (!TYPES.includes(s.type)) throw new Error(`« ${nom} » : type inconnu`);
+    let url; try { url = new URL(s.url); } catch (e) { throw new Error(`« ${nom} » : lien invalide`); }
+    if (!/^https?:$/.test(url.protocol)) throw new Error(`« ${nom} » : lien invalide`);
+    if (s.motsCles) try { new RegExp(s.motsCles, "i"); } catch (e) { throw new Error(`« ${nom} » : mots-clés invalides`); }
+    const o = {...s, nom, url: url.href, intervalle: Math.min(3600, Math.max(60, Math.round(+s.intervalle || 60)))};
+    if (o.actif !== false) delete o.actif;
+    return o;
+  });
+  c.intervalleParDefaut = Math.min(3600, Math.max(60, +c.intervalleParDefaut || 60));
+  c.rappelMin = Math.min(240, Math.max(0, Math.round(+c.rappelMin || 0)));
+  c.alerterAuDemarrage = !!c.alerterAuDemarrage;
+  setup(c); return c;
+}
+async function api(req, env, u){
+  const J = (o, st = 200) => new Response(JSON.stringify(o), {status: st, headers: {"content-type": "application/json; charset=utf-8", "cache-control": "no-store"}});
+  if (!(await admin(req, env))) { await new Promise(r => setTimeout(r, 800)); return J({error: "Clé refusée"}, 403); }
+  try {
+    const p = u.pathname.slice(5);
+    if (p === "cfg" && req.method === "GET") return J({cfg: CFG, perso: CFGV !== 0, etats: await etats(env)});
+    if (p === "cfg" && req.method === "PUT"){ const c = valide((await req.json()).cfg); const t = Date.now();
+      await env.DB.prepare("INSERT INTO st(k,v,t) VALUES('cfg',?,?) ON CONFLICT(k) DO UPDATE SET v=excluded.v, t=excluded.t").bind(JSON.stringify(c), t).run(); CFGV = t;
+      await logAl(env, "⚙️ réglages modifiés"); return J({ok: true, cfg: c, etats: await etats(env)}); }
+    if (p === "origine" && req.method === "POST"){ await env.DB.prepare("DELETE FROM st WHERE k='cfg'").run(); CFGV = null; await loadCfg(env); await logAl(env, "⚙️ réglages d'origine remis"); return J({ok: true, cfg: CFG, etats: await etats(env)}); }
+    if (p === "tester" && req.method === "POST"){ const nom = u.searchParams.get("n"), k = "s:" + nom, st = (await getSt(env, k)) || {}; st.pause = 0; await putSt(env, k, st);
+      return J({res: await runSource(env, nom), etats: await etats(env)}); }
+    if (p === "notif" && req.method === "POST"){ await notify(env, {title: "Test du guetteur", message: "Les alertes arrivent bien sur ce téléphone.", priority: 3, tags: ["white_check_mark"]}); return J({ok: true}); }
+    return J({error: "inconnu"}, 404);
+  } catch (e) { return J({error: e.message}, 400); }
+}
+
+const PAGE = `<!doctype html><html lang="fr"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="robots" content="noindex">
+<title>Réglages du guetteur</title><style>
+:root{--bg:#0e0b18;--p:#1a1530;--p2:#241d40;--l:#342b55;--fg:#f1edff;--mu:#9a93b8;--a:#a06bff;--ok:#7cf3b0;--ko:#ff8a8a}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.4 -apple-system,system-ui,sans-serif;padding:max(16px,env(safe-area-inset-top)) 14px 120px}
+h1{font-size:26px;margin:4px 0 4px}h2{font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--mu);margin:26px 0 10px}
+.card{background:var(--p);border:1px solid var(--l);border-radius:16px;padding:12px;margin-bottom:10px}
+input,select,textarea{width:100%;background:var(--bg);color:var(--fg);border:1px solid var(--l);border-radius:10px;padding:10px;font:inherit;font-size:16px}
+textarea{font:13px/1.4 ui-monospace,monospace;min-height:70px}label{display:block;font-size:12.5px;color:var(--mu);margin:10px 0 4px}
+button{font:inherit;font-weight:700;border:0;border-radius:12px;padding:11px 14px;background:var(--p2);color:var(--fg);border:1px solid var(--l)}
+.y{background:var(--a);border-color:var(--a);color:#fff}.row{display:flex;gap:8px;align-items:center}.row>*{flex:1}
+.src{display:grid;grid-template-columns:auto 1fr auto;gap:10px;align-items:center}.src b{display:block}.src small{color:var(--mu);font-size:12px;display:block;overflow-wrap:anywhere}
+.dot{width:10px;height:10px;border-radius:5px;background:var(--ko)}.dot.on{background:var(--ok)}.dot.off{background:#555}
+.sw{position:relative;width:46px;height:28px;flex:none}.sw input{opacity:0;position:absolute}.sw i{position:absolute;inset:0;border-radius:14px;background:#3a3358;transition:.2s}.sw i:after{content:"";position:absolute;left:3px;top:3px;width:22px;height:22px;border-radius:11px;background:#fff;transition:.2s}.sw input:checked+i{background:var(--a)}.sw input:checked+i:after{left:21px}
+details>summary{list-style:none;cursor:pointer}.more{margin-top:10px;padding-top:10px;border-top:1px solid var(--l)}
+.chk{display:flex;gap:8px;align-items:center;font-size:14px;color:var(--fg);margin:8px 0}.chk input{width:20px;height:20px}
+#bar{position:fixed;left:0;right:0;bottom:0;padding:12px 14px max(12px,env(safe-area-inset-bottom));background:rgba(14,11,24,.92);backdrop-filter:blur(10px);border-top:1px solid var(--l);display:flex;gap:8px}#bar button{flex:1}
+#toast{position:fixed;left:50%;bottom:90px;transform:translateX(-50%);background:#fff;color:#111;padding:10px 16px;border-radius:12px;font-weight:600;display:none;max-width:90%}
+.mu{color:var(--mu);font-size:13px}
+</style>
+<h1>Réglages du guetteur</h1><p class="mu" id="sub">Réservé au propriétaire.</p>
+<div id="login" hidden class="card"><label>Clé d'accès</label><input id="key" type="password" autocomplete="off"><button class="y" id="go" style="width:100%;margin-top:10px">Entrer</button></div>
+<div id="app" hidden>
+ <h2>Sources</h2><div id="list"></div>
+ <h2>Ajouter une source</h2><div class="card">
+  <label>Nom</label><input id="nNom" placeholder="Ex. Cultura Pokémon">
+  <label>Type</label><select id="nType"><option value="page">Page de recherche d'un site</option><option value="shopify">Collection Shopify (products.json)</option><option value="boutique">Boutique entière (nouveaux produits + retours en stock)</option><option value="produit">Fiche produit précise (alerte quand dispo)</option><option value="rss">Flux RSS / Atom</option></select>
+  <label>Lien</label><input id="nUrl" inputmode="url" placeholder="https://…">
+  <label>Toutes les (secondes, 60 minimum)</label><input id="nIv" type="number" min="60" step="30" value="60">
+  <button class="y" id="add" style="width:100%;margin-top:12px">Ajouter</button></div>
+ <h2>Réglages généraux</h2><div class="card">
+  <div class="row"><div><label>Intervalle par défaut (s)</label><input id="gIv" type="number" min="60"></div><div><label>Rappel si toujours dispo (min, 0 = jamais)</label><input id="gRap" type="number" min="0"></div></div>
+  <label class="chk"><input type="checkbox" id="gStart"> Alerter aussi au premier passage d'une nouvelle source</label></div>
+ <h2>Mots-clés</h2><div class="card">
+  <label>Doit parler de Pokémon</label><textarea id="mP"></textarea>
+  <label>Urgents (précommande, invitation…)</label><textarea id="mU"></textarea>
+  <label>Stock (réassort, disponible…)</label><textarea id="mS"></textarea>
+  <label>Exclus (bruit à ignorer)</label><textarea id="mX"></textarea>
+  <label>Produits TCG jamais exclus</label><textarea id="mF"></textarea>
+  <p class="mu">Format « expression régulière » : sépare les mots par une barre verticale | .</p></div>
+ <h2>Outils</h2><div class="card"><button id="notif" style="width:100%">Envoyer une notification de test</button><button id="orig" style="width:100%;margin-top:8px">Revenir aux réglages d'origine</button><p class="mu" style="margin:10px 0 0"><a style="color:var(--a)" href="/etat">Voir l'état et le journal ›</a></p></div>
+ <div id="bar"><button id="reload">Annuler</button><button class="y" id="save">Enregistrer</button></div>
+</div><div id="toast"></div>
+<script>
+const $=s=>document.querySelector(s);let K="",C=null,E=[],dirty=false;
+const toast=t=>{const e=$("#toast");e.textContent=t;e.style.display="block";clearTimeout(e._t);e._t=setTimeout(()=>e.style.display="none",2600)};
+try{const m=location.hash.match(/k=([^&]+)/);if(m){localStorage.setItem("gk",decodeURIComponent(m[1]));history.replaceState(null,"",location.pathname)}K=localStorage.getItem("gk")||""}catch(e){}
+async function call(p,o={}){const r=await fetch("/api/"+p,{...o,headers:{"x-admin":K,"content-type":"application/json"}});const j=await r.json().catch(()=>({error:"réponse illisible"}));if(r.status===403){try{localStorage.removeItem("gk")}catch(e){}K="";show()}if(j.error)throw new Error(j.error);return j}
+const esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const TY={page:"page",shopify:"Shopify",boutique:"boutique",produit:"fiche produit",rss:"RSS"};
+function render(){
+ const st=Object.fromEntries(E.map(e=>[e.nom,e]));
+ $("#list").innerHTML=C.sources.map((s,i)=>{const e=st[s.nom]||{},on=s.actif!==false,okk=on&&e.ok&&!(e.pause>Date.now());
+  return '<div class="card"><details><summary class="src"><span class="dot '+(on?(okk?"on":""):"off")+'"></span><span><b>'+esc(s.nom)+'</b><small>'+TY[s.type]+' · toutes les '+(s.intervalle||C.intervalleParDefaut)+' s'+(on?' · '+esc(e.last||"pas encore lue"):" · en pause")+'</small></span><label class="sw" onclick="event.stopPropagation()"><input type="checkbox" data-on="'+i+'" '+(on?"checked":"")+'><i></i></label></summary>'
+  +'<div class="more"><label>Nom</label><input data-f="nom" data-i="'+i+'" value="'+esc(s.nom)+'"><label>Lien</label><input data-f="url" data-i="'+i+'" value="'+esc(s.url)+'"><label>Toutes les (secondes)</label><input type="number" min="60" data-f="intervalle" data-i="'+i+'" value="'+(s.intervalle||C.intervalleParDefaut)+'">'
+  +(s.type!=="produit"&&s.type!=="boutique"?'<label class="chk"><input type="checkbox" data-c="toutAlerter" data-i="'+i+'" '+(s.toutAlerter?"checked":"")+'> Alerter chaque nouvel élément Pokémon TCG</label><label class="chk"><input type="checkbox" data-c="toutPokemon" data-i="'+i+'" '+(s.toutPokemon?"checked":"")+'> Tout ce qui vient d\\'ici parle de Pokémon</label>':'')
+  +(s.type==="boutique"?'<label class="chk"><input type="checkbox" data-c="filtrePokemon" data-i="'+i+'" '+(s.filtrePokemon?"checked":"")+'> Ne garder que les produits Pokémon</label>':'')
+  +(s.type==="produit"?'<label>Rappel si toujours dispo (min, vide = réglage général)</label><input type="number" min="0" data-f="rappelMin" data-i="'+i+'" value="'+(s.rappelMin??"")+'">':'')
+  +'<label>Mots-clés obligatoires (facultatif)</label><input data-f="motsCles" data-i="'+i+'" value="'+esc(s.motsCles||"")+'">'
+  +'<div class="row" style="margin-top:12px"><button data-t="'+esc(s.nom)+'">Tester maintenant</button><button data-del="'+i+'" style="color:var(--ko)">Supprimer</button></div></div></details></div>'}).join("");
+ $("#gIv").value=C.intervalleParDefaut;$("#gRap").value=C.rappelMin??10;$("#gStart").checked=!!C.alerterAuDemarrage;
+ $("#mP").value=C.motsPokemon||"";$("#mU").value=C.motsUrgents||"";$("#mS").value=C.motsStock||"";$("#mX").value=C.motsExclus||"";$("#mF").value=C.motsTCGforts||"";
+ const n=C.sources.filter(s=>s.actif!==false).length;$("#sub").textContent=n+" sources actives sur "+C.sources.length;
+}
+const mark=()=>{dirty=true;$("#save").textContent="Enregistrer •"};
+document.addEventListener("change",e=>{const t=e.target,i=+t.dataset.i;
+ if(t.dataset.on!=null){C.sources[+t.dataset.on].actif=t.checked;mark();render();return}
+ if(t.dataset.f){let v=t.value;if(t.type==="number")v=v===""?undefined:+v;C.sources[i][t.dataset.f]=v;mark();return}
+ if(t.dataset.c){C.sources[i][t.dataset.c]=t.checked||undefined;mark();return}
+ const g={gIv:"intervalleParDefaut",gRap:"rappelMin",mP:"motsPokemon",mU:"motsUrgents",mS:"motsStock",mX:"motsExclus",mF:"motsTCGforts"}[t.id];
+ if(g){C[g]=t.type==="number"?+t.value:t.value;mark()} if(t.id==="gStart"){C.alerterAuDemarrage=t.checked;mark()}});
+document.addEventListener("click",async e=>{const b=e.target.closest("button");if(!b)return;
+ if(b.dataset.del!=null){if(confirm("Supprimer « "+C.sources[+b.dataset.del].nom+" » ?")){C.sources.splice(+b.dataset.del,1);mark();render()}}
+ if(b.dataset.t){if(dirty){toast("Enregistre d'abord tes changements");return}b.disabled=true;b.textContent="Lecture…";try{const j=await call("tester?n="+encodeURIComponent(b.dataset.t),{method:"POST"});E=j.etats;toast(j.res);render()}catch(x){toast(x.message)}}});
+$("#add").onclick=()=>{const nom=$("#nNom").value.trim(),url=$("#nUrl").value.trim();if(!nom||!/^https?:\\/\\//.test(url))return toast("Nom et lien obligatoires");
+ if(C.sources.some(s=>s.nom===nom))return toast("Ce nom existe déjà");C.sources.push({nom,type:$("#nType").value,url,intervalle:Math.max(60,+$("#nIv").value||60)});$("#nNom").value=$("#nUrl").value="";mark();render();toast("Ajoutée : pense à enregistrer")};
+$("#save").onclick=async()=>{$("#save").disabled=true;try{const j=await call("cfg",{method:"PUT",body:JSON.stringify({cfg:C})});C=j.cfg;E=j.etats;dirty=false;$("#save").textContent="Enregistrer";render();toast("Enregistré : pris en compte à la prochaine minute")}catch(x){toast(x.message)}$("#save").disabled=false};
+$("#reload").onclick=()=>{dirty=false;$("#save").textContent="Enregistrer";load()};
+$("#notif").onclick=async()=>{try{await call("notif",{method:"POST"});toast("Notification envoyée")}catch(x){toast(x.message)}};
+$("#orig").onclick=async()=>{if(!confirm("Remettre tous les réglages d'origine ?"))return;try{const j=await call("origine",{method:"POST"});C=j.cfg;E=j.etats;dirty=false;render();toast("Réglages d'origine remis")}catch(x){toast(x.message)}};
+async function load(){try{const j=await call("cfg");C=j.cfg;E=j.etats;render();$("#app").hidden=false;$("#login").hidden=true}catch(x){if(K)toast(x.message)}}
+function show(){$("#app").hidden=!K;$("#login").hidden=!!K;if(!K)$("#sub").textContent="Réservé au propriétaire."}
+$("#go").onclick=()=>{K=$("#key").value.trim();try{localStorage.setItem("gk",K)}catch(e){}show();load()};
+window.onbeforeunload=()=>dirty?true:undefined;
+show();if(K)load();
+</script></html>`;

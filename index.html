@@ -623,6 +623,13 @@ html{background:var(--panel)}
 /* ---------- Extensions ---------- */
 .ext-head{display:flex;align-items:center;justify-content:space-between;gap:10px}
 .ext-search{position:relative;margin-bottom:6px}
+.exsrow{display:flex;gap:8px;align-items:flex-start}.exsrow .ext-search{flex:1;min-width:0}
+.exlay>summary{width:48px;height:48px;padding:0;justify-content:center;border-radius:12px}
+.exlay>summary svg{width:21px;height:21px}
+.exlay .ddm{left:auto;right:0;min-width:210px}
+.exlay .ddm p{font:600 10.5px/1 var(--f-mono);text-transform:uppercase;letter-spacing:.08em}
+.exlay .ddm button{align-items:center;gap:10px;font-size:14px}.exlay .ddm button svg{width:19px;height:19px;flex:none;color:var(--muted)}
+.exlay .ddm button[aria-pressed="true"] svg{color:var(--border-yellow)}
 .ext-search input{width:100%;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:13px 14px 13px 40px;font-size:16px}
 .ext-search svg{position:absolute;left:13px;top:50%;transform:translateY(-50%);width:18px;height:18px;color:var(--muted)}
 .serie{margin-top:20px}
@@ -1190,6 +1197,20 @@ html{background:var(--panel)}
 .stp-namer input{width:100%;height:54px;border-radius:16px;border:2px solid var(--border-yellow);background:var(--panel);color:var(--fg);font:800 20px/1 var(--f-display);text-align:center;letter-spacing:.04em;margin-bottom:12px;box-sizing:border-box}
 .stp-ball{position:absolute;left:50%;bottom:0;width:74px;height:74px;margin-left:-37px;filter:drop-shadow(0 10px 18px rgba(0,0,0,.45));transition:transform .3s}
 .stp.empty .stp-ball{width:150px;height:150px;margin-left:-75px;bottom:56px;animation:stpw 2.4s ease-in-out infinite}
+/* 1re ouverture : même Poké Ball que pour les nouveaux compagnons (relief, halo, étoiles, éclair) ; le compagnon reste caché tant qu'elle n'est pas ouverte */
+.stp-stage{width:300px;height:300px}
+.stp .tmcar{min-height:0;width:100%;height:100%}
+.stp .tmstage{height:100%}
+.stp .tmone{width:176px;height:176px}
+.stp .tmglow{width:250px;height:250px}
+.stp .tmshadow{bottom:34px;width:110px}
+.stp .stp-spr{top:54px;z-index:5;display:none}
+.stp.opened .stp-spr{display:block}
+.stp.opened .tmone,.stp.opened .tmshadow{visibility:hidden}
+.stp-type,.stp > .stp-go{display:none!important}
+.stp-stage + .stp-nav{margin:0 0 10px}
+.stp-hint{font-size:13px;color:var(--muted);margin-top:6px;min-height:16px}
+.stp.opening .stp-nav,.stp.opened .stp-nav,.stp.opened > .stp-go,.stp.opening > .stp-go{visibility:hidden}
 @keyframes stpw{0%,70%,100%{transform:rotate(0)}76%{transform:rotate(-12deg)}84%{transform:rotate(10deg)}92%{transform:rotate(-5deg)}}
 .stp-name{font:800 24px/1 var(--f-display);font-stretch:120%;letter-spacing:.03em;min-height:24px}
 .stp-type{display:inline-block;margin-top:8px;padding:4px 10px;border-radius:99px;font:700 11px/1.2 var(--f-mono);letter-spacing:.08em;background:var(--border-yellow);color:var(--on-acc)}
@@ -1465,7 +1486,7 @@ img.px.reveal{animation:stpRev .9s ease-out}
   }
   fit(); addEventListener("resize", fit); addEventListener("orientationchange", function(){ setTimeout(fit, 300); });
 })();</script>
-<script>window.__APPV="116";</script>
+<script>window.__APPV="117";</script>
 <div class="splash" id="splash" aria-hidden="true"><i class="hole"></i><i class="halo"></i><div class="bw"><svg class="b" viewBox="0 0 100 100"><use href="#pb"/></svg><svg class="t" viewBox="0 0 100 100"><use href="#pb"/></svg></div><i class="glow"></i></div>
 <script>setTimeout(function(){ if(window.__booted) return;
   var b=document.createElement("div"); b.setAttribute("role","alert");
@@ -1500,7 +1521,7 @@ img.px.reveal{animation:stpRev .9s ease-out}
   <!-- ===== EXTENSIONS ===== -->
   <section class="view" id="homeView">
     <div class="scroll">
-      <div class="homebar"><span id="avatSlot"><svg class="pball" viewBox="0 0 100 100" aria-hidden="true"><use href="#pb"/></svg></span><span class="brand">DEX<b>·</b>SCAN</span><button class="thbtn" id="themeBtn" aria-label="Changer de thème"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.6-.9 1.2-1.8-.5-1.1.2-2.2 1.4-2.2H17a4 4 0 0 0 4-4c0-5.5-4-10-9-10z"/><circle cx="7.5" cy="11" r="1.2"/><circle cx="10" cy="7" r="1.2"/><circle cx="15" cy="7" r="1.2"/></svg></button><span class="ver">v116</span></div>
+      <div class="homebar"><span id="avatSlot"><svg class="pball" viewBox="0 0 100 100" aria-hidden="true"><use href="#pb"/></svg></span><span class="brand">DEX<b>·</b>SCAN</span><button class="thbtn" id="themeBtn" aria-label="Changer de thème"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.6-.9 1.2-1.8-.5-1.1.2-2.2 1.4-2.2H17a4 4 0 0 0 4-4c0-5.5-4-10-9-10z"/><circle cx="7.5" cy="11" r="1.2"/><circle cx="10" cy="7" r="1.2"/><circle cx="15" cy="7" r="1.2"/></svg></button><span class="ver">v117</span></div>
       <button class="banner" id="pxBanner" hidden></button>
       <div class="hhead"><div><span class="hdate" id="hDate"></span><div class="htitle"><h1 class="h1">Accueil</h1><button class="hsearch hrank" id="hRank" aria-label="Classement"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 21h8M12 17v4"/><path d="M7 4h10v5a5 5 0 0 1-10 0z"/><path d="M17 5h3v2a3 3 0 0 1-3 3M7 5H4v2a3 3 0 0 0 3 3"/></svg></button></div></div><button class="hsearch" id="hSearch" aria-label="Rechercher une carte"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></button></div>
       <div class="total htot" id="hTot"></div>
@@ -1543,13 +1564,13 @@ img.px.reveal{animation:stpRev .9s ease-out}
   <section class="view" id="extView" hidden>
     <div class="scroll" id="extScroll">
       <div id="extHome">
-        <div class="clshead"><h1 class="h1">Explorer</h1><button class="chip" id="extLang" aria-label="Langue des cartes" hidden>Cartes FR</button><button class="hicon" id="extSearchBtn" aria-label="Rechercher"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></button><button class="hicon" id="extSetBtn" aria-label="Trier et filtrer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16M7 12h10M10 18h4"/></svg><i class="hbadge" hidden></i></button></div>
+        <div class="clshead"><h1 class="h1">Explorer</h1><button class="chip" id="extLang" aria-label="Langue des cartes" hidden>Cartes FR</button><button class="hicon" id="extSearchBtn" aria-label="Rechercher"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></button><button class="hicon" id="extSetBtn" aria-label="Trier et filtrer" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16M7 12h10M10 18h4"/></svg><i class="hbadge" hidden></i></button></div>
       <div class="seg clsw3" role="group" aria-label="Classeur"><button data-cls3="graded">Mes gradées</button><button data-cls3="cards">Mes cartes</button><button data-cls3="explore">Explorer</button></div>
       
 
         <div class="seg exmode" role="group" aria-label="Type de produits"><button data-mode="cards" aria-pressed="true">Extensions</button><button data-mode="sealed" aria-pressed="false">Scellés</button><button data-mode="graded" aria-pressed="false">Cotes gradées</button><button data-mode="jp" aria-pressed="false">Japon</button></div>
         <div id="cardsBox">
-        <label class="ext-search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><input id="extQ" type="search" placeholder="Rechercher une extension (ex. 151)" autocomplete="off" aria-label="Rechercher une extension"></label>
+        <div class="exsrow"><label class="ext-search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><input id="extQ" type="search" placeholder="Rechercher une extension (ex. 151)" autocomplete="off" aria-label="Rechercher une extension"></label><details class="dd exlay" id="extLay"><summary aria-label="Disposition" title="Disposition"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M4 6h10M18 6h2M4 12h4M12 12h8M4 18h12M20 18h0"/><circle cx="16" cy="6" r="2"/><circle cx="10" cy="12" r="2"/><circle cx="18" cy="18" r="2"/></svg></summary><div class="ddm" id="extLayM" role="group" aria-label="Disposition"></div></details></div>
         <div id="extList"></div>
         </div>
         <div id="sealedBox" hidden>
@@ -5002,11 +5023,20 @@ function setTileHTML(s, own){
 function serStats(sets, OWN){ let h=0, t=0; for(const s of sets){ const st = setStats(s, OWN.get(s.id)); h+=st.have; t+=st.total||0; } return {h, t, pc: t ? Math.floor(h/t*100) : 0}; }
 const serKey = n => "s-"+norm(n).replace(/ /g,"-");
 function vtogHTML(cur, modes){ return `<div class="vtog" role="group" aria-label="Affichage">${modes.map(m=>`<button data-view="${m}" aria-pressed="${cur===m}" aria-label="${VIEW_LBL[m]}" title="${VIEW_LBL[m]}">${VIEW_ICO[m]}</button>`).join("")}</div>`; }
+function renderExtLay(){
+  const m = $("#extLayM"); if(!m) return;
+  const NM = {folders:"Dossiers", compact:"Liste", grid:"Grille", detail:"Détaillée"};
+  m.innerHTML = `<p>Disposition</p>` + ["folders","compact","grid","detail"].map(v=>`<button data-lay="${v}" aria-pressed="${EX.view===v}">${VIEW_ICO[v]}${NM[v]}</button>`).join("")
+    + `<p>Langue des cartes</p>` + [["fr","Français"],["en","Anglais"]].map(([v,t])=>`<button data-llang="${v}" aria-pressed="${LANG===v}"><b style="min-width:0">${v.toUpperCase()}</b>${t}</button>`).join("");
+  m.querySelectorAll("[data-llang]").forEach(b=>b.onclick=()=>{ $("#extLay").open = false; if(b.dataset.llang!==LANG) toggleLang(); });
+  m.querySelectorAll("[data-lay]").forEach(b=>b.onclick=()=>{ EX.view = b.dataset.lay; EX.fold = null; store.set("extViewMode2", EX.view); $("#extLay").open = false; if(EX.series) renderExtList(); else renderExtLay(); extScroll.scrollTop = 0; });
+}
+setTimeout(()=>{ const d = $("#extLay"); if(d) d.addEventListener("toggle", ()=>{ if(d.open) renderExtLay(); }); }, 0);
 function renderExtList(){
-  const q = norm(EX.q), OWN = ownIndex(), V = EX.view;
+  const q = norm(EX.q), OWN = ownIndex(), V = EX.view; renderExtLay();
   if(!RAR.d) loadRar().then(d=>{ if(d && EX.series && !EX.set && !extHome.hidden) renderExtList(); });
   const groups = EX.series.map(se=>({se, sets: q ? se.sets.filter(s=>norm(s.name+" "+s.id+" "+se.name).includes(q)) : se.sets})).filter(g=>g.sets.length);
-  const bar = `<div class="lbar"><div class="lrow"><div class="serchips">${groups.map(g=>`<button data-jump="${serKey(g.se.name)}">${esc(g.se.name)}</button>`).join("")}</div>${vtogHTML(V, ["compact","grid","detail"])}</div></div>`;
+  const bar = `<div class="lbar"><div class="lrow"><div class="serchips">${groups.map(g=>`<button data-jump="${serKey(g.se.name)}">${esc(g.se.name)}</button>`).join("")}</div></div></div>`;
   const body = groups.map(({se, sets})=>{
     const ss = serStats(sets, OWN), closed = !q && SERCL[se.name];
     const inner = V==="grid" ? `<div class="stiles">${sets.map(s=>setTileHTML(s, OWN.get(s.id))).join("")}</div>`
@@ -6813,28 +6843,35 @@ function openAvatar(){
 function starterPicker(){
   if(starterOf() || $("#stp")) return;
   const el = document.createElement("div"); el.id = "stp"; el.className = "stp empty";
-  el.innerHTML = `<h2>CHOISIS TON STARTER</h2><p class="lede">Glisse à gauche ou à droite pour les découvrir</p>
-    <div class="stp-stage"><img class="stp-spr px hide" alt=""><svg class="stp-ball" viewBox="0 0 100 100" aria-hidden="true"><use href="#pb"/></svg></div>
-    <div class="stp-name">???</div><span class="stp-type">?</span>
+  el.innerHTML = `<h2>CHOISIS TON STARTER</h2><p class="lede">Swipe gauche ou droite</p>
+    <div class="stp-stage"><div class="tmcar" id="stpCar"><div class="tmstage"><div class="tmglow"></div><canvas class="tmfx" id="stpFx"></canvas><div class="tmshadow"></div><div class="tmone" id="stpOne" role="button" aria-label="Ouvrir cette Poké Ball"></div><div class="tmflash"></div></div></div><img class="stp-spr px hide" alt=""></div>
     <div class="stp-nav"><button data-d="-1" aria-label="Précédent">‹</button><div class="stp-dots">${STARTERS.map(()=>"<i></i>").join("")}</div><button data-d="1" aria-label="Suivant">›</button></div>
-    <button class="stp-go" disabled>Glisse pour choisir</button>
+    <div class="stp-name">???</div><span class="stp-type">?</span><div class="stp-hint"></div>
+    <button class="stp-go" disabled>Glisse pour choisir un élément</button>
     <div class="stp-namer"><label for="stpNm">Donne-lui un nom</label><input id="stpNm" maxlength="12" autocomplete="off" autocapitalize="characters" spellcheck="false"><button class="stp-go" id="stpOk">C'est son nom !</button></div>`;
   document.body.appendChild(el);
   let i = -1;
   const spr = el.querySelector(".stp-spr"), go = el.querySelector(".stp-go"), nm = el.querySelector("#stpNm");
+  const one = el.querySelector("#stpOne"), car = el.querySelector("#stpCar"), NEUT = "#3b3a42";
+  const ballCol = ()=> i<0 ? NEUT : (STARTERS[i].secret && !store.get("kanto", false) ? NEUT : (THEMES[STARTERS[i].th]?.pb || "#c33"));
+  const fx = tmStars(el.querySelector("#stpFx"), ballCol);
+  one.innerHTML = tmBall(NEUT); car.style.setProperty("--tmc", "#8a86a0");
   const show = ()=>{
     const st = STARTERS[i], lock = !!(st.secret && !store.get("kanto", false));   // !! : toggle(x, undefined) basculerait au lieu de retirer
     el.classList.remove("empty"); document.documentElement.classList.toggle("nostart", lock);
     if(!lock){ document.documentElement.dataset.theme = st.th; try{ applyVerre(); tcolSync(); }catch(e){} }
-    spr.classList.add("hide");
-    setTimeout(()=>{ spr.src = st.img; spr.classList.add("lock"); spr.classList.remove("hide"); }, 160);   // tous en silhouette : on ne le découvre qu'une fois choisi
-    el.querySelector(".stp-name").textContent = lock ? "???" : st.n;
+    // seulement la Poké Ball (aux couleurs de son élément) : le compagnon reste caché jusqu'à l'ouverture
+    spr.removeAttribute("src");
+    const c = ballCol(); one.innerHTML = tmBall(c); car.style.setProperty("--tmc", c);
+    one.classList.remove("in-l","in-r"); void one.offsetWidth; if(show.d){ one.classList.add(show.d>0?"in-r":"in-l"); clearTimeout(one._t); one._t = setTimeout(()=>one.classList.remove("in-l","in-r"), 300); }
+    el.querySelector(".stp-name").textContent = "???";
+    el.querySelector(".stp-hint").textContent = lock ? "Verrouillé · carte n°151" : "Touche la balle pour l'ouvrir";
     el.querySelector(".stp-type").textContent = lock ? "SECRET" : st.t;
     el.querySelectorAll(".stp-dots i").forEach((d,j)=>d.classList.toggle("on", j===i));
-    go.disabled = lock; go.textContent = lock ? "Verrouillé · carte n°151" : `Je choisis ${st.n} !`;
+    go.disabled = lock; go.textContent = lock ? "Verrouillé · carte n°151" : `Ouvrir la Poké Ball ${st.t}`;
     try{ navigator.vibrate?.(8); }catch(e){}
   };
-  const step = d=>{ i = i<0 ? (d>0 ? 0 : STARTERS.length-1) : (i + d + STARTERS.length) % STARTERS.length; show(); };
+  const step = d=>{ if(el.classList.contains("opening") || el.classList.contains("opened")) return; show.d = d; i = i<0 ? (d>0 ? 0 : STARTERS.length-1) : (i + d + STARTERS.length) % STARTERS.length; show(); };
   el.querySelectorAll("[data-d]").forEach(b=>b.onclick = ()=>step(+b.dataset.d));
   let x0 = null, y0 = 0;
   el.addEventListener("touchstart", e=>{ e.stopPropagation(); const t = e.touches[0]; x0 = t.clientX; y0 = t.clientY; }, {passive:true});
@@ -6845,11 +6882,18 @@ function starterPicker(){
   addEventListener("keydown", key);
   go.onclick = ()=>{
     const st = STARTERS[i]; if(!st || go.disabled) return;
-    go.disabled = true;
-    // révélation : la silhouette s'illumine et on découvre le compagnon, puis on lui donne un nom
-    spr.classList.remove("lock"); spr.classList.add("reveal");
-    try{ navigator.vibrate?.([10,60,20]); }catch(e){}
-    setTimeout(()=>{ el.classList.add("naming"); nm.value = st.n; nm.focus(); nm.select(); }, 900);
+    go.disabled = true; el.classList.add("opening");
+    // même ouverture que les Poké Balls des nouveaux compagnons : elle s'ouvre, gerbe d'étoiles, éclair, puis le compagnon apparaît
+    car.classList.add("open"); try{ navigator.vibrate?.([10,40,30]); }catch(e){}
+    setTimeout(()=>fx.burst(), 300);
+    setTimeout(()=>{
+      el.classList.remove("opening"); el.classList.add("opened");
+      spr.src = st.img; spr.classList.remove("hide","lock"); spr.classList.add("reveal");
+      el.querySelector(".stp-name").textContent = st.n; el.querySelector(".stp-hint").textContent = "";
+      try{ navigator.vibrate?.([20,40,30]); }catch(e){}
+      setTimeout(()=>{ el.classList.add("naming"); nm.value = st.n; nm.focus(); nm.select(); }, 1000);
+      setTimeout(()=>fx.stop(), 1600);
+    }, 900);
   };
   const finish = ()=>{
     const st = STARTERS[i]; if(!st || !el.classList.contains("naming")) return;
@@ -6873,6 +6917,7 @@ function starterPicker(){
       gameBox([`${petName()} rejoint ton aventure !`, "Il grandit avec ta collection : chaque carte, chaque scellé et chaque gradée lui donnent de l'XP.", "Son niveau, c'est le niveau de ton compte. Touche-le en haut à gauche pour le voir."], [{label:"C'est parti !", go:true}]);
     }, 800);
   };
+  one.onclick = ()=>{ if(i >= 0) go.onclick(); };
   el.querySelector("#stpOk").onclick = finish;
   nm.addEventListener("keydown", e=>{ if(e.key==="Enter"){ e.preventDefault(); finish(); } });
 }
@@ -7359,6 +7404,10 @@ if(rkProf()?.on) setTimeout(()=>rkColSync(), 6000);
    Après l'intro, une seule fois par version qui apporte quelque chose à l'utilisateur.
    Nouvelle installation : rien (tout est neuf). Les versions purement techniques n'ont pas d'entrée ici. */
 const NEWS = [
+  {v:117, items:[
+    ["M4 6h10M18 6h2M4 12h4M12 12h8M4 18h12", "Disposition dans Explorer", "Un bouton filtre à côté de la recherche : dossiers, liste, grille ou détaillée, et la langue des cartes."],
+    ["M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18zM3 12h18", "Nouveau départ", "À la première ouverture, seule la Poké Ball de chaque élément apparaît : touche-la pour découvrir ton compagnon."]
+  ]},
   {v:116, items:[
     ["M3 17l6-6 4 4 8-8M14 7h7v7", "Hausse de mes actifs", "Les hausses et baisses de tes cartes tiennent dans un bandeau compact : glisse de côté, touche une carte pour ouvrir sa fiche."]
   ]},

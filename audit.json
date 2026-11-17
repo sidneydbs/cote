@@ -1,5 +1,5 @@
 {
- "built": "2026-11-16T22:28:15.791Z",
+ "built": "2026-11-17T08:25:27.511Z",
  "sets": {
   "total": 209,
   "noLogo": [],
@@ -15,11 +15,11 @@
  },
  "sealed": {
   "total": 4636,
-  "photo": 1311,
+  "photo": 1309,
   "manual": 0,
-  "tcgplayer": 691,
+  "tcgplayer": 692,
   "logo": 1811,
-  "missing": 823,
+  "missing": 824,
   "list": [
    "EX Trainer Kit",
    "EX Trainer Kit 2",
@@ -572,6 +572,7 @@
    "Pikachu & Eevee Quicksand Card Display Pendant Gift Box",
    "Giratina VSTAR Deck Building Advanced Gift Box",
    "WCD 2024: Jesse Parker \"\"The 'Don\"\"",
+   "WCD 2024: Evan Pavelski \"\"Regidrago VSTAR\"\"",
    "151C: Collect 151 Journey Booster",
    "151C: Collect 151 Journey Jumbo Booster",
    "151C: Collection 151 Special Event Pack",
@@ -863,8 +864,8 @@
   "tk-xy-p": "tk9b",
   "tk-sm-l": "tk10a",
   "tk-sm-r": "tk10b",
-  "tk-ex-latia": "tk1a",
-  "tk-ex-latio": "tk1b"
+  "tk-ex-latio": "tk1b",
+  "tk-ex-latia": "tk1a"
  },
  "diag": {
   "assets.tcgdex.net": {

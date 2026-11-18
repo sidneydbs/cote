@@ -444,13 +444,34 @@ async function pushOne(env, sub, text, urgent){
   else await env.DB.prepare("UPDATE subs SET ok=? WHERE ep=?").bind(r.status, sub.ep).run();
   return r.status;
 }
+// texte de la notification (format « produit d'abord ») : titre = icône + produit, texte = prix · boutique
+const PUSH_ICO = {"DISPO":"🟢", "EN STOCK":"🟢", "PRÉCOMMANDE":"📦", "INVITATION":"🎟️", "NOUVEAU":"🆕"};
+function pushText(title, message){
+  const parts = String(title).split(" · "), kind = parts[0].trim();
+  let src = (parts[1] || "").replace(/\s+(nouveaux deals|groupe Pok[ée]mon|Pok[ée]mon|enseignes|coffrets)$/i, "").trim();
+  let m = String(message || "").trim().replace(/\s*\(pas encore en stock\)\s*$/i, ""), price = "", shop = "";
+  const ch = /\s*\((?:chez ([^,)]+))?(?:,\s*)?([\d\s.,]+\s*€)?\)\s*$/.exec(m);   // « (chez X, 19,95 €) » ou « (19,95 €) » (Dealabs)
+  if (ch && (ch[1] || ch[2])){ shop = (ch[1] || "").trim(); price = (ch[2] || "").trim(); m = m.slice(0, ch.index); }
+  const dash = /\s+—\s+([\d\s.,]+\s*€)\s*$/.exec(m); if (dash){ price = dash[1].trim(); m = m.slice(0, dash.index); }
+  const pre = /^(De retour en stock|EN STOCK|Toujours en stock|Précommande ouverte|Invitation ouverte|Nouveau)\s*:\s*/i.exec(m); if (pre) m = m.slice(pre[0].length);
+  m = m.replace(/\s*\(pas encore en stock\)\s*$/i, "")
+    .replace(/^(Jeu de cartes à collectionner|JCC|Cartes?) Pok[ée]mon\s*[:\-–]\s*/i, "").replace(/^Pok[ée]mon\s*[:\-–]\s*/i, "")
+    .replace(/\s*[–-]\s*JCC Pok[ée]mon[^()]*(\(fran[çc]ais\))?\s*$/i, "").replace(/\s*-\s*Pok[ée]mon\s*-\s*FR\s*$/i, "").replace(/\s*-\s*FR\s*$/i, "")
+    .replace(/\s{2,}/g, " ").trim();
+  // actualités (Google Actu) : le titre de l'article, la source en dessous
+  if (/Google Actu/i.test(parts[1] || "")){ const n = /\s+-\s+([^-]{2,40})$/.exec(m); return {title: "📰 " + (n ? m.slice(0, n.index) : m), body: (n ? n[1] : "Actualité") + " · Actu Pokémon"}; }
+  const ico = PUSH_ICO[kind] || "🔔", label = {"DISPO":"En stock", "PRÉCOMMANDE":"Précommande", "INVITATION":"Invitation", "NOUVEAU":"Nouveauté"}[kind] || kind;
+  const where = shop ? `${shop} (via ${src})` : src;
+  return {title: `${ico} ${m || label}`, body: [price, where, price ? "" : label].filter(Boolean).join(" · ")};
+}
 async function pubAlert(env, {title, message, url, priority}){
   await pubTables(env); const t = Date.now();
   const r = await env.DB.prepare("INSERT INTO al(t,title,msg,url,prio) VALUES(?,?,?,?,?)").bind(t, title.slice(0, 250), message.slice(0, 900), url || "", priority).run();
   if (new Date().getUTCMinutes() === 0) await env.DB.prepare("DELETE FROM al WHERE t < ?").bind(t - 14 * 864e5).run();
   if (!env.VAPID_PRIV || !env.VAPID_PUB) return;
   const subs = (await env.DB.prepare("SELECT ep,p256,auth FROM subs WHERE pal IS NOT 0").all()).results || [];
-  await pushMany(env, subs, {id: "al" + r.meta?.last_row_id, title, body: message, url: url || "", t}, priority >= 5);
+  const pt = pushText(title, message);
+  await pushMany(env, subs, {id: "al" + r.meta?.last_row_id, title: pt.title.slice(0, 110), body: pt.body.slice(0, 200), url: url || "", t}, priority >= 5);
 }
 const PUSH_HOSTS = /(^|\.)(fcm\.googleapis\.com|push\.apple\.com|notify\.windows\.com|push\.services\.mozilla\.com)$/;
 async function pubApi(req, env, u){

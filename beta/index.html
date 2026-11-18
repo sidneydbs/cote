@@ -1424,10 +1424,11 @@ img.px.reveal{animation:stpRev .9s ease-out}
 .tmmini.on{border-color:var(--border-yellow)}.tmmini.lockd{opacity:.6}
 .thtile.lock2 .sw{filter:grayscale(1) brightness(.5)}
 .lvbig{font:900 30px/1 var(--f-display);color:var(--border-yellow);margin:10px 0 2px}
-/* compagnon : paliers de rareté (Commun 1, Rare 10, Épique 25, Légendaire 50) */
+/* compagnon : un palier tous les 5 niveaux ; allure t1 au 5, t2 au 20, t3 au 40, couronne au 50 */
 .pet{position:relative;display:inline-grid;place-items:center;--pc:#a77bff;--pc2:#e3d4ff}
 .pet>img{position:relative;z-index:2}
 .pet.t1>img{filter:drop-shadow(0 0 6px var(--pc))}
+.pet.p2>img,.pet.p3>img{filter:drop-shadow(0 0 1px var(--pc2)) drop-shadow(0 0 9px var(--pc))}
 .pet.t2>img{filter:drop-shadow(0 0 1.5px var(--pc2)) drop-shadow(0 0 12px var(--pc))}
 .pet.t3>img{filter:drop-shadow(0 0 1.5px #fff) drop-shadow(0 0 10px var(--pc)) drop-shadow(0 0 22px #ffd84a)}
 .pet .ph{position:absolute;inset:-9%;border-radius:50%;z-index:1;pointer-events:none;-webkit-mask:radial-gradient(circle,transparent 60%,#000 62%,#000 67%,transparent 69%);mask:radial-gradient(circle,transparent 60%,#000 62%,#000 67%,transparent 69%);animation:petspin 8s linear infinite}
@@ -1446,12 +1447,13 @@ img.px.reveal{animation:stpRev .9s ease-out}
 .lvsheet .pet{width:176px;height:176px;margin:6px auto 0}.lvsheet .pet>img{width:160px;height:160px}
 .rkspr .pet,.rkcolhead .pet{width:100%;height:100%}.rkspr .pet .ph{inset:-14%}
 .pettag{display:inline-block;margin-top:8px;padding:4px 9px;border-radius:7px;font:800 11px/1 var(--f-mono);letter-spacing:.08em;background:var(--panel-2);color:var(--muted)}
-.pettag.t1{color:#7fe3ff}.pettag.t2{color:#d58bff}.pettag.t3{color:#2a1a00;background:#ffd84a}
-.pettiers{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin:14px 0 2px}
+.pettag.t1{color:#7fe3ff}.pettag.t1,.pettag.t2,.pettag.t3{white-space:nowrap}.pettag.t2{color:#d58bff}.pettag.t3{color:#2a1a00;background:#ffd84a}
+.pettiers{display:grid;grid-template-columns:repeat(auto-fill,minmax(64px,1fr));gap:6px;margin:14px 0 2px}
 .pettiers div{padding:7px 2px;border-radius:10px;border:1px solid var(--line);background:var(--panel-2);font:800 10.5px/1.25 var(--f-mono);color:var(--muted)}
 .pettiers div small{display:block;font:600 10px var(--f-body)}
 .pettiers div.on{border-color:var(--pc);color:var(--fg);background:color-mix(in srgb,var(--pc) 16%,var(--panel-2))}
 .pettiers div.done{color:var(--fg)}
+.pettiers div:last-child{grid-column:1/-1}
 .holo{display:grid;place-items:center;margin:16px 0 4px;perspective:900px}
 .holo .hc{position:relative;width:210px;height:300px;border-radius:14px;padding:9px;background:linear-gradient(145deg,#ffe58a,#d9a520 40%,#fff2b8 55%,#c08a12);box-shadow:0 16px 36px rgba(0,0,0,.5),0 0 28px color-mix(in srgb,var(--pc) 45%,transparent);transition:transform .12s ease-out;animation:hcsway 6s ease-in-out infinite}
 .holo .hc.live{animation:none}
@@ -1663,7 +1665,7 @@ img.px.reveal{animation:stpRev .9s ease-out}
   }
   fit(); addEventListener("resize", fit); addEventListener("orientationchange", function(){ setTimeout(fit, 300); });
 })();</script>
-<script>window.__APPV="142";</script>
+<script>window.__APPV="143";</script>
 <div class="splash" id="splash" aria-hidden="true"><i class="hole"></i><i class="halo"></i><div class="bw"><svg class="b" viewBox="0 0 100 100"><use href="#pb"/></svg><svg class="t" viewBox="0 0 100 100"><use href="#pb"/></svg></div><i class="glow"></i></div>
 <script>setTimeout(function(){ if(window.__booted) return;
   var b=document.createElement("div"); b.setAttribute("role","alert");
@@ -1698,7 +1700,7 @@ img.px.reveal{animation:stpRev .9s ease-out}
   <!-- ===== EXTENSIONS ===== -->
   <section class="view" id="homeView">
     <div class="scroll">
-      <div class="homebar"><span id="avatSlot"><svg class="pball" viewBox="0 0 100 100" aria-hidden="true"><use href="#pb"/></svg></span><span class="brand">DEX<b>·</b>SCAN</span><button class="thbtn" id="themeBtn" aria-label="Changer de thème"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.6-.9 1.2-1.8-.5-1.1.2-2.2 1.4-2.2H17a4 4 0 0 0 4-4c0-5.5-4-10-9-10z"/><circle cx="7.5" cy="11" r="1.2"/><circle cx="10" cy="7" r="1.2"/><circle cx="15" cy="7" r="1.2"/></svg></button><span class="ver" id="hVer">v142</span></div>
+      <div class="homebar"><span id="avatSlot"><svg class="pball" viewBox="0 0 100 100" aria-hidden="true"><use href="#pb"/></svg></span><span class="brand">DEX<b>·</b>SCAN</span><button class="thbtn" id="themeBtn" aria-label="Changer de thème"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.6-.9 1.2-1.8-.5-1.1.2-2.2 1.4-2.2H17a4 4 0 0 0 4-4c0-5.5-4-10-9-10z"/><circle cx="7.5" cy="11" r="1.2"/><circle cx="10" cy="7" r="1.2"/><circle cx="15" cy="7" r="1.2"/></svg></button><span class="ver" id="hVer">v143</span></div>
       <button class="banner" id="pxBanner" hidden></button>
       <div class="hhead"><div><span class="hdate" id="hDate"></span><div class="htitle"><h1 class="h1">Accueil</h1><button class="hsearch hrank" id="hRank" aria-label="Classement"><svg viewBox="0 0 24 24" fill="none" stroke="url(#hrkG)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><defs><linearGradient id="hrkG" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFF4C2"/><stop offset=".35" stop-color="#FFD86E"/><stop offset=".65" stop-color="#7CF3FF"/><stop offset="1" stop-color="#E2B8FF"/></linearGradient></defs><path d="M8 21h8M12 17v4"/><path d="M7 4h10v5a5 5 0 0 1-10 0z"/><path d="M17 5h3v2a3 3 0 0 1-3 3M7 5H4v2a3 3 0 0 0 3 3"/></svg></button></div></div><button class="hsearch" id="hSearch" aria-label="Rechercher une carte"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></button></div>
       <div class="total htot" id="hTot"></div>
@@ -7013,26 +7015,28 @@ function acctXP(){
 }
 const lvNeed = l => 50 * (l-1) * (l-1);                      // XP pour atteindre le niveau l (niveau 10 ≈ 300 cartes)
 const lvOf = xp => Math.min(50, Math.floor(Math.sqrt(xp/50)) + 1);
-/* ---- Évolutions : chaque compagnon évolue 10 niveaux après avoir rejoint l'équipe (au plus tôt au niveau 15) ---- */
+/* ---- Évolutions : chaque compagnon évolue 5 niveaux après avoir rejoint l'équipe (au plus tôt au niveau 10) ---- */
 const isEvo = k => !!getTeam().find(x=>x.k===k)?.evo;
 const pImg = st => st && isEvo(st.k) && st.evo ? st.evo : st?.img;
 const pSp = st => st && isEvo(st.k) && st.en ? st.en : st?.n;
 const pTy = st => st && isEvo(st.k) && st.et ? st.et : st?.t;
-const evoLvOf = x => Math.max(15, (x.lv||0) + 10);
+const evoLvOf = x => Math.max(10, (x.lv||0) + 5);
 function petName(){ const st = starterOf(); return (store.get("starterName", "") || "").trim() || pSp(st) || ""; }
 // paliers de rareté du compagnon : se voient sur l'Accueil, la fiche et le classement
 const PET_COL = {verre:["#bfe9ff","#ffffff"], spectre:["#a77bff","#e3d4ff"], feu:["#ff7a2f","#ffd2a8"], eau:["#3fb8e8","#c9f1ff"], electrik:["#ffd23a","#fff4b8"], plante:["#5fd06a","#d4ffcf"], kanto:["#ff4d5e","#ffffff"], alt:["#ff8a5b","#ffd2b4"], ar:["#f6a6c8","#fde1ee"], holo:["#b47cff","#7cf3ff"], fa:["#d9dee7","#ffffff"], shiny:["#ffcf4a","#fff6d0"]};
-const PET_TIERS = [["Commun",1],["Rare",10],["Épique",25],["Légendaire",50]];
-const petTier = lv => lv>=50 ? 3 : lv>=25 ? 2 : lv>=10 ? 1 : 0;
+/* un palier tous les 5 niveaux : nom, allure (t0 → t3), et la couronne au 50 */
+const PET_TIERS = [["Commun",1],["Peu commun",5],["Rare",10],["Rare ★",15],["Super rare",20],["Épique",25],["Épique ★",30],["Ultra rare",35],["Mythique",40],["Mythique ★",45],["Légendaire",50]];
+const palierOf = lv => Math.min(10, Math.floor((lv||1)/5));
+const petTier = lv => lv>=40 ? 3 : lv>=20 ? 2 : lv>=5 ? 1 : 0;
 const PET_CROWN = "data:image/svg+xml,"+encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 8" shape-rendering="crispEdges"><g fill="#ffd84a"><rect x="0" y="2" width="2" height="6"/><rect x="2" y="5" width="2" height="3"/><rect x="4" y="3" width="2" height="5"/><rect x="6" y="0" width="4" height="8"/><rect x="10" y="3" width="2" height="5"/><rect x="12" y="5" width="2" height="3"/><rect x="14" y="2" width="2" height="6"/></g><rect x="7" y="1" width="2" height="2" fill="#fff6c9"/><rect x="7" y="5" width="2" height="2" fill="#ff5a7a"/></svg>');
 function petArt(st, lv, big){
   if(!st) return ""; const t = petTier(lv||1), [c,c2] = PET_COL[st.th] || PET_COL.spectre;
   const pp = big && t>=2 ? `<span class="pp">${[12,30,48,66,84,22,58,76].map((x,i)=>`<i style="left:${x}%;animation-delay:${(i*.37).toFixed(2)}s"></i>`).join("")}</span>` : "";
-  return `<span class="pet t${t}" style="--pc:${c};--pc2:${c2}">${t>=2?'<span class="ph"></span>':""}${pp}${t>=3?`<img class="pcr" src="${PET_CROWN}" alt="">`:""}<img class="px" src="${pImg(st)}" alt=""></span>`;
+  return `<span class="pet t${t} p${palierOf(lv)}" style="--pc:${c};--pc2:${c2}">${t>=2?'<span class="ph"></span>':""}${pp}${lv>=50?`<img class="pcr" src="${PET_CROWN}" alt="">`:""}<img class="px" src="${pImg(st)}" alt=""></span>`;
 }
-const petTag = lv => { const t = petTier(lv||1); return `<span class="pettag t${t}">${PET_TIERS[t][0].toUpperCase()}</span>`; };
+const petTag = lv => { const t = petTier(lv||1); return `<span class="pettag t${t}">${PET_TIERS[palierOf(lv)][0].toUpperCase()}</span>`; };
 function petTiersHTML(lv){
-  const t = petTier(lv);
+  const t = palierOf(lv);
   return `<div class="pettiers">${PET_TIERS.map(([n,l],i)=>`<div class="${i===t?"on":i<t?"done":""}">${n}<small>Niv. ${l}</small></div>`).join("")}</div>`;
 }
 function petHolo(st, lv){
@@ -7046,13 +7050,22 @@ function petHoloWire(){
     h.classList.add("live"); h.style.transform = `rotateY(${(x-.5)*28}deg) rotateX(${(.5-y)*24}deg)`; h.style.setProperty("--fx", x*100+"%"); h.style.setProperty("--fy", y*100+"%"); });
   box.addEventListener("pointerleave", ()=>{ h.classList.remove("live"); h.style.transform = ""; });
 }
+// ce que rapporte un palier (tous les 5 niveaux)
+function palierMsg(lv){
+  const r = [`Nouveau palier : ${PET_TIERS[palierOf(lv)][0]} !`];
+  if(lv===5||lv===20||lv===40) r.push("Son allure change.");
+  if(lv===50) r.push("Couronne et carte holo débloquées !");
+  if(UNLOCK_LV.includes(lv) && teamLeft().length) r.push("Une Dexball t'attend.");
+  const ev = getTeam().find(y=>!y.evo && STARTERS.find(s=>s.k===y.k)?.evo && lv >= evoLvOf(y)); if(ev) r.push("Et un compagnon est prêt à évoluer…");
+  return r.join(" ");
+}
 function renderAvatar(){
   const slot = $("#avatSlot"), st = starterOf(); if(!slot || !st) return;
   const xp = acctXP(), lv = lvOf(xp);
   slot.innerHTML = `<button class="avat" id="avat" aria-label="${esc(petName())}, niveau ${lv}">${petArt(st, lv)}<b>Niv. ${lv}<small>${esc(petName())}</small></b></button>`;
   $("#avat").onclick = openAvatar;
   const prev = store.get("lvl", 0);
-  if(prev && lv > prev && !$("#stp")) setTimeout(()=>gameBox([`${petName()} passe au niveau ${lv} !`, lv===10||lv===25||lv===50 ? `Nouveau palier : ${PET_TIERS[petTier(lv)][0]} ! Son allure change, va voir sa fiche.${lv===50?" Sa carte holo est débloquée.":""}` : "Continue à faire grandir ta collection."], [{label:"Super !", go:true, run:()=>setTimeout(()=>{ try{ teamOffer(); }catch(e){} }, 500)}]), 600);
+  if(prev && lv > prev && !$("#stp")) setTimeout(()=>gameBox([`${petName()} passe au niveau ${lv} !`, lv%5===0 ? palierMsg(lv) : `Prochaine récompense au niveau ${Math.min(50, Math.ceil((lv+1)/5)*5)}.`], [{label:"Super !", go:true, run:()=>setTimeout(()=>{ try{ teamOffer(); }catch(e){} }, 500)}]), 600);
   if(lv !== prev) store.set("lvl", lv);
   try{ rkSoon(); }catch(e){}
 }
@@ -7822,6 +7835,7 @@ async function betaPublishFlow(){
 }
 /* Journal des modifications de la Bêta : la carte « Version Bêta » liste celles que les copains n'ont pas encore */
 const BETA_LOG = [
+  {v:143, t:"Compagnons : une récompense tous les 5 niveaux (11 paliers), évolution 5 niveaux après l'arrivée"},
   {v:142, t:"Les balls s'appellent maintenant Dexball"},
   {v:141, t:"Explorer : filtre Toutes / Possédées / Manquantes dans une extension"},
   {v:140, t:"Partager une carte ou ta collection sur le Fil, avec son visuel"},
@@ -8087,6 +8101,10 @@ function homeSeg(){
    Après l'intro, une seule fois par version qui apporte quelque chose à l'utilisateur.
    Nouvelle installation : rien (tout est neuf). Les versions purement techniques n'ont pas d'entrée ici. */
 const NEWS = [
+  {v:143, items:[
+    ["M12 2l3 6 6 1-4.5 4.5L18 20l-6-3-6 3 1.5-6.5L3 9l6-1z", "Une récompense tous les 5 niveaux", "Ton compagnon passe un palier tous les 5 niveaux : Peu commun, Rare, Rare ★, Super rare, Épique… jusqu'à Légendaire au 50. Son allure change aux niveaux 5, 20 et 40."],
+    ["M4 20c4-1 6-5 8-9 2 4 4 8 8 9M12 11V3", "Évolutions plus rapides", "Un compagnon évolue maintenant 5 niveaux après son arrivée (au plus tôt au niveau 10)."]
+  ]},
   {v:136, items:[
     ["M4 5h16v10H8l-4 4z", "Le Fil est en ligne", "Sur l'Accueil, touche « Le Fil » : signale un réassort ou partage une nouveauté, avec photo si tu veux. Vote « encore dispo » ou « épuisé » sur les réassorts des autres. Il faut ton profil de dresseur du Classement pour publier."]
   ]},
@@ -8104,7 +8122,7 @@ const NEWS = [
   ]},
   {v:120, items:[
     ["M12 2l3 6 6 1-4.5 4.5L18 20l-6-3-6 3 1.5-6.5L3 9l6-1z", "Nouveaux compagnons", "Spectro, Volcano, Aquanon, Kachupi, Abrisseau et Rongeletti remplacent les anciens. Ton compagnon garde son niveau et son nom."],
-    ["M4 20c4-1 6-5 8-9 2 4 4 8 8 9M12 11V3", "Évolutions", "Chaque compagnon évolue 10 niveaux après avoir rejoint ton équipe (au plus tôt au niveau 15)."],
+    ["M4 20c4-1 6-5 8-9 2 4 4 8 8 9M12 11V3", "Évolutions", "Chaque compagnon évolue 5 niveaux après avoir rejoint ton équipe (au plus tôt au niveau 10)."],
     ["M12 3l2.5 5 5.5.8-4 3.9.9 5.5L12 15.6 7.1 18.2 8 12.7 4 8.8l5.5-.8z", "4 compagnons rares et 5 thèmes", "Cavechou, Aeroflore, Minea et Dracarmin arrivent aux niveaux 25 à 40. Nouveaux thèmes : Alt Art, Art Rare, Full Art, Holo et Shiny."]
   ]},
   {v:117, items:[
@@ -8394,7 +8412,7 @@ function checkSecret(card, viaScan){
   ],[{label:"Plus tard"},{label:"Oui !",go:true,run:()=>{ setTeam(getTeam()); teamActivate("macaneige"); toast("Rongeletti est ton compagnon ★"); }}]), 700);
 }
 
-window.__cote = {setTheme, shareCollection, fdShareCol, teamPick, teamLeft, evoCheck, openThemes, checkSecret, verifyMatch, detectCard, findCards, parseNumber, showCard, processCard, analyzeQuality, renderDiag, openHealth, checkHealth, selectTab, openSet, showExtHome, EX, loadIndex, matchImage, CARDSIG, numCandidates};
+window.__cote = {setTheme, palierMsg, shareCollection, fdShareCol, teamPick, teamLeft, evoCheck, openThemes, checkSecret, verifyMatch, detectCard, findCards, parseNumber, showCard, processCard, analyzeQuality, renderDiag, openHealth, checkHealth, selectTab, openSet, showExtHome, EX, loadIndex, matchImage, CARDSIG, numCandidates};
 })();
 </script>
 <script>if("serviceWorker" in navigator) addEventListener("load", ()=>navigator.serviceWorker.register(window.__BETA?"beta/sw.js":"sw.js").catch(()=>{}));</script>

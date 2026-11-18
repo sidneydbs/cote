@@ -38,8 +38,10 @@ async function putSt(env, k, v){ await env.DB.prepare("INSERT INTO st(k,v,t) VAL
 async function logAl(env, line){ await env.DB.prepare("INSERT INTO log(t,l) VALUES(?,?)").bind(Date.now(), line.slice(0, 600)).run(); }
 
 // ---------- notification iPhone (ntfy) ----------
-async function notify(env, {title, message, url, priority = 4, tags = []}){
+async function notify(env, {title, message, url, priority = 4, tags = [], pub = false}){
   await logAl(env, `🔔 ${title} — ${message} ${url || ""}`);
+  // alertes publiques : gardées pour l'onglet Alertes de l'app + notification à chaque téléphone abonné
+  if (pub){ try { await pubAlert(env, {title, message, url, priority}); } catch (e) { await logAl(env, "⚠️ notifications : " + e.message); } }
   if (!env.NTFY_TOPIC) return;
   for (let t = 0; t < 2; t++){
     try {
@@ -110,7 +112,7 @@ async function runFlux(env, src, st){                       // rss, shopify, pag
     const hot = HOT.test(t), stock = STOCK.test(t) || x.avail;
     if (!src.toutAlerter && !hot && !stock && src.type !== "shopify" && src.type !== "page") continue;
     const kind = /invitation|invit|tirage au sort|loterie|lottery|raffle/i.test(t) ? "INVITATION" : hot ? "PRÉCOMMANDE" : stock ? "DISPO" : "NOUVEAU";
-    await notify(env, {title: `${kind} · ${src.nom}`, message: x.title, url: x.url, priority: kind === "INVITATION" || kind === "PRÉCOMMANDE" ? 5 : 4,
+    await notify(env, {pub: true, title: `${kind} · ${src.nom}`, message: x.title, url: x.url, priority: kind === "INVITATION" || kind === "PRÉCOMMANDE" ? 5 : 4,
       tags: [kind === "INVITATION" ? "envelope" : kind === "PRÉCOMMANDE" ? "rotating_light" : "package"]}); n++;
   }
   st.seen = [...seen].slice(-MAX_SEEN); st.init = true;
@@ -147,8 +149,8 @@ async function runBoutique(env, src, st){                   // boutique entière
     const url = p.url || `${origin}/products/${p.handle}`;
     if (prev === undefined){
       const kind = /invitation|tirage au sort|loterie/i.test(t) ? "INVITATION" : HOT.test(t) ? "PRÉCOMMANDE" : "NOUVEAU";
-      await notify(env, {title: `${kind} · ${src.nom}`, message: `${p.title}${prixTxt(price)}${avail ? "" : " (pas encore en stock)"}`, url, priority: kind === "NOUVEAU" && !avail ? 4 : 5, tags: [kind === "NOUVEAU" ? "new" : "rotating_light"]}); n++;
-    } else if (avail){ await notify(env, {title: `DISPO · ${src.nom}`, message: `De retour en stock : ${p.title}${prixTxt(price)}`, url, priority: 5, tags: ["rotating_light"]}); n++; }
+      await notify(env, {pub: true, title: `${kind} · ${src.nom}`, message: `${p.title}${prixTxt(price)}${avail ? "" : " (pas encore en stock)"}`, url, priority: kind === "NOUVEAU" && !avail ? 4 : 5, tags: [kind === "NOUVEAU" ? "new" : "rotating_light"]}); n++;
+    } else if (avail){ await notify(env, {pub: true, title: `DISPO · ${src.nom}`, message: `De retour en stock : ${p.title}${prixTxt(price)}`, url, priority: 5, tags: ["rotating_light"]}); n++; }
   }
   st.etat = etat; st.init = true;
   return `${dispo}/${ps.length} en stock${n ? `, ${n} alerte${n > 1 ? "s" : ""}` : ""}`;
@@ -176,7 +178,7 @@ async function runProduit(env, src, st){                    // fiche produit pr�
   const p = await lireProduit(src, st), now = Date.now(), rappel = (src.rappelMin ?? CFG.rappelMin ?? 10) * 60e3;
   if (p.avail && (st.dispo !== true || (rappel && now - (st.alerte || 0) >= rappel))){
     const kind = HOT.test(p.title) ? "PRÉCOMMANDE" : "DISPO";
-    await notify(env, {title: `${kind} · ${src.nom}`, message: `${st.dispo === true ? "Toujours en stock" : "EN STOCK"} : ${p.title}${prixTxt(p.price)}`, url: src.url, priority: 5, tags: ["rotating_light"]});
+    await notify(env, {pub: st.dispo !== true, title: `${kind} · ${src.nom}`, message: `${st.dispo === true ? "Toujours en stock" : "EN STOCK"} : ${p.title}${prixTxt(p.price)}`, url: src.url, priority: 5, tags: ["rotating_light"]});
     st.alerte = now;
   }
   st.dispo = !!p.avail;
@@ -233,6 +235,7 @@ export default {
     const u = new URL(req.url); await loadCfg(env);
     if (u.pathname === "/reglages") return new Response(PAGE, {headers: {"content-type": "text/html; charset=utf-8", "cache-control": "no-store", "x-robots-tag": "noindex"}});
     if (u.pathname.startsWith("/api/")) return api(req, env, u);
+    if (u.pathname === "/alertes" || u.pathname.startsWith("/push/")) return pubApi(req, env, u);
     if (u.pathname === "/run" && req.method === "POST"){
       if ((req.headers.get("x-cron") || "") !== (env.CRON_KEY || "")) return new Response("non", {status: 403});
       return new Response(await runSource(env, u.searchParams.get("n")));
@@ -378,3 +381,90 @@ $("#go").onclick=()=>{K=$("#key").value.trim();try{localStorage.setItem("gk",K)}
 window.onbeforeunload=()=>dirty?true:undefined;
 show();if(K)load();
 </script></html>`;
+
+
+// ---------- alertes publiques + notifications Web Push (tous les téléphones abonnés depuis l'app) ----------
+// Secrets : VAPID_PRIV (clé privée P-256, JWK), VAPID_PUB (clé publique, base64url). Tables D1 « al » et « subs ».
+let PUB_READY = false;
+async function pubTables(env){
+  if (PUB_READY) return; PUB_READY = true;
+  await env.DB.batch([
+    env.DB.prepare("CREATE TABLE IF NOT EXISTS al(id INTEGER PRIMARY KEY AUTOINCREMENT, t INTEGER, title TEXT, msg TEXT, url TEXT, prio INTEGER)"),
+    env.DB.prepare("CREATE TABLE IF NOT EXISTS subs(ep TEXT PRIMARY KEY, p256 TEXT, auth TEXT, t INTEGER, ok INTEGER)")]);
+}
+const b64u = a => btoa(String.fromCharCode(...new Uint8Array(a))).replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
+const unb64u = s => Uint8Array.from(atob(String(s).replace(/-/g, "+").replace(/_/g, "/") + "===".slice((String(s).length + 3) % 4)), c => c.charCodeAt(0));
+const cat = (...l) => { const o = new Uint8Array(l.reduce((a, x) => a + x.length, 0)); let i = 0; for (const x of l){ o.set(x, i); i += x.length; } return o; };
+const TE = new TextEncoder();
+async function hmac(key, data){ const k = await crypto.subtle.importKey("raw", key, {name: "HMAC", hash: "SHA-256"}, false, ["sign"]); return new Uint8Array(await crypto.subtle.sign("HMAC", k, data)); }
+// chiffrement du message (RFC 8291, aes128gcm) pour un abonné
+async function encrypt(sub, text){
+  const ua = unb64u(sub.p256), auth = unb64u(sub.auth);
+  const as = await crypto.subtle.generateKey({name: "ECDH", namedCurve: "P-256"}, true, ["deriveBits"]);
+  const asPub = new Uint8Array(await crypto.subtle.exportKey("raw", as.publicKey));
+  const uaKey = await crypto.subtle.importKey("raw", ua, {name: "ECDH", namedCurve: "P-256"}, false, []);
+  const ecdh = new Uint8Array(await crypto.subtle.deriveBits({name: "ECDH", public: uaKey}, as.privateKey, 256));
+  const prkKey = await hmac(auth, ecdh);
+  const ikm = await hmac(prkKey, cat(TE.encode("WebPush: info\0"), ua, asPub, new Uint8Array([1])));
+  const salt = crypto.getRandomValues(new Uint8Array(16)), prk = await hmac(salt, ikm);
+  const cek = (await hmac(prk, cat(TE.encode("Content-Encoding: aes128gcm\0"), new Uint8Array([1])))).slice(0, 16);
+  const nonce = (await hmac(prk, cat(TE.encode("Content-Encoding: nonce\0"), new Uint8Array([1])))).slice(0, 12);
+  const k = await crypto.subtle.importKey("raw", cek, "AES-GCM", false, ["encrypt"]);
+  const ct = new Uint8Array(await crypto.subtle.encrypt({name: "AES-GCM", iv: nonce}, k, cat(TE.encode(text), new Uint8Array([2]))));
+  const rs = new Uint8Array([0, 0, 16, 0]);
+  return cat(salt, rs, new Uint8Array([asPub.length]), asPub, ct);
+}
+const VAPID = new Map();
+async function vapid(env, aud){
+  const c = VAPID.get(aud); if (c && c.exp > Date.now() + 3600e3) return c.h;
+  const key = await crypto.subtle.importKey("jwk", JSON.parse(env.VAPID_PRIV), {name: "ECDSA", namedCurve: "P-256"}, false, ["sign"]);
+  const exp = Math.floor(Date.now() / 1000) + 12 * 3600;
+  const un = b64u(TE.encode(JSON.stringify({typ: "JWT", alg: "ES256"}))) + "." + b64u(TE.encode(JSON.stringify({aud, exp, sub: "https://sidneydbs.github.io/cote/"})));
+  const sig = await crypto.subtle.sign({name: "ECDSA", hash: "SHA-256"}, key, TE.encode(un));
+  const h = `vapid t=${un}.${b64u(sig)}, k=${env.VAPID_PUB}`;
+  VAPID.set(aud, {h, exp: exp * 1000}); return h;
+}
+async function pushOne(env, sub, text, urgent){
+  const ep = new URL(sub.ep);
+  const r = await fetch(sub.ep, {method: "POST", body: await encrypt(sub, text), headers: {
+    "authorization": await vapid(env, ep.origin), "content-encoding": "aes128gcm", "content-type": "application/octet-stream",
+    "ttl": "21600", "urgency": urgent ? "high" : "normal", "topic": "dexscan"}});
+  if (r.status === 404 || r.status === 410) await env.DB.prepare("DELETE FROM subs WHERE ep=?").bind(sub.ep).run();
+  return r.status;
+}
+async function pubAlert(env, {title, message, url, priority}){
+  await pubTables(env); const t = Date.now();
+  const r = await env.DB.prepare("INSERT INTO al(t,title,msg,url,prio) VALUES(?,?,?,?,?)").bind(t, title.slice(0, 250), message.slice(0, 900), url || "", priority).run();
+  if (new Date().getUTCMinutes() === 0) await env.DB.prepare("DELETE FROM al WHERE t < ?").bind(t - 14 * 864e5).run();
+  if (!env.VAPID_PRIV || !env.VAPID_PUB) return;
+  const subs = (await env.DB.prepare("SELECT ep,p256,auth FROM subs").all()).results || [];
+  const text = JSON.stringify({id: r.meta?.last_row_id, title, body: message, url: url || "", t});
+  for (let i = 0; i < subs.length; i += 40)
+    await Promise.allSettled(subs.slice(i, i + 40).map(s => pushOne(env, s, text, priority >= 5)));
+}
+const PUSH_HOSTS = /(^|\.)(fcm\.googleapis\.com|push\.apple\.com|notify\.windows\.com|push\.services\.mozilla\.com)$/;
+async function pubApi(req, env, u){
+  const H = {"content-type": "application/json; charset=utf-8", "access-control-allow-origin": "*", "access-control-allow-methods": "GET,POST,OPTIONS", "access-control-allow-headers": "content-type", "cache-control": "no-store"};
+  const J = (o, st = 200) => new Response(JSON.stringify(o), {status: st, headers: H});
+  if (req.method === "OPTIONS") return new Response(null, {headers: H});
+  await pubTables(env);
+  try {
+    if (u.pathname === "/alertes"){
+      const since = Math.max(+u.searchParams.get("depuis") || 0, Date.now() - 7 * 864e5);
+      const l = (await env.DB.prepare("SELECT id,t,title,msg,url,prio FROM al WHERE t > ? ORDER BY t DESC LIMIT 200").bind(since).all()).results || [];
+      return J({items: l});
+    }
+    if (u.pathname === "/push/cle") return J({key: env.VAPID_PUB || null});
+    if (u.pathname === "/push/abo" && req.method === "POST"){
+      const b = await req.json(), s = b.sub || {}, ep = String(s.endpoint || "");
+      let h; try { h = new URL(ep); } catch (e) { return J({error: "abonnement invalide"}, 400); }
+      if (h.protocol !== "https:" || !PUSH_HOSTS.test(h.hostname) || !s.keys?.p256dh || !s.keys?.auth || ep.length > 1000) return J({error: "abonnement invalide"}, 400);
+      const n = (await env.DB.prepare("SELECT COUNT(*) n FROM subs").first()).n; if (n > 5000) return J({error: "trop d'abonnés"}, 429);
+      await env.DB.prepare("INSERT INTO subs(ep,p256,auth,t,ok) VALUES(?,?,?,?,1) ON CONFLICT(ep) DO UPDATE SET p256=excluded.p256, auth=excluded.auth, t=excluded.t").bind(ep, String(s.keys.p256dh).slice(0, 200), String(s.keys.auth).slice(0, 60), Date.now()).run();
+      if (b.test) await pushOne(env, {ep, p256: s.keys.p256dh, auth: s.keys.auth}, JSON.stringify({title: "Notifications activées ✔", body: "Tu seras prévenu des réassorts et des sorties Pokémon dès que le guetteur les voit.", url: "", t: Date.now()}), false);
+      return J({ok: true});
+    }
+    if (u.pathname === "/push/stop" && req.method === "POST"){ const b = await req.json(); await env.DB.prepare("DELETE FROM subs WHERE ep=?").bind(String(b.endpoint || "")).run(); return J({ok: true}); }
+    return J({error: "inconnu"}, 404);
+  } catch (e) { return J({error: e.message}, 400); }
+}

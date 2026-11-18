@@ -1394,7 +1394,8 @@ html{background:var(--panel)}
 .vsw label{background:conic-gradient(#f44,#fd4,#4d6,#4cf,#86f,#f4c,#f44)}
 .vsw label input{position:absolute;inset:0;opacity:0;width:100%;height:100%;cursor:pointer}
 .vsw label span{width:16px;height:16px;border-radius:50%;background:var(--ink);display:grid;place-items:center;font:800 13px/1 var(--f-body);color:var(--fg)}
-.alpush{padding:14px 16px}.aph{display:flex;gap:12px;align-items:flex-start}.aph b{display:block;font-size:15px}.aph small{display:block;color:var(--muted);font-size:13px;line-height:1.4;margin-top:2px}.api{width:38px;height:38px;flex:none;border-radius:12px;display:grid;place-items:center;background:color-mix(in srgb,var(--border-yellow) 18%,transparent);color:var(--border-yellow)}.api svg{width:20px;height:20px}.apbtn{width:100%;margin-top:12px}.apbtns{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px}.apt{display:flex;align-items:center;gap:8px;flex-wrap:wrap}.apst{flex:none;font:700 11px/1 var(--f-mono);letter-spacing:.04em;padding:6px 8px;border-radius:999px;white-space:nowrap}.apst.on{background:rgba(63,208,122,.16);color:#3FD07A}.apst.off{background:var(--panel-2);color:var(--muted)}.apst.wait{background:var(--panel-2);color:var(--muted)}.apmsg{margin:10px 0 0;font-size:13px;line-height:1.4}.apmsg:empty{display:none}.apmsg.ok{color:#3FD07A}.apmsg.ko{color:#FF7A7A}.apsteps{margin:10px 0 0;padding-left:20px;color:var(--muted);font-size:13px;line-height:1.7}.apsteps b{color:var(--fg)}
+.alpush{padding:14px 16px}.aph{display:flex;gap:12px;align-items:flex-start}.aph b{display:block;font-size:15px}.aph small{display:block;color:var(--muted);font-size:13px;line-height:1.4;margin-top:2px}.api{width:38px;height:38px;flex:none;border-radius:12px;display:grid;place-items:center;background:color-mix(in srgb,var(--border-yellow) 18%,transparent);color:var(--border-yellow)}.api svg{width:20px;height:20px}.apbtn{width:100%;margin-top:12px}.apopts{display:grid;gap:2px;margin-top:12px;border-top:1px solid var(--line);padding-top:6px}.apopt{display:flex;align-items:center;gap:12px;padding:8px 0;cursor:pointer}.apopt>span{flex:1;min-width:0}.apopt b{display:block;font-size:14px}.apopt small{display:block;color:var(--muted);font-size:12px}.apopt input{position:absolute;opacity:0;pointer-events:none}.apopt .sw{flex:none;width:44px;height:26px;border-radius:13px;background:var(--panel-2);border:1px solid var(--line);position:relative;transition:background .2s}.apopt .sw::after{content:"";position:absolute;top:2px;left:2px;width:20px;height:20px;border-radius:50%;background:#fff;transition:transform .2s}.apopt input:checked+.sw{background:#3FD07A;border-color:#3FD07A}.apopt input:checked+.sw::after{transform:translateX(18px)}.apopt.dis{opacity:.55}
+.apbtns{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px}.apt{display:flex;align-items:center;gap:8px;flex-wrap:wrap}.apst{flex:none;font:700 11px/1 var(--f-mono);letter-spacing:.04em;padding:6px 8px;border-radius:999px;white-space:nowrap}.apst.on{background:rgba(63,208,122,.16);color:#3FD07A}.apst.off{background:var(--panel-2);color:var(--muted)}.apst.wait{background:var(--panel-2);color:var(--muted)}.apmsg{margin:10px 0 0;font-size:13px;line-height:1.4}.apmsg:empty{display:none}.apmsg.ok{color:#3FD07A}.apmsg.ko{color:#FF7A7A}.apsteps{margin:10px 0 0;padding-left:20px;color:var(--muted);font-size:13px;line-height:1.7}.apsteps b{color:var(--fg)}
 .cnseal{display:grid;gap:8px;margin-bottom:6px}.cnsl{display:grid;grid-template-columns:48px 1fr;column-gap:12px;row-gap:10px;align-items:center;padding:10px 12px;border:1px solid var(--line);border-radius:14px;background:var(--panel)}.cnsl>img{width:48px;height:48px;object-fit:contain;border-radius:8px;background:rgba(255,255,255,.06)}.cnsi{min-width:0;display:flex;flex-direction:column;gap:2px}.cnsi b{font-size:14px;line-height:1.25}.cnsi small{color:var(--muted);font-size:13px}.cnsb{grid-column:1/-1;display:grid;grid-template-columns:1fr 1fr;gap:8px}.cnsb a{display:flex;align-items:center;justify-content:center;gap:6px;font-size:12.5px;font-weight:600;padding:8px 10px;border-radius:10px;border:1px solid var(--line);background:var(--panel-2);color:var(--fg);text-decoration:none;white-space:nowrap}.cnsb a .brico{width:16px;height:16px;border-radius:4px;padding:1px}
 .vint{display:flex;align-items:center;gap:10px;margin-top:12px;font-size:13px;color:var(--muted)}
 .vint input{flex:1;accent-color:var(--border-yellow)}
@@ -1804,7 +1805,7 @@ img.px.reveal{animation:stpRev .9s ease-out}
   }
   fit(); addEventListener("resize", fit); addEventListener("orientationchange", function(){ setTimeout(fit, 300); });
 })();</script>
-<script>window.__APPV="165";</script>
+<script>window.__APPV="166";</script>
 <div class="splash" id="splash" aria-hidden="true"><i class="hole"></i><i class="halo"></i><div class="bw"><svg class="b" viewBox="0 0 100 100"><use href="#pb"/></svg><svg class="t" viewBox="0 0 100 100"><use href="#pb"/></svg></div><i class="glow"></i></div>
 <script>setTimeout(function(){ if(window.__booted) return;
   var b=document.createElement("div"); b.setAttribute("role","alert");
@@ -1839,7 +1840,7 @@ img.px.reveal{animation:stpRev .9s ease-out}
   <!-- ===== EXTENSIONS ===== -->
   <section class="view" id="homeView">
     <div class="scroll">
-      <div class="homebar"><span class="brand">DEX<b>·</b>SCAN</span><span class="hbis"><button class="hbi" id="hSearch" aria-label="Rechercher une carte"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></button><button class="hbi hrk" id="hRank" aria-label="Classement"><svg viewBox="0 0 24 24" fill="none" stroke="url(#hrkG)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><defs><linearGradient id="hrkG" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFF4C2"/><stop offset=".35" stop-color="#FFD86E"/><stop offset=".65" stop-color="#7CF3FF"/><stop offset="1" stop-color="#E2B8FF"/></linearGradient></defs><path d="M8 21h8M12 17v4"/><path d="M7 4h10v5a5 5 0 0 1-10 0z"/><path d="M17 5h3v2a3 3 0 0 1-3 3M7 5H4v2a3 3 0 0 0 3 3"/></svg></button><button class="hbi" id="themeBtn" aria-label="Changer de thème"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.6-.9 1.2-1.8-.5-1.1.2-2.2 1.4-2.2H17a4 4 0 0 0 4-4c0-5.5-4-10-9-10z"/><circle cx="7.5" cy="11" r="1.2"/><circle cx="10" cy="7" r="1.2"/><circle cx="15" cy="7" r="1.2"/></svg></button><button class="hbi" id="moreBtn" aria-label="Réglages et plus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg></button></span><span class="ver" id="hVer">v165</span></div>
+      <div class="homebar"><span class="brand">DEX<b>·</b>SCAN</span><span class="hbis"><button class="hbi" id="hSearch" aria-label="Rechercher une carte"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></button><button class="hbi hrk" id="hRank" aria-label="Classement"><svg viewBox="0 0 24 24" fill="none" stroke="url(#hrkG)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><defs><linearGradient id="hrkG" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFF4C2"/><stop offset=".35" stop-color="#FFD86E"/><stop offset=".65" stop-color="#7CF3FF"/><stop offset="1" stop-color="#E2B8FF"/></linearGradient></defs><path d="M8 21h8M12 17v4"/><path d="M7 4h10v5a5 5 0 0 1-10 0z"/><path d="M17 5h3v2a3 3 0 0 1-3 3M7 5H4v2a3 3 0 0 0 3 3"/></svg></button><button class="hbi" id="themeBtn" aria-label="Changer de thème"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.6-.9 1.2-1.8-.5-1.1.2-2.2 1.4-2.2H17a4 4 0 0 0 4-4c0-5.5-4-10-9-10z"/><circle cx="7.5" cy="11" r="1.2"/><circle cx="10" cy="7" r="1.2"/><circle cx="15" cy="7" r="1.2"/></svg></button><button class="hbi" id="moreBtn" aria-label="Réglages et plus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg></button></span><span class="ver" id="hVer">v166</span></div>
       <button class="banner" id="pxBanner" hidden></button>
       <span class="hdate hgreet" id="hDate"></span>
       <div class="hhero"><div class="total htot" id="hTot"></div><span id="avatSlot"></span></div>
@@ -4113,9 +4114,11 @@ async function renderPush(){
   const sub = await pushSub(), denied = Notification.permission==="denied";
   // abonné sur le téléphone ET connu du guetteur : seulement là on dit « activées »
   let srv = null; if(sub && Notification.permission==="granted"){ try{ srv = await fetch(GUET+"/push/etat", {method:"POST", headers:{"content-type":"application/json"}, body:JSON.stringify({endpoint:sub.endpoint})}).then(r=>r.json()); }catch(e){ srv = {err:1}; } }
-  const on = !!srv?.abonne, lost = sub && srv && !srv.abonne && !srv.err;
+  const on = !!srv?.abonne, lost = sub && srv && !srv.abonne && !srv.err, pr = srv?.prefs || {al:true, dm:true, post:true}, me = rkProf();
+  const opt = (k, t, sm, dis) => `<label class="apopt${dis?" dis":""}"><span><b>${t}</b><small>${sm}</small></span><input type="checkbox" data-pf="${k}" ${pr[k]&&!dis?"checked":""} ${dis?"disabled":""}><i class="sw"></i></label>`;
   el.innerHTML = on
-    ? head("Notifications activées", "Ce téléphone sonne dès qu'une précommande, une invitation ou un réassort est repéré, même app fermée.", ["on","✓ Activées"])
+    ? head("Notifications activées", "Ce téléphone sonne même app fermée. Choisis ce que tu reçois :", ["on","✓ Activées"])
+      + `<div class="apopts">${opt("al","Réassorts et précommandes","Repérés par le guetteur, 24 h/24")}${opt("dm","Messages privés", me?.id ? "Quand un Hunter t'écrit" : "Crée ton profil de Hunter (Classement) pour en recevoir", !me?.id)}${opt("post","Publications du Fil","Chaque nouveau post des autres Hunters")}</div>`
       + `<div class="apbtns"><button class="btn btn-y" id="pushTest" type="button">Envoyer un test</button><button class="btn btn-g" id="pushOff" type="button">Désactiver</button></div><p class="apmsg" id="pushMsg"></p>`
     : srv?.err && sub
     ? head("Notifications de réassort", "Impossible de vérifier avec le guetteur pour l'instant (connexion). Réessaie dans un moment.", ["wait","?"])
@@ -4124,7 +4127,16 @@ async function renderPush(){
   $("#pushBtn") && ($("#pushBtn").onclick = ()=>pushOn());
   $("#pushOff") && ($("#pushOff").onclick = ()=>pushOff(sub));
   $("#pushTest") && ($("#pushTest").onclick = ()=>pushTest(sub));
+  el.querySelectorAll("[data-pf]").forEach(c=>c.onchange = async ()=>{
+    const prefs = {}; el.querySelectorAll("[data-pf]").forEach(x=>prefs[x.dataset.pf] = x.disabled ? true : x.checked);
+    try{ const r = await fetch(GUET+"/push/prefs", {method:"POST", headers:{"content-type":"application/json"}, body:JSON.stringify({endpoint:sub.endpoint, prefs})}).then(r=>r.json());
+      if(r.error) throw new Error(r.error); pushMsg("✓ Enregistré", true); }catch(e){ c.checked = !c.checked; pushMsg(e.message || "Impossible d'enregistrer : vérifie ta connexion", false); }
+  });
+  if(on && me?.id && !srv.profil) pushLink(sub);
 }
+// relie ce téléphone à mon profil de Hunter : c'est ce qui permet de recevoir mes messages privés
+async function pushLink(sub){ const me = rkProf(); if(!sub || !me?.id || !me?.key) return;
+  try{ await fdApi("/pushlink", {id:me.id, key:me.key, endpoint:sub.endpoint}); }catch(e){} }
 const pushMsg = (t, ok) => { const m = $("#pushMsg"); if(m){ m.textContent = t; m.className = "apmsg " + (ok ? "ok" : "ko"); } };
 async function pushTest(sub){
   const b = $("#pushTest"); b.disabled = true; b.textContent = "Envoi…";
@@ -4146,6 +4158,7 @@ async function pushOn(){
     if(!sub) sub = await reg.pushManager.subscribe({userVisibleOnly:true, applicationServerKey:unb64(k.key)});
     const r = await fetch(GUET+"/push/abo", {method:"POST", headers:{"content-type":"application/json"}, body:JSON.stringify({sub:sub.toJSON(), test:true})}).then(r=>r.json());
     if(r.error) throw new Error(r.error);
+    await pushLink(sub);
     store.set("pushOn", true); toast("Notifications activées ✔");
     PUSH.busy = false; await renderPush(); pushMsg("✓ C'est activé. Une notification de test vient d'être envoyée sur ce téléphone.", true); return;
   }catch(e){ const t = e.message==="sw" ? "Recharge l'app puis réessaie" : e.message || "Activation impossible"; toast(t); PUSH.busy = false; await renderPush(); pushMsg(t, false); return; }
@@ -4157,7 +4170,21 @@ async function pushOff(sub){
 // au lancement : récupère les alertes en arrière-plan pour la pastille, puis toutes les minutes
 setTimeout(()=>{ alLoad(true); alTick(); }, 2500);
 // abonnement renouvelé par le téléphone : on le redonne au guetteur
-if(store.get("pushOn", false)) setTimeout(async()=>{ const s = await pushSub(); if(s) fetch(GUET+"/push/abo", {method:"POST", headers:{"content-type":"application/json"}, body:JSON.stringify({sub:s.toJSON()})}).catch(()=>{}); }, 6000);
+if(store.get("pushOn", false)) setTimeout(async()=>{ const s = await pushSub(); if(s){ await fetch(GUET+"/push/abo", {method:"POST", headers:{"content-type":"application/json"}, body:JSON.stringify({sub:s.toJSON()})}).catch(()=>{}); pushLink(s); } }, 6000);
+// notification touchée : ouvre le bon écran (message privé ou post du Fil)
+async function notifGo(q){
+  const p = new URLSearchParams(q), msg = p.get("msg"), post = p.get("post"); if(!msg && !post) return;
+  try{ closeSheet(); }catch(e){}
+  if(msg){ selectTab("socialView"); soShow("dm");
+    for(let i=0; i<30 && !(DM.threads||[]).some(t=>t.with===msg); i++){ if(i===10) dmLoad(); await new Promise(r=>setTimeout(r, 200)); }
+    const t = (DM.threads||[]).find(x=>x.with===msg); dmOpen(msg, t?.name, t?.pk); }
+  else { selectTab("socialView"); soShow("feed");
+    for(let i=0; i<30; i++){ const el = document.querySelector(`#feedPane [data-pid="${CSS.escape(post)}"]`); if(el){ el.scrollIntoView({block:"start", behavior:"smooth"}); break; } await new Promise(r=>setTimeout(r, 200)); } }
+}
+navigator.serviceWorker?.addEventListener("message", e=>{ if(e.data?.open) notifGo(e.data.open); });
+(()=>{ const u = new URL(location.href); if(!u.searchParams.has("msg") && !u.searchParams.has("post")) return; const q = u.search;
+  ["msg","post"].forEach(k=>u.searchParams.delete(k)); history.replaceState(history.state, "", u.pathname + (u.search||"") + u.hash);
+  setTimeout(()=>notifGo(q), 1800); })();
 
 /* ---------------- Recherche manuelle ---------------- */
 function renderResults(list, el){
@@ -8094,6 +8121,7 @@ async function betaPublishFlow(){
 }
 /* Journal des modifications de la Bêta : la carte « Version Bêta » liste celles que les copains n'ont pas encore */
 const BETA_LOG = [
+  {v:166, t:"Notifications des messages privés et des nouvelles publications du Fil ; dans Alertes, choix de ce qu'on reçoit (réassorts, messages, Fil) ; toucher la notification ouvre la conversation ou le post"},
   {v:165, t:"Notifications : état clair (✓ Activées / Désactivées, vérifié auprès du guetteur), bouton « Envoyer un test » et « Désactiver »"},
   {v:165, t:"Alertes Dealabs : marchand et prix dans l'alerte, boutons « Chercher chez … » et « Comparer les prix » si le deal a été retiré"},
   {v:165, t:"Alertes réassort pour tout le monde : la liste vient du guetteur en ligne (24 h/24), plus besoin de canal ntfy"},
@@ -8691,6 +8719,9 @@ $("#moreBack").onclick = ()=>navBack();
    Après l'intro, une seule fois par version qui apporte quelque chose à l'utilisateur.
    Nouvelle installation : rien (tout est neuf). Les versions purement techniques n'ont pas d'entrée ici. */
 const NEWS = [
+  {v:166, items:[
+    ["M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z", "Notifications des messages et du Fil", "Ton téléphone sonne quand un Hunter t'écrit ou publie sur le Fil. Choisis ce que tu reçois dans Stock → Alertes réassort, après avoir activé les notifications."]
+  ]},
   {v:165, items:[
     ["M6 8a6 6 0 1 1 12 0c0 7 3 9 3 9H3s3-2 3-9M10.3 21a1.9 1.9 0 0 0 3.4 0", "Alertes réassort pour tous", "Précommandes, invitations et réassorts Pokémon repérés 24 h/24 par le guetteur Dex Scan : Stock → Alertes réassort."],
     ["M5 12l5 5L20 7", "Sois prévenu en premier", "Dans Alertes réassort, touche « Activer les notifications » : ton téléphone sonne dès qu'un réassort tombe, même app fermée. Sur iPhone, ajoute d'abord Dex Scan à l'écran d'accueil."]

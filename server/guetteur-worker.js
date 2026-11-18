@@ -72,7 +72,10 @@ function parse(src, body){
       const link = decode((it.match(/<link[^>]*>([\s\S]*?)<\/link>/i) || [])[1]) || ((it.match(/<link[^>]*href="([^"]+)"/i) || [])[1] || "");
       const desc = decode((it.match(/<(description|summary|content)[^>]*>([\s\S]*?)<\/\1>/i) || [])[2]).slice(0, 400);
       const id = decode((it.match(/<(guid|id)[^>]*>([\s\S]*?)<\/\1>/i) || [])[2]) || link || title;
-      return {id, title, url: link, text: title + " " + desc};
+      // Dealabs : le marchand et le prix, pour savoir où acheter même si le deal est retiré ensuite
+      const shop = decode((it.match(/<pepper:merchant[^>]*name="([^"]+)"/i) || [])[1]), price = decode((it.match(/<pepper:merchant[^>]*price="([^"]+)"/i) || it.match(/<pepper:price[^>]*>([\s\S]*?)<\/pepper:price>/i) || [])[1]);
+      const more = [shop && "chez " + shop, /\d/.test(price) ? price.replace(/\s*€\s*$/, "").trim() + " €" : ""].filter(Boolean).join(", ");
+      return {id, title: more ? `${title} (${more})` : title, url: link, text: title + " " + desc};
     });
   }
   if (src.type === "shopify"){

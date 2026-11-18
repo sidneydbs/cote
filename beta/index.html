@@ -566,6 +566,7 @@ html{background:var(--panel)}
 .aitem.p5 .k b{color:var(--border-yellow)}
 .aitem .m{font-size:15px;font-weight:600;margin-top:4px;line-height:1.3}
 .aitem.new{box-shadow:0 0 0 2px var(--border-yellow) inset}
+.aiacts{display:flex;gap:6px;flex-wrap:wrap;margin:6px 0 0 4px}.aiacts a{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:600;padding:6px 10px;border-radius:999px;border:1px solid var(--line);background:var(--panel-2);color:var(--fg);text-decoration:none}.aiacts a .brico{width:14px;height:14px;border-radius:3px;padding:1px}
 #alertLive{font:600 11px/1 var(--f-mono)}
 
 /* ---------- Recherche / Collection ---------- */
@@ -4063,8 +4064,15 @@ function renderAlerts(){
   el.innerHTML = `<div class="alist">${l.slice(0,200).map(m=>{
     const [kind, src] = (m.title||"").split(" · ");
     const t = new Date(m.time*1000), today = t.toDateString()===new Date().toDateString();
-    return `<a class="aitem${(m.priority||3)>=5?" p5":""}${m.time*1000>AL.seenT?" new":""}" href="${esc(m.click||"#")}" target="_blank" rel="noopener"><div class="k"><b>${esc(kind||"Alerte")}</b><span>${esc(src||"")} · ${today?t.toLocaleTimeString("fr-FR",{hour:"2-digit",minute:"2-digit"}):t.toLocaleDateString("fr-FR",{day:"numeric",month:"short"})+" "+t.toLocaleTimeString("fr-FR",{hour:"2-digit",minute:"2-digit"})}</span></div><div class="m">${esc(m.message||"")}</div></a>`;
+    return `<div class="aiw"><a class="aitem${(m.priority||3)>=5?" p5":""}${m.time*1000>AL.seenT?" new":""}" href="${esc(m.click||"#")}" target="_blank" rel="noopener"><div class="k"><b>${esc(kind||"Alerte")}</b><span>${esc(src||"")} · ${today?t.toLocaleTimeString("fr-FR",{hour:"2-digit",minute:"2-digit"}):t.toLocaleDateString("fr-FR",{day:"numeric",month:"short"})+" "+t.toLocaleTimeString("fr-FR",{hour:"2-digit",minute:"2-digit"})}</span></div><div class="m">${esc(m.message||"")}</div></a>${alActs(m)}</div>`;
   }).join("")}</div>`;
+}
+// deal Dealabs : souvent retiré par la modération peu après → boutons pour trouver le produit chez les marchands
+function alActs(m){
+  if(!/dealabs\.com/.test(m.click||"")) return "";
+  const x = /^(.*?)\s*\((?:chez ([^,)]+))?[^)]*\)\s*$/.exec(m.message||""), prod = (x ? x[1] : m.message||"").replace(/^(De retour en stock|EN STOCK|Toujours en stock)\s*:\s*/i,"").replace(/\s+—\s+[\d,.]+\s*€$/,"").trim(), shop = x?.[2]?.trim();
+  const g = q => `https://www.google.com/search?hl=fr&gl=fr&q=${encodeURIComponent(q)}`;
+  return `<div class="aiacts">${shop?`<a href="${esc(g(`${prod} ${shop}`))}" target="_blank" rel="noopener">Chercher chez ${esc(shop)}</a>`:""}<a href="${esc(`https://www.google.com/search?hl=fr&gl=fr&tbm=shop&q=${encodeURIComponent(prod)}`)}" target="_blank" rel="noopener">Comparer les prix</a></div>`;
 }
 function alBadge(){
   const n = AL.items.filter(m=>m.time*1000>AL.seenT).length;
@@ -8067,6 +8075,7 @@ async function betaPublishFlow(){
 }
 /* Journal des modifications de la Bêta : la carte « Version Bêta » liste celles que les copains n'ont pas encore */
 const BETA_LOG = [
+  {v:165, t:"Alertes Dealabs : marchand et prix dans l'alerte, boutons « Chercher chez … » et « Comparer les prix » si le deal a été retiré"},
   {v:165, t:"Alertes réassort pour tout le monde : la liste vient du guetteur en ligne (24 h/24), plus besoin de canal ntfy"},
   {v:165, t:"Notifications de réassort sur le téléphone (Web Push) : bouton « Activer les notifications » dans Alertes ; sur iPhone, l'app doit être sur l'écran d'accueil"},
   {v:164, t:"Gem Packs : produits scellés plus lisibles, boutons de ventes compacts sous le produit"},

@@ -40,7 +40,7 @@ function card(c){ if(!c || typeof c !== "object") return undefined; const img = 
   return o.name ? o : undefined; }
 function attOf(tag, a){
   if(!a || typeof a !== "object") return undefined;
-  if(tag === "card" || tag === "want"){ const c = card(a.card); return c ? {card:c} : undefined; }
+  if(tag === "card" || tag === "want" || tag === "talk"){ const c = card(a.card); return c ? {card:c} : undefined; }
   if(tag === "trade"){ const g = card(a.give), w = card(a.want); return g && w ? {give:g, want:w} : undefined; }
   if(tag === "sell"){ const c = card(a.card); return c ? {card:c, ask:num(a.ask)} : undefined; }
   if(tag === "col"){ const l = (Array.isArray(a.cards) ? a.cards : []).slice(0, 9).map(card).filter(Boolean); return l.length ? {n:num(a.n, 1e6), val:num(a.val), sets:num(a.sets, 5000), cards:l} : undefined; }

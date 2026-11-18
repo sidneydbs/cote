@@ -55,7 +55,8 @@ function view(p, me, base){
     img: p.img ? base + "/feed/img/" + p.id : undefined,
     likes:(p.likers||[]).length, liked: !!me && (p.likers||[]).includes(me),
     ok: vals.filter(x=>x==="ok").length, ko: vals.filter(x=>x==="ko").length, my: me ? (v[me] || null) : null,
-    cm: (p.cm||[]).map(c => ({id:c.id, uid:c.uid, name:c.name, pk:c.pk, lv:c.lv, text:c.text, card:c.card, t:c.t})),
+    cm: (p.cm||[]).map(c => ({id:c.id, uid:c.uid, name:c.name, pk:c.pk, lv:c.lv, text:c.text, card:c.card, t:c.t, re:c.re, reName:c.reName,
+      likes:(c.likers||[]).length, liked: !!me && (c.likers||[]).includes(me)})),
     att:p.att, city:p.city,
     pv: p.att?.opts ? p.att.opts.map((_, i) => Object.values(p.pv||{}).filter(x => x === i).length) : undefined,
     mpv: me && p.pv && p.pv[me] != null ? p.pv[me] : null};
@@ -156,8 +157,15 @@ export default {
         const now = Date.now(); let n = 0; for(const x of l) for(const c of (x.cm||[])) if(c.uid === me && now - c.t < 36e5) n++;
         if(n >= CM_PER_HOUR) return err("Trop de commentaires : réessaie dans un moment", 429);
         p.cm ||= []; if(p.cm.length >= MAX_CM) return err("Ce post a trop de commentaires");
-        p.cm.push({id: now.toString(36) + Math.random().toString(36).slice(2, 6), uid:me, name:clean(b.name, 24) || "Dresseur", pk:clean(b.pk, 40) || undefined, lv:Math.max(1, Math.min(999, b.lv|0)), text, card:card(b.card), t:now});
+        const to = b.re ? p.cm.find(x => x.id === b.re) : null, who = clean(b.name, 24) || "Hunter";
+        p.cm.push({id: now.toString(36) + Math.random().toString(36).slice(2, 6), uid:me, name:who, pk:clean(b.pk, 40) || undefined, lv:Math.max(1, Math.min(999, b.lv|0)), text, card:card(b.card), t:now,
+          re: to ? to.id : undefined, reName: to ? to.name : undefined});
+        // notifications : la personne à qui on répond, et l'auteur du post
+        const body = (text || "🃏 " + (card(b.card)?.name || "Carte")).slice(0, 200);
+        if(to && to.uid !== me) notif(env, "send", {kind:"to", to:to.uid, tag:"cm-" + p.id, title:`↩️ ${who} t'a répondu`, body, url:`app:?post=${p.id}&cm=1`});
+        if(p.uid !== me && p.uid !== to?.uid) notif(env, "send", {kind:"to", to:p.uid, tag:"cm-" + p.id, title:`💬 ${who} a commenté ton post`, body, url:`app:?post=${p.id}&cm=1`});
       }
+      else if(act === "cmlike"){ const c = (p.cm||[]).find(x => x.id === b.c); if(!c) return err("Commentaire introuvable", 404); c.likers ||= []; const i = c.likers.indexOf(me); i < 0 ? c.likers.push(me) : c.likers.splice(i, 1); }
       else if(act === "uncomment"){ const c = (p.cm||[]).find(x => x.id === b.c); if(!c) return err("Commentaire introuvable", 404); if(c.uid !== me && p.uid !== me) return err("Ce n'est pas ton commentaire", 403); p.cm = p.cm.filter(x => x !== c); }
       else if(act === "pvote"){ const n = p.att?.opts?.length || 0, o = b.o|0; if(!n || o < 0 || o >= n) return err("Option inconnue"); p.pv ||= {}; p.pv[me] === o ? delete p.pv[me] : p.pv[me] = o; }
       else if(act === "report"){ p.reports ||= []; if(!p.reports.includes(me)) p.reports.push(me); await save(env, l); return json({ok:true}); }

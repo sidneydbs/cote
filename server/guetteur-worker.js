@@ -489,9 +489,9 @@ async function pubApi(req, env, u){
         const r = await env.DB.prepare("UPDATE subs SET uid=? WHERE ep=?").bind(String(b.uid).slice(0, 64), String(b.endpoint || "")).run(); return J({ok: !!r.meta?.changes}); }
       if (u.pathname === "/push/int/send"){
         const msg = {id: String(b.tag || Date.now()), title: String(b.title || "Dex Scan").slice(0, 120), body: String(b.body || "").slice(0, 300), url: String(b.url || ""), t: Date.now()};
-        const subs = b.kind === "dm" ? (await env.DB.prepare("SELECT ep,p256,auth FROM subs WHERE uid=? AND pdm IS NOT 0").bind(String(b.to)).all()).results || []
+        const subs = b.kind === "dm" || b.kind === "to" ? (await env.DB.prepare("SELECT ep,p256,auth FROM subs WHERE uid=? AND pdm IS NOT 0").bind(String(b.to)).all()).results || []
           : b.kind === "post" ? (await env.DB.prepare("SELECT ep,p256,auth FROM subs WHERE ppost IS NOT 0 AND (uid IS NULL OR uid<>?)").bind(String(b.except || "")).all()).results || [] : [];
-        await pushMany(env, subs, msg, b.kind === "dm"); return J({ok: true, n: subs.length});
+        await pushMany(env, subs, msg, b.kind !== "post"); return J({ok: true, n: subs.length});
       }
       return J({error: "inconnu"}, 404);
     }

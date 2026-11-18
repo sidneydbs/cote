@@ -60,6 +60,13 @@ function view(p, me, base){
     pv: p.att?.opts ? p.att.opts.map((_, i) => Object.values(p.pv||{}).filter(x => x === i).length) : undefined,
     mpv: me && p.pv && p.pv[me] != null ? p.pv[me] : null};
 }
+/* ---- notifications sur les téléphones : envoyées par le guetteur (liaison de service PUSH, clé INT_KEY) ---- */
+function notif(env, path, body){
+  if(!env.PUSH || !env.INT_KEY) return;
+  const p = env.PUSH.fetch("https://guetteur/push/int/" + path, {method:"POST", headers:{"content-type":"application/json", "x-int":env.INT_KEY}, body:JSON.stringify(body)}).catch(()=>{});
+  env.__ctx ? env.__ctx.waitUntil(p) : null;
+}
+const TAG_TXT = {talk:"💬 Discussion", re:"🔔 Réassort", new:"✨ Nouveauté", trade:"⇄ Échange", card:"🃏 Ma carte", col:"📚 Ma collec", open:"🎁 Ouverture", want:"🔍 Je cherche", sell:"💰 Je vends", poll:"📊 Sondage"};
 /* ---- messages privés ---- */
 const DM_MAX = 400, DM_PER_HOUR = 120;
 const dmKey = (a, b) => "dm:" + [a, b].sort().join(":");
@@ -85,13 +92,14 @@ async function dm(env, me, act, b){
       await env.FEED.put("inbox:" + owner, JSON.stringify(ib.sort((x, y) => y.t - x.t).slice(0, 200))); };
     await upd(me, other, b.toName, b.toPk, false);
     await upd(other, me, b.name, b.pk, true);
+    notif(env, "send", {kind:"dm", to:other, tag:"dm-" + me, title:`💬 ${clean(b.name, 24) || "Un Hunter"}`, body:last.slice(0, 200), url:`app:?msg=${encodeURIComponent(me)}`});
     return json({msg: m});
   }
   return err("action inconnue", 404);
 }
 export default {
-  async fetch(req, env){
-    const u = new URL(req.url), base = u.origin;
+  async fetch(req, env, ctx){
+    const u = new URL(req.url), base = u.origin; env.__ctx = ctx;
     if(req.method === "OPTIONS") return new Response(null, {headers:CORS});
     if(!env.FEED) return err("Liaison KV « FEED » manquante sur le Worker", 500);
     const path = u.pathname.replace(/\/+$/, "") || "/";
@@ -113,6 +121,11 @@ export default {
       const b = await req.json().catch(()=>null); if(!b) return err("requête illisible");
       const me = await auth(env, b.id, b.key), act = path.slice(6);
       if(act.startsWith("dm/")) return await dm(env, me, act.slice(3), b);
+      // relie l'abonnement aux notifications de ce téléphone à ce profil (pour recevoir ses messages privés)
+      if(act === "pushlink"){ if(!/^https:\/\/[^\s]{10,1000}$/.test(String(b.endpoint || ""))) return err("Abonnement invalide");
+        if(!env.PUSH || !env.INT_KEY) return err("Notifications indisponibles", 503);
+        const r = await env.PUSH.fetch("https://guetteur/push/int/link", {method:"POST", headers:{"content-type":"application/json", "x-int":env.INT_KEY}, body:JSON.stringify({uid:me, endpoint:b.endpoint})}).then(r=>r.json()).catch(()=>({}));
+        return json({ok: !!r.ok}); }
       let l = await load(env);
       if(act === "post"){
         const now = Date.now();
@@ -130,6 +143,8 @@ export default {
         l.unshift(p);
         for(const x of l.slice(MAX_POSTS)) if(x.img) await env.FEED.delete("img:" + x.id);
         await save(env, l);
+        const what = p.att?.card?.name || p.att?.give?.name || p.att?.prod || (p.tag === "re" && p.shop ? p.shop : "");
+        notif(env, "send", {kind:"post", except:me, tag:"post-" + p.id, title:`${TAG_TXT[tag] || "Fil"} · ${p.name}`, body:(text || what || "Nouvelle publication sur le Fil").slice(0, 200), url:`app:?post=${p.id}`});
         return json({post: view(p, me, base)});
       }
       const p = l.find(x => x.id === b.post); if(!p) return err("Ce post n'existe plus", 404);

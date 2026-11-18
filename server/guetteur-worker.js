@@ -394,6 +394,14 @@ async function pubTables(env){
   await env.DB.batch([
     env.DB.prepare("CREATE TABLE IF NOT EXISTS al(id INTEGER PRIMARY KEY AUTOINCREMENT, t INTEGER, title TEXT, msg TEXT, url TEXT, prio INTEGER)"),
     env.DB.prepare("CREATE TABLE IF NOT EXISTS subs(ep TEXT PRIMARY KEY, p256 TEXT, auth TEXT, t INTEGER, ok INTEGER)")]);
+  // choix de chaque téléphone : pal réassorts, pdm messages privés, ppost publications du Fil ; uid = profil de l'app
+  for (const c of ["uid TEXT", "pal INTEGER DEFAULT 1", "pdm INTEGER DEFAULT 1", "ppost INTEGER DEFAULT 1"]){
+    try { await env.DB.prepare("ALTER TABLE subs ADD COLUMN " + c).run(); } catch (e) {} }
+}
+const PREFS = s => ({al: s?.pal !== 0, dm: s?.pdm !== 0, post: s?.ppost !== 0});
+async function pushMany(env, subs, msg, urgent){
+  const text = JSON.stringify(msg);
+  for (let i = 0; i < subs.length; i += 40) await Promise.allSettled(subs.slice(i, i + 40).map(s => pushOne(env, s, text, urgent)));
 }
 const b64u = a => btoa(String.fromCharCode(...new Uint8Array(a))).replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
 const unb64u = s => Uint8Array.from(atob(String(s).replace(/-/g, "+").replace(/_/g, "/") + "===".slice((String(s).length + 3) % 4)), c => c.charCodeAt(0));
@@ -441,10 +449,8 @@ async function pubAlert(env, {title, message, url, priority}){
   const r = await env.DB.prepare("INSERT INTO al(t,title,msg,url,prio) VALUES(?,?,?,?,?)").bind(t, title.slice(0, 250), message.slice(0, 900), url || "", priority).run();
   if (new Date().getUTCMinutes() === 0) await env.DB.prepare("DELETE FROM al WHERE t < ?").bind(t - 14 * 864e5).run();
   if (!env.VAPID_PRIV || !env.VAPID_PUB) return;
-  const subs = (await env.DB.prepare("SELECT ep,p256,auth FROM subs").all()).results || [];
-  const text = JSON.stringify({id: r.meta?.last_row_id, title, body: message, url: url || "", t});
-  for (let i = 0; i < subs.length; i += 40)
-    await Promise.allSettled(subs.slice(i, i + 40).map(s => pushOne(env, s, text, priority >= 5)));
+  const subs = (await env.DB.prepare("SELECT ep,p256,auth FROM subs WHERE pal IS NOT 0").all()).results || [];
+  await pushMany(env, subs, {id: "al" + r.meta?.last_row_id, title, body: message, url: url || "", t}, priority >= 5);
 }
 const PUSH_HOSTS = /(^|\.)(fcm\.googleapis\.com|push\.apple\.com|notify\.windows\.com|push\.services\.mozilla\.com)$/;
 async function pubApi(req, env, u){
@@ -469,7 +475,26 @@ async function pubApi(req, env, u){
       return J({ok: true});
     }
     // état d'un téléphone (abonné ?) et notification de test à ce seul téléphone
-    if (u.pathname === "/push/etat" && req.method === "POST"){ const b = await req.json(); const r = await env.DB.prepare("SELECT ok FROM subs WHERE ep=?").bind(String(b.endpoint || "")).first(); return J({abonne: !!r, dernier: r?.ok ?? null}); }
+    if (u.pathname === "/push/etat" && req.method === "POST"){ const b = await req.json(); const r = await env.DB.prepare("SELECT ok,uid,pal,pdm,ppost FROM subs WHERE ep=?").bind(String(b.endpoint || "")).first(); return J({abonne: !!r, dernier: r?.ok ?? null, profil: !!r?.uid, prefs: PREFS(r)}); }
+    // choix des notifications de ce téléphone (l'adresse d'abonnement sert de clé : elle n'est connue que du téléphone)
+    if (u.pathname === "/push/prefs" && req.method === "POST"){ const b = await req.json(), pr = b.prefs || {};
+      const r = await env.DB.prepare("UPDATE subs SET pal=?, pdm=?, ppost=? WHERE ep=?").bind(pr.al === false ? 0 : 1, pr.dm === false ? 0 : 1, pr.post === false ? 0 : 1, String(b.endpoint || "")).run();
+      return r.meta?.changes ? J({ok: true}) : J({error: "Ce téléphone n'est pas abonné"}, 404); }
+    // appels internes du serveur du Fil (liaison PUSH + clé INT_KEY) : relier un téléphone à un profil, envoyer
+    if (u.pathname.startsWith("/push/int/")){
+      const k = new TextEncoder().encode(req.headers.get("x-int") || ""), e = new TextEncoder().encode(env.INT_KEY || "");
+      if (!env.INT_KEY || k.length !== e.length || !crypto.subtle.timingSafeEqual(k, e)) return J({error: "non"}, 403);
+      const b = await req.json();
+      if (u.pathname === "/push/int/link"){ await env.DB.prepare("UPDATE subs SET uid=NULL WHERE uid=? AND ep<>?").bind(String(b.uid), String(b.endpoint || "")).run().catch(() => {});
+        const r = await env.DB.prepare("UPDATE subs SET uid=? WHERE ep=?").bind(String(b.uid).slice(0, 64), String(b.endpoint || "")).run(); return J({ok: !!r.meta?.changes}); }
+      if (u.pathname === "/push/int/send"){
+        const msg = {id: String(b.tag || Date.now()), title: String(b.title || "Dex Scan").slice(0, 120), body: String(b.body || "").slice(0, 300), url: String(b.url || ""), t: Date.now()};
+        const subs = b.kind === "dm" ? (await env.DB.prepare("SELECT ep,p256,auth FROM subs WHERE uid=? AND pdm IS NOT 0").bind(String(b.to)).all()).results || []
+          : b.kind === "post" ? (await env.DB.prepare("SELECT ep,p256,auth FROM subs WHERE ppost IS NOT 0 AND (uid IS NULL OR uid<>?)").bind(String(b.except || "")).all()).results || [] : [];
+        await pushMany(env, subs, msg, b.kind === "dm"); return J({ok: true, n: subs.length});
+      }
+      return J({error: "inconnu"}, 404);
+    }
     if (u.pathname === "/push/test" && req.method === "POST"){
       const b = await req.json(), sub = await env.DB.prepare("SELECT ep,p256,auth,t FROM subs WHERE ep=?").bind(String(b.endpoint || "")).first();
       if (!sub) return J({error: "Ce téléphone n'est pas abonné"}, 404);

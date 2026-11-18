@@ -92,6 +92,12 @@ self.addEventListener("notificationclick", e => {
   e.notification.close();
   const u = e.notification.data && e.notification.data.url;
   e.waitUntil((async () => {
+    // « app:?msg=… » / « app:?post=… » : message privé ou post du Fil, dans l'app
+    if (u && u.startsWith("app:")){
+      const q = u.slice(4), l = await self.clients.matchAll({type: "window", includeUncontrolled: true});
+      if (l[0]){ await l[0].focus(); l[0].postMessage({open: q}); return; }
+      return self.clients.openWindow(new URL("./" + q, self.registration.scope).href);
+    }
     if (u) return self.clients.openWindow(u);
     const l = await self.clients.matchAll({type: "window", includeUncontrolled: true});
     if (l[0]) return l[0].focus();

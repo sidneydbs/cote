@@ -78,3 +78,23 @@ self.addEventListener("fetch", e => {
   if (req.destination === "image" && (IMG_HOSTS.test(u.hostname) || (u.origin === location.origin && u.pathname.includes("/media/")))) { e.respondWith(image(req)); return; }
   if (u.hostname === "api.tcgdex.net" && /\/v2\/\w+\/(sets|series|cards)\//.test(u.pathname)) { e.respondWith(api(req)); return; }
 });
+
+// notifications du guetteur (réassorts, précommandes…) : le message arrive chiffré, on l'affiche tel quel
+self.addEventListener("push", e => {
+  let d = {};
+  try { d = e.data ? e.data.json() : {}; } catch (_) { d = {title: "Dex Scan", body: e.data ? e.data.text() : ""}; }
+  e.waitUntil(self.registration.showNotification(d.title || "Alerte réassort", {
+    body: d.body || "", icon: "/cote/icon-192.png", badge: "/cote/icon-192.png",
+    tag: "al-" + (d.id || Date.now()), data: {url: d.url || ""}, timestamp: d.t || Date.now()}));
+});
+// toucher la notification : ouvre directement la boutique (sinon l'app, sur les alertes)
+self.addEventListener("notificationclick", e => {
+  e.notification.close();
+  const u = e.notification.data && e.notification.data.url;
+  e.waitUntil((async () => {
+    if (u) return self.clients.openWindow(u);
+    const l = await self.clients.matchAll({type: "window", includeUncontrolled: true});
+    if (l[0]) return l[0].focus();
+    return self.clients.openWindow(new URL("./", self.registration.scope).href);
+  })());
+});

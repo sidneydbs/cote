@@ -566,6 +566,7 @@ html{background:var(--panel)}
 .aitem.p5 .k b{color:var(--border-yellow)}
 .aitem .m{font-size:15px;font-weight:600;margin-top:4px;line-height:1.3}
 .aitem.new{box-shadow:0 0 0 2px var(--border-yellow) inset}
+.aiacts{display:flex;gap:6px;flex-wrap:wrap;margin:6px 0 0 4px}.aiacts a{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:600;padding:6px 10px;border-radius:999px;border:1px solid var(--line);background:var(--panel-2);color:var(--fg);text-decoration:none}.aiacts a .brico{width:14px;height:14px;border-radius:3px;padding:1px}
 #alertLive{font:600 11px/1 var(--f-mono)}
 
 /* ---------- Recherche / Collection ---------- */
@@ -1393,7 +1394,8 @@ html{background:var(--panel)}
 .vsw label{background:conic-gradient(#f44,#fd4,#4d6,#4cf,#86f,#f4c,#f44)}
 .vsw label input{position:absolute;inset:0;opacity:0;width:100%;height:100%;cursor:pointer}
 .vsw label span{width:16px;height:16px;border-radius:50%;background:var(--ink);display:grid;place-items:center;font:800 13px/1 var(--f-body);color:var(--fg)}
-.cnseal{display:grid;gap:8px;margin-bottom:6px}.cnsl{display:flex;align-items:center;gap:10px;padding:8px 10px;border:1px solid var(--line);border-radius:14px;background:var(--panel)}.cnsl img{width:44px;height:44px;object-fit:contain;border-radius:8px;flex:none}.cnsl>span:first-of-type{flex:1;min-width:0;display:flex;flex-direction:column}.cnsl small{color:var(--muted)}.cnsb{display:flex;gap:6px;flex:none}.cnsb a{font-size:12px;padding:6px 9px;border-radius:999px;border:1px solid var(--line);color:var(--fg);text-decoration:none;white-space:nowrap}
+.alpush{padding:14px 16px}.aph{display:flex;gap:12px;align-items:flex-start}.aph b{display:block;font-size:15px}.aph small{display:block;color:var(--muted);font-size:13px;line-height:1.4;margin-top:2px}.api{width:38px;height:38px;flex:none;border-radius:12px;display:grid;place-items:center;background:color-mix(in srgb,var(--border-yellow) 18%,transparent);color:var(--border-yellow)}.api svg{width:20px;height:20px}.apbtn{width:100%;margin-top:12px}.apbtns{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px}.apt{display:flex;align-items:center;gap:8px;flex-wrap:wrap}.apst{flex:none;font:700 11px/1 var(--f-mono);letter-spacing:.04em;padding:6px 8px;border-radius:999px;white-space:nowrap}.apst.on{background:rgba(63,208,122,.16);color:#3FD07A}.apst.off{background:var(--panel-2);color:var(--muted)}.apst.wait{background:var(--panel-2);color:var(--muted)}.apmsg{margin:10px 0 0;font-size:13px;line-height:1.4}.apmsg:empty{display:none}.apmsg.ok{color:#3FD07A}.apmsg.ko{color:#FF7A7A}.apsteps{margin:10px 0 0;padding-left:20px;color:var(--muted);font-size:13px;line-height:1.7}.apsteps b{color:var(--fg)}
+.cnseal{display:grid;gap:8px;margin-bottom:6px}.cnsl{display:grid;grid-template-columns:48px 1fr;column-gap:12px;row-gap:10px;align-items:center;padding:10px 12px;border:1px solid var(--line);border-radius:14px;background:var(--panel)}.cnsl>img{width:48px;height:48px;object-fit:contain;border-radius:8px;background:rgba(255,255,255,.06)}.cnsi{min-width:0;display:flex;flex-direction:column;gap:2px}.cnsi b{font-size:14px;line-height:1.25}.cnsi small{color:var(--muted);font-size:13px}.cnsb{grid-column:1/-1;display:grid;grid-template-columns:1fr 1fr;gap:8px}.cnsb a{display:flex;align-items:center;justify-content:center;gap:6px;font-size:12.5px;font-weight:600;padding:8px 10px;border-radius:10px;border:1px solid var(--line);background:var(--panel-2);color:var(--fg);text-decoration:none;white-space:nowrap}.cnsb a .brico{width:16px;height:16px;border-radius:4px;padding:1px}
 .vint{display:flex;align-items:center;gap:10px;margin-top:12px;font-size:13px;color:var(--muted)}
 .vint input{flex:1;accent-color:var(--border-yellow)}
 /* thèmes clairs : petits textes et ombres adaptés */
@@ -1802,7 +1804,7 @@ img.px.reveal{animation:stpRev .9s ease-out}
   }
   fit(); addEventListener("resize", fit); addEventListener("orientationchange", function(){ setTimeout(fit, 300); });
 })();</script>
-<script>window.__APPV="163";</script>
+<script>window.__APPV="165";</script>
 <div class="splash" id="splash" aria-hidden="true"><i class="hole"></i><i class="halo"></i><div class="bw"><svg class="b" viewBox="0 0 100 100"><use href="#pb"/></svg><svg class="t" viewBox="0 0 100 100"><use href="#pb"/></svg></div><i class="glow"></i></div>
 <script>setTimeout(function(){ if(window.__booted) return;
   var b=document.createElement("div"); b.setAttribute("role","alert");
@@ -1837,7 +1839,7 @@ img.px.reveal{animation:stpRev .9s ease-out}
   <!-- ===== EXTENSIONS ===== -->
   <section class="view" id="homeView">
     <div class="scroll">
-      <div class="homebar"><span class="brand">DEX<b>·</b>SCAN</span><span class="hbis"><button class="hbi" id="hSearch" aria-label="Rechercher une carte"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></button><button class="hbi hrk" id="hRank" aria-label="Classement"><svg viewBox="0 0 24 24" fill="none" stroke="url(#hrkG)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><defs><linearGradient id="hrkG" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFF4C2"/><stop offset=".35" stop-color="#FFD86E"/><stop offset=".65" stop-color="#7CF3FF"/><stop offset="1" stop-color="#E2B8FF"/></linearGradient></defs><path d="M8 21h8M12 17v4"/><path d="M7 4h10v5a5 5 0 0 1-10 0z"/><path d="M17 5h3v2a3 3 0 0 1-3 3M7 5H4v2a3 3 0 0 0 3 3"/></svg></button><button class="hbi" id="themeBtn" aria-label="Changer de thème"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.6-.9 1.2-1.8-.5-1.1.2-2.2 1.4-2.2H17a4 4 0 0 0 4-4c0-5.5-4-10-9-10z"/><circle cx="7.5" cy="11" r="1.2"/><circle cx="10" cy="7" r="1.2"/><circle cx="15" cy="7" r="1.2"/></svg></button><button class="hbi" id="moreBtn" aria-label="Réglages et plus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg></button></span><span class="ver" id="hVer">v163</span></div>
+      <div class="homebar"><span class="brand">DEX<b>·</b>SCAN</span><span class="hbis"><button class="hbi" id="hSearch" aria-label="Rechercher une carte"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></button><button class="hbi hrk" id="hRank" aria-label="Classement"><svg viewBox="0 0 24 24" fill="none" stroke="url(#hrkG)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><defs><linearGradient id="hrkG" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFF4C2"/><stop offset=".35" stop-color="#FFD86E"/><stop offset=".65" stop-color="#7CF3FF"/><stop offset="1" stop-color="#E2B8FF"/></linearGradient></defs><path d="M8 21h8M12 17v4"/><path d="M7 4h10v5a5 5 0 0 1-10 0z"/><path d="M17 5h3v2a3 3 0 0 1-3 3M7 5H4v2a3 3 0 0 0 3 3"/></svg></button><button class="hbi" id="themeBtn" aria-label="Changer de thème"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.6-.9 1.2-1.8-.5-1.1.2-2.2 1.4-2.2H17a4 4 0 0 0 4-4c0-5.5-4-10-9-10z"/><circle cx="7.5" cy="11" r="1.2"/><circle cx="10" cy="7" r="1.2"/><circle cx="15" cy="7" r="1.2"/></svg></button><button class="hbi" id="moreBtn" aria-label="Réglages et plus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg></button></span><span class="ver" id="hVer">v165</span></div>
       <button class="banner" id="pxBanner" hidden></button>
       <span class="hdate hgreet" id="hDate"></span>
       <div class="hhero"><div class="total htot" id="hTot"></div><span id="avatSlot"></span></div>
@@ -2018,12 +2020,8 @@ img.px.reveal{animation:stpRev .9s ease-out}
     <div class="scroll">
       <button class="btn btn-g" id="alertBack" style="padding:8px 12px;font-size:13px;margin-bottom:10px">‹ Stock</button>
       <h1 class="h1">Alertes réassort</h1>
-      <p class="lede">Précommandes, invitations et réassorts Pokémon repérés par ton guetteur (le programme qui tourne sur ton PC).</p>
-      <div class="total" style="padding:14px 16px">
-        <label class="plabel" for="alertTopic"><span>Canal ntfy de ton guetteur</span><span id="alertLive"></span></label>
-        <div style="display:flex;gap:8px;margin-top:8px"><input id="alertTopic" placeholder="dexscan-…" autocomplete="off" spellcheck="false" style="flex:1;min-width:0;background:var(--panel-2);border:1px solid var(--line);border-radius:10px;padding:10px 12px;font:500 15px var(--f-mono);color:var(--fg)"><button class="btn btn-g" id="alertSave" style="flex:none">OK</button></div>
-        <div class="links" style="margin-top:10px"><a id="alertNtfy" href="https://ntfy.sh" target="_blank" rel="noopener">Notifications instantanées : app ntfy</a><button class="btn btn-g" id="alertTest" type="button">Envoyer un test</button></div>
-      </div>
+      <p class="lede">Précommandes, invitations et réassorts Pokémon repérés par le guetteur Dex Scan, qui surveille les boutiques 24 h/24.</p>
+      <div class="total alpush" id="alertPush"></div>
       <div class="schips" id="alertKinds" style="margin:14px 0 10px"></div>
       <div id="alertList"></div>
     </div>
@@ -4008,7 +4006,7 @@ async function renderAsiaSet(R, g){
   let l = s.cards.slice(); const q = norm(R.q); if(q) l = l.filter(c=>norm(R.txt(c)).includes(q) || norm(s.n).includes(q));
   if(R.sort==="price") l.sort((a,b)=>(b.m||0)-(a.m||0)); else l.sort((a,b)=>jpNum(a)-jpNum(b));
   const tot = s.cards.reduce((a,c)=>a+(c.m||0),0);
-  const seal = (s.sealed||[]).length ? `<h4 class="lkh">Produits scellés</h4><div class="cnseal">${s.sealed.map(x=>`<div class="cnsl">${x.img?`<img src="${esc(x.img)}" alt="" loading="lazy" onerror="this.remove()">`:""}<span><b>${esc(x.n)}</b><small>${esc(aFmt(R, x.m))}</small></span><span class="cnsb"><a href="${esc(soldUrl(`${s.n} chinese ${/Display/.test(x.n)?"booster box":"booster pack"}`, "cn"))}" target="_blank" rel="noopener">Ventes Chine</a><a href="${esc(soldUrl(`${s.n} chinese ${/Display/.test(x.n)?"booster box":"booster pack"}`, "fr"))}" target="_blank" rel="noopener">France</a></span></div>`).join("")}</div>` : "";
+  const seal = (s.sealed||[]).length ? `<h4 class="lkh">Produits scellés</h4><div class="cnseal">${s.sealed.map(x=>`<div class="cnsl">${x.img?`<img src="${esc(x.img)}" alt="" loading="lazy" onerror="this.remove()">`:""}<span class="cnsi"><b>${esc(x.n)}</b><small>${esc(aFmt(R, x.m))} · prix du marché</small></span><span class="cnsb"><a href="${esc(soldUrl(`${s.n} chinese ${/Display/.test(x.n)?"booster box":"booster pack"}`, "cn"))}" target="_blank" rel="noopener">Ventes Chine</a><a href="${esc(soldUrl(`${s.n} chinese ${/Display/.test(x.n)?"booster box":"booster pack"}`, "fr"))}" target="_blank" rel="noopener">Ventes France</a></span></div>`).join("")}</div>` : "";
   el.innerHTML = `<button class="backbtn" id="${R.k}Back"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>${R.lbl}</button>
     <div class="sethead" style="margin-top:10px"><div style="min-width:0"><h2>${esc(s.n)}</h2><p>${esc([s.zh||s.a, s.d?fmtDay(s.d):"", s.cards.length+" cartes"].filter(Boolean).join(" · "))}</p></div></div>
     <div class="total" style="margin-bottom:10px"><div class="plabel"><span>Valeur de l'extension</span><span>${R.src}</span></div><div class="pmain"><div class="pbig">${esc(eurN(aEur(R, tot)))}<small>${R.idx?.usdEur?"€":"$"}</small></div></div><div class="psub">Une carte de chaque, au prix du marché américain</div></div>
@@ -4048,57 +4046,118 @@ setExMode(store.get("exMode","cards"));
 
 
 /* ---------------- Alertes du guetteur (via ntfy) ---------------- */
-const AL = {items:[], es:null, kind:"all", seenT: store.get("alertSeenT",0), open:false, srv:"https://ntfy.sh"};
-(()=>{ const t = new URLSearchParams(location.search).get("alertes"); if(t && /^[\w-]{6,64}$/.test(t)) store.set("ntfyTopic", t); })();
-const alTopic = () => store.get("ntfyTopic","");
-$("#alertTopic").value = alTopic();
-$("#alertSave").onclick = ()=>{ const t = $("#alertTopic").value.trim(); if(t && !/^[\w-]{6,64}$/.test(t)) return toast("Nom de canal invalide"); store.set("ntfyTopic", t); AL.items=[]; closeAlerts(); openAlerts(); toast(t?"Canal enregistré":"Canal retiré"); };
-$("#alertTest").onclick = async ()=>{
-  const t = alTopic(); if(!t) return toast("Indique d'abord ton canal");
-  try{ await fetch(`${AL.srv}/${encodeURIComponent(t)}`,{method:"POST",body:"Test depuis Dex Scan : tout fonctionne ✔",headers:{Title:"Dex Scan",Tags:"white_check_mark"}}); toast("Test envoyé"); }catch(e){ toast("Envoi impossible"); }
-};
+const AL = {items:[], kind:"all", seenT: store.get("alertSeenT",0), open:false, last:0, timer:null};
+// guetteur en ligne (Cloudflare) : liste des alertes pour tout le monde + notifications sur le téléphone
+const GUET = "https://dexscan-guetteur.sidneydbs.workers.dev";
 const AKINDS = [["all","Toutes"],["INVITATION","Invitations"],["PRÉCOMMANDE","Précommandes"],["DISPO","Réassorts"],["NOUVEAU","Nouveautés"]];
 $("#alertKinds").innerHTML = AKINDS.map(([k,l])=>`<button data-ak="${k}" aria-pressed="${k==="all"}">${l}</button>`).join("");
 $("#alertKinds").querySelectorAll("button").forEach(b=>b.onclick=()=>{ AL.kind=b.dataset.ak; $("#alertKinds").querySelectorAll("button").forEach(x=>x.setAttribute("aria-pressed",x===b)); renderAlerts(); });
-function alAdd(m){
-  if(m.event!=="message" || AL.items.some(x=>x.id===m.id)) return false;
-  AL.items.push(m); AL.items.sort((a,b)=>b.time-a.time); return true;
+function alAdd(x){
+  const m = {id:"g"+x.id, time:x.t/1000, title:x.title, message:x.msg, click:x.url, priority:x.prio};
+  if(AL.items.some(y=>y.id===m.id)) return false;
+  AL.items.push(m); AL.items.sort((a,b)=>b.time-a.time); AL.last = Math.max(AL.last, x.t); return true;
 }
 function renderAlerts(){
   const el = $("#alertList");
-  if(!alTopic()){ el.innerHTML = `<div class="empty">Indique le canal de ton guetteur ci-dessus (il est écrit dans <b>config.json</b> sur ton PC), ou ouvre le lien d'installation qu'on t'a donné.</div>`; return; }
-  const l = AL.items.filter(m=> m.priority!==2 && (AL.kind==="all" || (m.title||"").startsWith(AL.kind)));
-  if(!l.length){ el.innerHTML = `<div class="empty">${AL.loading?'<span class="loader"></span> Lecture des alertes…':"Aucune alerte sur les 7 derniers jours pour l'instant. Laisse le guetteur tourner sur ton PC."}</div>`; return; }
+  const l = AL.items.filter(m=>AL.kind==="all" || (m.title||"").startsWith(AL.kind));
+  if(!l.length){ el.innerHTML = `<div class="empty">${AL.loading?'<span class="loader"></span> Lecture des alertes…':AL.err?"Alertes indisponibles pour l'instant. Vérifie ta connexion.":"Aucune alerte sur les 7 derniers jours pour l'instant."}</div>`; return; }
   el.innerHTML = `<div class="alist">${l.slice(0,200).map(m=>{
     const [kind, src] = (m.title||"").split(" · ");
     const t = new Date(m.time*1000), today = t.toDateString()===new Date().toDateString();
-    return `<a class="aitem${(m.priority||3)>=5?" p5":""}${m.time*1000>AL.seenT?" new":""}" href="${esc(m.click||"#")}" target="_blank" rel="noopener"><div class="k"><b>${esc(kind||"Alerte")}</b><span>${esc(src||"")} · ${today?t.toLocaleTimeString("fr-FR",{hour:"2-digit",minute:"2-digit"}):t.toLocaleDateString("fr-FR",{day:"numeric",month:"short"})+" "+t.toLocaleTimeString("fr-FR",{hour:"2-digit",minute:"2-digit"})}</span></div><div class="m">${esc(m.message||"")}</div></a>`;
+    return `<div class="aiw"><a class="aitem${(m.priority||3)>=5?" p5":""}${m.time*1000>AL.seenT?" new":""}" href="${esc(m.click||"#")}" target="_blank" rel="noopener"><div class="k"><b>${esc(kind||"Alerte")}</b><span>${esc(src||"")} · ${today?t.toLocaleTimeString("fr-FR",{hour:"2-digit",minute:"2-digit"}):t.toLocaleDateString("fr-FR",{day:"numeric",month:"short"})+" "+t.toLocaleTimeString("fr-FR",{hour:"2-digit",minute:"2-digit"})}</span></div><div class="m">${esc(m.message||"")}</div></a>${alActs(m)}</div>`;
   }).join("")}</div>`;
 }
+// deal Dealabs : souvent retiré par la modération peu après → boutons pour trouver le produit chez les marchands
+function alActs(m){
+  if(!/dealabs\.com/.test(m.click||"")) return "";
+  const x = /^(.*?)\s*\((?:chez ([^,)]+))?[^)]*\)\s*$/.exec(m.message||""), prod = (x ? x[1] : m.message||"").replace(/^(De retour en stock|EN STOCK|Toujours en stock)\s*:\s*/i,"").replace(/\s+—\s+[\d,.]+\s*€$/,"").trim(), shop = x?.[2]?.trim();
+  const g = q => `https://www.google.com/search?hl=fr&gl=fr&q=${encodeURIComponent(q)}`;
+  return `<div class="aiacts">${shop?`<a href="${esc(g(`${prod} ${shop}`))}" target="_blank" rel="noopener">Chercher chez ${esc(shop)}</a>`:""}<a href="${esc(`https://www.google.com/search?hl=fr&gl=fr&tbm=shop&q=${encodeURIComponent(prod)}`)}" target="_blank" rel="noopener">Comparer les prix</a></div>`;
+}
 function alBadge(){
-  const n = AL.items.filter(m=>m.priority!==2 && m.time*1000>AL.seenT).length;
+  const n = AL.items.filter(m=>m.time*1000>AL.seenT).length;
   const b = $("#alertBadge"); b.hidden = !n || AL.open; b.textContent = n>99?"99+":n;
 }
-async function alLoad(){
-  const t = alTopic(); if(!t) return;
-  AL.loading = true; renderAlerts();
+async function alLoad(quiet){
+  if(!quiet){ AL.loading = true; renderAlerts(); }
   try{
-    const txt = await fetch(`${AL.srv}/${encodeURIComponent(t)}/json?poll=1&since=7d`).then(r=>r.text());
-    txt.split("\n").filter(Boolean).forEach(l=>{ try{ alAdd(JSON.parse(l)); }catch(e){} });
-  }catch(e){}
+    const j = await fetch(`${GUET}/alertes${AL.last?`?depuis=${AL.last}`:""}`, {cache:"no-store"}).then(r=>r.json());
+    let fresh = 0; (j.items||[]).forEach(x=>{ if(alAdd(x)) fresh++; }); AL.err = false;
+    if(quiet && fresh && AL.open) toast(AL.items[0]?.title || "Nouvelle alerte");
+  }catch(e){ AL.err = true; }
   AL.loading = false; renderAlerts(); alBadge();
 }
-function alLive(){
-  const t = alTopic(); if(!t || AL.es || !window.EventSource) return;
-  AL.es = new EventSource(`${AL.srv}/${encodeURIComponent(t)}/sse`);
-  AL.es.onopen = ()=>{ $("#alertLive").textContent = "● en direct"; };
-  AL.es.onerror = ()=>{ $("#alertLive").textContent = "reconnexion…"; };
-  AL.es.onmessage = e=>{ try{ const m = JSON.parse(e.data); if(alAdd(m)){ renderAlerts(); alBadge(); if(AL.open && m.priority!==2) toast(m.title||"Nouvelle alerte"); } }catch(_){} };
-}
-function openAlerts(){ AL.open = true; $("#alertTopic").value = alTopic(); alLoad().then(()=>{ setTimeout(()=>{ AL.seenT = Date.now(); store.set("alertSeenT", AL.seenT); alBadge(); }, 4000); }); alLive(); }
+// mise à jour toutes les minutes tant que l'app est ouverte
+function alTick(){ clearInterval(AL.timer); AL.timer = setInterval(()=>{ if(!document.hidden) alLoad(true); }, 60e3); }
+document.addEventListener("visibilitychange", ()=>{ if(!document.hidden && AL.last) alLoad(true); });
+function openAlerts(){ AL.open = true; renderPush(); alLoad(!!AL.items.length).then(()=>{ setTimeout(()=>{ AL.seenT = Date.now(); store.set("alertSeenT", AL.seenT); alBadge(); }, 4000); }); }
 function closeAlerts(){ if(AL.open){ AL.seenT = Date.now(); store.set("alertSeenT", AL.seenT); } AL.open = false; alBadge(); }
-// au lancement : récupère les alertes en arrière-plan pour la pastille
-if(alTopic()){ alLoad(); alLive(); }
+/* notifications sur le téléphone (Web Push, envoyées par le guetteur en ligne) */
+const PUSH = {busy:false};
+const IOS = /iPhone|iPad|iPod/.test(navigator.userAgent) || (navigator.platform==="MacIntel" && navigator.maxTouchPoints>1);
+const INSTALLED = navigator.standalone === true || matchMedia("(display-mode: standalone)").matches;
+const unb64 = s => Uint8Array.from(atob(s.replace(/-/g,"+").replace(/_/g,"/") + "===".slice((s.length+3)%4)), c=>c.charCodeAt(0));
+const swReady = () => Promise.race([navigator.serviceWorker.ready, new Promise((_,no)=>setTimeout(()=>no(new Error("sw")), 8000))]);
+async function pushSub(){ try{ const r = await navigator.serviceWorker.getRegistration(); return r ? await r.pushManager.getSubscription() : null; }catch(e){ return null; } }
+async function renderPush(){
+  const el = $("#alertPush"); if(!el) return;
+  const can = "serviceWorker" in navigator && "PushManager" in window && "Notification" in window;
+  const BELL = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 8a6 6 0 1 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.9 1.9 0 0 0 3.4 0"/></svg>`;
+  const head = (t, sub, st) => `<div class="aph"><span class="api">${BELL}</span><div style="min-width:0;flex:1"><div class="apt"><b>${t}</b>${st?`<span class="apst ${st[0]}">${st[1]}</span>`:""}</div><small>${sub}</small></div></div>`;
+  if(!can){
+    el.innerHTML = IOS && !INSTALLED
+      ? head("Notifications de réassort", "Sur iPhone, les notifications marchent quand Dex Scan est sur l'écran d'accueil.", ["off","Inactives"]) + `<ol class="apsteps"><li>Touche <b>Partager</b> en bas de Safari</li><li>Choisis <b>Sur l'écran d'accueil</b></li><li>Ouvre Dex Scan depuis l'icône, puis reviens ici</li></ol>`
+      : head("Notifications de réassort", "Ce navigateur ne sait pas recevoir les notifications. Les alertes restent visibles ici.", ["off","Indisponibles"]);
+    return;
+  }
+  const sub = await pushSub(), denied = Notification.permission==="denied";
+  // abonné sur le téléphone ET connu du guetteur : seulement là on dit « activées »
+  let srv = null; if(sub && Notification.permission==="granted"){ try{ srv = await fetch(GUET+"/push/etat", {method:"POST", headers:{"content-type":"application/json"}, body:JSON.stringify({endpoint:sub.endpoint})}).then(r=>r.json()); }catch(e){ srv = {err:1}; } }
+  const on = !!srv?.abonne, lost = sub && srv && !srv.abonne && !srv.err;
+  el.innerHTML = on
+    ? head("Notifications activées", "Ce téléphone sonne dès qu'une précommande, une invitation ou un réassort est repéré, même app fermée.", ["on","✓ Activées"])
+      + `<div class="apbtns"><button class="btn btn-y" id="pushTest" type="button">Envoyer un test</button><button class="btn btn-g" id="pushOff" type="button">Désactiver</button></div><p class="apmsg" id="pushMsg"></p>`
+    : srv?.err && sub
+    ? head("Notifications de réassort", "Impossible de vérifier avec le guetteur pour l'instant (connexion). Réessaie dans un moment.", ["wait","?"])
+    : head("Notifications de réassort", denied ? "Les notifications sont bloquées pour Dex Scan : autorise-les dans les réglages du téléphone (Notifications → Dex Scan), puis reviens ici." : lost ? "Ce téléphone n'est plus abonné chez le guetteur : réactive-les." : "Sois prévenu sur ce téléphone, même app fermée, dès qu'un réassort tombe.", ["off","Désactivées"])
+      + (denied ? "" : `<button class="btn btn-y apbtn" id="pushBtn" type="button">Activer les notifications</button><p class="apmsg" id="pushMsg"></p>`);
+  $("#pushBtn") && ($("#pushBtn").onclick = ()=>pushOn());
+  $("#pushOff") && ($("#pushOff").onclick = ()=>pushOff(sub));
+  $("#pushTest") && ($("#pushTest").onclick = ()=>pushTest(sub));
+}
+const pushMsg = (t, ok) => { const m = $("#pushMsg"); if(m){ m.textContent = t; m.className = "apmsg " + (ok ? "ok" : "ko"); } };
+async function pushTest(sub){
+  const b = $("#pushTest"); b.disabled = true; b.textContent = "Envoi…";
+  try{ const r = await fetch(GUET+"/push/test", {method:"POST", headers:{"content-type":"application/json"}, body:JSON.stringify({endpoint:sub.endpoint})}).then(r=>r.json());
+    if(r.ok) pushMsg("✓ Notification envoyée : elle doit arriver dans quelques secondes. Rien ? Vérifie Réglages → Notifications → Dex Scan.", true);
+    else pushMsg(r.error || `Le service de notifications a refusé l'envoi (code ${r.status}). Désactive puis réactive.`, false);
+  }catch(e){ pushMsg("Envoi impossible : vérifie ta connexion.", false); }
+  b.disabled = false; b.textContent = "Envoyer un test";
+}
+async function pushOn(){
+  if(PUSH.busy) return; PUSH.busy = true;
+  const b = $("#pushBtn"); if(b){ b.disabled = true; b.textContent = "Activation…"; } pushMsg("", true);
+  try{
+    const perm = await Notification.requestPermission();   // appelé tout de suite au toucher (obligatoire sur iPhone)
+    if(perm!=="granted") throw new Error(perm==="denied" ? "Notifications refusées" : "Notifications non autorisées");
+    const [reg, k] = await Promise.all([swReady(), fetch(GUET+"/push/cle").then(r=>r.json())]);
+    if(!k.key) throw new Error("Serveur pas prêt");
+    let sub = await reg.pushManager.getSubscription();
+    if(!sub) sub = await reg.pushManager.subscribe({userVisibleOnly:true, applicationServerKey:unb64(k.key)});
+    const r = await fetch(GUET+"/push/abo", {method:"POST", headers:{"content-type":"application/json"}, body:JSON.stringify({sub:sub.toJSON(), test:true})}).then(r=>r.json());
+    if(r.error) throw new Error(r.error);
+    store.set("pushOn", true); toast("Notifications activées ✔");
+    PUSH.busy = false; await renderPush(); pushMsg("✓ C'est activé. Une notification de test vient d'être envoyée sur ce téléphone.", true); return;
+  }catch(e){ const t = e.message==="sw" ? "Recharge l'app puis réessaie" : e.message || "Activation impossible"; toast(t); PUSH.busy = false; await renderPush(); pushMsg(t, false); return; }
+}
+async function pushOff(sub){
+  try{ await fetch(GUET+"/push/stop", {method:"POST", headers:{"content-type":"application/json"}, body:JSON.stringify({endpoint:sub.endpoint})}); await sub.unsubscribe(); }catch(e){}
+  store.set("pushOn", false); toast("Notifications désactivées"); renderPush();
+}
+// au lancement : récupère les alertes en arrière-plan pour la pastille, puis toutes les minutes
+setTimeout(()=>{ alLoad(true); alTick(); }, 2500);
+// abonnement renouvelé par le téléphone : on le redonne au guetteur
+if(store.get("pushOn", false)) setTimeout(async()=>{ const s = await pushSub(); if(s) fetch(GUET+"/push/abo", {method:"POST", headers:{"content-type":"application/json"}, body:JSON.stringify({sub:s.toJSON()})}).catch(()=>{}); }, 6000);
 
 /* ---------------- Recherche manuelle ---------------- */
 function renderResults(list, el){
@@ -6573,7 +6632,7 @@ function renderHome(){
   const ic = d => `<span class="mi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${d}</svg></span>`;
   $("#hLinks").innerHTML = `<button data-hgo="budgetView">${ic('<path d="M19 7V5a2 2 0 0 0-2-2H5a2 2 0 0 0 0 4h15a1 1 0 0 1 1 1v4h-3a2 2 0 0 0 0 4h3a1 1 0 0 0 1-1v-2"/><path d="M3 5v14a2 2 0 0 0 2 2h15a1 1 0 0 0 1-1v-4"/>')}<span class="mt"><b>Stock</b><small>${bs.n ? `${bs.n} produit${bs.n>1?"s":""} · plus-value ${bs.pnl>=0?"+":"−"}${eurN(Math.abs(bs.pnl))} €` : "Scellés et gradées, prix payé et valeur"}</small></span>${CH}</button>
     <button data-hsub="rankView">${ic('<path d="M8 21h8M12 17v4"/><path d="M7 4h10v5a5 5 0 0 1-10 0z"/><path d="M17 5h3v2a3 3 0 0 1-3 3M7 5H4v2a3 3 0 0 0 3 3"/>')}<span class="mt"><b>Classement</b><small>${store.get("rk",null)?.on ? "Toi contre les autres Hunters" : "Compare ton compagnon avec tes amis"}</small></span>${CH}</button>
-    <button data-hsub="alertView">${ic('<path d="M6 8a6 6 0 1 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.9 1.9 0 0 0 3.4 0"/>')}<span class="mt"><b>Alertes réassort</b><small>${al ? `${al} nouvelle${al>1?"s":""}` : "Précommandes et réassorts repérés"}</small></span>${CH}</button>
+    <button data-hsub="alertView">${ic('<path d="M6 8a6 6 0 1 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.9 1.9 0 0 0 3.4 0"/>')}<span class="mt"><b>Alertes réassort</b><small>${al ? `${al} nouvelle${al>1?"s":""}` : store.get("pushOn",false) ? "Notifications activées ✓" : "Précommandes et réassorts repérés"}</small></span>${CH}</button>
     <button data-hsub="playView">${ic('<path d="M6 11h4M8 9v4"/><path d="M15 12h.01M18 10h.01"/><path d="M17.3 5H6.7a4 4 0 0 0-4 3.6l-.7 6.9A3 3 0 0 0 5 19c1 0 1.9-.5 2.5-1.3L9 16h6l1.5 1.7c.6.8 1.5 1.3 2.5 1.3a3 3 0 0 0 3-3.5l-.7-6.9A4 4 0 0 0 17.3 5z"/>')}<span class="mt"><b>Apprends</b><small>Comprendre la finance traditionnelle avec les cartes</small></span>${CH}</button>`;
   $("#hLinks").querySelectorAll("[data-hgo]").forEach(b=>b.onclick=()=>selectTab(b.dataset.hgo));
   $("#hLinks").querySelectorAll("[data-hsub]").forEach(b=>b.onclick=()=>openSub(b.dataset.hsub));
@@ -8035,6 +8094,11 @@ async function betaPublishFlow(){
 }
 /* Journal des modifications de la Bêta : la carte « Version Bêta » liste celles que les copains n'ont pas encore */
 const BETA_LOG = [
+  {v:165, t:"Notifications : état clair (✓ Activées / Désactivées, vérifié auprès du guetteur), bouton « Envoyer un test » et « Désactiver »"},
+  {v:165, t:"Alertes Dealabs : marchand et prix dans l'alerte, boutons « Chercher chez … » et « Comparer les prix » si le deal a été retiré"},
+  {v:165, t:"Alertes réassort pour tout le monde : la liste vient du guetteur en ligne (24 h/24), plus besoin de canal ntfy"},
+  {v:165, t:"Notifications de réassort sur le téléphone (Web Push) : bouton « Activer les notifications » dans Alertes ; sur iPhone, l'app doit être sur l'écran d'accueil"},
+  {v:164, t:"Gem Packs : produits scellés plus lisibles, boutons de ventes compacts sous le produit"},
   {v:163, t:"Explorer : onglet Chine avec les 5 Gem Packs chinois (687 cartes, images, prix PriceCharting en €, PSA 10, produits scellés)"},
   {v:163, t:"Ventes réalisées par pays : chaque bouton eBay ne montre que les objets situés dans ce pays (Chine, Hong Kong, Japon, États-Unis, France) ; fiche d'une carte japonaise ou chinoise : bouton du pays en plus"},
   {v:163, t:"Trick or Trade : image du mini-booster sur chaque édition, photos des bundles 120 restaurées"},
@@ -8627,6 +8691,10 @@ $("#moreBack").onclick = ()=>navBack();
    Après l'intro, une seule fois par version qui apporte quelque chose à l'utilisateur.
    Nouvelle installation : rien (tout est neuf). Les versions purement techniques n'ont pas d'entrée ici. */
 const NEWS = [
+  {v:165, items:[
+    ["M6 8a6 6 0 1 1 12 0c0 7 3 9 3 9H3s3-2 3-9M10.3 21a1.9 1.9 0 0 0 3.4 0", "Alertes réassort pour tous", "Précommandes, invitations et réassorts Pokémon repérés 24 h/24 par le guetteur Dex Scan : Stock → Alertes réassort."],
+    ["M5 12l5 5L20 7", "Sois prévenu en premier", "Dans Alertes réassort, touche « Activer les notifications » : ton téléphone sonne dès qu'un réassort tombe, même app fermée. Sur iPhone, ajoute d'abord Dex Scan à l'écran d'accueil."]
+  ]},
   {v:163, items:[
     ["M4 6h16v12H4zM4 10h16M9 6v12", "Les Gem Packs chinois", "Nouvel onglet Chine dans Explorer : les 5 Gem Packs, toutes les cartes avec leur image, leur prix et le prix PSA 10, et les produits scellés."],
     ["M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18M12 3a9 9 0 1 1 0 18 9 9 0 0 1 0-18z", "Ventes réalisées par pays", "Sur les cartes japonaises et chinoises, chaque bouton ouvre les ventes eBay conclues dans ce pays : Chine, Hong Kong, Japon, États-Unis ou France."]

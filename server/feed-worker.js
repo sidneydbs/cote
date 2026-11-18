@@ -10,8 +10,13 @@
      POST /feed/report {id,key,post}     → {ok}
      POST /feed/comment   {id,key,post,name,pk,lv,text} → {post}   (commentaire)
      POST /feed/uncomment {id,key,post,c}                → {post}   (par son auteur ou l'auteur du post)
+     POST /feed/pvote  {id,key,post,o}   → {post}   (sondage : o = numéro de l'option)
+   Modes (tag) : talk, re, new, trade, card, col, open, want, sell, poll.
+   att (pièce jointe) selon le mode : card/want {card} · trade {give,want} · sell {card,ask} · col {n,val,sets,cards[]}
+   · open {prod,cost,cards[]} · poll {opts[]}. Une carte = {id,name,set,num,img,price,rar}.
    Identité : l'id et la clé du profil de dresseur du téléphone. La 1re fois, le serveur retient
    l'empreinte de la clé ; ensuite seule cette clé peut publier ou réagir avec cet id. */
+const TAGS = ["talk","re","new","trade","card","col","open","want","sell","poll"];
 const MAX_POSTS = 300, HIDE_AT = 3, PER_HOUR = 12, MAX_CM = 200, CM_PER_HOUR = 40;
 const CORS = {"access-control-allow-origin":"*", "access-control-allow-methods":"GET,POST,OPTIONS", "access-control-allow-headers":"content-type"};
 const json = (o, s=200) => new Response(JSON.stringify(o), {status:s, headers:{"content-type":"application/json; charset=utf-8", "cache-control":"no-store", ...CORS}});
@@ -25,6 +30,19 @@ async function auth(env, id, key){
   if(!old) await env.FEED.put(k, h); else if(old !== h) throw new Error("Ce profil appartient à un autre téléphone");
   return id;
 }
+const num = (v, max=1e7) => v == null || v === "" || !isFinite(+v) ? undefined : Math.max(0, Math.min(max, Math.round(+v * 100) / 100));
+function card(c){ if(!c || typeof c !== "object") return undefined; const img = typeof c.img === "string" && /^https:\/\/[^\s"'<>]{4,300}$/.test(c.img) ? c.img : undefined;
+  const o = {id:clean(c.id, 48), name:clean(c.name, 60), set:clean(c.set, 60) || undefined, num:clean(c.num, 16) || undefined, img, price:num(c.price), rar:clean(c.rar, 40) || undefined};
+  return o.name ? o : undefined; }
+function attOf(tag, a){
+  if(!a || typeof a !== "object") return undefined;
+  if(tag === "card" || tag === "want"){ const c = card(a.card); return c ? {card:c} : undefined; }
+  if(tag === "trade"){ const g = card(a.give), w = card(a.want); return g && w ? {give:g, want:w} : undefined; }
+  if(tag === "sell"){ const c = card(a.card); return c ? {card:c, ask:num(a.ask)} : undefined; }
+  if(tag === "col"){ const l = (Array.isArray(a.cards) ? a.cards : []).slice(0, 9).map(card).filter(Boolean); return l.length ? {n:num(a.n, 1e6), val:num(a.val), sets:num(a.sets, 5000), cards:l} : undefined; }
+  if(tag === "open"){ const l = (Array.isArray(a.cards) ? a.cards : []).slice(0, 12).map(card).filter(Boolean); return {prod:clean(a.prod, 60) || undefined, cost:num(a.cost), cards:l}; }
+  if(tag === "poll"){ const o = (Array.isArray(a.opts) ? a.opts : []).map(x => clean(x, 60)).filter(Boolean).slice(0, 4); return o.length >= 2 ? {opts:o} : undefined; }
+}
 const load = async env => (await env.FEED.get("posts", "json")) || [];
 const save = (env, l) => env.FEED.put("posts", JSON.stringify(l.slice(0, MAX_POSTS)));
 function view(p, me, base){
@@ -33,7 +51,10 @@ function view(p, me, base){
     img: p.img ? base + "/feed/img/" + p.id : undefined,
     likes:(p.likers||[]).length, liked: !!me && (p.likers||[]).includes(me),
     ok: vals.filter(x=>x==="ok").length, ko: vals.filter(x=>x==="ko").length, my: me ? (v[me] || null) : null,
-    cm: (p.cm||[]).map(c => ({id:c.id, uid:c.uid, name:c.name, pk:c.pk, lv:c.lv, text:c.text, t:c.t}))};
+    cm: (p.cm||[]).map(c => ({id:c.id, uid:c.uid, name:c.name, pk:c.pk, lv:c.lv, text:c.text, card:c.card, t:c.t})),
+    att:p.att, city:p.city,
+    pv: p.att?.opts ? p.att.opts.map((_, i) => Object.values(p.pv||{}).filter(x => x === i).length) : undefined,
+    mpv: me && p.pv && p.pv[me] != null ? p.pv[me] : null};
 }
 export default {
   async fetch(req, env){
@@ -63,11 +84,13 @@ export default {
         const now = Date.now();
         if(l.filter(p => p.uid === me && now - p.t < 36e5).length >= PER_HOUR) return err("Trop de publications : réessaie dans un moment", 429);
         const text = clean(b.text, 500), img = typeof b.img === "string" && b.img.startsWith("data:image/") && b.img.length < 900000 ? b.img : null;
-        if(text.length < 3 && !img) return err("Publication vide");
+        const tag = TAGS.includes(b.tag) ? b.tag : "talk", att = attOf(tag, b.att);
+        if(["trade","card","col","want","sell","poll"].includes(tag) && !att) return err("Il manque la carte ou les options de ta publication");
+        if(text.length < 3 && !img && !att) return err("Publication vide");
         const p = {id: now.toString(36) + Math.random().toString(36).slice(2, 7), uid:me, name:clean(b.name, 24) || "Dresseur",
-          pk:clean(b.pk, 40) || undefined, lv:Math.max(1, Math.min(999, b.lv|0)), tag: b.tag === "re" ? "re" : "new", text,
-          shop: b.tag === "re" ? clean(b.shop, 60) || undefined : undefined,
-          price: b.tag === "re" && isFinite(+b.price) && b.price != null ? Math.round(+b.price * 100) / 100 : undefined,
+          pk:clean(b.pk, 40) || undefined, lv:Math.max(1, Math.min(999, b.lv|0)), tag, text, att, city:clean(b.city, 40) || undefined,
+          shop: tag === "re" ? clean(b.shop, 60) || undefined : undefined,
+          price: tag === "re" && isFinite(+b.price) && b.price != null ? Math.round(+b.price * 100) / 100 : undefined,
           t:now, likers:[], votes:{}, reports:[], img: !!img};
         if(img) await env.FEED.put("img:" + p.id, img);
         l.unshift(p);
@@ -80,13 +103,14 @@ export default {
       else if(act === "vote"){ if(p.tag !== "re") return err("Vote réservé aux réassorts"); const v = b.v === "ko" ? "ko" : "ok"; p.votes ||= {}; p.votes[me] === v ? delete p.votes[me] : p.votes[me] = v; }
       else if(act === "del"){ if(p.uid !== me) return err("Ce n'est pas ton post", 403); l = l.filter(x => x !== p); if(p.img) await env.FEED.delete("img:" + p.id); await save(env, l); return json({ok:true}); }
       else if(act === "comment"){
-        const text = clean(b.text, 300); if(!text) return err("Commentaire vide");
+        const text = clean(b.text, 300); if(!text && !b.card) return err("Commentaire vide");
         const now = Date.now(); let n = 0; for(const x of l) for(const c of (x.cm||[])) if(c.uid === me && now - c.t < 36e5) n++;
         if(n >= CM_PER_HOUR) return err("Trop de commentaires : réessaie dans un moment", 429);
         p.cm ||= []; if(p.cm.length >= MAX_CM) return err("Ce post a trop de commentaires");
-        p.cm.push({id: now.toString(36) + Math.random().toString(36).slice(2, 6), uid:me, name:clean(b.name, 24) || "Dresseur", pk:clean(b.pk, 40) || undefined, lv:Math.max(1, Math.min(999, b.lv|0)), text, t:now});
+        p.cm.push({id: now.toString(36) + Math.random().toString(36).slice(2, 6), uid:me, name:clean(b.name, 24) || "Dresseur", pk:clean(b.pk, 40) || undefined, lv:Math.max(1, Math.min(999, b.lv|0)), text, card:card(b.card), t:now});
       }
       else if(act === "uncomment"){ const c = (p.cm||[]).find(x => x.id === b.c); if(!c) return err("Commentaire introuvable", 404); if(c.uid !== me && p.uid !== me) return err("Ce n'est pas ton commentaire", 403); p.cm = p.cm.filter(x => x !== c); }
+      else if(act === "pvote"){ const n = p.att?.opts?.length || 0, o = b.o|0; if(!n || o < 0 || o >= n) return err("Option inconnue"); p.pv ||= {}; p.pv[me] === o ? delete p.pv[me] : p.pv[me] = o; }
       else if(act === "report"){ p.reports ||= []; if(!p.reports.includes(me)) p.reports.push(me); await save(env, l); return json({ok:true}); }
       else return err("action inconnue", 404);
       await save(env, l);

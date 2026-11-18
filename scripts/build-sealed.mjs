@@ -28,6 +28,7 @@ function typeOf(name) {
   if (/elite trainer box/.test(n)) return "etb";
   if (/(ultra|super)[ -]premium collection/.test(n)) return "upc";
   if (/booster box|booster display|enhanced booster box|display box/.test(n)) return "display";
+  if (/mini booster pack|booster bundle mini|\bboo?ster pack$/.test(n) && !/\d+\s*(ct|count|packs?)\b/.test(n)) return "booster";   // ex. Trick or Trade BOOster Bundle Mini Booster Pack = 1 mini-booster
   if (/booster bundle/.test(n)) return "bundle";
   if (/blister|checklane|3[- ]pack|three[- ]pack|2[- ]pack|sleeved booster/.test(n)) return "blister";
   if (/booster pack|\bbooster\b|\bpack\b/.test(n) && !/collection|box|tin|bundle/.test(n)) return "booster";

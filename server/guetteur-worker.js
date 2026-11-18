@@ -433,6 +433,7 @@ async function pushOne(env, sub, text, urgent){
     "authorization": await vapid(env, ep.origin), "content-encoding": "aes128gcm", "content-type": "application/octet-stream",
     "ttl": "21600", "urgency": urgent ? "high" : "normal", "topic": "dexscan"}});
   if (r.status === 404 || r.status === 410) await env.DB.prepare("DELETE FROM subs WHERE ep=?").bind(sub.ep).run();
+  else await env.DB.prepare("UPDATE subs SET ok=? WHERE ep=?").bind(r.status, sub.ep).run();
   return r.status;
 }
 async function pubAlert(env, {title, message, url, priority}){
@@ -466,6 +467,14 @@ async function pubApi(req, env, u){
       await env.DB.prepare("INSERT INTO subs(ep,p256,auth,t,ok) VALUES(?,?,?,?,1) ON CONFLICT(ep) DO UPDATE SET p256=excluded.p256, auth=excluded.auth, t=excluded.t").bind(ep, String(s.keys.p256dh).slice(0, 200), String(s.keys.auth).slice(0, 60), Date.now()).run();
       if (b.test) await pushOne(env, {ep, p256: s.keys.p256dh, auth: s.keys.auth}, JSON.stringify({title: "Notifications activées ✔", body: "Tu seras prévenu des réassorts et des sorties Pokémon dès que le guetteur les voit.", url: "", t: Date.now()}), false);
       return J({ok: true});
+    }
+    // état d'un téléphone (abonné ?) et notification de test à ce seul téléphone
+    if (u.pathname === "/push/etat" && req.method === "POST"){ const b = await req.json(); const r = await env.DB.prepare("SELECT ok FROM subs WHERE ep=?").bind(String(b.endpoint || "")).first(); return J({abonne: !!r, dernier: r?.ok ?? null}); }
+    if (u.pathname === "/push/test" && req.method === "POST"){
+      const b = await req.json(), sub = await env.DB.prepare("SELECT ep,p256,auth,t FROM subs WHERE ep=?").bind(String(b.endpoint || "")).first();
+      if (!sub) return J({error: "Ce téléphone n'est pas abonné"}, 404);
+      const st = await pushOne(env, sub, JSON.stringify({title: "Test Dex Scan ✔", body: "Les notifications de réassort arrivent bien sur ce téléphone.", url: "", t: Date.now()}), true);
+      return J({ok: st >= 200 && st < 300, status: st});
     }
     if (u.pathname === "/push/stop" && req.method === "POST"){ const b = await req.json(); await env.DB.prepare("DELETE FROM subs WHERE ep=?").bind(String(b.endpoint || "")).run(); return J({ok: true}); }
     return J({error: "inconnu"}, 404);

@@ -1394,7 +1394,7 @@ html{background:var(--panel)}
 .vsw label{background:conic-gradient(#f44,#fd4,#4d6,#4cf,#86f,#f4c,#f44)}
 .vsw label input{position:absolute;inset:0;opacity:0;width:100%;height:100%;cursor:pointer}
 .vsw label span{width:16px;height:16px;border-radius:50%;background:var(--ink);display:grid;place-items:center;font:800 13px/1 var(--f-body);color:var(--fg)}
-.alpush{padding:14px 16px}.aph{display:flex;gap:12px;align-items:flex-start}.aph b{display:block;font-size:15px}.aph small{display:block;color:var(--muted);font-size:13px;line-height:1.4;margin-top:2px}.api{width:38px;height:38px;flex:none;border-radius:12px;display:grid;place-items:center;background:color-mix(in srgb,var(--border-yellow) 18%,transparent);color:var(--border-yellow)}.api svg{width:20px;height:20px}.apbtn{width:100%;margin-top:12px}.apsteps{margin:10px 0 0;padding-left:20px;color:var(--muted);font-size:13px;line-height:1.7}.apsteps b{color:var(--fg)}
+.alpush{padding:14px 16px}.aph{display:flex;gap:12px;align-items:flex-start}.aph b{display:block;font-size:15px}.aph small{display:block;color:var(--muted);font-size:13px;line-height:1.4;margin-top:2px}.api{width:38px;height:38px;flex:none;border-radius:12px;display:grid;place-items:center;background:color-mix(in srgb,var(--border-yellow) 18%,transparent);color:var(--border-yellow)}.api svg{width:20px;height:20px}.apbtn{width:100%;margin-top:12px}.apbtns{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px}.apt{display:flex;align-items:center;gap:8px;flex-wrap:wrap}.apst{flex:none;font:700 11px/1 var(--f-mono);letter-spacing:.04em;padding:6px 8px;border-radius:999px;white-space:nowrap}.apst.on{background:rgba(63,208,122,.16);color:#3FD07A}.apst.off{background:var(--panel-2);color:var(--muted)}.apst.wait{background:var(--panel-2);color:var(--muted)}.apmsg{margin:10px 0 0;font-size:13px;line-height:1.4}.apmsg:empty{display:none}.apmsg.ok{color:#3FD07A}.apmsg.ko{color:#FF7A7A}.apsteps{margin:10px 0 0;padding-left:20px;color:var(--muted);font-size:13px;line-height:1.7}.apsteps b{color:var(--fg)}
 .cnseal{display:grid;gap:8px;margin-bottom:6px}.cnsl{display:grid;grid-template-columns:48px 1fr;column-gap:12px;row-gap:10px;align-items:center;padding:10px 12px;border:1px solid var(--line);border-radius:14px;background:var(--panel)}.cnsl>img{width:48px;height:48px;object-fit:contain;border-radius:8px;background:rgba(255,255,255,.06)}.cnsi{min-width:0;display:flex;flex-direction:column;gap:2px}.cnsi b{font-size:14px;line-height:1.25}.cnsi small{color:var(--muted);font-size:13px}.cnsb{grid-column:1/-1;display:grid;grid-template-columns:1fr 1fr;gap:8px}.cnsb a{display:flex;align-items:center;justify-content:center;gap:6px;font-size:12.5px;font-weight:600;padding:8px 10px;border-radius:10px;border:1px solid var(--line);background:var(--panel-2);color:var(--fg);text-decoration:none;white-space:nowrap}.cnsb a .brico{width:16px;height:16px;border-radius:4px;padding:1px}
 .vint{display:flex;align-items:center;gap:10px;margin-top:12px;font-size:13px;color:var(--muted)}
 .vint input{flex:1;accent-color:var(--border-yellow)}
@@ -4103,21 +4103,40 @@ async function renderPush(){
   const el = $("#alertPush"); if(!el) return;
   const can = "serviceWorker" in navigator && "PushManager" in window && "Notification" in window;
   const BELL = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 8a6 6 0 1 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.9 1.9 0 0 0 3.4 0"/></svg>`;
-  const head = (t, sub) => `<div class="aph"><span class="api">${BELL}</span><div><b>${t}</b><small>${sub}</small></div></div>`;
+  const head = (t, sub, st) => `<div class="aph"><span class="api">${BELL}</span><div style="min-width:0;flex:1"><div class="apt"><b>${t}</b>${st?`<span class="apst ${st[0]}">${st[1]}</span>`:""}</div><small>${sub}</small></div></div>`;
   if(!can){
     el.innerHTML = IOS && !INSTALLED
-      ? head("Notifications de réassort", "Sur iPhone, les notifications marchent quand Dex Scan est sur l'écran d'accueil.") + `<ol class="apsteps"><li>Touche <b>Partager</b> en bas de Safari</li><li>Choisis <b>Sur l'écran d'accueil</b></li><li>Ouvre Dex Scan depuis l'icône, puis reviens ici</li></ol>`
-      : head("Notifications de réassort", "Ce navigateur ne sait pas recevoir les notifications. Les alertes restent visibles ici.");
+      ? head("Notifications de réassort", "Sur iPhone, les notifications marchent quand Dex Scan est sur l'écran d'accueil.", ["off","Inactives"]) + `<ol class="apsteps"><li>Touche <b>Partager</b> en bas de Safari</li><li>Choisis <b>Sur l'écran d'accueil</b></li><li>Ouvre Dex Scan depuis l'icône, puis reviens ici</li></ol>`
+      : head("Notifications de réassort", "Ce navigateur ne sait pas recevoir les notifications. Les alertes restent visibles ici.", ["off","Indisponibles"]);
     return;
   }
-  const sub = await pushSub(), on = !!sub && Notification.permission==="granted", denied = Notification.permission==="denied";
-  el.innerHTML = head(on ? "Notifications activées" : "Notifications de réassort", on ? "Tu es prévenu sur ce téléphone dès qu'une précommande, une invitation ou un réassort est repéré." : denied ? "Les notifications sont bloquées pour Dex Scan : autorise-les dans les réglages du téléphone (Notifications → Dex Scan), puis reviens ici." : "Sois prévenu sur ce téléphone, même app fermée, dès qu'un réassort tombe.")
-    + (denied && !on ? "" : `<button class="btn ${on?"btn-g":"btn-y"} apbtn" id="pushBtn" type="button">${on?"Désactiver sur ce téléphone":"Activer les notifications"}</button>`);
-  const b = $("#pushBtn"); if(b) b.onclick = ()=> on ? pushOff(sub) : pushOn();
+  const sub = await pushSub(), denied = Notification.permission==="denied";
+  // abonné sur le téléphone ET connu du guetteur : seulement là on dit « activées »
+  let srv = null; if(sub && Notification.permission==="granted"){ try{ srv = await fetch(GUET+"/push/etat", {method:"POST", headers:{"content-type":"application/json"}, body:JSON.stringify({endpoint:sub.endpoint})}).then(r=>r.json()); }catch(e){ srv = {err:1}; } }
+  const on = !!srv?.abonne, lost = sub && srv && !srv.abonne && !srv.err;
+  el.innerHTML = on
+    ? head("Notifications activées", "Ce téléphone sonne dès qu'une précommande, une invitation ou un réassort est repéré, même app fermée.", ["on","✓ Activées"])
+      + `<div class="apbtns"><button class="btn btn-y" id="pushTest" type="button">Envoyer un test</button><button class="btn btn-g" id="pushOff" type="button">Désactiver</button></div><p class="apmsg" id="pushMsg"></p>`
+    : srv?.err && sub
+    ? head("Notifications de réassort", "Impossible de vérifier avec le guetteur pour l'instant (connexion). Réessaie dans un moment.", ["wait","?"])
+    : head("Notifications de réassort", denied ? "Les notifications sont bloquées pour Dex Scan : autorise-les dans les réglages du téléphone (Notifications → Dex Scan), puis reviens ici." : lost ? "Ce téléphone n'est plus abonné chez le guetteur : réactive-les." : "Sois prévenu sur ce téléphone, même app fermée, dès qu'un réassort tombe.", ["off","Désactivées"])
+      + (denied ? "" : `<button class="btn btn-y apbtn" id="pushBtn" type="button">Activer les notifications</button><p class="apmsg" id="pushMsg"></p>`);
+  $("#pushBtn") && ($("#pushBtn").onclick = ()=>pushOn());
+  $("#pushOff") && ($("#pushOff").onclick = ()=>pushOff(sub));
+  $("#pushTest") && ($("#pushTest").onclick = ()=>pushTest(sub));
+}
+const pushMsg = (t, ok) => { const m = $("#pushMsg"); if(m){ m.textContent = t; m.className = "apmsg " + (ok ? "ok" : "ko"); } };
+async function pushTest(sub){
+  const b = $("#pushTest"); b.disabled = true; b.textContent = "Envoi…";
+  try{ const r = await fetch(GUET+"/push/test", {method:"POST", headers:{"content-type":"application/json"}, body:JSON.stringify({endpoint:sub.endpoint})}).then(r=>r.json());
+    if(r.ok) pushMsg("✓ Notification envoyée : elle doit arriver dans quelques secondes. Rien ? Vérifie Réglages → Notifications → Dex Scan.", true);
+    else pushMsg(r.error || `Le service de notifications a refusé l'envoi (code ${r.status}). Désactive puis réactive.`, false);
+  }catch(e){ pushMsg("Envoi impossible : vérifie ta connexion.", false); }
+  b.disabled = false; b.textContent = "Envoyer un test";
 }
 async function pushOn(){
   if(PUSH.busy) return; PUSH.busy = true;
-  const b = $("#pushBtn"); if(b){ b.disabled = true; b.textContent = "Activation…"; }
+  const b = $("#pushBtn"); if(b){ b.disabled = true; b.textContent = "Activation…"; } pushMsg("", true);
   try{
     const perm = await Notification.requestPermission();   // appelé tout de suite au toucher (obligatoire sur iPhone)
     if(perm!=="granted") throw new Error(perm==="denied" ? "Notifications refusées" : "Notifications non autorisées");
@@ -4128,8 +4147,8 @@ async function pushOn(){
     const r = await fetch(GUET+"/push/abo", {method:"POST", headers:{"content-type":"application/json"}, body:JSON.stringify({sub:sub.toJSON(), test:true})}).then(r=>r.json());
     if(r.error) throw new Error(r.error);
     store.set("pushOn", true); toast("Notifications activées ✔");
-  }catch(e){ toast(e.message==="sw" ? "Recharge l'app puis réessaie" : e.message || "Activation impossible"); }
-  PUSH.busy = false; renderPush();
+    PUSH.busy = false; await renderPush(); pushMsg("✓ C'est activé. Une notification de test vient d'être envoyée sur ce téléphone.", true); return;
+  }catch(e){ const t = e.message==="sw" ? "Recharge l'app puis réessaie" : e.message || "Activation impossible"; toast(t); PUSH.busy = false; await renderPush(); pushMsg(t, false); return; }
 }
 async function pushOff(sub){
   try{ await fetch(GUET+"/push/stop", {method:"POST", headers:{"content-type":"application/json"}, body:JSON.stringify({endpoint:sub.endpoint})}); await sub.unsubscribe(); }catch(e){}
@@ -6613,7 +6632,7 @@ function renderHome(){
   const ic = d => `<span class="mi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${d}</svg></span>`;
   $("#hLinks").innerHTML = `<button data-hgo="budgetView">${ic('<path d="M19 7V5a2 2 0 0 0-2-2H5a2 2 0 0 0 0 4h15a1 1 0 0 1 1 1v4h-3a2 2 0 0 0 0 4h3a1 1 0 0 0 1-1v-2"/><path d="M3 5v14a2 2 0 0 0 2 2h15a1 1 0 0 0 1-1v-4"/>')}<span class="mt"><b>Stock</b><small>${bs.n ? `${bs.n} produit${bs.n>1?"s":""} · plus-value ${bs.pnl>=0?"+":"−"}${eurN(Math.abs(bs.pnl))} €` : "Scellés et gradées, prix payé et valeur"}</small></span>${CH}</button>
     <button data-hsub="rankView">${ic('<path d="M8 21h8M12 17v4"/><path d="M7 4h10v5a5 5 0 0 1-10 0z"/><path d="M17 5h3v2a3 3 0 0 1-3 3M7 5H4v2a3 3 0 0 0 3 3"/>')}<span class="mt"><b>Classement</b><small>${store.get("rk",null)?.on ? "Toi contre les autres Hunters" : "Compare ton compagnon avec tes amis"}</small></span>${CH}</button>
-    <button data-hsub="alertView">${ic('<path d="M6 8a6 6 0 1 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.9 1.9 0 0 0 3.4 0"/>')}<span class="mt"><b>Alertes réassort</b><small>${al ? `${al} nouvelle${al>1?"s":""}` : "Précommandes et réassorts repérés"}</small></span>${CH}</button>
+    <button data-hsub="alertView">${ic('<path d="M6 8a6 6 0 1 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.9 1.9 0 0 0 3.4 0"/>')}<span class="mt"><b>Alertes réassort</b><small>${al ? `${al} nouvelle${al>1?"s":""}` : store.get("pushOn",false) ? "Notifications activées ✓" : "Précommandes et réassorts repérés"}</small></span>${CH}</button>
     <button data-hsub="playView">${ic('<path d="M6 11h4M8 9v4"/><path d="M15 12h.01M18 10h.01"/><path d="M17.3 5H6.7a4 4 0 0 0-4 3.6l-.7 6.9A3 3 0 0 0 5 19c1 0 1.9-.5 2.5-1.3L9 16h6l1.5 1.7c.6.8 1.5 1.3 2.5 1.3a3 3 0 0 0 3-3.5l-.7-6.9A4 4 0 0 0 17.3 5z"/>')}<span class="mt"><b>Apprends</b><small>Comprendre la finance traditionnelle avec les cartes</small></span>${CH}</button>`;
   $("#hLinks").querySelectorAll("[data-hgo]").forEach(b=>b.onclick=()=>selectTab(b.dataset.hgo));
   $("#hLinks").querySelectorAll("[data-hsub]").forEach(b=>b.onclick=()=>openSub(b.dataset.hsub));
@@ -8075,6 +8094,7 @@ async function betaPublishFlow(){
 }
 /* Journal des modifications de la Bêta : la carte « Version Bêta » liste celles que les copains n'ont pas encore */
 const BETA_LOG = [
+  {v:165, t:"Notifications : état clair (✓ Activées / Désactivées, vérifié auprès du guetteur), bouton « Envoyer un test » et « Désactiver »"},
   {v:165, t:"Alertes Dealabs : marchand et prix dans l'alerte, boutons « Chercher chez … » et « Comparer les prix » si le deal a été retiré"},
   {v:165, t:"Alertes réassort pour tout le monde : la liste vient du guetteur en ligne (24 h/24), plus besoin de canal ntfy"},
   {v:165, t:"Notifications de réassort sur le téléphone (Web Push) : bouton « Activer les notifications » dans Alertes ; sur iPhone, l'app doit être sur l'écran d'accueil"},

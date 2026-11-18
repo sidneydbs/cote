@@ -380,7 +380,7 @@ html{background:var(--panel)}
 /* v99 : bouton partager dans le titre d'une fiche scellé */
 
 .ctitle:has(.pshare){display:flex;align-items:center;gap:10px}
-/* v99 : collection d'un Haunter */
+/* v99 : collection d'un Hunter */
 .rkcolhead{display:flex;align-items:center;gap:12px}
 .rkcolhead .px{width:48px;height:48px;image-rendering:pixelated}
 .rkcolhead div{flex:1;min-width:0}.rkcolhead b{display:block;font-size:17px}.rkcolhead small{color:var(--muted);font-size:13px}
@@ -5597,7 +5597,7 @@ const LEX = [
 ];
 const LEXS = {"supply": "Supply", "emission": "Émission de jetons", "cap": "Supply plafonnée", "burn": "Burn", "fork": "Fork", "oracle": "Oracle de prix", "trade": "Dernier trade", "book": "Carnet d'ordres", "spread": "Spread", "fees": "Frais de transaction", "liquidity": "Liquidité", "audit": "Audit", "pop": "Transparence on-chain", "launch": "Lancement de jeton", "pump": "Pump and dump", "fomo": "FOMO", "hodl": "HODL", "scam": "Arnaque / rug pull", "ev": "Espérance de gain", "sniping": "Bots de sniping", "ath": "ATH", "diversif": "Diversification"};
 const LEXM = Object.fromEntries(LEX.map(([k,t,c,x])=>[k,{k,t,c,x,s:LEXS[k]}]));
-const LEVELS = [[0,"Haunter débutant"],[120,"Collectionneur"],[320,"Négociant"],[650,"Analyste du marché"],[1100,"Maître du marché"]];
+const LEVELS = [[0,"Hunter débutant"],[120,"Collectionneur"],[320,"Négociant"],[650,"Analyste du marché"],[1100,"Maître du marché"]];
 const lvlOf = xp => { let i = 0; LEVELS.forEach((l,j)=>{ if(xp>=l[0]) i = j; }); return {i, name:LEVELS[i][1], from:LEVELS[i][0], to:LEVELS[i+1]?.[0] ?? null}; };
 const BADGES = {
   marchand:["🏪","Premier marché","Finir une partie du Marchand"], trader:["📈","Trader avisé","Finir le Marchand au-dessus de 750 €"],
@@ -6253,7 +6253,7 @@ async function budForm(edit, withPhoto, fresh=false){
         const w = await getWorker(); await w.setParameters({tessedit_pageseg_mode:"11", tessedit_char_whitelist:""});
         const {data} = await w.recognize(c);
         const txt = (data.text||"").replace(/\s+/g," ").trim();
-        const g = /Haunter d.?.lite|elite trainer/i.test(txt) ? "etb" : /ultra.?premium/i.test(txt) ? "upc" : /36 boosters|display|booster box/i.test(txt) ? "display" : /tripack|3 boosters/i.test(txt) ? "blister" : null;
+        const g = /Hunter d.?.lite|elite trainer/i.test(txt) ? "etb" : /ultra.?premium/i.test(txt) ? "upc" : /36 boosters|display|booster box/i.test(txt) ? "display" : /tripack|3 boosters/i.test(txt) ? "blister" : null;
         if(g && !edit){ x.t = g; $("#bfT").querySelectorAll("[data-bt]").forEach(y=>y.setAttribute("aria-pressed", y.dataset.bt===x.t)); }
         sugg = cmSearch(txt, g || null);
         ocrMsg = (ocrMsg ? ocrMsg+" " : "") + (sugg.length ? "Choisis le bon produit dans la liste, ou tape son nom." : "Je n'ai pas reconnu la boîte : tape son nom.");
@@ -6537,7 +6537,7 @@ function renderHome(){
   const CH = `<svg class="mch" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg>`;
   const ic = d => `<span class="mi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${d}</svg></span>`;
   $("#hLinks").innerHTML = `<button data-hgo="budgetView">${ic('<path d="M19 7V5a2 2 0 0 0-2-2H5a2 2 0 0 0 0 4h15a1 1 0 0 1 1 1v4h-3a2 2 0 0 0 0 4h3a1 1 0 0 0 1-1v-2"/><path d="M3 5v14a2 2 0 0 0 2 2h15a1 1 0 0 0 1-1v-4"/>')}<span class="mt"><b>Stock</b><small>${bs.n ? `${bs.n} produit${bs.n>1?"s":""} · plus-value ${bs.pnl>=0?"+":"−"}${eurN(Math.abs(bs.pnl))} €` : "Scellés et gradées, prix payé et valeur"}</small></span>${CH}</button>
-    <button data-hsub="rankView">${ic('<path d="M8 21h8M12 17v4"/><path d="M7 4h10v5a5 5 0 0 1-10 0z"/><path d="M17 5h3v2a3 3 0 0 1-3 3M7 5H4v2a3 3 0 0 0 3 3"/>')}<span class="mt"><b>Classement</b><small>${store.get("rk",null)?.on ? "Toi contre les autres Haunters" : "Compare ton compagnon avec tes amis"}</small></span>${CH}</button>
+    <button data-hsub="rankView">${ic('<path d="M8 21h8M12 17v4"/><path d="M7 4h10v5a5 5 0 0 1-10 0z"/><path d="M17 5h3v2a3 3 0 0 1-3 3M7 5H4v2a3 3 0 0 0 3 3"/>')}<span class="mt"><b>Classement</b><small>${store.get("rk",null)?.on ? "Toi contre les autres Hunters" : "Compare ton compagnon avec tes amis"}</small></span>${CH}</button>
     <button data-hsub="alertView">${ic('<path d="M6 8a6 6 0 1 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.9 1.9 0 0 0 3.4 0"/>')}<span class="mt"><b>Alertes réassort</b><small>${al ? `${al} nouvelle${al>1?"s":""}` : "Précommandes et réassorts repérés"}</small></span>${CH}</button>
     <button data-hsub="playView">${ic('<path d="M6 11h4M8 9v4"/><path d="M15 12h.01M18 10h.01"/><path d="M17.3 5H6.7a4 4 0 0 0-4 3.6l-.7 6.9A3 3 0 0 0 5 19c1 0 1.9-.5 2.5-1.3L9 16h6l1.5 1.7c.6.8 1.5 1.3 2.5 1.3a3 3 0 0 0 3-3.5l-.7-6.9A4 4 0 0 0 17.3 5z"/>')}<span class="mt"><b>Apprends</b><small>Comprendre la finance traditionnelle avec les cartes</small></span>${CH}</button>`;
   $("#hLinks").querySelectorAll("[data-hgo]").forEach(b=>b.onclick=()=>selectTab(b.dataset.hgo));
@@ -6624,7 +6624,7 @@ addEventListener("message",e=>{ if(e.data==="boosterClose") closeBooster(); });
    Glisser vers la droite = revenir (fiche → carte précédente ou fermeture, jeu/budget → fermer, extension → liste).
    Sans rien à fermer, glisser à gauche / à droite change d'onglet. Glisser vers le bas en haut d'une fiche la ferme.
    Le bouton retour du téléphone (Android) et du navigateur fait la même chose que glisser vers la droite. */
-const NAV = {stack:[], restoring:false, re:null};   // re : écran de la fiche à rouvrir au retour (ex. collection d'un Haunter)
+const NAV = {stack:[], restoring:false, re:null};   // re : écran de la fiche à rouvrir au retour (ex. collection d'un Hunter)
 const viewIds = () => [...document.querySelectorAll(".tab")].map(t=>t.dataset.v);
 const curView = () => ALLV.find(id=>!document.getElementById(id).hidden);
 /* ce qu'un « retour » fermerait, sans le faire : sert à choisir entre revenir et changer d'onglet */
@@ -7132,7 +7132,7 @@ const lvNeed = l => 50 * (l-1) * (l-1);                      // XP pour atteindr
 const lvOf = xp => Math.min(50, Math.floor(Math.sqrt(xp/50)) + 1);
 /* ---- Évolutions : chaque compagnon évolue 5 niveaux après avoir rejoint l'équipe (au plus tôt au niveau 10) ---- */
 const isEvo = k => !!getTeam().find(x=>x.k===k)?.evo;
-// _ev : compagnon d'un autre Haunter (évolué ou non, d'après son pk) ; sinon c'est mon équipe qui décide
+// _ev : compagnon d'un autre Hunter (évolué ou non, d'après son pk) ; sinon c'est mon équipe qui décide
 const pImg = st => !st ? undefined : st._ev!=null ? (st._ev && st.evo ? st.evo : st.img) : (isEvo(st.k) && st.evo ? st.evo : st.img);
 // mon compagnon tel que les autres le voient : « pandabraise~e » quand il a évolué
 const myPk = () => { const k = store.get("starter",""); return k && isEvo(k) ? k+"~e" : k; };
@@ -7658,7 +7658,7 @@ function evoCheck(tries=0){
 }
 setTimeout(evoCheck, 5000);
 
-/* ---------------- Classement des Haunters (serveur Cloudflare : RANK_API) ----------------
+/* ---------------- Classement des Hunters (serveur Cloudflare : RANK_API) ----------------
    Chaque téléphone a un profil public (id) et une clé secrète (key) qui ne quitte que vers le serveur.
    On envoie : pseudo, compagnon (espèce + nom), XP, nombre de cartes, extensions complétées, et la valeur de la collection
    seulement si le joueur l'a accepté. Ligues entre amis par code à 6 caractères, lien ?ligue=CODE. */
@@ -7709,7 +7709,7 @@ function rkPodium(rows, me){
 }
 async function renderRank(){
   const el = $("#rankBody"), p = rkProf();
-  if(!p?.on){ el.innerHTML = `<div class="rkjoin">${starterOf()?`<img class="px" src="${pImg(starterOf())}" alt="">`:""}<h3>Affronte tes amis</h3><p class="psub">Compare le niveau de ton compagnon avec les autres Haunters, crée une ligue avec tes amis et vois qui progresse le plus chaque semaine.</p><button class="btn btn-y" id="rkGo" style="width:100%">Rejoindre le classement</button><p class="fine">Seuls ton pseudo, ton compagnon, ton niveau et tes nombres de cartes sont visibles. La valeur de ta collection reste privée, sauf si tu choisis de la montrer.</p></div>`;
+  if(!p?.on){ el.innerHTML = `<div class="rkjoin">${starterOf()?`<img class="px" src="${pImg(starterOf())}" alt="">`:""}<h3>Affronte tes amis</h3><p class="psub">Compare le niveau de ton compagnon avec les autres Hunters, crée une ligue avec tes amis et vois qui progresse le plus chaque semaine.</p><button class="btn btn-y" id="rkGo" style="width:100%">Rejoindre le classement</button><p class="fine">Seuls ton pseudo, ton compagnon, ton niveau et tes nombres de cartes sont visibles. La valeur de ta collection reste privée, sauf si tu choisis de la montrer.</p></div>`;
     $("#rkGo").onclick = ()=>rkSetup(); return; }
   $("#rankMe").hidden = false;
   // ligues : Tous + mes ligues + ajouter
@@ -7735,8 +7735,8 @@ async function renderRank(){
     store.set("rkAbove", above);
   }
   const lbl = {xp:"par niveau", week:"de la semaine", cards:"par nombre de cartes", sets:"par extensions complétées", val:"par valeur (joueurs qui la montrent)"}[RK.by];
-  el.innerHTML = `<p class="psub" style="margin:0 0 10px">${d.fr?`Toi et tes amis · `:""}${d.league?`Ligue <b>${esc(d.league.name)}</b> · code <b class="rkcode">${esc(d.league.code)}</b> · `:""}${d.total} Haunter${d.total>1?"s":""} · classement ${lbl}${RK.by==="week"?" (remis à zéro chaque lundi)":""}</p>
-    ${d.fr && !rkFr().length ? `<div class="empty" style="padding:30px 12px"><div style="font-size:40px">⭐</div><b style="color:var(--fg)">Pas encore d'amis</b><br>Dans « Tous », touche un Haunter puis « Ajouter en ami ». Tu retrouveras ici votre classement rien qu'entre vous.</div>` : ""}
+  el.innerHTML = `<p class="psub" style="margin:0 0 10px">${d.fr?`Toi et tes amis · `:""}${d.league?`Ligue <b>${esc(d.league.name)}</b> · code <b class="rkcode">${esc(d.league.code)}</b> · `:""}${d.total} Hunter${d.total>1?"s":""} · classement ${lbl}${RK.by==="week"?" (remis à zéro chaque lundi)":""}</p>
+    ${d.fr && !rkFr().length ? `<div class="empty" style="padding:30px 12px"><div style="font-size:40px">⭐</div><b style="color:var(--fg)">Pas encore d'amis</b><br>Dans « Tous », touche un Hunter puis « Ajouter en ami ». Tu retrouveras ici votre classement rien qu'entre vous.</div>` : ""}
     ${d.fr && !rkFr().length ? "" : rows.length ? rkPodium(rows, p.id) + `<div class="rklist">${rows.slice(3).map((r,i)=>rkRow(r, i+4, p.id)).join("")}</div>` : `<div class="empty">Personne pour l'instant. Invite tes amis !</div>`}
     ${mine && myI<0 ? `<div class="rklist rkmine">${rkRow(mine, mine.rank, p.id)}</div>` : ""}
     ${d.league?`<button class="btn" id="rkInv" style="width:100%;margin-top:14px">Inviter des amis dans cette ligue</button>`:""}`;
@@ -7762,11 +7762,11 @@ function rkPlayer(r){
 }
 function rkSetup(){
   const p = rkProf() || {};
-  $("#sheetTitle").textContent = p.on ? "Mon profil de Haunter" : "Rejoindre le classement";
+  $("#sheetTitle").textContent = p.on ? "Mon profil de Hunter" : "Rejoindre le classement";
   $("#sheetBody").innerHTML = `<div class="rkform">
     <label for="rkName">Ton pseudo</label><input id="rkName" maxlength="16" autocomplete="off" spellcheck="false" placeholder="Ex. Diwood" value="${esc(p.name||"")}">
     <label class="rkchk"><input type="checkbox" id="rkVal" ${p.val?"checked":""}> <span>Montrer la valeur de ma collection<small>Le total et la cote de chaque carte. Sinon elle reste privée : on voit tes cartes, pas ce qu'elles valent.</small></span></label>
-    <label class="rkchk"><input type="checkbox" id="rkCol" ${p.col!==false?"checked":""}> <span>Montrer mes cartes aux autres Haunters<small>Ils voient ta collection en images depuis le classement, et tu peux la partager d'un lien.</small></span></label>
+    <label class="rkchk"><input type="checkbox" id="rkCol" ${p.col!==false?"checked":""}> <span>Montrer mes cartes aux autres Hunters<small>Ils voient ta collection en images depuis le classement, et tu peux la partager d'un lien.</small></span></label>
     <button class="btn btn-y" id="rkOk" style="width:100%;margin-top:6px">${p.on?"Enregistrer":"C'est parti !"}</button>
     ${p.on?`<button class="btn" id="rkOff" style="width:100%;margin-top:8px">Quitter le classement</button>`:""}
     <p class="fine">Pas de compte ni d'e-mail. Ton profil est lié à ce téléphone (et à tes sauvegardes Dex Scan).</p></div>`;
@@ -7826,7 +7826,7 @@ $("#rankMe").onclick = rkSetup;
 setTimeout(async ()=>{
   const pend = store.get("rkPend",""); if(!pend || !starterOf() || $("#stp")) return;
   let lg = null; try{ lg = await rkCall("/league/"+pend); }catch(e){ store.set("rkPend",""); return; }
-  gameBox([`${lg.name} t'invite !`, `${lg.n} Haunter${lg.n>1?"s":""} dans cette ligue. Tu la rejoins ?`], [{label:"Rejoindre", go:true, run:()=>{ openSub("rankView"); if(rkProf()?.on){ store.set("rkPend",""); rkJoin(pend); } else rkSetup(); }}, {label:"Plus tard"}]);
+  gameBox([`${lg.name} t'invite !`, `${lg.n} Hunter${lg.n>1?"s":""} dans cette ligue. Tu la rejoins ?`], [{label:"Rejoindre", go:true, run:()=>{ openSub("rankView"); if(rkProf()?.on){ store.set("rkPend",""); rkJoin(pend); } else rkSetup(); }}, {label:"Plus tard"}]);
 }, 2500);
 if(rkProf()?.on){ rkLgsRefresh(); setTimeout(()=>rkSync(), 4000); }
 
@@ -7850,7 +7850,7 @@ function shareProduct(name, price, q){
 
 /* ---------------- Collections visibles au classement ----------------
    Le joueur qui l'accepte envoie la liste de ses cartes (id, quantité, nom, numéro, extension, image ; la cote seulement
-   s'il montre aussi la valeur). Les autres la voient en images depuis sa fiche de Haunter, ou par le lien ?dresseur=ID. */
+   s'il montre aussi la valeur). Les autres la voient en images depuis sa fiche de Hunter, ou par le lien ?dresseur=ID. */
 function rkColPayload(){
   const p = rkProf();
   return getCol().slice().sort((a,b)=>(b.price||0)-(a.price||0)).slice(0, 3000)
@@ -7860,7 +7860,7 @@ const rkHash = s => { let h = 5381; for(let i=0;i<s.length;i++) h = (h*33 ^ s.ch
 async function rkColSync(force){
   const p = rkProf(); if(!p?.on) return false;
   const cards = p.col===false ? [] : rkColPayload();
-  if(p.col===undefined) return false;   // pas encore demandé à ce Haunter
+  if(p.col===undefined) return false;   // pas encore demandé à ce Hunter
   const sig = rkHash(JSON.stringify(cards));
   if(!force && store.get("rkColSig","")===sig) return true;
   try{ await rkCall("/col", {id:p.id, key:p.key, cards}); store.set("rkColSig", sig); return true; }catch(e){ return false; }
@@ -7873,17 +7873,17 @@ async function rkCollection(id, back=null){
   if(me?.on && me.id===id) await rkColSync(true);
   let d;
   try{ d = await rkCall("/col/"+encodeURIComponent(id)); }
-  catch(e){ $("#sheetBody").innerHTML = `<div class="empty"><b style="color:var(--fg)">${/priv|introuv/.test(e.message)?"Collection privée":"Collection indisponible"}</b><br>${/priv|introuv/.test(e.message)?"Ce Haunter n'a pas choisi de montrer ses cartes.":esc(e.message)}</div>`; return; }
+  catch(e){ $("#sheetBody").innerHTML = `<div class="empty"><b style="color:var(--fg)">${/priv|introuv/.test(e.message)?"Collection privée":"Collection indisponible"}</b><br>${/priv|introuv/.test(e.message)?"Ce Hunter n'a pas choisi de montrer ses cartes.":esc(e.message)}</div>`; return; }
   const pt = rkPet(d.pk), cards = d.cards||[];
   const mine = me?.on && me.id===id;
   const n = cards.reduce((a,c)=>a+(c[1]||1),0), val = mine ? getCol().reduce((a,x)=>a+(x.price||0)*(x.qty||1),0) : cards.some(c=>c[6]!=null) ? cards.reduce((a,c)=>a+(c[6]||0)*(c[1]||1),0) : null;
   $("#sheetTitle").textContent = `Collection de ${d.name}`;
   $("#sheetBody").innerHTML = `<div class="rkcolhead">${pt?`<span style="width:48px;height:48px;flex:none">${petArt(pt, d.lv||1)}</span>`:""}<div><b>${esc(d.name)}</b><small>Niv. ${d.lv||1} · ${n.toLocaleString("fr-FR")} carte${n>1?"s":""}${val!=null?` · ${eurN(val)} €${mine && !me.val?" (visible par toi seul)":""}`:""}</small></div>
       ${me?.on && me.id===id ? `<button class="btn btn-g" id="rkcShare">${SHARE_SVG}Partager</button>` : ""}</div>
-    ${me?.on && me.id===id ? `<label class="rkchk rkvalsw"><input type="checkbox" id="rkcVal" ${me.val?"checked":""}> <span>Montrer la valeur aux autres Haunters<small>${me.val?"Ils voient le total et la cote de chaque carte.":"Ils voient tes cartes, mais ni le total ni les cotes."}</small></span></label>` : ""}
+    ${me?.on && me.id===id ? `<label class="rkchk rkvalsw"><input type="checkbox" id="rkcVal" ${me.val?"checked":""}> <span>Montrer la valeur aux autres Hunters<small>${me.val?"Ils voient le total et la cote de chaque carte.":"Ils voient tes cartes, mais ni le total ni les cotes."}</small></span></label>` : ""}
     ${cards.length>12?`<label class="ext-search" style="margin:12px 0 0"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><input id="rkcQ" type="search" placeholder="Chercher une carte" autocomplete="off" aria-label="Chercher dans cette collection"></label>`:""}
     <div class="rkcolgrid" id="rkcGrid"></div>
-    <p class="fine">Cartes triées de la plus chère à la moins chère${val==null?" (ce Haunter garde ses cotes privées)":""}. Touche une carte pour ouvrir sa fiche.</p>`;
+    <p class="fine">Cartes triées de la plus chère à la moins chère${val==null?" (ce Hunter garde ses cotes privées)":""}. Touche une carte pour ouvrir sa fiche.</p>`;
   let lim = 60;
   const draw = ()=>{ const q = norm($("#rkcQ")?.value||""), l = q ? cards.filter(c=>norm(c[2]+" "+c[3]+" "+c[4]).includes(q)) : cards;
     $("#rkcGrid").innerHTML = l.length ? l.slice(0, lim).map(c=>`<button class="rkct" data-cid="${esc(c[0])}" aria-label="${esc(c[2])}">${imgTag({id:c[0], localId:c[3], name:c[2], _img:c[5]?{low:c[5], high:c[5]}:null}, "low", 'alt="" loading="lazy"')}${c[1]>1?`<i>×${c[1]}</i>`:""}</button>`).join("")
@@ -7907,7 +7907,7 @@ async function rkSetVal(on){
     return !(j?.slow || c?.slow); };
   // le serveur ignore deux envois à moins de 15 s d'écart : on renvoie après le délai si besoin
   if(!await push()) setTimeout(push, 16000);
-  toast(on ? "Valeur visible au classement" : "Valeur cachée aux autres Haunters");
+  toast(on ? "Valeur visible au classement" : "Valeur cachée aux autres Hunters");
 }
 async function shareCollection(){
   if(FEED.ok) return gameBox(["Comment veux-tu partager ta collection ?"], [{label:"Publier sur le Fil", go:true, run:()=>fdShareCol()}, {label:"Envoyer un lien", run:()=>shareColLink()}, {label:"Annuler"}]);
@@ -7915,8 +7915,8 @@ async function shareCollection(){
 }
 async function shareColLink(){
   const p = rkProf();
-  if(!p?.on){ gameBox(["Pour partager toute ta collection d'un lien, il faut un profil de Haunter.", "C'est juste un pseudo, sans compte ni e-mail."], [{label:"Créer mon profil", go:true, run:()=>rkSetup()}, {label:"Plus tard"}]); return; }
-  if(p.col===false){ gameBox(["Ta collection est cachée aux autres Haunters.", "Tu veux la rendre visible pour pouvoir la partager ?"], [{label:"Oui, la montrer", go:true, run:async ()=>{ store.set("rk", {...p, col:true}); await rkColSync(true); shareColLink(); }}, {label:"Non"}]); return; }
+  if(!p?.on){ gameBox(["Pour partager toute ta collection d'un lien, il faut un profil de Hunter.", "C'est juste un pseudo, sans compte ni e-mail."], [{label:"Créer mon profil", go:true, run:()=>rkSetup()}, {label:"Plus tard"}]); return; }
+  if(p.col===false){ gameBox(["Ta collection est cachée aux autres Hunters.", "Tu veux la rendre visible pour pouvoir la partager ?"], [{label:"Oui, la montrer", go:true, run:async ()=>{ store.set("rk", {...p, col:true}); await rkColSync(true); shareColLink(); }}, {label:"Non"}]); return; }
   if(p.col===undefined){ store.set("rk", {...p, col:true}); }
   toast("Préparation du lien…");
   if(!await rkColSync(true)){ toast("Serveur injoignable, réessaie"); return; }
@@ -7998,9 +7998,9 @@ async function betaPublishFlow(){
 }
 /* Journal des modifications de la Bêta : la carte « Version Bêta » liste celles que les copains n'ont pas encore */
 const BETA_LOG = [
-  {v:162, t:"Les utilisateurs s'appellent maintenant des Haunters (classement, Fil, messages, collections)"},
+  {v:162, t:"Les utilisateurs s'appellent maintenant des Hunters (classement, Fil, messages, collections)"},
   {v:162, t:"Thème Glass : réglage de la transparence (de transparent à opaque) dans Thème, sous la couleur"},
-  {v:161, t:"Collection d'un Haunter : le retour depuis une carte ramène à sa collection (même recherche, même endroit)"},
+  {v:161, t:"Collection d'un Hunter : le retour depuis une carte ramène à sa collection (même recherche, même endroit)"},
   {v:160, t:"Thème Glass : menus déroulants (Type, Langue, tri…) et bannières opaques, plus de texte qui se mélange"},
   {v:159, t:"Trick or Trade 2022, 2023 et 2024 dans l'Explorer et le Classeur (cartes, images, cote US en euros) ; images des mini-boosters dans le Stock ; images des cartes partagées sur le Fil"},
   {v:158, t:"Accueil : le compagnon a sa propre bande au-dessus de la valeur (nom, niveau, barre d'XP, étoiles de palier)"},
@@ -8009,7 +8009,7 @@ const BETA_LOG = [
   {v:155, t:"Mentions @pseudo dans les posts et commentaires : suggestions en tapant @, notification pour la personne mentionnée"},
   {v:154, t:"Scellés : ventes eBay France vraiment françaises (objets situés en France), et chaque pays avec ses propres ventes (Allemagne, Royaume-Uni, États-Unis)"},
   {v:153, t:"Nouveau haut de l'Accueil : barre fine avec les icônes, ton compagnon en grand sur la valeur avec son niveau"},
-  {v:152, t:"Messages privés entre Haunters (onglet Messages dans Social, ✉️ sur les posts et dans le Classement)"},
+  {v:152, t:"Messages privés entre Hunters (onglet Messages dans Social, ✉️ sur les posts et dans le Classement)"},
   {v:151, t:"Le Fil : 9 modes de publication (Discussion, Réassort, Échange, Ma carte, Ma collec, Ouverture, Je cherche, Je vends, Sondage), ville, contre-offre en commentaire"},
   {v:150, t:"Commentaires sur les posts du Fil, avec notification quand on commente ton post"},
   {v:149, t:"Le Fil : liker ou voter ne fait plus clignoter ni sauter la page"},
@@ -8023,7 +8023,7 @@ const BETA_LOG = [
   {v:141, t:"Explorer : filtre Toutes / Possédées / Manquantes dans une extension"},
   {v:140, t:"Partager une carte ou ta collection sur le Fil, avec son visuel"},
   {v:139, t:"Textes : cotes relues toutes les heures, Top 100 toutes les 3 heures"},
-  {v:138, t:"Classement : ajouter des Haunters en amis, onglet « ⭐ Amis »"},
+  {v:138, t:"Classement : ajouter des Hunters en amis, onglet « ⭐ Amis »"},
   {v:137, t:"Le Fil : « Ça drop quoi aujourd’hui ? » pour lancer une publication"},
   {v:136, t:"Le Fil en ligne pour tout le monde, annoncé dans « Quoi de neuf »"},
   {v:135, t:"Le Fil relié à son serveur en ligne : les publications sont partagées entre tous"},
@@ -8173,7 +8173,7 @@ async function fdLoad(){
 /* actions sur un post : un seul gestionnaire, rebranché sur les morceaux redessinés */
 function fdClick(e){ e.stopPropagation(); const b = e.currentTarget;
     const post = FEED.posts.find(x=>x.id===b.closest("[data-pid]").dataset.pid), a = b.dataset.fa; if(!post) return;
-    if(!fdMe() && !["share","cm","see","seecol"].includes(a)){ toast("Crée ton profil de Haunter pour réagir"); return; }
+    if(!fdMe() && !["share","cm","see","seecol"].includes(a)){ toast("Crée ton profil de Hunter pour réagir"); return; }
     if(a==="cm"){ FEED.cmOpen.has(post.id) ? FEED.cmOpen.delete(post.id) : FEED.cmOpen.add(post.id); fdPatch(post, FEED.cmOpen.has(post.id) && !!fdMe()); return; }
     if(a==="cms"){ const i = b.closest(".fd-cin")?.querySelector("input"); if(i) fdComment(post, i); return; }
     if(a==="ucm"){ fdUncomment(post, b.dataset.c); return; }
@@ -8225,7 +8225,7 @@ function fdPostHTML(x){
   const av = `<span class="fd-av">${st?`<img src="${st.img}" alt="">`:"🙂"}<i>${x.lv||1}</i></span>`;
   const tot = (x.ok||0)+(x.ko||0), pc = tot ? Math.round((x.ok||0)/tot*100) : 50;
   return `<article class="fd-post" data-pid="${esc(x.id)}">${av}<div class="fd-body">
-    <div class="fd-h"><b>${esc(x.name||"Haunter")}</b><span>· ${fdAgo(x.t)}</span>${x.demo?`<span class="fd-ex">exemple</span>`:""}${fdMe() && !mine && !x.demo ? `<button class="fd-dm" data-fa="dm" aria-label="Envoyer un message à ${esc(x.name||"")}">✉️</button>` : ""}<button class="fd-more" data-fa="more" aria-label="Options">⋯</button></div>
+    <div class="fd-h"><b>${esc(x.name||"Hunter")}</b><span>· ${fdAgo(x.t)}</span>${x.demo?`<span class="fd-ex">exemple</span>`:""}${fdMe() && !mine && !x.demo ? `<button class="fd-dm" data-fa="dm" aria-label="Envoyer un message à ${esc(x.name||"")}">✉️</button>` : ""}<button class="fd-more" data-fa="more" aria-label="Options">⋯</button></div>
     <span class="fd-tag ${tg[2]}">${tg[0]} ${tg[1]}</span>
     ${x.text?`<p class="fd-txt">${esc(x.text).replace(/(^|[^&\w])#([\wÀ-ÿ]+)/g,'$1<span class="ht">#$2</span>').replace(/(^|[^&\w@])@([\wÀ-ÿ._-]{2,24})/g,'$1<span class="mn" data-mn="$2">@$2</span>')}</p>`:""}
     ${fdAttHTML(x)}
@@ -8242,7 +8242,7 @@ function fdCmHTML(x){
   const l = x.cm||[], open = FEED.cmOpen.has(x.id), me = fdMe()?.id, own = me && x.uid===me;
   if(!l.length && !open) return `<div class="fd-cms" hidden></div>`;
   const shown = open ? l : l.slice(-2);
-  const one = c => { const st = rkPet(c.pk); return `<div class="fd-c${c.tmp?" tmp":""}"><span class="fd-cav">${st?`<img src="${st.img}" alt="">`:"🙂"}</span><div class="fd-cb"><b>${esc(c.name||"Haunter")}</b> ${esc(c.text||"").replace(/(^|[^&\w])#([\wÀ-ÿ]+)/g,'$1<span class="ht">#$2</span>').replace(/(^|[^&\w@])@([\wÀ-ÿ._-]{2,24})/g,'$1<span class="mn" data-mn="$2">@$2</span>')}${c.card?`<span class="fd-ccard">${fdImg(c.card)}<span><b>${esc(c.card.name)}</b>${c.card.price!=null?` · ${bE(c.card.price)}`:""}</span></span>`:""}<small>${fdAgo(c.t)}</small></div>${me && (c.uid===me || own) && !c.tmp ? `<button class="fd-cx" data-fa="ucm" data-c="${esc(c.id)}" aria-label="Supprimer le commentaire">✕</button>` : ""}</div>`; };
+  const one = c => { const st = rkPet(c.pk); return `<div class="fd-c${c.tmp?" tmp":""}"><span class="fd-cav">${st?`<img src="${st.img}" alt="">`:"🙂"}</span><div class="fd-cb"><b>${esc(c.name||"Hunter")}</b> ${esc(c.text||"").replace(/(^|[^&\w])#([\wÀ-ÿ]+)/g,'$1<span class="ht">#$2</span>').replace(/(^|[^&\w@])@([\wÀ-ÿ._-]{2,24})/g,'$1<span class="mn" data-mn="$2">@$2</span>')}${c.card?`<span class="fd-ccard">${fdImg(c.card)}<span><b>${esc(c.card.name)}</b>${c.card.price!=null?` · ${bE(c.card.price)}`:""}</span></span>`:""}<small>${fdAgo(c.t)}</small></div>${me && (c.uid===me || own) && !c.tmp ? `<button class="fd-cx" data-fa="ucm" data-c="${esc(c.id)}" aria-label="Supprimer le commentaire">✕</button>` : ""}</div>`; };
   return `<div class="fd-cms">${!open && l.length>2 ? `<button class="fd-call" data-fa="cm">Voir les ${l.length} commentaires</button>` : ""}${shown.map(one).join("")}
     ${open ? `<div class="fd-cin"><input type="text" maxlength="300" placeholder="${fdMe()?"Ajoute un commentaire…":"Crée ton profil pour commenter"}" enterkeyhint="send" ${fdMe()?"":"disabled"}><button data-fa="cms" aria-label="Envoyer">➤</button></div>` : ""}</div>`;
 }
@@ -8272,7 +8272,7 @@ function renderFeed(){
     ${FEED.live===false?`<p class="fd-off">Aperçu : le Fil n'est pas encore relié au serveur. Ce que tu publies reste sur ce téléphone.</p>`:""}
     <div class="fd-tabs fd-tabs3">${[["all","Pour toi"],["re","Réassorts"],["trade","Échanges"],["new","Nouveautés"]].map(([k,t])=>`<button data-ff="${k}" class="${FEED.f===k?"on":""}">${t}</button>`).join("")}</div>
     ${nRe?`<button class="fd-live" data-ff="re"><span class="dot"></span><span><b>${nRe} réassort${nRe>1?"s":""}</b> signalé${nRe>1?"s":""} dans la dernière heure</span><span style="margin-left:auto;color:var(--muted)">Voir ›</span></button>`:""}
-    <button class="fd-comp" id="fdNew"><span class="fd-av">${starterOf()?`<img src="${pImg(starterOf())}" alt="">`:"🙂"}</span><span class="fd-ph">${p?"Ça drop quoi aujourd’hui ?":"Crée ton profil de Haunter pour publier"}</span><span class="btn btn-y">${p?"Publier":"Créer"}</span></button>
+    <button class="fd-comp" id="fdNew"><span class="fd-av">${starterOf()?`<img src="${pImg(starterOf())}" alt="">`:"🙂"}</span><span class="fd-ph">${p?"Ça drop quoi aujourd’hui ?":"Crée ton profil de Hunter pour publier"}</span><span class="btn btn-y">${p?"Publier":"Créer"}</span></button>
     ${l.length ? l.map(fdPostHTML).join("") : `<div class="empty" style="padding:40px 12px">Rien ici pour l'instant. Sois le premier à publier !</div>`}
     <div style="height:30px"></div>`;
   el.querySelectorAll("[data-ff]").forEach(b=>b.onclick=()=>{ FEED.f = b.dataset.ff; renderFeed(); });
@@ -8432,10 +8432,10 @@ function fdCompose(pre={}){
 function fdGoFeed(){
   closeSheet(); SO.tab = "feed"; selectTab("socialView"); $("#soScroll").scrollTop = 0;
 }
-/* partager sur le Fil : il faut un pseudo de Haunter */
+/* partager sur le Fil : il faut un pseudo de Hunter */
 function fdNeedMe(){
   if(fdMe()) return true;
-  gameBox(["Pour publier sur le Fil, il faut un profil de Haunter.", "C'est juste un pseudo, sans compte ni e-mail."], [{label:"Créer mon profil", go:true, run:()=>rkSetup()}, {label:"Plus tard"}]);
+  gameBox(["Pour publier sur le Fil, il faut un profil de Hunter.", "C'est juste un pseudo, sans compte ni e-mail."], [{label:"Créer mon profil", go:true, run:()=>rkSetup()}, {label:"Plus tard"}]);
   return false;
 }
 /* une carte de la fiche ouverte → post du Fil avec son visuel */
@@ -8456,7 +8456,7 @@ function fdShrink(file){ return new Promise(res=>{ const u = URL.createObjectURL
 /* ---------------- Mentions @pseudo (posts et commentaires) ---------------- */
 const mnKey = t => norm(t||"").replace(/[\s._-]+/g,"");
 const mnHas = (txt, name) => { const k = mnKey(name); if(!k) return false; return [...String(txt||"").matchAll(/@([\wÀ-ÿ._-]{2,24})/g)].some(m=>mnKey(m[1])===k); };
-// les Haunters connus : classement, auteurs du Fil, conversations
+// les Hunters connus : classement, auteurs du Fil, conversations
 function mnNames(){
   const me = fdMe()?.id, o = new Map(), add = (id, name, pk) => { if(name && id!==me && !o.has(mnKey(name))) o.set(mnKey(name), {id, name, pk}); };
   (RK.data?.rows||[]).forEach(r=>add(r.id, r.name, r.pk));
@@ -8473,7 +8473,7 @@ async function mnFind(name){
 }
 // toucher un @pseudo : sa fiche du classement (ou, à défaut, une conversation)
 document.addEventListener("click", async e=>{ const m = e.target.closest?.(".mn"); if(!m) return; e.stopPropagation(); e.preventDefault();
-  const r = await mnFind(m.dataset.mn); if(!r){ toast(`Pas de Haunter « ${m.dataset.mn} »`); return; }
+  const r = await mnFind(m.dataset.mn); if(!r){ toast(`Pas de Hunter « ${m.dataset.mn} »`); return; }
   if(r.xp!=null) rkPlayer(r); else dmOpen(r.id, r.name, r.pk); }, true);
 // suggestions pendant qu'on tape @… (éditeur et commentaires)
 function mnAttach(inp, anchor){
@@ -8509,10 +8509,10 @@ async function dmLoad(){
 }
 function renderDm(){
   const el = $("#soDm"); if(!el) return;
-  if(!fdMe()){ el.innerHTML = `<div class="empty" style="padding:40px 12px">Crée ton profil de Haunter pour écrire aux autres.<br><button class="btn btn-y" id="dmSetup" style="margin-top:14px">Créer mon profil</button></div>`; $("#dmSetup").onclick = ()=>rkSetup(); return; }
+  if(!fdMe()){ el.innerHTML = `<div class="empty" style="padding:40px 12px">Crée ton profil de Hunter pour écrire aux autres.<br><button class="btn btn-y" id="dmSetup" style="margin-top:14px">Créer mon profil</button></div>`; $("#dmSetup").onclick = ()=>rkSetup(); return; }
   if(DM.threads===null){ el.innerHTML = `<div class="empty"><span class="loader"></span></div>`; return; }
-  el.innerHTML = DM.threads.length ? `<div class="dm-list">${DM.threads.map(t=>{ const st = rkPet(t.pk); return `<button class="dm-row${t.unread?" new":""}" data-dw="${esc(t.with)}"><span class="fd-av">${st?`<img src="${st.img}" alt="">`:"🙂"}</span><span class="dm-t"><b>${esc(t.name||"Haunter")}</b><span>${esc(t.last||"")}</span></span><span class="dm-m"><small>${dmAgo(t.t)}</small>${t.unread?`<i>${t.unread}</i>`:""}</span></button>`; }).join("")}</div>`
-    : `<div class="empty" style="padding:40px 12px">Aucun message pour l'instant.<br><small>Écris à un Haunter avec ✉️ sur ses posts du Fil, ou depuis sa fiche dans le Classement.</small></div>`;
+  el.innerHTML = DM.threads.length ? `<div class="dm-list">${DM.threads.map(t=>{ const st = rkPet(t.pk); return `<button class="dm-row${t.unread?" new":""}" data-dw="${esc(t.with)}"><span class="fd-av">${st?`<img src="${st.img}" alt="">`:"🙂"}</span><span class="dm-t"><b>${esc(t.name||"Hunter")}</b><span>${esc(t.last||"")}</span></span><span class="dm-m"><small>${dmAgo(t.t)}</small>${t.unread?`<i>${t.unread}</i>`:""}</span></button>`; }).join("")}</div>`
+    : `<div class="empty" style="padding:40px 12px">Aucun message pour l'instant.<br><small>Écris à un Hunter avec ✉️ sur ses posts du Fil, ou depuis sa fiche dans le Classement.</small></div>`;
   el.querySelectorAll("[data-dw]").forEach(b=>b.onclick=()=>{ const t = DM.threads.find(x=>x.with===b.dataset.dw); dmOpen(t.with, t.name, t.pk); });
 }
 function dmOpen(w, name, pk){
@@ -8594,7 +8594,7 @@ const NEWS = [
     ["M16 12a4 4 0 1 1-8 0 4 4 0 0 1 8 0zM16 12v1.5a2.5 2.5 0 0 0 5 0V12a9 9 0 1 0-3.5 7.1", "Mentionne tes amis", "Écris @ suivi d'un pseudo dans un post ou un commentaire : la personne est prévenue. Touche un @pseudo pour voir sa fiche."]
   ]},
   {v:152, items:[
-    ["M4 4h16v12H8l-4 4z", "Messages privés", "Écris à un Haunter avec ✉️ sur ses posts ou depuis sa fiche dans le Classement. Tes conversations sont dans Social › Messages. Tu peux joindre une carte de ta collection."]
+    ["M4 4h16v12H8l-4 4z", "Messages privés", "Écris à un Hunter avec ✉️ sur ses posts ou depuis sa fiche dans le Classement. Tes conversations sont dans Social › Messages. Tu peux joindre une carte de ta collection."]
   ]},
   {v:151, items:[
     ["M4 7h11l-3-3M20 17H9l3 3", "Échanges sur le Fil", "Propose une carte de ta collection contre celle que tu cherches. Les autres peuvent accepter ou faire une contre-offre."],
@@ -8613,7 +8613,7 @@ const NEWS = [
     ["M4 20c4-1 6-5 8-9 2 4 4 8 8 9M12 11V3", "Évolutions plus rapides", "Un compagnon évolue maintenant 5 niveaux après son arrivée (au plus tôt au niveau 10)."]
   ]},
   {v:136, items:[
-    ["M4 5h16v10H8l-4 4z", "Le Fil est en ligne", "Sur l'Accueil, touche « Le Fil » : signale un réassort ou partage une nouveauté, avec photo si tu veux. Vote « encore dispo » ou « épuisé » sur les réassorts des autres. Il faut ton profil de Haunter du Classement pour publier."]
+    ["M4 5h16v10H8l-4 4z", "Le Fil est en ligne", "Sur l'Accueil, touche « Le Fil » : signale un réassort ou partage une nouveauté, avec photo si tu veux. Vote « encore dispo » ou « épuisé » sur les réassorts des autres. Il faut ton profil de Hunter du Classement pour publier."]
   ]},
   {v:124, items:[
     ["M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zM2 12h20", "Tous les starters au choix", "À la première ouverture, les 10 Dexballs sont proposées, légendaires et Kanto compris. Chaque Dexball donne son thème."],
@@ -8680,7 +8680,7 @@ const NEWS = [
   ]},
   {v:103, items:[
     ["M12 2l3 6 6 1-4.5 4.5L18 20l-6-3-6 3 1.5-6.5L3 9l6-1z", "Nouveaux compagnons", "Chauvombre, Cabraise, Axobulle, Planéclair et Capousse remplacent les anciens. Ton compagnon prend la nouvelle apparence de son type et garde son nom."],
-    ["M12 3l2.5 5 5.5.8-4 3.9.9 5.5L12 15.6 7.1 18.2l.9-5.5-4-3.9 5.5-.8z", "Paliers de rareté", "Ton compagnon change d'allure en montant : Rare au niveau 10, Épique au 25, Légendaire au 50 avec sa carte holo. Les autres Haunters le voient au classement."],
+    ["M12 3l2.5 5 5.5.8-4 3.9.9 5.5L12 15.6 7.1 18.2l.9-5.5-4-3.9 5.5-.8z", "Paliers de rareté", "Ton compagnon change d'allure en montant : Rare au niveau 10, Épique au 25, Légendaire au 50 avec sa carte holo. Les autres Hunters le voient au classement."],
     ["M4 6h16M4 12h10M4 18h6", "Classeur mieux rangé", "Dans Mes cartes : range tes dossiers par série, par valeur ou par ajouts récents en un geste."]
   ]},
   {v:102, items:[
@@ -8691,7 +8691,7 @@ const NEWS = [
     ["M12 8v5l3 2M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0z", "Ventes en cours", "Sur chaque fiche : les ventes réalisées (eBay), et à part ce qui est en vente maintenant sur eBay, Vinted et Leboncoin."],
     ["M12 3v12M7 8l5-5 5 5M5 13v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6", "Partager une fiche", "Chaque scellé et chaque produit de ton Stock a son bouton Partager, avec un lien qui rouvre la fiche."],
     ["M4 5h16v14H4zM8 9h8M8 13h5", "Partager ta collection", "Bouton Partager dans le Classeur : toute ta collection d'un seul lien, en images."],
-    ["M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0z", "Collections des Haunters", "Au classement, touche un Haunter puis « Voir sa collection » pour parcourir ses cartes."],
+    ["M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0z", "Collections des Hunters", "Au classement, touche un Hunter puis « Voir sa collection » pour parcourir ses cartes."],
     ["M4 7V5a1 1 0 0 1 1-1h2M17 4h2a1 1 0 0 1 1 1v2M20 17v2a1 1 0 0 1-1 1h-2M7 20H5a1 1 0 0 1-1-1v-2", "Scanner réorganisé", "Les témoins de vérification passent en haut, les réglages (Auto, Gradée, QR…) en bas, près du pouce."]
   ]}
 ];
@@ -8705,13 +8705,13 @@ function newsShow(list, v, done){
   $("#nwGo").onclick = close; box.addEventListener("click", e=>{ if(e.target===box) close(); });
   setTimeout(()=>$("#nwGo")?.focus(), 300);
 }
-// ce qui attend après l'intro : nouveautés, puis la question « montrer ta collection ? » aux Haunters déjà inscrits
+// ce qui attend après l'intro : nouveautés, puis la question « montrer ta collection ? » aux Hunters déjà inscrits
 function afterIntro(){
   const cur = +window.__APPV, seen = store.get("newsSeen", null);
   const next = ()=>{
     if(colPendOpen()) return;
     const p = rkProf();
-    if(p?.on && p.col===undefined && starterOf()) setTimeout(()=>gameBox(["Nouveau : les Haunters peuvent voir les collections des autres, en images.", "Tu montres la tienne ? Ses valeurs restent cachées si tu le souhaites : tout se règle dans ta collection ou ton profil de Haunter."],
+    if(p?.on && p.col===undefined && starterOf()) setTimeout(()=>gameBox(["Nouveau : les Hunters peuvent voir les collections des autres, en images.", "Tu montres la tienne ? Ses valeurs restent cachées si tu le souhaites : tout se règle dans ta collection ou ton profil de Hunter."],
       [{label:"Oui, la montrer", go:true, run:()=>{ store.set("rk", {...rkProf(), col:true}); rkColSync(true); toast("Ta collection est visible au classement"); }},
        {label:"Non merci", run:()=>{ store.set("rk", {...rkProf(), col:false}); rkColSync(true); }}]), 400);
   };

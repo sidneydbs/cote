@@ -11,6 +11,10 @@
      POST /feed/comment   {id,key,post,name,pk,lv,text} → {post}   (commentaire)
      POST /feed/uncomment {id,key,post,c}                → {post}   (par son auteur ou l'auteur du post)
      POST /feed/pvote  {id,key,post,o}   → {post}   (sondage : o = numéro de l'option)
+   Messages privés (KV "dm:A:B" = la conversation, "inbox:ID" = mes conversations) :
+     POST /feed/dm/send   {id,key,to,toName,toPk,name,pk,text,card} → {msg}
+     POST /feed/dm/list   {id,key}            → {threads:[{with,name,pk,last,t,unread}]}
+     POST /feed/dm/thread {id,key,with}       → {msgs}   (et marque la conversation comme lue)
    Modes (tag) : talk, re, new, trade, card, col, open, want, sell, poll.
    att (pièce jointe) selon le mode : card/want {card} · trade {give,want} · sell {card,ask} · col {n,val,sets,cards[]}
    · open {prod,cost,cards[]} · poll {opts[]}. Une carte = {id,name,set,num,img,price,rar}.
@@ -56,6 +60,35 @@ function view(p, me, base){
     pv: p.att?.opts ? p.att.opts.map((_, i) => Object.values(p.pv||{}).filter(x => x === i).length) : undefined,
     mpv: me && p.pv && p.pv[me] != null ? p.pv[me] : null};
 }
+/* ---- messages privés ---- */
+const DM_MAX = 400, DM_PER_HOUR = 120;
+const dmKey = (a, b) => "dm:" + [a, b].sort().join(":");
+const inboxOf = async (env, id) => (await env.FEED.get("inbox:" + id, "json")) || [];
+async function dm(env, me, act, b){
+  if(act === "list") return json({threads: (await inboxOf(env, me)).sort((x, y) => y.t - x.t)});
+  const other = clean(b.with ?? b.to, 64); if(!/^[\w-]{6,64}$/.test(other) || other === me) return err("Destinataire invalide");
+  if(act === "thread"){
+    const l = (await env.FEED.get(dmKey(me, other), "json")) || [];
+    const ib = await inboxOf(env, me), e = ib.find(x => x.with === other); if(e && e.unread){ e.unread = 0; await env.FEED.put("inbox:" + me, JSON.stringify(ib)); }
+    return json({msgs: l.slice(-200)});
+  }
+  if(act === "send"){
+    const text = clean(b.text, 1000), c = card(b.card); if(!text && !c) return err("Message vide");
+    const now = Date.now(), rk = "dmr:" + me, r = (await env.FEED.get(rk, "json")) || {h:0, n:0};
+    if(now - r.h > 36e5){ r.h = now; r.n = 0; } if(++r.n > DM_PER_HOUR) return err("Trop de messages : réessaie dans un moment", 429);
+    await env.FEED.put(rk, JSON.stringify(r));
+    const m = {id: now.toString(36) + Math.random().toString(36).slice(2, 6), from:me, text, card:c, t:now};
+    const k = dmKey(me, other), l = (await env.FEED.get(k, "json")) || []; l.push(m); await env.FEED.put(k, JSON.stringify(l.slice(-DM_MAX)));
+    const last = text || "🃏 " + (c?.name || "Carte");
+    const upd = async (owner, w, name, pk, unread) => { const ib = await inboxOf(env, owner); let e = ib.find(x => x.with === w);
+      if(!e){ e = {with:w, unread:0}; ib.push(e); } if(name) e.name = clean(name, 24); if(pk) e.pk = clean(pk, 40); e.last = last.slice(0, 120); e.t = now; e.unread = unread ? (e.unread||0) + 1 : 0;
+      await env.FEED.put("inbox:" + owner, JSON.stringify(ib.sort((x, y) => y.t - x.t).slice(0, 200))); };
+    await upd(me, other, b.toName, b.toPk, false);
+    await upd(other, me, b.name, b.pk, true);
+    return json({msg: m});
+  }
+  return err("action inconnue", 404);
+}
 export default {
   async fetch(req, env){
     const u = new URL(req.url), base = u.origin;
@@ -79,6 +112,7 @@ export default {
       if(req.method !== "POST" || !path.startsWith("/feed/")) return err("route inconnue", 404);
       const b = await req.json().catch(()=>null); if(!b) return err("requête illisible");
       const me = await auth(env, b.id, b.key), act = path.slice(6);
+      if(act.startsWith("dm/")) return await dm(env, me, act.slice(3), b);
       let l = await load(env);
       if(act === "post"){
         const now = Date.now();

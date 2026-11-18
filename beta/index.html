@@ -310,7 +310,8 @@ html{background:var(--panel)}
 
 .colset .prog{margin:0 12px 10px}
 .colset .cgrid{padding:0 12px 14px}
-.colset:not(.open) .cgrid{display:none}
+.colset:not(.open) .cgrid,.colset:not(.open)>.colfold{display:none}
+.colfold{display:flex;align-items:center;justify-content:center;gap:8px;width:calc(100% - 24px);margin:0 12px 12px;padding:11px 12px;border-radius:12px;border:1px solid var(--line);background:var(--panel-2);color:var(--fg);font-weight:700;font-size:13.5px}.colfold svg{width:16px;height:16px;flex:none}.colfold{overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
 /* carte manquante : on la reconnaît (couleurs atténuées, pas éteintes), et on voit qu'elle manque (pointillés + pastille) */
 .ctile.miss .im img{filter:grayscale(.55) brightness(.88) contrast(.95);opacity:.92}
 .ctile.miss .nm,.ctile.miss .no{opacity:.75}
@@ -900,7 +901,7 @@ html{background:var(--panel)}
 .srow2 .pb{grid-column:1/-1;height:4px;border-radius:9px;background:color-mix(in srgb,var(--fg) 12%,transparent);overflow:hidden;margin-top:2px}
 .srow2 .pb>i{display:block;height:100%;border-radius:9px;background:linear-gradient(90deg,var(--g1),var(--g2))}
 .srow2.done .pc{color:var(--up)}
-.srow2>.cgrid{grid-column:1/-1;padding:8px 0 2px}
+.srow2>.cgrid{grid-column:1/-1;padding:8px 0 2px}.srow2>.colfold{grid-column:1/-1;width:100%;margin:6px 0 2px}
 .srow2.colset:not(.open)>.cgrid{display:none}
 .lg2{width:84px;height:46px;flex:none;display:grid;place-items:center;border-radius:10px;background:radial-gradient(85% 90% at 50% 50%,color-mix(in srgb,var(--fg) 13%,transparent),transparent 75%)}
 .lg2 img{max-width:78px;max-height:42px;object-fit:contain;filter:drop-shadow(0 0 1px rgba(255,255,255,.55)) drop-shadow(0 1px 2px rgba(0,0,0,.4))}
@@ -1806,7 +1807,7 @@ img.px.reveal{animation:stpRev .9s ease-out}
   }
   fit(); addEventListener("resize", fit); addEventListener("orientationchange", function(){ setTimeout(fit, 300); });
 })();</script>
-<script>window.__APPV="167";</script>
+<script>window.__APPV="168";</script>
 <div class="splash" id="splash" aria-hidden="true"><i class="hole"></i><i class="halo"></i><div class="bw"><svg class="b" viewBox="0 0 100 100"><use href="#pb"/></svg><svg class="t" viewBox="0 0 100 100"><use href="#pb"/></svg></div><i class="glow"></i></div>
 <script>setTimeout(function(){ if(window.__booted) return;
   var b=document.createElement("div"); b.setAttribute("role","alert");
@@ -1841,7 +1842,7 @@ img.px.reveal{animation:stpRev .9s ease-out}
   <!-- ===== EXTENSIONS ===== -->
   <section class="view" id="homeView">
     <div class="scroll">
-      <div class="homebar"><span class="brand">DEX<b>·</b>SCAN</span><span class="hbis"><button class="hbi" id="hSearch" aria-label="Rechercher une carte"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></button><button class="hbi hrk" id="hRank" aria-label="Classement"><svg viewBox="0 0 24 24" fill="none" stroke="url(#hrkG)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><defs><linearGradient id="hrkG" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFF4C2"/><stop offset=".35" stop-color="#FFD86E"/><stop offset=".65" stop-color="#7CF3FF"/><stop offset="1" stop-color="#E2B8FF"/></linearGradient></defs><path d="M8 21h8M12 17v4"/><path d="M7 4h10v5a5 5 0 0 1-10 0z"/><path d="M17 5h3v2a3 3 0 0 1-3 3M7 5H4v2a3 3 0 0 0 3 3"/></svg></button><button class="hbi" id="themeBtn" aria-label="Changer de thème"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.6-.9 1.2-1.8-.5-1.1.2-2.2 1.4-2.2H17a4 4 0 0 0 4-4c0-5.5-4-10-9-10z"/><circle cx="7.5" cy="11" r="1.2"/><circle cx="10" cy="7" r="1.2"/><circle cx="15" cy="7" r="1.2"/></svg></button><button class="hbi" id="moreBtn" aria-label="Réglages et plus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg></button></span><span class="ver" id="hVer">v167</span></div>
+      <div class="homebar"><span class="brand">DEX<b>·</b>SCAN</span><span class="hbis"><button class="hbi" id="hSearch" aria-label="Rechercher une carte"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></button><button class="hbi hrk" id="hRank" aria-label="Classement"><svg viewBox="0 0 24 24" fill="none" stroke="url(#hrkG)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><defs><linearGradient id="hrkG" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFF4C2"/><stop offset=".35" stop-color="#FFD86E"/><stop offset=".65" stop-color="#7CF3FF"/><stop offset="1" stop-color="#E2B8FF"/></linearGradient></defs><path d="M8 21h8M12 17v4"/><path d="M7 4h10v5a5 5 0 0 1-10 0z"/><path d="M17 5h3v2a3 3 0 0 1-3 3M7 5H4v2a3 3 0 0 0 3 3"/></svg></button><button class="hbi" id="themeBtn" aria-label="Changer de thème"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.6-.9 1.2-1.8-.5-1.1.2-2.2 1.4-2.2H17a4 4 0 0 0 4-4c0-5.5-4-10-9-10z"/><circle cx="7.5" cy="11" r="1.2"/><circle cx="10" cy="7" r="1.2"/><circle cx="15" cy="7" r="1.2"/></svg></button><button class="hbi" id="moreBtn" aria-label="Réglages et plus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg></button></span><span class="ver" id="hVer">v168</span></div>
       <button class="banner" id="pxBanner" hidden></button>
       <span class="hdate hgreet" id="hDate"></span>
       <div class="hhero"><div class="total htot" id="hTot"></div><span id="avatSlot"></span></div>
@@ -3192,9 +3193,9 @@ async function renderCol(){
   list.innerHTML = cbar + groups.map(g=>`<section class="serie"><h2><span>${esc(g.name)}${serDate[g.name]?` <em class="sdate">· depuis ${esc(fmtMonth(serDate[g.name]))}</em>`:""}</span><span>${g.sets.reduce((a,s)=>a+by.get(s.id).length,0)}</span></h2>${
     g.sets.map(s=>{
       const own = by.get(s.id), val = own.reduce((a,x)=>a+(x.price||0)*x.qty,0);
-      if(COLV.view==="compact"){ const op = COLV.open[s.id]===true; return setRowHTML(s, OWNI.get(s.id), {cls:"colset"+(op?" open":""), value: val?eurS(val):"", attrs:` aria-expanded="${op}"`, inner:`<div class="cgrid"></div>`}); }
+      if(COLV.view==="compact"){ const op = COLV.open[s.id]===true; return setRowHTML(s, OWNI.get(s.id), {cls:"colset"+(op?" open":""), value: val?eurS(val):"", attrs:` aria-expanded="${op}"`, inner:`<div class="cgrid"></div><button class="colfold" type="button" data-fold><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 15 6-6 6 6"/></svg>Replier ${esc(s.name)}</button>`}); }
       const open = COLV.open[s.id] !== false;
-      return setCardHTML(s, {own: OWNI.get(s.id), cls:"colset"+(open?" open":""), plus:!open, value: val?eurS(val):"", attrs:` role="button" tabindex="0" aria-expanded="${open}"`, inner:`<div class="cgrid"></div>`});
+      return setCardHTML(s, {own: OWNI.get(s.id), cls:"colset"+(open?" open":""), plus:!open, value: val?eurS(val):"", attrs:` role="button" tabindex="0" aria-expanded="${open}"`, inner:`<div class="cgrid"></div><button class="colfold" type="button" data-fold><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 15 6-6 6 6"/></svg>Replier ${esc(s.name)}</button>`});
     }).join("")}</section>`).join("");
   list.querySelectorAll("[data-csort]").forEach(b=>b.onclick=()=>{ COLV.sort = b.dataset.csort; store.set("colSort", COLV.sort); renderCol(); });
   list.querySelectorAll("[data-view]").forEach(b=>b.onclick=()=>{ COLV.view = b.dataset.view; store.set("colViewMode2", COLV.view); renderCol(); });
@@ -3205,6 +3206,9 @@ async function renderCol(){
     const m = box.querySelector("[data-min]"); if(m){ m.innerHTML = open?MIN_SVG:PLUS_SVG; m.setAttribute("aria-label", open?"Replier":"Déplier"); }
     COLV.open[id] = open; store.set("colOpen", COLV.open);
     if(open && !box.querySelector(".cgrid").childElementCount) fillColSet(box, by.get(id), gen);
+    // replié depuis le bas : on remonte sur la série pour ne pas se perdre dans la liste
+    if(!open && e.target.closest("[data-fold]")) requestAnimationFrame(()=>{ const sc = box.closest(".scroll") || $("#colView .scroll"), r = box.getBoundingClientRect(), top = sc ? sc.getBoundingClientRect().top : 0;
+      if(r.top < top + 8 && sc) sc.scrollTo({top: sc.scrollTop + r.top - top - 70, behavior:"smooth"}); else if(!sc) box.scrollIntoView({block:"start", behavior:"smooth"}); });
   });
   for(const box of list.querySelectorAll(".colset")){
     const id = box.dataset.set;
@@ -8123,6 +8127,7 @@ async function betaPublishFlow(){
 }
 /* Journal des modifications de la Bêta : la carte « Version Bêta » liste celles que les copains n'ont pas encore */
 const BETA_LOG = [
+  {v:168, t:"Classeur : bouton « Replier » en bas de chaque série ouverte, qui remonte sur la série"},
   {v:167, t:"Fil : j'aime et « Répondre » sur chaque commentaire ; la réponse s'affiche sous le commentaire et prévient la personne ; l'auteur d'un post est prévenu des nouveaux commentaires"},
   {v:166, t:"Notifications des messages privés et des nouvelles publications du Fil ; dans Alertes, choix de ce qu'on reçoit (réassorts, messages, Fil) ; toucher la notification ouvre la conversation ou le post"},
   {v:165, t:"Notifications : état clair (✓ Activées / Désactivées, vérifié auprès du guetteur), bouton « Envoyer un test » et « Désactiver »"},

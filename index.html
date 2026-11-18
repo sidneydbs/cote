@@ -416,7 +416,7 @@ html{background:var(--panel)}
 
 #colView .clshead{gap:6px}#colView .clshead .h1{min-width:0}#colView .clshead .hicon{width:36px;height:36px}
 .exmode button{white-space:nowrap;font-size:12.5px;letter-spacing:-.01em}
-.exmode button{flex:1;padding-left:4px;padding-right:4px}
+.exmode button{flex:1 1 auto;min-width:0;padding-left:3px;padding-right:3px}
 .jpset{display:flex;gap:12px;align-items:center;width:100%;text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);background:none;color:var(--fg)}
 .jpset:last-child{border-bottom:0}
 .jpset .im{width:44px;height:60px;border-radius:5px;overflow:hidden;background:var(--panel-2);flex:none}.jpset .im img{width:100%;height:100%;object-fit:cover}
@@ -1393,6 +1393,7 @@ html{background:var(--panel)}
 .vsw label{background:conic-gradient(#f44,#fd4,#4d6,#4cf,#86f,#f4c,#f44)}
 .vsw label input{position:absolute;inset:0;opacity:0;width:100%;height:100%;cursor:pointer}
 .vsw label span{width:16px;height:16px;border-radius:50%;background:var(--ink);display:grid;place-items:center;font:800 13px/1 var(--f-body);color:var(--fg)}
+.cnseal{display:grid;gap:8px;margin-bottom:6px}.cnsl{display:flex;align-items:center;gap:10px;padding:8px 10px;border:1px solid var(--line);border-radius:14px;background:var(--panel)}.cnsl img{width:44px;height:44px;object-fit:contain;border-radius:8px;flex:none}.cnsl>span:first-of-type{flex:1;min-width:0;display:flex;flex-direction:column}.cnsl small{color:var(--muted)}.cnsb{display:flex;gap:6px;flex:none}.cnsb a{font-size:12px;padding:6px 9px;border-radius:999px;border:1px solid var(--line);color:var(--fg);text-decoration:none;white-space:nowrap}
 .vint{display:flex;align-items:center;gap:10px;margin-top:12px;font-size:13px;color:var(--muted)}
 .vint input{flex:1;accent-color:var(--border-yellow)}
 /* thèmes clairs : petits textes et ombres adaptés */
@@ -1801,7 +1802,7 @@ img.px.reveal{animation:stpRev .9s ease-out}
   }
   fit(); addEventListener("resize", fit); addEventListener("orientationchange", function(){ setTimeout(fit, 300); });
 })();</script>
-<script>window.__APPV="162";</script>
+<script>window.__APPV="163";</script>
 <div class="splash" id="splash" aria-hidden="true"><i class="hole"></i><i class="halo"></i><div class="bw"><svg class="b" viewBox="0 0 100 100"><use href="#pb"/></svg><svg class="t" viewBox="0 0 100 100"><use href="#pb"/></svg></div><i class="glow"></i></div>
 <script>setTimeout(function(){ if(window.__booted) return;
   var b=document.createElement("div"); b.setAttribute("role","alert");
@@ -1836,7 +1837,7 @@ img.px.reveal{animation:stpRev .9s ease-out}
   <!-- ===== EXTENSIONS ===== -->
   <section class="view" id="homeView">
     <div class="scroll">
-      <div class="homebar"><span class="brand">DEX<b>·</b>SCAN</span><span class="hbis"><button class="hbi" id="hSearch" aria-label="Rechercher une carte"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></button><button class="hbi hrk" id="hRank" aria-label="Classement"><svg viewBox="0 0 24 24" fill="none" stroke="url(#hrkG)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><defs><linearGradient id="hrkG" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFF4C2"/><stop offset=".35" stop-color="#FFD86E"/><stop offset=".65" stop-color="#7CF3FF"/><stop offset="1" stop-color="#E2B8FF"/></linearGradient></defs><path d="M8 21h8M12 17v4"/><path d="M7 4h10v5a5 5 0 0 1-10 0z"/><path d="M17 5h3v2a3 3 0 0 1-3 3M7 5H4v2a3 3 0 0 0 3 3"/></svg></button><button class="hbi" id="themeBtn" aria-label="Changer de thème"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.6-.9 1.2-1.8-.5-1.1.2-2.2 1.4-2.2H17a4 4 0 0 0 4-4c0-5.5-4-10-9-10z"/><circle cx="7.5" cy="11" r="1.2"/><circle cx="10" cy="7" r="1.2"/><circle cx="15" cy="7" r="1.2"/></svg></button><button class="hbi" id="moreBtn" aria-label="Réglages et plus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg></button></span><span class="ver" id="hVer">v162</span></div>
+      <div class="homebar"><span class="brand">DEX<b>·</b>SCAN</span><span class="hbis"><button class="hbi" id="hSearch" aria-label="Rechercher une carte"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></button><button class="hbi hrk" id="hRank" aria-label="Classement"><svg viewBox="0 0 24 24" fill="none" stroke="url(#hrkG)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><defs><linearGradient id="hrkG" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFF4C2"/><stop offset=".35" stop-color="#FFD86E"/><stop offset=".65" stop-color="#7CF3FF"/><stop offset="1" stop-color="#E2B8FF"/></linearGradient></defs><path d="M8 21h8M12 17v4"/><path d="M7 4h10v5a5 5 0 0 1-10 0z"/><path d="M17 5h3v2a3 3 0 0 1-3 3M7 5H4v2a3 3 0 0 0 3 3"/></svg></button><button class="hbi" id="themeBtn" aria-label="Changer de thème"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.6-.9 1.2-1.8-.5-1.1.2-2.2 1.4-2.2H17a4 4 0 0 0 4-4c0-5.5-4-10-9-10z"/><circle cx="7.5" cy="11" r="1.2"/><circle cx="10" cy="7" r="1.2"/><circle cx="15" cy="7" r="1.2"/></svg></button><button class="hbi" id="moreBtn" aria-label="Réglages et plus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg></button></span><span class="ver" id="hVer">v163</span></div>
       <button class="banner" id="pxBanner" hidden></button>
       <span class="hdate hgreet" id="hDate"></span>
       <div class="hhero"><div class="total htot" id="hTot"></div><span id="avatSlot"></span></div>
@@ -1893,7 +1894,7 @@ img.px.reveal{animation:stpRev .9s ease-out}
       <div class="seg clsw3" role="group" aria-label="Classeur"><button data-cls3="graded">Mes gradées</button><button data-cls3="cards">Mes cartes</button><button data-cls3="explore">Explorer</button></div>
       
 
-        <div class="seg exmode" role="group" aria-label="Type de produits"><button data-mode="cards" aria-pressed="true">Extensions</button><button data-mode="sealed" aria-pressed="false">Scellés</button><button data-mode="graded" aria-pressed="false">Cotes gradées</button><button data-mode="jp" aria-pressed="false">Japon</button></div>
+        <div class="seg exmode" role="group" aria-label="Type de produits"><button data-mode="cards" aria-pressed="true">Extensions</button><button data-mode="sealed" aria-pressed="false">Scellés</button><button data-mode="graded" aria-pressed="false">Gradées</button><button data-mode="jp" aria-pressed="false">Japon</button><button data-mode="cn" aria-pressed="false">Chine</button></div>
         <div id="cardsBox">
         <div class="exsrow"><label class="ext-search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><input id="extQ" type="search" placeholder="Rechercher une extension (ex. 151)" autocomplete="off" aria-label="Rechercher une extension"></label><details class="dd exlay" id="extLay"><summary aria-label="Disposition" title="Disposition"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M4 6h10M18 6h2M4 12h4M12 12h8M4 18h12M20 18h0"/><circle cx="16" cy="6" r="2"/><circle cx="10" cy="12" r="2"/><circle cx="18" cy="18" r="2"/></svg></summary><div class="ddm" id="extLayM" role="group" aria-label="Disposition"></div></details></div>
         <div id="extList"></div>
@@ -1912,6 +1913,11 @@ img.px.reveal{animation:stpRev .9s ease-out}
           <label class="ext-search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><input id="jpQ" type="search" placeholder="Extension ou carte japonaise (ex. Mega Brave, Charizard)" autocomplete="off" aria-label="Rechercher dans les cartes japonaises"></label>
           <p class="psub" id="jpMeta" style="margin:0 0 10px"></p>
           <div id="jpList"></div>
+        </div>
+        <div id="cnBox" hidden>
+          <label class="ext-search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><input id="cnQ" type="search" placeholder="Gem Pack ou carte (ex. Pikachu)" autocomplete="off" aria-label="Rechercher dans les cartes chinoises"></label>
+          <p class="psub" id="cnMeta" style="margin:0 0 10px"></p>
+          <div id="cnList"></div>
         </div>
         <div id="gradedBox" hidden>
           <button class="excta" id="grMine"><i>›</i><span><b>Tes cartes gradées</b><small>Elles sont rangées dans Classeur › Mes gradées</small></span></button>
@@ -2065,7 +2071,7 @@ img.px.reveal{animation:stpRev .9s ease-out}
       </div>
       <div class="fltbar" id="colFltBar"></div>
       <div id="colList"></div>
-      <button class="excta" id="colExplore2"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m15.5 8.5-2 5-5 2 2-5z"/></svg></i><span><b>Explorer toutes les cartes</b><small>Extensions, scellés, cotes gradées, Japon</small></span></button>
+      <button class="excta" id="colExplore2"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m15.5 8.5-2 5-5 2 2-5z"/></svg></i><span><b>Explorer toutes les cartes</b><small>Extensions, scellés, cotes gradées, Japon, Chine</small></span></button>
     </div>
   </section>
 
@@ -2505,7 +2511,7 @@ function ebayQuery(c, o={}){
   else if(ed==="sl") inc.push("shadowless"), exc.push(...EB_1ED);
   else if(ed==="unl") exc.push(...EB_1ED, "shadowless");
   if(o.grade) inc.push(o.grade.startsWith("(") ? o.grade : ebGrade(o.grade)); else exc.unshift(...(o.us ? ["psa","cgc","bgs","graded"] : ["psa","pca","cgc","bgs","collectaura","gradee"]));
-  if(o.jp) inc.push("japanese"); else if(o.us) exc.push("japanese","korean");
+  if(o.jp) inc.push("japanese"); else if(o.zh) inc.push("chinese"); else if(o.us) exc.push("japanese","korean","chinese");
   if(o.rev === true) inc.push("reverse"); else if(o.rev === false) exc.push("reverse");
   const PRIO = ["psa","pca","cgc","bgs","collectaura","1st","1re",'"edition 1"',"shadowless","reverse","japanese","30th",'"30 ans"',"anniversaire","celebrations","25th","lot","graded","gradee","proxy","korean"];
   // ebay.com : pas de mots français dans les exclusions
@@ -2539,8 +2545,10 @@ const cmUrl = c => { const id = c?.pricing?.cardmarket?.idProduct, lg = CM_LANG[
 // de ton pays) quel que soit le lien. Sans ce filtre, « eBay France » et « eBay États-Unis » montraient les mêmes ventes.
 // pays de l'objet pour chaque site eBay (_salic) : 71 France, 1 États-Unis, 77 Allemagne, 3 Royaume-Uni
 const EBAY_LOC = {"ebay.fr":71, "ebay.com":1, "ebay.de":77, "ebay.co.uk":3};
-const ebLoc = dom => `&LH_LocatedIn=1&_salic=${EBAY_LOC[dom]||71}`;
-const ebayUrl = (c, o={}, dom="ebay.fr") => { const r = ebayQuery(c, dom==="ebay.com" ? {us:true, ...o} : o); return `https://www.${dom}/sch/i.html?_nkw=${encodeURIComponent(r.q)}${r.ex?`&_ex_kw=${encodeURIComponent(r.ex)}`:""}&LH_ItemCondition=${o.grade!=null?2750:4000}${ebLoc(dom)}&LH_Sold=1&LH_Complete=1&_sop=${o.sop||13}`; };
+// pays sans site eBay à eux : on cherche sur eBay.com les objets situés là-bas (104 Japon, 45 Chine, 92 Hong Kong)
+const EB_CTRY = {jp:104, cn:45, hk:92};
+const ebLoc = (dom, loc) => `&LH_LocatedIn=1&_salic=${loc||EBAY_LOC[dom]||71}`;
+const ebayUrl = (c, o={}, dom="ebay.fr") => { const r = ebayQuery(c, dom==="ebay.com" ? {us:true, ...o} : o); return `https://www.${dom}/sch/i.html?_nkw=${encodeURIComponent(r.q)}${r.ex?`&_ex_kw=${encodeURIComponent(r.ex)}`:""}&LH_ItemCondition=${o.grade!=null?2750:4000}${ebLoc(dom, o.loc)}&LH_Sold=1&LH_Complete=1&_sop=${o.sop||13}`; };
 
 /* ---------------- Fiche ---------------- */
 let current = null, currentAlts = [], currentVariant = 0, currentEd = null;
@@ -2615,6 +2623,11 @@ function altImgs(id, localId, q="low"){
   else if(k){ const re = {ll:/limitless/, sx:/scrydex/, pt:/pokemontcg/}[k]; if(re) out.sort((a,b)=>(re.test(b)?1:0)-(re.test(a)?1:0)); }
   return [...new Set(out)];
 }
+// Trick or Trade : pas de logo officiel, on montre le mini-booster de l'année
+Object.assign(SRC.logo, {tot22:"https://tcgplayer-cdn.tcgplayer.com/product/280301_in_1000x1000.jpg", tot23:"https://tcgplayer-cdn.tcgplayer.com/product/505945_in_1000x1000.jpg", tot24:"https://tcgplayer-cdn.tcgplayer.com/product/579930_in_1000x1000.jpg"});
+// photos de scellés absentes chez TCGplayer : même visuel que le produit de la même année
+const SEAL_IMG = {564134:505942, 659627:280302};
+const sealFix = x => { const m = /\/product\/(\d+)_/.exec(x?.img||""), k = m && SEAL_IMG[m[1]]; if(k) x.img = x.img.replace(m[1], k); };
 function imgChain(c, q="low"){
   const out = [];
   if(c?._img){ const u = c._img[q]||c._img.high; if(u) out.push(u); }
@@ -2896,6 +2909,7 @@ function renderCard(){
   const links = `<h4 class="lkh">Ventes réalisées${vTag}</h4><div class="links sold2">
     <a href="${esc(ebayUrl(c,{jp:currentLg==="JP", ed:currentEd, rev}))}" target="_blank" rel="noopener">${ico.ext}eBay France</a>
     <a id="ebUS" data-rev="${rev===true?1:rev===false?0:""}" href="${esc(ebayUrl(c,{jp:currentLg==="JP", ed:currentEd, rev, name:enN||c.name}, "ebay.com"))}" target="_blank" rel="noopener">${ico.ext}eBay États-Unis</a>
+    ${currentLg==="JP"||currentLg==="ZH" ? `<a href="${esc(ebayUrl(c,{jp:currentLg==="JP", zh:currentLg==="ZH", ed:currentEd, rev, name:enN||c.name, loc:EB_CTRY[currentLg==="JP"?"jp":"cn"]}, "ebay.com"))}" target="_blank" rel="noopener">${ico.ext}eBay ${currentLg==="JP"?"Japon":"Chine"}</a>` : ""}
   </div>
   <h4 class="lkh">En vente maintenant</h4><div class="links">
     <a href="${cmUrl(c)}" target="_blank" rel="noopener">${ico.ext}Cardmarket</a>
@@ -3648,7 +3662,7 @@ const STYPE_LBL = Object.fromEntries(STYPES);
 function loadSealed(){
   if(SEALED.p) return SEALED.p;
   SEALED.p = fetchT("sealed.json?h="+Math.floor(Date.now()/36e5), 30000).then(r=>{ if(!r.ok) throw new NetError("http",`prix des scellés : ${r.status}`,"sealed.json"); return r.json(); })
-    .then(j=>{ SEALED.data = j; return j; }).catch(e=>{ SEALED.p = null; throw e; });
+    .then(j=>{ (j.items||[]).forEach(sealFix); SEALED.data = j; return j; }).catch(e=>{ SEALED.p = null; throw e; });
   return SEALED.p;
 }
 const sEur = v => v==null ? null : v * (SEALED.data?.usdEur || 1);
@@ -3663,8 +3677,9 @@ function sDelta(p, lbl){
 function setExMode(m){
   store.set("exMode", m);
   document.querySelectorAll(".exmode button").forEach(b=>b.setAttribute("aria-pressed", b.dataset.mode===m));
-  $("#cardsBox").hidden = m!=="cards"; $("#sealedBox").hidden = m!=="sealed"; $("#gradedBox").hidden = m!=="graded"; $("#jpBox").hidden = m!=="jp";
-  if(m==="jp") renderJP();
+  $("#cardsBox").hidden = m!=="cards"; $("#sealedBox").hidden = m!=="sealed"; $("#gradedBox").hidden = m!=="graded"; $("#jpBox").hidden = m!=="jp"; $("#cnBox").hidden = m!=="cn";
+  if(m==="jp") renderAsia(JP);
+  if(m==="cn") renderAsia(CN);
   if(m==="sealed") renderSealed();
   if(m==="graded") renderGraded();
 }
@@ -3816,8 +3831,8 @@ function grPhoto(file){ return new Promise(res=>{ const r = new FileReader(); r.
 const jpNm = c => String(c.n||"").replace(/\s*-\s*[\w/]+$/,"").trim();
 // recherche japonaise dans les extensions récentes (TCGplayer Japon)
 async function jpFind(q){
-  const D = await jpLoad(); const n = norm(q), out = [];
-  const sets = D.sets.slice(0, 80), all = await Promise.all(sets.map(x=>jpSet(x.g)));
+  const D = await aLoad(JP); const n = norm(q), out = [];
+  const sets = D.sets.slice(0, 80), all = await Promise.all(sets.map(x=>aSet(JP, x.g)));
   all.forEach((s,i)=>{ if(!s) return; for(const c of s.cards) if(norm(c.n+" "+c.no).includes(n)) out.push({c, s, g:sets[i].g}); });
   return out.slice(0, 60);
 }
@@ -3933,82 +3948,102 @@ function gradedLookup(c){
 $("#grLook").onclick = ()=>gradedSearch(true);
 
 
-/* ---------------- Cartes japonaises (TCGplayer Japon via TCGCSV, mis à jour chaque jour) ---------------- */
-const JP = {idx:null, p:null, sets:new Map(), open:null, sort:"num", q:""};
-const jpEur = v => v==null ? null : v * (JP.idx?.usdEur || 1);
-const jpFmt = v => v==null ? "—" : `${eurN(jpEur(v))} ${JP.idx?.usdEur ? "€" : "$"}`;
-function jpLoad(){ return JP.p || (JP.p = fetchT("jp/index.json?h="+Math.floor(Date.now()/36e5), 30000).then(r=>{ if(!r.ok) throw new NetError("http", `cartes japonaises : ${r.status}`, "jp/index.json"); return r.json(); }).then(j=>{
+/* ---------------- Cartes japonaises (TCGplayer Japon via TCGCSV, chaque jour) et chinoises (Gem Packs, PriceCharting) ---------------- */
+// ventes réalisées : chaque bouton ouvre eBay avec seulement les objets situés dans ce pays
+const SOLD_AT = {fr:["ebay.fr",71,"France"], us:["ebay.com",1,"États-Unis"], jp:["ebay.com",104,"Japon"], cn:["ebay.com",45,"Chine"], hk:["ebay.com",92,"Hong Kong"]};
+const soldUrl = (q, k, sold=true) => { const [d, loc] = SOLD_AT[k]; return `https://www.${d}/sch/i.html?_nkw=${encodeURIComponent(q)}&LH_ItemCondition=4000&LH_LocatedIn=1&_salic=${loc}${sold?"&LH_Sold=1&LH_Complete=1&_sop=13":"&_sop=15"}`; };
+const ASIA = {
+  jp:{k:"jp", tag:"JP", what:"cartes japonaises", one:"Carte japonaise", lbl:"Extensions japonaises", src:"TCGplayer Japon", mkt:"marché US (TCGplayer)",
+    ph:"Extension ou carte japonaise (ex. Mega Brave, Charizard)", sold:["jp","us","fr"],
+    qs:c=>`${c.n.replace(/(\s+\d+){1,2}$/,"")} ${c.no||""} japanese`, txt:c=>c.n+" "+c.no+" "+c.r,
+    big:u=>u.replace(/_200w\.jpg$/,"_400w.jpg"), shop:c=>c.url?[[c.url,"TCGplayer"]]:[], 
+    fine:"Prix de la carte japonaise sur le marché américain (TCGplayer, via TCGCSV), convertis en euros au taux de la BCE. Les boutiques japonaises ne publient pas leurs prix gratuitement. Chaque bouton de ventes réalisées ne montre que les objets situés dans ce pays."},
+  cn:{k:"cn", tag:"CN", what:"cartes chinoises", one:"Carte chinoise", lbl:"Gem Packs chinois", src:"PriceCharting", mkt:"marché US (PriceCharting)",
+    ph:"Gem Pack ou carte (ex. Pikachu, Noctali)", sold:["cn","hk","jp","us","fr"],
+    qs:c=>`gem pack ${c.en} ${c.no}`, txt:c=>c.n+" "+c.en+" "+c.zh+" "+c.no+" "+c.r,
+    big:u=>u.replace(/\/240\.jpg$/,"/1600.jpg"), shop:c=>c.url?[[c.url,"PriceCharting"]]:[],
+    fine:"Gem Packs : séries exclusives à la Chine continentale (chinois simplifié). Prix des cartes vendues non gradées sur eBay, relevés par PriceCharting en dollars et convertis en euros au taux de la BCE ; PSA 10 = même carte gradée PSA 10. Les sites chinois (Xianyu, Taobao) ne publient pas leurs ventes : chaque bouton ouvre les ventes eBay réalisées avec seulement les objets situés dans ce pays."}
+};
+Object.values(ASIA).forEach(R=>Object.assign(R, {idx:null, p:null, sets:new Map(), open:null, sort:"num", q:""}));
+const JP = ASIA.jp, CN = ASIA.cn;
+const aEur = (R, v) => v==null ? null : v * (R.idx?.usdEur || 1);
+const aFmt = (R, v) => v==null ? "—" : `${eurN(aEur(R, v))} ${R.idx?.usdEur ? "€" : "$"}`;
+function aLoad(R){ return R.p || (R.p = fetchT(`${R.k}/index.json?h=`+Math.floor(Date.now()/36e5), 30000).then(r=>{ if(!r.ok) throw new NetError("http", `${R.what} : ${r.status}`, `${R.k}/index.json`); return r.json(); }).then(j=>{
   // promos sans code ni vraie date (TCGplayer leur met la date du jour) : en fin de liste, sans date
   const lim = new Date(Date.parse(j.built||Date.now()) - 3*864e5).toISOString().slice(0,10);
-  j.sets.forEach(x=>{ if(!x.a && x.d && x.d >= lim) x.d = ""; });
+  if(R.k==="jp") j.sets.forEach(x=>{ if(!x.a && x.d && x.d >= lim) x.d = ""; });
   j.sets.sort((a,b)=>(!a.d) - (!b.d) || (b.d||"").localeCompare(a.d||"") || a.n.localeCompare(b.n));
-  JP.idx = j; return j; }).catch(e=>{ JP.p = null; throw e; })); }
-function jpSet(g){ if(!JP.sets.has(g)) JP.sets.set(g, fetchT(`jp/${g}.json?h=`+Math.floor(Date.now()/36e5), 30000).then(r=>r.ok?r.json():null).catch(()=>null)); return JP.sets.get(g); }
+  R.idx = j; return j; }).catch(e=>{ R.p = null; throw e; })); }
+function aSet(R, g){ if(!R.sets.has(g)) R.sets.set(g, fetchT(`${R.k}/${g}.json?h=`+Math.floor(Date.now()/36e5), 30000).then(r=>r.ok?r.json():null).catch(()=>null)); return R.sets.get(g); }
 const jpNum = c => { const n = parseInt(String(c.no||"").split("/")[0].replace(/\D/g,""),10); return isNaN(n) ? 1e9 : n; };
-async function renderJP(){
-  const el = $("#jpList");
-  if(!JP.idx){
-    el.innerHTML = `<div class="empty"><span class="loader"></span> Chargement des cartes japonaises…</div>`;
-    try{ await jpLoad(); }catch(e){ el.innerHTML = `<div class="empty"><b style="color:var(--fg)">Cartes japonaises bientôt disponibles</b><br>La première liste est en cours de préparation. Réessaie dans quelques minutes.</div>`; return; }
+async function renderAsia(R){
+  const el = $(`#${R.k}List`);
+  if(!R.idx){
+    el.innerHTML = `<div class="empty"><span class="loader"></span> Chargement des ${R.what}…</div>`;
+    try{ await aLoad(R); }catch(e){ el.innerHTML = `<div class="empty"><b style="color:var(--fg)">${R.what[0].toUpperCase()+R.what.slice(1)} indisponibles</b><br>Vérifie ta connexion puis réessaie dans quelques minutes.</div>`; return; }
   }
-  if(JP.open) return renderJPSet(JP.open);
-  const q = norm(JP.q), D = JP.idx;
-  let sets = D.sets.filter(x=>!q || norm(x.n+" "+x.a).includes(q));
-  $("#jpMeta").textContent = `${D.sets.length} extensions · ${D.sets.reduce((a,x)=>a+x.c,0).toLocaleString("fr-FR")} cartes · marché US (TCGplayer)${D.usdEur?", en €":""} · ${ago(D.built)}`;
-  // recherche d'une carte précise dans les 12 extensions les plus récentes correspondantes
+  if(R.open) return renderAsiaSet(R, R.open);
+  const q = norm(R.q), D = R.idx;
+  const sets = D.sets.filter(x=>!q || norm(x.n+" "+x.a+" "+(x.zh||"")).includes(q));
+  $(`#${R.k}Meta`).textContent = `${D.sets.length} ${R.k==="cn"?"séries":"extensions"} · ${D.sets.reduce((a,x)=>a+x.c,0).toLocaleString("fr-FR")} cartes · ${R.mkt}${D.usdEur?", en €":""} · ${ago(D.built)}`;
+  // recherche d'une carte précise dans les 40 extensions les plus récentes
   let cardHits = "";
   if(q.length >= 3){
-    const recent = D.sets.slice(0, 40);
-    const all = (await Promise.all(recent.map(x=>jpSet(x.g)))).filter(Boolean);
-    const hits = []; for(const s of all) for(const c of s.cards) if(norm(c.n).includes(q)) hits.push({...c, set:s});
+    const all = (await Promise.all(D.sets.slice(0, 40).map(x=>aSet(R, x.g)))).filter(Boolean);
+    const hits = []; for(const st of all) for(const c of st.cards) if(norm(R.txt(c)).includes(q)) hits.push({...c, set:st});
     hits.sort((a,b)=>(b.m||0)-(a.m||0));
-    if(hits.length) cardHits = `<section class="serie"><h2><span>Cartes trouvées</span><span>${hits.length}</span></h2><div class="cgrid" style="padding:4px 0 10px">${hits.slice(0,60).map(jpTile).join("")}</div></section>`;
+    if(hits.length) cardHits = `<section class="serie"><h2><span>Cartes trouvées</span><span>${hits.length}</span></h2><div class="cgrid" style="padding:4px 0 10px">${hits.slice(0,60).map(c=>aTile(R, c)).join("")}</div></section>`;
   }
-  el.innerHTML = cardHits + (sets.length ? `<section class="serie"><h2><span>Extensions japonaises</span><span>${sets.length}</span></h2><div class="sets">${sets.map(x=>`<button class="jpset" data-jg="${x.g}"><span class="im">${x.img?`<img src="${esc(x.img)}" alt="" loading="lazy" onerror="this.remove()">`:""}</span><span class="t"><span class="n">${esc(x.n)}</span><span class="c">${esc([x.a, x.d?fmtMonth(x.d):"", x.c+" cartes"].filter(Boolean).join(" · "))}</span></span><span class="rp">${x.top!=null?`<b>${esc(jpFmt(x.top))}</b>la plus chère`:""}</span></button>`).join("")}</div></section>` : (cardHits ? "" : `<div class="empty">Aucune extension ne correspond.</div>`));
-  el.querySelectorAll("[data-jg]").forEach(b=>b.onclick=()=>{ JP.open = +b.dataset.jg; renderJPSet(JP.open); extScroll.scrollTop = 0; });
-  el.querySelectorAll("[data-jc]").forEach(b=>b.onclick=()=>jpCardSheet(b));
+  el.innerHTML = cardHits + (sets.length ? `<section class="serie"><h2><span>${R.lbl}</span><span>${sets.length}</span></h2><div class="sets">${sets.map(x=>`<button class="jpset" data-jg="${x.g}"><span class="im">${x.img?`<img src="${esc(x.img)}" alt="" loading="lazy" onerror="this.remove()">`:""}</span><span class="t"><span class="n">${esc(x.n)}</span><span class="c">${esc([x.zh||x.a, x.d?fmtMonth(x.d):"", x.c+" cartes"].filter(Boolean).join(" · "))}</span></span></button>`).join("")}</div></section>` : (cardHits ? "" : `<div class="empty">Aucun résultat.</div>`));
+  el.querySelectorAll("[data-jg]").forEach(b=>b.onclick=()=>{ R.open = +b.dataset.jg; renderAsiaSet(R, R.open); extScroll.scrollTop = 0; });
+  el.querySelectorAll("[data-jc]").forEach(b=>b.onclick=()=>aCardSheet(R, b));
 }
-function jpTile(c){
-  return `<button class="ctile have jpcard" data-jc="${c.i}" data-jg2="${c.set?.g||JP.open}"><span class="im"><span class="nm0">${esc(c.n)}</span>${c.img?`<img src="${esc(c.img)}" alt="" loading="lazy" onerror="this.remove()">`:""}</span><span class="cn">${esc(c.no||"")} ${c.m!=null?`<span class="px">${esc(jpFmt(c.m))}</span>`:""}</span><span class="rr">${esc(c.n)}${c.r?" · "+esc(c.r):""}</span></button>`;
+function aTile(R, c){
+  return `<button class="ctile have jpcard" data-jc="${c.i}" data-jg2="${c.set?.g||R.open}"><span class="im"><span class="nm0">${esc(c.n)}</span>${c.img?`<img src="${esc(c.img)}" alt="" loading="lazy" onerror="this.remove()">`:""}</span><span class="cn">${esc(c.no||"")} ${c.m!=null?`<span class="px">${esc(aFmt(R, c.m))}</span>`:""}</span><span class="rr">${esc(c.n)}${c.r?" · "+esc(c.r):""}</span></button>`;
 }
-async function renderJPSet(g){
-  const el = $("#jpList"); el.innerHTML = `<div class="empty"><span class="loader"></span></div>`;
-  const s = await jpSet(g); if(JP.open!==g) return;   // on est revenu en arrière pendant le chargement
+async function renderAsiaSet(R, g){
+  const el = $(`#${R.k}List`); el.innerHTML = `<div class="empty"><span class="loader"></span></div>`;
+  const s = await aSet(R, g); if(R.open!==g) return;   // on est revenu en arrière pendant le chargement
   if(!s){ el.innerHTML = `<div class="empty">Extension indisponible.</div>`; return; }
-  let l = s.cards.slice(); const q = norm(JP.q); if(q) l = l.filter(c=>norm(c.n+" "+c.no+" "+c.r).includes(q) || norm(s.n).includes(q));
-  if(JP.sort==="price") l.sort((a,b)=>(b.m||0)-(a.m||0)); else l.sort((a,b)=>jpNum(a)-jpNum(b));
+  let l = s.cards.slice(); const q = norm(R.q); if(q) l = l.filter(c=>norm(R.txt(c)).includes(q) || norm(s.n).includes(q));
+  if(R.sort==="price") l.sort((a,b)=>(b.m||0)-(a.m||0)); else l.sort((a,b)=>jpNum(a)-jpNum(b));
   const tot = s.cards.reduce((a,c)=>a+(c.m||0),0);
-  el.innerHTML = `<button class="backbtn" id="jpBack"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>Extensions japonaises</button>
-    <div class="sethead" style="margin-top:10px"><div style="min-width:0"><h2>${esc(s.n)}</h2><p>${esc([s.a, s.d?fmtDay(s.d):"", s.cards.length+" cartes"].filter(Boolean).join(" · "))}</p></div></div>
-    <div class="total" style="margin-bottom:10px"><div class="plabel"><span>Valeur de l'extension</span><span>TCGplayer Japon</span></div><div class="pmain"><div class="pbig">${esc(eurN(jpEur(tot)))}<small>${JP.idx?.usdEur?"€":"$"}</small></div></div><div class="psub">Une carte de chaque, au prix du marché américain</div></div>
-    <div class="seg" style="display:flex;margin-bottom:10px"><button data-js="num" aria-pressed="${JP.sort==="num"}" style="flex:1">N°</button><button data-js="price" aria-pressed="${JP.sort==="price"}" style="flex:1">Prix ↓</button></div>
-    <div class="cgrid">${l.map(c=>jpTile({...c, set:s})).join("")}</div>`;
-  $("#jpBack").onclick = ()=>{ JP.open = null; renderJP(); };
-  el.querySelectorAll("[data-js]").forEach(b=>b.onclick=()=>{ JP.sort = b.dataset.js; renderJPSet(g); });
-  el.querySelectorAll("[data-jc]").forEach(b=>b.onclick=()=>jpCardSheet(b));
+  const seal = (s.sealed||[]).length ? `<h4 class="lkh">Produits scellés</h4><div class="cnseal">${s.sealed.map(x=>`<div class="cnsl">${x.img?`<img src="${esc(x.img)}" alt="" loading="lazy" onerror="this.remove()">`:""}<span><b>${esc(x.n)}</b><small>${esc(aFmt(R, x.m))}</small></span><span class="cnsb"><a href="${esc(soldUrl(`${s.n} chinese ${/Display/.test(x.n)?"booster box":"booster pack"}`, "cn"))}" target="_blank" rel="noopener">Ventes Chine</a><a href="${esc(soldUrl(`${s.n} chinese ${/Display/.test(x.n)?"booster box":"booster pack"}`, "fr"))}" target="_blank" rel="noopener">France</a></span></div>`).join("")}</div>` : "";
+  el.innerHTML = `<button class="backbtn" id="${R.k}Back"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>${R.lbl}</button>
+    <div class="sethead" style="margin-top:10px"><div style="min-width:0"><h2>${esc(s.n)}</h2><p>${esc([s.zh||s.a, s.d?fmtDay(s.d):"", s.cards.length+" cartes"].filter(Boolean).join(" · "))}</p></div></div>
+    <div class="total" style="margin-bottom:10px"><div class="plabel"><span>Valeur de l'extension</span><span>${R.src}</span></div><div class="pmain"><div class="pbig">${esc(eurN(aEur(R, tot)))}<small>${R.idx?.usdEur?"€":"$"}</small></div></div><div class="psub">Une carte de chaque, au prix du marché américain</div></div>
+    ${seal}
+    <div class="seg" style="display:flex;margin:10px 0"><button data-js="num" aria-pressed="${R.sort==="num"}" style="flex:1">N°</button><button data-js="price" aria-pressed="${R.sort==="price"}" style="flex:1">Prix ↓</button></div>
+    <div class="cgrid">${l.map(c=>aTile(R, {...c, set:s})).join("")}</div>`;
+  $(`#${R.k}Back`).onclick = ()=>{ R.open = null; renderAsia(R); };
+  el.querySelectorAll("[data-js]").forEach(b=>b.onclick=()=>{ R.sort = b.dataset.js; renderAsiaSet(R, g); });
+  el.querySelectorAll("[data-jc]").forEach(b=>b.onclick=()=>aCardSheet(R, b));
 }
-async function jpCardSheet(b){
-  const s = await jpSet(+b.dataset.jg2); const c = s?.cards.find(x=>x.i===+b.dataset.jc); if(!c) return;
-  const q = encodeURIComponent(`${c.n} ${c.no||""} japanese`.trim());
-  $("#sheetTitle").textContent = "Carte japonaise";
+async function aCardSheet(R, b){
+  const s = await aSet(R, +b.dataset.jg2); const c = s?.cards.find(x=>x.i===+b.dataset.jc); if(!c) return;
+  const q = R.qs(c), cur = R.idx?.usdEur ? "€" : "$";
+  $("#sheetTitle").textContent = R.one;
   $("#sheetBody").innerHTML = `
-    ${c.img?`<div class="shero"><img src="${esc(c.img.replace(/_200w\.jpg$/,"_400w.jpg"))}" alt="" onerror="this.src='${esc(c.img)}'"></div>`:""}
+    ${c.img?`<div class="shero"><img src="${esc(R.big(c.img))}" alt="" onerror="this.onerror=null;this.src='${esc(c.img)}'"></div>`:""}
     <div class="ctitle"><h2 style="margin:0">${esc(c.n)}</h2></div>
-    <p class="psub" style="margin:4px 0 0"><i class="stype">JP</i>${esc(s.n)}${c.no?" · n° "+esc(c.no):""}${c.r?" · "+esc(c.r):""}${c.v?" · "+esc(c.v):""}</p>
+    <p class="psub" style="margin:4px 0 0"><i class="stype">${R.tag}</i>${esc(s.n)}${c.no?" · n° "+esc(c.no):""}${c.r?" · "+esc(c.r):""}${c.v?" · "+esc(c.v):""}${c.zh?` · <span lang="zh-Hans">${esc(c.zh)}</span>`:""}</p>
     <div class="price">
-      <div class="plabel"><span>Prix du marché · TCGplayer Japon</span>${JP.idx?.built?`<span>MAJ ${esc(ago(JP.idx.built))}</span>`:""}</div>
-      <div class="pmain"><div class="pbig">${c.m!=null?esc(eurN(jpEur(c.m))):"—"}<small>${JP.idx?.usdEur?"€":"$"}</small></div></div>
-      <div class="psub">${c.l!=null?`Annonces de ${esc(jpFmt(c.l))} à ${esc(jpFmt(c.h))}`:"Pas encore de prix pour cette carte."}</div>
-      <div class="links">
-        ${c.url?`<a href="${esc(c.url)}" target="_blank" rel="noopener">${ico.ext}Voir sur TCGplayer</a>`:""}
-        <a href="https://www.ebay.fr/sch/i.html?_nkw=${q}&LH_ItemCondition=4000${ebLoc("ebay.fr")}&LH_Sold=1&LH_Complete=1&_sop=13" target="_blank" rel="noopener">${ico.ext}Ventes eBay réalisées</a>
-        <a href="https://www.cardmarket.com/fr/Pokemon/Products/Search?searchString=${encodeURIComponent(c.n)}" target="_blank" rel="noopener">${ico.ext}Cardmarket</a>
-      </div>
+      <div class="plabel"><span>Prix du marché · ${R.src}</span>${R.idx?.built?`<span>MAJ ${esc(ago(R.idx.built))}</span>`:""}</div>
+      <div class="pmain"><div class="pbig">${c.m!=null?esc(eurN(aEur(R, c.m))):"—"}<small>${cur}</small></div></div>
+      <div class="psub">${c.l!=null?`Annonces de ${esc(aFmt(R, c.l))} à ${esc(aFmt(R, c.h))}`:c.p10!=null?`Gradée PSA 10 : <b style="color:var(--fg)">${esc(aFmt(R, c.p10))}</b>`:c.m==null?"Pas encore de prix pour cette carte.":"Carte non gradée"}${c.m!=null?` · ${esc(usd(c.m))}`:""}</div>
     </div>
-    <p class="fine">Prix de la carte japonaise sur le marché américain (TCGplayer, via TCGCSV), convertis en euros au taux de la BCE. Les boutiques japonaises ne publient pas leurs prix gratuitement.</p>`;
+    <h4 class="lkh">Ventes réalisées · objets situés dans le pays</h4><div class="links sold2">
+      ${R.sold.map(k=>`<a href="${esc(soldUrl(q, k))}" target="_blank" rel="noopener">${ico.ext}eBay ${SOLD_AT[k][2]}</a>`).join("")}
+    </div>
+    <h4 class="lkh">En vente maintenant</h4><div class="links">
+      ${R.shop(c).map(([u,t])=>`<a href="${esc(u)}" target="_blank" rel="noopener">${ico.ext}${t}</a>`).join("")}
+      <a href="${esc(soldUrl(q, R.k==="cn"?"cn":"jp", false))}" target="_blank" rel="noopener">${ico.ext}eBay ${SOLD_AT[R.k==="cn"?"cn":"jp"][2]}</a>
+      <a href="https://www.cardmarket.com/fr/Pokemon/Products/Search?searchString=${encodeURIComponent(c.en||c.n.replace(/(\s+\d+){1,2}$/,""))}" target="_blank" rel="noopener">${ico.ext}Cardmarket</a>
+    </div>
+    <p class="fine">${R.fine}</p>`;
   openSheet(); $("#sheetBody").scrollTop = 0;
 }
-let jpQT = null; $("#jpQ").addEventListener("input", e=>{ JP.q = e.target.value; clearTimeout(jpQT); jpQT = setTimeout(renderJP, 250); });
+Object.values(ASIA).forEach(R=>{ let t = null; $(`#${R.k}Q`).addEventListener("input", e=>{ R.q = e.target.value; clearTimeout(t); t = setTimeout(()=>renderAsia(R), 250); }); });
 setExMode(store.get("exMode","cards"));
 
 
@@ -5988,7 +6023,7 @@ const frDate = d => d ? new Date(d+"T12:00:00").toLocaleDateString("fr-FR",{day:
 function loadCM(){
   if(BUD.cmP) return BUD.cmP;
   BUD.cmP = fetchT("cm-sealed.json?h="+Math.floor(Date.now()/36e5), 30000).then(r=>{ if(!r.ok) throw new Error("prix Cardmarket : "+r.status); return r.json(); })
-    .then(j=>{ BUD.cm = j; BUD.cmMap = new Map(j.items.map(x=>[x.i,x])); return j; }).catch(e=>{ BUD.cmP = null; throw e; });
+    .then(j=>{ (j.items||[]).forEach(sealFix); BUD.cm = j; BUD.cmMap = new Map(j.items.map(x=>[x.i,x])); return j; }).catch(e=>{ BUD.cmP = null; throw e; });
   return BUD.cmP;
 }
 /* noms des extensions anglais ↔ français (TCGdex), pour chercher « Évolutions Prismatiques » ou lire une boîte française */
@@ -6633,8 +6668,9 @@ function backTarget(){
   if(!$("#gov").hidden) return "gov";
   if($("#sheet").classList.contains("open")) return NAV.stack.length ? "card" : "sheet";
   const v = curView();
-  if(v==="extView" && EX.set) return "set";
-  if(v==="colView" && JP.open && !$("#jpBox").hidden) return "jp";
+  if(v==="extView" && JP.open && !$("#jpBox").hidden) return "jp";
+  if(v==="extView" && CN.open && !$("#cnBox").hidden) return "cn";
+  if(v==="extView" && EX.set && !$("#cardsBox").hidden) return "set";
   if(v==="alertView") return NAV.subFrom && NAV.subFrom!=="budgetView" ? "sub" : "alert";
   if(v==="searchView" || v==="playView" || v==="topView" || v==="moreView") return "sub";
   if(v==="extView" && !EX.set && EX.view==="folders" && EX.fold && !norm(EX.q)) return "efold";
@@ -6648,7 +6684,8 @@ function navBack(){
   else if(t==="card"){ const p = NAV.stack.pop(); NAV.restoring = true; Promise.resolve(p.re ? p.re() : showCard(p.id, p.alts)).finally(()=>{ NAV.restoring = false; }); }
   else if(t==="sheet") closeSheet();
   else if(t==="set") showExtHome();
-  else if(t==="jp"){ JP.open = null; renderJP(); }
+  else if(t==="jp"){ JP.open = null; renderAsia(JP); }
+  else if(t==="cn"){ CN.open = null; renderAsia(CN); }
   else if(t==="alert") selectTab("budgetView");
   else if(t==="sub"){ const f = NAV.subFrom || "homeView"; NAV.subFrom = null; selectTab(f); }
   else if(t==="efold"){ EX.fold = null; renderExtList(); extScroll.scrollTop = 0; }
@@ -7998,6 +8035,9 @@ async function betaPublishFlow(){
 }
 /* Journal des modifications de la Bêta : la carte « Version Bêta » liste celles que les copains n'ont pas encore */
 const BETA_LOG = [
+  {v:163, t:"Explorer : onglet Chine avec les 5 Gem Packs chinois (687 cartes, images, prix PriceCharting en €, PSA 10, produits scellés)"},
+  {v:163, t:"Ventes réalisées par pays : chaque bouton eBay ne montre que les objets situés dans ce pays (Chine, Hong Kong, Japon, États-Unis, France) ; fiche d'une carte japonaise ou chinoise : bouton du pays en plus"},
+  {v:163, t:"Trick or Trade : image du mini-booster sur chaque édition, photos des bundles 120 restaurées"},
   {v:162, t:"Les utilisateurs s'appellent maintenant des Hunters (classement, Fil, messages, collections)"},
   {v:162, t:"Thème Glass : réglage de la transparence (de transparent à opaque) dans Thème, sous la couleur"},
   {v:161, t:"Collection d'un Hunter : le retour depuis une carte ramène à sa collection (même recherche, même endroit)"},
@@ -8587,6 +8627,10 @@ $("#moreBack").onclick = ()=>navBack();
    Après l'intro, une seule fois par version qui apporte quelque chose à l'utilisateur.
    Nouvelle installation : rien (tout est neuf). Les versions purement techniques n'ont pas d'entrée ici. */
 const NEWS = [
+  {v:163, items:[
+    ["M4 6h16v12H4zM4 10h16M9 6v12", "Les Gem Packs chinois", "Nouvel onglet Chine dans Explorer : les 5 Gem Packs, toutes les cartes avec leur image, leur prix et le prix PSA 10, et les produits scellés."],
+    ["M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18M12 3a9 9 0 1 1 0 18 9 9 0 0 1 0-18z", "Ventes réalisées par pays", "Sur les cartes japonaises et chinoises, chaque bouton ouvre les ventes eBay conclues dans ce pays : Chine, Hong Kong, Japon, États-Unis ou France."]
+  ]},
   {v:159, items:[
     ["M12 3c-4 3-7 6-7 10a7 7 0 0 0 14 0c0-4-3-7-7-10zM9 13h.01M15 13h.01M9 17c2 1 4 1 6 0", "Trick or Trade", "Les cartes Halloween des BOOster Bundles 2022, 2023 et 2024 sont dans l'Explorer : ajoute-les à ton Classeur. Les bundles et mini-boosters sont dans le Stock."]
   ]},

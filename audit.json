@@ -1,5 +1,5 @@
 {
- "built": "2026-11-17T23:06:19.947Z",
+ "built": "2026-11-18T07:55:18.232Z",
  "sets": {
   "total": 209,
   "noLogo": [],
@@ -15,10 +15,10 @@
  },
  "sealed": {
   "total": 4636,
-  "photo": 1309,
+  "photo": 1310,
   "manual": 0,
-  "tcgplayer": 692,
-  "logo": 1811,
+  "tcgplayer": 694,
+  "logo": 1808,
   "missing": 824,
   "list": [
    "EX Trainer Kit",
@@ -864,10 +864,10 @@
   "tk-xy-p": "tk9b",
   "tk-sm-l": "tk10a",
   "tk-sm-r": "tk10b",
-  "tk-ex-latio": "tk1b",
+  "tk-ex-m": "tk2b",
   "tk-ex-latia": "tk1a",
-  "tk-ex-p": "tk2a",
-  "tk-ex-m": "tk2b"
+  "tk-ex-latio": "tk1b",
+  "tk-ex-p": "tk2a"
  },
  "diag": {
   "assets.tcgdex.net": {

@@ -707,7 +707,19 @@ html{background:var(--panel)}
 
 /* ---------- Logo Dexball noir et violet + ouverture de l'app ---------- */
 .pball{width:26px;height:26px;flex:none;display:inline-block;vertical-align:middle}
-.homebar{display:flex;align-items:center;gap:9px;margin:0 0 14px}
+.homebar{display:flex;align-items:center;gap:6px;margin:0 0 6px}
+.homebar .brand{font-size:21px;font-weight:900;letter-spacing:.02em;flex:1}
+.hbis{display:flex;align-items:center;gap:2px}.hbi{width:38px;height:38px;border-radius:12px;display:grid;place-items:center;color:var(--fg);background:none;border:0}.hbi svg{width:21px;height:21px}.hbi:active{background:var(--panel)}
+.hbi.hrk svg{filter:drop-shadow(0 0 3px rgba(255,216,110,.55))}
+.hgreet{margin:6px 0 0}
+.hhero{position:relative;margin-top:34px}
+.hhero #hTot{padding-right:118px;margin-top:0}
+.hhero #avatSlot{position:absolute;right:-6px;top:-40px;z-index:2}
+.avat.hero{display:block;position:relative;border:0;background:none;padding:0;border-radius:0}
+.avat.hero .pet{width:132px;height:132px;border-radius:0;background:none;box-shadow:none!important}.avat.hero .pet .ph,.avat.hero .pet::before,.avat.hero .pet::after{display:none}.avat.hero img{background:none;border-radius:0}
+.avat.hero .pet img.px{width:132px;height:132px;filter:drop-shadow(0 6px 12px rgba(0,0,0,.55)) drop-shadow(0 0 10px var(--pc))}
+.avat.hero .lvp{position:absolute;right:12px;bottom:-30px;display:flex;align-items:center;gap:6px;background:var(--ink);border:1.5px solid var(--border-yellow);border-radius:999px;padding:4px 9px;font:800 11.5px/1 var(--f-mono);color:var(--fg);white-space:nowrap}
+.avat.hero .lvp i{display:block;width:40px;height:5px;border-radius:9px;background:var(--line);overflow:hidden}.avat.hero .lvp i b{display:block;height:100%;background:linear-gradient(90deg,var(--border-yellow),var(--t-stroke))}
 .homebar .brand{font-size:17px}
 .homebar .ver{margin-left:auto;font:600 11px/1 var(--f-mono);color:var(--muted);border:1px solid var(--line);border-radius:6px;padding:4px 6px}
 .homebar .brand b,.scan-top .brand b{color:var(--border-yellow)}
@@ -1780,7 +1792,7 @@ img.px.reveal{animation:stpRev .9s ease-out}
   }
   fit(); addEventListener("resize", fit); addEventListener("orientationchange", function(){ setTimeout(fit, 300); });
 })();</script>
-<script>window.__APPV="152";</script>
+<script>window.__APPV="153";</script>
 <div class="splash" id="splash" aria-hidden="true"><i class="hole"></i><i class="halo"></i><div class="bw"><svg class="b" viewBox="0 0 100 100"><use href="#pb"/></svg><svg class="t" viewBox="0 0 100 100"><use href="#pb"/></svg></div><i class="glow"></i></div>
 <script>setTimeout(function(){ if(window.__booted) return;
   var b=document.createElement("div"); b.setAttribute("role","alert");
@@ -1815,10 +1827,10 @@ img.px.reveal{animation:stpRev .9s ease-out}
   <!-- ===== EXTENSIONS ===== -->
   <section class="view" id="homeView">
     <div class="scroll">
-      <div class="homebar"><span id="avatSlot"><svg class="pball" viewBox="0 0 100 100" aria-hidden="true"><use href="#pb"/></svg></span><span class="brand">DEX<b>·</b>SCAN</span><button class="thbtn" id="themeBtn" aria-label="Changer de thème"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.6-.9 1.2-1.8-.5-1.1.2-2.2 1.4-2.2H17a4 4 0 0 0 4-4c0-5.5-4-10-9-10z"/><circle cx="7.5" cy="11" r="1.2"/><circle cx="10" cy="7" r="1.2"/><circle cx="15" cy="7" r="1.2"/></svg></button><button class="thbtn" id="moreBtn" aria-label="Réglages et plus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg></button><span class="ver" id="hVer">v152</span></div>
+      <div class="homebar"><span class="brand">DEX<b>·</b>SCAN</span><span class="hbis"><button class="hbi" id="hSearch" aria-label="Rechercher une carte"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></button><button class="hbi hrk" id="hRank" aria-label="Classement"><svg viewBox="0 0 24 24" fill="none" stroke="url(#hrkG)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><defs><linearGradient id="hrkG" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFF4C2"/><stop offset=".35" stop-color="#FFD86E"/><stop offset=".65" stop-color="#7CF3FF"/><stop offset="1" stop-color="#E2B8FF"/></linearGradient></defs><path d="M8 21h8M12 17v4"/><path d="M7 4h10v5a5 5 0 0 1-10 0z"/><path d="M17 5h3v2a3 3 0 0 1-3 3M7 5H4v2a3 3 0 0 0 3 3"/></svg></button><button class="hbi" id="themeBtn" aria-label="Changer de thème"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.6-.9 1.2-1.8-.5-1.1.2-2.2 1.4-2.2H17a4 4 0 0 0 4-4c0-5.5-4-10-9-10z"/><circle cx="7.5" cy="11" r="1.2"/><circle cx="10" cy="7" r="1.2"/><circle cx="15" cy="7" r="1.2"/></svg></button><button class="hbi" id="moreBtn" aria-label="Réglages et plus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg></button></span><span class="ver" id="hVer">v153</span></div>
       <button class="banner" id="pxBanner" hidden></button>
-      <div class="hhead"><div><span class="hdate" id="hDate"></span><div class="htitle"><h1 class="h1">Accueil</h1><button class="hsearch hrank" id="hRank" aria-label="Classement"><svg viewBox="0 0 24 24" fill="none" stroke="url(#hrkG)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><defs><linearGradient id="hrkG" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFF4C2"/><stop offset=".35" stop-color="#FFD86E"/><stop offset=".65" stop-color="#7CF3FF"/><stop offset="1" stop-color="#E2B8FF"/></linearGradient></defs><path d="M8 21h8M12 17v4"/><path d="M7 4h10v5a5 5 0 0 1-10 0z"/><path d="M17 5h3v2a3 3 0 0 1-3 3M7 5H4v2a3 3 0 0 0 3 3"/></svg></button></div></div><button class="hsearch" id="hSearch" aria-label="Rechercher une carte"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></button></div>
-      <div class="total htot" id="hTot"></div>
+      <span class="hdate hgreet" id="hDate"></span>
+      <div class="hhero"><div class="total htot" id="hTot"></div><span id="avatSlot"></span></div>
       <div class="wmov hmov" id="hMov"></div>
       <button class="btn btn-g pxallist" id="pxAlList" hidden></button>
       <div class="hqa">
@@ -6480,7 +6492,8 @@ const ALLV = ["homeView","extView","scanView","searchView","colView","alertView"
 function renderHome(){
   const el = $("#hTot"); if(!el) return;
   try{ renderAvatar(); }catch(e){}
-  $("#hDate").textContent = new Date().toLocaleDateString("fr-FR",{weekday:"long", day:"numeric", month:"long"});
+  const who = (store.get("rk",null)||{}).name;
+  $("#hDate").textContent = (who ? `Salut ${who} · ` : "") + new Date().toLocaleDateString("fr-FR",{weekday:"short", day:"numeric", month:"short"});
   const col = getCol(), cards = col.reduce((a,x)=>a+(x.price||0)*x.qty,0);
   const rows = budRows(), own = rows.filter(r=>r.q>0);
   const seal = own.filter(r=>r.k==="s").reduce((a,r)=>a+(r.val ?? r.cost),0), grad = own.filter(r=>r.k==="g").reduce((a,r)=>a+(r.val ?? r.cost),0);
@@ -7171,7 +7184,8 @@ function palierMsg(lv){
 function renderAvatar(){
   const slot = $("#avatSlot"), st = starterOf(); if(!slot || !st) return;
   const xp = acctXP(), lv = lvOf(xp);
-  slot.innerHTML = `<button class="avat" id="avat" aria-label="${esc(petName())}, niveau ${lv}">${petArt(st, lv)}<b>Niv. ${lv}<small>${esc(petName())}</small></b></button>`;
+  const a0 = lvNeed(lv), a1 = lvNeed(lv+1), pc = lv>=50 ? 100 : Math.max(4, Math.round((xp-a0)/(a1-a0)*100));
+  slot.innerHTML = `<button class="avat hero" id="avat" aria-label="${esc(petName())}, niveau ${lv}">${petArt(st, lv)}<span class="lvp">NIV. ${lv}<i><b style="width:${pc}%"></b></i></span></button>`;
   $("#avat").onclick = openAvatar;
   const prev = store.get("lvl", 0);
   if(prev && lv > prev && !$("#stp")) setTimeout(()=>gameBox([`${petName()} passe au niveau ${lv} !`, lv%5===0 ? palierMsg(lv) : `Prochaine récompense au niveau ${Math.min(50, Math.ceil((lv+1)/5)*5)}.`], [{label:"Super !", go:true, run:()=>setTimeout(()=>{ try{ teamOffer(); }catch(e){} }, 500)}]), 600);
@@ -7953,6 +7967,7 @@ async function betaPublishFlow(){
 }
 /* Journal des modifications de la Bêta : la carte « Version Bêta » liste celles que les copains n'ont pas encore */
 const BETA_LOG = [
+  {v:153, t:"Nouveau haut de l'Accueil : barre fine avec les icônes, ton compagnon en grand sur la valeur avec son niveau"},
   {v:152, t:"Messages privés entre dresseurs (onglet Messages dans Social, ✉️ sur les posts et dans le Classement)"},
   {v:151, t:"Le Fil : 9 modes de publication (Discussion, Réassort, Échange, Ma carte, Ma collec, Ouverture, Je cherche, Je vends, Sondage), ville, contre-offre en commentaire"},
   {v:150, t:"Commentaires sur les posts du Fil, avec notification quand on commente ton post"},

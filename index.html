@@ -707,7 +707,23 @@ html{background:var(--panel)}
 
 /* ---------- Logo Dexball noir et violet + ouverture de l'app ---------- */
 .pball{width:26px;height:26px;flex:none;display:inline-block;vertical-align:middle}
-.homebar{display:flex;align-items:center;gap:9px;margin:0 0 14px}
+.homebar{display:flex;align-items:center;gap:6px;margin:0 0 6px}
+.homebar .brand{font-size:21px;font-weight:900;letter-spacing:.02em;flex:1}
+.hbis{display:flex;align-items:center;gap:2px}.hbi{width:38px;height:38px;border-radius:12px;display:grid;place-items:center;color:var(--fg);background:none;border:0}.hbi svg{width:21px;height:21px}.hbi:active{background:var(--panel)}
+.hbi.hrk svg{filter:drop-shadow(0 0 3px rgba(255,216,110,.55))}
+.hgreet{margin:6px 0 0}
+.hhero{display:flex;flex-direction:column;gap:10px;margin-top:12px}
+.hhero #avatSlot{order:-1}
+.avat.band{display:flex;align-items:center;gap:12px;width:100%;text-align:left;padding:10px 14px 10px 10px;border-radius:20px;background:var(--panel);border:1px solid var(--line);color:var(--fg);overflow:visible}
+.avat.band .pet{width:64px;height:64px;flex:none;margin:-20px 0 -6px -2px;background:none;border-radius:0;box-shadow:none!important}
+.avat.band .pet .ph{display:none}.avat.band img{background:none;border-radius:0}
+.avat.band .pet img.px{width:64px;height:64px;filter:drop-shadow(0 4px 8px rgba(0,0,0,.5))}
+.avat.band .bd{flex:1;min-width:0;display:flex;flex-direction:column;gap:5px}
+.avat.band .r1{display:flex;justify-content:space-between;align-items:baseline;gap:8px}.avat.band .r1 b{font:800 16px var(--f-body);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.avat.band .r1 span{font:800 13px var(--f-mono);white-space:nowrap}
+.avat.band .xpb{display:block;height:6px;border-radius:9px;background:var(--line);overflow:hidden}.avat.band .xpb i{display:block;height:100%;background:linear-gradient(90deg,var(--border-yellow),var(--t-stroke))}
+.avat.band .r2{display:flex;justify-content:space-between;align-items:center;gap:8px}.avat.band .st{font-size:10px;color:#FFCF4A;white-space:nowrap}.avat.band .st span{color:var(--line)}
+.avat.band .r2 small{font:600 11px var(--f-mono);color:var(--muted);white-space:nowrap}
+.avat.band .chev{color:var(--muted);font-size:22px;flex:none}
 .homebar .brand{font-size:17px}
 .homebar .ver{margin-left:auto;font:600 11px/1 var(--f-mono);color:var(--muted);border:1px solid var(--line);border-radius:6px;padding:4px 6px}
 .homebar .brand b,.scan-top .brand b{color:var(--border-yellow)}
@@ -1246,6 +1262,25 @@ html{background:var(--panel)}
 .fc-pick{position:fixed;inset:0;z-index:60;background:var(--ink);display:flex;flex-direction:column;padding:calc(env(safe-area-inset-top,0px) + 12px) max(14px,env(safe-area-inset-right)) 0 max(14px,env(safe-area-inset-left))}
 .fcp-h{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}.fcp-h b{font-size:20px}.fcp-x{width:36px;height:36px;border-radius:50%;background:var(--panel)}
 .fcp-r{flex:1;overflow-y:auto;padding:10px 0 calc(env(safe-area-inset-bottom,0px) + 20px)}.fcp-r .cp{display:block;font:700 11.5px var(--f-mono);color:var(--muted)}
+.fd-dm{margin-left:auto;font-size:16px;padding:0 6px;opacity:.85}.fd-dm+.fd-more{margin-left:0}
+.dm-list{display:flex;flex-direction:column}.dm-row{display:flex;align-items:center;gap:12px;padding:12px 2px;border-bottom:1px solid var(--line);text-align:left;width:100%}
+.dm-t{flex:1;min-width:0;display:flex;flex-direction:column}.dm-t b{font-size:15.5px}.dm-t span{color:var(--muted);font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.dm-row.new .dm-t span{color:var(--fg);font-weight:600}.dm-m{display:flex;flex-direction:column;align-items:flex-end;gap:4px}.dm-m small{color:var(--muted);font:600 11.5px var(--f-mono)}
+.dm-m i{font-style:normal;min-width:20px;height:20px;padding:0 6px;border-radius:999px;background:#ff3b5c;color:#fff;font:800 11px/20px var(--f-mono);text-align:center}
+.dm-view{position:fixed;inset:0;z-index:58;background:var(--ink);display:flex;flex-direction:column;padding-top:env(safe-area-inset-top,0px)}
+.dm-h{display:flex;align-items:center;gap:10px;padding:10px max(14px,env(safe-area-inset-right)) 10px max(10px,env(safe-area-inset-left));border-bottom:1px solid var(--line)}.dm-h b{font-size:17px}.dm-h .fd-av{width:38px;height:38px}
+.dm-back{font-size:34px;line-height:1;width:36px;color:var(--border-yellow)}
+.dm-msgs{flex:1;overflow-y:auto;padding:14px max(14px,env(safe-area-inset-right)) 8px max(14px,env(safe-area-inset-left));display:flex;flex-direction:column;gap:6px;overscroll-behavior:contain}
+.dm-day{align-self:center;color:var(--muted);font:600 11.5px var(--f-mono);margin:8px 0 2px;text-transform:capitalize}
+.dm-b{max-width:78%;align-self:flex-start;background:var(--panel-2);border-radius:18px 18px 18px 6px;padding:8px 12px;font-size:15px;line-height:1.35;overflow-wrap:anywhere;display:flex;flex-direction:column;gap:3px}
+.dm-b.me{align-self:flex-end;background:var(--border-yellow);color:var(--on-acc);border-radius:18px 18px 6px 18px}.dm-b.tmp{opacity:.6}
+.dm-b small{align-self:flex-end;font:600 10.5px var(--f-mono);opacity:.65}.dm-b .fd-ccard{margin:2px 0}
+.dm-in{display:flex;gap:8px;align-items:center;padding:8px max(12px,env(safe-area-inset-right)) calc(env(safe-area-inset-bottom,0px) + 8px) max(12px,env(safe-area-inset-left));border-top:1px solid var(--line);background:var(--ink)}
+.dm-in input{flex:1;min-width:0;background:var(--panel);border:1px solid var(--line);border-radius:999px;padding:11px 15px;color:var(--fg);font:16px var(--f-body);outline:none}
+.dm-att{width:40px;height:40px;border-radius:50%;background:var(--panel);font-size:18px;flex:none}.dm-go{width:42px;height:42px;border-radius:50%;background:var(--border-yellow);color:var(--on-acc);font-size:17px;flex:none}
+.mn{color:var(--border-yellow);font-weight:700;cursor:pointer}
+.mn-sug{display:flex;gap:6px;overflow-x:auto;padding:4px 0 6px}.mn-sug button{flex:none;display:flex;align-items:center;gap:6px;padding:6px 11px 6px 6px;border-radius:999px;background:var(--panel-2);border:1px solid var(--border-yellow);font-weight:700;font-size:13.5px;color:var(--fg)}
+.mn-sug img{width:22px;height:22px;object-fit:contain;image-rendering:pixelated}
 .fd-cms{margin-top:10px;display:flex;flex-direction:column;gap:8px;max-height:420px;overflow-y:auto;overscroll-behavior:contain}
 .fd-c{display:flex;gap:8px;align-items:flex-start}.fd-c.tmp{opacity:.55}
 .fd-cav{flex:none;width:26px;height:26px;border-radius:8px;background:var(--panel-2);display:grid;place-items:center;font-size:13px;overflow:hidden}.fd-cav img{width:24px;height:24px;object-fit:contain;image-rendering:pixelated}
@@ -1286,7 +1321,7 @@ html{background:var(--panel)}
 .fd-ex{font:600 10px var(--f-mono);text-transform:uppercase;letter-spacing:.05em;border:1px solid var(--line);border-radius:5px;padding:1px 5px;color:var(--muted)}
 .fd-more{margin-left:auto;color:var(--muted);font-size:18px;line-height:1;padding:0 4px}
 .fd-img{margin-top:10px;border-radius:16px;overflow:hidden;border:1px solid var(--line)}.fd-img img{display:block;width:100%;max-height:420px;object-fit:cover}
-.fd-act{gap:22px;justify-content:flex-start}.fd-act button{display:flex;align-items:center;gap:6px;color:var(--muted);font:600 12.5px var(--f-mono)}.fd-act button.on{color:var(--border-yellow)}.fd-act svg{width:16px;height:16px}
+.fd-act{gap:18px;justify-content:flex-start;flex-wrap:wrap;max-width:none}.fd-act button{display:flex;align-items:center;gap:6px;color:var(--muted);font:600 12.5px var(--f-mono)}.fd-act button.on{color:var(--border-yellow)}.fd-act svg{width:16px;height:16px}
 .fd-vote button.on{background:color-mix(in srgb,currentColor 14%,transparent)}
 .fd-off{font-size:12.5px;color:var(--muted);background:var(--panel);border:1px dashed var(--line);border-radius:12px;padding:9px 12px;margin:0 0 10px}
 
@@ -1764,7 +1799,7 @@ img.px.reveal{animation:stpRev .9s ease-out}
   }
   fit(); addEventListener("resize", fit); addEventListener("orientationchange", function(){ setTimeout(fit, 300); });
 })();</script>
-<script>window.__APPV="151";</script>
+<script>window.__APPV="158";</script>
 <div class="splash" id="splash" aria-hidden="true"><i class="hole"></i><i class="halo"></i><div class="bw"><svg class="b" viewBox="0 0 100 100"><use href="#pb"/></svg><svg class="t" viewBox="0 0 100 100"><use href="#pb"/></svg></div><i class="glow"></i></div>
 <script>setTimeout(function(){ if(window.__booted) return;
   var b=document.createElement("div"); b.setAttribute("role","alert");
@@ -1799,10 +1834,10 @@ img.px.reveal{animation:stpRev .9s ease-out}
   <!-- ===== EXTENSIONS ===== -->
   <section class="view" id="homeView">
     <div class="scroll">
-      <div class="homebar"><span id="avatSlot"><svg class="pball" viewBox="0 0 100 100" aria-hidden="true"><use href="#pb"/></svg></span><span class="brand">DEX<b>·</b>SCAN</span><button class="thbtn" id="themeBtn" aria-label="Changer de thème"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.6-.9 1.2-1.8-.5-1.1.2-2.2 1.4-2.2H17a4 4 0 0 0 4-4c0-5.5-4-10-9-10z"/><circle cx="7.5" cy="11" r="1.2"/><circle cx="10" cy="7" r="1.2"/><circle cx="15" cy="7" r="1.2"/></svg></button><button class="thbtn" id="moreBtn" aria-label="Réglages et plus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg></button><span class="ver" id="hVer">v151</span></div>
+      <div class="homebar"><span class="brand">DEX<b>·</b>SCAN</span><span class="hbis"><button class="hbi" id="hSearch" aria-label="Rechercher une carte"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></button><button class="hbi hrk" id="hRank" aria-label="Classement"><svg viewBox="0 0 24 24" fill="none" stroke="url(#hrkG)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><defs><linearGradient id="hrkG" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFF4C2"/><stop offset=".35" stop-color="#FFD86E"/><stop offset=".65" stop-color="#7CF3FF"/><stop offset="1" stop-color="#E2B8FF"/></linearGradient></defs><path d="M8 21h8M12 17v4"/><path d="M7 4h10v5a5 5 0 0 1-10 0z"/><path d="M17 5h3v2a3 3 0 0 1-3 3M7 5H4v2a3 3 0 0 0 3 3"/></svg></button><button class="hbi" id="themeBtn" aria-label="Changer de thème"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.6-.9 1.2-1.8-.5-1.1.2-2.2 1.4-2.2H17a4 4 0 0 0 4-4c0-5.5-4-10-9-10z"/><circle cx="7.5" cy="11" r="1.2"/><circle cx="10" cy="7" r="1.2"/><circle cx="15" cy="7" r="1.2"/></svg></button><button class="hbi" id="moreBtn" aria-label="Réglages et plus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg></button></span><span class="ver" id="hVer">v158</span></div>
       <button class="banner" id="pxBanner" hidden></button>
-      <div class="hhead"><div><span class="hdate" id="hDate"></span><div class="htitle"><h1 class="h1">Accueil</h1><button class="hsearch hrank" id="hRank" aria-label="Classement"><svg viewBox="0 0 24 24" fill="none" stroke="url(#hrkG)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><defs><linearGradient id="hrkG" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFF4C2"/><stop offset=".35" stop-color="#FFD86E"/><stop offset=".65" stop-color="#7CF3FF"/><stop offset="1" stop-color="#E2B8FF"/></linearGradient></defs><path d="M8 21h8M12 17v4"/><path d="M7 4h10v5a5 5 0 0 1-10 0z"/><path d="M17 5h3v2a3 3 0 0 1-3 3M7 5H4v2a3 3 0 0 0 3 3"/></svg></button></div></div><button class="hsearch" id="hSearch" aria-label="Rechercher une carte"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></button></div>
-      <div class="total htot" id="hTot"></div>
+      <span class="hdate hgreet" id="hDate"></span>
+      <div class="hhero"><div class="total htot" id="hTot"></div><span id="avatSlot"></span></div>
       <div class="wmov hmov" id="hMov"></div>
       <button class="btn btn-g pxallist" id="pxAlList" hidden></button>
       <div class="hqa">
@@ -1819,9 +1854,10 @@ img.px.reveal{animation:stpRev .9s ease-out}
   <section class="view" id="socialView" hidden>
     <div class="scroll" id="soScroll">
       <h1 class="h1">Social</h1>
-      <div class="fx-seg" id="soSeg"><button data-so="feed">Le Fil <i id="hsegN" hidden></i></button><button data-so="rank">Classement</button></div>
+      <div class="fx-seg" id="soSeg"><button data-so="feed">Le Fil <i id="hsegN" hidden></i></button><button data-so="rank">Classement</button><button data-so="dm">Messages <i id="dmN" hidden></i></button></div>
       <div id="feedPane" hidden></div>
       <div id="soRank" hidden></div>
+      <div id="soDm" hidden></div>
     </div>
   </section>
   <section class="view" id="moreView" hidden>
@@ -2496,7 +2532,10 @@ const cmUrl = c => { const id = c?.pricing?.cardmarket?.idProduct, lg = CM_LANG[
 // les vendeurs écrivent « CCC 9 », « Collect Aura 9.5 », « Noté 9.5 », « Gradé 10 », « PGS »… (test du 16/11/2026 sur eBay France)
 // Lieu de l'objet imposé (_salic : 71 = France, 1 = États-Unis) : sur téléphone, l'app eBay ouvre son propre site (celui
 // de ton pays) quel que soit le lien. Sans ce filtre, « eBay France » et « eBay États-Unis » montraient les mêmes ventes.
-const ebayUrl = (c, o={}, dom="ebay.fr") => { const r = ebayQuery(c, dom==="ebay.com" ? {us:true, ...o} : o); return `https://www.${dom}/sch/i.html?_nkw=${encodeURIComponent(r.q)}${r.ex?`&_ex_kw=${encodeURIComponent(r.ex)}`:""}&LH_ItemCondition=${o.grade!=null?2750:4000}&LH_LocatedIn=1&_salic=${dom==="ebay.com"?1:71}&LH_Sold=1&LH_Complete=1&_sop=${o.sop||13}`; };
+// pays de l'objet pour chaque site eBay (_salic) : 71 France, 1 États-Unis, 77 Allemagne, 3 Royaume-Uni
+const EBAY_LOC = {"ebay.fr":71, "ebay.com":1, "ebay.de":77, "ebay.co.uk":3};
+const ebLoc = dom => `&LH_LocatedIn=1&_salic=${EBAY_LOC[dom]||71}`;
+const ebayUrl = (c, o={}, dom="ebay.fr") => { const r = ebayQuery(c, dom==="ebay.com" ? {us:true, ...o} : o); return `https://www.${dom}/sch/i.html?_nkw=${encodeURIComponent(r.q)}${r.ex?`&_ex_kw=${encodeURIComponent(r.ex)}`:""}&LH_ItemCondition=${o.grade!=null?2750:4000}${ebLoc(dom)}&LH_Sold=1&LH_Complete=1&_sop=${o.sop||13}`; };
 
 /* ---------------- Fiche ---------------- */
 let current = null, currentAlts = [], currentVariant = 0, currentEd = null;
@@ -3957,7 +3996,7 @@ async function jpCardSheet(b){
       <div class="psub">${c.l!=null?`Annonces de ${esc(jpFmt(c.l))} à ${esc(jpFmt(c.h))}`:"Pas encore de prix pour cette carte."}</div>
       <div class="links">
         ${c.url?`<a href="${esc(c.url)}" target="_blank" rel="noopener">${ico.ext}Voir sur TCGplayer</a>`:""}
-        <a href="https://www.ebay.fr/sch/i.html?_nkw=${q}&LH_ItemCondition=4000&LH_Sold=1&LH_Complete=1&_sop=13" target="_blank" rel="noopener">${ico.ext}Ventes eBay réalisées</a>
+        <a href="https://www.ebay.fr/sch/i.html?_nkw=${q}&LH_ItemCondition=4000${ebLoc("ebay.fr")}&LH_Sold=1&LH_Complete=1&_sop=13" target="_blank" rel="noopener">${ico.ext}Ventes eBay réalisées</a>
         <a href="https://www.cardmarket.com/fr/Pokemon/Products/Search?searchString=${encodeURIComponent(c.n)}" target="_blank" rel="noopener">${ico.ext}Cardmarket</a>
       </div>
     </div>
@@ -6296,7 +6335,7 @@ function pfMarket({c, us, qFr, qEn, link}){
   const usRows = us?.m!=null ? [["Prix du marché", `${bE(sEur(us.m))} <small>${usd(us.m)}</small>`], us.l!=null ? ["Annonces", `${usd(us.l)} – ${usd(us.h)}`] : null, us.mid!=null ? ["Prix médian des annonces", bE(sEur(us.mid))] : null, us.dl!=null ? ["Moins cher en vente directe", bE(sEur(us.dl))] : null].filter(Boolean) : [];
   return `${g.length?`<div class="pfsec"><h4>Ventes récentes · Cardmarket</h4><div class="pfgrid">${g.map(([l,v])=>`<div><span>${l}</span><b>${bE(v)}</b></div>`).join("")}</div></div>`
       : `<div class="pfsec"><p class="psub" style="margin:0">${(()=>{ try{ return BUD.cm; }catch(e){ return null; } })() ? "Ce produit n'est pas relié à Cardmarket." : "Cotes Cardmarket en cours de chargement."}${link?` <button class="btn btn-g" id="bdLink" style="padding:6px 10px;font-size:12.5px">Le relier</button>`:""}</p></div>`}
-    <div class="pfsec"><h4>Ventes réalisées</h4><div class="pfrow">${pfLink(ebayFr(true, qFr), "eBay France")}${pfLink(`https://www.ebay.com/sch/i.html?_nkw=${enc(qEn)}&LH_Sold=1&LH_Complete=1&_sop=13`, "eBay .com")}${pfLink(`https://www.ebay.de/sch/i.html?_nkw=${enc(qEn)}&LH_Sold=1&LH_Complete=1&_sop=13`, "eBay .de")}${pfLink(`https://www.ebay.co.uk/sch/i.html?_nkw=${enc(qEn)}&LH_Sold=1&LH_Complete=1&_sop=13`, "eBay .uk")}</div></div>
+    <div class="pfsec"><h4>Ventes réalisées</h4><div class="pfrow">${pfLink(ebayFr(true, qFr), "eBay France")}${pfLink(`https://www.ebay.de/sch/i.html?_nkw=${enc(qEn)}${ebLoc("ebay.de")}&LH_Sold=1&LH_Complete=1&_sop=13`, "eBay Allemagne")}${pfLink(`https://www.ebay.co.uk/sch/i.html?_nkw=${enc(qEn)}${ebLoc("ebay.co.uk")}&LH_Sold=1&LH_Complete=1&_sop=13`, "eBay Royaume-Uni")}${pfLink(`https://www.ebay.com/sch/i.html?_nkw=${enc(qEn)}${ebLoc("ebay.com")}&LH_Sold=1&LH_Complete=1&_sop=13`, "eBay États-Unis")}</div></div>
     <div class="pfsec"><h4>En vente maintenant</h4><div class="pfrow">${pfLink(`https://www.cardmarket.com/fr/Pokemon/Products/Search?searchString=${enc(c?.n || qEn)}`, "Cardmarket")}${pfLink(ebayFr(false, qFr), "eBay")}${pfLink(`https://www.vinted.fr/catalog?search_text=${enc(qFr)}&order=price_low_to_high`, "Vinted")}${pfLink(`https://www.leboncoin.fr/recherche?text=${enc(qFr)}&sort=price&order=asc`, "Leboncoin")}</div></div>
     ${usRows.length?`<div class="pfsec"><h4>États-Unis · TCGplayer${us.lg==="JP"?" · version japonaise":""}</h4>${usRows.map(([l,v])=>`<div class="pfline"><span>${l}</span><b>${v}</b></div>`).join("")}${mv?`<div class="pfmv">${mv}</div>`:""}</div>`:""}
     <details class="pfinfo"><summary>ⓘ D'où viennent ces prix ?</summary><p>Cote France : Cardmarket, la place de marché de référence en France. Ventes conclues et annonces des vendeurs européens (surtout France et Allemagne), toutes langues confondues : la version française peut se vendre un peu plus ou un peu moins cher. « Moins chère » = l'annonce la moins chère en ce moment.</p><p>États-Unis : TCGplayer, convertis en euros au taux de la BCE${SEALED.data?.usdEur?` (1 $ = ${String(SEALED.data.usdEur.toFixed(4)).replace(".",",")} €)`:""}. Ventes réalisées : eBay est le seul site qui publie ses ventes conclues ; Vinted et Leboncoin ne montrent que les annonces en cours.</p></details>`;
@@ -6324,7 +6363,8 @@ function pfWire(root){
 /* ---------- fiche d'un produit : achat, magasins, revente France, reste du monde ---------- */
 /* sections communes des fiches produit : magasins, revente France, reste du monde */
 const enc = encodeURIComponent;
-const ebayFr = (sold, q) => `https://www.ebay.fr/sch/i.html?_nkw=${enc(q+" -(lot,vide,empty,proxy)")}${sold?"&LH_Sold=1&LH_Complete=1":""}&_sop=${sold?13:15}`;
+// eBay France : objets situés en France seulement (sinon l'app eBay du téléphone montre surtout des ventes américaines)
+const ebayFr = (sold, q) => `https://www.ebay.fr/sch/i.html?_nkw=${enc(q+" -(lot,vide,empty,proxy)")}${ebLoc("ebay.fr")}${sold?"&LH_Sold=1&LH_Complete=1":""}&_sop=${sold?13:15}`;
 // revente : ce qui s'est vendu (eBay, le seul à publier ses ventes conclues) et ce qui est en vente maintenant, du moins cher au plus cher
 const site = (dom, q) => `https://www.google.com/search?q=${enc(`site:${dom} ${q}`)}`;
 const brow = (l, v, cls="") => `<tr class="${cls}"><td>${l}</td><td>${v}</td></tr>`;
@@ -6463,7 +6503,8 @@ const ALLV = ["homeView","extView","scanView","searchView","colView","alertView"
 function renderHome(){
   const el = $("#hTot"); if(!el) return;
   try{ renderAvatar(); }catch(e){}
-  $("#hDate").textContent = new Date().toLocaleDateString("fr-FR",{weekday:"long", day:"numeric", month:"long"});
+  const who = (store.get("rk",null)||{}).name;
+  $("#hDate").textContent = (who ? `Salut ${who} · ` : "") + new Date().toLocaleDateString("fr-FR",{weekday:"short", day:"numeric", month:"short"});
   const col = getCol(), cards = col.reduce((a,x)=>a+(x.price||0)*x.qty,0);
   const rows = budRows(), own = rows.filter(r=>r.q>0);
   const seal = own.filter(r=>r.k==="s").reduce((a,r)=>a+(r.val ?? r.cost),0), grad = own.filter(r=>r.k==="g").reduce((a,r)=>a+(r.val ?? r.cost),0);
@@ -7082,7 +7123,10 @@ const lvNeed = l => 50 * (l-1) * (l-1);                      // XP pour atteindr
 const lvOf = xp => Math.min(50, Math.floor(Math.sqrt(xp/50)) + 1);
 /* ---- Évolutions : chaque compagnon évolue 5 niveaux après avoir rejoint l'équipe (au plus tôt au niveau 10) ---- */
 const isEvo = k => !!getTeam().find(x=>x.k===k)?.evo;
-const pImg = st => st && isEvo(st.k) && st.evo ? st.evo : st?.img;
+// _ev : compagnon d'un autre dresseur (évolué ou non, d'après son pk) ; sinon c'est mon équipe qui décide
+const pImg = st => !st ? undefined : st._ev!=null ? (st._ev && st.evo ? st.evo : st.img) : (isEvo(st.k) && st.evo ? st.evo : st.img);
+// mon compagnon tel que les autres le voient : « pandabraise~e » quand il a évolué
+const myPk = () => { const k = store.get("starter",""); return k && isEvo(k) ? k+"~e" : k; };
 const pSp = st => st && isEvo(st.k) && st.en ? st.en : st?.n;
 const pTy = st => st && isEvo(st.k) && st.et ? st.et : st?.t;
 const evoLvOf = x => Math.max(10, (x.lv||0) + 5);
@@ -7154,7 +7198,12 @@ function palierMsg(lv){
 function renderAvatar(){
   const slot = $("#avatSlot"), st = starterOf(); if(!slot || !st) return;
   const xp = acctXP(), lv = lvOf(xp);
-  slot.innerHTML = `<button class="avat" id="avat" aria-label="${esc(petName())}, niveau ${lv}">${petArt(st, lv)}<b>Niv. ${lv}<small>${esc(petName())}</small></b></button>`;
+  const a0 = lvNeed(lv), a1 = lvNeed(lv+1), pc = lv>=50 ? 100 : Math.max(4, Math.round((xp-a0)/(a1-a0)*100));
+  const pal = palierOf(lv), left = lv>=50 ? 0 : Math.max(0, a1 - xp);
+  // bande compagnon au-dessus de la valeur : sprite, nom, niveau, barre d'XP, étoiles de palier
+  slot.innerHTML = `<button class="avat band" id="avat" aria-label="${esc(petName())}, niveau ${lv}">${petArt(st, lv)}
+    <span class="bd"><span class="r1"><b>${esc((n=>n===n.toUpperCase()?n.charAt(0)+n.slice(1).toLowerCase():n)(petName()))}</b><span>Niv. ${lv}</span></span><span class="xpb"><i style="width:${pc}%"></i></span>
+    <span class="r2"><span class="st">${"★".repeat(pal)}<span>${"★".repeat(10-pal)}</span></span><small>${lv>=50?"niveau max":`${left.toLocaleString("fr-FR")} XP → ${lv+1}`}</small></span></span><span class="chev">›</span></button>`;
   $("#avat").onclick = openAvatar;
   const prev = store.get("lvl", 0);
   if(prev && lv > prev && !$("#stp")) setTimeout(()=>gameBox([`${petName()} passe au niveau ${lv} !`, lv%5===0 ? palierMsg(lv) : `Prochaine récompense au niveau ${Math.min(50, Math.ceil((lv+1)/5)*5)}.`], [{label:"Super !", go:true, run:()=>setTimeout(()=>{ try{ teamOffer(); }catch(e){} }, 500)}]), 600);
@@ -7620,13 +7669,14 @@ async function rkCall(path, body){
 }
 async function rkSync(force){
   const p = rkProf(); if(!p?.on || !starterOf()) return null;
-  const s = rkStats(), body = {id:p.id, key:p.key, name:p.name, pet:petName(), pk:store.get("starter",""), xp:s.xp, cards:s.cards, sets:s.sets, val:p.val ? s.val : null};
+  const s = rkStats(), body = {id:p.id, key:p.key, name:p.name, pet:petName(), pk:myPk(), xp:s.xp, cards:s.cards, sets:s.sets, val:p.val ? s.val : null};
   const sig = JSON.stringify(body); if(!force && sig===RK.last) return null;
   try{ const j = await rkCall("/sync", body); RK.last = sig; return j.me; }catch(e){ return null; }
 }
 // appelé à chaque changement de collection (via renderAvatar) : on regroupe les envois
 function rkSoon(){ if(!rkProf()?.on) return; clearTimeout(RK.t); RK.t = setTimeout(()=>rkSync(), 5000); clearTimeout(RK.ct); RK.ct = setTimeout(()=>rkColSync(), 25000); }
-const rkPet = pk => STARTERS.find(x=>x.k===pk) || null;
+const rkPet = pk => { const [k, e] = String(pk||"").split("~"), st = STARTERS.find(x=>x.k===k); if(!st) return null;
+  const ev = e==="e" && !!st.evo; return {...st, _ev:ev, img: ev ? st.evo : st.img, n: ev && st.en ? st.en : st.n}; };
 // amis : liste gardée sur ce téléphone (id + pseudo + compagnon), onglet « Amis » du classement
 const rkFr = () => store.get("rkFr", []);
 const rkIsFr = id => rkFr().some(x=>x.id===id);
@@ -7693,10 +7743,12 @@ function rkPlayer(r){
     <div><span>Cartes</span><b>${r.cards.toLocaleString("fr-FR")}</b></div><div><span>Extensions complètes</span><b>${r.sets}</b></div>
     ${r.val!=null?`<div><span>Valeur de la collection</span><b>${eurN(r.val)} €</b></div>`:""}</div></div>
     ${r.id!==rkProf()?.id?`<button class="btn ${rkIsFr(r.id)?"btn-g":"btn-y"}" id="rkFrB" style="width:100%;margin-top:14px">${rkIsFr(r.id)?"✓ Dans tes amis · retirer":"⭐ Ajouter en ami"}</button>`:""}
+    ${r.id!==rkProf()?.id && FEED.ok && fdMe() ? `<button class="btn btn-g" id="rkDm" style="width:100%;margin-top:8px">✉️ Envoyer un message</button>` : ""}
     <button class="btn ${r.id!==rkProf()?.id?"btn-g":"btn-y"}" id="rkSeeCol" style="width:100%;margin-top:${r.id!==rkProf()?.id?8:14}px">Voir ${r.id===rkProf()?.id?"ma":"sa"} collection</button>`;
   openSheet();
   $("#rkFrB") && ($("#rkFrB").onclick = ()=>{ const on = rkFrToggle(r), b = $("#rkFrB"); b.className = "btn "+(on?"btn-g":"btn-y"); b.textContent = on ? "✓ Dans tes amis · retirer" : "⭐ Ajouter en ami"; RK.data = null; renderRank(); });
   $("#rkSeeCol").onclick = ()=>rkCollection(r.id);
+  $("#rkDm") && ($("#rkDm").onclick = ()=>{ closeSheet(); dmOpen(r.id, r.name, r.pk); });
 }
 function rkSetup(){
   const p = rkProf() || {};
@@ -7838,7 +7890,7 @@ async function rkSetVal(on){
   const p = rkProf(); if(!p?.on) return;
   store.set("rk", {...p, val:on}); RK.last = ""; RK.data = null; store.set("rkColSig", "");
   const push = async ()=>{ const s = rkStats(), q = rkProf();
-    const j = await rkCall("/sync", {id:q.id, key:q.key, name:q.name, pet:petName(), pk:store.get("starter",""), xp:s.xp, cards:s.cards, sets:s.sets, val:q.val ? s.val : null}).catch(()=>null);
+    const j = await rkCall("/sync", {id:q.id, key:q.key, name:q.name, pet:petName(), pk:myPk(), xp:s.xp, cards:s.cards, sets:s.sets, val:q.val ? s.val : null}).catch(()=>null);
     const c = await rkCall("/col", {id:q.id, key:q.key, cards:q.col===false ? [] : rkColPayload()}).catch(()=>null);
     return !(j?.slow || c?.slow); };
   // le serveur ignore deux envois à moins de 15 s d'écart : on renvoie après le délai si besoin
@@ -7934,6 +7986,13 @@ async function betaPublishFlow(){
 }
 /* Journal des modifications de la Bêta : la carte « Version Bêta » liste celles que les copains n'ont pas encore */
 const BETA_LOG = [
+  {v:158, t:"Accueil : le compagnon a sa propre bande au-dessus de la valeur (nom, niveau, barre d'XP, étoiles de palier)"},
+  {v:157, t:"Accueil : niveau du compagnon dans une pastille, étoiles de palier et XP restante"},
+  {v:156, t:"Le Fil, les messages et le classement montrent ton compagnon évolué (et plus le starter)"},
+  {v:155, t:"Mentions @pseudo dans les posts et commentaires : suggestions en tapant @, notification pour la personne mentionnée"},
+  {v:154, t:"Scellés : ventes eBay France vraiment françaises (objets situés en France), et chaque pays avec ses propres ventes (Allemagne, Royaume-Uni, États-Unis)"},
+  {v:153, t:"Nouveau haut de l'Accueil : barre fine avec les icônes, ton compagnon en grand sur la valeur avec son niveau"},
+  {v:152, t:"Messages privés entre dresseurs (onglet Messages dans Social, ✉️ sur les posts et dans le Classement)"},
   {v:151, t:"Le Fil : 9 modes de publication (Discussion, Réassort, Échange, Ma carte, Ma collec, Ouverture, Je cherche, Je vends, Sondage), ville, contre-offre en commentaire"},
   {v:150, t:"Commentaires sur les posts du Fil, avec notification quand on commente ton post"},
   {v:149, t:"Le Fil : liker ou voter ne fait plus clignoter ni sauter la page"},
@@ -8014,7 +8073,7 @@ function fdAttHTML(x){
     const side = (c, l) => `<div class="side"><small>${l}</small>${c.img?`<img src="${esc(c.img)}" alt="" loading="lazy">`:`<span class="fd-cph"></span>`}<b>${esc(c.name)}</b><span>${c.price!=null?bE(c.price):""}</span></div>`;
     h = `<div class="fd-trade">${side(a.give, "Il propose")}<div class="arr">⇄</div>${side(a.want, "Il cherche")}</div>
       <p class="fd-lab">${d!=null?`Écart de cote : ${bE(Math.abs(d))}`:""}${!mine && own.has(a.want.id)?`${d!=null?" · ":""}<b class="okc">Tu as ${esc(a.want.name)} ✓</b>`:""}</p>
-      ${mine?"":`<div class="fd-btns">${B("tprop","Proposer l'échange",1)}${B("tcounter","Contre-offre")}</div>`}`;
+      ${mine?"":`<div class="fd-btns">${B("tprop","Proposer l'échange",1)}${B("tcounter","Contre-offre")}${B("dm","✉️")}</div>`}`;
   }
   else if((x.tag==="card" || x.tag==="want") && a.card){
     h = fdCardRow(a.card, x.tag==="want" ? (mine?"Je cherche":"Il cherche") : "") + (x.tag==="want" && !mine && own.has(a.card.id) ? `<p class="fd-lab"><b class="okc">Tu as cette carte ✓</b></p>` : "")
@@ -8023,7 +8082,7 @@ function fdAttHTML(x){
   else if(x.tag==="sell" && a.card){
     const dv = a.ask!=null && a.card.price ? Math.round((a.ask/a.card.price-1)*100) : null;
     h = fdCardRow(a.card, "À vendre") + `<p class="fd-ask"><b>${a.ask!=null?bE(a.ask):"Prix à discuter"}</b>${dv!=null?`<span class="${dv>15?"hi":dv<-5?"lo":""}">${dv>0?"+":""}${dv} % par rapport à la cote</span>`:""}</p>`
-      + `<div class="fd-btns">${B("see","Voir la fiche")}${mine?"":B("int","Intéressé",1)}</div>`;
+      + `<div class="fd-btns">${B("see","Voir la fiche")}${mine?"":B("int","Intéressé",1)+B("dm","✉️")}</div>`;
   }
   else if(x.tag==="col" && a.cards?.length){
     h = `<div class="fd-mos">${a.cards.map(c=>`<img src="${esc(c.img)}" alt="${esc(c.name)}" loading="lazy">`).join("")}</div>
@@ -8099,6 +8158,7 @@ function fdClick(e){ e.stopPropagation(); const b = e.currentTarget;
     if(a==="cm"){ FEED.cmOpen.has(post.id) ? FEED.cmOpen.delete(post.id) : FEED.cmOpen.add(post.id); fdPatch(post, FEED.cmOpen.has(post.id) && !!fdMe()); return; }
     if(a==="cms"){ const i = b.closest(".fd-cin")?.querySelector("input"); if(i) fdComment(post, i); return; }
     if(a==="ucm"){ fdUncomment(post, b.dataset.c); return; }
+    if(a==="dm"){ dmOpen(post.uid, post.name, post.pk); return; }
     if(a==="see"){ const c = post.att?.card; if(c) showCard(c.id, []); return; }
     if(a==="seecol"){ rkCollection(post.uid); return; }
     if(a==="pv"){ fdAct("pvote", post, {o:+b.dataset.o}); return; }
@@ -8122,7 +8182,7 @@ function fdPatch(post, focus){
   fdBindCm(art); if(focus){ const i = art.querySelector(".fd-cin input"); i?.focus({preventScroll:true}); }
   const l = art.querySelector(".fd-cms"); if(focus && l) l.scrollTop = l.scrollHeight;
 }
-function fdBindCm(r){ r.querySelectorAll(".fd-cin input").forEach(i=>{ i.onkeydown = e=>{ if(e.key==="Enter"){ e.preventDefault(); const post = FEED.posts.find(x=>x.id===i.closest("[data-pid]").dataset.pid); if(post) fdComment(post, i); } }; }); }
+function fdBindCm(r){ r.querySelectorAll(".fd-cin input").forEach(i=>{ if(!i.dataset.mn){ i.dataset.mn = 1; mnAttach(i, i.closest(".fd-cin")); } i.onkeydown = e=>{ if(e.key==="Enter"){ e.preventDefault(); const post = FEED.posts.find(x=>x.id===i.closest("[data-pid]").dataset.pid); if(post) fdComment(post, i); } }; }); }
 async function fdAct(kind, post, extra={}){
   const snap = {...post, pv:post.pv && [...post.pv]}, quick = kind==="like" || kind==="vote" || kind==="pvote";
   const local = ()=>{
@@ -8146,9 +8206,9 @@ function fdPostHTML(x){
   const av = `<span class="fd-av">${st?`<img src="${st.img}" alt="">`:"🙂"}<i>${x.lv||1}</i></span>`;
   const tot = (x.ok||0)+(x.ko||0), pc = tot ? Math.round((x.ok||0)/tot*100) : 50;
   return `<article class="fd-post" data-pid="${esc(x.id)}">${av}<div class="fd-body">
-    <div class="fd-h"><b>${esc(x.name||"Dresseur")}</b><span>· ${fdAgo(x.t)}</span>${x.demo?`<span class="fd-ex">exemple</span>`:""}<button class="fd-more" data-fa="more" aria-label="Options">⋯</button></div>
+    <div class="fd-h"><b>${esc(x.name||"Dresseur")}</b><span>· ${fdAgo(x.t)}</span>${x.demo?`<span class="fd-ex">exemple</span>`:""}${fdMe() && !mine && !x.demo ? `<button class="fd-dm" data-fa="dm" aria-label="Envoyer un message à ${esc(x.name||"")}">✉️</button>` : ""}<button class="fd-more" data-fa="more" aria-label="Options">⋯</button></div>
     <span class="fd-tag ${tg[2]}">${tg[0]} ${tg[1]}</span>
-    ${x.text?`<p class="fd-txt">${esc(x.text).replace(/(^|[^&\w])#([\wÀ-ÿ]+)/g,'$1<span class="ht">#$2</span>')}</p>`:""}
+    ${x.text?`<p class="fd-txt">${esc(x.text).replace(/(^|[^&\w])#([\wÀ-ÿ]+)/g,'$1<span class="ht">#$2</span>').replace(/(^|[^&\w@])@([\wÀ-ÿ._-]{2,24})/g,'$1<span class="mn" data-mn="$2">@$2</span>')}</p>`:""}
     ${fdAttHTML(x)}
     ${x.img?`<div class="fd-img"><img src="${esc(x.img)}" alt="" loading="lazy"></div>`:""}${x.city?`<p class="fd-city">📍 ${esc(x.city)}</p>`:""}
     ${x.tag==="re"?`<div class="fd-shop">${x.shop||x.price!=null?`<div class="r1"><span class="ic">🛒</span><div><b>${esc(x.shop||"Boutique")}</b><small>signalé ${fdAgo(x.t)}</small></div>${x.price!=null?`<span class="pr"><small>prix</small>${bE(x.price)}</span>`:""}</div>`:""}
@@ -8163,7 +8223,7 @@ function fdCmHTML(x){
   const l = x.cm||[], open = FEED.cmOpen.has(x.id), me = fdMe()?.id, own = me && x.uid===me;
   if(!l.length && !open) return `<div class="fd-cms" hidden></div>`;
   const shown = open ? l : l.slice(-2);
-  const one = c => { const st = rkPet(c.pk); return `<div class="fd-c${c.tmp?" tmp":""}"><span class="fd-cav">${st?`<img src="${st.img}" alt="">`:"🙂"}</span><div class="fd-cb"><b>${esc(c.name||"Dresseur")}</b> ${esc(c.text||"").replace(/(^|[^&\w])#([\wÀ-ÿ]+)/g,'$1<span class="ht">#$2</span>')}${c.card?`<span class="fd-ccard">${c.card.img?`<img src="${esc(c.card.img)}" alt="">`:""}<span><b>${esc(c.card.name)}</b>${c.card.price!=null?` · ${bE(c.card.price)}`:""}</span></span>`:""}<small>${fdAgo(c.t)}</small></div>${me && (c.uid===me || own) && !c.tmp ? `<button class="fd-cx" data-fa="ucm" data-c="${esc(c.id)}" aria-label="Supprimer le commentaire">✕</button>` : ""}</div>`; };
+  const one = c => { const st = rkPet(c.pk); return `<div class="fd-c${c.tmp?" tmp":""}"><span class="fd-cav">${st?`<img src="${st.img}" alt="">`:"🙂"}</span><div class="fd-cb"><b>${esc(c.name||"Dresseur")}</b> ${esc(c.text||"").replace(/(^|[^&\w])#([\wÀ-ÿ]+)/g,'$1<span class="ht">#$2</span>').replace(/(^|[^&\w@])@([\wÀ-ÿ._-]{2,24})/g,'$1<span class="mn" data-mn="$2">@$2</span>')}${c.card?`<span class="fd-ccard">${c.card.img?`<img src="${esc(c.card.img)}" alt="">`:""}<span><b>${esc(c.card.name)}</b>${c.card.price!=null?` · ${bE(c.card.price)}`:""}</span></span>`:""}<small>${fdAgo(c.t)}</small></div>${me && (c.uid===me || own) && !c.tmp ? `<button class="fd-cx" data-fa="ucm" data-c="${esc(c.id)}" aria-label="Supprimer le commentaire">✕</button>` : ""}</div>`; };
   return `<div class="fd-cms">${!open && l.length>2 ? `<button class="fd-call" data-fa="cm">Voir les ${l.length} commentaires</button>` : ""}${shown.map(one).join("")}
     ${open ? `<div class="fd-cin"><input type="text" maxlength="300" placeholder="${fdMe()?"Ajoute un commentaire…":"Crée ton profil pour commenter"}" enterkeyhint="send" ${fdMe()?"":"disabled"}><button data-fa="cms" aria-label="Envoyer">➤</button></div>` : ""}</div>`;
 }
@@ -8177,7 +8237,7 @@ async function fdComment(post, inp){ const t = inp.value.trim(); if(!t) return; 
 async function fdSendCm(post, text, card, focus){
   const p = fdMe(); if(!p || (!text && !card)) return;
   FEED.cmOpen.add(post.id);
-  const tmp = {id:"tmp"+Date.now(), uid:p.id, name:p.name, pk:starterOf()?.k, lv:lvOf(acctXP()), text, card:card||undefined, t:Date.now(), tmp:true};
+  const tmp = {id:"tmp"+Date.now(), uid:p.id, name:p.name, pk:myPk(), lv:lvOf(acctXP()), text, card:card||undefined, t:Date.now(), tmp:true};
   post.cm = [...(post.cm||[]), tmp]; fdPatch(post, !!focus);
   if(FEED.live){ try{ const j = await fdApi("/comment", {id:p.id, key:p.key, post:post.id, name:p.name, pk:tmp.pk, lv:tmp.lv, text, card:card||undefined}); if(j.post) Object.assign(post, j.post); }
     catch(e){ post.cm = post.cm.filter(c=>c!==tmp); toast(e.message); } }
@@ -8208,14 +8268,23 @@ const fdNew = () => { const me = fdMe()?.id; return (FEED.posts||[]).filter(x=>x
 // nouveaux commentaires des autres sur mes posts
 const fdNewCm = since => { const me = fdMe()?.id; if(!me) return []; const o = []; for(const x of FEED.posts||[]) if(x.uid===me) for(const c of x.cm||[]) if(c.uid!==me && c.t>since) o.push({c, post:x}); return o.sort((a,b)=>b.c.t-a.c.t); };
 function fdBadge(){
-  const n = FEED.on ? 0 : fdNew().length + fdNewCm(FEED.seen).length;
-  const b = $("#hsegN"); if(b){ b.textContent = n; b.hidden = !n; }
+  const n = (FEED.on ? 0 : fdNew().length + fdNewCm(FEED.seen).length) + (DM.unread||0);
+  const fn = FEED.on ? 0 : fdNew().length + fdNewCm(FEED.seen).length;
+  const b = $("#hsegN"); if(b){ b.textContent = fn; b.hidden = !fn; }
+  const dn = $("#dmN"); if(dn){ dn.textContent = DM.unread; dn.hidden = !DM.unread; }
   const d = $("#soDot"); if(d){ d.textContent = n>9 ? "9+" : n; d.hidden = !n; }
   try{ if(navigator.setAppBadge) n ? navigator.setAppBadge(n) : navigator.clearAppBadge(); }catch(e){}
   fdNotify();
 }
 function fdNotify(){
   const me = fdMe()?.id, last = store.get("feedNotif", 0);
+  // quelqu'un m'a mentionné (@pseudo) dans un post ou un commentaire
+  const lm = store.get("mnNotif", 0), myName = fdMe()?.name, mns = [];
+  if(myName) for(const x of FEED.posts||[]){ if(x.uid!==me && x.t>lm && mnHas(x.text, myName)) mns.push({t:x.t, who:x.name, pk:x.pk, text:x.text, post:x});
+    for(const c of x.cm||[]) if(c.uid!==me && c.t>lm && mnHas(c.text, myName)) mns.push({t:c.t, who:c.name, pk:c.pk, text:c.text, post:x, cm:true}); }
+  if(mns.length){ mns.sort((a,b)=>b.t-a.t); store.set("mnNotif", mns[0].t);
+    if(lm){ const m = mns[0]; fdBanner(m.pk, `${esc(m.who||"Quelqu'un")} t'a mentionné${m.cm?" en commentaire":""}`, m.text, ()=>{ if(m.cm) FEED.cmOpen.add(m.post.id); FEED.scrollTo = m.post.id; }); return; } }
+  else if(!lm) store.set("mnNotif", Date.now());
   // quelqu'un cherche une carte que j'ai
   const lw = store.get("feedWantNotif", 0), own = fdOwn();
   const wants = (FEED.posts||[]).filter(x=>x.uid!==me && x.t>lw && x.t>FEED.seen && (x.tag==="want" ? own.has(x.att?.card?.id) : x.tag==="trade" && own.has(x.att?.want?.id))).sort((a,b)=>b.t-a.t);
@@ -8240,7 +8309,9 @@ function fdBanner(pk, title, txt, before){
   const st = rkPet(pk);
   let el = $("#fdNotif"); if(!el){ el = document.createElement("button"); el.id = "fdNotif"; el.className = "fdnotif"; document.body.appendChild(el); }
   el.innerHTML = `<span class="fd-av">${st?`<img src="${st.img}" alt="">`:"🙂"}</span><span class="fdn-t"><b>${title}</b><span>${esc((txt||"").slice(0,80))}</span></span>`;
-  el.onclick = ()=>{ el.classList.remove("show"); before?.(); closeSheet(); SO.tab = "feed"; selectTab("socialView"); $("#soScroll").scrollTop = 0; };
+  el.onclick = ()=>{ el.classList.remove("show"); before?.(); closeSheet(); SO.tab = "feed"; selectTab("socialView");
+    const id = FEED.scrollTo; FEED.scrollTo = null; $("#soScroll").scrollTop = 0;
+    if(id) setTimeout(()=>document.querySelector(`#feedPane [data-pid="${CSS.escape(id)}"]`)?.scrollIntoView({block:"start", behavior:"smooth"}), 120); };
   requestAnimationFrame(()=>el.classList.add("show"));
   try{ navigator.vibrate?.(30); }catch(e){}
   clearTimeout(fdNotify._t); fdNotify._t = setTimeout(()=>el.classList.remove("show"), 6000);
@@ -8318,6 +8389,7 @@ function fdCompose(pre={}){
     $("#fcN").textContent = `${d.text.length} / 500`; $("#fcGo").disabled = !ok(); };
   const setMode = m => { d.mode = m; $("#govB").querySelectorAll("[data-fm]").forEach(b=>b.setAttribute("aria-pressed", b.dataset.fm===m)); $("#fcX").placeholder = PH[m]; extra(); upd(); };
   $("#govB").querySelectorAll("[data-fm]").forEach(b=>b.onclick=()=>setMode(b.dataset.fm));
+  mnAttach($("#fcX"));
   $("#fcX").oninput = e=>{ d.text = e.target.value; if(d.mode==="talk" && fdGuess(d.text)==="re") setMode("re"); upd(); };
   $("#fcCity").oninput = e=>{ d.city = e.target.value; };
   const phv = ()=>{ $("#fcPhv").innerHTML = d.img ? `<div class="fc-phv"><img src="${d.img}" alt=""><button type="button" id="fcPhX" aria-label="Retirer la photo">✕</button></div>` : ""; $("#fcPh span").textContent = d.img ? "Changer la photo" : "Photo";
@@ -8330,8 +8402,8 @@ function fdCompose(pre={}){
     const base = {tag:d.mode, text:d.text.trim().slice(0,500), img:d.img, city:d.city.trim()||undefined, shop:d.shop||undefined, price:d.price??undefined, att:att()};
     try{
       FEED.posts ||= [];
-      if(FEED.live){ const j = await fdApi("/post", {id:me.id, key:me.key, name:me.name, pk:st?.k, lv:lvOf(acctXP()), ...base}); FEED.posts.unshift(j.post); }
-      else { FEED.posts.unshift({id:"l"+Date.now().toString(36), uid:me.id, name:me.name, pk:st?.k, lv:lvOf(acctXP()), t:Date.now(), likes:0, ok:0, ko:0, cm:[], ...base, pv:base.att?.opts?.map(()=>0)}); try{ fdSaveLocal(FEED.posts); }catch(x){ FEED.posts[0].img = null; fdSaveLocal(FEED.posts); } }
+      if(FEED.live){ const j = await fdApi("/post", {id:me.id, key:me.key, name:me.name, pk:myPk(), lv:lvOf(acctXP()), ...base}); FEED.posts.unshift(j.post); }
+      else { FEED.posts.unshift({id:"l"+Date.now().toString(36), uid:me.id, name:me.name, pk:myPk(), lv:lvOf(acctXP()), t:Date.now(), likes:0, ok:0, ko:0, cm:[], ...base, pv:base.att?.opts?.map(()=>0)}); try{ fdSaveLocal(FEED.posts); }catch(x){ FEED.posts[0].img = null; fdSaveLocal(FEED.posts); } }
       $("#gov").hidden = true; $("#gov").dataset.mode = ""; FEED.f = "all"; if(pre.go) fdGoFeed(); else renderFeed(); toast("Publié !");
     }catch(e){ b.disabled = false; b.textContent = "Publier sur le Fil"; toast(e.message); }
   };
@@ -8362,6 +8434,108 @@ function fdShareCol(){
 function fdShrink(file){ return new Promise(res=>{ const u = URL.createObjectURL(file), im = new Image();
   im.onload = ()=>{ const s = Math.min(1, 1080/Math.max(im.width, im.height)), c = document.createElement("canvas"); c.width = Math.round(im.width*s); c.height = Math.round(im.height*s); c.getContext("2d").drawImage(im,0,0,c.width,c.height); URL.revokeObjectURL(u); res(c.toDataURL("image/jpeg", .8)); };
   im.onerror = ()=>res(null); im.src = u; }); }
+/* ---------------- Mentions @pseudo (posts et commentaires) ---------------- */
+const mnKey = t => norm(t||"").replace(/[\s._-]+/g,"");
+const mnHas = (txt, name) => { const k = mnKey(name); if(!k) return false; return [...String(txt||"").matchAll(/@([\wÀ-ÿ._-]{2,24})/g)].some(m=>mnKey(m[1])===k); };
+// les dresseurs connus : classement, auteurs du Fil, conversations
+function mnNames(){
+  const me = fdMe()?.id, o = new Map(), add = (id, name, pk) => { if(name && id!==me && !o.has(mnKey(name))) o.set(mnKey(name), {id, name, pk}); };
+  (RK.data?.rows||[]).forEach(r=>add(r.id, r.name, r.pk));
+  (FEED.posts||[]).forEach(x=>{ add(x.uid, x.name, x.pk); (x.cm||[]).forEach(c=>add(c.uid, c.name, c.pk)); });
+  (DM.threads||[]).forEach(t=>add(t.with, t.name, t.pk));
+  return [...o.values()];
+}
+let mnTop = null;
+async function mnFind(name){
+  const k = mnKey(name); let r = mnNames().find(x=>mnKey(x.name)===k);
+  if(!r){ try{ mnTop ||= await fetch(RANK_API+"/top").then(r=>r.json()); const row = (mnTop.rows||[]).find(x=>mnKey(x.name)===k); if(row) return row; }catch(e){} }
+  if(r){ const row = (RK.data?.rows||mnTop?.rows||[]).find(x=>x.id===r.id); return row || r; }
+  return null;
+}
+// toucher un @pseudo : sa fiche du classement (ou, à défaut, une conversation)
+document.addEventListener("click", async e=>{ const m = e.target.closest?.(".mn"); if(!m) return; e.stopPropagation(); e.preventDefault();
+  const r = await mnFind(m.dataset.mn); if(!r){ toast(`Pas de dresseur « ${m.dataset.mn} »`); return; }
+  if(r.xp!=null) rkPlayer(r); else dmOpen(r.id, r.name, r.pk); }, true);
+// suggestions pendant qu'on tape @… (éditeur et commentaires)
+function mnAttach(inp, anchor){
+  let box = null;
+  const hide = ()=>{ box?.remove(); box = null; };
+  inp.addEventListener("input", ()=>{
+    const pos = inp.selectionStart ?? inp.value.length, m = inp.value.slice(0, pos).match(/(^|\s)@([\wÀ-ÿ._-]{0,24})$/);
+    if(!m){ hide(); return; }
+    const k = mnKey(m[2]), l = mnNames().filter(x=>mnKey(x.name).startsWith(k)).slice(0, 6);
+    if(!l.length){ hide(); return; }
+    if(!box){ box = document.createElement("div"); box.className = "mn-sug"; (anchor||inp).insertAdjacentElement("beforebegin", box); }
+    box.innerHTML = l.map((x,i)=>{ const st = rkPet(x.pk); return `<button type="button" data-i="${i}">${st?`<img src="${st.img}" alt="">`:""}@${esc(x.name.replace(/\s+/g,""))}</button>`; }).join("");
+    box.querySelectorAll("[data-i]").forEach(b=>b.onpointerdown=ev=>{ ev.preventDefault(); const x = l[+b.dataset.i], tag = "@"+x.name.replace(/\s+/g,"")+" ";
+      const before = inp.value.slice(0, pos).replace(/@([\wÀ-ÿ._-]{0,24})$/, tag); inp.value = before + inp.value.slice(pos); inp.setSelectionRange(before.length, before.length);
+      inp.dispatchEvent(new Event("input")); hide(); inp.focus(); });
+  });
+  inp.addEventListener("blur", ()=>setTimeout(hide, 150));
+}
+/* ---------------- Messages privés (serveur du Fil : /feed/dm/…) ---------------- */
+const DM = {threads:null, unread:0, open:null, msgs:[], timer:null, busy:false};
+const dmAgo = t => { const d = Date.now()-t; if(d<6e4) return "à l'instant"; if(d<36e5) return Math.floor(d/6e4)+" min"; if(d<864e5) return new Date(t).toLocaleTimeString("fr-FR",{hour:"2-digit",minute:"2-digit"}); return new Date(t).toLocaleDateString("fr-FR",{day:"numeric",month:"short"}); };
+async function dmLoad(){
+  const p = fdMe(); if(!p || !FEED.ok || DM.busy) return; DM.busy = true;
+  try{ const j = await fdApi("/dm/list", {id:p.id, key:p.key}); DM.threads = j.threads||[]; }catch(e){ DM.threads ||= []; }
+  DM.busy = false;
+  const prev = DM.unread; DM.unread = DM.threads.filter(t=>t.with!==DM.open).reduce((s,t)=>s+(t.unread||0),0);
+  // quelqu'un m'a écrit : bannière (sauf si je suis déjà dans la conversation)
+  const last = store.get("dmNotif", 0), fresh = DM.threads.filter(t=>t.unread && t.t>last && t.with!==DM.open).sort((a,b)=>b.t-a.t);
+  if(fresh.length){ store.set("dmNotif", fresh[0].t); if(last){ const t = fresh[0]; fdBanner(t.pk, `${esc(t.name||"Quelqu'un")} t'a écrit`, t.last, null); $("#fdNotif").onclick = ()=>{ $("#fdNotif").classList.remove("show"); dmOpen(t.with, t.name, t.pk); }; } }
+  else if(!last) store.set("dmNotif", Date.now());
+  if(SO.tab==="dm" && curView()==="socialView") renderDm();
+  if(prev!==DM.unread) fdBadge();
+}
+function renderDm(){
+  const el = $("#soDm"); if(!el) return;
+  if(!fdMe()){ el.innerHTML = `<div class="empty" style="padding:40px 12px">Crée ton profil de dresseur pour écrire aux autres.<br><button class="btn btn-y" id="dmSetup" style="margin-top:14px">Créer mon profil</button></div>`; $("#dmSetup").onclick = ()=>rkSetup(); return; }
+  if(DM.threads===null){ el.innerHTML = `<div class="empty"><span class="loader"></span></div>`; return; }
+  el.innerHTML = DM.threads.length ? `<div class="dm-list">${DM.threads.map(t=>{ const st = rkPet(t.pk); return `<button class="dm-row${t.unread?" new":""}" data-dw="${esc(t.with)}"><span class="fd-av">${st?`<img src="${st.img}" alt="">`:"🙂"}</span><span class="dm-t"><b>${esc(t.name||"Dresseur")}</b><span>${esc(t.last||"")}</span></span><span class="dm-m"><small>${dmAgo(t.t)}</small>${t.unread?`<i>${t.unread}</i>`:""}</span></button>`; }).join("")}</div>`
+    : `<div class="empty" style="padding:40px 12px">Aucun message pour l'instant.<br><small>Écris à un dresseur avec ✉️ sur ses posts du Fil, ou depuis sa fiche dans le Classement.</small></div>`;
+  el.querySelectorAll("[data-dw]").forEach(b=>b.onclick=()=>{ const t = DM.threads.find(x=>x.with===b.dataset.dw); dmOpen(t.with, t.name, t.pk); });
+}
+function dmOpen(w, name, pk){
+  if(!fdNeedMe()) return; if(!w || w===fdMe().id) return;
+  DM.open = w; DM.msgs = null;
+  let el = $("#dmView"); if(el) el.remove();
+  el = document.createElement("div"); el.id = "dmView"; el.className = "dm-view";
+  const st = rkPet(pk);
+  el.innerHTML = `<div class="dm-h"><button class="dm-back" aria-label="Retour">‹</button><span class="fd-av">${st?`<img src="${st.img}" alt="">`:"🙂"}</span><b>${esc(name||"Dresseur")}</b></div>
+    <div class="dm-msgs" id="dmMsgs"><div class="empty"><span class="loader"></span></div></div>
+    <div class="dm-in"><button class="dm-att" aria-label="Joindre une carte de ma collection">🃏</button><input id="dmX" type="text" maxlength="1000" placeholder="Écris ton message…" enterkeyhint="send" autocomplete="off"><button class="dm-go" aria-label="Envoyer">➤</button></div>`;
+  document.body.appendChild(el);
+  const close = ()=>{ clearInterval(DM.timer); DM.open = null; el.remove(); dmLoad(); };
+  el.querySelector(".dm-back").onclick = close;
+  const send = (text, card)=>dmSend(w, name, pk, text, card);
+  el.querySelector(".dm-go").onclick = ()=>{ const i = $("#dmX"), t = i.value.trim(); if(!t) return; i.value = ""; send(t); i.focus(); };
+  $("#dmX").onkeydown = e=>{ if(e.key==="Enter"){ e.preventDefault(); el.querySelector(".dm-go").click(); } };
+  el.querySelector(".dm-att").onclick = ()=>fdPick("col", "Joindre une carte", c=>send("", c));
+  const pull = async ()=>{ if(DM.open!==w) return; try{ const j = await fdApi("/dm/thread", {id:fdMe().id, key:fdMe().key, with:w}); const l = j.msgs||[];
+      const pend = (DM.msgs||[]).filter(m=>m.tmp && !l.some(x=>x.from===m.from && x.text===m.text && Math.abs(x.t-m.t)<6e4));
+      const same = DM.msgs && DM.msgs.length===l.length+pend.length; DM.msgs = [...l, ...pend]; if(!same) dmRender(); }catch(e){ if(DM.msgs===null){ DM.msgs = []; dmRender(); } } };
+  pull(); clearInterval(DM.timer); DM.timer = setInterval(()=>{ if(document.visibilityState==="visible") pull(); }, 5000);
+  const t = DM.threads?.find(x=>x.with===w); if(t && t.unread){ t.unread = 0; DM.unread = DM.threads.reduce((s,x)=>s+(x.unread||0),0); fdBadge(); }
+  setTimeout(()=>$("#dmX")?.focus(), 150);
+}
+function dmRender(){
+  const box = $("#dmMsgs"); if(!box) return; const me = fdMe()?.id, l = DM.msgs||[];
+  const atEnd = box.scrollHeight - box.scrollTop - box.clientHeight < 80;
+  box.innerHTML = l.length ? l.map((m,i)=>{ const day = i===0 || new Date(m.t).toDateString()!==new Date(l[i-1].t).toDateString();
+      return `${day?`<p class="dm-day">${new Date(m.t).toLocaleDateString("fr-FR",{weekday:"long",day:"numeric",month:"long"})}</p>`:""}<div class="dm-b ${m.from===me?"me":""}${m.tmp?" tmp":""}">${m.card?`<span class="fd-ccard">${m.card.img?`<img src="${esc(m.card.img)}" alt="">`:""}<span><b>${esc(m.card.name)}</b>${m.card.price!=null?` · ${bE(m.card.price)}`:""}</span></span>`:""}${m.text?`<span>${esc(m.text)}</span>`:""}<small>${new Date(m.t).toLocaleTimeString("fr-FR",{hour:"2-digit",minute:"2-digit"})}</small></div>`; }).join("")
+    : `<div class="empty">Dis bonjour 👋</div>`;
+  if(atEnd || l.some(m=>m.tmp)) box.scrollTop = box.scrollHeight;
+}
+async function dmSend(w, name, pk, text, card){
+  const p = fdMe(), st = starterOf(); if(!p) return;
+  const tmp = {id:"tmp"+Date.now(), from:p.id, text, card:card||undefined, t:Date.now(), tmp:true};
+  DM.msgs = [...(DM.msgs||[]), tmp]; dmRender();
+  try{ const j = await fdApi("/dm/send", {id:p.id, key:p.key, to:w, toName:name, toPk:pk, name:p.name, pk:myPk(), text, card:card||undefined});
+    DM.msgs = DM.msgs.map(m=>m===tmp ? j.msg : m); }
+  catch(e){ DM.msgs = DM.msgs.filter(m=>m!==tmp); toast(e.message || "Message non envoyé"); }
+  dmRender();
+}
 /* Social (onglet du bas) : Le Fil et le Classement */
 const SO = {tab:store.get("soTab","feed")};
 function soShow(t){
@@ -8371,8 +8545,9 @@ function soShow(t){
   $("#soSeg").hidden = !FEED.ok;
   $("#soSeg").querySelectorAll("[data-so]").forEach(b=>b.classList.toggle("on", b.dataset.so===SO.tab));
   FEED.on = SO.tab==="feed";
-  $("#feedPane").hidden = !FEED.on; $("#soRank").hidden = FEED.on;
+  $("#feedPane").hidden = !FEED.on; $("#soRank").hidden = SO.tab!=="rank"; $("#soDm").hidden = SO.tab!=="dm";
   if(FEED.on) renderFeed();
+  else if(SO.tab==="dm"){ renderDm(); dmLoad(); }
   else { const rv = $("#rankView .scroll"); if(rv && !$("#soRank").children.length){ [...rv.children].forEach(e=>{ if(!e.matches(".rkhead")) $("#soRank").appendChild(e); }); const me = $("#rankMe"); if(me){ me.classList.add("somine"); $("#soRank").prepend(me); } } renderRank(); }
   fdBadge();
 }
@@ -8384,14 +8559,21 @@ $("#moreBack").onclick = ()=>navBack();
   else { try{ const j = await fdApi("?f=all&peek=1"); if(!Array.isArray(j.posts)) throw 0; FEED.live = true; FEED.ok = true; }catch(e){} }   // en production : seulement quand le serveur est prêt
   if(curView()==="socialView") soShow();
   if(FEED.ok && !FEED.on) fdLoad();
-  setInterval(()=>{ if(document.visibilityState==="visible" && FEED.ok && FEED.live) fdLoad(); }, 60000);
-  document.addEventListener("visibilitychange", ()=>{ if(document.visibilityState==="visible" && FEED.ok && FEED.live) fdLoad(); });
+  setInterval(()=>{ if(document.visibilityState==="visible" && FEED.ok && FEED.live){ fdLoad(); dmLoad(); } }, 60000);
+  document.addEventListener("visibilitychange", ()=>{ if(document.visibilityState==="visible" && FEED.ok && FEED.live){ fdLoad(); dmLoad(); } });
+  if(FEED.ok) setTimeout(dmLoad, 1500);
 })();
 
 /* ---------------- Fenêtre « Nouveautés » ----------------
    Après l'intro, une seule fois par version qui apporte quelque chose à l'utilisateur.
    Nouvelle installation : rien (tout est neuf). Les versions purement techniques n'ont pas d'entrée ici. */
 const NEWS = [
+  {v:155, items:[
+    ["M16 12a4 4 0 1 1-8 0 4 4 0 0 1 8 0zM16 12v1.5a2.5 2.5 0 0 0 5 0V12a9 9 0 1 0-3.5 7.1", "Mentionne tes amis", "Écris @ suivi d'un pseudo dans un post ou un commentaire : la personne est prévenue. Touche un @pseudo pour voir sa fiche."]
+  ]},
+  {v:152, items:[
+    ["M4 4h16v12H8l-4 4z", "Messages privés", "Écris à un dresseur avec ✉️ sur ses posts ou depuis sa fiche dans le Classement. Tes conversations sont dans Social › Messages. Tu peux joindre une carte de ta collection."]
+  ]},
   {v:151, items:[
     ["M4 7h11l-3-3M20 17H9l3 3", "Échanges sur le Fil", "Propose une carte de ta collection contre celle que tu cherches. Les autres peuvent accepter ou faire une contre-offre."],
     ["M4 5h16v14H4zM4 10h16", "9 façons de publier", "Discussion, réassort, échange, ma carte, ma collec, ouverture de booster, je cherche, je vends et sondage. Ajoute aussi ta ville."],

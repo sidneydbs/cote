@@ -1286,6 +1286,7 @@ html{background:var(--panel)}
 .fd-c{display:flex;gap:8px;align-items:flex-start}.fd-c.tmp{opacity:.55}
 .fd-cav{flex:none;width:26px;height:26px;border-radius:8px;background:var(--panel-2);display:grid;place-items:center;font-size:13px;overflow:hidden}.fd-cav img{width:24px;height:24px;object-fit:contain;image-rendering:pixelated}
 .fd-cb{flex:1;min-width:0;background:var(--panel-2);border-radius:4px 14px 14px 14px;padding:7px 10px;font-size:14px;line-height:1.35;overflow-wrap:anywhere}.fd-cb b{font-weight:800}.fd-cb small{display:block;margin-top:2px;color:var(--muted);font:600 11px var(--f-mono)}
+.fd-cw{flex:1;min-width:0}.fd-c.re{margin-left:26px}.fd-c.re .fd-cav{width:22px;height:22px}.fd-cre{display:block;font-size:11.5px;color:var(--muted);margin-bottom:2px}.fd-cf{display:flex;align-items:center;gap:12px;margin:3px 0 0 10px}.fd-cf small{color:var(--muted);font-size:11.5px}.fd-cf button{font-size:12px;font-weight:700;color:var(--muted);padding:2px 0;background:none}.fd-cf .fd-clk.on{color:#FF5C8A}.fd-rech{display:flex;align-items:center;gap:6px;font-size:12.5px;color:var(--muted);margin:2px 0 6px}.fd-rech b{color:var(--fg)}.fd-rech button{margin-left:auto;width:24px;height:24px;border-radius:50%;color:var(--muted);font-size:12px}
 .fd-cx{flex:none;width:26px;height:26px;border-radius:50%;color:var(--muted);font-size:12px}
 .fd-call{align-self:flex-start;color:var(--muted);font-weight:700;font-size:13.5px}
 .fd-cin{display:flex;gap:8px;align-items:center;position:sticky;bottom:0;background:var(--ink);padding-top:2px}.fd-cin input{flex:1;min-width:0;background:var(--panel);border:1px solid var(--line);border-radius:999px;padding:10px 14px;color:var(--fg);font:16px var(--f-body)}
@@ -1805,7 +1806,7 @@ img.px.reveal{animation:stpRev .9s ease-out}
   }
   fit(); addEventListener("resize", fit); addEventListener("orientationchange", function(){ setTimeout(fit, 300); });
 })();</script>
-<script>window.__APPV="166";</script>
+<script>window.__APPV="167";</script>
 <div class="splash" id="splash" aria-hidden="true"><i class="hole"></i><i class="halo"></i><div class="bw"><svg class="b" viewBox="0 0 100 100"><use href="#pb"/></svg><svg class="t" viewBox="0 0 100 100"><use href="#pb"/></svg></div><i class="glow"></i></div>
 <script>setTimeout(function(){ if(window.__booted) return;
   var b=document.createElement("div"); b.setAttribute("role","alert");
@@ -1840,7 +1841,7 @@ img.px.reveal{animation:stpRev .9s ease-out}
   <!-- ===== EXTENSIONS ===== -->
   <section class="view" id="homeView">
     <div class="scroll">
-      <div class="homebar"><span class="brand">DEX<b>·</b>SCAN</span><span class="hbis"><button class="hbi" id="hSearch" aria-label="Rechercher une carte"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></button><button class="hbi hrk" id="hRank" aria-label="Classement"><svg viewBox="0 0 24 24" fill="none" stroke="url(#hrkG)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><defs><linearGradient id="hrkG" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFF4C2"/><stop offset=".35" stop-color="#FFD86E"/><stop offset=".65" stop-color="#7CF3FF"/><stop offset="1" stop-color="#E2B8FF"/></linearGradient></defs><path d="M8 21h8M12 17v4"/><path d="M7 4h10v5a5 5 0 0 1-10 0z"/><path d="M17 5h3v2a3 3 0 0 1-3 3M7 5H4v2a3 3 0 0 0 3 3"/></svg></button><button class="hbi" id="themeBtn" aria-label="Changer de thème"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.6-.9 1.2-1.8-.5-1.1.2-2.2 1.4-2.2H17a4 4 0 0 0 4-4c0-5.5-4-10-9-10z"/><circle cx="7.5" cy="11" r="1.2"/><circle cx="10" cy="7" r="1.2"/><circle cx="15" cy="7" r="1.2"/></svg></button><button class="hbi" id="moreBtn" aria-label="Réglages et plus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg></button></span><span class="ver" id="hVer">v166</span></div>
+      <div class="homebar"><span class="brand">DEX<b>·</b>SCAN</span><span class="hbis"><button class="hbi" id="hSearch" aria-label="Rechercher une carte"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></button><button class="hbi hrk" id="hRank" aria-label="Classement"><svg viewBox="0 0 24 24" fill="none" stroke="url(#hrkG)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><defs><linearGradient id="hrkG" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFF4C2"/><stop offset=".35" stop-color="#FFD86E"/><stop offset=".65" stop-color="#7CF3FF"/><stop offset="1" stop-color="#E2B8FF"/></linearGradient></defs><path d="M8 21h8M12 17v4"/><path d="M7 4h10v5a5 5 0 0 1-10 0z"/><path d="M17 5h3v2a3 3 0 0 1-3 3M7 5H4v2a3 3 0 0 0 3 3"/></svg></button><button class="hbi" id="themeBtn" aria-label="Changer de thème"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.6-.9 1.2-1.8-.5-1.1.2-2.2 1.4-2.2H17a4 4 0 0 0 4-4c0-5.5-4-10-9-10z"/><circle cx="7.5" cy="11" r="1.2"/><circle cx="10" cy="7" r="1.2"/><circle cx="15" cy="7" r="1.2"/></svg></button><button class="hbi" id="moreBtn" aria-label="Réglages et plus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg></button></span><span class="ver" id="hVer">v167</span></div>
       <button class="banner" id="pxBanner" hidden></button>
       <span class="hdate hgreet" id="hDate"></span>
       <div class="hhero"><div class="total htot" id="hTot"></div><span id="avatSlot"></span></div>
@@ -4118,7 +4119,7 @@ async function renderPush(){
   const opt = (k, t, sm, dis) => `<label class="apopt${dis?" dis":""}"><span><b>${t}</b><small>${sm}</small></span><input type="checkbox" data-pf="${k}" ${pr[k]&&!dis?"checked":""} ${dis?"disabled":""}><i class="sw"></i></label>`;
   el.innerHTML = on
     ? head("Notifications activées", "Ce téléphone sonne même app fermée. Choisis ce que tu reçois :", ["on","✓ Activées"])
-      + `<div class="apopts">${opt("al","Réassorts et précommandes","Repérés par le guetteur, 24 h/24")}${opt("dm","Messages privés", me?.id ? "Quand un Hunter t'écrit" : "Crée ton profil de Hunter (Classement) pour en recevoir", !me?.id)}${opt("post","Publications du Fil","Chaque nouveau post des autres Hunters")}</div>`
+      + `<div class="apopts">${opt("al","Réassorts et précommandes","Repérés par le guetteur, 24 h/24")}${opt("dm","Messages et réponses", me?.id ? "Quand un Hunter t'écrit, te répond ou commente ton post" : "Crée ton profil de Hunter (Classement) pour en recevoir", !me?.id)}${opt("post","Publications du Fil","Chaque nouveau post des autres Hunters")}</div>`
       + `<div class="apbtns"><button class="btn btn-y" id="pushTest" type="button">Envoyer un test</button><button class="btn btn-g" id="pushOff" type="button">Désactiver</button></div><p class="apmsg" id="pushMsg"></p>`
     : srv?.err && sub
     ? head("Notifications de réassort", "Impossible de vérifier avec le guetteur pour l'instant (connexion). Réessaie dans un moment.", ["wait","?"])
@@ -4174,6 +4175,7 @@ if(store.get("pushOn", false)) setTimeout(async()=>{ const s = await pushSub(); 
 // notification touchée : ouvre le bon écran (message privé ou post du Fil)
 async function notifGo(q){
   const p = new URLSearchParams(q), msg = p.get("msg"), post = p.get("post"); if(!msg && !post) return;
+  if(post && p.get("cm")) FEED.cmOpen.add(post);
   try{ closeSheet(); }catch(e){}
   if(msg){ selectTab("socialView"); soShow("dm");
     for(let i=0; i<30 && !(DM.threads||[]).some(t=>t.with===msg); i++){ if(i===10) dmLoad(); await new Promise(r=>setTimeout(r, 200)); }
@@ -4183,7 +4185,7 @@ async function notifGo(q){
 }
 navigator.serviceWorker?.addEventListener("message", e=>{ if(e.data?.open) notifGo(e.data.open); });
 (()=>{ const u = new URL(location.href); if(!u.searchParams.has("msg") && !u.searchParams.has("post")) return; const q = u.search;
-  ["msg","post"].forEach(k=>u.searchParams.delete(k)); history.replaceState(history.state, "", u.pathname + (u.search||"") + u.hash);
+  ["msg","post","cm"].forEach(k=>u.searchParams.delete(k)); history.replaceState(history.state, "", u.pathname + (u.search||"") + u.hash);
   setTimeout(()=>notifGo(q), 1800); })();
 
 /* ---------------- Recherche manuelle ---------------- */
@@ -8121,6 +8123,7 @@ async function betaPublishFlow(){
 }
 /* Journal des modifications de la Bêta : la carte « Version Bêta » liste celles que les copains n'ont pas encore */
 const BETA_LOG = [
+  {v:167, t:"Fil : j'aime et « Répondre » sur chaque commentaire ; la réponse s'affiche sous le commentaire et prévient la personne ; l'auteur d'un post est prévenu des nouveaux commentaires"},
   {v:166, t:"Notifications des messages privés et des nouvelles publications du Fil ; dans Alertes, choix de ce qu'on reçoit (réassorts, messages, Fil) ; toucher la notification ouvre la conversation ou le post"},
   {v:165, t:"Notifications : état clair (✓ Activées / Désactivées, vérifié auprès du guetteur), bouton « Envoyer un test » et « Désactiver »"},
   {v:165, t:"Alertes Dealabs : marchand et prix dans l'alerte, boutons « Chercher chez … » et « Comparer les prix » si le deal a été retiré"},
@@ -8278,7 +8281,7 @@ function fdPick(src, title, cb){
       if(my!==gen) return; const seen = new Set(own.map(c=>c.id)); show([...own, ...r.filter(c=>!seen.has(c.id))]); }, 300); };
   inp.oninput = e=>run(e.target.value.trim()); run(""); setTimeout(()=>inp.focus(), 80);
 }
-const FEED = {on:false, ok:false, cmOpen:new Set(), f:"all", posts:null, live:null, busy:false, seen:store.get("feedSeen",0)};
+const FEED = {on:false, ok:false, cmOpen:new Set(), reTo:{}, f:"all", posts:null, live:null, busy:false, seen:store.get("feedSeen",0)};
 const fdAgo = t => { const s = Math.max(1, (Date.now()-t)/1000|0); return s<60 ? "à l'instant" : s<3600 ? `${s/60|0} min` : s<86400 ? `${s/3600|0} h` : s<604800 ? `${s/86400|0} j` : new Date(t).toLocaleDateString("fr-FR",{day:"numeric",month:"short"}); };
 const fdMe = () => rkProf();
 const FDEMO = () => { const n = Date.now(); return [
@@ -8309,6 +8312,10 @@ function fdClick(e){ e.stopPropagation(); const b = e.currentTarget;
     if(a==="cm"){ FEED.cmOpen.has(post.id) ? FEED.cmOpen.delete(post.id) : FEED.cmOpen.add(post.id); fdPatch(post, FEED.cmOpen.has(post.id) && !!fdMe()); return; }
     if(a==="cms"){ const i = b.closest(".fd-cin")?.querySelector("input"); if(i) fdComment(post, i); return; }
     if(a==="ucm"){ fdUncomment(post, b.dataset.c); return; }
+    if(a==="clike"){ fdCmLike(post, b.dataset.c); return; }
+    if(a==="crep"){ const c = (post.cm||[]).find(x=>x.id===b.dataset.c); if(!c) return; FEED.reTo[post.id] = {id:c.id, name:c.name}; FEED.cmOpen.add(post.id); fdPatch(post, true);
+      const i = document.querySelector(`[data-pid="${CSS.escape(post.id)}"] .fd-cin input`); if(i && c.uid!==fdMe()?.id && !i.value){ const n = String(c.name||"").replace(/\s+/g,""); if(n) i.value = "@" + n + " "; } return; }
+    if(a==="crex"){ delete FEED.reTo[post.id]; fdPatch(post, true); return; }
     if(a==="dm"){ dmOpen(post.uid, post.name, post.pk); return; }
     if(a==="see"){ const c = post.att?.card; if(c) showCard(c.id, []); return; }
     if(a==="seecol"){ rkCollection(post.uid); return; }
@@ -8374,9 +8381,10 @@ function fdCmHTML(x){
   const l = x.cm||[], open = FEED.cmOpen.has(x.id), me = fdMe()?.id, own = me && x.uid===me;
   if(!l.length && !open) return `<div class="fd-cms" hidden></div>`;
   const shown = open ? l : l.slice(-2);
-  const one = c => { const st = rkPet(c.pk); return `<div class="fd-c${c.tmp?" tmp":""}"><span class="fd-cav">${st?`<img src="${st.img}" alt="">`:"🙂"}</span><div class="fd-cb"><b>${esc(c.name||"Hunter")}</b> ${esc(c.text||"").replace(/(^|[^&\w])#([\wÀ-ÿ]+)/g,'$1<span class="ht">#$2</span>').replace(/(^|[^&\w@])@([\wÀ-ÿ._-]{2,24})/g,'$1<span class="mn" data-mn="$2">@$2</span>')}${c.card?`<span class="fd-ccard">${fdImg(c.card)}<span><b>${esc(c.card.name)}</b>${c.card.price!=null?` · ${bE(c.card.price)}`:""}</span></span>`:""}<small>${fdAgo(c.t)}</small></div>${me && (c.uid===me || own) && !c.tmp ? `<button class="fd-cx" data-fa="ucm" data-c="${esc(c.id)}" aria-label="Supprimer le commentaire">✕</button>` : ""}</div>`; };
+  const one = c => { const st = rkPet(c.pk); return `<div class="fd-c${c.tmp?" tmp":""}${c.re?" re":""}"><span class="fd-cav">${st?`<img src="${st.img}" alt="">`:"🙂"}</span><div class="fd-cw"><div class="fd-cb">${c.re?`<span class="fd-cre">↩ ${esc(c.reName||"Hunter")}</span>`:""}<b>${esc(c.name||"Hunter")}</b> ${esc(c.text||"").replace(/(^|[^&\w])#([\wÀ-ÿ]+)/g,'$1<span class="ht">#$2</span>').replace(/(^|[^&\w@])@([\wÀ-ÿ._-]{2,24})/g,'$1<span class="mn" data-mn="$2">@$2</span>')}${c.card?`<span class="fd-ccard">${fdImg(c.card)}<span><b>${esc(c.card.name)}</b>${c.card.price!=null?` · ${bE(c.card.price)}`:""}</span></span>`:""}</div><div class="fd-cf"><small>${fdAgo(c.t)}</small>${c.tmp?"":`<button class="fd-clk${c.liked?" on":""}" data-fa="clike" data-c="${esc(c.id)}" aria-label="J'aime" aria-pressed="${!!c.liked}">${c.liked?"♥":"♡"}${c.likes?` ${c.likes}`:""}</button><button data-fa="crep" data-c="${esc(c.id)}">Répondre</button>`}</div></div>${me && (c.uid===me || own) && !c.tmp ? `<button class="fd-cx" data-fa="ucm" data-c="${esc(c.id)}" aria-label="Supprimer le commentaire">✕</button>` : ""}</div>`; };
   return `<div class="fd-cms">${!open && l.length>2 ? `<button class="fd-call" data-fa="cm">Voir les ${l.length} commentaires</button>` : ""}${shown.map(one).join("")}
-    ${open ? `<div class="fd-cin"><input type="text" maxlength="300" placeholder="${fdMe()?"Ajoute un commentaire…":"Crée ton profil pour commenter"}" enterkeyhint="send" ${fdMe()?"":"disabled"}><button data-fa="cms" aria-label="Envoyer">➤</button></div>` : ""}</div>`;
+    ${open && FEED.reTo[x.id] ? `<div class="fd-rech">↩ Réponse à <b>${esc(FEED.reTo[x.id].name||"Hunter")}</b><button data-fa="crex" aria-label="Annuler la réponse">✕</button></div>` : ""}
+    ${open ? `<div class="fd-cin"><input type="text" maxlength="300" placeholder="${fdMe()?(FEED.reTo[x.id]?"Ta réponse…":"Ajoute un commentaire…"):"Crée ton profil pour commenter"}" enterkeyhint="send" ${fdMe()?"":"disabled"}><button data-fa="cms" aria-label="Envoyer">➤</button></div>` : ""}</div>`;
 }
 async function fdUncomment(post, cid){
   const p = fdMe(), old = post.cm||[]; post.cm = old.filter(c=>c.id!==cid); fdPatch(post);
@@ -8384,13 +8392,23 @@ async function fdUncomment(post, cid){
   else fdSaveLocal(FEED.posts);
   fdPatch(post);
 }
+// j'aime sur un commentaire : tout de suite à l'écran, puis confirmé par le serveur
+async function fdCmLike(post, cid){
+  const c = (post.cm||[]).find(x=>x.id===cid), p = fdMe(); if(!c || !p) return;
+  c.liked = !c.liked; c.likes = Math.max(0, (c.likes||0) + (c.liked?1:-1)); fdPatch(post);
+  try{ navigator.vibrate?.(10); }catch(e){}
+  if(FEED.live){ try{ const j = await fdApi("/cmlike", {id:p.id, key:p.key, post:post.id, c:cid}); if(j.post) Object.assign(post, j.post); }catch(e){ c.liked = !c.liked; c.likes += c.liked?1:-1; toast(e.message); } }
+  else fdSaveLocal(FEED.posts);
+  fdPatch(post);
+}
 async function fdComment(post, inp){ const t = inp.value.trim(); if(!t) return; inp.value = ""; return fdSendCm(post, t, null, true); }
 async function fdSendCm(post, text, card, focus){
   const p = fdMe(); if(!p || (!text && !card)) return;
   FEED.cmOpen.add(post.id);
-  const tmp = {id:"tmp"+Date.now(), uid:p.id, name:p.name, pk:myPk(), lv:lvOf(acctXP()), text, card:card||undefined, t:Date.now(), tmp:true};
+  const re = FEED.reTo[post.id]; delete FEED.reTo[post.id];
+  const tmp = {id:"tmp"+Date.now(), uid:p.id, name:p.name, pk:myPk(), lv:lvOf(acctXP()), text, card:card||undefined, t:Date.now(), tmp:true, re:re?.id, reName:re?.name};
   post.cm = [...(post.cm||[]), tmp]; fdPatch(post, !!focus);
-  if(FEED.live){ try{ const j = await fdApi("/comment", {id:p.id, key:p.key, post:post.id, name:p.name, pk:tmp.pk, lv:tmp.lv, text, card:card||undefined}); if(j.post) Object.assign(post, j.post); }
+  if(FEED.live){ try{ const j = await fdApi("/comment", {id:p.id, key:p.key, post:post.id, name:p.name, pk:tmp.pk, lv:tmp.lv, text, card:card||undefined, re:re?.id}); if(j.post) Object.assign(post, j.post); }
     catch(e){ post.cm = post.cm.filter(c=>c!==tmp); toast(e.message); } }
   else { delete tmp.tmp; tmp.id = "l"+Date.now(); fdSaveLocal(FEED.posts); }
   fdPatch(post, !!focus);
@@ -8719,6 +8737,9 @@ $("#moreBack").onclick = ()=>navBack();
    Après l'intro, une seule fois par version qui apporte quelque chose à l'utilisateur.
    Nouvelle installation : rien (tout est neuf). Les versions purement techniques n'ont pas d'entrée ici. */
 const NEWS = [
+  {v:167, items:[
+    ["M9 14 4 9l5-5M4 9h10.5a5.5 5.5 0 0 1 0 11H11", "Réponds aux commentaires", "Sur le Fil, chaque commentaire a maintenant ♡ J'aime et Répondre. La personne à qui tu réponds reçoit une notification."]
+  ]},
   {v:166, items:[
     ["M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z", "Notifications des messages et du Fil", "Ton téléphone sonne quand un Hunter t'écrit ou publie sur le Fil. Choisis ce que tu reçois dans Stock → Alertes réassort, après avoir activé les notifications."]
   ]},

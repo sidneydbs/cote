@@ -8,9 +8,11 @@
      POST /feed/vote   {id,key,post,v}   → {post}   (v = "ok" | "ko")
      POST /feed/del    {id,key,post}     → {ok}
      POST /feed/report {id,key,post}     → {ok}
+     POST /feed/comment   {id,key,post,name,pk,lv,text} → {post}   (commentaire)
+     POST /feed/uncomment {id,key,post,c}                → {post}   (par son auteur ou l'auteur du post)
    Identité : l'id et la clé du profil de dresseur du téléphone. La 1re fois, le serveur retient
    l'empreinte de la clé ; ensuite seule cette clé peut publier ou réagir avec cet id. */
-const MAX_POSTS = 300, HIDE_AT = 3, PER_HOUR = 12;
+const MAX_POSTS = 300, HIDE_AT = 3, PER_HOUR = 12, MAX_CM = 200, CM_PER_HOUR = 40;
 const CORS = {"access-control-allow-origin":"*", "access-control-allow-methods":"GET,POST,OPTIONS", "access-control-allow-headers":"content-type"};
 const json = (o, s=200) => new Response(JSON.stringify(o), {status:s, headers:{"content-type":"application/json; charset=utf-8", "cache-control":"no-store", ...CORS}});
 const err = (m, s=400) => json({error:m}, s);
@@ -30,7 +32,8 @@ function view(p, me, base){
   return {id:p.id, uid:p.uid, name:p.name, pk:p.pk, lv:p.lv, tag:p.tag, text:p.text, shop:p.shop, price:p.price, t:p.t,
     img: p.img ? base + "/feed/img/" + p.id : undefined,
     likes:(p.likers||[]).length, liked: !!me && (p.likers||[]).includes(me),
-    ok: vals.filter(x=>x==="ok").length, ko: vals.filter(x=>x==="ko").length, my: me ? (v[me] || null) : null};
+    ok: vals.filter(x=>x==="ok").length, ko: vals.filter(x=>x==="ko").length, my: me ? (v[me] || null) : null,
+    cm: (p.cm||[]).map(c => ({id:c.id, uid:c.uid, name:c.name, pk:c.pk, lv:c.lv, text:c.text, t:c.t}))};
 }
 export default {
   async fetch(req, env){
@@ -76,6 +79,14 @@ export default {
       if(act === "like"){ p.likers ||= []; const i = p.likers.indexOf(me); i < 0 ? p.likers.push(me) : p.likers.splice(i, 1); }
       else if(act === "vote"){ if(p.tag !== "re") return err("Vote réservé aux réassorts"); const v = b.v === "ko" ? "ko" : "ok"; p.votes ||= {}; p.votes[me] === v ? delete p.votes[me] : p.votes[me] = v; }
       else if(act === "del"){ if(p.uid !== me) return err("Ce n'est pas ton post", 403); l = l.filter(x => x !== p); if(p.img) await env.FEED.delete("img:" + p.id); await save(env, l); return json({ok:true}); }
+      else if(act === "comment"){
+        const text = clean(b.text, 300); if(!text) return err("Commentaire vide");
+        const now = Date.now(); let n = 0; for(const x of l) for(const c of (x.cm||[])) if(c.uid === me && now - c.t < 36e5) n++;
+        if(n >= CM_PER_HOUR) return err("Trop de commentaires : réessaie dans un moment", 429);
+        p.cm ||= []; if(p.cm.length >= MAX_CM) return err("Ce post a trop de commentaires");
+        p.cm.push({id: now.toString(36) + Math.random().toString(36).slice(2, 6), uid:me, name:clean(b.name, 24) || "Dresseur", pk:clean(b.pk, 40) || undefined, lv:Math.max(1, Math.min(999, b.lv|0)), text, t:now});
+      }
+      else if(act === "uncomment"){ const c = (p.cm||[]).find(x => x.id === b.c); if(!c) return err("Commentaire introuvable", 404); if(c.uid !== me && p.uid !== me) return err("Ce n'est pas ton commentaire", 403); p.cm = p.cm.filter(x => x !== c); }
       else if(act === "report"){ p.reports ||= []; if(!p.reports.includes(me)) p.reports.push(me); await save(env, l); return json({ok:true}); }
       else return err("action inconnue", 404);
       await save(env, l);

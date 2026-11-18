@@ -123,9 +123,10 @@ html{background:var(--panel)}
 /* ---------- Sheet (fiche carte) ---------- */
 .sheet{position:fixed;inset:0;z-index:20;background:var(--ink);transform:translateY(100%);transition:transform .32s cubic-bezier(.2,.8,.2,1);display:flex;flex-direction:column}
 .sheet.open{transform:none}
-.sheet-bar{display:flex;align-items:center;gap:10px;padding:calc(var(--safe-t) + 10px) max(16px,env(safe-area-inset-right,0px)) 10px max(16px,env(safe-area-inset-left,0px));border-bottom:1px solid var(--line);background:var(--ink)}
-.sheet-bar h3{margin:0;font-size:14px;font-weight:600;color:var(--muted);flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.sheet-body{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:18px max(16px,env(safe-area-inset-right,0px)) calc(var(--safe-b) + 28px) max(16px,env(safe-area-inset-left,0px))}
+.sheet-bar{position:absolute;top:0;left:0;right:0;z-index:3;height:calc(var(--safe-t) + 22px);display:flex;align-items:flex-end;justify-content:center;padding-bottom:8px;pointer-events:none}
+.sheet-bar::before{content:"";width:40px;height:5px;border-radius:3px;background:var(--fg);opacity:.28}
+.sheet-bar h3,.sheet-bar #closeSheet{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;margin:-1px;padding:0;border:0}
+.sheet-body{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior-y:none;padding:calc(var(--safe-t) + 26px) max(16px,env(safe-area-inset-right,0px)) calc(var(--safe-b) + 28px) max(16px,env(safe-area-inset-left,0px))}
 .hero{display:grid;grid-template-columns:42% 1fr;gap:16px;align-items:start}
 /* fiche carte, disposition D (v110) : grande image, cote compacte à côté, tuiles de ventes dessous */
 .dhero{gap:14px;align-items:stretch}
@@ -1385,7 +1386,8 @@ html{background:var(--panel)}
   border-color:rgba(255,255,255,.17);
   box-shadow:inset 0 1px 0 rgba(255,255,255,.38),inset 1px 0 0 rgba(255,255,255,.08),0 14px 34px -14px rgba(0,0,0,.65)}
 :root[data-theme="verre"] .tabs{background-color:color-mix(in srgb,#0C0D14 calc(var(--vop)*100%),rgba(12,13,20,.5));border-top-color:rgba(255,255,255,.14)}
-:root[data-theme="verre"] .sheet-bar,:root[data-theme="verre"] .gbar{background-color:color-mix(in srgb,#0C0D14 calc(var(--vop)*100%),rgba(12,13,20,.45))}
+:root[data-theme] .sheet-bar{background:none!important;border:0!important;box-shadow:none!important;-webkit-backdrop-filter:none!important;backdrop-filter:none!important}
+:root[data-theme="verre"] .gbar{background-color:color-mix(in srgb,#0C0D14 calc(var(--vop)*100%),rgba(12,13,20,.45))}
 :root[data-theme="verre"] :is(.hqa button.on,.dtile.add,.dcote){background-image:linear-gradient(145deg,rgba(var(--va),.34),rgba(var(--va),.12) 50%,rgba(var(--va),.2));border-color:rgba(var(--va),.55)}
 :root[data-theme="verre"] .hqa button.on{background-color:transparent;color:var(--vtx)}
 .vcol{margin:4px 0 14px;padding:12px;border-radius:16px;background:var(--panel);border:1px solid var(--line)}
@@ -1807,7 +1809,7 @@ img.px.reveal{animation:stpRev .9s ease-out}
   }
   fit(); addEventListener("resize", fit); addEventListener("orientationchange", function(){ setTimeout(fit, 300); });
 })();</script>
-<script>window.__APPV="168";</script>
+<script>window.__APPV="169";</script>
 <div class="splash" id="splash" aria-hidden="true"><i class="hole"></i><i class="halo"></i><div class="bw"><svg class="b" viewBox="0 0 100 100"><use href="#pb"/></svg><svg class="t" viewBox="0 0 100 100"><use href="#pb"/></svg></div><i class="glow"></i></div>
 <script>setTimeout(function(){ if(window.__booted) return;
   var b=document.createElement("div"); b.setAttribute("role","alert");
@@ -1842,7 +1844,7 @@ img.px.reveal{animation:stpRev .9s ease-out}
   <!-- ===== EXTENSIONS ===== -->
   <section class="view" id="homeView">
     <div class="scroll">
-      <div class="homebar"><span class="brand">DEX<b>·</b>SCAN</span><span class="hbis"><button class="hbi" id="hSearch" aria-label="Rechercher une carte"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></button><button class="hbi hrk" id="hRank" aria-label="Classement"><svg viewBox="0 0 24 24" fill="none" stroke="url(#hrkG)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><defs><linearGradient id="hrkG" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFF4C2"/><stop offset=".35" stop-color="#FFD86E"/><stop offset=".65" stop-color="#7CF3FF"/><stop offset="1" stop-color="#E2B8FF"/></linearGradient></defs><path d="M8 21h8M12 17v4"/><path d="M7 4h10v5a5 5 0 0 1-10 0z"/><path d="M17 5h3v2a3 3 0 0 1-3 3M7 5H4v2a3 3 0 0 0 3 3"/></svg></button><button class="hbi" id="themeBtn" aria-label="Changer de thème"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.6-.9 1.2-1.8-.5-1.1.2-2.2 1.4-2.2H17a4 4 0 0 0 4-4c0-5.5-4-10-9-10z"/><circle cx="7.5" cy="11" r="1.2"/><circle cx="10" cy="7" r="1.2"/><circle cx="15" cy="7" r="1.2"/></svg></button><button class="hbi" id="moreBtn" aria-label="Réglages et plus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg></button></span><span class="ver" id="hVer">v168</span></div>
+      <div class="homebar"><span class="brand">DEX<b>·</b>SCAN</span><span class="hbis"><button class="hbi" id="hSearch" aria-label="Rechercher une carte"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></button><button class="hbi hrk" id="hRank" aria-label="Classement"><svg viewBox="0 0 24 24" fill="none" stroke="url(#hrkG)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><defs><linearGradient id="hrkG" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFF4C2"/><stop offset=".35" stop-color="#FFD86E"/><stop offset=".65" stop-color="#7CF3FF"/><stop offset="1" stop-color="#E2B8FF"/></linearGradient></defs><path d="M8 21h8M12 17v4"/><path d="M7 4h10v5a5 5 0 0 1-10 0z"/><path d="M17 5h3v2a3 3 0 0 1-3 3M7 5H4v2a3 3 0 0 0 3 3"/></svg></button><button class="hbi" id="themeBtn" aria-label="Changer de thème"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.6-.9 1.2-1.8-.5-1.1.2-2.2 1.4-2.2H17a4 4 0 0 0 4-4c0-5.5-4-10-9-10z"/><circle cx="7.5" cy="11" r="1.2"/><circle cx="10" cy="7" r="1.2"/><circle cx="15" cy="7" r="1.2"/></svg></button><button class="hbi" id="moreBtn" aria-label="Réglages et plus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg></button></span><span class="ver" id="hVer">v169</span></div>
       <button class="banner" id="pxBanner" hidden></button>
       <span class="hdate hgreet" id="hDate"></span>
       <div class="hhero"><div class="total htot" id="hTot"></div><span id="avatSlot"></span></div>
@@ -6756,6 +6758,8 @@ const viewIds = () => [...document.querySelectorAll(".tab")].map(t=>t.dataset.v)
 const curView = () => ALLV.find(id=>!document.getElementById(id).hidden);
 /* ce qu'un « retour » fermerait, sans le faire : sert à choisir entre revenir et changer d'onglet */
 function backTarget(){
+  if(document.querySelector("body>.fc-pick")) return "pick";
+  if($("#dmView")) return "dm";
   if($("#foilView")?.classList.contains("open")) return "foil";
   if(!$("#gov").hidden) return "gov";
   if($("#sheet").classList.contains("open")) return NAV.stack.length ? "card" : "sheet";
@@ -6771,7 +6775,9 @@ function backTarget(){
 }
 function navBack(){
   const t = backTarget(); if(!t) return false;
-  if(t==="foil") $("#foilView").classList.remove("open");
+  if(t==="pick") [...document.querySelectorAll("body>.fc-pick")].pop()?.querySelector(".fcp-x")?.click();
+  else if(t==="dm") $("#dmView")?.querySelector(".dm-back")?.click();
+  else if(t==="foil") $("#foilView").classList.remove("open");
   else if(t==="gov") $("#gov").dataset.mode==="budget" ? bClose() : gClose();
   else if(t==="card"){ const p = NAV.stack.pop(); NAV.restoring = true; Promise.resolve(p.re ? p.re() : showCard(p.id, p.alts)).finally(()=>{ NAV.restoring = false; }); }
   else if(t==="sheet") closeSheet();
@@ -6830,7 +6836,7 @@ document.addEventListener("touchstart", e=>{
   const x = e.touches[0]?.clientX ?? 99;
   if(e.touches.length===1 && (x < 18 || x > innerWidth - 18) && e.cancelable && !e.target.closest("button,a,summary,input,textarea,select,label,[data-noswipe]")) e.preventDefault();
 }, {passive:false});
-function layerFor(t){ return t==="gov" ? $("#gov") : (t==="card" || t==="sheet") ? $("#sheet") : null; }
+function layerFor(t){ return t==="gov" ? $("#gov") : (t==="card" || t==="sheet") ? $("#sheet") : t==="dm" ? $("#dmView") : t==="pick" ? [...document.querySelectorAll("body>.fc-pick")].pop() : null; }
 document.addEventListener("touchstart", e=>{
   if(e.touches.length!==1 || G.busy){ G.on = false; return; }
   const tg = e.target;
@@ -6838,14 +6844,14 @@ document.addEventListener("touchstart", e=>{
   const p = e.touches[0];
   G.on = true; G.x = p.clientX; G.y = p.clientY; G.t = Date.now(); G.lock = null; G.dx = 0; G.dy = 0;
   G.back = backTarget(); G.layer = layerFor(G.back) || document.getElementById(curView());
-  G.sheetTop = G.back && (G.back==="card"||G.back==="sheet") ? $("#sheetBody").scrollTop<=0 : false;
+  G.sheetTop = G.back && (G.back==="card"||G.back==="sheet") ? ($("#sheetBody").scrollTop<=0 || p.clientY < $("#sheet").getBoundingClientRect().top + 64) : false;
 }, {passive:true});
 document.addEventListener("touchmove", e=>{
   if(!G.on) return;
   const p = e.touches[0]; G.dx = p.clientX-G.x; G.dy = p.clientY-G.y;
   if(!G.lock){
-    if(Math.abs(G.dx)>14 && Math.abs(G.dx)>Math.abs(G.dy)*1.4) G.lock = "h";
-    else if(G.sheetTop && G.dy>14 && G.dy>Math.abs(G.dx)*1.4) G.lock = "v";
+    if(G.sheetTop && G.dy>6 && G.dy>Math.abs(G.dx)*1.2) G.lock = "v";
+    else if(Math.abs(G.dx)>14 && Math.abs(G.dx)>Math.abs(G.dy)*1.4) G.lock = "h";
     else if(Math.abs(G.dy)>14){ G.on = false; return; }
     if(G.lock){ G.layer.style.transition = "none"; G.layer.style.willChange = "transform"; }
   }
@@ -8127,6 +8133,7 @@ async function betaPublishFlow(){
 }
 /* Journal des modifications de la Bêta : la carte « Version Bêta » liste celles que les copains n'ont pas encore */
 const BETA_LOG = [
+  {v:169, t:"Fiches : plus de barre en haut, une poignée ; on ferme en glissant vers le bas (depuis le haut, même après avoir défilé) ou vers la droite ; glisser vers la droite ferme aussi une conversation privée et le choix de carte ; gestes plus nets, sans rebond"},
   {v:168, t:"Classeur : bouton « Replier » en bas de chaque série ouverte, qui remonte sur la série"},
   {v:167, t:"Fil : j'aime et « Répondre » sur chaque commentaire ; la réponse s'affiche sous le commentaire et prévient la personne ; l'auteur d'un post est prévenu des nouveaux commentaires"},
   {v:166, t:"Notifications des messages privés et des nouvelles publications du Fil ; dans Alertes, choix de ce qu'on reçoit (réassorts, messages, Fil) ; toucher la notification ouvre la conversation ou le post"},

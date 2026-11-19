@@ -83,8 +83,19 @@ const TAG_TXT = {talk:"💬 Discussion", re:"🔔 Réassort", new:"✨ Nouveaut�
 const DM_MAX = 400, DM_PER_HOUR = 120;
 const dmKey = (a, b) => "dm:" + [a, b].sort().join(":");
 const inboxOf = async (env, id) => (await env.FEED.get("inbox:" + id, "json")) || [];
+/* Présence « en ligne » : "pr:ID" = {t: dernière activité, hide}. Écrite au plus toutes les 2 min par profil (mémoire de l'isolat). */
+const PRES = new Map(), ONLINE_MS = 3 * 60e3;
+const presGet = async (env, u) => { try{ return (await env.FEED.get("pr:" + u, "json")) || {t:0}; }catch(e){ return {t:0}; } };
+async function touch(env, me){
+  const now = Date.now(); if(now - (PRES.get(me) || 0) < 120e3) return;
+  PRES.set(me, now); const pr = await presGet(env, me); if(now - (pr.t || 0) < 120e3) return;
+  pr.t = now; await env.FEED.put("pr:" + me, JSON.stringify(pr));
+}
+const presOf = pr => pr?.hide || !pr?.t ? {on:null, last:null} : {on: Date.now() - pr.t < ONLINE_MS, last: pr.t};
 async function dm(env, me, act, b){
-  if(act === "list") return json({threads: (await inboxOf(env, me)).sort((x, y) => y.t - x.t)});
+  if(act === "list"){ const l = (await inboxOf(env, me)).sort((x, y) => y.t - x.t);
+    await Promise.all(l.slice(0, 40).map(async t => Object.assign(t, presOf(await presGet(env, t.with)))));
+    return json({threads: l, hide: !!(await presGet(env, me)).hide}); }
   const other = clean(b.with ?? b.to, 64); if(!/^[\w-]{6,64}$/.test(other) || other === me) return err("Destinataire invalide");
   if(act === "thread"){
     const k = dmKey(me, other), l = (await env.FEED.get(k, "json")) || [];
@@ -97,7 +108,7 @@ async function dm(env, me, act, b){
       // la conversation de l'autre affiche « Vu » sans ouvrir le fil
       const ob = await inboxOf(env, other), oe = ob.find(x => x.with === me); if(oe){ oe.seenT = now; await env.FEED.put("inbox:" + other, JSON.stringify(ob)); }
     }
-    return json({msgs: l.slice(-200), seen: seen[other] || 0});
+    return json({msgs: l.slice(-200), seen: seen[other] || 0, ...presOf(await presGet(env, other))});
   }
   if(act === "react"){
     const k = dmKey(me, other), l = (await env.FEED.get(k, "json")) || [], m = l.find(x => x.id === b.m);
@@ -200,6 +211,8 @@ export default {
       if(req.method !== "POST" || !path.startsWith("/feed/")) return err("route inconnue", 404);
       const b = await req.json().catch(()=>null); if(!b) return err("requête illisible");
       const me = await auth(env, b.id, b.key), act = path.slice(6);
+      if(act === "presence"){ const pr = await presGet(env, me); pr.hide = !!b.hide; pr.t = Date.now(); PRES.set(me, pr.t); await env.FEED.put("pr:" + me, JSON.stringify(pr)); return json({ok:true, hide:pr.hide}); }
+      await touch(env, me);
       if(act.startsWith("dm/")) return await dm(env, me, act.slice(3), b);
       if(act.startsWith("trade/")) return await trade(env, me, act.slice(6), b);
       // relie l'abonnement aux notifications de ce téléphone à ce profil (pour recevoir ses messages privés)

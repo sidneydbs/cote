@@ -306,14 +306,27 @@ button.wnote{color:var(--fg);border-color:color-mix(in srgb,var(--border-yellow)
 .dfp{grid-column:1/-1;height:6px;border-radius:99px;background:color-mix(in srgb,var(--fg) 12%,transparent);overflow:hidden}.dfp i{display:block;height:100%;border-radius:99px;background:linear-gradient(90deg,var(--g1,var(--border-yellow)),var(--g2,var(--up)));transition:width .4s}
 .dfr.got .dfp i{background:var(--up)}
 @media (prefers-reduced-motion:reduce){.dfc{animation:none}}
+.dm-pres{display:flex;align-items:center;gap:10px;width:100%;text-align:left;margin:0 0 12px;padding:10px 12px;border-radius:14px;background:var(--panel);border:1px solid var(--line)}
+.dm-pres b{display:block;font-size:13.5px}.dm-pres small{display:block;color:var(--muted);font-size:12px;margin-top:1px}.dm-pres>span:nth-child(2){flex:1;min-width:0}
+.dm-pd{flex:none;width:12px;height:12px;border-radius:50%;background:#2ED47A;box-shadow:0 0 8px #2ED47A}.dm-pd.off{background:var(--muted);box-shadow:none}
+.dm-sw{flex:none;width:42px;height:25px;border-radius:999px;background:color-mix(in srgb,var(--fg) 18%,transparent);position:relative;transition:background .2s}.dm-sw::after{content:"";position:absolute;top:3px;left:3px;width:19px;height:19px;border-radius:50%;background:#fff;transition:transform .2s}
+.dm-sw.on{background:#2ED47A}.dm-sw.on::after{transform:translateX(17px)}
+.fd-av.online{position:relative;overflow:visible}.fd-av.online::after{content:"";position:absolute;right:-1px;bottom:-1px;width:12px;height:12px;border-radius:50%;background:#2ED47A;border:2px solid var(--ink)}
+.dm-hn{display:flex;flex-direction:column;line-height:1.15}.dm-hn small{font-size:12px;color:var(--muted);font-weight:600}.dm-hn small:empty{display:none}.dm-hn small.on{color:#2ED47A}.dm-hn small.on::before{content:"● "}
+.fd-ccam{flex:none;width:36px;height:36px;border-radius:50%;display:grid;place-items:center;color:var(--muted)}.fd-ccam svg{width:21px;height:21px}
+.fd-cimgp{position:relative;display:block;width:max-content;align-self:flex-start;margin:8px 0 6px 2px}.fd-cimgp img{display:block;max-width:140px;max-height:140px;border-radius:12px;border:1px solid var(--line)}.fd-cimgp button{position:absolute;top:-8px;right:-8px;width:26px;height:26px;border-radius:50%;background:var(--panel);border:1px solid var(--line);font-size:12px}
+.fd-cimg{display:block;margin-top:6px;padding:0;border-radius:12px;overflow:hidden;max-width:220px}.fd-cimg img{display:block;max-width:100%;max-height:260px;object-fit:cover}
+.imgzoom{position:fixed;inset:0;z-index:300;background:rgba(0,0,0,.92);display:grid;place-items:center;padding:20px}.imgzoom img{max-width:100%;max-height:100%;border-radius:10px}.imgzoom button{position:absolute;top:calc(14px + env(safe-area-inset-top,0px));right:16px;width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,.15);color:#fff;font-size:18px}
 .rxbar{position:fixed;z-index:200;display:flex;gap:2px;padding:6px 8px;border-radius:999px;background:var(--panel);border:1px solid var(--line);box-shadow:0 10px 30px rgba(0,0,0,.45);animation:rxin .16s ease-out}
-.rxbar button{font-size:26px;width:42px;height:42px;border-radius:50%;display:grid;place-items:center;transition:transform .12s}.rxbar button:active{transform:scale(1.3)}.rxbar button.on{background:color-mix(in srgb,var(--border-yellow) 28%,transparent)}
+.rxbar button{font-size:25px;width:38px;height:40px;border-radius:50%;display:grid;place-items:center;transition:transform .12s}.rxbar button:active{transform:scale(1.3)}.rxbar button.on{background:color-mix(in srgb,var(--border-yellow) 28%,transparent)}
 @keyframes rxin{from{transform:scale(.7) translateY(6px);opacity:0}}
 .rxs{display:inline-flex;flex-wrap:wrap;gap:4px}.rxc{display:inline-flex;align-items:center;gap:3px;padding:2px 7px;border-radius:999px;font-size:13px;background:var(--panel-2,var(--panel));border:1px solid var(--line);color:var(--fg)}.rxc b{font:700 11px var(--f-mono)}.rxc.on{border-color:var(--border-yellow);background:color-mix(in srgb,var(--border-yellow) 18%,transparent)}
 .fd-act{flex-wrap:wrap}.fd-act>.rxs{flex-basis:100%;margin-bottom:2px}.fd-rxb{min-width:38px;justify-content:center;font-size:17px}.fd-rxb svg{width:19px;height:19px}
 .fd-crx{font-size:13px;opacity:.85}.fd-crx.on{opacity:1}.fd-cf .rxs{margin-left:2px}
 .dm-rxs{align-self:flex-start;margin:-10px 0 2px 10px;position:relative;z-index:1}.dm-rxs.me{align-self:flex-end;margin:-10px 10px 2px 0}.dm-rxs .rxc{background:var(--panel);box-shadow:0 2px 6px rgba(0,0,0,.3)}
-.dm-b{-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
+.dm-b{-webkit-user-select:none;user-select:none;-webkit-touch-callout:none;position:relative}
+.dm-rxb{position:absolute;top:50%;right:-34px;transform:translateY(-50%);width:28px;height:28px;border-radius:50%;display:grid;place-items:center;font-size:16px;color:var(--muted);background:var(--panel);border:1px solid var(--line);opacity:.8}
+.dm-b.me .dm-rxb{right:auto;left:-34px}
 .ctile .px.up{color:var(--up)}.ctile .px.down{color:var(--down)}
 .variant-tabs{display:flex;gap:6px;margin-top:14px;flex-wrap:wrap}
 .vt{padding:7px 12px;border-radius:9px;background:var(--panel-2);border:1px solid var(--line);font-size:12.5px;font-weight:600;color:var(--muted)}
@@ -2001,7 +2014,7 @@ img.px.reveal{animation:stpRev .9s ease-out}
   }
   fit(); addEventListener("resize", fit); addEventListener("orientationchange", function(){ setTimeout(fit, 300); });
 })();</script>
-<script>window.__APPV="186";</script>
+<script>window.__APPV="187";</script>
 <div class="splash" id="splash" aria-hidden="true"><i class="hole"></i><i class="halo"></i><div class="bw"><svg class="b" viewBox="0 0 100 100"><use href="#pb"/></svg><svg class="t" viewBox="0 0 100 100"><use href="#pb"/></svg></div><i class="glow"></i></div>
 <script>setTimeout(function(){ if(window.__booted) return;
   var b=document.createElement("div"); b.setAttribute("role","alert");
@@ -2036,7 +2049,7 @@ img.px.reveal{animation:stpRev .9s ease-out}
   <!-- ===== EXTENSIONS ===== -->
   <section class="view" id="homeView">
     <div class="scroll">
-      <div class="homebar"><span class="brand">DEX<b>·</b>SCAN</span><span class="hbis"><button class="hbi" id="hSearch" aria-label="Rechercher une carte"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></button><button class="hbi" id="themeBtn" aria-label="Changer de thème"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.6-.9 1.2-1.8-.5-1.1.2-2.2 1.4-2.2H17a4 4 0 0 0 4-4c0-5.5-4-10-9-10z"/><circle cx="7.5" cy="11" r="1.2"/><circle cx="10" cy="7" r="1.2"/><circle cx="15" cy="7" r="1.2"/></svg></button><button class="hbi" id="moreBtn" aria-label="Réglages et plus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg></button></span><span class="ver" id="hVer">v186</span></div>
+      <div class="homebar"><span class="brand">DEX<b>·</b>SCAN</span><span class="hbis"><button class="hbi" id="hSearch" aria-label="Rechercher une carte"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></button><button class="hbi" id="themeBtn" aria-label="Changer de thème"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.6-.9 1.2-1.8-.5-1.1.2-2.2 1.4-2.2H17a4 4 0 0 0 4-4c0-5.5-4-10-9-10z"/><circle cx="7.5" cy="11" r="1.2"/><circle cx="10" cy="7" r="1.2"/><circle cx="15" cy="7" r="1.2"/></svg></button><button class="hbi" id="moreBtn" aria-label="Réglages et plus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg></button></span><span class="ver" id="hVer">v187</span></div>
       <button class="banner" id="pxBanner" hidden></button>
       <span class="hdate hgreet" id="hDate"></span>
       <div class="hhero"><div class="total htot" id="hTot"></div><span id="avatSlot"></span></div>
@@ -8797,6 +8810,7 @@ async function betaPublishFlow(){
 }
 /* Journal des modifications de la Bêta : la carte « Version Bêta » liste celles que les copains n'ont pas encore */
 const BETA_LOG = [
+  {v:187, t:"Messages : bouton ☺ à côté de chaque bulle pour réagir (❤️ 😂 😆 😮 😢 😭 👍 🔥) · statut en ligne (point vert, « En ligne il y a 5 min »), masquable · photo dans les commentaires et les réponses"},
   {v:186, t:"Réactions émoticônes ❤️ 🔥 😂 😮 😢 👍 sur les publications, les commentaires et les messages (appui long ou double-toucher sur une bulle)"},
   {v:185, t:"Messages : « Vu à 18:05 » sous ton dernier message quand il a été lu (et ✓✓ Vu dans la liste des conversations) · carte partagée en grand, nom au-dessus et prix en dessous"},
   {v:184, t:"Carte partagée en message ou sur le Fil : un toucher ouvre sa fiche · Social : le Fil au centre, le classement devient une pastille trophée holo avec ton rang, les messages à droite"},
@@ -9001,7 +9015,7 @@ async function fdLoad(){
   FEED.busy = false; renderFeed();
 }
 /* ---------- Réactions (émoticônes) : posts, commentaires, messages privés ---------- */
-const RXS = ["❤️","🔥","😂","😮","😢","👍"];
+const RXS = ["❤️","😂","😆","😮","😢","😭","👍","🔥"];
 // petite barre d'émoticônes au-dessus de l'élément touché
 function rxPick(anchor, cur, cb){
   document.querySelector(".rxbar")?.remove();
@@ -9043,6 +9057,9 @@ function fdClick(e){ e.stopPropagation(); const b = e.currentTarget;
     if(!fdMe() && !["share","cm","see","seecol"].includes(a)){ toast("Crée ton profil de Hunter pour réagir"); return; }
     if(a==="cm"){ FEED.cmOpen.has(post.id) ? FEED.cmOpen.delete(post.id) : FEED.cmOpen.add(post.id); fdPatch(post, FEED.cmOpen.has(post.id) && !!fdMe()); return; }
     if(a==="cms"){ const i = b.closest(".fd-cin")?.querySelector("input"); if(i) fdComment(post, i); return; }
+    if(a==="cimg"){ const f = document.createElement("input"); f.type = "file"; f.accept = "image/*";
+      f.onchange = async ()=>{ const file = f.files?.[0]; if(!file) return; const d = await fdShrink(file); if(!d){ toast("Photo illisible"); return; } (FEED.cimg ||= {})[post.id] = d; fdPatch(post, true); }; f.click(); return; }
+    if(a==="cimgx"){ if(FEED.cimg) delete FEED.cimg[post.id]; fdPatch(post, true); return; }
     if(a==="ucm"){ fdUncomment(post, b.dataset.c); return; }
     if(a==="clike"){ fdCmLike(post, b.dataset.c); return; }
     if(a==="rx"){ fdReact(post, b.dataset.e); return; }
@@ -9117,10 +9134,11 @@ function fdCmHTML(x){
   const l = x.cm||[], open = FEED.cmOpen.has(x.id), me = fdMe()?.id, own = me && x.uid===me;
   if(!l.length && !open) return `<div class="fd-cms" hidden></div>`;
   const shown = open ? l : l.slice(-2);
-  const one = c => { const st = rkPet(c.pk); return `<div class="fd-c${c.tmp?" tmp":""}${c.re?" re":""}"><span class="fd-cav">${st?`<img src="${st.img}" alt="">`:"🙂"}</span><div class="fd-cw"><div class="fd-cb">${c.re?`<span class="fd-cre">↩ ${esc(c.reName||"Hunter")}</span>`:""}<b>${esc(c.name||"Hunter")}</b> ${esc(c.text||"").replace(/(^|[^&\w])#([\wÀ-ÿ]+)/g,'$1<span class="ht">#$2</span>').replace(/(^|[^&\w@])@([\wÀ-ÿ._-]{2,24})/g,'$1<span class="mn" data-mn="$2">@$2</span>')}${c.card?`<span class="fd-ccard">${fdImg(c.card)}<span><b>${esc(c.card.name)}</b>${c.card.price!=null?` · ${bE(c.card.price)}`:""}</span></span>`:""}</div><div class="fd-cf"><small>${fdAgo(c.t)}</small>${c.tmp?"":`<button class="fd-clk${c.liked?" on":""}" data-fa="clike" data-c="${esc(c.id)}" aria-label="J'aime" aria-pressed="${!!c.liked}">${c.liked?"♥":"♡"}${c.likes?` ${c.likes}`:""}</button><button data-fa="crep" data-c="${esc(c.id)}">Répondre</button><button class="fd-crx${c.mrx?" on":""}" data-fa="crxp" data-c="${esc(c.id)}" aria-label="Réagir">${c.mrx||"☺︎"}</button>${rxChips(c.rx, c.mrx, `data-fa="crx" data-c="${esc(c.id)}"`)}`}</div></div>${me && (c.uid===me || own) && !c.tmp ? `<button class="fd-cx" data-fa="ucm" data-c="${esc(c.id)}" aria-label="Supprimer le commentaire">✕</button>` : ""}</div>`; };
+  const one = c => { const st = rkPet(c.pk); return `<div class="fd-c${c.tmp?" tmp":""}${c.re?" re":""}"><span class="fd-cav">${st?`<img src="${st.img}" alt="">`:"🙂"}</span><div class="fd-cw"><div class="fd-cb">${c.re?`<span class="fd-cre">↩ ${esc(c.reName||"Hunter")}</span>`:""}<b>${esc(c.name||"Hunter")}</b> ${esc(c.text||"").replace(/(^|[^&\w])#([\wÀ-ÿ]+)/g,'$1<span class="ht">#$2</span>').replace(/(^|[^&\w@])@([\wÀ-ÿ._-]{2,24})/g,'$1<span class="mn" data-mn="$2">@$2</span>')}${c.card?`<span class="fd-ccard">${fdImg(c.card)}<span><b>${esc(c.card.name)}</b>${c.card.price!=null?` · ${bE(c.card.price)}`:""}</span></span>`:""}${c.img?`<button type="button" class="fd-cimg" data-zoom="${esc(c.img)}" aria-label="Agrandir la photo"><img src="${esc(c.img)}" alt="" loading="lazy"></button>`:""}</div><div class="fd-cf"><small>${fdAgo(c.t)}</small>${c.tmp?"":`<button class="fd-clk${c.liked?" on":""}" data-fa="clike" data-c="${esc(c.id)}" aria-label="J'aime" aria-pressed="${!!c.liked}">${c.liked?"♥":"♡"}${c.likes?` ${c.likes}`:""}</button><button data-fa="crep" data-c="${esc(c.id)}">Répondre</button><button class="fd-crx${c.mrx?" on":""}" data-fa="crxp" data-c="${esc(c.id)}" aria-label="Réagir">${c.mrx||"☺︎"}</button>${rxChips(c.rx, c.mrx, `data-fa="crx" data-c="${esc(c.id)}"`)}`}</div></div>${me && (c.uid===me || own) && !c.tmp ? `<button class="fd-cx" data-fa="ucm" data-c="${esc(c.id)}" aria-label="Supprimer le commentaire">✕</button>` : ""}</div>`; };
   return `<div class="fd-cms">${!open && l.length>2 ? `<button class="fd-call" data-fa="cm">Voir les ${l.length} commentaires</button>` : ""}${shown.map(one).join("")}
     ${open && FEED.reTo[x.id] ? `<div class="fd-rech">↩ Réponse à <b>${esc(FEED.reTo[x.id].name||"Hunter")}</b><button data-fa="crex" aria-label="Annuler la réponse">✕</button></div>` : ""}
-    ${open ? `<div class="fd-cin"><input type="text" maxlength="300" placeholder="${fdMe()?(FEED.reTo[x.id]?"Ta réponse…":"Ajoute un commentaire…"):"Crée ton profil pour commenter"}" enterkeyhint="send" ${fdMe()?"":"disabled"}><button data-fa="cms" aria-label="Envoyer">➤</button></div>` : ""}</div>`;
+    ${open && FEED.cimg?.[x.id] ? `<div class="fd-cimgp"><img src="${FEED.cimg[x.id]}" alt=""><button data-fa="cimgx" aria-label="Retirer la photo">✕</button></div>` : ""}
+    ${open ? `<div class="fd-cin">${fdMe()?`<button data-fa="cimg" class="fd-ccam" aria-label="Joindre une photo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/></svg></button>`:""}<input type="text" maxlength="300" placeholder="${fdMe()?(FEED.reTo[x.id]?"Ta réponse…":"Ajoute un commentaire…"):"Crée ton profil pour commenter"}" enterkeyhint="send" ${fdMe()?"":"disabled"}><button data-fa="cms" aria-label="Envoyer">➤</button></div>` : ""}</div>`;
 }
 async function fdUncomment(post, cid){
   const p = fdMe(), old = post.cm||[]; post.cm = old.filter(c=>c.id!==cid); fdPatch(post);
@@ -9137,14 +9155,14 @@ async function fdCmLike(post, cid){
   else fdSaveLocal(FEED.posts);
   fdPatch(post);
 }
-async function fdComment(post, inp){ const t = inp.value.trim(); if(!t) return; inp.value = ""; return fdSendCm(post, t, null, true); }
-async function fdSendCm(post, text, card, focus){
-  const p = fdMe(); if(!p || (!text && !card)) return;
+async function fdComment(post, inp){ const t = inp.value.trim(), im = FEED.cimg?.[post.id]; if(!t && !im) return; inp.value = ""; if(im) delete FEED.cimg[post.id]; return fdSendCm(post, t, null, true, im); }
+async function fdSendCm(post, text, card, focus, img){
+  const p = fdMe(); if(!p || (!text && !card && !img)) return;
   FEED.cmOpen.add(post.id);
   const re = FEED.reTo[post.id]; delete FEED.reTo[post.id];
-  const tmp = {id:"tmp"+Date.now(), uid:p.id, name:p.name, pk:myPk(), lv:lvOf(acctXP()), text, card:card||undefined, t:Date.now(), tmp:true, re:re?.id, reName:re?.name};
+  const tmp = {id:"tmp"+Date.now(), uid:p.id, name:p.name, pk:myPk(), lv:lvOf(acctXP()), text, card:card||undefined, img:img||undefined, t:Date.now(), tmp:true, re:re?.id, reName:re?.name};
   post.cm = [...(post.cm||[]), tmp]; fdPatch(post, !!focus);
-  if(FEED.live){ try{ const j = await fdApi("/comment", {id:p.id, key:p.key, post:post.id, name:p.name, pk:tmp.pk, lv:tmp.lv, text, card:card||undefined, re:re?.id}); if(j.post) Object.assign(post, j.post); }
+  if(FEED.live){ try{ const j = await fdApi("/comment", {id:p.id, key:p.key, post:post.id, name:p.name, pk:tmp.pk, lv:tmp.lv, text, card:card||undefined, re:re?.id, img:img||undefined}); if(j.post) Object.assign(post, j.post); }
     catch(e){ post.cm = post.cm.filter(c=>c!==tmp); toast(e.message); } }
   else { delete tmp.tmp; tmp.id = "l"+Date.now(); fdSaveLocal(FEED.posts); }
   fdPatch(post, !!focus);
@@ -9342,6 +9360,10 @@ function fdShareCol(){
   fdCompose({mode:"col", go:true});
 }
 /* photo : 1080 px max, JPEG ~80 % (≈150-250 Ko) */
+// photo d'un commentaire en grand
+document.addEventListener("click", e=>{ const b = e.target.closest("[data-zoom]"); if(!b) return; e.stopPropagation();
+  const v = document.createElement("div"); v.className = "imgzoom"; v.innerHTML = `<img src="${esc(b.dataset.zoom)}" alt=""><button aria-label="Fermer">✕</button>`;
+  v.onclick = ()=>v.remove(); document.body.appendChild(v); }, true);
 function fdShrink(file){ return new Promise(res=>{ const u = URL.createObjectURL(file), im = new Image();
   im.onload = ()=>{ const s = Math.min(1, 1080/Math.max(im.width, im.height)), c = document.createElement("canvas"); c.width = Math.round(im.width*s); c.height = Math.round(im.height*s); c.getContext("2d").drawImage(im,0,0,c.width,c.height); URL.revokeObjectURL(u); res(c.toDataURL("image/jpeg", .8)); };
   im.onerror = ()=>res(null); im.src = u; }); }
@@ -9389,7 +9411,7 @@ const DM = {threads:null, unread:0, open:null, msgs:[], timer:null, busy:false};
 const dmAgo = t => { const d = Date.now()-t; if(d<6e4) return "à l'instant"; if(d<36e5) return Math.floor(d/6e4)+" min"; if(d<864e5) return new Date(t).toLocaleTimeString("fr-FR",{hour:"2-digit",minute:"2-digit"}); return new Date(t).toLocaleDateString("fr-FR",{day:"numeric",month:"short"}); };
 async function dmLoad(){
   const p = fdMe(); if(!p || !FEED.ok || DM.busy) return; DM.busy = true;
-  try{ const j = await fdApi("/dm/list", {id:p.id, key:p.key}); DM.threads = j.threads||[]; }catch(e){ DM.threads ||= []; }
+  try{ const j = await fdApi("/dm/list", {id:p.id, key:p.key}); DM.threads = j.threads||[]; DM.hide = !!j.hide; store.set("presHide", DM.hide); }catch(e){ DM.threads ||= []; }
   DM.busy = false;
   const prev = DM.unread; DM.unread = DM.threads.filter(t=>t.with!==DM.open).reduce((s,t)=>s+(t.unread||0),0);
   // quelqu'un m'a écrit : bannière (sauf si je suis déjà dans la conversation)
@@ -9403,8 +9425,12 @@ function renderDm(){
   const el = $("#soDm"); if(!el) return;
   if(!fdMe()){ el.innerHTML = `<div class="empty" style="padding:40px 12px">Crée ton profil de Hunter pour écrire aux autres.<br><button class="btn btn-y" id="dmSetup" style="margin-top:14px">Créer mon profil</button></div>`; $("#dmSetup").onclick = ()=>rkSetup(); return; }
   if(DM.threads===null){ el.innerHTML = `<div class="empty"><span class="loader"></span></div>`; return; }
-  el.innerHTML = DM.threads.length ? `<div class="dm-list">${DM.threads.map(t=>{ const st = rkPet(t.pk); return `<button class="dm-row${t.unread?" new":""}" data-dw="${esc(t.with)}"><span class="fd-av">${st?`<img src="${st.img}" alt="">`:"🙂"}</span><span class="dm-t"><b>${esc(t.name||"Hunter")}</b><span>${t.mine?(t.seenT>=t.t?`<em class="dm-rc seen">✓✓ Vu</em> `:`<em class="dm-rc">✓ Envoyé</em> `):""}${esc(t.last||"")}</span></span><span class="dm-m"><small>${dmAgo(t.t)}</small>${t.unread?`<i>${t.unread}</i>`:""}</span></button>`; }).join("")}</div>`
-    : `<div class="empty" style="padding:40px 12px">Aucun message pour l'instant.<br><small>Écris à un Hunter avec ✉️ sur ses posts du Fil, ou depuis sa fiche dans le Classement.</small></div>`;
+  const hide = DM.hide ?? store.get("presHide", false);
+  const pres = `<button class="dm-pres" id="dmPres" aria-pressed="${!hide}"><span class="dm-pd${hide?" off":""}"></span><span><b>${hide?"Statut en ligne masqué":"Les autres voient quand tu es en ligne"}</b><small>${hide?"Personne ne voit quand tu es là. Touche pour le montrer.":"Touche pour le masquer."}</small></span><i class="dm-sw${hide?"":" on"}"></i></button>`;
+  el.innerHTML = pres + (DM.threads.length ? `<div class="dm-list">${DM.threads.map(t=>{ const st = rkPet(t.pk); return `<button class="dm-row${t.unread?" new":""}" data-dw="${esc(t.with)}"><span class="fd-av${t.on?" online":""}">${st?`<img src="${st.img}" alt="">`:"🙂"}</span><span class="dm-t"><b>${esc(t.name||"Hunter")}</b><span>${t.mine?(t.seenT>=t.t?`<em class="dm-rc seen">✓✓ Vu</em> `:`<em class="dm-rc">✓ Envoyé</em> `):""}${esc(t.last||"")}</span></span><span class="dm-m"><small>${dmAgo(t.t)}</small>${t.unread?`<i>${t.unread}</i>`:""}</span></button>`; }).join("")}</div>`
+    : `<div class="empty" style="padding:40px 12px">Aucun message pour l'instant.<br><small>Écris à un Hunter avec ✉️ sur ses posts du Fil, ou depuis sa fiche dans le Classement.</small></div>`);
+  $("#dmPres").onclick = async ()=>{ const p = fdMe(); if(!p) return; const nh = !(DM.hide ?? store.get("presHide", false)); DM.hide = nh; store.set("presHide", nh); renderDm();
+    try{ await fdApi("/presence", {id:p.id, key:p.key, hide:nh}); toast(nh ? "Ton statut en ligne est masqué" : "Les autres voient quand tu es en ligne"); }catch(e){ DM.hide = !nh; store.set("presHide", !nh); renderDm(); toast(e.message); } };
   el.querySelectorAll("[data-dw]").forEach(b=>b.onclick=()=>{ const t = DM.threads.find(x=>x.with===b.dataset.dw); dmOpen(t.with, t.name, t.pk); });
 }
 function dmOpen(w, name, pk){
@@ -9413,7 +9439,7 @@ function dmOpen(w, name, pk){
   let el = $("#dmView"); if(el) el.remove();
   el = document.createElement("div"); el.id = "dmView"; el.className = "dm-view";
   const st = rkPet(pk);
-  el.innerHTML = `<div class="dm-h"><button class="dm-back" aria-label="Retour">‹</button><span class="fd-av">${st?`<img src="${st.img}" alt="">`:"🙂"}</span><b>${esc(name||"Dresseur")}</b></div>
+  el.innerHTML = `<div class="dm-h"><button class="dm-back" aria-label="Retour">‹</button><span class="fd-av">${st?`<img src="${st.img}" alt="">`:"🙂"}</span><span class="dm-hn"><b>${esc(name||"Dresseur")}</b><small id="dmSt"></small></span></div>
     <div class="dm-msgs" id="dmMsgs"><div class="empty"><span class="loader"></span></div></div>
     <div class="dm-in"><button class="dm-att" aria-label="Joindre une carte de ma collection">🃏</button><input id="dmX" type="text" maxlength="1000" placeholder="Écris ton message…" enterkeyhint="send" autocomplete="off"><button class="dm-go" aria-label="Envoyer">➤</button></div>`;
   document.body.appendChild(el);
@@ -9425,6 +9451,7 @@ function dmOpen(w, name, pk){
   el.querySelector(".dm-att").onclick = ()=>fdPick("col", "Joindre une carte", c=>send("", c));
   const pull = async ()=>{ if(DM.open!==w) return; try{ const j = await fdApi("/dm/thread", {id:fdMe().id, key:fdMe().key, with:w}); const l = j.msgs||[];
       const pend = (DM.msgs||[]).filter(m=>m.tmp && !l.some(x=>x.from===m.from && x.text===m.text && Math.abs(x.t-m.t)<6e4));
+      const stEl = $("#dmSt"); if(stEl){ stEl.className = j.on ? "on" : ""; stEl.textContent = presTxt(j.on, j.last); }
       const same = DM.msgs && DM.msgs.length===l.length+pend.length && DM.seen===(j.seen||0); DM.seen = j.seen||0; DM.msgs = [...l, ...pend]; if(!same) dmRender(); }catch(e){ if(DM.msgs===null){ DM.msgs = []; dmRender(); } } };
   pull(); clearInterval(DM.timer); DM.timer = setInterval(()=>{ if(document.visibilityState==="visible") pull(); }, 5000);
   const t = DM.threads?.find(x=>x.with===w); if(t && t.unread){ t.unread = 0; DM.unread = DM.threads.reduce((s,x)=>s+(x.unread||0),0); fdBadge(); }
@@ -9439,6 +9466,14 @@ document.addEventListener("click", e=>{
   showCard(b.dataset.cid, []);
 }, true);
 new MutationObserver(()=>{ const s = $("#sheet"); if(!s.classList.contains("open") && s.classList.contains("overdm")) s.classList.remove("overdm"); }).observe($("#sheet"), {attributes:true, attributeFilter:["class"]});
+// « En ligne » / « En ligne il y a 12 min » / « En ligne à 14:05 » / « En ligne le 18 nov. »
+function presTxt(on, last){
+  if(on) return "En ligne"; if(!last) return "";
+  const d = Date.now()-last, hm = new Date(last).toLocaleTimeString("fr-FR",{hour:"2-digit",minute:"2-digit"});
+  if(d < 36e5) return `En ligne il y a ${Math.max(1, Math.round(d/6e4))} min`;
+  if(new Date(last).toDateString()===new Date().toDateString()) return `En ligne à ${hm}`;
+  return `En ligne le ${new Date(last).toLocaleDateString("fr-FR",{day:"numeric",month:"short"})}`;
+}
 function dmRender(){
   const box = $("#dmMsgs"); if(!box) return; const me = fdMe()?.id, l = DM.msgs||[];
   const atEnd = box.scrollHeight - box.scrollTop - box.clientHeight < 80;
@@ -9446,11 +9481,12 @@ function dmRender(){
   const hm = t => new Date(t).toLocaleTimeString("fr-FR",{hour:"2-digit",minute:"2-digit"});
   const rcpt = m => m.tmp ? `<p class="dm-rcpt">Envoi…</p>` : DM.seen >= m.t ? `<p class="dm-rcpt seen">✓✓ Vu${new Date(DM.seen).toDateString()===new Date().toDateString()?` à ${hm(DM.seen)}`:` le ${new Date(DM.seen).toLocaleDateString("fr-FR",{day:"numeric",month:"short"})}`}</p>` : `<p class="dm-rcpt">✓ Envoyé · pas encore vu</p>`;
   box.innerHTML = l.length ? l.map((m,i)=>{ const day = i===0 || new Date(m.t).toDateString()!==new Date(l[i-1].t).toDateString();
-      return `${day?`<p class="dm-day">${new Date(m.t).toLocaleDateString("fr-FR",{weekday:"long",day:"numeric",month:"long"})}</p>`:""}<div class="dm-b ${m.from===me?"me":""}${m.tmp?" tmp":""}">${m.card?`<button type="button" class="dm-card"${m.card.id?` data-cid="${esc(m.card.id)}"`:""} aria-label="Voir la fiche de ${esc(m.card.name)}"><b class="dmc-n">${esc(m.card.name)}</b><span class="dmc-im">${fdImg(m.card)}</span>${m.card.price!=null?`<span class="dmc-p">${bE(m.card.price)}</span>`:""}${m.card.id?`<em>Voir la fiche ›</em>`:""}</button>`:""}${m.text?`<span>${esc(m.text)}</span>`:""}<small>${new Date(m.t).toLocaleTimeString("fr-FR",{hour:"2-digit",minute:"2-digit"})}</small></div>${(()=>{ const c = {}; for(const e of Object.values(m.rx||{})) c[e] = (c[e]||0)+1; return Object.keys(c).length ? `<div class="dm-rxs ${m.from===me?"me":""}">${rxChips(c, (m.rx||{})[me], `data-dmrx="${i}"`)}</div>` : ""; })()}${i===myLast?rcpt(m):""}`; }).join("")
+      return `${day?`<p class="dm-day">${new Date(m.t).toLocaleDateString("fr-FR",{weekday:"long",day:"numeric",month:"long"})}</p>`:""}<div class="dm-b ${m.from===me?"me":""}${m.tmp?" tmp":""}">${m.card?`<button type="button" class="dm-card"${m.card.id?` data-cid="${esc(m.card.id)}"`:""} aria-label="Voir la fiche de ${esc(m.card.name)}"><b class="dmc-n">${esc(m.card.name)}</b><span class="dmc-im">${fdImg(m.card)}</span>${m.card.price!=null?`<span class="dmc-p">${bE(m.card.price)}</span>`:""}${m.card.id?`<em>Voir la fiche ›</em>`:""}</button>`:""}${m.text?`<span>${esc(m.text)}</span>`:""}<small>${new Date(m.t).toLocaleTimeString("fr-FR",{hour:"2-digit",minute:"2-digit"})}</small>${m.tmp?"":`<button type="button" class="dm-rxb" data-dmrxp="${i}" aria-label="Réagir à ce message">☺</button>`}</div>${(()=>{ const c = {}; for(const e of Object.values(m.rx||{})) c[e] = (c[e]||0)+1; return Object.keys(c).length ? `<div class="dm-rxs ${m.from===me?"me":""}">${rxChips(c, (m.rx||{})[me], `data-dmrx="${i}"`)}</div>` : ""; })()}${i===myLast?rcpt(m):""}`; }).join("")
     : `<div class="empty">Dis bonjour 👋</div>`;
   if(atEnd || l.some(m=>m.tmp)) box.scrollTop = box.scrollHeight;
   // réagir : appui long (ou double-toucher) sur une bulle ; toucher une pastille l'ajoute ou la retire
   const W = DM.open, T = DM.threads?.find(x=>x.with===W);
+  box.querySelectorAll("[data-dmrxp]").forEach(b=>b.onclick=ev=>{ ev.stopPropagation(); const m = l[+b.dataset.dmrxp]; if(m) rxPick(b.parentElement, (m.rx||{})[me], e=>dmReact(W, T?.name, m, e)); });
   box.querySelectorAll("[data-dmrx]").forEach(b=>b.onclick=()=>{ const m = l[+b.dataset.dmrx]; if(m) dmReact(W, T?.name, m, b.dataset.e); });
   box.querySelectorAll(".dm-b").forEach((el, k)=>{
     const msgs = l.filter((m,i)=>true), m = msgs[k]; if(!m || m.tmp) return;
@@ -9507,6 +9543,10 @@ $("#moreBack").onclick = ()=>navBack();
    Après l'intro, une seule fois par version qui apporte quelque chose à l'utilisateur.
    Nouvelle installation : rien (tout est neuf). Les versions purement techniques n'ont pas d'entrée ici. */
 const NEWS = [
+  {v:187, items:[
+    ["M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18zM12 7v5l3 2", "En ligne", "Un point vert montre les Hunters en ligne, et la conversation affiche quand ils étaient là. Tu peux masquer ton statut en haut de tes messages."],
+    ["M4 8h3l2-3h6l2 3h3v11H4zM12 16.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z", "Photo en commentaire", "Ajoute une photo à un commentaire ou à une réponse avec le bouton 📷. Touche une photo pour l'agrandir."]
+  ]},
   {v:186, items:[
     ["M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18zM8.5 14.5s1.3 2 3.5 2 3.5-2 3.5-2M9 9.5h.01M15 9.5h.01", "Réactions", "Réagis avec ❤️ 🔥 😂 😮 😢 👍 : bouton ☺ sous les publications et les commentaires, appui long ou double-toucher sur un message privé."]
   ]},

@@ -222,6 +222,8 @@ html{background:var(--panel)}
 .wishrow .wmax input{width:100%;min-width:0;background:transparent;border:0;color:var(--fg);font:700 16px var(--f-mono);padding:0}
 .wishtot .whit{color:var(--up)}
 .wsort{margin:12px 0 10px}
+.wnote{display:block;width:100%;text-align:left;margin:10px 0 0;padding:10px 12px;border-radius:12px;background:var(--panel);border:1px solid var(--line);color:var(--muted);font-size:12.5px;line-height:1.4}
+button.wnote{color:var(--fg);border-color:color-mix(in srgb,var(--border-yellow) 50%,var(--line))}.wnote.on{color:var(--up)}
 .wlist{display:flex;flex-direction:column;gap:8px}
 .witem{position:relative;display:flex;gap:12px;align-items:center;padding:9px 40px 9px 9px;border-radius:14px;background:var(--panel);border:1px solid var(--line);cursor:pointer}
 .witem.hit{border-color:var(--up);box-shadow:0 0 0 1px var(--up) inset,0 0 18px color-mix(in srgb,var(--up) 25%,transparent)}
@@ -1940,7 +1942,7 @@ img.px.reveal{animation:stpRev .9s ease-out}
   }
   fit(); addEventListener("resize", fit); addEventListener("orientationchange", function(){ setTimeout(fit, 300); });
 })();</script>
-<script>window.__APPV="177";</script>
+<script>window.__APPV="178";</script>
 <div class="splash" id="splash" aria-hidden="true"><i class="hole"></i><i class="halo"></i><div class="bw"><svg class="b" viewBox="0 0 100 100"><use href="#pb"/></svg><svg class="t" viewBox="0 0 100 100"><use href="#pb"/></svg></div><i class="glow"></i></div>
 <script>setTimeout(function(){ if(window.__booted) return;
   var b=document.createElement("div"); b.setAttribute("role","alert");
@@ -1975,7 +1977,7 @@ img.px.reveal{animation:stpRev .9s ease-out}
   <!-- ===== EXTENSIONS ===== -->
   <section class="view" id="homeView">
     <div class="scroll">
-      <div class="homebar"><span class="brand">DEX<b>·</b>SCAN</span><span class="hbis"><button class="hbi" id="hSearch" aria-label="Rechercher une carte"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></button><button class="hbi" id="themeBtn" aria-label="Changer de thème"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.6-.9 1.2-1.8-.5-1.1.2-2.2 1.4-2.2H17a4 4 0 0 0 4-4c0-5.5-4-10-9-10z"/><circle cx="7.5" cy="11" r="1.2"/><circle cx="10" cy="7" r="1.2"/><circle cx="15" cy="7" r="1.2"/></svg></button><button class="hbi" id="moreBtn" aria-label="Réglages et plus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg></button></span><span class="ver" id="hVer">v177</span></div>
+      <div class="homebar"><span class="brand">DEX<b>·</b>SCAN</span><span class="hbis"><button class="hbi" id="hSearch" aria-label="Rechercher une carte"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></button><button class="hbi" id="themeBtn" aria-label="Changer de thème"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.6-.9 1.2-1.8-.5-1.1.2-2.2 1.4-2.2H17a4 4 0 0 0 4-4c0-5.5-4-10-9-10z"/><circle cx="7.5" cy="11" r="1.2"/><circle cx="10" cy="7" r="1.2"/><circle cx="15" cy="7" r="1.2"/></svg></button><button class="hbi" id="moreBtn" aria-label="Réglages et plus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg></button></span><span class="ver" id="hVer">v178</span></div>
       <button class="banner" id="pxBanner" hidden></button>
       <span class="hdate hgreet" id="hDate"></span>
       <div class="hhero"><div class="total htot" id="hTot"></div><span id="avatSlot"></span></div>
@@ -3981,7 +3983,19 @@ function setColMode(m){
 /* ---------- Liste de souhaits : les cartes que tu cherches, leur prix, et un prix cible ---------- */
 const getWish = () => store.get("wish", []);
 const wishOf = id => getWish().find(x=>x.id===id);
-function setWish(l){ store.set("wish", l); wishBadge(); }
+function setWish(l){ store.set("wish", l); wishBadge(); wishSyncSoon(); }
+// prix cibles envoyés au guetteur (lié à l'abonnement aux notifications de ce téléphone) : il prévient même app fermée
+let wishSyncT = null;
+function wishSyncSoon(){ clearTimeout(wishSyncT); wishSyncT = setTimeout(wishSync, 3000); }
+async function wishSync(){
+  if(!store.get("pushOn")) return false;
+  const sub = await pushSub(); if(!sub) return false;
+  const items = getWish().filter(x=>x.max!=null).map(x=>({id:x.id, name:x.name, max:x.max}));
+  const sig = JSON.stringify(items); if(sig===store.get("wishSyncSig") && Date.now()-store.get("wishSyncT",0) < 7*864e5) return true;
+  try{ const r = await fetch(GUET+"/push/souhaits", {method:"POST", headers:{"content-type":"application/json"}, body:JSON.stringify({endpoint:sub.endpoint, items})}).then(r=>r.json());
+    if(r.ok){ store.set("wishSyncSig", sig); store.set("wishSyncT", Date.now()); return true; } }catch(e){}
+  return false;
+}
 function addWish(c){
   const l = getWish(); if(l.some(x=>x.id===c.id)) return;
   const mi = marketInfo(c) || {}, p = mi.p ?? mainPrice(c) ?? null;
@@ -4023,6 +4037,7 @@ function renderWish(){
   el.innerHTML = `<div class="total wishtot"><div class="plabel"><span>Liste de souhaits</span><span>${l.length} carte${l.length>1?"s":""}</span></div>
       <div class="pmain"><div class="pbig">${eurN(tot)}<small>€</small></div></div>
       <div class="psub">Budget pour toutes les avoir, au prix du marché${hits?` · <b class="whit">🎯 ${hits} prix cible${hits>1?"s":""} atteint${hits>1?"s":""}</b>`:""}</div></div>
+    ${l.some(x=>x.max!=null) ? (store.get("pushOn") ? `<p class="wnote on">🔔 Tu reçois une notification quand une carte passe sous ton prix cible, même app fermée.</p>` : `<button class="wnote" id="wishPush">🔕 Active les notifications pour être prévenu quand une carte passe sous ton prix cible, même app fermée ›</button>`) : `<p class="wnote">Astuce : ouvre une carte et fixe un prix cible pour être prévenu quand elle baisse.</p>`}
     <div class="csort wsort">${WSORT.map(([k,t])=>`<button data-wsort="${k}" aria-pressed="${wishSort===k}">${t}</button>`).join("")}</div>
     <div class="wlist">${l.map(x=>{ const c = chg(x), hit = wishHit(x);
       return `<div class="witem${hit?" hit":""}" data-id="${esc(x.id)}" role="button" tabindex="0">
@@ -4032,6 +4047,7 @@ function renderWish(){
           <span class="wtg">${x.max!=null?(hit?`🎯 Sous ta cible de ${eurS(x.max)}`:`Cible ${eurS(x.max)}${x.price?` · encore ${eurS(Math.max(0,x.price-x.max))}`:""}`):`<i>Pas de prix cible</i>`}</span></span>
         <button class="wdel" data-wdel="${esc(x.id)}" aria-label="Retirer de la liste">×</button></div>`; }).join("")}</div>
     <p class="psub" style="text-align:center;margin:12px 0 4px">Une baisse de prix s'affiche en vert : c'est le bon moment pour acheter.</p>`;
+  $("#wishPush") && ($("#wishPush").onclick = ()=>openSub("alertView"));
   el.querySelectorAll("[data-wsort]").forEach(b=>b.onclick=()=>{ wishSort = b.dataset.wsort; store.set("wishSort", wishSort); renderWish(); });
   el.querySelectorAll(".witem").forEach(b=>b.onclick=e=>{
     const d = e.target.closest("[data-wdel]");
@@ -4042,7 +4058,7 @@ function renderWish(){
 // petit cœur sur les cartes de la liste, dans les grilles du Classeur et d'Explorer
 function wishMarks(root){ if(!root) return; const W = new Set(getWish().map(x=>x.id)); if(!W.size) return;
   root.querySelectorAll(".ctile[data-id]").forEach(b=>{ const im = b.querySelector(".im"); if(im && W.has(b.dataset.id) && !im.querySelector(".wsh")) im.insertAdjacentHTML("beforeend",`<span class="wsh" aria-label="Dans ta liste de souhaits">♥</span>`); }); }
-setTimeout(()=>{ wishBadge(); if(getWish().length) setTimeout(()=>wishPrices(), 4000); }, 0);
+setTimeout(()=>{ wishBadge(); if(getWish().length){ setTimeout(()=>wishPrices(), 4000); setTimeout(wishSync, 9000); } }, 0);
 function renderColGraded(){
   const all = getGraded(), l = COLM.lg==="all" ? all : all.filter(x=>(x.lg||"FR")===COLM.lg), el = $("#colGraded");
   $("#cmGrN").textContent = all.length ? all.length : "";
@@ -4395,7 +4411,7 @@ async function pushOn(){
     const r = await fetch(GUET+"/push/abo", {method:"POST", headers:{"content-type":"application/json"}, body:JSON.stringify({sub:sub.toJSON(), test:true})}).then(r=>r.json());
     if(r.error) throw new Error(r.error);
     await pushLink(sub);
-    store.set("pushOn", true); toast("Notifications activées ✔");
+    store.set("pushOn", true); toast("Notifications activées ✔"); store.set("wishSyncSig", ""); wishSync();
     PUSH.busy = false; await renderPush(); pushMsg("✓ C'est activé. Une notification de test vient d'être envoyée sur ce téléphone.", true); return;
   }catch(e){ const t = e.message==="sw" ? "Recharge l'app puis réessaie" : e.message || "Activation impossible"; toast(t); PUSH.busy = false; await renderPush(); pushMsg(t, false); return; }
 }
@@ -4409,7 +4425,9 @@ setTimeout(()=>{ alLoad(true); alTick(); }, 2500);
 if(store.get("pushOn", false)) setTimeout(async()=>{ const s = await pushSub(); if(s){ await fetch(GUET+"/push/abo", {method:"POST", headers:{"content-type":"application/json"}, body:JSON.stringify({sub:s.toJSON()})}).catch(()=>{}); pushLink(s); } }, 6000);
 // notification touchée : ouvre le bon écran (message privé ou post du Fil)
 async function notifGo(q){
-  const p = new URLSearchParams(q), msg = p.get("msg"), post = p.get("post"); if(!msg && !post) return;
+  const p = new URLSearchParams(q), msg = p.get("msg"), post = p.get("post"), card = p.get("card");
+  if(card){ try{ closeSheet(); }catch(e){} showCard(card, []); return; }
+  if(!msg && !post) return;
   if(post && p.get("cm")) FEED.cmOpen.add(post);
   try{ closeSheet(); }catch(e){}
   if(msg){ selectTab("socialView"); soShow("dm");
@@ -4419,8 +4437,8 @@ async function notifGo(q){
     for(let i=0; i<30; i++){ const el = document.querySelector(`#feedPane [data-pid="${CSS.escape(post)}"]`); if(el){ el.scrollIntoView({block:"start", behavior:"smooth"}); break; } await new Promise(r=>setTimeout(r, 200)); } }
 }
 navigator.serviceWorker?.addEventListener("message", e=>{ if(e.data?.open) notifGo(e.data.open); });
-(()=>{ const u = new URL(location.href); if(!u.searchParams.has("msg") && !u.searchParams.has("post")) return; const q = u.search;
-  ["msg","post","cm"].forEach(k=>u.searchParams.delete(k)); history.replaceState(history.state, "", u.pathname + (u.search||"") + u.hash);
+(()=>{ const u = new URL(location.href); if(!u.searchParams.has("msg") && !u.searchParams.has("post") && !u.searchParams.has("card")) return; const q = u.search;
+  ["msg","post","cm","card"].forEach(k=>u.searchParams.delete(k)); history.replaceState(history.state, "", u.pathname + (u.search||"") + u.hash);
   setTimeout(()=>notifGo(q), 1800); })();
 
 /* ---------------- Recherche manuelle ---------------- */
@@ -8539,6 +8557,7 @@ async function betaPublishFlow(){
 }
 /* Journal des modifications de la Bêta : la carte « Version Bêta » liste celles que les copains n'ont pas encore */
 const BETA_LOG = [
+  {v:178, t:"Notification quand une carte de ta liste de souhaits passe sous ton prix cible, même app fermée"},
   {v:177, t:"Sauvegarde automatique en ligne, chiffrée, avec un code pour tout retrouver sur un autre téléphone · export de la collection en tableur"},
   {v:176, t:"Scan en rafale : enchaîne les cartes sans ouvrir la fiche, vérifie le bac puis ajoute tout d'un coup"},
   {v:175, t:"Liste de souhaits : ♡ Je la veux sur chaque carte, onglet Souhaits dans le Classeur, prix suivi et prix cible"},
@@ -9174,6 +9193,9 @@ $("#moreBack").onclick = ()=>navBack();
    Après l'intro, une seule fois par version qui apporte quelque chose à l'utilisateur.
    Nouvelle installation : rien (tout est neuf). Les versions purement techniques n'ont pas d'entrée ici. */
 const NEWS = [
+  {v:178, items:[
+    ["M6 8a6 6 0 1 1 12 0c0 7 3 9 3 9H3s3-2 3-9M10.3 21a1.94 1.94 0 0 0 3.4 0", "Alerte prix cible", "Fixe un prix cible sur une carte de ta liste de souhaits : tu reçois une notification dès qu'elle passe dessous, même app fermée (notifications activées dans Alertes)."]
+  ]},
   {v:177, items:[
     ["M7 18a5 5 0 0 1-.6-9.96A6 6 0 0 1 18 8a4.5 4.5 0 0 1-.5 9H7zM9.5 13l2 2 3.5-4", "Sauvegarde automatique", "Réglages › Sauvegarde automatique : ta collection est copiée en ligne à chaque changement, chiffrée. Avec ton code, tu retrouves tout sur un autre téléphone."],
     ["M3 3h18v18H3zM3 9h18M3 15h18M9 3v18", "Export en tableur", "Réglages › Exporter en tableur : ta collection, tes gradées et ta liste de souhaits dans un fichier pour Excel, Numbers ou Google Sheets."]

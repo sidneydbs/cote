@@ -10,7 +10,7 @@ const APP = "dex-app-v1", IMG = "dex-img-v1", API = "dex-api-v2", DATA = "dex-da
 const IMG_HOSTS = /^(assets\.tcgdex\.net|images\.pokemontcg\.io|images\.scrydex\.com|limitlesstcg\.nyc3\.cdn\.digitaloceanspaces\.com|www\.google\.com|icons\.duckduckgo\.com)$/;
 self.addEventListener("install", () => self.skipWaiting());
 self.addEventListener("activate", e => e.waitUntil((async () => {
-  for (const k of await caches.keys()) if (![APP, IMG, API, DATA].includes(k)) await caches.delete(k);
+  for (const k of await caches.keys()) if (![APP, IMG, API, DATA, "dex-badge"].includes(k)) await caches.delete(k);
   // réparation : une ancienne version a pu garder une autre page (booster3d.html) à la place de l'app
   try { const c = await caches.open(APP), key = new URL("./", self.registration.scope).href, hit = await c.match(key);
     if (hit && !(await hit.clone().text()).includes("__APPV")) await c.delete(key); } catch (e) {}
@@ -88,12 +88,21 @@ self.addEventListener("fetch", e => {
 });
 
 // notifications du guetteur (réassorts, précommandes…) : le message arrive chiffré, on l'affiche tel quel
+// pastille de l'icône : +1 à chaque notification reçue (l'app remet le vrai compte quand on l'ouvre)
+async function bumpBadge() {
+  try {
+    const c = await caches.open("dex-badge"), r = await c.match("/badge");
+    const n = (parseInt(r ? await r.text() : "0", 10) || 0) + 1;
+    await c.put("/badge", new Response(String(n)));
+    if (self.navigator.setAppBadge) await self.navigator.setAppBadge(n);
+  } catch (e) {}
+}
 self.addEventListener("push", e => {
   let d = {};
   try { d = e.data ? e.data.json() : {}; } catch (_) { d = {title: "Dex Scan", body: e.data ? e.data.text() : ""}; }
-  e.waitUntil(self.registration.showNotification(d.title || "Alerte réassort", {
+  e.waitUntil(Promise.all([self.registration.showNotification(d.title || "Alerte réassort", {
     body: d.body || "", icon: "/cote/icon-192.png", badge: "/cote/icon-192.png",
-    tag: "al-" + (d.id || Date.now()), data: {url: d.url || ""}, timestamp: d.t || Date.now()}));
+    tag: "al-" + (d.id || Date.now()), data: {url: d.url || ""}, timestamp: d.t || Date.now()}), bumpBadge()]));
 });
 // toucher la notification : ouvre directement la boutique (sinon l'app, sur les alertes)
 self.addEventListener("notificationclick", e => {

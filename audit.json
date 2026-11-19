@@ -1,5 +1,5 @@
 {
- "built": "2026-11-19T00:43:30.625Z",
+ "built": "2026-11-19T12:06:42.492Z",
  "sets": {
   "total": 209,
   "noLogo": [],
@@ -14,12 +14,12 @@
   "bySet": {}
  },
  "sealed": {
-  "total": 4636,
-  "photo": 1344,
+  "total": 4639,
+  "photo": 1345,
   "manual": 0,
-  "tcgplayer": 666,
-  "logo": 1808,
-  "missing": 818,
+  "tcgplayer": 663,
+  "logo": 1811,
+  "missing": 820,
   "list": [
    "EX Trainer Kit",
    "EX Trainer Kit 2",
@@ -772,6 +772,7 @@
    "Pokémon Card Gym Promo MEGA Vol. 4 Booster (1 Card)",
    "Pokémon Card Gym Promo MEGA Vol. 4 Booster (2 Cards)",
    "Traditional Chinese Ninja Spinner Value Set",
+   "Shadow Threat 10-Pack Set Plus",
    "Shadow Threat Special Set Vulpix 2-Pack Blister",
    "Shadow Threat Special Set Popplio 2-Pack Blister",
    "Shadow Threat Booster Box",
@@ -838,7 +839,8 @@
    "CSVH6C: Happy Set Trainers’ Pokémon Box Set",
    "CBB7C: Gem Pack Vol. 7 Booster",
    "CBB7C: Gem Pack Vol. 7 Booster Box",
-   "Aura Seeker Booster Box"
+   "Aura Seeker Booster Box",
+   "Pokémon TCG Valentine’s Box"
   ]
  },
  "tk": {
@@ -858,14 +860,12 @@
   "tk-xy-p": "tk9b",
   "tk-sm-l": "tk10a",
   "tk-sm-r": "tk10b",
-  "tk-ex-m": "tk2b",
-  "tk-ex-p": "tk2a",
-  "tk-ex-latia": "tk1a"
+  "tk-ex-m": "tk2b"
  },
  "diag": {
   "assets.tcgdex.net": {
-   "404": 321,
-   "503": 24,
+   "404": 324,
+   "503": 6,
    "ok": 150
   },
   "images.pokemontcg.io": {

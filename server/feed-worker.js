@@ -83,9 +83,17 @@ async function dm(env, me, act, b){
   if(act === "list") return json({threads: (await inboxOf(env, me)).sort((x, y) => y.t - x.t)});
   const other = clean(b.with ?? b.to, 64); if(!/^[\w-]{6,64}$/.test(other) || other === me) return err("Destinataire invalide");
   if(act === "thread"){
-    const l = (await env.FEED.get(dmKey(me, other), "json")) || [];
+    const k = dmKey(me, other), l = (await env.FEED.get(k, "json")) || [];
     const ib = await inboxOf(env, me), e = ib.find(x => x.with === other); if(e && e.unread){ e.unread = 0; await env.FEED.put("inbox:" + me, JSON.stringify(ib)); }
-    return json({msgs: l.slice(-200)});
+    // accusés de lecture : "dms:CLÉ" = {id: dernière lecture}. On n'écrit que s'il y a du nouveau de l'autre côté.
+    const sk = "dms:" + k, seen = (await env.FEED.get(sk, "json")) || {}, now = Date.now();
+    const lastIn = l.reduce((t, m) => m.from === other && m.t > t ? m.t : t, 0);
+    if(lastIn && !(seen[me] >= lastIn)){
+      seen[me] = now; await env.FEED.put(sk, JSON.stringify(seen));
+      // la conversation de l'autre affiche « Vu » sans ouvrir le fil
+      const ob = await inboxOf(env, other), oe = ob.find(x => x.with === me); if(oe){ oe.seenT = now; await env.FEED.put("inbox:" + other, JSON.stringify(ob)); }
+    }
+    return json({msgs: l.slice(-200), seen: seen[other] || 0});
   }
   if(act === "send"){
     const text = clean(b.text, 1000), c = card(b.card); if(!text && !c) return err("Message vide");
@@ -96,7 +104,7 @@ async function dm(env, me, act, b){
     const k = dmKey(me, other), l = (await env.FEED.get(k, "json")) || []; l.push(m); await env.FEED.put(k, JSON.stringify(l.slice(-DM_MAX)));
     const last = text || "🃏 " + (c?.name || "Carte");
     const upd = async (owner, w, name, pk, unread) => { const ib = await inboxOf(env, owner); let e = ib.find(x => x.with === w);
-      if(!e){ e = {with:w, unread:0}; ib.push(e); } if(name) e.name = clean(name, 24); if(pk) e.pk = clean(pk, 40); e.last = last.slice(0, 120); e.t = now; e.unread = unread ? (e.unread||0) + 1 : 0;
+      if(!e){ e = {with:w, unread:0}; ib.push(e); } if(name) e.name = clean(name, 24); if(pk) e.pk = clean(pk, 40); e.last = last.slice(0, 120); e.t = now; e.unread = unread ? (e.unread||0) + 1 : 0; e.mine = !unread;
       await env.FEED.put("inbox:" + owner, JSON.stringify(ib.sort((x, y) => y.t - x.t).slice(0, 200))); };
     await upd(me, other, b.toName, b.toPk, false);
     await upd(other, me, b.name, b.pk, true);

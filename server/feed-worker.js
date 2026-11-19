@@ -55,7 +55,7 @@ function attOf(tag, a){
   if(tag === "poll"){ const o = (Array.isArray(a.opts) ? a.opts : []).map(x => clean(x, 60)).filter(Boolean).slice(0, 4); return o.length >= 2 ? {opts:o} : undefined; }
 }
 // réactions (émoticônes) : une par personne et par post / commentaire / message ; rx = {id: émoticône}
-const RX = ["❤️", "🔥", "😂", "😮", "😢", "👍"];
+const RX = ["❤️", "😂", "😆", "😮", "😢", "😭", "👍", "🔥", "😡", "🙏"];
 const rxSum = o => { const c = {}; for(const e of Object.values(o?.rx || {})) if(RX.includes(e)) c[e] = (c[e] || 0) + 1; return c; };
 const rxSet = (o, me, e) => { o.rx ||= {}; if(!RX.includes(e) || o.rx[me] === e) delete o.rx[me]; else o.rx[me] = e; };
 const load = async env => (await env.FEED.get("posts", "json")) || [];

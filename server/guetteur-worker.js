@@ -110,7 +110,9 @@ async function runFlux(env, src, st){                       // rss, shopify, pag
     if (seen.has(x.id)) continue; seen.add(x.id);
     if (first && !CFG.alerterAuDemarrage) continue;
     const t = `${x.title} ${x.text}`;
-    if (exclu(t) || !(src.toutPokemon || POKE.test(t)) || !TCG(t)) continue;
+    // flux généralistes (tout Dealabs…) : c'est le TITRE qui doit parler de Pokémon et de cartes, pas la description
+    const gen = src.type === "rss" && !/pok/i.test(`${src.nom} ${src.url}`);
+    if (exclu(t) || !(src.toutPokemon || POKE.test(gen ? x.title : t)) || !TCG(gen ? x.title : t)) continue;
     if (src.motsCles && !new RegExp(src.motsCles, "i").test(t)) continue;
     const hot = HOT.test(t), stock = STOCK.test(t) || x.avail;
     if (!src.toutAlerter && !hot && !stock && src.type !== "shopify" && src.type !== "page") continue;

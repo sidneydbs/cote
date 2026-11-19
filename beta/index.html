@@ -257,6 +257,19 @@ html{background:var(--panel)}
 .bkr .bkl{flex:none;padding:7px 8px;border-radius:9px;background:var(--panel-2);border:1px solid var(--line);font:700 11.5px var(--f-mono)}
 .bkr .bkq{flex:none;display:flex;align-items:center;gap:2px}.bkr .bkq button{width:30px;height:30px;border-radius:9px;background:var(--panel-2);font-size:17px;font-weight:700}.bkr .bkq b{min-width:20px;text-align:center;font:700 13px var(--f-mono)}
 .brev-act{margin-top:14px}.brev-act .btn{width:100%}
+#mCloudT.bkwarn{color:#FFB020}
+#colView[data-cm="wish"] #bkNudge,#colView[data-cm="graded"] #bkNudge{display:none}
+.bkhero{text-align:center;padding:4px 2px 6px}.bkhero .bkic{font-size:44px;line-height:1;color:var(--border-yellow);margin-bottom:6px}.bkhero p{margin:0 0 10px;font-size:14.5px;line-height:1.45}
+.bkbox{margin-top:16px;padding:14px;border-radius:16px;background:var(--panel);border:1px solid var(--line)}.bkbox h4{margin:0 0 6px;font-size:14px}.bkbox .fine{margin:6px 0 10px}
+.bkin{display:flex;gap:8px}.bkin input{flex:1;min-width:0;padding:12px;border-radius:12px;background:var(--panel-2);border:1px solid var(--line);color:var(--fg);font:700 13.5px var(--f-mono);letter-spacing:.02em;text-transform:uppercase}
+.bkcode{font:800 clamp(17px,5.4vw,22px) var(--f-mono);letter-spacing:.08em;text-align:center;padding:14px 8px;border-radius:12px;background:var(--panel-2);border:1px dashed var(--border-yellow);user-select:all;-webkit-user-select:all}
+.bkst{padding:14px;border-radius:16px;border:1px solid var(--line);background:var(--panel);display:flex;flex-direction:column;gap:4px}.bkst b{font-size:16px}.bkst span{color:var(--muted);font-size:13px;line-height:1.4}
+.bkst.ok{border-color:var(--up)}.bkst.ok b{color:var(--up)}.bkst.warn{border-color:#FFB020}.bkst.warn b{color:#FFB020}
+.bkfound{margin-top:10px;padding:12px;border-radius:12px;border:1px solid var(--up);display:flex;flex-direction:column;gap:3px}.bkfound span{color:var(--muted);font-size:13px}
+.bkerr{color:var(--down);font-size:13px;margin:8px 0 0}
+.bkoff{display:block;margin:18px auto 4px;color:var(--muted);font-size:13px;text-decoration:underline;text-underline-offset:3px}
+.bknudge{display:flex;align-items:center;gap:10px;width:100%;text-align:left;margin:0 0 12px;padding:11px 12px;border-radius:14px;background:color-mix(in srgb,#FFB020 12%,var(--panel));border:1px solid color-mix(in srgb,#FFB020 55%,var(--line))}
+.bknudge b{display:block;font-size:13.5px}.bknudge small{display:block;color:var(--muted);font-size:12px;margin-top:2px}.bknudge .x{margin-left:auto;flex:none;width:28px;height:28px;color:var(--muted);font-size:18px}
 .ctile .px.up{color:var(--up)}.ctile .px.down{color:var(--down)}
 .variant-tabs{display:flex;gap:6px;margin-top:14px;flex-wrap:wrap}
 .vt{padding:7px 12px;border-radius:9px;background:var(--panel-2);border:1px solid var(--line);font-size:12.5px;font-weight:600;color:var(--muted)}
@@ -1927,7 +1940,7 @@ img.px.reveal{animation:stpRev .9s ease-out}
   }
   fit(); addEventListener("resize", fit); addEventListener("orientationchange", function(){ setTimeout(fit, 300); });
 })();</script>
-<script>window.__APPV="176";</script>
+<script>window.__APPV="177";</script>
 <div class="splash" id="splash" aria-hidden="true"><i class="hole"></i><i class="halo"></i><div class="bw"><svg class="b" viewBox="0 0 100 100"><use href="#pb"/></svg><svg class="t" viewBox="0 0 100 100"><use href="#pb"/></svg></div><i class="glow"></i></div>
 <script>setTimeout(function(){ if(window.__booted) return;
   var b=document.createElement("div"); b.setAttribute("role","alert");
@@ -1962,7 +1975,7 @@ img.px.reveal{animation:stpRev .9s ease-out}
   <!-- ===== EXTENSIONS ===== -->
   <section class="view" id="homeView">
     <div class="scroll">
-      <div class="homebar"><span class="brand">DEX<b>·</b>SCAN</span><span class="hbis"><button class="hbi" id="hSearch" aria-label="Rechercher une carte"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></button><button class="hbi" id="themeBtn" aria-label="Changer de thème"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.6-.9 1.2-1.8-.5-1.1.2-2.2 1.4-2.2H17a4 4 0 0 0 4-4c0-5.5-4-10-9-10z"/><circle cx="7.5" cy="11" r="1.2"/><circle cx="10" cy="7" r="1.2"/><circle cx="15" cy="7" r="1.2"/></svg></button><button class="hbi" id="moreBtn" aria-label="Réglages et plus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg></button></span><span class="ver" id="hVer">v176</span></div>
+      <div class="homebar"><span class="brand">DEX<b>·</b>SCAN</span><span class="hbis"><button class="hbi" id="hSearch" aria-label="Rechercher une carte"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></button><button class="hbi" id="themeBtn" aria-label="Changer de thème"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.6-.9 1.2-1.8-.5-1.1.2-2.2 1.4-2.2H17a4 4 0 0 0 4-4c0-5.5-4-10-9-10z"/><circle cx="7.5" cy="11" r="1.2"/><circle cx="10" cy="7" r="1.2"/><circle cx="15" cy="7" r="1.2"/></svg></button><button class="hbi" id="moreBtn" aria-label="Réglages et plus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg></button></span><span class="ver" id="hVer">v177</span></div>
       <button class="banner" id="pxBanner" hidden></button>
       <span class="hdate hgreet" id="hDate"></span>
       <div class="hhero"><div class="total htot" id="hTot"></div><span id="avatSlot"></span></div>
@@ -2006,8 +2019,12 @@ img.px.reveal{animation:stpRev .9s ease-out}
         <button id="mLang"><span class="mi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg></span><span class="mt"><b>Langue des cartes</b><small id="mLangV">Français</small></span><svg class="mch" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></button>
       </div>
       <div class="mlist">
+        <button id="mCloud"><span class="mi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 18a5 5 0 0 1-.6-9.96A6 6 0 0 1 18 8a4.5 4.5 0 0 1-.5 9H7z"/><path d="m9.5 13 2 2 3.5-4"/></svg></span><span class="mt"><b>Sauvegarde automatique</b><small id="mCloudT">Désactivée · ta collection n'est que sur ce téléphone</small></span><svg class="mch" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></button>
         <button id="mSave"><span class="mi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg></span><span class="mt"><b>Sauvegarder mes données</b><small id="mSaveT">Jamais sauvegardé</small></span><svg class="mch" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></button>
         <button id="mLoad"><span class="mi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21V9"/><path d="m7 14 5-5 5 5"/><path d="M5 3h14"/></svg></span><span class="mt"><b>Restaurer une sauvegarde</b><small>Depuis un fichier Dex Scan</small></span><svg class="mch" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></button>
+      </div>
+      <div class="mlist">
+        <button id="mCsv"><span class="mi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M3 15h18M9 3v18"/></svg></span><span class="mt"><b>Exporter en tableur</b><small>Collection, gradées et souhaits · Excel, Numbers, Sheets</small></span><svg class="mch" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></button>
       </div>
       <input type="file" id="bkIn" accept=".json,application/json,text/plain" hidden>
       <p class="fine" style="text-align:center;margin-top:18px" id="mVer">Dex Scan</p>
@@ -3312,6 +3329,10 @@ async function renderCol(){
   const by = new Map(); for(const x of col){ const k = setIdOf(x.id); if(!by.has(k)) by.set(k,[]); by.get(k).push(x); }
   $("#colMeta").textContent = `${n} carte${n>1?"s":""} · ${col.length} référence${col.length>1?"s":""} · ${by.size} extension${by.size>1?"s":""}`;
   $("#colPdx").setAttribute("aria-pressed", COLV.pdx);
+  { const nd = $("#bkNudge"); const want = n>=10 && !bkcGet()?.code && !store.get("bkNudgeX",0);
+    if(want && !nd){ list.insertAdjacentHTML("beforebegin", `<div class="bknudge" id="bkNudge" role="button" tabindex="0"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="#FFB020" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:none" aria-hidden="true"><path d="M7 18a5 5 0 0 1-.6-9.96A6 6 0 0 1 18 8a4.5 4.5 0 0 1-.5 9H7z"/><path d="M12 10v3M12 15.5v.01"/></svg><span><b>Ta collection n'est que sur ce téléphone</b><small>Active la sauvegarde automatique pour ne jamais la perdre</small></span><button class="x" aria-label="Plus tard">×</button></div>`);
+      $("#bkNudge").onclick = e=>{ if(e.target.closest(".x")){ store.set("bkNudgeX", Date.now()); $("#bkNudge").remove(); return; } bkCloudSheet(); }; }
+    else if(!want && nd) nd.remove(); }
   if(!col.length){ list.innerHTML = `<div class="empty">Ta collection est vide.<br>Scanne une carte ou ouvre une extension, puis touche « Ajouter à ma collection ».</div>`; return; }
   if(!EX.series){ list.innerHTML = `<div class="empty"><span class="loader"></span> Rangement par série…</div>`; try{ await loadSeries(); }catch(e){} if(gen!==COLV.gen) return; }
   // ordre : séries de la plus récente à la plus ancienne, comme l'onglet Extensions
@@ -8518,6 +8539,7 @@ async function betaPublishFlow(){
 }
 /* Journal des modifications de la Bêta : la carte « Version Bêta » liste celles que les copains n'ont pas encore */
 const BETA_LOG = [
+  {v:177, t:"Sauvegarde automatique en ligne, chiffrée, avec un code pour tout retrouver sur un autre téléphone · export de la collection en tableur"},
   {v:176, t:"Scan en rafale : enchaîne les cartes sans ouvrir la fiche, vérifie le bac puis ajoute tout d'un coup"},
   {v:175, t:"Liste de souhaits : ♡ Je la veux sur chaque carte, onglet Souhaits dans le Classeur, prix suivi et prix cible"},
   {v:174, t:"Le scanner reconnaît tout seul la langue de la carte : français, anglais, japonais ou chinois"},
@@ -9152,6 +9174,10 @@ $("#moreBack").onclick = ()=>navBack();
    Après l'intro, une seule fois par version qui apporte quelque chose à l'utilisateur.
    Nouvelle installation : rien (tout est neuf). Les versions purement techniques n'ont pas d'entrée ici. */
 const NEWS = [
+  {v:177, items:[
+    ["M7 18a5 5 0 0 1-.6-9.96A6 6 0 0 1 18 8a4.5 4.5 0 0 1-.5 9H7zM9.5 13l2 2 3.5-4", "Sauvegarde automatique", "Réglages › Sauvegarde automatique : ta collection est copiée en ligne à chaque changement, chiffrée. Avec ton code, tu retrouves tout sur un autre téléphone."],
+    ["M3 3h18v18H3zM3 9h18M3 15h18M9 3v18", "Export en tableur", "Réglages › Exporter en tableur : ta collection, tes gradées et ta liste de souhaits dans un fichier pour Excel, Numbers ou Google Sheets."]
+  ]},
   {v:176, items:[
     ["M4 7h10v13H4zM8 4h10v13M12 1h8v12", "Scan en rafale", "Dans le scanner, active Rafale et vise tes cartes l'une après l'autre : elles s'empilent dans un bac, sans ouvrir la fiche. Touche Valider pour vérifier puis tout ajouter d'un coup."]
   ]},
@@ -9457,21 +9483,176 @@ function bkLoad(f){
       <button class="btn btn-y" id="bkGo" style="width:100%">Remplacer par la sauvegarde</button>
       <button class="btn" id="bkNo" style="width:100%;margin-top:8px">Annuler</button></div>`;
     $("#bkNo").onclick = closeSheet;
-    $("#bkGo").onclick = ()=>{
-      const old = {}; for(const k of bkKeys()) old[k] = localStorage.getItem(k);
-      try{
-        for(const k of Object.keys(old)) localStorage.removeItem(k);
-        for(const [k,v] of Object.entries(d)){ const m = /^cote(?:-beta)?:(.+)$/.exec(k); if(m && typeof v==="string") localStorage.setItem(__PFX+m[1], v); }
-      }catch(e){   // mémoire pleine ou autre : on remet tout comme avant
-        try{ for(const k of bkKeys()) localStorage.removeItem(k); for(const [k,v] of Object.entries(old)) localStorage.setItem(k, v); }catch(x){}
-        toast("Restauration impossible, rien n'a été modifié"); return;
-      }
-      sessionStorage.setItem("bkDone", "1"); location.reload();
-    };
+    $("#bkGo").onclick = ()=>bkApply(d);
     openSheet();
   };
   r.readAsText(f);
 }
+// remplace les données du téléphone par celles d'une sauvegarde (fichier ou en ligne), puis relance l'app
+function bkApply(d, after){
+  const old = {}; for(const k of bkKeys()) old[k] = localStorage.getItem(k);
+  try{
+    for(const k of Object.keys(old)) localStorage.removeItem(k);
+    for(const [k,v] of Object.entries(d)){ const m = /^cote(?:-beta)?:(.+)$/.exec(k); if(m && typeof v==="string" && !BK_SKIP.has(m[1])) localStorage.setItem(__PFX+m[1], v); }
+    after?.();
+  }catch(e){   // mémoire pleine ou autre : on remet tout comme avant
+    try{ for(const k of bkKeys()) localStorage.removeItem(k); for(const [k,v] of Object.entries(old)) localStorage.setItem(k, v); }catch(x){}
+    toast("Restauration impossible, rien n'a été modifié"); return false;
+  }
+  sessionStorage.setItem("bkDone", "1"); location.reload(); return true;
+}
+
+/* ---------------- Sauvegarde automatique en ligne ----------------
+   Un code de 16 caractères, créé sur le téléphone, ne le quitte jamais. Les données sont compressées puis chiffrées
+   (AES-GCM, clé tirée du code) avant l'envoi : le serveur (Worker « dexscan-feed ») ne range qu'un bloc illisible,
+   sous l'empreinte du code. Avec le code, on retrouve tout sur un autre téléphone. */
+const BKC = {busy:false, t:null, dirty:false, imp:false};
+const bkcGet = () => store.get("bkCloud", null);
+const BK_ALPHA = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
+const bkNewCode = () => rkRand(16, BK_ALPHA).replace(/(.{4})(?=.)/g, "$1-");
+const bkNorm = c => String(c||"").toUpperCase().replace(/[^A-Z0-9]/g,"").replace(/O/g,"0").replace(/I/g,"1");
+const bkFmt = c => bkNorm(c).replace(/(.{4})(?=.)/g, "$1-");
+const b64e = u8 => { let s = ""; for(let i=0;i<u8.length;i+=0x8000) s += String.fromCharCode.apply(null, u8.subarray(i, i+0x8000)); return btoa(s); };
+const b64d = s => Uint8Array.from(atob(s), c=>c.charCodeAt(0));
+async function bkHid(code){ const b = await crypto.subtle.digest("SHA-256", new TextEncoder().encode("dexscan-bk1:"+bkNorm(code))); return [...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,"0")).join(""); }
+async function bkKey(code){
+  const base = await crypto.subtle.importKey("raw", new TextEncoder().encode(bkNorm(code)), "PBKDF2", false, ["deriveKey"]);
+  return crypto.subtle.deriveKey({name:"PBKDF2", salt:new TextEncoder().encode("dexscan-bk1"), iterations:120000, hash:"SHA-256"}, base, {name:"AES-GCM", length:256}, false, ["encrypt","decrypt"]);
+}
+async function bkZip(u8, dir){
+  if(typeof CompressionStream==="undefined") return null;
+  const st = new Blob([u8]).stream().pipeThrough(dir ? new CompressionStream("gzip") : new DecompressionStream("gzip"));
+  return new Uint8Array(await new Response(st).arrayBuffer());
+}
+function bkData(){ const data = {}; for(const k of bkKeys()){ if(k===__PFX+"bkCloud") continue; data[k] = localStorage.getItem(k); } return data; }
+const bkCards = d => { try{ return (JSON.parse(d[__PFX+"col"] ?? "[]")||[]).reduce((a,x)=>a+(x.qty||1),0); }catch(e){ return 0; } };
+async function bkPush(force=false){
+  const c = bkcGet(); if(!c?.code || BKC.busy) return null;
+  BKC.busy = true; BKC.dirty = false; BKC.imp = false;
+  try{
+    let data = bkData();
+    let raw = new TextEncoder().encode(JSON.stringify({app:"dexscan", v:window.__APPV, date:new Date().toISOString(), data}));
+    if(raw.length > 5e6){ delete data[__PFX+"colPxHist"]; raw = new TextEncoder().encode(JSON.stringify({app:"dexscan", v:window.__APPV, date:new Date().toISOString(), data})); }
+    const z = await bkZip(raw, true).catch(()=>null), plain = z || raw;
+    const iv = crypto.getRandomValues(new Uint8Array(12));
+    const ct = new Uint8Array(await crypto.subtle.encrypt({name:"AES-GCM", iv}, await bkKey(c.code), plain));
+    const n = bkCards(data);
+    const r = await fetch(`${FEED_API}/feed/bk/${await bkHid(c.code)}`, {method:"POST", headers:{"content-type":"application/json"}, body:JSON.stringify({d:b64e(ct), iv:b64e(iv), z:!!z, n, app:window.__APPV, force})});
+    const j = await r.json().catch(()=>({}));
+    const c2 = bkcGet() || c;
+    if(r.status===409 && j.shrink){ Object.assign(c2, {err:"shrink", en:j.n, et:j.t}); store.set("bkCloud", c2); bkCloudLabel(); return j; }
+    if(!r.ok || j.error) throw new Error(j.error || "erreur "+r.status);
+    Object.assign(c2, {t:j.t, n, kb:Math.round(ct.length/1024), err:null, en:null, et:null}); store.set("bkCloud", c2); bkCloudLabel();
+    return j;
+  }catch(e){ const c2 = bkcGet(); if(c2){ c2.err = navigator.onLine===false ? "offline" : String(e.message||e).slice(0,80); store.set("bkCloud", c2); bkCloudLabel(); } BKC.dirty = true; return null; }
+  finally{ BKC.busy = false; }
+}
+async function bkPull(code){
+  const r = await fetch(`${FEED_API}/feed/bk/${await bkHid(code)}`, {cache:"no-store"});
+  const j = await r.json().catch(()=>({}));
+  if(r.status===404) throw new Error("Aucune sauvegarde pour ce code. Vérifie les 16 caractères.");
+  if(!r.ok || j.error || !j.d) throw new Error(j.error || "Serveur injoignable ("+r.status+")");
+  let plain;
+  try{ plain = new Uint8Array(await crypto.subtle.decrypt({name:"AES-GCM", iv:b64d(j.iv)}, await bkKey(code), b64d(j.d))); }
+  catch(e){ throw new Error("Code incorrect : la sauvegarde ne peut pas être ouverte."); }
+  if(j.z){ const u = await bkZip(plain, false).catch(()=>null); if(!u) throw new Error("Ce téléphone ne sait pas décompresser la sauvegarde (iOS 16.4 minimum)."); plain = u; }
+  const o = JSON.parse(new TextDecoder().decode(plain));
+  if(o.app!=="dexscan" || !o.data) throw new Error("Sauvegarde illisible");
+  return {...o, t:j.t, n:j.n};
+}
+// à chaque changement : collection & co. → envoi 20 s plus tard (3 min mini entre deux) ; le reste → toutes les 30 min au plus
+const BK_IMP = new Set(["col","graded","budget","wish","trades","starter","team","rk","burst"]);
+const BK_QUIET = new Set(["bkCloud","backupT","feedSeen","colPxT","seenNews","newsSeen","rkL","rkBy","lastTab","colOpen","burstOn"]);
+function bkMark(k){
+  if(!bkcGet()?.code || BK_QUIET.has(k) || BK_SKIP.has(k)) return;
+  BKC.dirty = true; if(BK_IMP.has(k)) BKC.imp = true;
+  clearTimeout(BKC.t); BKC.t = setTimeout(bkTick, 20000);
+}
+function bkTick(){
+  const c = bkcGet(); if(!c?.code || !BKC.dirty || c.err==="shrink") return;
+  const since = Date.now() - (c.t||0), gap = BKC.imp ? 180e3 : 1800e3;
+  if(since >= gap) bkPush(); else { clearTimeout(BKC.t); BKC.t = setTimeout(bkTick, gap - since + 500); }
+}
+{ const _set = store.set; store.set = function(k, v){ _set.call(store, k, v); bkMark(k); }; }
+document.addEventListener("visibilitychange", ()=>{ if(document.hidden && BKC.dirty && bkcGet()?.code && Date.now()-(bkcGet().t||0) > 60e3) bkPush(); });
+function bkAgo(t){ const m = Math.round((Date.now()-t)/60e3); return m<1 ? "à l'instant" : m<60 ? `il y a ${m} min` : m<1440 ? `il y a ${Math.round(m/60)} h` : `le ${new Date(t).toLocaleDateString("fr-FR")}`; }
+function bkCloudLabel(){
+  const el = $("#mCloudT"), c = bkcGet(); if(!el) return;
+  el.classList.toggle("bkwarn", !c?.code || !!c?.err);
+  el.textContent = !c?.code ? "Désactivée · ta collection n'est que sur ce téléphone" : c.err==="shrink" ? "En pause · à vérifier" : c.err ? `Échec de la dernière sauvegarde${c.t?` · réussie ${bkAgo(c.t)}`:""}` : c.t ? `Activée · ${bkAgo(c.t)} · ${c.n} carte${c.n>1?"s":""}` : "Activée · première sauvegarde…";
+}
+function bkCloudSheet(prefill){
+  const c = bkcGet();
+  $("#sheetTitle").textContent = "Sauvegarde automatique";
+  const restore = `<div class="bkbox"><h4>${c?.code?"Restaurer depuis un code":"J'ai déjà un code"}</h4><p class="fine">Le code d'un autre téléphone : ses données remplacent celles de celui-ci.</p>
+      <div class="bkin"><input id="bkCode" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="XXXX-XXXX-XXXX-XXXX" value="${esc(prefill?bkFmt(prefill):"")}"><button class="btn btn-g" id="bkFind">Chercher</button></div><div id="bkRes"></div></div>`;
+  if(!c?.code){
+    $("#sheetBody").innerHTML = `<div class="bkhero"><div class="bkic"><svg viewBox="0 0 24 24" width="46" height="46" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 18a5 5 0 0 1-.6-9.96A6 6 0 0 1 18 8a4.5 4.5 0 0 1-.5 9H7z"/><path d="m9.5 13 2 2 3.5-4"/></svg></div><p>Ta collection, tes gradées, ton budget, ta liste de souhaits et ton compagnon sont copiés en ligne <b>à chaque changement</b>.</p>
+      <p class="fine">Tout est chiffré sur ton téléphone avant l'envoi : personne d'autre ne peut les lire, même pas le serveur. Pour tout retrouver sur un nouveau téléphone, il te suffit de ton code.</p>
+      <button class="btn btn-y" id="bkOn" style="width:100%">Activer la sauvegarde</button></div>${restore}`;
+    openSheet();
+    $("#bkOn").onclick = async ()=>{ store.set("bkCloud", {code:bkNewCode(), t:0}); const b = $("#bkOn"); b.disabled = true; b.innerHTML = `<span class="loader"></span> Première sauvegarde…`; await bkPush(); bkCloudSheet(); };
+  } else {
+    const st = c.err==="shrink" ? `<div class="bkst warn"><b>Sauvegarde en pause</b><span>La sauvegarde en ligne contient ${c.en} cartes, ce téléphone beaucoup moins. Pour ne rien perdre, rien n'a été écrasé.</span>
+        <div class="addrow"><button class="btn btn-y" id="bkGetBack">Récupérer les ${c.en} cartes</button><button class="btn btn-g" id="bkForce">Écraser quand même</button></div></div>`
+      : c.err ? `<div class="bkst warn"><b>La dernière sauvegarde a échoué</b><span>${c.err==="offline"?"Pas de réseau":esc(c.err)}${c.t?` · dernière réussie ${bkAgo(c.t)}`:""}. Nouvel essai au prochain changement.</span></div>`
+      : `<div class="bkst ok"><b>✓ Sauvegardé ${c.t?bkAgo(c.t):"…"}</b><span>${c.n??"?"} carte${c.n>1?"s":""}${c.kb?` · ${c.kb} Ko chiffrés`:""} · à chaque changement</span></div>`;
+    $("#sheetBody").innerHTML = `${st}
+      <div class="bkbox"><h4>Ton code de sauvegarde</h4>
+        <div class="bkcode" id="bkShow">${esc(c.code)}</div>
+        <p class="fine">Note-le quelque part (Notes, capture d'écran) : <b>sans lui, impossible de récupérer la sauvegarde</b> si tu perds ce téléphone. Ne le donne à personne.</p>
+        <div class="addrow"><button class="btn btn-g" id="bkCopy">Copier le code</button><button class="btn btn-g" id="bkLink">Copier le lien</button></div></div>
+      <div class="addrow"><button class="btn btn-y" id="bkNow" style="width:100%">Sauvegarder maintenant</button></div>
+      ${restore}
+      <button class="bkoff" id="bkOff">Arrêter la sauvegarde automatique</button>`;
+    openSheet();
+    const copy = async (t, m)=>{ try{ await navigator.clipboard.writeText(t); toast(m); }catch(e){ const r = document.createRange(); r.selectNodeContents($("#bkShow")); getSelection().removeAllRanges(); getSelection().addRange(r); toast("Sélectionné : copie-le à la main"); } };
+    $("#bkCopy").onclick = ()=>copy(c.code, "Code copié");
+    $("#bkLink").onclick = ()=>copy(`${location.origin}${location.pathname}?restore=${bkNorm(c.code)}`, "Lien copié : ouvre-le sur l'autre téléphone (garde-le privé)");
+    $("#bkNow").onclick = async ()=>{ const b = $("#bkNow"); b.disabled = true; b.innerHTML = `<span class="loader"></span> Sauvegarde…`; const j = await bkPush(); toast(j?.ok ? "Sauvegardé ✓" : j?.shrink ? "En pause : la sauvegarde en ligne a plus de cartes" : "Échec : réessaie plus tard"); bkCloudSheet(); };
+    $("#bkOff").onclick = ()=>{ const b = $("#bkOff"); if(!b.dataset.ok){ b.dataset.ok = 1; b.textContent = "Sûr ? La copie en ligne reste disponible avec ton code. Touche encore"; return; }
+      store.set("bkCloud", null); bkCloudLabel(); bkCloudSheet(); toast("Sauvegarde automatique arrêtée"); };
+    $("#bkForce") && ($("#bkForce").onclick = async ()=>{ const b = $("#bkForce"); if(!b.dataset.ok){ b.dataset.ok = 1; b.textContent = "Sûr ? Touche encore"; return; } await bkPush(true); bkCloudSheet(); });
+    $("#bkGetBack") && ($("#bkGetBack").onclick = ()=>{ $("#bkCode").value = c.code; $("#bkFind").click(); $("#bkCode").scrollIntoView({block:"center", behavior:"smooth"}); });
+  }
+  $("#bkFind").onclick = async ()=>{
+    const code = $("#bkCode").value, res = $("#bkRes");
+    if(bkNorm(code).length !== 16){ res.innerHTML = `<p class="bkerr">Le code fait 16 caractères (lettres et chiffres).</p>`; return; }
+    res.innerHTML = `<p class="fine"><span class="loader"></span> Recherche de la sauvegarde…</p>`;
+    try{
+      const o = await bkPull(code);
+      res.innerHTML = `<div class="bkfound"><b>Sauvegarde trouvée</b><span>${esc(bkAgo(o.t))} · ${esc(bkSummary(o.data))}</span>
+        <p class="fine">Les données de ce téléphone (${esc(bkSummary(bkData()))}) seront remplacées.</p>
+        <button class="btn btn-y" id="bkUse" style="width:100%">Remplacer par cette sauvegarde</button></div>`;
+      $("#bkUse").onclick = ()=>{ const b = $("#bkUse"); if(!b.dataset.ok){ b.dataset.ok = 1; b.textContent = "Sûr ? Touche encore pour remplacer"; return; }
+        bkApply(o.data, ()=>localStorage.setItem(__PFX+"bkCloud", JSON.stringify({code:bkFmt(code), t:o.t, n:o.n}))); };
+    }catch(e){ res.innerHTML = `<p class="bkerr">${esc(e.message)}</p>`; }
+  };
+}
+$("#mCloud").onclick = ()=>bkCloudSheet();
+bkCloudLabel();
+setTimeout(()=>{ const c = bkcGet(); if(c?.code && (c.err && c.err!=="shrink" || Date.now()-(c.t||0) > 6*3600e3)){ BKC.dirty = true; BKC.imp = true; bkPush(); } }, 8000);
+{ const q = new URLSearchParams(location.search).get("restore");
+  if(q){ history.replaceState(null, "", location.pathname + location.hash); setTimeout(()=>bkCloudSheet(q), 1200); } }
+/* Export tableur (CSV au point-virgule, lisible par Excel en français, Numbers et Google Sheets) */
+async function exportCsv(){
+  const q = v => { const t = v==null ? "" : String(v); return /[;"\n]/.test(t) ? `"${t.replace(/"/g,'""')}"` : t; };
+  const n2 = v => v==null || v==="" ? "" : String(Math.round(v*100)/100).replace(".",",");
+  const kv = o => Object.entries(o||{}).filter(([,n])=>n>0).map(([k,n])=>`${k} ×${n}`).join(" ");
+  const rows = [["Type","Nom","Extension","Numéro","Quantité","Langues","État","Édition","Cote unitaire (€)","Prix d'achat unitaire (€)","Valeur totale (€)","Plus-value (€)","Identifiant"]];
+  for(const x of getCol()){ const v = (x.price||0)*x.qty, b = x.buy!=null ? x.buy*x.qty : null;
+    rows.push(["Carte", x.name, x.set, x.num, x.qty, kv(x.lgs)||"FR", kv(x.conds), kv(x.ed), n2(x.price), n2(x.buy), n2(v), b!=null && x.price!=null ? n2(v-b) : "", x.id]); }
+  for(const x of (typeof getGraded==="function" ? getGraded() : [])) rows.push(["Gradée", x.name||"", x.setName||"", x.localId||"", 1, x.lg||"FR", [x.gr==="AUT"?x.grOther:x.gr, x.note].filter(Boolean).join(" "), [x.ed?edLbl(x.ed):"", x.cert?`cert. ${x.cert}`:""].filter(Boolean).join(" · "), n2(x.val), n2(x.buy), n2(x.val ?? x.buy), x.val!=null && x.buy!=null ? n2(x.val-x.buy) : "", x.id||x.uid||""]);
+  for(const x of getWish()) rows.push(["Souhait", x.name, x.set, x.num, 1, x.lg||"", "", "", n2(x.price), x.max!=null?`cible ${n2(x.max)}`:"", "", "", x.id]);
+  const csv = "\ufeff" + rows.map(r=>r.map(q).join(";")).join("\r\n");
+  const day = new Date().toISOString().slice(0,10), file = new File([csv], `dexscan-collection-${day}.csv`, {type:"text/csv"});
+  try{
+    if(navigator.canShare && navigator.canShare({files:[file]})) await navigator.share({files:[file], title:"Collection Dex Scan"});
+    else { const a = document.createElement("a"); a.href = URL.createObjectURL(file); a.download = file.name; document.body.appendChild(a); a.click(); a.remove(); setTimeout(()=>URL.revokeObjectURL(a.href), 4000); }
+    toast(`Tableur prêt · ${rows.length-1} lignes`);
+  }catch(e){ if(e?.name!=="AbortError") toast("Export impossible"); }
+}
+$("#mCsv").onclick = exportCsv;
 $("#mSave").onclick = bkSave;
 $("#mLoad").onclick = ()=>{ const i = $("#bkIn"); i.value = ""; i.click(); };
 $("#bkIn").onchange = e=>{ const f = e.target.files?.[0]; if(f) bkLoad(f); };

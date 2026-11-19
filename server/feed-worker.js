@@ -15,6 +15,9 @@
      POST /feed/dm/send   {id,key,to,toName,toPk,name,pk,text,card} → {msg}
      POST /feed/dm/list   {id,key}            → {threads:[{with,name,pk,last,t,unread}]}
      POST /feed/dm/thread {id,key,with}       → {msgs}   (et marque la conversation comme lue)
+   Sauvegarde chiffrée (KV "bk:EMPREINTE") :
+     GET  /feed/bk/EMPREINTE                → le bloc chiffré
+     POST /feed/bk/EMPREINTE {d,iv,z,n,app,force} → {ok,t,n}  (409 si n < moitié de l'ancienne sans force)
    Modes (tag) : talk, re, new, trade, card, col, open, want, sell, poll.
    att (pièce jointe) selon le mode : card/want {card} · trade {give,want} · sell {card,ask} · col {n,val,sets,cards[]}
    · open {prod,cost,cards[]} · poll {opts[]}. Une carte = {id,name,set,num,img,price,rar}.
@@ -98,6 +101,25 @@ async function dm(env, me, act, b){
   }
   return err("action inconnue", 404);
 }
+async function backup(req, env, hid){
+  if(!/^[0-9a-f]{64}$/.test(hid)) return err("code de sauvegarde invalide");
+  const k = "bk:" + hid;
+  if(req.method === "GET"){
+    const d = await env.FEED.get(k);
+    return d ? new Response(d, {headers:{"content-type":"application/json; charset=utf-8", "cache-control":"no-store", ...CORS}}) : err("Aucune sauvegarde pour ce code", 404);
+  }
+  if(req.method !== "POST") return err("route inconnue", 404);
+  const t = await req.text(); if(t.length > 8e6) return err("sauvegarde trop lourde (8 Mo max)", 413);
+  let b; try{ b = JSON.parse(t); }catch(e){ return err("requête illisible"); }
+  if(typeof b.d !== "string" || typeof b.iv !== "string" || b.d.length < 16) return err("sauvegarde illisible");
+  const n = Math.max(0, Math.round(+b.n || 0)), old = await env.FEED.getWithMetadata(k);
+  const om = old?.metadata || null;
+  // garde-fou : un téléphone presque vide n'écrase pas une grosse collection sans le demander
+  if(!b.force && om && om.n >= 20 && n < om.n * 0.5) return json({error:"moins de cartes que la sauvegarde en ligne", shrink:true, n:om.n, t:om.t}, 409);
+  const now = Date.now(), v = JSON.stringify({d:b.d, iv:b.iv, z:!!b.z, n, t:now, app:clean(b.app, 12)});
+  await env.FEED.put(k, v, {metadata:{n, t:now}});
+  return json({ok:true, t:now, n});
+}
 export default {
   async fetch(req, env, ctx){
     const u = new URL(req.url), base = u.origin; env.__ctx = ctx;
@@ -118,6 +140,9 @@ export default {
         const bin = Uint8Array.from(atob(m[2]), c => c.charCodeAt(0));
         return new Response(bin, {headers:{"content-type":m[1], "cache-control":"public, max-age=31536000, immutable", ...CORS}});
       }
+      // sauvegarde du téléphone, chiffrée sur le téléphone : le serveur ne garde qu'un bloc illisible,
+      // rangé sous l'empreinte du code de sauvegarde (le code lui-même ne quitte jamais le téléphone)
+      if(path.startsWith("/feed/bk/")) return await backup(req, env, path.slice(9));
       if(req.method !== "POST" || !path.startsWith("/feed/")) return err("route inconnue", 404);
       const b = await req.json().catch(()=>null); if(!b) return err("requête illisible");
       const me = await auth(env, b.id, b.key), act = path.slice(6);

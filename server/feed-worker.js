@@ -54,16 +54,20 @@ function attOf(tag, a){
   if(tag === "open"){ const l = (Array.isArray(a.cards) ? a.cards : []).slice(0, 12).map(card).filter(Boolean); return {prod:clean(a.prod, 60) || undefined, cost:num(a.cost), cards:l}; }
   if(tag === "poll"){ const o = (Array.isArray(a.opts) ? a.opts : []).map(x => clean(x, 60)).filter(Boolean).slice(0, 4); return o.length >= 2 ? {opts:o} : undefined; }
 }
+// réactions (émoticônes) : une par personne et par post / commentaire / message ; rx = {id: émoticône}
+const RX = ["❤️", "🔥", "😂", "😮", "😢", "👍"];
+const rxSum = o => { const c = {}; for(const e of Object.values(o?.rx || {})) if(RX.includes(e)) c[e] = (c[e] || 0) + 1; return c; };
+const rxSet = (o, me, e) => { o.rx ||= {}; if(!RX.includes(e) || o.rx[me] === e) delete o.rx[me]; else o.rx[me] = e; };
 const load = async env => (await env.FEED.get("posts", "json")) || [];
 const save = (env, l) => env.FEED.put("posts", JSON.stringify(l.slice(0, MAX_POSTS)));
 function view(p, me, base){
   const v = p.votes || {}, vals = Object.values(v);
   return {id:p.id, uid:p.uid, name:p.name, pk:p.pk, lv:p.lv, tag:p.tag, text:p.text, shop:p.shop, price:p.price, t:p.t,
     img: p.img ? base + "/feed/img/" + p.id : undefined,
-    likes:(p.likers||[]).length, liked: !!me && (p.likers||[]).includes(me),
+    likes:(p.likers||[]).length, liked: !!me && (p.likers||[]).includes(me), rx:rxSum(p), mrx: me ? (p.rx?.[me] || null) : null,
     ok: vals.filter(x=>x==="ok").length, ko: vals.filter(x=>x==="ko").length, my: me ? (v[me] || null) : null,
     cm: (p.cm||[]).map(c => ({id:c.id, uid:c.uid, name:c.name, pk:c.pk, lv:c.lv, text:c.text, card:c.card, t:c.t, re:c.re, reName:c.reName,
-      likes:(c.likers||[]).length, liked: !!me && (c.likers||[]).includes(me)})),
+      likes:(c.likers||[]).length, liked: !!me && (c.likers||[]).includes(me), rx:rxSum(c), mrx: me ? (c.rx?.[me] || null) : null})),
     att:p.att, city:p.city,
     pv: p.att?.opts ? p.att.opts.map((_, i) => Object.values(p.pv||{}).filter(x => x === i).length) : undefined,
     mpv: me && p.pv && p.pv[me] != null ? p.pv[me] : null};
@@ -94,6 +98,13 @@ async function dm(env, me, act, b){
       const ob = await inboxOf(env, other), oe = ob.find(x => x.with === me); if(oe){ oe.seenT = now; await env.FEED.put("inbox:" + other, JSON.stringify(ob)); }
     }
     return json({msgs: l.slice(-200), seen: seen[other] || 0});
+  }
+  if(act === "react"){
+    const k = dmKey(me, other), l = (await env.FEED.get(k, "json")) || [], m = l.find(x => x.id === b.m);
+    if(!m) return err("Message introuvable", 404);
+    rxSet(m, me, b.e); await env.FEED.put(k, JSON.stringify(l));
+    if(m.from !== me && m.rx?.[me]) notif(env, "send", {kind:"dm", to:m.from, tag:"dm-" + me, title:`${m.rx[me]} ${clean(b.name, 24) || "Un Hunter"} a réagi`, body:(m.text || "🃏 " + (m.card?.name || "Carte")).slice(0, 120), url:`app:?msg=${encodeURIComponent(me)}`});
+    return json({msg: m});
   }
   if(act === "send"){
     const text = clean(b.text, 1000), c = card(b.card); if(!text && !c) return err("Message vide");
@@ -234,6 +245,8 @@ export default {
         if(to && to.uid !== me) notif(env, "send", {kind:"to", to:to.uid, tag:"cm-" + p.id, title:`↩️ ${who} t'a répondu`, body, url:`app:?post=${p.id}&cm=1`});
         if(p.uid !== me && p.uid !== to?.uid) notif(env, "send", {kind:"to", to:p.uid, tag:"cm-" + p.id, title:`💬 ${who} a commenté ton post`, body, url:`app:?post=${p.id}&cm=1`});
       }
+      else if(act === "react") rxSet(p, me, b.e);
+      else if(act === "cmreact"){ const c = (p.cm||[]).find(x => x.id === b.c); if(!c) return err("Commentaire introuvable", 404); rxSet(c, me, b.e); }
       else if(act === "cmlike"){ const c = (p.cm||[]).find(x => x.id === b.c); if(!c) return err("Commentaire introuvable", 404); c.likers ||= []; const i = c.likers.indexOf(me); i < 0 ? c.likers.push(me) : c.likers.splice(i, 1); }
       else if(act === "uncomment"){ const c = (p.cm||[]).find(x => x.id === b.c); if(!c) return err("Commentaire introuvable", 404); if(c.uid !== me && p.uid !== me) return err("Ce n'est pas ton commentaire", 403); p.cm = p.cm.filter(x => x !== c); }
       else if(act === "pvote"){ const n = p.att?.opts?.length || 0, o = b.o|0; if(!n || o < 0 || o >= n) return err("Option inconnue"); p.pv ||= {}; p.pv[me] === o ? delete p.pv[me] : p.pv[me] = o; }

@@ -1,5 +1,5 @@
 {
- "maj": "2026-11-05",
+ "maj": "2026-11-19",
  "sets": [
   {
    "id": "me06",
@@ -18,9 +18,10 @@
    "en": "Flowing Fists",
    "code": "FLO",
    "date": "2027-02-05",
-   "status": "rumeur",
-   "src": "https://pokennoisseur.ca/tools/release-calendar",
-   "note": "Extension anglaise autour de Méga-Lucario Z-ex, date annoncée par des revendeurs, pas encore officielle."
+   "status": "officiel",
+   "src": "https://www.wargamer.com/pokemon-trading-card-game/flowing-fists",
+   "note": "Annoncée par The Pokémon Company : Méga-Lucario Z-ex en tête d'affiche, avec Méga-Carchacrok Z-ex et Méga-Absol Z-ex. Environ 80 cartes, adaptation de l'extension japonaise Aura Seeker (sortie au Japon le 27 novembre 2026). Avant-premières prévues fin janvier.",
+   "until": "2027-04-30"
   }
  ]
 }

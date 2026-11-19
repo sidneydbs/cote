@@ -1380,6 +1380,8 @@ button.wnote{color:var(--fg);border-color:color-mix(in srgb,var(--border-yellow)
 .dm-b{max-width:78%;align-self:flex-start;background:var(--panel-2);border-radius:18px 18px 18px 6px;padding:8px 12px;font-size:15px;line-height:1.35;overflow-wrap:anywhere;display:flex;flex-direction:column;gap:3px}
 .dm-b.me{align-self:flex-end;background:var(--border-yellow);color:var(--on-acc);border-radius:18px 18px 6px 18px}.dm-b.tmp{opacity:.6}
 .dm-b small{align-self:flex-end;font:600 10.5px var(--f-mono);opacity:.65}.dm-b .fd-ccard{margin:2px 0}
+.dm-card{text-align:left;color:inherit;padding:4px 8px 4px 4px;border-radius:10px;background:color-mix(in srgb,currentColor 8%,transparent)}.dm-card img{width:40px!important}.dm-card span{display:flex;flex-direction:column}.dm-card em{font-style:normal;font-size:11px;opacity:.75;margin-top:2px}
+.sheet.overdm{z-index:62}.fd-crd[data-cid]{cursor:pointer}
 .dm-in{display:flex;gap:8px;align-items:center;padding:8px max(12px,env(safe-area-inset-right)) calc(env(safe-area-inset-bottom,0px) + 8px) max(12px,env(safe-area-inset-left));border-top:1px solid var(--line);background:var(--ink)}
 .dm-in input{flex:1;min-width:0;background:var(--panel);border:1px solid var(--line);border-radius:999px;padding:11px 15px;color:var(--fg);font:16px var(--f-body);outline:none}
 .dm-att{width:40px;height:40px;border-radius:50%;background:var(--panel);font-size:18px;flex:none}.dm-go{width:42px;height:42px;border-radius:50%;background:var(--border-yellow);color:var(--on-acc);font-size:17px;flex:none}
@@ -1417,6 +1419,20 @@ button.wnote{color:var(--fg);border-color:color-mix(in srgb,var(--border-yellow)
 .fdn-t{display:flex;flex-direction:column;min-width:0;gap:2px}.fdn-t b{font-size:15px}.fdn-t b small{color:var(--muted);font-weight:600}.fdn-t span{color:var(--muted);font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 #soRank .somine{float:right;margin:-4px 0 6px}
 #moreBack{display:flex;width:max-content;margin:0 0 10px}
+.so-bar[hidden]{display:none}
+.so-bar{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:8px;margin:0 0 14px}
+.so-bar .so-fil{grid-column:2;padding:10px 26px;border-radius:999px;font-weight:800;font-size:16px;color:var(--muted);background:var(--panel);border:1px solid var(--line);display:flex;align-items:center;gap:6px}
+.so-bar .so-fil.on{background:var(--border-yellow);color:var(--on-acc);border-color:transparent}
+.so-bar .so-tr{grid-column:1;justify-self:start;position:relative;display:flex;align-items:center;gap:6px;height:42px;padding:0 13px 0 10px;border-radius:999px;font:800 13px var(--f-mono);color:#FFE7A0;isolation:isolate;overflow:hidden;
+  background:linear-gradient(120deg,rgba(255,216,110,.16),rgba(124,243,255,.14) 45%,rgba(226,184,255,.18));border:1px solid rgba(255,216,110,.45);box-shadow:0 0 14px rgba(255,216,110,.18)}
+.so-bar .so-tr::after{content:"";position:absolute;inset:-40%;z-index:-1;background:linear-gradient(105deg,transparent 40%,rgba(255,255,255,.35) 50%,transparent 60%);animation:soHolo 3.6s ease-in-out infinite}
+@keyframes soHolo{0%,55%{transform:translateX(-60%)}100%{transform:translateX(60%)}}
+.so-bar .so-tr svg{width:22px;height:22px;filter:drop-shadow(0 0 4px rgba(255,216,110,.6))}.so-bar .so-tr b:empty{display:none}
+.so-bar .so-tr.on{border-color:#FFD86E;box-shadow:0 0 0 2px rgba(255,216,110,.35),0 0 20px rgba(255,216,110,.35)}
+.so-bar .so-dm{grid-column:3;justify-self:end;position:relative;width:44px;height:42px;border-radius:999px;display:grid;place-items:center;color:var(--fg);background:var(--panel);border:1px solid var(--line)}
+.so-bar .so-dm svg{width:21px;height:21px}.so-bar .so-dm.on{background:var(--border-yellow);color:var(--on-acc);border-color:transparent}
+.so-bar i{font-style:normal;min-width:18px;padding:1px 6px;border-radius:999px;background:#2ED47A;color:#062;font:800 11px var(--f-mono)}.so-bar .so-dm i{position:absolute;top:-5px;right:-5px}
+@media (prefers-reduced-motion:reduce){.so-bar .so-tr::after{animation:none;opacity:0}}
 .fx-seg{display:flex;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:4px;margin:0 0 14px}
 .fx-seg button{flex:1;padding:10px;border-radius:10px;font-weight:800;font-size:15px;color:var(--muted);display:flex;align-items:center;justify-content:center;gap:6px}.fx-seg button.on{background:var(--border-yellow);color:var(--on-acc)}
 .fx-seg i{font-style:normal;min-width:18px;padding:1px 6px;border-radius:999px;background:#2ED47A;color:#062;font:800 11px var(--f-mono)}
@@ -1976,7 +1992,7 @@ img.px.reveal{animation:stpRev .9s ease-out}
   }
   fit(); addEventListener("resize", fit); addEventListener("orientationchange", function(){ setTimeout(fit, 300); });
 })();</script>
-<script>window.__APPV="183";</script>
+<script>window.__APPV="184";</script>
 <div class="splash" id="splash" aria-hidden="true"><i class="hole"></i><i class="halo"></i><div class="bw"><svg class="b" viewBox="0 0 100 100"><use href="#pb"/></svg><svg class="t" viewBox="0 0 100 100"><use href="#pb"/></svg></div><i class="glow"></i></div>
 <script>setTimeout(function(){ if(window.__booted) return;
   var b=document.createElement("div"); b.setAttribute("role","alert");
@@ -2011,7 +2027,7 @@ img.px.reveal{animation:stpRev .9s ease-out}
   <!-- ===== EXTENSIONS ===== -->
   <section class="view" id="homeView">
     <div class="scroll">
-      <div class="homebar"><span class="brand">DEX<b>·</b>SCAN</span><span class="hbis"><button class="hbi" id="hSearch" aria-label="Rechercher une carte"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></button><button class="hbi" id="themeBtn" aria-label="Changer de thème"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.6-.9 1.2-1.8-.5-1.1.2-2.2 1.4-2.2H17a4 4 0 0 0 4-4c0-5.5-4-10-9-10z"/><circle cx="7.5" cy="11" r="1.2"/><circle cx="10" cy="7" r="1.2"/><circle cx="15" cy="7" r="1.2"/></svg></button><button class="hbi" id="moreBtn" aria-label="Réglages et plus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg></button></span><span class="ver" id="hVer">v183</span></div>
+      <div class="homebar"><span class="brand">DEX<b>·</b>SCAN</span><span class="hbis"><button class="hbi" id="hSearch" aria-label="Rechercher une carte"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></button><button class="hbi" id="themeBtn" aria-label="Changer de thème"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.6-.9 1.2-1.8-.5-1.1.2-2.2 1.4-2.2H17a4 4 0 0 0 4-4c0-5.5-4-10-9-10z"/><circle cx="7.5" cy="11" r="1.2"/><circle cx="10" cy="7" r="1.2"/><circle cx="15" cy="7" r="1.2"/></svg></button><button class="hbi" id="moreBtn" aria-label="Réglages et plus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg></button></span><span class="ver" id="hVer">v184</span></div>
       <button class="banner" id="pxBanner" hidden></button>
       <span class="hdate hgreet" id="hDate"></span>
       <div class="hhero"><div class="total htot" id="hTot"></div><span id="avatSlot"></span></div>
@@ -2032,7 +2048,7 @@ img.px.reveal{animation:stpRev .9s ease-out}
   <section class="view" id="socialView" hidden>
     <div class="scroll" id="soScroll">
       <h1 class="h1">Social</h1>
-      <div class="fx-seg" id="soSeg"><button data-so="feed">Le Fil <i id="hsegN" hidden></i></button><button data-so="rank">Classement</button><button data-so="dm">Messages <i id="dmN" hidden></i></button></div>
+      <div class="so-bar" id="soSeg"><button class="so-tr" data-so="rank" aria-label="Classement"><svg viewBox="0 0 24 24" fill="none" stroke="url(#soTrG)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><defs><linearGradient id="soTrG" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFF4C2"/><stop offset=".35" stop-color="#FFD86E"/><stop offset=".65" stop-color="#7CF3FF"/><stop offset="1" stop-color="#E2B8FF"/></linearGradient></defs><path d="M8 21h8M12 17v4"/><path d="M7 4h10v5a5 5 0 0 1-10 0z"/><path d="M17 5h3v2a3 3 0 0 1-3 3M7 5H4v2a3 3 0 0 0 3 3"/></svg><b id="soRk"></b></button><button class="so-fil" data-so="feed">Le Fil <i id="hsegN" hidden></i></button><button class="so-dm" data-so="dm" aria-label="Messages"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/></svg><i id="dmN" hidden></i></button></div>
       <div id="feedPane" hidden></div>
       <div id="soRank" hidden></div>
       <div id="soDm" hidden></div>
@@ -7378,6 +7394,7 @@ const curView = () => ALLV.find(id=>!document.getElementById(id).hidden);
 function backTarget(){
   if($("#arenaView")) return "arena";
   if(document.querySelector("body>.fc-pick")) return "pick";
+  if($("#sheet").classList.contains("open") && $("#sheet").classList.contains("overdm")) return NAV.stack.length ? "card" : "sheet";
   if($("#dmView")) return "dm";
   if($("#foilView")?.classList.contains("open")) return "foil";
   if(!$("#gov").hidden) return "gov";
@@ -8771,6 +8788,7 @@ async function betaPublishFlow(){
 }
 /* Journal des modifications de la Bêta : la carte « Version Bêta » liste celles que les copains n'ont pas encore */
 const BETA_LOG = [
+  {v:184, t:"Carte partagée en message ou sur le Fil : un toucher ouvre sa fiche · Social : le Fil au centre, le classement devient une pastille trophée holo avec ton rang, les messages à droite"},
   {v:183, t:"Cartes anciennes (Set de Base, Jungle, Néo…) : cote plus juste · eBay : les rééditions 30 ans / Collection Classique et 25 ans ne sortent plus dans les ventes de l'originale"},
   {v:182, t:"Classeur : les dossiers ouverts ne sautent plus (mise à jour des cotes, défilement vers le haut)"},
   {v:181, t:"Défis de la semaine sur l'accueil (XP en récompense) · hors ligne : les cotes du jour et les données restent disponibles sans réseau"},
@@ -8876,7 +8894,7 @@ const fdCardOf = x => x ? ({id:x.id, name:x.name, set:x.set?.name || x.setName |
 // image d'une carte jointe : son URL, puis les autres sources connues de l'app (jamais un trou)
 const fdImg = (c, attrs="") => { if(!c) return ""; return imgTag({id:c.id, localId:c.num, name:c.name, _img:c.img?{low:c.img, high:c.img}:null}, "low", `alt="" loading="lazy" ${attrs}`); };
 const fdOwn = () => new Set(getCol().map(x=>x.id));
-const fdCardRow = (c, label) => `<div class="fd-crd">${fdImg(c)}<div>${label?`<small>${label}</small>`:""}<b>${esc(c.name)}</b><span>${esc([c.set, c.num].filter(Boolean).join(" "))}${c.price!=null?` · cote ${bE(c.price)}`:""}</span></div></div>`;
+const fdCardRow = (c, label) => `<div class="fd-crd"${c?.id?` data-cid="${esc(c.id)}" role="button" tabindex="0"`:""}>${fdImg(c)}<div>${label?`<small>${label}</small>`:""}<b>${esc(c.name)}</b><span>${esc([c.set, c.num].filter(Boolean).join(" "))}${c.price!=null?` · cote ${bE(c.price)}`:""}</span></div></div>`;
 // ma collection résumée pour un post « Ma collec » (la valeur seulement si je l'ai rendue publique)
 function fdColAtt(){
   const col = getCol(), showVal = rkProf()?.val !== false;
@@ -9361,11 +9379,20 @@ function dmOpen(w, name, pk){
   const t = DM.threads?.find(x=>x.with===w); if(t && t.unread){ t.unread = 0; DM.unread = DM.threads.reduce((s,x)=>s+(x.unread||0),0); fdBadge(); }
   setTimeout(()=>$("#dmX")?.focus(), 150);
 }
+// carte partagée (message privé ou Fil) : un toucher ouvre sa fiche ; depuis une conversation, la fiche passe au-dessus
+document.addEventListener("click", e=>{
+  const b = e.target.closest(".dm-card[data-cid], .fd-crd[data-cid]");
+  if(!b || b.closest("#gov,.fc-pick,#sheet")) return;
+  e.preventDefault(); e.stopPropagation();
+  if(b.closest("#dmView")) $("#sheet").classList.add("overdm");
+  showCard(b.dataset.cid, []);
+}, true);
+new MutationObserver(()=>{ const s = $("#sheet"); if(!s.classList.contains("open") && s.classList.contains("overdm")) s.classList.remove("overdm"); }).observe($("#sheet"), {attributes:true, attributeFilter:["class"]});
 function dmRender(){
   const box = $("#dmMsgs"); if(!box) return; const me = fdMe()?.id, l = DM.msgs||[];
   const atEnd = box.scrollHeight - box.scrollTop - box.clientHeight < 80;
   box.innerHTML = l.length ? l.map((m,i)=>{ const day = i===0 || new Date(m.t).toDateString()!==new Date(l[i-1].t).toDateString();
-      return `${day?`<p class="dm-day">${new Date(m.t).toLocaleDateString("fr-FR",{weekday:"long",day:"numeric",month:"long"})}</p>`:""}<div class="dm-b ${m.from===me?"me":""}${m.tmp?" tmp":""}">${m.card?`<span class="fd-ccard">${fdImg(m.card)}<span><b>${esc(m.card.name)}</b>${m.card.price!=null?` · ${bE(m.card.price)}`:""}</span></span>`:""}${m.text?`<span>${esc(m.text)}</span>`:""}<small>${new Date(m.t).toLocaleTimeString("fr-FR",{hour:"2-digit",minute:"2-digit"})}</small></div>`; }).join("")
+      return `${day?`<p class="dm-day">${new Date(m.t).toLocaleDateString("fr-FR",{weekday:"long",day:"numeric",month:"long"})}</p>`:""}<div class="dm-b ${m.from===me?"me":""}${m.tmp?" tmp":""}">${m.card?`<button type="button" class="fd-ccard dm-card"${m.card.id?` data-cid="${esc(m.card.id)}"`:""} aria-label="Voir la fiche de ${esc(m.card.name)}">${fdImg(m.card)}<span><b>${esc(m.card.name)}</b>${m.card.price!=null?` · ${bE(m.card.price)}`:""}${m.card.id?`<em>Voir la fiche ›</em>`:""}</span></button>`:""}${m.text?`<span>${esc(m.text)}</span>`:""}<small>${new Date(m.t).toLocaleTimeString("fr-FR",{hour:"2-digit",minute:"2-digit"})}</small></div>`; }).join("")
     : `<div class="empty">Dis bonjour 👋</div>`;
   if(atEnd || l.some(m=>m.tmp)) box.scrollTop = box.scrollHeight;
 }
@@ -9387,6 +9414,7 @@ function soShow(t){
   store.set("soTab", SO.tab);
   $("#soSeg").hidden = !FEED.ok;
   $("#soSeg").querySelectorAll("[data-so]").forEach(b=>b.classList.toggle("on", b.dataset.so===SO.tab));
+  { const ab = store.get("rkAbove", null); $("#soRk").textContent = rkProf()?.on && Array.isArray(ab) ? "#"+(ab.length+1) : ""; }
   FEED.on = SO.tab==="feed";
   $("#feedPane").hidden = !FEED.on; $("#soRank").hidden = SO.tab!=="rank"; $("#soDm").hidden = SO.tab!=="dm"; $("#soArena").hidden = SO.tab!=="arena";
   if(FEED.on) renderFeed();
@@ -10178,7 +10206,7 @@ function arClose(forfeit){
   AR.b = null; $("#arenaView")?.remove(); if($("#soArena") && !$("#soArena").hidden) renderArenaHome();
 }
 
-window.__cote = {setTheme, cardLang, burstAdd, ebQ:(c,o)=>ebayQuery(c,o), vint:d=>fixPricing(d), arStart:(f)=>arStart(f), renderArenaHome:()=>renderArenaHome(), rkCollection:(i)=>rkCollection(i), cmSearch:(q,t)=>cmSearch(q,t), loadCM:()=>loadCM(), petArtDemo:(k,lv)=>petArt(STARTERS.find(s=>s.k===k),lv,true), palierMsg, shareCollection, fdShareCol, teamPick, teamLeft, evoCheck, openThemes, checkSecret, verifyMatch, detectCard, findCards, parseNumber, showCard, processCard, analyzeQuality, renderDiag, openHealth, checkHealth, selectTab, openSet, showExtHome, EX, loadIndex, matchImage, CARDSIG, numCandidates};
+window.__cote = {setTheme, dmOpen:(...a)=>dmOpen(...a), cardLang, burstAdd, ebQ:(c,o)=>ebayQuery(c,o), vint:d=>fixPricing(d), arStart:(f)=>arStart(f), renderArenaHome:()=>renderArenaHome(), rkCollection:(i)=>rkCollection(i), cmSearch:(q,t)=>cmSearch(q,t), loadCM:()=>loadCM(), petArtDemo:(k,lv)=>petArt(STARTERS.find(s=>s.k===k),lv,true), palierMsg, shareCollection, fdShareCol, teamPick, teamLeft, evoCheck, openThemes, checkSecret, verifyMatch, detectCard, findCards, parseNumber, showCard, processCard, analyzeQuality, renderDiag, openHealth, checkHealth, selectTab, openSet, showExtHome, EX, loadIndex, matchImage, CARDSIG, numCandidates};
 })();
 </script>
 <script>if("serviceWorker" in navigator) addEventListener("load", ()=>navigator.serviceWorker.register(window.__BETA?"beta/sw.js":"sw.js").catch(()=>{}));</script>

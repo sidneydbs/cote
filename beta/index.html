@@ -296,6 +296,16 @@ button.wnote{color:var(--fg);border-color:color-mix(in srgb,var(--border-yellow)
 .oplist{display:flex;flex-direction:column;gap:7px;margin-top:12px}.opr{position:relative;display:flex;align-items:center;gap:10px;padding:10px 40px 10px 10px;border-radius:12px;background:var(--panel);border:1px solid var(--line)}
 .opd{flex:none;width:44px;font:700 11.5px var(--f-mono);color:var(--muted)}.opn{flex:1;min-width:0;display:flex;flex-direction:column}.opn b{font-size:13.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.opn small{color:var(--muted);font-size:11.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .opm{flex:none;display:flex;flex-direction:column;align-items:flex-end}.opm b{font:700 13px var(--f-mono)}.opm small{font:700 11.5px var(--f-mono)}.opr .wdel{position:absolute;top:50%;right:6px;transform:translateY(-50%);width:30px;height:30px;color:var(--muted);font-size:19px}
+.defis{margin:14px 0 4px;padding:13px 14px;border-radius:18px;background:var(--panel);border:1px solid var(--line)}.defis.alldone{border-color:var(--up)}
+.dfh{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:6px}.dfh b{font-size:15px}.dfh small{color:var(--muted);font-size:12px}
+.dfr{display:grid;grid-template-columns:1fr auto;align-items:center;gap:4px 10px;padding:8px 0;border-top:1px solid color-mix(in srgb,var(--line) 70%,transparent)}.dfr:first-of-type{border-top:0}
+.dft{font-size:13.5px;min-width:0}.dfr.got .dft{color:var(--muted);text-decoration:line-through;text-decoration-color:color-mix(in srgb,var(--muted) 60%,transparent)}
+.dfn{font:700 12px var(--f-mono);color:var(--muted)}.dfx{font:700 12px var(--f-mono);color:var(--up)}
+.dfc{padding:6px 11px;border-radius:999px;background:var(--border-yellow);color:var(--on-acc);font-weight:800;font-size:12px;animation:dfpulse 1.6s ease-in-out infinite}
+@keyframes dfpulse{50%{box-shadow:0 0 0 5px color-mix(in srgb,var(--border-yellow) 25%,transparent)}}
+.dfp{grid-column:1/-1;height:6px;border-radius:99px;background:color-mix(in srgb,var(--fg) 12%,transparent);overflow:hidden}.dfp i{display:block;height:100%;border-radius:99px;background:linear-gradient(90deg,var(--g1,var(--border-yellow)),var(--g2,var(--up)));transition:width .4s}
+.dfr.got .dfp i{background:var(--up)}
+@media (prefers-reduced-motion:reduce){.dfc{animation:none}}
 .ctile .px.up{color:var(--up)}.ctile .px.down{color:var(--down)}
 .variant-tabs{display:flex;gap:6px;margin-top:14px;flex-wrap:wrap}
 .vt{padding:7px 12px;border-radius:9px;background:var(--panel-2);border:1px solid var(--line);font-size:12.5px;font-weight:600;color:var(--muted)}
@@ -1966,7 +1976,7 @@ img.px.reveal{animation:stpRev .9s ease-out}
   }
   fit(); addEventListener("resize", fit); addEventListener("orientationchange", function(){ setTimeout(fit, 300); });
 })();</script>
-<script>window.__APPV="180";</script>
+<script>window.__APPV="181";</script>
 <div class="splash" id="splash" aria-hidden="true"><i class="hole"></i><i class="halo"></i><div class="bw"><svg class="b" viewBox="0 0 100 100"><use href="#pb"/></svg><svg class="t" viewBox="0 0 100 100"><use href="#pb"/></svg></div><i class="glow"></i></div>
 <script>setTimeout(function(){ if(window.__booted) return;
   var b=document.createElement("div"); b.setAttribute("role","alert");
@@ -2001,7 +2011,7 @@ img.px.reveal{animation:stpRev .9s ease-out}
   <!-- ===== EXTENSIONS ===== -->
   <section class="view" id="homeView">
     <div class="scroll">
-      <div class="homebar"><span class="brand">DEX<b>·</b>SCAN</span><span class="hbis"><button class="hbi" id="hSearch" aria-label="Rechercher une carte"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></button><button class="hbi" id="themeBtn" aria-label="Changer de thème"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.6-.9 1.2-1.8-.5-1.1.2-2.2 1.4-2.2H17a4 4 0 0 0 4-4c0-5.5-4-10-9-10z"/><circle cx="7.5" cy="11" r="1.2"/><circle cx="10" cy="7" r="1.2"/><circle cx="15" cy="7" r="1.2"/></svg></button><button class="hbi" id="moreBtn" aria-label="Réglages et plus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg></button></span><span class="ver" id="hVer">v180</span></div>
+      <div class="homebar"><span class="brand">DEX<b>·</b>SCAN</span><span class="hbis"><button class="hbi" id="hSearch" aria-label="Rechercher une carte"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></button><button class="hbi" id="themeBtn" aria-label="Changer de thème"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.6-.9 1.2-1.8-.5-1.1.2-2.2 1.4-2.2H17a4 4 0 0 0 4-4c0-5.5-4-10-9-10z"/><circle cx="7.5" cy="11" r="1.2"/><circle cx="10" cy="7" r="1.2"/><circle cx="15" cy="7" r="1.2"/></svg></button><button class="hbi" id="moreBtn" aria-label="Réglages et plus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg></button></span><span class="ver" id="hVer">v181</span></div>
       <button class="banner" id="pxBanner" hidden></button>
       <span class="hdate hgreet" id="hDate"></span>
       <div class="hhero"><div class="total htot" id="hTot"></div><span id="avatSlot"></span></div>
@@ -2012,6 +2022,7 @@ img.px.reveal{animation:stpRev .9s ease-out}
         <button id="hqSeal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8l9-5 9 5v8l-9 5-9-5z"/><path d="M3 8l9 5 9-5M12 13v8"/></svg>Ajouter un scellé</button>
         <button id="hqCls"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7.5V18a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V9.5a2 2 0 0 0-2-2h-7.2L9.6 5.2A2 2 0 0 0 8.2 4.6H5a2 2 0 0 0-2 2z"/></svg>Mon classeur</button>
       </div>
+      <div id="hDefis"></div>
       <div id="hTop"></div>
       <div id="hRecent"></div>
       <h3 class="hh">Raccourcis</h3>
@@ -3209,6 +3220,7 @@ const ico = { ext:`<svg class="xico" viewBox="0 0 24 24" fill="none" stroke="cur
 /* ---------------- Collection ---------------- */
 const getCol = () => store.get("col",[]);
 function addToCol(c, ed=null, lg=null, cond=null, quiet=false){
+  wkInc("adds"); if(wishOf(c.id)) wkInc("wishcol");
   const col = getCol(); const ex = col.find(x=>x.id===c.id);
   const bump = x=>{ if(ed){ x.ed ||= {}; x.ed[ed] = (x.ed[ed]||0)+1; } if(lg){ x.lgs ||= {}; x.lgs[lg] = (x.lgs[lg]||0)+1; } if(cond){ x.conds ||= {}; x.conds[cond] = (x.conds[cond]||0)+1; } };
   const mi = marketInfo(c) || {};
@@ -4025,7 +4037,7 @@ function addWish(c){
   const l = getWish(); if(l.some(x=>x.id===c.id)) return;
   const mi = marketInfo(c) || {}, p = mi.p ?? mainPrice(c) ?? null;
   l.unshift({id:c.id, name:c.name, set:c.set?.name||"", num:c.localId, img:img(c,"low"), p0:p, price:p, a7:mi.a7??null, pt:Date.now(), t:Date.now(), lg:currentLg, max:null});
-  setWish(l);
+  setWish(l); wkInc("wish");
 }
 function delWish(id){ setWish(getWish().filter(x=>x.id!==id)); }
 const wishHit = x => x.max!=null && x.price!=null && x.price <= x.max;
@@ -4136,7 +4148,7 @@ async function renderTradeBox(){
     store.set("tradeOn", false); await tradeSync(true); AUTOTR.m = null; renderTradeBox(); toast("Échanges désactivés"); };
   el.querySelectorAll("[data-tri]").forEach(b=>b.onclick=()=>{ const x = m[+b.dataset.tri], nm = l=>l.slice(0,4).map(c=>c.name).join(", ")+(l.length>4?"…":"");
     const t = `Salut ${x.name} ! Dex Scan nous a mis en relation pour un échange.${x.give.length?` Tu as en double ${nm(x.give)}, que je cherche.`:""}${x.want.length?` J'ai en double ${nm(x.want)}, que tu cherches.`:""} Ça te dit ?`;
-    dmOpen(x.uid, x.name, x.pk); setTimeout(()=>{ const i = $("#dmX"); if(i && !i.value) i.value = t; }, 250); });
+    wkInc("trades"); dmOpen(x.uid, x.name, x.pk); setTimeout(()=>{ const i = $("#dmX"); if(i && !i.value) i.value = t; }, 250); });
   el.querySelectorAll("[data-trc]").forEach(b=>b.onclick=()=>rkCollection(m[+b.dataset.trc].uid));
 }
 // petit cœur sur les cartes de la liste, dans les grilles du Classeur et d'Explorer
@@ -4708,7 +4720,7 @@ function openBurst(){
     if(O.prod || cost>0){
       const cards = l2.filter(x=>!miss.includes(x)).sort((a,b)=>(b.price||0)-(a.price||0)).map(x=>({id:x.id, name:x.name, set:x.set, num:x.num, img:x.img, price:x.price}));
       const op = {t:Date.now(), prod:O.prod||"", cost:cost>0?cost:null, val:Math.round(v2*100)/100, n:n2, cards:cards.slice(0,12)};
-      store.set("openings", [op, ...store.get("openings", [])].slice(0,200)); store.set("burstOpen", {});
+      store.set("openings", [op, ...store.get("openings", [])].slice(0,200)); store.set("burstOpen", {}); wkInc("opens");
       showOpening(op); return;
     }
     closeSheet();
@@ -4981,6 +4993,7 @@ async function detectLang(src, B){
   return {lg, L, K};
 }
 async function cardLang(src, B, D){
+  wkInc("scans");
   try{
     if(!B || !B.w || !B.h) return;
     status.textContent = "Langue de la carte…";
@@ -7181,8 +7194,44 @@ const TABOF = {extView:"colView", searchView:"homeView", playView:"homeView", to
 const tabOf = v => TABOF[v] || v;
 const ALLV = ["homeView","extView","scanView","searchView","colView","alertView","playView","topView","rankView","budgetView","moreView","socialView"];
 /* ---------- Accueil : valeur totale, actions rapides, extensions en cours ---------- */
+/* ---------- Défis de la semaine : 3 défis tirés chaque lundi, de l'XP en récompense ---------- */
+addEventListener("offline", ()=>toast("Hors ligne : ta collection et les fiches déjà vues restent consultables"));
+addEventListener("online", ()=>toast("De retour en ligne ✓"));
+const DEFIS = [
+  {k:"scans", n:10, t:"Scanne 10 cartes", xp:150}, {k:"adds", n:5, t:"Ajoute 5 cartes à ta collection", xp:120},
+  {k:"wish", n:3, t:"Ajoute 3 cartes à ta liste de souhaits", xp:80}, {k:"posts", n:1, t:"Publie sur le Fil", xp:80},
+  {k:"opens", n:1, t:"Enregistre une ouverture de booster", xp:120}, {k:"scans", n:25, t:"Scanne 25 cartes", xp:300},
+  {k:"adds", n:15, t:"Ajoute 15 cartes à ta collection", xp:250}, {k:"wishcol", n:1, t:"Obtiens une carte de ta liste de souhaits", xp:200},
+  {k:"trades", n:1, t:"Propose un échange à un Hunter", xp:100}];
+const wkKey = () => { const d = new Date(); d.setHours(0,0,0,0); d.setDate(d.getDate() - (d.getDay()+6)%7); return `${d.getFullYear()}-${d.getMonth()+1}-${d.getDate()}`; };
+function wkState(){ let w = store.get("wk", null); const id = wkKey(); if(!w || w.id!==id){ w = {id, c:{}, done:[]}; store.set("wk", w); } return w; }
+function wkPick(id){
+  let h = 7; for(const ch of id) h = (h*31 + ch.charCodeAt(0)) >>> 0;
+  const pool = DEFIS.map((d,i)=>i), out = [];
+  while(out.length < 3 && pool.length){ const i = pool.splice(h % pool.length, 1)[0]; if(!out.some(o=>DEFIS[o].k===DEFIS[i].k)) out.push(i); h = (Math.imul(h, 1103515245) + 12345) >>> 0; }
+  return out;
+}
+function wkInc(k, n=1){ try{ const w = wkState(); w.c[k] = (w.c[k]||0) + n; store.set("wk", w); if(!$("#homeView").hidden) renderDefis(); }catch(e){} }
+function renderDefis(){
+  const el = $("#hDefis"); if(!el) return;
+  const w = wkState(), ids = wkPick(w.id), left = Math.max(1, 7 - (new Date().getDay()+6)%7);
+  const all = ids.every(i=>w.done.includes(i));
+  el.innerHTML = `<div class="defis${all?" alldone":""}"><div class="dfh"><b>🏆 Défis de la semaine</b><small>${all?"Tous relevés, bravo !":`encore ${left} jour${left>1?"s":""}`}</small></div>
+    ${ids.map(i=>{ const d = DEFIS[i], v = Math.min(d.n, w.c[d.k]||0), ok = v>=d.n, got = w.done.includes(i);
+      return `<div class="dfr${got?" got":ok?" ok":""}"><span class="dft">${esc(d.t)}</span>
+        ${got ? `<b class="dfx">✓ +${d.xp} XP</b>` : ok ? `<button class="dfc" data-dfc="${i}">Récupérer +${d.xp} XP</button>` : `<small class="dfn">${v}/${d.n}</small>`}
+        <span class="dfp"><i style="width:${Math.round(v/d.n*100)}%"></i></span></div>`; }).join("")}</div>`;
+  el.querySelectorAll("[data-dfc]").forEach(b=>b.onclick=()=>{
+    const i = +b.dataset.dfc, d = DEFIS[i], w2 = wkState(); if(w2.done.includes(i)) return;
+    const before = lvOf(acctXP()); w2.done.push(i); store.set("wk", w2); store.set("chXP", store.get("chXP",0) + d.xp);
+    navigator.vibrate?.([10,40,10]); toast(`🏆 Défi relevé · +${d.xp} XP`);
+    try{ rkSoon(); }catch(e){} renderDefis(); try{ renderAvatar(); }catch(e){}
+    if(lvOf(acctXP()) > before) setTimeout(()=>toast(`⭐ Niveau ${lvOf(acctXP())} !`), 1300);
+  });
+}
 function renderHome(){
   const el = $("#hTot"); if(!el) return;
+  try{ renderDefis(); }catch(e){}
   try{ renderAvatar(); }catch(e){}
   const who = (store.get("rk",null)||{}).name;
   $("#hDate").textContent = (who ? `Salut ${who} · ` : "") + new Date().toLocaleDateString("fr-FR",{weekday:"short", day:"numeric", month:"short"});
@@ -7821,6 +7870,7 @@ function acctXP(){
   for(const x of getCol()){ const p = x.price || 0; xp += (10 + (p>=100 ? 140 : p>=20 ? 50 : p>=5 ? 20 : 0)) * Math.max(1, x.qty||1); }
   for(const x of getBud()) xp += 40 * Math.max(0, x.q||0);
   xp += 100 * getGraded().length;
+  xp += store.get("chXP", 0);   // défis de la semaine
   try{ for(const [sid, own] of ownIndex()){ const st = setStats({id:sid}, own); if(st.ri && st.total && st.have >= st.total) xp += 500; } }catch(e){}
   return xp;
 }
@@ -8700,6 +8750,7 @@ async function betaPublishFlow(){
 }
 /* Journal des modifications de la Bêta : la carte « Version Bêta » liste celles que les copains n'ont pas encore */
 const BETA_LOG = [
+  {v:181, t:"Défis de la semaine sur l'accueil (XP en récompense) · hors ligne : les cotes du jour et les données restent disponibles sans réseau"},
   {v:180, t:"Ouverture de booster : scanne les cartes sorties en Rafale, indique le prix payé, Dex Scan dit si c'est rentable et garde l'historique"},
   {v:179, t:"Échanges automatiques : Dex Scan trouve les Hunters qui ont tes souhaits en double et ceux qui cherchent tes doubles · ce qu'un Hunter cherche, sur sa collection"},
   {v:178, t:"Notification quand une carte de ta liste de souhaits passe sous ton prix cible, même app fermée"},
@@ -9172,7 +9223,7 @@ function fdCompose(pre={}){
       FEED.posts ||= [];
       if(FEED.live){ const j = await fdApi("/post", {id:me.id, key:me.key, name:me.name, pk:myPk(), lv:lvOf(acctXP()), ...base}); FEED.posts.unshift(j.post); }
       else { FEED.posts.unshift({id:"l"+Date.now().toString(36), uid:me.id, name:me.name, pk:myPk(), lv:lvOf(acctXP()), t:Date.now(), likes:0, ok:0, ko:0, cm:[], ...base, pv:base.att?.opts?.map(()=>0)}); try{ fdSaveLocal(FEED.posts); }catch(x){ FEED.posts[0].img = null; fdSaveLocal(FEED.posts); } }
-      $("#gov").hidden = true; $("#gov").dataset.mode = ""; FEED.f = "all"; if(pre.go) fdGoFeed(); else renderFeed(); toast("Publié !");
+      $("#gov").hidden = true; $("#gov").dataset.mode = ""; FEED.f = "all"; wkInc("posts"); if(pre.go) fdGoFeed(); else renderFeed(); toast("Publié !");
     }catch(e){ b.disabled = false; b.textContent = "Publier sur le Fil"; toast(e.message); }
   };
   phv(); setMode(d.mode); if(d.mode==="talk") setTimeout(()=>$("#fcX").focus(), 60);
@@ -9338,6 +9389,9 @@ $("#moreBack").onclick = ()=>navBack();
    Après l'intro, une seule fois par version qui apporte quelque chose à l'utilisateur.
    Nouvelle installation : rien (tout est neuf). Les versions purement techniques n'ont pas d'entrée ici. */
 const NEWS = [
+  {v:181, items:[
+    ["M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0zM17 5h3v2a3 3 0 0 1-3 3M7 5H4v2a3 3 0 0 0 3 3", "Défis de la semaine", "Chaque lundi, 3 nouveaux défis sur l'accueil : scanner, compléter, échanger… Relève-les pour gagner de l'XP et faire monter ton compagnon."]
+  ]},
   {v:180, items:[
     ["M20 12v10H4V12M2 7h20v5H2zM12 22V7M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7zM12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z", "Ouverture de booster", "Après une ouverture, scanne les cartes en Rafale puis indique le prix payé : Dex Scan calcule la valeur sortie, te dit si c'est rentable et garde l'historique de tes ouvertures."]
   ]},
@@ -9735,7 +9789,7 @@ async function bkPull(code){
 }
 // à chaque changement : collection & co. → envoi 20 s plus tard (3 min mini entre deux) ; le reste → toutes les 30 min au plus
 const BK_IMP = new Set(["col","graded","budget","wish","trades","starter","team","rk","burst"]);
-const BK_QUIET = new Set(["tradeSig","tradeSigT","wishSyncSig","wishSyncT","bkCloud","backupT","feedSeen","colPxT","seenNews","newsSeen","rkL","rkBy","lastTab","colOpen","burstOn"]);
+const BK_QUIET = new Set(["wk","tradeSig","tradeSigT","wishSyncSig","wishSyncT","bkCloud","backupT","feedSeen","colPxT","seenNews","newsSeen","rkL","rkBy","lastTab","colOpen","burstOn"]);
 function bkMark(k){
   if(!bkcGet()?.code || BK_QUIET.has(k) || BK_SKIP.has(k)) return;
   BKC.dirty = true; if(BK_IMP.has(k)) BKC.imp = true;

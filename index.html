@@ -306,6 +306,14 @@ button.wnote{color:var(--fg);border-color:color-mix(in srgb,var(--border-yellow)
 .dfp{grid-column:1/-1;height:6px;border-radius:99px;background:color-mix(in srgb,var(--fg) 12%,transparent);overflow:hidden}.dfp i{display:block;height:100%;border-radius:99px;background:linear-gradient(90deg,var(--g1,var(--border-yellow)),var(--g2,var(--up)));transition:width .4s}
 .dfr.got .dfp i{background:var(--up)}
 @media (prefers-reduced-motion:reduce){.dfc{animation:none}}
+.rxbar{position:fixed;z-index:200;display:flex;gap:2px;padding:6px 8px;border-radius:999px;background:var(--panel);border:1px solid var(--line);box-shadow:0 10px 30px rgba(0,0,0,.45);animation:rxin .16s ease-out}
+.rxbar button{font-size:26px;width:42px;height:42px;border-radius:50%;display:grid;place-items:center;transition:transform .12s}.rxbar button:active{transform:scale(1.3)}.rxbar button.on{background:color-mix(in srgb,var(--border-yellow) 28%,transparent)}
+@keyframes rxin{from{transform:scale(.7) translateY(6px);opacity:0}}
+.rxs{display:inline-flex;flex-wrap:wrap;gap:4px}.rxc{display:inline-flex;align-items:center;gap:3px;padding:2px 7px;border-radius:999px;font-size:13px;background:var(--panel-2,var(--panel));border:1px solid var(--line);color:var(--fg)}.rxc b{font:700 11px var(--f-mono)}.rxc.on{border-color:var(--border-yellow);background:color-mix(in srgb,var(--border-yellow) 18%,transparent)}
+.fd-act{flex-wrap:wrap}.fd-act>.rxs{flex-basis:100%;margin-bottom:2px}.fd-rxb{min-width:38px;justify-content:center;font-size:17px}.fd-rxb svg{width:19px;height:19px}
+.fd-crx{font-size:13px;opacity:.85}.fd-crx.on{opacity:1}.fd-cf .rxs{margin-left:2px}
+.dm-rxs{align-self:flex-start;margin:-10px 0 2px 10px;position:relative;z-index:1}.dm-rxs.me{align-self:flex-end;margin:-10px 10px 2px 0}.dm-rxs .rxc{background:var(--panel);box-shadow:0 2px 6px rgba(0,0,0,.3)}
+.dm-b{-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
 .ctile .px.up{color:var(--up)}.ctile .px.down{color:var(--down)}
 .variant-tabs{display:flex;gap:6px;margin-top:14px;flex-wrap:wrap}
 .vt{padding:7px 12px;border-radius:9px;background:var(--panel-2);border:1px solid var(--line);font-size:12.5px;font-weight:600;color:var(--muted)}
@@ -1380,8 +1388,9 @@ button.wnote{color:var(--fg);border-color:color-mix(in srgb,var(--border-yellow)
 .dm-b{max-width:78%;align-self:flex-start;background:var(--panel-2);border-radius:18px 18px 18px 6px;padding:8px 12px;font-size:15px;line-height:1.35;overflow-wrap:anywhere;display:flex;flex-direction:column;gap:3px}
 .dm-b.me{align-self:flex-end;background:var(--border-yellow);color:var(--on-acc);border-radius:18px 18px 6px 18px}.dm-b.tmp{opacity:.6}
 .dm-b small{align-self:flex-end;font:600 10.5px var(--f-mono);opacity:.65}.dm-b .fd-ccard{margin:2px 0}
-.dm-card{text-align:left;color:inherit;padding:4px 8px 4px 4px;border-radius:10px;background:color-mix(in srgb,currentColor 8%,transparent)}.dm-card img{width:40px!important}.dm-card span{display:flex;flex-direction:column}.dm-card em{font-style:normal;font-size:11px;opacity:.75;margin-top:2px}
-.sheet.overdm{z-index:62}.fd-crd[data-cid]{cursor:pointer}
+.dm-card{display:flex;flex-direction:column;align-items:center;gap:7px;width:178px;max-width:100%;padding:10px 10px 8px;border-radius:14px;color:inherit;text-align:center;background:color-mix(in srgb,currentColor 8%,transparent)}.dm-card .dmc-n{font-size:15px;line-height:1.2;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.dm-card .dmc-im{display:block;width:158px;aspect-ratio:63/88;border-radius:8px;overflow:hidden;box-shadow:0 6px 18px rgba(0,0,0,.35)}.dm-card .dmc-im>*{width:100%!important;height:100%!important;object-fit:cover;display:block}.dm-card .dmc-p{font:800 18px var(--f-mono)}.dm-card em{font-style:normal;font-size:11.5px;opacity:.75}.dm-card em{font-style:normal;font-size:11px;opacity:.75;margin-top:2px}
+.sheet.overdm{z-index:62}.dm-rcpt{align-self:flex-end;width:auto;max-width:none;white-space:nowrap;text-align:right;margin:-2px 4px 4px;font:600 11px var(--f-mono);color:var(--muted)}.dm-rcpt.seen{color:#4FA9FF}
+.dm-rc{font-style:normal;font:700 11px var(--f-mono);color:var(--muted)}.dm-rc.seen{color:#4FA9FF}.fd-crd[data-cid]{cursor:pointer}
 .dm-in{display:flex;gap:8px;align-items:center;padding:8px max(12px,env(safe-area-inset-right)) calc(env(safe-area-inset-bottom,0px) + 8px) max(12px,env(safe-area-inset-left));border-top:1px solid var(--line);background:var(--ink)}
 .dm-in input{flex:1;min-width:0;background:var(--panel);border:1px solid var(--line);border-radius:999px;padding:11px 15px;color:var(--fg);font:16px var(--f-body);outline:none}
 .dm-att{width:40px;height:40px;border-radius:50%;background:var(--panel);font-size:18px;flex:none}.dm-go{width:42px;height:42px;border-radius:50%;background:var(--border-yellow);color:var(--on-acc);font-size:17px;flex:none}
@@ -1992,7 +2001,7 @@ img.px.reveal{animation:stpRev .9s ease-out}
   }
   fit(); addEventListener("resize", fit); addEventListener("orientationchange", function(){ setTimeout(fit, 300); });
 })();</script>
-<script>window.__APPV="184";</script>
+<script>window.__APPV="186";</script>
 <div class="splash" id="splash" aria-hidden="true"><i class="hole"></i><i class="halo"></i><div class="bw"><svg class="b" viewBox="0 0 100 100"><use href="#pb"/></svg><svg class="t" viewBox="0 0 100 100"><use href="#pb"/></svg></div><i class="glow"></i></div>
 <script>setTimeout(function(){ if(window.__booted) return;
   var b=document.createElement("div"); b.setAttribute("role","alert");
@@ -2027,7 +2036,7 @@ img.px.reveal{animation:stpRev .9s ease-out}
   <!-- ===== EXTENSIONS ===== -->
   <section class="view" id="homeView">
     <div class="scroll">
-      <div class="homebar"><span class="brand">DEX<b>·</b>SCAN</span><span class="hbis"><button class="hbi" id="hSearch" aria-label="Rechercher une carte"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></button><button class="hbi" id="themeBtn" aria-label="Changer de thème"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.6-.9 1.2-1.8-.5-1.1.2-2.2 1.4-2.2H17a4 4 0 0 0 4-4c0-5.5-4-10-9-10z"/><circle cx="7.5" cy="11" r="1.2"/><circle cx="10" cy="7" r="1.2"/><circle cx="15" cy="7" r="1.2"/></svg></button><button class="hbi" id="moreBtn" aria-label="Réglages et plus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg></button></span><span class="ver" id="hVer">v184</span></div>
+      <div class="homebar"><span class="brand">DEX<b>·</b>SCAN</span><span class="hbis"><button class="hbi" id="hSearch" aria-label="Rechercher une carte"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></button><button class="hbi" id="themeBtn" aria-label="Changer de thème"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.6-.9 1.2-1.8-.5-1.1.2-2.2 1.4-2.2H17a4 4 0 0 0 4-4c0-5.5-4-10-9-10z"/><circle cx="7.5" cy="11" r="1.2"/><circle cx="10" cy="7" r="1.2"/><circle cx="15" cy="7" r="1.2"/></svg></button><button class="hbi" id="moreBtn" aria-label="Réglages et plus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg></button></span><span class="ver" id="hVer">v186</span></div>
       <button class="banner" id="pxBanner" hidden></button>
       <span class="hdate hgreet" id="hDate"></span>
       <div class="hhero"><div class="total htot" id="hTot"></div><span id="avatSlot"></span></div>
@@ -8788,6 +8797,8 @@ async function betaPublishFlow(){
 }
 /* Journal des modifications de la Bêta : la carte « Version Bêta » liste celles que les copains n'ont pas encore */
 const BETA_LOG = [
+  {v:186, t:"Réactions émoticônes ❤️ 🔥 😂 😮 😢 👍 sur les publications, les commentaires et les messages (appui long ou double-toucher sur une bulle)"},
+  {v:185, t:"Messages : « Vu à 18:05 » sous ton dernier message quand il a été lu (et ✓✓ Vu dans la liste des conversations) · carte partagée en grand, nom au-dessus et prix en dessous"},
   {v:184, t:"Carte partagée en message ou sur le Fil : un toucher ouvre sa fiche · Social : le Fil au centre, le classement devient une pastille trophée holo avec ton rang, les messages à droite"},
   {v:183, t:"Cartes anciennes (Set de Base, Jungle, Néo…) : cote plus juste · eBay : les rééditions 30 ans / Collection Classique et 25 ans ne sortent plus dans les ventes de l'originale"},
   {v:182, t:"Classeur : les dossiers ouverts ne sautent plus (mise à jour des cotes, défilement vers le haut)"},
@@ -8989,6 +9000,42 @@ async function fdLoad(){
   catch(e){ if(e.off || e instanceof TypeError){ FEED.live = false; FEED.posts = fdLocal(); } else { FEED.err = e.message; FEED.posts ||= []; } }
   FEED.busy = false; renderFeed();
 }
+/* ---------- Réactions (émoticônes) : posts, commentaires, messages privés ---------- */
+const RXS = ["❤️","🔥","😂","😮","😢","👍"];
+// petite barre d'émoticônes au-dessus de l'élément touché
+function rxPick(anchor, cur, cb){
+  document.querySelector(".rxbar")?.remove();
+  const bar = document.createElement("div"); bar.className = "rxbar"; bar.setAttribute("role","menu");
+  bar.innerHTML = RXS.map(e=>`<button type="button" data-e="${e}" class="${e===cur?"on":""}" aria-label="Réagir ${e}">${e}</button>`).join("");
+  document.body.appendChild(bar);
+  const r = anchor.getBoundingClientRect(), w = bar.offsetWidth, h = bar.offsetHeight;
+  bar.style.left = Math.max(8, Math.min(innerWidth - w - 8, r.left + r.width/2 - w/2)) + "px";
+  bar.style.top = (r.top - h - 8 > 60 ? r.top - h - 8 : r.bottom + 8) + "px";
+  navigator.vibrate?.(8);
+  const off = ev=>{ if(!bar.contains(ev.target)){ bar.remove(); document.removeEventListener("pointerdown", off, true); } };
+  setTimeout(()=>document.addEventListener("pointerdown", off, true), 0);
+  bar.querySelectorAll("[data-e]").forEach(b=>b.onclick=ev=>{ ev.stopPropagation(); bar.remove(); document.removeEventListener("pointerdown", off, true); cb(b.dataset.e); });
+}
+// pastilles « ❤️ 2 🔥 1 » ; attrs = attributs du bouton (data-fa…)
+const rxChips = (rx, mine, attrs="") => { const l = RXS.filter(e=>rx?.[e]>0); return l.length ? `<span class="rxs">${l.map(e=>`<button type="button" class="rxc${e===mine?" on":""}" ${attrs} data-e="${e}" aria-label="${e} ${rx[e]}">${e}<b>${rx[e]}</b></button>`).join("")}</span>` : ""; };
+// mise à jour immédiate (le serveur confirme ensuite)
+function rxLocal(o, e){ o.rx = {...(o.rx||{})}; if(o.mrx){ o.rx[o.mrx] = Math.max(0,(o.rx[o.mrx]||0)-1); if(!o.rx[o.mrx]) delete o.rx[o.mrx]; } if(o.mrx===e) o.mrx = null; else { o.rx[e] = (o.rx[e]||0)+1; o.mrx = e; } }
+async function fdReact(post, e, cid){
+  const p = fdMe(); if(!p) return;
+  const o = cid ? (post.cm||[]).find(x=>x.id===cid) : post; if(!o) return;
+  const snap = {rx:o.rx, mrx:o.mrx}; rxLocal(o, e); fdPatch(post);
+  if(!FEED.live){ fdSaveLocal(FEED.posts); return; }
+  try{ const j = await fdApi(cid ? "/cmreact" : "/react", {id:p.id, key:p.key, post:post.id, c:cid, e}); if(j.post) Object.assign(post, j.post); }
+  catch(err){ Object.assign(o, snap); toast(err.message); }
+  fdPatch(post);
+}
+async function dmReact(w, name, m, e){
+  const p = fdMe(); if(!p || m.tmp) return;
+  const old = m.rx; m.rx = {...(m.rx||{})}; m.rx[p.id] === e ? delete m.rx[p.id] : m.rx[p.id] = e; dmRender();
+  try{ const j = await fdApi("/dm/react", {id:p.id, key:p.key, with:w, m:m.id, e, name:p.name}); if(j.msg) m.rx = j.msg.rx; }
+  catch(err){ m.rx = old; toast(err.message); }
+  dmRender();
+}
 /* une action sur un post : en ligne si le serveur répond, sinon sur ce téléphone */
 /* actions sur un post : un seul gestionnaire, rebranché sur les morceaux redessinés */
 function fdClick(e){ e.stopPropagation(); const b = e.currentTarget;
@@ -8998,6 +9045,10 @@ function fdClick(e){ e.stopPropagation(); const b = e.currentTarget;
     if(a==="cms"){ const i = b.closest(".fd-cin")?.querySelector("input"); if(i) fdComment(post, i); return; }
     if(a==="ucm"){ fdUncomment(post, b.dataset.c); return; }
     if(a==="clike"){ fdCmLike(post, b.dataset.c); return; }
+    if(a==="rx"){ fdReact(post, b.dataset.e); return; }
+    if(a==="rxp"){ rxPick(b, post.mrx, e=>fdReact(post, e)); return; }
+    if(a==="crx"){ fdReact(post, b.dataset.e, b.dataset.c); return; }
+    if(a==="crxp"){ const c = (post.cm||[]).find(x=>x.id===b.dataset.c); rxPick(b, c?.mrx, e=>fdReact(post, e, b.dataset.c)); return; }
     if(a==="crep"){ const c = (post.cm||[]).find(x=>x.id===b.dataset.c); if(!c) return; FEED.reTo[post.id] = {id:c.id, name:c.name}; FEED.cmOpen.add(post.id); fdPatch(post, true);
       const i = document.querySelector(`[data-pid="${CSS.escape(post.id)}"] .fd-cin input`); if(i && c.uid!==fdMe()?.id && !i.value){ const n = String(c.name||"").replace(/\s+/g,""); if(n) i.value = "@" + n + " "; } return; }
     if(a==="crex"){ delete FEED.reTo[post.id]; fdPatch(post, true); return; }
@@ -9057,7 +9108,7 @@ function fdPostHTML(x){
     ${x.tag==="re"?`<div class="fd-shop">${x.shop||x.price!=null?`<div class="r1"><span class="ic">🛒</span><div><b>${esc(x.shop||"Boutique")}</b><small>signalé ${fdAgo(x.t)}</small></div>${x.price!=null?`<span class="pr"><small>prix</small>${bE(x.price)}</span>`:""}</div>`:""}
       <div class="fd-meter"><i style="width:${pc}%"></i></div>
       <div class="fd-vote"><button class="ok${x.my==="ok"?" on":""}" data-fa="ok">✓ Encore dispo · ${x.ok||0}</button><button class="ko${x.my==="ko"?" on":""}" data-fa="ko">✕ Épuisé · ${x.ko||0}</button></div></div>`:""}
-    <div class="fd-act"><button data-fa="like" class="${x.liked?"on":""}"><i class="fd-pb"></i>${x.likes||0}</button><button data-fa="cm" class="${FEED.cmOpen.has(x.id)?"on":""}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/></svg>${(x.cm||[]).length}</button><button data-fa="share">${'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 8l5-5 5 5M5 13v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6"/></svg>'}Partager</button>${mine?`<button data-fa="del">Supprimer</button>`:""}</div>
+    <div class="fd-act">${rxChips(x.rx, x.mrx, 'data-fa="rx"')}<button data-fa="like" class="${x.liked?"on":""}"><i class="fd-pb"></i>${x.likes||0}</button><button data-fa="rxp" class="fd-rxb${x.mrx?" on":""}" aria-label="Réagir avec une émoticône">${x.mrx||'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8.5 14.5s1.3 2 3.5 2 3.5-2 3.5-2M9 9.5h.01M15 9.5h.01"/></svg>'}</button><button data-fa="cm" class="${FEED.cmOpen.has(x.id)?"on":""}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/></svg>${(x.cm||[]).length}</button><button data-fa="share">${'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 8l5-5 5 5M5 13v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6"/></svg>'}Partager</button>${mine?`<button data-fa="del">Supprimer</button>`:""}</div>
     ${fdCmHTML(x)}
   </div></article>`;
 }
@@ -9066,7 +9117,7 @@ function fdCmHTML(x){
   const l = x.cm||[], open = FEED.cmOpen.has(x.id), me = fdMe()?.id, own = me && x.uid===me;
   if(!l.length && !open) return `<div class="fd-cms" hidden></div>`;
   const shown = open ? l : l.slice(-2);
-  const one = c => { const st = rkPet(c.pk); return `<div class="fd-c${c.tmp?" tmp":""}${c.re?" re":""}"><span class="fd-cav">${st?`<img src="${st.img}" alt="">`:"🙂"}</span><div class="fd-cw"><div class="fd-cb">${c.re?`<span class="fd-cre">↩ ${esc(c.reName||"Hunter")}</span>`:""}<b>${esc(c.name||"Hunter")}</b> ${esc(c.text||"").replace(/(^|[^&\w])#([\wÀ-ÿ]+)/g,'$1<span class="ht">#$2</span>').replace(/(^|[^&\w@])@([\wÀ-ÿ._-]{2,24})/g,'$1<span class="mn" data-mn="$2">@$2</span>')}${c.card?`<span class="fd-ccard">${fdImg(c.card)}<span><b>${esc(c.card.name)}</b>${c.card.price!=null?` · ${bE(c.card.price)}`:""}</span></span>`:""}</div><div class="fd-cf"><small>${fdAgo(c.t)}</small>${c.tmp?"":`<button class="fd-clk${c.liked?" on":""}" data-fa="clike" data-c="${esc(c.id)}" aria-label="J'aime" aria-pressed="${!!c.liked}">${c.liked?"♥":"♡"}${c.likes?` ${c.likes}`:""}</button><button data-fa="crep" data-c="${esc(c.id)}">Répondre</button>`}</div></div>${me && (c.uid===me || own) && !c.tmp ? `<button class="fd-cx" data-fa="ucm" data-c="${esc(c.id)}" aria-label="Supprimer le commentaire">✕</button>` : ""}</div>`; };
+  const one = c => { const st = rkPet(c.pk); return `<div class="fd-c${c.tmp?" tmp":""}${c.re?" re":""}"><span class="fd-cav">${st?`<img src="${st.img}" alt="">`:"🙂"}</span><div class="fd-cw"><div class="fd-cb">${c.re?`<span class="fd-cre">↩ ${esc(c.reName||"Hunter")}</span>`:""}<b>${esc(c.name||"Hunter")}</b> ${esc(c.text||"").replace(/(^|[^&\w])#([\wÀ-ÿ]+)/g,'$1<span class="ht">#$2</span>').replace(/(^|[^&\w@])@([\wÀ-ÿ._-]{2,24})/g,'$1<span class="mn" data-mn="$2">@$2</span>')}${c.card?`<span class="fd-ccard">${fdImg(c.card)}<span><b>${esc(c.card.name)}</b>${c.card.price!=null?` · ${bE(c.card.price)}`:""}</span></span>`:""}</div><div class="fd-cf"><small>${fdAgo(c.t)}</small>${c.tmp?"":`<button class="fd-clk${c.liked?" on":""}" data-fa="clike" data-c="${esc(c.id)}" aria-label="J'aime" aria-pressed="${!!c.liked}">${c.liked?"♥":"♡"}${c.likes?` ${c.likes}`:""}</button><button data-fa="crep" data-c="${esc(c.id)}">Répondre</button><button class="fd-crx${c.mrx?" on":""}" data-fa="crxp" data-c="${esc(c.id)}" aria-label="Réagir">${c.mrx||"☺︎"}</button>${rxChips(c.rx, c.mrx, `data-fa="crx" data-c="${esc(c.id)}"`)}`}</div></div>${me && (c.uid===me || own) && !c.tmp ? `<button class="fd-cx" data-fa="ucm" data-c="${esc(c.id)}" aria-label="Supprimer le commentaire">✕</button>` : ""}</div>`; };
   return `<div class="fd-cms">${!open && l.length>2 ? `<button class="fd-call" data-fa="cm">Voir les ${l.length} commentaires</button>` : ""}${shown.map(one).join("")}
     ${open && FEED.reTo[x.id] ? `<div class="fd-rech">↩ Réponse à <b>${esc(FEED.reTo[x.id].name||"Hunter")}</b><button data-fa="crex" aria-label="Annuler la réponse">✕</button></div>` : ""}
     ${open ? `<div class="fd-cin"><input type="text" maxlength="300" placeholder="${fdMe()?(FEED.reTo[x.id]?"Ta réponse…":"Ajoute un commentaire…"):"Crée ton profil pour commenter"}" enterkeyhint="send" ${fdMe()?"":"disabled"}><button data-fa="cms" aria-label="Envoyer">➤</button></div>` : ""}</div>`;
@@ -9352,13 +9403,13 @@ function renderDm(){
   const el = $("#soDm"); if(!el) return;
   if(!fdMe()){ el.innerHTML = `<div class="empty" style="padding:40px 12px">Crée ton profil de Hunter pour écrire aux autres.<br><button class="btn btn-y" id="dmSetup" style="margin-top:14px">Créer mon profil</button></div>`; $("#dmSetup").onclick = ()=>rkSetup(); return; }
   if(DM.threads===null){ el.innerHTML = `<div class="empty"><span class="loader"></span></div>`; return; }
-  el.innerHTML = DM.threads.length ? `<div class="dm-list">${DM.threads.map(t=>{ const st = rkPet(t.pk); return `<button class="dm-row${t.unread?" new":""}" data-dw="${esc(t.with)}"><span class="fd-av">${st?`<img src="${st.img}" alt="">`:"🙂"}</span><span class="dm-t"><b>${esc(t.name||"Hunter")}</b><span>${esc(t.last||"")}</span></span><span class="dm-m"><small>${dmAgo(t.t)}</small>${t.unread?`<i>${t.unread}</i>`:""}</span></button>`; }).join("")}</div>`
+  el.innerHTML = DM.threads.length ? `<div class="dm-list">${DM.threads.map(t=>{ const st = rkPet(t.pk); return `<button class="dm-row${t.unread?" new":""}" data-dw="${esc(t.with)}"><span class="fd-av">${st?`<img src="${st.img}" alt="">`:"🙂"}</span><span class="dm-t"><b>${esc(t.name||"Hunter")}</b><span>${t.mine?(t.seenT>=t.t?`<em class="dm-rc seen">✓✓ Vu</em> `:`<em class="dm-rc">✓ Envoyé</em> `):""}${esc(t.last||"")}</span></span><span class="dm-m"><small>${dmAgo(t.t)}</small>${t.unread?`<i>${t.unread}</i>`:""}</span></button>`; }).join("")}</div>`
     : `<div class="empty" style="padding:40px 12px">Aucun message pour l'instant.<br><small>Écris à un Hunter avec ✉️ sur ses posts du Fil, ou depuis sa fiche dans le Classement.</small></div>`;
   el.querySelectorAll("[data-dw]").forEach(b=>b.onclick=()=>{ const t = DM.threads.find(x=>x.with===b.dataset.dw); dmOpen(t.with, t.name, t.pk); });
 }
 function dmOpen(w, name, pk){
   if(!fdNeedMe()) return; if(!w || w===fdMe().id) return;
-  DM.open = w; DM.msgs = null;
+  DM.open = w; DM.msgs = null; DM.seen = 0;
   let el = $("#dmView"); if(el) el.remove();
   el = document.createElement("div"); el.id = "dmView"; el.className = "dm-view";
   const st = rkPet(pk);
@@ -9374,7 +9425,7 @@ function dmOpen(w, name, pk){
   el.querySelector(".dm-att").onclick = ()=>fdPick("col", "Joindre une carte", c=>send("", c));
   const pull = async ()=>{ if(DM.open!==w) return; try{ const j = await fdApi("/dm/thread", {id:fdMe().id, key:fdMe().key, with:w}); const l = j.msgs||[];
       const pend = (DM.msgs||[]).filter(m=>m.tmp && !l.some(x=>x.from===m.from && x.text===m.text && Math.abs(x.t-m.t)<6e4));
-      const same = DM.msgs && DM.msgs.length===l.length+pend.length; DM.msgs = [...l, ...pend]; if(!same) dmRender(); }catch(e){ if(DM.msgs===null){ DM.msgs = []; dmRender(); } } };
+      const same = DM.msgs && DM.msgs.length===l.length+pend.length && DM.seen===(j.seen||0); DM.seen = j.seen||0; DM.msgs = [...l, ...pend]; if(!same) dmRender(); }catch(e){ if(DM.msgs===null){ DM.msgs = []; dmRender(); } } };
   pull(); clearInterval(DM.timer); DM.timer = setInterval(()=>{ if(document.visibilityState==="visible") pull(); }, 5000);
   const t = DM.threads?.find(x=>x.with===w); if(t && t.unread){ t.unread = 0; DM.unread = DM.threads.reduce((s,x)=>s+(x.unread||0),0); fdBadge(); }
   setTimeout(()=>$("#dmX")?.focus(), 150);
@@ -9391,10 +9442,26 @@ new MutationObserver(()=>{ const s = $("#sheet"); if(!s.classList.contains("open
 function dmRender(){
   const box = $("#dmMsgs"); if(!box) return; const me = fdMe()?.id, l = DM.msgs||[];
   const atEnd = box.scrollHeight - box.scrollTop - box.clientHeight < 80;
+  let myLast = -1; l.forEach((m,i)=>{ if(m.from===me) myLast = i; });
+  const hm = t => new Date(t).toLocaleTimeString("fr-FR",{hour:"2-digit",minute:"2-digit"});
+  const rcpt = m => m.tmp ? `<p class="dm-rcpt">Envoi…</p>` : DM.seen >= m.t ? `<p class="dm-rcpt seen">✓✓ Vu${new Date(DM.seen).toDateString()===new Date().toDateString()?` à ${hm(DM.seen)}`:` le ${new Date(DM.seen).toLocaleDateString("fr-FR",{day:"numeric",month:"short"})}`}</p>` : `<p class="dm-rcpt">✓ Envoyé · pas encore vu</p>`;
   box.innerHTML = l.length ? l.map((m,i)=>{ const day = i===0 || new Date(m.t).toDateString()!==new Date(l[i-1].t).toDateString();
-      return `${day?`<p class="dm-day">${new Date(m.t).toLocaleDateString("fr-FR",{weekday:"long",day:"numeric",month:"long"})}</p>`:""}<div class="dm-b ${m.from===me?"me":""}${m.tmp?" tmp":""}">${m.card?`<button type="button" class="fd-ccard dm-card"${m.card.id?` data-cid="${esc(m.card.id)}"`:""} aria-label="Voir la fiche de ${esc(m.card.name)}">${fdImg(m.card)}<span><b>${esc(m.card.name)}</b>${m.card.price!=null?` · ${bE(m.card.price)}`:""}${m.card.id?`<em>Voir la fiche ›</em>`:""}</span></button>`:""}${m.text?`<span>${esc(m.text)}</span>`:""}<small>${new Date(m.t).toLocaleTimeString("fr-FR",{hour:"2-digit",minute:"2-digit"})}</small></div>`; }).join("")
+      return `${day?`<p class="dm-day">${new Date(m.t).toLocaleDateString("fr-FR",{weekday:"long",day:"numeric",month:"long"})}</p>`:""}<div class="dm-b ${m.from===me?"me":""}${m.tmp?" tmp":""}">${m.card?`<button type="button" class="dm-card"${m.card.id?` data-cid="${esc(m.card.id)}"`:""} aria-label="Voir la fiche de ${esc(m.card.name)}"><b class="dmc-n">${esc(m.card.name)}</b><span class="dmc-im">${fdImg(m.card)}</span>${m.card.price!=null?`<span class="dmc-p">${bE(m.card.price)}</span>`:""}${m.card.id?`<em>Voir la fiche ›</em>`:""}</button>`:""}${m.text?`<span>${esc(m.text)}</span>`:""}<small>${new Date(m.t).toLocaleTimeString("fr-FR",{hour:"2-digit",minute:"2-digit"})}</small></div>${(()=>{ const c = {}; for(const e of Object.values(m.rx||{})) c[e] = (c[e]||0)+1; return Object.keys(c).length ? `<div class="dm-rxs ${m.from===me?"me":""}">${rxChips(c, (m.rx||{})[me], `data-dmrx="${i}"`)}</div>` : ""; })()}${i===myLast?rcpt(m):""}`; }).join("")
     : `<div class="empty">Dis bonjour 👋</div>`;
   if(atEnd || l.some(m=>m.tmp)) box.scrollTop = box.scrollHeight;
+  // réagir : appui long (ou double-toucher) sur une bulle ; toucher une pastille l'ajoute ou la retire
+  const W = DM.open, T = DM.threads?.find(x=>x.with===W);
+  box.querySelectorAll("[data-dmrx]").forEach(b=>b.onclick=()=>{ const m = l[+b.dataset.dmrx]; if(m) dmReact(W, T?.name, m, b.dataset.e); });
+  box.querySelectorAll(".dm-b").forEach((el, k)=>{
+    const msgs = l.filter((m,i)=>true), m = msgs[k]; if(!m || m.tmp) return;
+    let t = null, last = 0;
+    const pick = ()=>rxPick(el, (m.rx||{})[me], e=>dmReact(W, T?.name, m, e));
+    el.addEventListener("touchstart", ()=>{ clearTimeout(t); t = setTimeout(()=>{ t = "done"; pick(); }, 450); }, {passive:true});
+    el.addEventListener("touchmove", ()=>{ if(t!=="done") clearTimeout(t); }, {passive:true});
+    el.addEventListener("touchend", e=>{ if(t==="done"){ e.preventDefault(); t = null; return; } clearTimeout(t); const now = Date.now(); if(now-last < 320 && !e.target.closest("button")){ e.preventDefault(); pick(); } last = now; });
+    el.addEventListener("contextmenu", e=>{ e.preventDefault(); pick(); });
+    el.addEventListener("dblclick", e=>{ if(!e.target.closest("button")) pick(); });
+  });
 }
 async function dmSend(w, name, pk, text, card){
   const p = fdMe(), st = starterOf(); if(!p) return;
@@ -9440,6 +9507,12 @@ $("#moreBack").onclick = ()=>navBack();
    Après l'intro, une seule fois par version qui apporte quelque chose à l'utilisateur.
    Nouvelle installation : rien (tout est neuf). Les versions purement techniques n'ont pas d'entrée ici. */
 const NEWS = [
+  {v:186, items:[
+    ["M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18zM8.5 14.5s1.3 2 3.5 2 3.5-2 3.5-2M9 9.5h.01M15 9.5h.01", "Réactions", "Réagis avec ❤️ 🔥 😂 😮 😢 👍 : bouton ☺ sous les publications et les commentaires, appui long ou double-toucher sur un message privé."]
+  ]},
+  {v:185, items:[
+    ["M2 12l5 5L18 6M8 12l5 5L22 7", "Messages lus", "Dans tes messages, « ✓✓ Vu » s'affiche quand l'autre Hunter a lu ton message, avec l'heure. Les cartes partagées s'affichent en grand, avec leur nom et leur prix."]
+  ]},
   {v:181, items:[
     ["M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0zM17 5h3v2a3 3 0 0 1-3 3M7 5H4v2a3 3 0 0 0 3 3", "Défis de la semaine", "Chaque lundi, 3 nouveaux défis sur l'accueil : scanner, compléter, échanger… Relève-les pour gagner de l'XP et faire monter ton compagnon."]
   ]},

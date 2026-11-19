@@ -781,7 +781,7 @@ button.wnote{color:var(--fg);border-color:color-mix(in srgb,var(--border-yellow)
 .cgrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
 @media (min-width:600px){.cgrid{grid-template-columns:repeat(4,minmax(0,1fr))}}
 @media (min-width:860px){.cgrid{grid-template-columns:repeat(6,minmax(0,1fr))}}
-.ctile{display:flex;flex-direction:column;gap:5px;min-width:0;text-align:left;content-visibility:auto;contain-intrinsic-size:auto 200px}
+.ctile{display:flex;flex-direction:column;gap:5px;min-width:0;text-align:left}
 .ctile .im{position:relative;display:block;aspect-ratio:63/88;max-width:100%;border-radius:4.5%/3.2%;background:var(--panel-2);overflow:hidden}
 .ctile .im img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .cph{position:relative;width:100%;aspect-ratio:63/88;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6%;padding:8%;text-align:center;color:color-mix(in srgb,var(--border-yellow) 70%,var(--muted));background:radial-gradient(circle at 50% 35%,color-mix(in srgb,var(--border-yellow) 18%,var(--panel-2)),var(--panel-2) 70%);border:2px solid color-mix(in srgb,var(--border-yellow) 35%,transparent);border-radius:inherit;overflow:hidden}
@@ -1976,7 +1976,7 @@ img.px.reveal{animation:stpRev .9s ease-out}
   }
   fit(); addEventListener("resize", fit); addEventListener("orientationchange", function(){ setTimeout(fit, 300); });
 })();</script>
-<script>window.__APPV="181";</script>
+<script>window.__APPV="182";</script>
 <div class="splash" id="splash" aria-hidden="true"><i class="hole"></i><i class="halo"></i><div class="bw"><svg class="b" viewBox="0 0 100 100"><use href="#pb"/></svg><svg class="t" viewBox="0 0 100 100"><use href="#pb"/></svg></div><i class="glow"></i></div>
 <script>setTimeout(function(){ if(window.__booted) return;
   var b=document.createElement("div"); b.setAttribute("role","alert");
@@ -2011,7 +2011,7 @@ img.px.reveal{animation:stpRev .9s ease-out}
   <!-- ===== EXTENSIONS ===== -->
   <section class="view" id="homeView">
     <div class="scroll">
-      <div class="homebar"><span class="brand">DEX<b>·</b>SCAN</span><span class="hbis"><button class="hbi" id="hSearch" aria-label="Rechercher une carte"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></button><button class="hbi" id="themeBtn" aria-label="Changer de thème"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.6-.9 1.2-1.8-.5-1.1.2-2.2 1.4-2.2H17a4 4 0 0 0 4-4c0-5.5-4-10-9-10z"/><circle cx="7.5" cy="11" r="1.2"/><circle cx="10" cy="7" r="1.2"/><circle cx="15" cy="7" r="1.2"/></svg></button><button class="hbi" id="moreBtn" aria-label="Réglages et plus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg></button></span><span class="ver" id="hVer">v181</span></div>
+      <div class="homebar"><span class="brand">DEX<b>·</b>SCAN</span><span class="hbis"><button class="hbi" id="hSearch" aria-label="Rechercher une carte"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></button><button class="hbi" id="themeBtn" aria-label="Changer de thème"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.6-.9 1.2-1.8-.5-1.1.2-2.2 1.4-2.2H17a4 4 0 0 0 4-4c0-5.5-4-10-9-10z"/><circle cx="7.5" cy="11" r="1.2"/><circle cx="10" cy="7" r="1.2"/><circle cx="15" cy="7" r="1.2"/></svg></button><button class="hbi" id="moreBtn" aria-label="Réglages et plus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg></button></span><span class="ver" id="hVer">v182</span></div>
       <button class="banner" id="pxBanner" hidden></button>
       <span class="hdate hgreet" id="hDate"></span>
       <div class="hhero"><div class="total htot" id="hTot"></div><span id="avatSlot"></span></div>
@@ -3231,7 +3231,7 @@ function addToCol(c, ed=null, lg=null, cond=null, quiet=false){
 }
 /* la grille de l'extension ouverte suit la collection (pastille ×N) */
 function refreshSetTiles(){ try{ if(EX.set && EX.cards?.length && document.getElementById("cgrid")) renderTiles(); }catch(e){} }
-const COLV = {pdx: store.get("colPdx", true), q:"", open: {}, gen:0, sets:new Map(), view: store.get("colViewMode2","folders"), fold:{ser:null, set:null}, sort: store.get("colSort","serie")};
+const COLV = {pdx: store.get("colPdx", true), q:"", open: {}, gen:0, sets:new Map(), done:new Map(), view: store.get("colViewMode2","folders"), fold:{ser:null, set:null}, sort: store.get("colSort","serie")};
 const CSORT = [["serie","Par série"],["value","Valeur"],["prog","Avancement"],["recent","Récentes"]];
 /* ---------- Filtres du Pokédex : afficher, rareté, type, catégorie, prix, tri ---------- */
 const CF = Object.assign({show:"all", rarity:"", type:"", cat:"", pmin:null, pmax:null, sort:"num", lg:""}, store.get("colFlt", {}));
@@ -3499,8 +3499,11 @@ async function fillColSet(box, own, gen){
     });
   };
   if(!COLV.pdx){ draw(mine); return; }
-  grid.innerHTML = `<div class="empty" style="grid-column:1/-1;padding:14px"><span class="loader"></span></div>`;
-  const set = await colSetCards(id);
+  // extension déjà chargée : on redessine tout de suite, sans passer par le rond de chargement (sinon la page saute)
+  const ready = COLV.done.get(id);
+  if(!ready) grid.innerHTML = `<div class="empty" style="grid-column:1/-1;padding:14px"><span class="loader"></span></div>`;
+  const set = ready || await colSetCards(id);
+  if(set?.cards?.length) COLV.done.set(id, set);
   if(gen!==COLV.gen) return;
   if(!set?.cards?.length){ draw(mine); return; }
   const all = set.cards.slice(), ids = new Set(all.map(c=>c.id));
@@ -8750,6 +8753,7 @@ async function betaPublishFlow(){
 }
 /* Journal des modifications de la Bêta : la carte « Version Bêta » liste celles que les copains n'ont pas encore */
 const BETA_LOG = [
+  {v:182, t:"Classeur : les dossiers ouverts ne sautent plus (mise à jour des cotes, défilement vers le haut)"},
   {v:181, t:"Défis de la semaine sur l'accueil (XP en récompense) · hors ligne : les cotes du jour et les données restent disponibles sans réseau"},
   {v:180, t:"Ouverture de booster : scanne les cartes sorties en Rafale, indique le prix payé, Dex Scan dit si c'est rentable et garde l'historique"},
   {v:179, t:"Échanges automatiques : Dex Scan trouve les Hunters qui ont tes souhaits en double et ceux qui cherchent tes doubles · ce qu'un Hunter cherche, sur sa collection"},

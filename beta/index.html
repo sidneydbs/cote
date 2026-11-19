@@ -1181,6 +1181,8 @@ button.fd-av{padding:0;border:0;cursor:pointer}.fd-name{cursor:pointer}
 .csum{display:flex;align-items:baseline;flex-wrap:wrap;gap:4px 8px;margin:0 2px 12px;font-size:13px;color:var(--muted)}
 .csum strong{font:800 22px/1 var(--f-display);color:var(--fg);font-variant-numeric:tabular-nums}
 .csum .up{color:var(--up);font-weight:700}.csum .down{color:var(--down);font-weight:700}
+#colList .tl[data-none] .sq{opacity:.5;filter:saturate(.6)}
+#colList .tl[data-none] .tv{opacity:.7}
 #colView #wallet,#colView .colmode,#colTools #colPdx,#colTools #colFlt{display:none}
 #colView[data-cm="graded"] .csum,#colView[data-cm="wish"] .csum,#colView[data-cm="wish"] #colExplore2{display:none}
 .fbk{display:flex;align-items:center;gap:10px;margin:2px 0 10px}
@@ -2039,7 +2041,7 @@ img.px.reveal{animation:stpRev .9s ease-out}
   }
   fit(); addEventListener("resize", fit); addEventListener("orientationchange", function(){ setTimeout(fit, 300); });
 })();</script>
-<script>window.__APPV="194";</script>
+<script>window.__APPV="195";</script>
 <div class="splash" id="splash" aria-hidden="true"><i class="hole"></i><i class="halo"></i><div class="bw"><svg class="b" viewBox="0 0 100 100"><use href="#pb"/></svg><svg class="t" viewBox="0 0 100 100"><use href="#pb"/></svg></div><i class="glow"></i></div>
 <script>setTimeout(function(){ if(window.__booted) return;
   var b=document.createElement("div"); b.setAttribute("role","alert");
@@ -2074,7 +2076,7 @@ img.px.reveal{animation:stpRev .9s ease-out}
   <!-- ===== EXTENSIONS ===== -->
   <section class="view" id="homeView">
     <div class="scroll">
-      <div class="homebar"><span class="brand">DEX<b>·</b>SCAN</span><span class="hbis"><button class="hbi" id="hSearch" aria-label="Rechercher une carte"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></button><button class="hbi" id="themeBtn" aria-label="Changer de thème"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.6-.9 1.2-1.8-.5-1.1.2-2.2 1.4-2.2H17a4 4 0 0 0 4-4c0-5.5-4-10-9-10z"/><circle cx="7.5" cy="11" r="1.2"/><circle cx="10" cy="7" r="1.2"/><circle cx="15" cy="7" r="1.2"/></svg></button><button class="hbi" id="moreBtn" aria-label="Réglages et plus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg></button></span><span class="ver" id="hVer">v194</span></div>
+      <div class="homebar"><span class="brand">DEX<b>·</b>SCAN</span><span class="hbis"><button class="hbi" id="hSearch" aria-label="Rechercher une carte"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></button><button class="hbi" id="themeBtn" aria-label="Changer de thème"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.6-.9 1.2-1.8-.5-1.1.2-2.2 1.4-2.2H17a4 4 0 0 0 4-4c0-5.5-4-10-9-10z"/><circle cx="7.5" cy="11" r="1.2"/><circle cx="10" cy="7" r="1.2"/><circle cx="15" cy="7" r="1.2"/></svg></button><button class="hbi" id="moreBtn" aria-label="Réglages et plus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg></button></span><span class="ver" id="hVer">v195</span></div>
       <button class="banner" id="pxBanner" hidden></button>
       <span class="hdate hgreet" id="hDate"></span>
       <div class="hhero"><div class="total htot" id="hTot"></div><span id="avatSlot"></span></div>
@@ -2138,7 +2140,7 @@ img.px.reveal{animation:stpRev .9s ease-out}
       <div class="seg clsw3" role="group" aria-label="Classeur"><button data-cls3="graded">Mes gradées</button><button data-cls3="cards">Mes cartes</button><button data-cls3="wish">Souhaits<i class="wn" data-wn></i></button><button data-cls3="explore">Explorer</button></div>
       
 
-        <div class="seg exmode" role="group" aria-label="Type de produits"><button data-mode="cards" aria-pressed="true">Extensions</button><button data-mode="sealed" aria-pressed="false">Scellés</button><button data-mode="graded" aria-pressed="false">Gradées</button><button data-mode="jp" aria-pressed="false">Japon</button><button data-mode="cn" aria-pressed="false">Chine</button></div>
+        <div class="seg exmode" role="group" aria-label="Type de produits"><button data-mode="sealed" aria-pressed="true">Scellés</button><button data-mode="graded" aria-pressed="false">Gradées</button><button data-mode="jp" aria-pressed="false">Japon</button><button data-mode="cn" aria-pressed="false">Chine</button></div>
         <div id="cardsBox">
         <div class="exsrow"><label class="ext-search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><input id="extQ" type="search" placeholder="Rechercher une extension (ex. 151)" autocomplete="off" aria-label="Rechercher une extension"></label><details class="dd exlay" id="extLay"><summary aria-label="Disposition" title="Disposition"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M4 6h10M18 6h2M4 12h4M12 12h8M4 18h12M20 18h0"/><circle cx="16" cy="6" r="2"/><circle cx="10" cy="12" r="2"/><circle cx="18" cy="18" r="2"/></svg></summary><div class="ddm" id="extLayM" role="group" aria-label="Disposition"></div></details></div>
         <div id="extList"></div>
@@ -2314,7 +2316,7 @@ img.px.reveal{animation:stpRev .9s ease-out}
       </div>
       <div class="fltbar" id="colFltBar"></div>
       <div id="colList"></div>
-      <button class="excta" id="colExplore2"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m15.5 8.5-2 5-5 2 2-5z"/></svg></i><span><b>Explorer toutes les cartes</b><small>Extensions, scellés, cotes gradées, Japon, Chine</small></span></button>
+      <button class="excta" id="colExplore2"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m15.5 8.5-2 5-5 2 2-5z"/></svg></i><span><b>Explorer toutes les cartes</b><small>Scellés, cotes gradées, Japon, Chine</small></span></button>
     </div>
   </section>
 
@@ -3332,6 +3334,7 @@ function addToCol(c, ed=null, lg=null, cond=null, quiet=false){
 /* la grille de l'extension ouverte suit la collection (pastille ×N) */
 function refreshSetTiles(){ try{ if(EX.set && EX.cards?.length && document.getElementById("cgrid")) renderTiles(); }catch(e){} }
 const COLV = {pdx: store.get("colPdx", true), q:"", open: {}, gen:0, sets:new Map(), done:new Map(), view: store.get("colViewMode2","folders"), fold:{ser:null, set:null}, sort: store.get("colSort","serie")};
+COLV.all = store.get("colAll", true); // Mes cartes = toutes les extensions (les tiennes avec leur avancement), l'ancien onglet Extensions est fondu ici
 const CSORT = [["serie","Par série"],["value","Valeur"],["prog","Avancement"],["recent","Récentes"]];
 /* ---------- Filtres du Pokédex : afficher, rareté, type, catégorie, prix, tri ---------- */
 const CF = Object.assign({show:"all", rarity:"", type:"", cat:"", pmin:null, pmax:null, sort:"num", lg:""}, store.get("colFlt", {}));
@@ -3472,13 +3475,19 @@ async function renderCol(){
     if(want && !nd){ list.insertAdjacentHTML("beforebegin", `<div class="bknudge" id="bkNudge" role="button" tabindex="0"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="#FFB020" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:none" aria-hidden="true"><path d="M7 18a5 5 0 0 1-.6-9.96A6 6 0 0 1 18 8a4.5 4.5 0 0 1-.5 9H7z"/><path d="M12 10v3M12 15.5v.01"/></svg><span><b>Ta collection n'est que sur ce téléphone</b><small>Active la sauvegarde automatique pour ne jamais la perdre</small></span><button class="x" aria-label="Plus tard">×</button></div>`);
       $("#bkNudge").onclick = e=>{ if(e.target.closest(".x")){ store.set("bkNudgeX", Date.now()); $("#bkNudge").remove(); return; } bkCloudSheet(); }; }
     else if(!want && nd) nd.remove(); }
-  if(!col.length){ list.innerHTML = `<div class="empty">Ta collection est vide.<br>Scanne une carte ou ouvre une extension, puis touche « Ajouter à ma collection ».</div>`; return; }
+  if(!col.length && !COLV.all){ list.innerHTML = `<div class="empty">Ta collection est vide.<br>Scanne une carte ou ouvre une extension, puis touche « Ajouter à ma collection ».</div>`; return; }
   if(!EX.series){ list.innerHTML = `<div class="empty"><span class="loader"></span> Rangement par série…</div>`; try{ await loadSeries(); }catch(e){} if(gen!==COLV.gen) return; }
   // ordre : séries de la plus récente à la plus ancienne, comme l'onglet Extensions
   const groups = [], seen = new Set();
   for(const se of EX.series||[]){ const ss = se.sets.filter(s=>by.has(s.id)); if(ss.length){ groups.push({name:se.name, sets:ss}); ss.forEach(s=>seen.add(s.id)); } }
   const rest = [...by.keys()].filter(k=>!seen.has(k));
   if(rest.length) groups.push({name:"Autres", sets:rest.map(id=>({id, name:by.get(id)[0].set||id}))});
+  if(COLV.all && EX.series){ // toutes les extensions de chaque série, celles où tu n'as rien sont à 0 %
+    const au = groups.find(g=>g.name==="Autres"); groups.length = 0;
+    for(const se of EX.series) if(se.sets.length) groups.push({name:se.name, sets:se.sets});
+    if(au) groups.push(au);
+    for(const g of groups) for(const x of g.sets) if(!by.has(x.id)) by.set(x.id, []);
+  }
   // tri : par série (défaut), ou toutes les extensions par valeur, avancement ou date de sortie
   if(COLV.sort!=="serie"){
     const all = groups.flatMap(g=>g.sets), SDt = store.get("setDates", {}), OW = ownIndex();
@@ -3493,7 +3502,7 @@ async function renderCol(){
   const SD = store.get("setDates", {}), serDate = {}, OWNI = ownIndex();
   if(!RAR.d) loadRar().then(d=>{ if(d && gen===COLV.gen && !$("#colView").hidden) renderCol(); });
   for(const se of EX.series||[]) serDate[se.name] = se.date;
-  const cbar = `<div class="lbar"><div class="lrow"><div class="csort">${CSORT.map(([k,l])=>`<button data-csort="${k}" aria-pressed="${COLV.sort===k}">${l}</button>`).join("")}</div>${vtogHTML(COLV.view, ["folders","compact","detail"])}</div></div>`;
+  const cbar = `<div class="lbar"><div class="lrow"><div class="csort">${CSORT.map(([k,l])=>`<button data-csort="${k}" aria-pressed="${COLV.sort===k}">${l}</button>`).join("")}</div>${vtogHTML(COLV.view, ["folders","compact","detail"])}</div>${`<div class="lrow"><div class="csort csfull" role="group" aria-label="Extensions affichées"><button data-call="1" aria-pressed="${!!COLV.all}">Toutes les extensions</button><button data-call="0" aria-pressed="${!COLV.all}">Seulement les miennes</button></div></div>`}</div>`;
   if(COLV.view==="folders" && !q && !(CF.rarity || CF.type || CF.cat || CF.pmin!=null || CF.pmax!=null)){ colFolders(groups, by, OWNI, gen, list); return; }
   list.innerHTML = cbar + groups.map(g=>`<section class="serie"><h2><span>${esc(g.name)}${serDate[g.name]?` <em class="sdate">· depuis ${esc(fmtMonth(serDate[g.name]))}</em>`:""}</span><span>${g.sets.reduce((a,s)=>a+by.get(s.id).length,0)}</span></h2>${
     g.sets.map(s=>{
@@ -3503,6 +3512,7 @@ async function renderCol(){
       return setCardHTML(s, {own: OWNI.get(s.id), cls:"colset"+(open?" open":""), plus:!open, value: val?eurS(val):"", attrs:` role="button" tabindex="0" aria-expanded="${open}"`, inner:`<button class="colfold top" type="button" data-fold><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 15 6-6 6 6"/></svg>Replier</button><div class="cgrid"></div><button class="colfold" type="button" data-fold><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 15 6-6 6 6"/></svg>Replier ${esc(s.name)}</button>`});
     }).join("")}</section>`).join("");
   list.querySelectorAll("[data-csort]").forEach(b=>b.onclick=()=>{ COLV.sort = b.dataset.csort; store.set("colSort", COLV.sort); renderCol(); });
+  bindColAll(list);
   list.querySelectorAll("[data-view]").forEach(b=>b.onclick=()=>{ COLV.view = b.dataset.view; store.set("colViewMode2", COLV.view); renderCol(); });
   list.querySelectorAll(".colset [data-fold]").forEach(b=>b.onclick=e=>{ e.stopPropagation(); colFold(b.closest(".colset")); });
   list.querySelectorAll(".colset").forEach(box=>box.onclick=e=>{
@@ -3515,7 +3525,8 @@ async function renderCol(){
   });
   for(const box of list.querySelectorAll(".colset")){
     const id = box.dataset.set;
-    if(!SD[id] && !rarInfo(id)?.date) colSetCards(id).then(set=>{
+    if(!by.get(id).length && (q || narrow)){ box.hidden = true; continue; }
+    if(!SD[id] && !rarInfo(id)?.date && by.get(id).length) colSetCards(id).then(set=>{
       if(!set?.releaseDate) return;
       const m = store.get("setDates", {}); m[id] = set.releaseDate; store.set("setDates", m);
       const el = box.querySelector("[data-date]"); if(el) el.textContent = (el.closest(".srow2") ? "" : "Date de sortie : ") + fmtDay(set.releaseDate);
@@ -3526,6 +3537,17 @@ async function renderCol(){
     }
     if(box.classList.contains("open") || q || narrow){ if(q || narrow) box.classList.add("open"); fillColSet(box, by.get(box.dataset.set), gen); }
   }
+}
+function bindColAll(list){ list.querySelectorAll("[data-call]").forEach(b=>b.onclick=()=>{ const v = b.dataset.call==="1"; if(v===COLV.all) return; COLV.all = v; store.set("colAll", v); COLV.fold.ser = COLV.fold.set = null; renderCol(); }); }
+// ouvrir une extension directement dans le Classeur (dossiers) ; sinon l'ancienne page d'extension
+async function colOpenSet(id){
+  if(COLV.view!=="folders"){ selectTab("extView"); openSet(id); return; }
+  try{ if(!EX.series) await loadSeries(); }catch(e){}
+  if(!COLV.all && !getCol().some(x=>setIdOf(x.id)===id)){ COLV.all = true; store.set("colAll", true); }
+  const se = (EX.series||[]).find(x=>x.sets.some(y=>y.id===id));
+  COLV.fold.ser = COLV.sort==="serie" ? (se ? se.name : "Autres") : CSORT.find(x=>x[0]===COLV.sort)[1];
+  COLV.fold.set = id;
+  selectTab("colView"); if(COLM.mode!=="cards") setColMode("cards"); syncCls3(); renderCol(); $("#colView .scroll").scrollTop = 0;
 }
 /* Collection en dossiers : séries → extensions → cartes */
 function colFolders(groups, by, OWNI, gen, list){
@@ -3538,26 +3560,26 @@ function colFolders(groups, by, OWNI, gen, list){
   if(!s && COLV.sel) selEnd(false);
   const s0 = !!s;
   // rangement ET disposition toujours visibles en haut du Classeur, à tous les niveaux des dossiers
-  const vbar = `<div class="lbar"><div class="lrow"><span class="lbl">${s0?"Disposition":"Ranger · Disposition"}</span>${vtogHTML(COLV.view, ["folders","compact","detail"])}</div>${s0?"":`<div class="lrow"><div class="csort csfull">${CSORT.map(([k,l])=>`<button data-csort="${k}" aria-pressed="${COLV.sort===k}">${l}</button>`).join("")}</div></div>`}</div>`;
+  const vbar = `<div class="lbar"><div class="lrow"><span class="lbl">${s0?"Disposition":"Ranger · Disposition"}</span>${vtogHTML(COLV.view, ["folders","compact","detail"])}</div>${s0?"":`<div class="lrow"><div class="csort csfull" role="group" aria-label="Extensions affichées"><button data-call="1" aria-pressed="${!!COLV.all}">Toutes les extensions</button><button data-call="0" aria-pressed="${!COLV.all}">Seulement les miennes</button></div></div>`}${s0?"":`<div class="lrow"><div class="csort csfull">${CSORT.map(([k,l])=>`<button data-csort="${k}" aria-pressed="${COLV.sort===k}">${l}</button>`).join("")}</div></div>`}</div>`;
   const xsort = vbar;
   if(s){
     // une extension ouverte : avancement, filtre Toutes / Possédées / Manquantes, puis les cartes
     const st = setStats(s, OWNI.get(s.id)), v = val(s), show = CF.show;
-    inner = xsort + fbkHTML(flat ? "Mes extensions" : g.name, s.name, 1)
+    inner = xsort + fbkHTML(flat ? (COLV.all ? "Extensions" : "Mes extensions") : g.name, s.name, 1)
       + `<div class="shd"><span class="lg">${chainImg(logoChain(s), `alt=""`, initials(s))}</span><div><span><b>${st.have}</b> / ${st.total||"?"} cartes${v?` · <b>${eurS(v)}</b>`:""}</span><span class="pb"><i style="width:${st.pc}%"></i></span></div></div>`
       // une seule barre, propre : tri (N° / Prix) · filtre (Possédées / Manquantes, retoucher = toutes) · Sélection
       + `<div class="cfbar"><div class="cfseg" role="group" aria-label="Trier">${[["num","N°"],["price","Prix"]].map(([k,l])=>`<button data-fsort="${k}" aria-pressed="${CF.sort===k}">${l}</button>`).join("")}</div><div class="cfseg" role="group" aria-label="Afficher">${[["own","Possédées"],["miss","Manquantes"]].map(([k,l])=>`<button data-fshow="${k}" data-toggle aria-pressed="${show===k}">${l}</button>`).join("")}</div><button class="cfsel${COLV.sel?" on":""}" data-fsel aria-pressed="${!!COLV.sel}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${COLV.sel?'<path d="M18 6 6 18M6 6l12 12"/>':'<rect x="4" y="4" width="16" height="16" rx="4"/><path d="m8.5 12 2.5 2.5 4.5-5"/>'}</svg>${COLV.sel?"Annuler":"Sélection"}</button></div>`
       + `<div class="fopen"><div class="colset open" data-set="${esc(s.id)}"><div class="cgrid"></div></div></div>`;
   } else if(g && !flat){
     const sv = g.sets.reduce((a,x)=>a+val(x),0), ss = serStats(g.sets, OWNI);
-    inner = xsort + fbkHTML("Mes séries", g.name, 0)
+    inner = xsort + fbkHTML(COLV.all ? "Séries" : "Mes séries", g.name, 0)
       + `<div class="fhead"><span>${g.sets.length} extension${g.sets.length>1?"s":""}</span><b>${sv?eurS(sv)+" · ":""}${ss.pc} %</b></div><div class="tgrid">${g.sets.map(x=>{
-      const st = setStats(x, OWNI.get(x.id)), v = val(x); return fSetHTML(x, `${st.have}/${st.total||"?"}`, st.pc, `data-cfset="${esc(x.id)}"`); }).join("")}</div>`;
+      const st = setStats(x, OWNI.get(x.id)), v = val(x); return fSetHTML(x, `${st.have}/${st.total||"?"}`, st.pc, `data-cfset="${esc(x.id)}"${by.get(x.id).length?"":" data-none"}`); }).join("")}</div>`;
   } else if(flat){
-    inner = xsort + `<div class="fhead"><span>Mes extensions · ${esc(g.name.toLowerCase())}</span><b>${g.sets.length}</b></div><div class="tgrid">${g.sets.map(x=>{
-      const st = setStats(x, OWNI.get(x.id)), v = val(x); return fSetHTML(x, `${st.have}/${st.total||"?"}`, st.pc, `data-cfset="${esc(x.id)}"`); }).join("")}</div>`;
+    inner = xsort + `<div class="fhead"><span>${COLV.all?"Extensions":"Mes extensions"} · ${esc(g.name.toLowerCase())}</span><b>${g.sets.length}</b></div><div class="tgrid">${g.sets.map(x=>{
+      const st = setStats(x, OWNI.get(x.id)), v = val(x); return fSetHTML(x, `${st.have}/${st.total||"?"}`, st.pc, `data-cfset="${esc(x.id)}"${by.get(x.id).length?"":" data-none"}`); }).join("")}</div>`;
   } else {
-    inner = xsort + `<div class="fhead"><span>Mes séries</span><b>${groups.length}</b></div><div class="tgrid">${groups.map(x=>{
+    inner = xsort + `<div class="fhead"><span>${COLV.all?"Séries":"Mes séries"}</span><b>${groups.length}</b></div><div class="tgrid">${groups.map(x=>{
       const v = x.sets.reduce((a,y)=>a+val(y),0), ss = serStats(x.sets, OWNI), n = x.sets.reduce((a,y)=>a+by.get(y.id).reduce((b,z)=>b+z.qty,0),0);
       return fSerHTML(x.name, x.sets, `${n} carte${n>1?"s":""}`, ss.pc, `data-cfser="${esc(x.name)}"`); }).join("")}</div>`;
   }
@@ -3571,6 +3593,7 @@ function colFolders(groups, by, OWNI, gen, list){
     if(CF.sort==="price" && typeof loadPrices==="function") loadPrices().then(()=>renderCol()); else renderCol(); });
   list.querySelectorAll("[data-csort]").forEach(b=>b.onclick=()=>{ if(COLV.sort===b.dataset.csort) return; COLV.sort = b.dataset.csort; store.set("colSort", COLV.sort); F.ser = F.set = null; renderCol(); top(); });
   list.querySelectorAll("[data-view]").forEach(b=>b.onclick=()=>{ COLV.view = b.dataset.view; store.set("colViewMode2", COLV.view); renderCol(); });
+  bindColAll(list);
   list.querySelectorAll("[data-fxs]").forEach(b=>b.onclick=()=>{ if(COLV.sort===b.dataset.fxs) return; COLV.sort = b.dataset.fxs; store.set("colSort", COLV.sort); F.ser = F.set = null; renderCol(); top(); });
   list.querySelectorAll("[data-fshow]").forEach(b=>b.onclick=()=>{ CF.show = b.hasAttribute("data-toggle") && CF.show===b.dataset.fshow ? "all" : b.dataset.fshow; if(CF.show!=="own" && !COLV.pdx){ COLV.pdx = true; store.set("colPdx", true); } store.set("colFlt", CF); renderCol(); });
   if(s){ const box = list.querySelector(".colset"); fillColSet(box, by.get(s.id), gen); }
@@ -4494,7 +4517,7 @@ async function aCardSheet(R, b){
   openSheet(); $("#sheetBody").scrollTop = 0;
 }
 Object.values(ASIA).forEach(R=>{ let t = null; $(`#${R.k}Q`).addEventListener("input", e=>{ R.q = e.target.value; clearTimeout(t); t = setTimeout(()=>renderAsia(R), 250); }); });
-setExMode(store.get("exMode","cards"));
+setExMode(store.get("exMode","sealed")==="cards" ? "sealed" : store.get("exMode","sealed"));
 
 
 /* ---------------- Alertes du guetteur (via ntfy) ---------------- */
@@ -7397,7 +7420,7 @@ function renderHome(){
     ? `<h3 class="hh">Reprendre <small>${rec.length} extension${rec.length>1?"s":""}</small></h3><div class="hrow">${rec.map(s=>{ const st = setStats(s, OWN.get(s.id));
         return `<button class="hcard" data-hset="${esc(s.id)}"><span class="lg">${chainImg(logoChain(s), `alt="" loading="lazy"`, initials(s))}</span><b>${esc(s.name)}</b><small>${st.have}/${st.total||"?"} · ${st.pc} %</small><span class="pb"><i style="width:${st.pc}%"></i></span></button>`; }).join("")}</div>`
     : `<div class="hempty">Les extensions que tu ouvres apparaîtront ici, pour reprendre où tu en étais.</div>`;
-  $("#hRecent").querySelectorAll("[data-hset]").forEach(b=>b.onclick=()=>{ selectTab("extView"); openSet(b.dataset.hset); });
+  $("#hRecent").querySelectorAll("[data-hset]").forEach(b=>b.onclick=()=>colOpenSet(b.dataset.hset));
   topHome();
   // raccourcis
   const al = $("#alertBadge")?.hidden ? 0 : ($("#alertBadge")?.textContent || 0), bs = budStats(rows);
@@ -7463,7 +7486,7 @@ $("#grMine").onclick = ()=>{ selectTab("colView"); setColMode("graded"); syncCls
 $("#colSearchBtn").onclick = ()=>{ COLV.sq = !COLV.sq; const t = $("#colTools"); t.hidden = !COLV.sq; $("#colSearchBtn").setAttribute("aria-pressed", COLV.sq);
   if(COLV.sq) setTimeout(()=>$("#colQ").focus(), 50); else if(COLV.q){ COLV.q = ""; $("#colQ").value = ""; renderCol(); } };
 $("#colSetBtn").onclick = ()=>openColFilters();
-$("#extSearchBtn").onclick = ()=>{ const i = $("#extQ"); i.scrollIntoView({block:"center"}); setTimeout(()=>i.focus(), 50); };
+$("#extSearchBtn").onclick = ()=>{ const i = ["#sealQ","#jpQ","#cnQ","#extQ"].map(x=>$(x)).find(x=>x && x.offsetParent) || $("#sealQ"); i.scrollIntoView({block:"center"}); setTimeout(()=>i.focus(), 50); };
 $("#extSetBtn").onclick = ()=>{
   $("#sheetTitle").textContent = "Affichage";
   const sg = (k, cur, l) => `<div class="seg" role="group" style="flex-wrap:wrap">${l.map(([v,t])=>`<button data-${k}="${v}" aria-pressed="${cur===v}">${t}</button>`).join("")}</div>`;
@@ -8892,6 +8915,7 @@ async function betaPublishFlow(){
 }
 /* Journal des modifications de la Bêta : la carte « Version Bêta » liste celles que les copains n'ont pas encore */
 const BETA_LOG = [
+  {v:195, t:"Extensions fondues dans Mes cartes : toutes les extensions par série, les tiennes avec leur avancement, bascule « Seulement les miennes »"},
   {v:194, t:"Pastille sur l'icône de l'app : messages non lus, nouveautés du Fil et alertes réassort, et elle monte aussi quand une notification arrive app fermée"},
   {v:193, t:"Recherche : chaque mot du nom est essayé, et les cartes qui n'existent qu'en anglais sont trouvées en traduisant (« Mew antique » → Ancient Mew)"},
   {v:192, t:"Chaque Hunter a son mur : « Mon mur » à côté du Fil, et un toucher sur l'avatar ou le nom d'un Hunter ouvre le sien (publications, ce qu'il cherche, ses doubles, message, collection)"},
@@ -9678,6 +9702,9 @@ $("#moreBack").onclick = ()=>navBack();
    Après l'intro, une seule fois par version qui apporte quelque chose à l'utilisateur.
    Nouvelle installation : rien (tout est neuf). Les versions purement techniques n'ont pas d'entrée ici. */
 const NEWS = [
+  {v:195, items:[
+    ["M3 7.5V18a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V9.5a2 2 0 0 0-2-2h-7.2L9.6 5.2A2 2 0 0 0 8.2 4.6H5a2 2 0 0 0-2 2z", "Un seul classeur", "Les extensions sont maintenant dans Mes cartes : toutes les séries et extensions, avec ton avancement, au même endroit que ta collection. « Seulement les miennes » pour ne voir que celles où tu as des cartes."]
+  ]},
   {v:194, items:[
     ["M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9M10.3 21a1.94 1.94 0 0 0 3.4 0", "Pastille sur l'icône", "L'icône de Dex Scan sur ton écran d'accueil affiche le nombre de messages non lus, de nouveautés du Fil et d'alertes réassort. Elle monte aussi quand une notification arrive app fermée."]
   ]},

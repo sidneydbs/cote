@@ -235,6 +235,7 @@ export default {
     else if (meta.first && now - (meta.bilan || 0) > 6 * 3600e3){ meta.bilan = now; await putSt(env, "meta", meta); ctx.waitUntil(bilan(env, "actif")); }
     else if (!rows.length || !meta.seen){ meta.seen = 1; await putSt(env, "meta", meta); }
     if (new Date().getUTCMinutes() === 0) ctx.waitUntil(env.DB.prepare("DELETE FROM log WHERE t < ?").bind(now - 14 * 864e5).run());
+    if (new Date().getUTCMinutes() === 20) ctx.waitUntil(wishCheck(env).catch(() => 0));
   },
   async fetch(req, env){
     const u = new URL(req.url); await loadCfg(env);
@@ -395,12 +396,34 @@ async function pubTables(env){
   if (PUB_READY) return; PUB_READY = true;
   await env.DB.batch([
     env.DB.prepare("CREATE TABLE IF NOT EXISTS al(id INTEGER PRIMARY KEY AUTOINCREMENT, t INTEGER, title TEXT, msg TEXT, url TEXT, prio INTEGER)"),
-    env.DB.prepare("CREATE TABLE IF NOT EXISTS subs(ep TEXT PRIMARY KEY, p256 TEXT, auth TEXT, t INTEGER, ok INTEGER)")]);
+    env.DB.prepare("CREATE TABLE IF NOT EXISTS subs(ep TEXT PRIMARY KEY, p256 TEXT, auth TEXT, t INTEGER, ok INTEGER)"),
+    // prix cibles de la liste de souhaits, par téléphone abonné (told = déjà prévenu, remis à 0 quand le prix remonte)
+    env.DB.prepare("CREATE TABLE IF NOT EXISTS wish(ep TEXT, id TEXT, name TEXT, max REAL, told INTEGER DEFAULT 0, PRIMARY KEY(ep, id))")]);
   // choix de chaque téléphone : pal réassorts, pdm messages privés, ppost publications du Fil ; uid = profil de l'app
   for (const c of ["uid TEXT", "pal INTEGER DEFAULT 1", "pdm INTEGER DEFAULT 1", "ppost INTEGER DEFAULT 1"]){
     try { await env.DB.prepare("ALTER TABLE subs ADD COLUMN " + c).run(); } catch (e) {} }
 }
 const PREFS = s => ({al: s?.pal !== 0, dm: s?.pdm !== 0, post: s?.ppost !== 0});
+// une fois par heure : cotes du jour (fichier des cotes de l'app) contre les prix cibles → notification au téléphone concerné
+async function wishCheck(env){
+  await pubTables(env);
+  const rows = (await env.DB.prepare("SELECT w.ep,w.id,w.name,w.max,w.told,s.p256,s.auth FROM wish w JOIN subs s ON s.ep=w.ep").all()).results || [];
+  if (!rows.length) return 0;
+  const d = await fetch("https://sidneydbs.github.io/cote/prices.json?h=" + Math.floor(Date.now() / 36e5), {cf: {cacheTtl: 600}}).then(r => r.ok ? r.json() : null).catch(() => null);
+  if (!d?.p) return 0;
+  const eur = v => v.toLocaleString("fr-FR", {minimumFractionDigits: 2, maximumFractionDigits: 2}) + " €";
+  const up = [], sends = [];
+  for (const r of rows){
+    const i = r.id.lastIndexOf("-"), v = d.p[r.id.slice(0, i)]?.[r.id.slice(i + 1)], p = Array.isArray(v) ? v[0] : null;
+    if (p == null) continue;
+    if (p <= r.max && !r.told){ up.push(env.DB.prepare("UPDATE wish SET told=1 WHERE ep=? AND id=?").bind(r.ep, r.id));
+      sends.push(pushOne(env, r, JSON.stringify({id: "wish-" + r.id, title: "🎯 Prix cible atteint", body: `${r.name} : ${eur(p)} (ta cible ${eur(r.max)})`, url: "app:?card=" + encodeURIComponent(r.id), t: Date.now()}), true)); }
+    else if (p > r.max * 1.02 && r.told) up.push(env.DB.prepare("UPDATE wish SET told=0 WHERE ep=? AND id=?").bind(r.ep, r.id));
+  }
+  if (up.length) await env.DB.batch(up);
+  await Promise.allSettled(sends);
+  return sends.length;
+}
 async function pushMany(env, subs, msg, urgent){
   const text = JSON.stringify(msg);
   for (let i = 0; i < subs.length; i += 40) await Promise.allSettled(subs.slice(i, i + 40).map(s => pushOne(env, s, text, urgent)));
@@ -523,6 +546,17 @@ async function pubApi(req, env, u){
       if (!sub) return J({error: "Ce téléphone n'est pas abonné"}, 404);
       const st = await pushOne(env, sub, JSON.stringify({title: "Test Dex Scan ✔", body: "Les notifications de réassort arrivent bien sur ce téléphone.", url: "", t: Date.now()}), true);
       return J({ok: st >= 200 && st < 300, status: st});
+    }
+    // liste de souhaits de ce téléphone : on remplace tout (seules les cartes avec un prix cible comptent)
+    if (u.pathname === "/push/souhaits" && req.method === "POST"){
+      const b = await req.json(), ep = String(b.endpoint || "");
+      if (!(await env.DB.prepare("SELECT 1 FROM subs WHERE ep=?").bind(ep).first())) return J({error: "Ce téléphone n'est pas abonné"}, 404);
+      const old = new Map(((await env.DB.prepare("SELECT id,max,told FROM wish WHERE ep=?").bind(ep).all()).results || []).map(r => [r.id, r]));
+      const items = (Array.isArray(b.items) ? b.items : []).filter(x => x && /^[\w.-]{2,48}$/.test(String(x.id)) && +x.max > 0 && +x.max < 1e6).slice(0, 300);
+      const st = [env.DB.prepare("DELETE FROM wish WHERE ep=?").bind(ep)];
+      for (const x of items){ const o = old.get(String(x.id)), told = o && o.max === +x.max ? o.told : 0;
+        st.push(env.DB.prepare("INSERT INTO wish(ep,id,name,max,told) VALUES(?,?,?,?,?)").bind(ep, String(x.id), String(x.name || x.id).slice(0, 60), Math.round(+x.max * 100) / 100, told)); }
+      await env.DB.batch(st); return J({ok: true, n: items.length});
     }
     if (u.pathname === "/push/stop" && req.method === "POST"){ const b = await req.json(); await env.DB.prepare("DELETE FROM subs WHERE ep=?").bind(String(b.endpoint || "")).run(); return J({ok: true}); }
     return J({error: "inconnu"}, 404);

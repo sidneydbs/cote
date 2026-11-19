@@ -321,6 +321,27 @@ button.wnote{color:var(--fg);border-color:color-mix(in srgb,var(--border-yellow)
 .apmini{display:flex;align-items:center;gap:10px;width:100%;text-align:left;color:var(--fg)}.apmini .api{width:36px;height:36px;flex:none}.apmt{flex:1;min-width:0;display:flex;flex-direction:column}.apmt b{font-size:14.5px}.apmt small{color:var(--muted);font-size:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .apchev{flex:none;font-size:12.5px;font-weight:700;color:var(--border-yellow)}
 .apfold{float:right;font-size:12px;font-weight:700;color:var(--muted);padding:2px 0 6px 8px}
+#budgetView{position:relative}#budgetView .scroll{position:relative}
+.sk-dash{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:8px;margin:4px 0 6px}
+.sk-dash>div{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:11px 12px;min-width:0}.sk-dash span{display:block;font-size:12px;color:var(--muted)}.sk-dash b{display:block;font:800 21px var(--f-mono);margin-top:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sk-dash .sk-big{grid-column:1/-1;background:linear-gradient(120deg,color-mix(in srgb,var(--border-yellow) 22%,var(--panel)),var(--panel));position:relative}.sk-big b{font-size:clamp(30px,10vw,40px);display:inline-block;margin-right:8px}.sk-big .sk-pc{font-style:normal;display:inline-block;white-space:nowrap;vertical-align:middle;padding:3px 9px;border-radius:999px;font:700 12px var(--f-mono)}.sk-big .sk-pc.up{background:color-mix(in srgb,var(--up) 16%,transparent);color:var(--up)}.sk-big .sk-pc.down{background:color-mix(in srgb,var(--down) 16%,transparent);color:var(--down)}.sk-big small{display:block;color:var(--muted);font-size:12px;margin-top:4px}
+.sk-al{display:flex;height:12px;border-radius:99px;overflow:hidden;gap:2px;margin:2px 0 8px}.sk-al i{display:block;min-width:4px}
+.sk-lg{display:flex;flex-wrap:wrap;gap:4px 12px;margin-bottom:6px}.sk-lg button{font-size:12px;color:var(--muted);display:flex;align-items:center;gap:5px;padding:2px 0}.sk-lg i{width:9px;height:9px;border-radius:3px;display:inline-block}
+.sk-mv{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;margin:0 -16px 6px;padding:0 16px 4px}.sk-mv::-webkit-scrollbar{display:none}
+.sk-mv button{flex:none;width:118px;text-align:left;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:8px;display:flex;flex-direction:column;gap:3px}.sk-mv .im{display:grid;place-items:center;width:100%;aspect-ratio:1.25;border-radius:9px;overflow:hidden;background:var(--panel-2,#222)}.sk-mv .im img{width:100%;height:100%;object-fit:contain}.sk-mv .im em{font-style:normal;font:700 11px var(--f-mono);color:var(--muted)}
+.sk-mv b{font-size:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.sk-mv small{font:700 12px var(--f-mono)}
+.sk-addm{display:flex;gap:8px;margin:6px 0 10px}.sk-addm .btn{flex:1}
+.sk-fab{position:fixed;right:max(18px,env(safe-area-inset-right));bottom:calc(96px + env(safe-area-inset-bottom,0px));z-index:15;width:56px;height:56px;border-radius:50%;background:var(--border-yellow);color:var(--on-acc,#fff);font-size:30px;font-weight:700;box-shadow:0 10px 24px color-mix(in srgb,var(--border-yellow) 45%,transparent);display:grid;place-items:center}
+.sk-bell{position:absolute;top:14px;right:max(16px,env(safe-area-inset-right));z-index:5;width:42px;height:42px;border-radius:13px;background:var(--panel);border:1px solid var(--line);display:grid;place-items:center;color:var(--fg)}.sk-bell svg{width:21px;height:21px}.sk-bell i{position:absolute;top:-6px;right:-6px;font-style:normal;background:var(--down);color:#fff;font:800 10.5px var(--f-mono);padding:2px 6px;border-radius:99px}
+#budgetView[hidden] .sk-fab,#budgetView[hidden] .sk-bell{display:none}
+.so-mid{grid-column:2;display:flex;gap:4px;padding:4px;border-radius:999px;background:var(--panel);border:1px solid var(--line)}
+.so-bar .so-mid .so-fil{padding:8px 14px;font-size:14.5px;background:none;border:0;white-space:nowrap}.so-bar .so-mid .so-fil.on{background:var(--border-yellow);color:var(--on-acc)}
+button.fd-av{padding:0;border:0;cursor:pointer}.fd-name{cursor:pointer}
+.wall-h{display:flex;align-items:center;gap:14px;margin:4px 0 12px}.wall-av{position:relative;flex:none;width:76px;height:76px;border-radius:24px;background:var(--panel);border:1px solid var(--line);display:grid;place-items:center;font-size:40px;overflow:visible}.wall-av .pet{position:relative;width:100%;height:100%}
+.wall-id b{display:block;font-size:22px;line-height:1.15}.wall-id small{color:var(--muted);font-size:13px}.wall-rk{color:#FFD86E;font-weight:700}
+.wall-st{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-bottom:12px}.wall-st div{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:9px 6px;text-align:center}.wall-st b{display:block;font:800 19px var(--f-mono)}.wall-st span{font-size:11.5px;color:var(--muted)}
+.wall-btns{display:flex;gap:8px;margin-bottom:6px}.wall-btns .btn{flex:1}
+.wall-tr .rkwl{margin-bottom:4px}
 .rxbar{position:fixed;z-index:200;display:flex;gap:2px;padding:6px 8px;border-radius:999px;background:var(--panel);border:1px solid var(--line);box-shadow:0 10px 30px rgba(0,0,0,.45);animation:rxin .16s ease-out}
 .rxbar button{font-size:25px;width:38px;height:40px;border-radius:50%;display:grid;place-items:center;transition:transform .12s}.rxbar button:active{transform:scale(1.3)}.rxbar button.on{background:color-mix(in srgb,var(--border-yellow) 28%,transparent)}
 @keyframes rxin{from{transform:scale(.7) translateY(6px);opacity:0}}
@@ -1406,7 +1427,7 @@ button.wnote{color:var(--fg);border-color:color-mix(in srgb,var(--border-yellow)
 .dm-b.me{align-self:flex-end;background:var(--border-yellow);color:var(--on-acc);border-radius:18px 18px 6px 18px}.dm-b.tmp{opacity:.6}
 .dm-b small{align-self:flex-end;font:600 10.5px var(--f-mono);opacity:.65}.dm-b .fd-ccard{margin:2px 0}
 .dm-card{display:flex;flex-direction:column;align-items:center;gap:7px;width:178px;max-width:100%;padding:10px 10px 8px;border-radius:14px;color:inherit;text-align:center;background:color-mix(in srgb,currentColor 8%,transparent)}.dm-card .dmc-n{font-size:15px;line-height:1.2;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.dm-card .dmc-im{display:block;width:158px;aspect-ratio:63/88;border-radius:8px;overflow:hidden;box-shadow:0 6px 18px rgba(0,0,0,.35)}.dm-card .dmc-im>*{width:100%!important;height:100%!important;object-fit:cover;display:block}.dm-card .dmc-p{font:800 18px var(--f-mono)}.dm-card em{font-style:normal;font-size:11.5px;opacity:.75}.dm-card em{font-style:normal;font-size:11px;opacity:.75;margin-top:2px}
-.sheet.overdm{z-index:62}.dm-rcpt{align-self:flex-end;width:auto;max-width:none;white-space:nowrap;text-align:right;margin:-2px 4px 4px;font:600 11px var(--f-mono);color:var(--muted)}.dm-rcpt.seen{color:#4FA9FF}
+.sheet.overdm{z-index:62}.dm-rcpt{align-self:flex-end;width:auto;max-width:none;white-space:nowrap;text-align:right;margin:-3px 6px 4px;font:800 13px/1 var(--f-mono);letter-spacing:-.18em;color:var(--muted)}.dm-rcpt.seen{color:#4FA9FF}
 .dm-rc{font-style:normal;font:700 11px var(--f-mono);color:var(--muted)}.dm-rc.seen{color:#4FA9FF}.fd-crd[data-cid]{cursor:pointer}
 .dm-in{display:flex;gap:8px;align-items:center;padding:8px max(12px,env(safe-area-inset-right)) calc(env(safe-area-inset-bottom,0px) + 8px) max(12px,env(safe-area-inset-left));border-top:1px solid var(--line);background:var(--ink)}
 .dm-in input{flex:1;min-width:0;background:var(--panel);border:1px solid var(--line);border-radius:999px;padding:11px 15px;color:var(--fg);font:16px var(--f-body);outline:none}
@@ -2018,7 +2039,7 @@ img.px.reveal{animation:stpRev .9s ease-out}
   }
   fit(); addEventListener("resize", fit); addEventListener("orientationchange", function(){ setTimeout(fit, 300); });
 })();</script>
-<script>window.__APPV="189";</script>
+<script>window.__APPV="193";</script>
 <div class="splash" id="splash" aria-hidden="true"><i class="hole"></i><i class="halo"></i><div class="bw"><svg class="b" viewBox="0 0 100 100"><use href="#pb"/></svg><svg class="t" viewBox="0 0 100 100"><use href="#pb"/></svg></div><i class="glow"></i></div>
 <script>setTimeout(function(){ if(window.__booted) return;
   var b=document.createElement("div"); b.setAttribute("role","alert");
@@ -2053,7 +2074,7 @@ img.px.reveal{animation:stpRev .9s ease-out}
   <!-- ===== EXTENSIONS ===== -->
   <section class="view" id="homeView">
     <div class="scroll">
-      <div class="homebar"><span class="brand">DEX<b>·</b>SCAN</span><span class="hbis"><button class="hbi" id="hSearch" aria-label="Rechercher une carte"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></button><button class="hbi" id="themeBtn" aria-label="Changer de thème"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.6-.9 1.2-1.8-.5-1.1.2-2.2 1.4-2.2H17a4 4 0 0 0 4-4c0-5.5-4-10-9-10z"/><circle cx="7.5" cy="11" r="1.2"/><circle cx="10" cy="7" r="1.2"/><circle cx="15" cy="7" r="1.2"/></svg></button><button class="hbi" id="moreBtn" aria-label="Réglages et plus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg></button></span><span class="ver" id="hVer">v189</span></div>
+      <div class="homebar"><span class="brand">DEX<b>·</b>SCAN</span><span class="hbis"><button class="hbi" id="hSearch" aria-label="Rechercher une carte"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></button><button class="hbi" id="themeBtn" aria-label="Changer de thème"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.6-.9 1.2-1.8-.5-1.1.2-2.2 1.4-2.2H17a4 4 0 0 0 4-4c0-5.5-4-10-9-10z"/><circle cx="7.5" cy="11" r="1.2"/><circle cx="10" cy="7" r="1.2"/><circle cx="15" cy="7" r="1.2"/></svg></button><button class="hbi" id="moreBtn" aria-label="Réglages et plus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg></button></span><span class="ver" id="hVer">v193</span></div>
       <button class="banner" id="pxBanner" hidden></button>
       <span class="hdate hgreet" id="hDate"></span>
       <div class="hhero"><div class="total htot" id="hTot"></div><span id="avatSlot"></span></div>
@@ -2074,10 +2095,11 @@ img.px.reveal{animation:stpRev .9s ease-out}
   <section class="view" id="socialView" hidden>
     <div class="scroll" id="soScroll">
       <h1 class="h1">Social</h1>
-      <div class="so-bar" id="soSeg"><button class="so-tr" data-so="rank" aria-label="Classement"><svg viewBox="0 0 24 24" fill="none" stroke="url(#soTrG)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><defs><linearGradient id="soTrG" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFF4C2"/><stop offset=".35" stop-color="#FFD86E"/><stop offset=".65" stop-color="#7CF3FF"/><stop offset="1" stop-color="#E2B8FF"/></linearGradient></defs><path d="M8 21h8M12 17v4"/><path d="M7 4h10v5a5 5 0 0 1-10 0z"/><path d="M17 5h3v2a3 3 0 0 1-3 3M7 5H4v2a3 3 0 0 0 3 3"/></svg><b id="soRk"></b></button><button class="so-fil" data-so="feed">Le Fil <i id="hsegN" hidden></i></button><button class="so-dm" data-so="dm" aria-label="Messages"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/></svg><i id="dmN" hidden></i></button></div>
+      <div class="so-bar" id="soSeg"><button class="so-tr" data-so="rank" aria-label="Classement"><svg viewBox="0 0 24 24" fill="none" stroke="url(#soTrG)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><defs><linearGradient id="soTrG" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFF4C2"/><stop offset=".35" stop-color="#FFD86E"/><stop offset=".65" stop-color="#7CF3FF"/><stop offset="1" stop-color="#E2B8FF"/></linearGradient></defs><path d="M8 21h8M12 17v4"/><path d="M7 4h10v5a5 5 0 0 1-10 0z"/><path d="M17 5h3v2a3 3 0 0 1-3 3M7 5H4v2a3 3 0 0 0 3 3"/></svg><b id="soRk"></b></button><div class="so-mid"><button class="so-fil" data-so="feed">Le Fil <i id="hsegN" hidden></i></button><button class="so-fil" data-so="wall">Mon mur</button></div><button class="so-dm" data-so="dm" aria-label="Messages"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/></svg><i id="dmN" hidden></i></button></div>
       <div id="feedPane" hidden></div>
       <div id="soRank" hidden></div>
       <div id="soDm" hidden></div>
+      <div id="soWall" hidden></div>
       <div id="soArena" hidden></div>
     </div>
   </section>
@@ -2519,6 +2541,9 @@ async function findCards(q, lang=LANG){
   }
   return out;
 }
+// mots des noms de cartes français → anglais (pour les cartes absentes de la base française)
+const NAME_EN = {antique:"ancient", ancien:"ancient", ancienne:"ancient", obscur:"dark", obscure:"dark", sombre:"dark", brillant:"shining", brillante:"shining", lumineux:"light", lumineuse:"light",
+  cristal:"crystal", etoile:"star", star:"star", dresseur:"trainer", vif:"rapid", poing:"strike", nouveau:"new", noir:"black", blanc:"white", rouge:"red", bleu:"blue", vert:"green", jaune:"yellow", dore:"gold", doree:"gold", argent:"silver"};
 async function findTcgdex(q, lang){
   const {name, num, total} = q;
   const sets = await getSets(lang);
@@ -2535,9 +2560,21 @@ async function findTcgdex(q, lang){
     meta.byNumber = pool.length;
   }
   const nameQ = (name && norm(name).length>=3) ? name : (q.words||[]).slice().sort((a,b)=>b.length-a.length)[0];
+  let enWords = null;
   if(!pool.length && nameQ && norm(nameQ).length>=3){
-    const q = norm(nameQ).split(" ").sort((a,b)=>b.length-a.length)[0];
-    pool = ((await safe(`${API}/${lang}/cards?name=${encodeURIComponent(q)}`)) || []).filter(c=>!isPocket(c.id));
+    // chaque mot du nom, du plus long au plus court, jusqu'à trouver des cartes
+    const words = norm(nameQ).split(" ").filter(w=>w.length>=3).sort((a,b)=>b.length-a.length);
+    for(const w of words){ pool = ((await safe(`${API}/${lang}/cards?name=${encodeURIComponent(w)}`)) || []).filter(c=>!isPocket(c.id)); if(pool.length) break; }
+    // cartes qui n'existent qu'en anglais (Mew antique = « Ancient Mew », promos de films, cartes US…) : recherche anglaise traduite
+    if(lang!=="en"){
+      enWords = norm(nameQ).split(" ").filter(w=>w.length>=2).map(w=>NAME_EN[w] || w);
+      const seen = new Set(pool.map(c=>c.id));
+      for(const w of enWords.filter(w=>w.length>=3).sort((a,b)=>b.length-a.length)){
+        const l = ((await safe(`${API}/en/cards?name=${encodeURIComponent(w)}`)) || []).filter(c=>!isPocket(c.id) && !seen.has(c.id));
+        const hit = l.filter(c=>enWords.every(x=>norm(c.name).includes(x)));
+        if(hit.length){ for(const c of hit) pool.push({...c, _en:true}); break; }
+      }
+    }
     meta.byName = pool.length;
   }
   const totN = total && /^\d+$/.test(total) ? parseInt(total,10) : null;
@@ -2546,7 +2583,9 @@ async function findTcgdex(q, lang){
     let sc = 0;
     if(totN!=null){ if(s.off===totN) sc+=3; else if(s.tot===totN) sc+=1.5; }
     else if(total){ const pre = total.replace(/\d/g,""); if(pre && String(c.localId).toUpperCase().startsWith(pre)) sc+=1.5; }
-    const ns = nameScore(q, c.name);
+    let ns = nameScore(q, c.name);
+    // carte trouvée en anglais avec tous les mots traduits : correspondance complète
+    if(c._en && enWords && enWords.every(x=>norm(c.name).includes(x))) ns = Math.max(ns ?? 0, 1);
     if(ns!=null) sc += ns*3;
     const tm = totN!=null ? (s.off===totN||s.tot===totN) : false;
     if(tm) meta.totalMatch = true;
@@ -2721,7 +2760,8 @@ function ebNo(c){
   const pad3 = /^(swsh|sv|me|cel25$)/.test(sid) && !/p$/.test(sid);
   const P3 = n => String(+n).padStart(3,"0");
   if(sid==="svp" || sid==="mep") return {no: /^\d+$/.test(raw) ? P3(raw) : raw, extra: `(${sid},promo)`};          // 027 + SVP
-  if(sid==="basep" || sid==="np") return {no: "", extra: '(promo,"black star")'};                                   // n° 1 à 53 : trop court pour chercher
+  if(sid==="basep" || sid==="np") return {no: "", extra: '(promo,"black star")'};
+  if(sid==="miscp") return {no: "", extra: ""};                                                                     // promos sans numéro imprimé (Mew antique…)                                   // n° 1 à 53 : trop court pour chercher
   if(/p$/.test(sid)) return {no: raw, extra: ""};                                                                   // SWSH001, SM01, XY01, BW01, DP01, HGSS01
   if(/^20\d\d/.test(sid)) return {no: /^\d+$/.test(raw) && off ? `${+raw}/${off}` : raw, extra: "(mcdonalds,mcdonald,mcdo)"};
   if(/^\d+$/.test(raw)) return {no: off ? (pad3 ? `${P3(raw)}/${P3(off)}` : `${+raw}/${off}`) : (pad3 ? P3(raw) : String(+raw)), extra: ""};
@@ -6857,23 +6897,27 @@ async function renderBudget(){
   const noVal = own.filter(r=>r.val==null && !(r.k==="s" && r.x.open)); if(noVal.length) todo.push([noVal[0], `${noVal.length} produit${noVal.length>1?"s":""} sans cote`, "Relie-le au bon produit Cardmarket. En attendant, il compte pour son prix d'achat."]);
   const empty = !rows.length;
   el.innerHTML = `
-    ${nAl?`<button class="snew" id="budAlertsTop">🔔 <b>${nAl} nouvelle${nAl>1?"s":""} alerte${nAl>1?"s":""} réassort</b><span>Voir ›</span></button>`:""}
+
     ${empty ? `<div class="total sk-hero"><p class="sk-k">Ton stock</p><p class="sk-v">0 €</p><p class="psub" style="margin:4px 0 0">Ajoute tes displays, ETB, UPC et cartes gradées avec leur prix d'achat : tu verras ici ce qu'ils valent aujourd'hui et combien tu gagnes.</p></div>` : `
-    <div class="total sk-hero">
-      <p class="sk-k">Ton stock vaut aujourd'hui</p>
-      <p class="sk-v">${bE0(S.val)}</p>
-      <p class="sk-g ${S.pnl>=0?"up":"down"}">${bSign(S.pnl)}${S.cost?` <small>(${bPc(S.pc)})</small>`:""} <span>par rapport à ce que tu as payé</span></p>
-      <div class="sk-3">
-        <div><span>Tu as payé</span><b>${bE0(S.cost)}</b></div>
-        <div><span>Il vaut</span><b>${bE0(S.val)}</b></div>
+    ${(()=>{
+      // tableau de bord : tuiles de chiffres, où est l'argent, plus fortes hausses
+      const COLS = ["#F2C230","#2B6BE8","#E8466B","#3DDC97","#C9A8FF","#FF9F43","#7CF3FF","#dddddd"];
+      const by = new Map(); for(const r of own){ const v = r.val ?? r.cost; by.set(r.t, (by.get(r.t)||0) + v); }
+      const alloc = [...by].sort((a,b)=>b[1]-a[1]), tot = alloc.reduce((a,x)=>a+x[1],0) || 1;
+      const movers = own.filter(r=>r.val!=null && r.cost>0).map(r=>({r, pc:(r.val-r.cost)/r.cost*100})).sort((a,b)=>Math.abs(b.pc)-Math.abs(a.pc)).slice(0,8);
+      return `<div class="sk-dash">
+        <div class="sk-big"><span>Ton stock vaut aujourd'hui</span><b>${bE0(S.val)}</b>${S.cost?`<i class="sk-pc ${S.pnl>=0?"up":"down"}">${bPc(S.pc)}</i>`:""}<small>${S.n} article${S.n>1?"s":""} en stock</small></div>
+        <div><span>Payé</span><b>${bE0(S.cost)}</b></div>
         <div><span>${S.pnl>=0?"Gain":"Perte"} si tu vends</span><b class="${S.pnl>=0?"up":"down"}">${bSign(S.pnl)}</b></div>
+        <div><span>Déjà encaissé</span><b>${bE0(S.cashIn)}</b></div>
+        <div><span>Bénéfice réalisé</span><b class="${S.real>=0?"up":"down"}">${S.cashIn?bSign(S.real):"—"}</b></div>
       </div>
-      <p class="sk-n">${S.n} article${S.n>1?"s":""} en stock</p>
-      ${S.cashIn?`<div class="sk-sold"><span>Déjà vendu : <b>${bE0(S.cashIn)}</b> encaissés</span><b class="${S.real>=0?"up":"down"}">${bSign(S.real)} de ${S.real>=0?"bénéfice":"perte"}</b></div>`:""}
-    </div>`}
+      ${alloc.length>1?`<p class="sk-th">Où est ton argent</p><div class="sk-al">${alloc.map(([t,v],k)=>`<i style="flex:${v};background:${COLS[k%COLS.length]}" title="${esc(btLbl(t))}"></i>`).join("")}</div>
+        <div class="sk-lg">${alloc.map(([t,v],k)=>`<button data-bf="${esc(t)}"><i style="background:${COLS[k%COLS.length]}"></i>${esc(btLbl(t))} ${Math.round(v/tot*100)} %</button>`).join("")}</div>`:""}
+      ${movers.length?`<p class="sk-th">${movers.some(m=>m.pc<0)?"Plus forts mouvements":"Plus fortes hausses"}</p><div class="sk-mv">${movers.map(({r,pc})=>`<button data-bu="${r.k}:${esc(r.x.uid)}"><span class="im">${r.img?`<img src="${esc(r.img)}" alt="" loading="lazy">`:r.k==="g"?`<em>${esc((grBy(r.x.gr).k==="AUT"?r.x.grOther:grBy(r.x.gr).k)||"")} ${esc(r.x.note||"")}</em>`:`<em>${esc(btLbl(r.t))}</em>`}</span><b>${esc(r.n||"")}</b><small class="${pc>=0?"up":"down"}">${pc>=0?"+":"−"}${Math.abs(Math.round(pc))} %</small></button>`).join("")}</div>`:""}`; })()}`}
     ${todo.length?`<div class="sk-todo"><p class="sk-th">À compléter</p>${todo.map(([r,t,h],i)=>`<button data-todo="${i}"><span><b>${t}</b><small>${h}</small></span><i>›</i></button>`).join("")}</div>`:""}
-    <p class="sk-th">Ajouter un produit</p>
-    <div class="addrow" style="margin:0 0 18px"><button class="btn btn-y" id="budPhoto">📷 En photo</button><button class="btn btn-g" id="budMan">✏️ À la main</button></div>
+    <div class="sk-addm" id="budAddM" hidden><button class="btn btn-y" id="budPhoto">📷 En photo</button><button class="btn btn-g" id="budMan">✏️ À la main</button></div>
+    <p class="sk-th">Tes produits</p>
     ${empty?"":`
     <div class="seg clsw" id="budSeg"><button data-bs="own" aria-pressed="${!isSold}">En stock · ${S.n}</button><button data-bs="sold" aria-pressed="${isSold}" ${soldR.length?"":"disabled"}>Vendus · ${nSoldU}</button></div>
     ${!isSold && have.size>1?`<div class="schips" id="budF" style="margin-bottom:12px">${[["all","Tout"],...BT.filter(([k])=>have.has(k))].map(([k,t])=>`<button data-bf="${k}" aria-pressed="${BUD.f===k}">${esc(t)}</button>`).join("")}</div>`:""}
@@ -6891,6 +6935,12 @@ async function renderBudget(){
   let qt = null;
   $("#budQ") && ($("#budQ").oninput = e=>{ BUD.q = e.target.value; clearTimeout(qt); qt = setTimeout(()=>budList(rows, l), 180); });
   budList(rows, l);
+  // bouton « + » flottant et cloche des alertes (créés une fois, hors du contenu redessiné)
+  if(!$("#budFab")){ $("#budgetView").insertAdjacentHTML("beforeend", `<button class="sk-fab" id="budFab" aria-label="Ajouter un produit">＋</button>`); $("#budgetView .scroll").insertAdjacentHTML("afterbegin", `<button class="sk-bell" id="budBell" aria-label="Alertes réassort"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 1 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.9 1.9 0 0 0 3.4 0"/></svg><i id="budBellN" hidden></i></button>`);
+    $("#budBell").onclick = ()=>selectTab("alertView");
+    $("#budFab").onclick = ()=>{ const m = $("#budAddM"); if(!m) return; m.hidden = !m.hidden; if(!m.hidden){ $("#budgetView .scroll").scrollTo({top:0, behavior:"smooth"}); } }; }
+  { const n = $("#budBellN"); if(n){ n.textContent = nAl; n.hidden = !nAl; } }
+  el.querySelectorAll(".sk-mv [data-bu]").forEach(b=>b.onclick=()=>{ const [k,u] = b.dataset.bu.split(":"); const r = rows.find(z=>z.k===k && z.x.uid===u); if(r) budOpenRow(r); });
   $("#budPhoto").onclick = ()=>budForm(null, true);
   $("#budMan").onclick = ()=>budForm(null, false);
   $("#budAlerts").onclick = ()=>selectTab("alertView");
@@ -8830,6 +8880,10 @@ async function betaPublishFlow(){
 }
 /* Journal des modifications de la Bêta : la carte « Version Bêta » liste celles que les copains n'ont pas encore */
 const BETA_LOG = [
+  {v:193, t:"Recherche : chaque mot du nom est essayé, et les cartes qui n'existent qu'en anglais sont trouvées en traduisant (« Mew antique » → Ancient Mew)"},
+  {v:192, t:"Chaque Hunter a son mur : « Mon mur » à côté du Fil, et un toucher sur l'avatar ou le nom d'un Hunter ouvre le sien (publications, ce qu'il cherche, ses doubles, message, collection)"},
+  {v:191, t:"Stock en tableau de bord : tuiles valeur / payé / gain / encaissé / bénéfice, « Où est ton argent », plus fortes hausses, bouton + flottant, cloche des alertes"},
+  {v:190, t:"Messages : juste ✓ quand le message est distribué, ✓✓ bleu quand il est ouvert"},
   {v:189, t:"Alertes : le panneau des notifications tient sur une ligne quand elles sont activées (« Régler › » pour déplier)"},
   {v:188, t:"Langue au scan beaucoup plus fiable : lecture ciblée du texte des attaques, du nom et du bas de carte (code « FR »/« EN »), les cartes ex holo françaises ne sortent plus en japonais"},
   {v:187, t:"Messages : bouton ☺ à côté de chaque bulle pour réagir (❤️ 😂 😆 😮 😢 😭 👍 🔥) · statut en ligne (point vert, « En ligne il y a 5 min »), masquable · photo dans les commentaires et les réponses"},
@@ -9036,6 +9090,48 @@ async function fdLoad(){
   catch(e){ if(e.off || e instanceof TypeError){ FEED.live = false; FEED.posts = fdLocal(); } else { FEED.err = e.message; FEED.posts ||= []; } }
   FEED.busy = false; renderFeed();
 }
+/* ---------- Mur de chaque Hunter : son profil, ses publications, ce qu'il cherche et ce qu'il a en double ---------- */
+function openWall(uid, name, pk, lv){
+  const me = fdMe();
+  if(me && uid===me.id){ if(curView()!=="socialView") selectTab("socialView"); soShow("wall"); $("#soScroll").scrollTop = 0; return; }
+  $("#sheetTitle").textContent = name || "Hunter";
+  $("#sheetBody").innerHTML = `<div id="wallSheet"></div>`; openSheet();
+  renderWall(uid, $("#wallSheet"), {name, pk, lv});
+}
+async function renderWall(uid, el, info={}){
+  if(!el) return;
+  const me = fdMe(), mine = !!me && uid===me.id;
+  if(!uid){ el.innerHTML = `<div class="empty" style="padding:40px 12px">Crée ton profil de Hunter pour avoir ton mur.<br><button class="btn btn-y" id="wallSetup" style="margin-top:14px">Créer mon profil</button></div>`; $("#wallSetup").onclick = ()=>rkSetup(); return; }
+  if(!FEED.posts && !FEED.busy){ el.innerHTML = `<div class="empty"><span class="loader"></span></div>`; await fdLoad(); }
+  const posts = (FEED.posts||[]).filter(p=>p.uid===uid).sort((a,b)=>b.t-a.t), last = posts[0];
+  const name = mine ? me.name : (info.name || last?.name || "Hunter"), pk = mine ? myPk() : (info.pk || last?.pk), lv = mine ? lvOf(acctXP()) : (info.lv || last?.lv || 1);
+  const pt = rkPet(pk), likes = posts.reduce((a,p)=>a+(p.likes||0)+Object.values(p.rx||{}).reduce((s,n)=>s+n,0),0), cms = posts.reduce((a,p)=>a+(p.cm||[]).length,0);
+  const ab = store.get("rkAbove", null), rank = mine && rkProf()?.on && Array.isArray(ab) ? ab.length+1 : null;
+  el.innerHTML = `<div class="wall-h">
+      <span class="wall-av">${pt?petArt(pt, lv):"🙂"}</span>
+      <div class="wall-id"><b>${esc(name)}</b><small>Niv. ${lv}${rank?` · <span class="wall-rk">🏆 #${rank}</span>`:""}${pt?` · ${esc(pt.n||"")}`:""}</small></div>
+    </div>
+    <div class="wall-st"><div><b>${posts.length}</b><span>publication${posts.length>1?"s":""}</span></div><div><b>${likes}</b><span>réaction${likes>1?"s":""}</span></div><div><b>${cms}</b><span>commentaire${cms>1?"s":""}</span></div></div>
+    <div class="wall-btns">${mine ? `<button class="btn btn-y" id="wallPost">✏️ Publier</button><button class="btn btn-g" id="wallCol">Ma collection</button>` : `<button class="btn btn-y" id="wallDm">✉️ Message</button><button class="btn btn-g" id="wallCol">Sa collection</button>`}</div>
+    <div id="wallTrade"></div>
+    <p class="sk-th">${mine?"Mes publications":"Ses publications"}</p>
+    <div class="wall-posts">${posts.length ? posts.map(fdPostHTML).join("") : `<div class="empty" style="padding:26px 12px">${mine?"Tu n'as encore rien publié. Partage une carte, une trouvaille ou un réassort !":"Pas encore de publication."}</div>`}</div>`;
+  fdBind(el); fdBindCm(el);
+  $("#wallPost") && ($("#wallPost").onclick = ()=>fdCompose());
+  $("#wallDm") && ($("#wallDm").onclick = ()=>dmOpen(uid, name, pk));
+  $("#wallCol").onclick = ()=>{ if(mine){ selectTab("colView"); } else rkCollection(uid); };
+  // ce qu'il cherche / ce qu'il a en double (échanges automatiques)
+  const box = $("#wallTrade"); if(!box) return;
+  const strip = (t, l, cls) => l.length ? `<div class="wall-tr"><p class="sk-th">${t} · ${l.length}</p><div class="rkwl">${l.slice(0,30).map(c=>`<button class="rkwc ${cls||""}" data-wid="${esc(c.id)}">${c.img?`<img src="${esc(c.img)}" alt="" loading="lazy">`:`<em>${esc((c.name||"").slice(0,5))}</em>`}</button>`).join("")}</div></div>` : "";
+  let d = null;
+  if(mine){ d = store.get("tradeOn", false) ? tradePayload() : {want:getWish(), give:[]}; }
+  else if(trMe()){ try{ d = await fdApi("/trade/get", {id:trMe().id, key:trMe().key, uid}); }catch(e){} }
+  if(!d || !$("#wallTrade")) return;
+  const own = new Map(getCol().map(x=>[x.id, x.qty||1]));
+  box.innerHTML = strip(mine?"Je cherche":"Il cherche", d.want||[], "") + strip(mine?"J'ai en double":"Il a en double", d.give||[], "");
+  if(!mine) box.querySelectorAll(".rkwc").forEach(b=>{ if(own.get(b.dataset.wid)>=2) b.classList.add("dbl"); });
+  box.querySelectorAll("[data-wid]").forEach(b=>b.onclick=()=>showCard(b.dataset.wid, []));
+}
 /* ---------- Réactions (émoticônes) : posts, commentaires, messages privés ---------- */
 const RXS = ["❤️","😂","😆","😮","😢","😭","👍","🔥"];
 // petite barre d'émoticônes au-dessus de l'élément touché
@@ -9076,7 +9172,7 @@ async function dmReact(w, name, m, e){
 /* actions sur un post : un seul gestionnaire, rebranché sur les morceaux redessinés */
 function fdClick(e){ e.stopPropagation(); const b = e.currentTarget;
     const post = FEED.posts.find(x=>x.id===b.closest("[data-pid]").dataset.pid), a = b.dataset.fa; if(!post) return;
-    if(!fdMe() && !["share","cm","see","seecol"].includes(a)){ toast("Crée ton profil de Hunter pour réagir"); return; }
+    if(!fdMe() && !["share","cm","see","seecol","wall"].includes(a)){ toast("Crée ton profil de Hunter pour réagir"); return; }
     if(a==="cm"){ FEED.cmOpen.has(post.id) ? FEED.cmOpen.delete(post.id) : FEED.cmOpen.add(post.id); fdPatch(post, FEED.cmOpen.has(post.id) && !!fdMe()); return; }
     if(a==="cms"){ const i = b.closest(".fd-cin")?.querySelector("input"); if(i) fdComment(post, i); return; }
     if(a==="cimg"){ const f = document.createElement("input"); f.type = "file"; f.accept = "image/*";
@@ -9092,6 +9188,7 @@ function fdClick(e){ e.stopPropagation(); const b = e.currentTarget;
       const i = document.querySelector(`[data-pid="${CSS.escape(post.id)}"] .fd-cin input`); if(i && c.uid!==fdMe()?.id && !i.value){ const n = String(c.name||"").replace(/\s+/g,""); if(n) i.value = "@" + n + " "; } return; }
     if(a==="crex"){ delete FEED.reTo[post.id]; fdPatch(post, true); return; }
     if(a==="dm"){ dmOpen(post.uid, post.name, post.pk); return; }
+    if(a==="wall"){ openWall(post.uid, post.name, post.pk, post.lv); return; }
     if(a==="see"){ const c = post.att?.card; if(c) showCard(c.id, []); return; }
     if(a==="seecol"){ rkCollection(post.uid); return; }
     if(a==="pv"){ fdAct("pvote", post, {o:+b.dataset.o}); return; }
@@ -9109,11 +9206,13 @@ function fdClick(e){ e.stopPropagation(); const b = e.currentTarget;
 const fdBind = r => r.querySelectorAll("[data-fa]").forEach(b=>b.onclick=fdClick);
 /* on redessine seulement les boutons et le vote du post touché : pas de clignotement, la page ne saute pas */
 function fdPatch(post, focus){
-  const art = document.querySelector(`#feedPane [data-pid="${CSS.escape(post.id)}"]`); if(!art) return;
-  const t = document.createElement("div"); t.innerHTML = fdPostHTML(post); const nw = t.firstElementChild;
-  for(const sel of [".fd-act", ".fd-shop", ".fd-cms", ".fd-att"]){ const a = art.querySelector(sel), b = nw.querySelector(sel); if(a && b){ a.replaceWith(b); fdBind(b); } }
-  fdBindCm(art); if(focus){ const i = art.querySelector(".fd-cin input"); i?.focus({preventScroll:true}); }
-  const l = art.querySelector(".fd-cms"); if(focus && l) l.scrollTop = l.scrollHeight;
+  // le même post peut être affiché dans le Fil et sur un mur : on met à jour toutes ses copies
+  for(const art of document.querySelectorAll(`[data-pid="${CSS.escape(post.id)}"]`)){
+    const t = document.createElement("div"); t.innerHTML = fdPostHTML(post); const nw = t.firstElementChild;
+    for(const sel of [".fd-act", ".fd-shop", ".fd-cms", ".fd-att"]){ const a = art.querySelector(sel), b = nw.querySelector(sel); if(a && b){ a.replaceWith(b); fdBind(b); } }
+    fdBindCm(art); const vis = art.offsetParent !== null; if(focus && vis){ const i = art.querySelector(".fd-cin input"); i?.focus({preventScroll:true}); }
+    const l = art.querySelector(".fd-cms"); if(focus && l) l.scrollTop = l.scrollHeight;
+  }
 }
 function fdBindCm(r){ r.querySelectorAll(".fd-cin input").forEach(i=>{ if(!i.dataset.mn){ i.dataset.mn = 1; mnAttach(i, i.closest(".fd-cin")); } i.onkeydown = e=>{ if(e.key==="Enter"){ e.preventDefault(); const post = FEED.posts.find(x=>x.id===i.closest("[data-pid]").dataset.pid); if(post) fdComment(post, i); } }; }); }
 async function fdAct(kind, post, extra={}){
@@ -9136,10 +9235,10 @@ async function fdAct(kind, post, extra={}){
 }
 function fdPostHTML(x){
   const tg = FTAGS[x.tag] || FTAGS.new, st = rkPet(x.pk), mine = fdMe() && x.uid===fdMe().id;
-  const av = `<span class="fd-av">${st?`<img src="${st.img}" alt="">`:"🙂"}<i>${x.lv||1}</i></span>`;
+  const av = `<button type="button" class="fd-av" data-fa="wall" aria-label="Mur de ${esc(x.name||"Hunter")}">${st?`<img src="${st.img}" alt="">`:"🙂"}<i>${x.lv||1}</i></button>`;
   const tot = (x.ok||0)+(x.ko||0), pc = tot ? Math.round((x.ok||0)/tot*100) : 50;
   return `<article class="fd-post" data-pid="${esc(x.id)}">${av}<div class="fd-body">
-    <div class="fd-h"><b>${esc(x.name||"Hunter")}</b><span>· ${fdAgo(x.t)}</span>${x.demo?`<span class="fd-ex">exemple</span>`:""}${fdMe() && !mine && !x.demo ? `<button class="fd-dm" data-fa="dm" aria-label="Envoyer un message à ${esc(x.name||"")}">✉️</button>` : ""}<button class="fd-more" data-fa="more" aria-label="Options">⋯</button></div>
+    <div class="fd-h"><b data-fa="wall" role="button" tabindex="0" class="fd-name">${esc(x.name||"Hunter")}</b><span>· ${fdAgo(x.t)}</span>${x.demo?`<span class="fd-ex">exemple</span>`:""}${fdMe() && !mine && !x.demo ? `<button class="fd-dm" data-fa="dm" aria-label="Envoyer un message à ${esc(x.name||"")}">✉️</button>` : ""}<button class="fd-more" data-fa="more" aria-label="Options">⋯</button></div>
     <span class="fd-tag ${tg[2]}">${tg[0]} ${tg[1]}</span>
     ${x.text?`<p class="fd-txt">${esc(x.text).replace(/(^|[^&\w])#([\wÀ-ÿ]+)/g,'$1<span class="ht">#$2</span>').replace(/(^|[^&\w@])@([\wÀ-ÿ._-]{2,24})/g,'$1<span class="mn" data-mn="$2">@$2</span>')}</p>`:""}
     ${fdAttHTML(x)}
@@ -9449,7 +9548,7 @@ function renderDm(){
   if(DM.threads===null){ el.innerHTML = `<div class="empty"><span class="loader"></span></div>`; return; }
   const hide = DM.hide ?? store.get("presHide", false);
   const pres = `<button class="dm-pres" id="dmPres" aria-pressed="${!hide}"><span class="dm-pd${hide?" off":""}"></span><span><b>${hide?"Statut en ligne masqué":"Les autres voient quand tu es en ligne"}</b><small>${hide?"Personne ne voit quand tu es là. Touche pour le montrer.":"Touche pour le masquer."}</small></span><i class="dm-sw${hide?"":" on"}"></i></button>`;
-  el.innerHTML = pres + (DM.threads.length ? `<div class="dm-list">${DM.threads.map(t=>{ const st = rkPet(t.pk); return `<button class="dm-row${t.unread?" new":""}" data-dw="${esc(t.with)}"><span class="fd-av${t.on?" online":""}">${st?`<img src="${st.img}" alt="">`:"🙂"}</span><span class="dm-t"><b>${esc(t.name||"Hunter")}</b><span>${t.mine?(t.seenT>=t.t?`<em class="dm-rc seen">✓✓ Vu</em> `:`<em class="dm-rc">✓ Envoyé</em> `):""}${esc(t.last||"")}</span></span><span class="dm-m"><small>${dmAgo(t.t)}</small>${t.unread?`<i>${t.unread}</i>`:""}</span></button>`; }).join("")}</div>`
+  el.innerHTML = pres + (DM.threads.length ? `<div class="dm-list">${DM.threads.map(t=>{ const st = rkPet(t.pk); return `<button class="dm-row${t.unread?" new":""}" data-dw="${esc(t.with)}"><span class="fd-av${t.on?" online":""}">${st?`<img src="${st.img}" alt="">`:"🙂"}</span><span class="dm-t"><b>${esc(t.name||"Hunter")}</b><span>${t.mine?(t.seenT>=t.t?`<em class="dm-rc seen" aria-label="Lu">✓✓</em> `:`<em class="dm-rc" aria-label="Distribué">✓</em> `):""}${esc(t.last||"")}</span></span><span class="dm-m"><small>${dmAgo(t.t)}</small>${t.unread?`<i>${t.unread}</i>`:""}</span></button>`; }).join("")}</div>`
     : `<div class="empty" style="padding:40px 12px">Aucun message pour l'instant.<br><small>Écris à un Hunter avec ✉️ sur ses posts du Fil, ou depuis sa fiche dans le Classement.</small></div>`);
   $("#dmPres").onclick = async ()=>{ const p = fdMe(); if(!p) return; const nh = !(DM.hide ?? store.get("presHide", false)); DM.hide = nh; store.set("presHide", nh); renderDm();
     try{ await fdApi("/presence", {id:p.id, key:p.key, hide:nh}); toast(nh ? "Ton statut en ligne est masqué" : "Les autres voient quand tu es en ligne"); }catch(e){ DM.hide = !nh; store.set("presHide", !nh); renderDm(); toast(e.message); } };
@@ -9501,7 +9600,7 @@ function dmRender(){
   const atEnd = box.scrollHeight - box.scrollTop - box.clientHeight < 80;
   let myLast = -1; l.forEach((m,i)=>{ if(m.from===me) myLast = i; });
   const hm = t => new Date(t).toLocaleTimeString("fr-FR",{hour:"2-digit",minute:"2-digit"});
-  const rcpt = m => m.tmp ? `<p class="dm-rcpt">Envoi…</p>` : DM.seen >= m.t ? `<p class="dm-rcpt seen">✓✓ Vu${new Date(DM.seen).toDateString()===new Date().toDateString()?` à ${hm(DM.seen)}`:` le ${new Date(DM.seen).toLocaleDateString("fr-FR",{day:"numeric",month:"short"})}`}</p>` : `<p class="dm-rcpt">✓ Envoyé · pas encore vu</p>`;
+  const rcpt = m => m.tmp ? `<p class="dm-rcpt" aria-label="Envoi">…</p>` : DM.seen >= m.t ? `<p class="dm-rcpt seen" aria-label="Lu">✓✓</p>` : `<p class="dm-rcpt" aria-label="Distribué">✓</p>`;
   box.innerHTML = l.length ? l.map((m,i)=>{ const day = i===0 || new Date(m.t).toDateString()!==new Date(l[i-1].t).toDateString();
       return `${day?`<p class="dm-day">${new Date(m.t).toLocaleDateString("fr-FR",{weekday:"long",day:"numeric",month:"long"})}</p>`:""}<div class="dm-b ${m.from===me?"me":""}${m.tmp?" tmp":""}">${m.card?`<button type="button" class="dm-card"${m.card.id?` data-cid="${esc(m.card.id)}"`:""} aria-label="Voir la fiche de ${esc(m.card.name)}"><b class="dmc-n">${esc(m.card.name)}</b><span class="dmc-im">${fdImg(m.card)}</span>${m.card.price!=null?`<span class="dmc-p">${bE(m.card.price)}</span>`:""}${m.card.id?`<em>Voir la fiche ›</em>`:""}</button>`:""}${m.text?`<span>${esc(m.text)}</span>`:""}<small>${new Date(m.t).toLocaleTimeString("fr-FR",{hour:"2-digit",minute:"2-digit"})}</small>${m.tmp?"":`<button type="button" class="dm-rxb" data-dmrxp="${i}" aria-label="Réagir à ce message">☺</button>`}</div>${(()=>{ const c = {}; for(const e of Object.values(m.rx||{})) c[e] = (c[e]||0)+1; return Object.keys(c).length ? `<div class="dm-rxs ${m.from===me?"me":""}">${rxChips(c, (m.rx||{})[me], `data-dmrx="${i}"`)}</div>` : ""; })()}${i===myLast?rcpt(m):""}`; }).join("")
     : `<div class="empty">Dis bonjour 👋</div>`;
@@ -9541,7 +9640,8 @@ function soShow(t){
   $("#soSeg").querySelectorAll("[data-so]").forEach(b=>b.classList.toggle("on", b.dataset.so===SO.tab));
   { const ab = store.get("rkAbove", null); $("#soRk").textContent = rkProf()?.on && Array.isArray(ab) ? "#"+(ab.length+1) : ""; }
   FEED.on = SO.tab==="feed";
-  $("#feedPane").hidden = !FEED.on; $("#soRank").hidden = SO.tab!=="rank"; $("#soDm").hidden = SO.tab!=="dm"; $("#soArena").hidden = SO.tab!=="arena";
+  $("#feedPane").hidden = !FEED.on; $("#soRank").hidden = SO.tab!=="rank"; $("#soDm").hidden = SO.tab!=="dm"; $("#soArena").hidden = SO.tab!=="arena"; $("#soWall").hidden = SO.tab!=="wall";
+  if(SO.tab==="wall"){ renderWall(fdMe()?.id, $("#soWall")); return; }
   if(FEED.on) renderFeed();
   else if(SO.tab==="arena") renderArenaHome();
   else if(SO.tab==="dm"){ renderDm(); dmLoad(); }
@@ -9565,6 +9665,9 @@ $("#moreBack").onclick = ()=>navBack();
    Après l'intro, une seule fois par version qui apporte quelque chose à l'utilisateur.
    Nouvelle installation : rien (tout est neuf). Les versions purement techniques n'ont pas d'entrée ici. */
 const NEWS = [
+  {v:192, items:[
+    ["M3 4h18v16H3zM3 10h18M9 10v10", "Ton mur", "Dans Social, « Mon mur » à côté du Fil rassemble ton profil, tes publications, ce que tu cherches et tes doubles. Touche l'avatar ou le nom d'un Hunter pour voir le sien."]
+  ]},
   {v:187, items:[
     ["M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18zM12 7v5l3 2", "En ligne", "Un point vert montre les Hunters en ligne, et la conversation affiche quand ils étaient là. Tu peux masquer ton statut en haut de tes messages."],
     ["M4 8h3l2-3h6l2 3h3v11H4zM12 16.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z", "Photo en commentaire", "Ajoute une photo à un commentaire ou à une réponse avec le bouton 📷. Touche une photo pour l'agrandir."]

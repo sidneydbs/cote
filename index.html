@@ -317,6 +317,10 @@ button.wnote{color:var(--fg);border-color:color-mix(in srgb,var(--border-yellow)
 .fd-cimgp{position:relative;display:block;width:max-content;align-self:flex-start;margin:8px 0 6px 2px}.fd-cimgp img{display:block;max-width:140px;max-height:140px;border-radius:12px;border:1px solid var(--line)}.fd-cimgp button{position:absolute;top:-8px;right:-8px;width:26px;height:26px;border-radius:50%;background:var(--panel);border:1px solid var(--line);font-size:12px}
 .fd-cimg{display:block;margin-top:6px;padding:0;border-radius:12px;overflow:hidden;max-width:220px}.fd-cimg img{display:block;max-width:100%;max-height:260px;object-fit:cover}
 .imgzoom{position:fixed;inset:0;z-index:300;background:rgba(0,0,0,.92);display:grid;place-items:center;padding:20px}.imgzoom img{max-width:100%;max-height:100%;border-radius:10px}.imgzoom button{position:absolute;top:calc(14px + env(safe-area-inset-top,0px));right:16px;width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,.15);color:#fff;font-size:18px}
+#alertPush.mini{padding:8px 10px!important}#alertPush.mini::before{display:none}
+.apmini{display:flex;align-items:center;gap:10px;width:100%;text-align:left;color:var(--fg)}.apmini .api{width:36px;height:36px;flex:none}.apmt{flex:1;min-width:0;display:flex;flex-direction:column}.apmt b{font-size:14.5px}.apmt small{color:var(--muted);font-size:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.apchev{flex:none;font-size:12.5px;font-weight:700;color:var(--border-yellow)}
+.apfold{float:right;font-size:12px;font-weight:700;color:var(--muted);padding:2px 0 6px 8px}
 .rxbar{position:fixed;z-index:200;display:flex;gap:2px;padding:6px 8px;border-radius:999px;background:var(--panel);border:1px solid var(--line);box-shadow:0 10px 30px rgba(0,0,0,.45);animation:rxin .16s ease-out}
 .rxbar button{font-size:25px;width:38px;height:40px;border-radius:50%;display:grid;place-items:center;transition:transform .12s}.rxbar button:active{transform:scale(1.3)}.rxbar button.on{background:color-mix(in srgb,var(--border-yellow) 28%,transparent)}
 @keyframes rxin{from{transform:scale(.7) translateY(6px);opacity:0}}
@@ -2014,7 +2018,7 @@ img.px.reveal{animation:stpRev .9s ease-out}
   }
   fit(); addEventListener("resize", fit); addEventListener("orientationchange", function(){ setTimeout(fit, 300); });
 })();</script>
-<script>window.__APPV="188";</script>
+<script>window.__APPV="189";</script>
 <div class="splash" id="splash" aria-hidden="true"><i class="hole"></i><i class="halo"></i><div class="bw"><svg class="b" viewBox="0 0 100 100"><use href="#pb"/></svg><svg class="t" viewBox="0 0 100 100"><use href="#pb"/></svg></div><i class="glow"></i></div>
 <script>setTimeout(function(){ if(window.__booted) return;
   var b=document.createElement("div"); b.setAttribute("role","alert");
@@ -2049,7 +2053,7 @@ img.px.reveal{animation:stpRev .9s ease-out}
   <!-- ===== EXTENSIONS ===== -->
   <section class="view" id="homeView">
     <div class="scroll">
-      <div class="homebar"><span class="brand">DEX<b>·</b>SCAN</span><span class="hbis"><button class="hbi" id="hSearch" aria-label="Rechercher une carte"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></button><button class="hbi" id="themeBtn" aria-label="Changer de thème"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.6-.9 1.2-1.8-.5-1.1.2-2.2 1.4-2.2H17a4 4 0 0 0 4-4c0-5.5-4-10-9-10z"/><circle cx="7.5" cy="11" r="1.2"/><circle cx="10" cy="7" r="1.2"/><circle cx="15" cy="7" r="1.2"/></svg></button><button class="hbi" id="moreBtn" aria-label="Réglages et plus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg></button></span><span class="ver" id="hVer">v188</span></div>
+      <div class="homebar"><span class="brand">DEX<b>·</b>SCAN</span><span class="hbis"><button class="hbi" id="hSearch" aria-label="Rechercher une carte"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></button><button class="hbi" id="themeBtn" aria-label="Changer de thème"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.6-.9 1.2-1.8-.5-1.1.2-2.2 1.4-2.2H17a4 4 0 0 0 4-4c0-5.5-4-10-9-10z"/><circle cx="7.5" cy="11" r="1.2"/><circle cx="10" cy="7" r="1.2"/><circle cx="15" cy="7" r="1.2"/></svg></button><button class="hbi" id="moreBtn" aria-label="Réglages et plus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg></button></span><span class="ver" id="hVer">v189</span></div>
       <button class="banner" id="pxBanner" hidden></button>
       <span class="hdate hgreet" id="hDate"></span>
       <div class="hhero"><div class="total htot" id="hTot"></div><span id="avatSlot"></span></div>
@@ -4523,14 +4527,20 @@ async function renderPush(){
   let srv = null; if(sub && Notification.permission==="granted"){ try{ srv = await fetch(GUET+"/push/etat", {method:"POST", headers:{"content-type":"application/json"}, body:JSON.stringify({endpoint:sub.endpoint})}).then(r=>r.json()); }catch(e){ srv = {err:1}; } }
   const on = !!srv?.abonne, lost = sub && srv && !srv.abonne && !srv.err, pr = srv?.prefs || {al:true, dm:true, post:true}, me = rkProf();
   const opt = (k, t, sm, dis) => `<label class="apopt${dis?" dis":""}"><span><b>${t}</b><small>${sm}</small></span><input type="checkbox" data-pf="${k}" ${pr[k]&&!dis?"checked":""} ${dis?"disabled":""}><i class="sw"></i></label>`;
-  el.innerHTML = on
-    ? head("Notifications activées", "Ce téléphone sonne même app fermée. Choisis ce que tu reçois :", ["on","✓ Activées"])
+  // activées : une seule ligne, on déplie pour régler
+  const open = !!store.get("pushOpen", false), lbl = [pr.al&&"Réassorts", pr.dm&&me?.id&&"Messages", pr.post&&"Fil"].filter(Boolean).join(" · ") || "Rien";
+  el.classList.toggle("mini", on && !open);
+  el.innerHTML = on && !open
+    ? `<button class="apmini" id="pushOpen" type="button"><span class="api">${BELL}</span><span class="apmt"><b>Notifications activées</b><small>${lbl}</small></span><span class="apst on">✓</span><span class="apchev">Régler ›</span></button>`
+    : on
+    ? `<button class="apfold" id="pushOpen" type="button" aria-label="Replier">Replier ⌃</button>` + head("Notifications activées", "Ce téléphone sonne même app fermée. Choisis ce que tu reçois :", ["on","✓ Activées"])
       + `<div class="apopts">${opt("al","Réassorts et précommandes","Repérés par le guetteur, 24 h/24")}${opt("dm","Messages et réponses", me?.id ? "Quand un Hunter t'écrit, te répond ou commente ton post" : "Crée ton profil de Hunter (Classement) pour en recevoir", !me?.id)}${opt("post","Publications du Fil","Chaque nouveau post des autres Hunters")}</div>`
       + `<div class="apbtns"><button class="btn btn-y" id="pushTest" type="button">Envoyer un test</button><button class="btn btn-g" id="pushOff" type="button">Désactiver</button></div><p class="apmsg" id="pushMsg"></p>`
     : srv?.err && sub
     ? head("Notifications de réassort", "Impossible de vérifier avec le guetteur pour l'instant (connexion). Réessaie dans un moment.", ["wait","?"])
     : head("Notifications de réassort", denied ? "Les notifications sont bloquées pour Dex Scan : autorise-les dans les réglages du téléphone (Notifications → Dex Scan), puis reviens ici." : lost ? "Ce téléphone n'est plus abonné chez le guetteur : réactive-les." : "Sois prévenu sur ce téléphone, même app fermée, dès qu'un réassort tombe.", ["off","Désactivées"])
       + (denied ? "" : `<button class="btn btn-y apbtn" id="pushBtn" type="button">Activer les notifications</button><p class="apmsg" id="pushMsg"></p>`);
+  $("#pushOpen") && ($("#pushOpen").onclick = ()=>{ store.set("pushOpen", !open); renderPush(); });
   $("#pushBtn") && ($("#pushBtn").onclick = ()=>pushOn());
   $("#pushOff") && ($("#pushOff").onclick = ()=>pushOff(sub));
   $("#pushTest") && ($("#pushTest").onclick = ()=>pushTest(sub));
@@ -8820,6 +8830,7 @@ async function betaPublishFlow(){
 }
 /* Journal des modifications de la Bêta : la carte « Version Bêta » liste celles que les copains n'ont pas encore */
 const BETA_LOG = [
+  {v:189, t:"Alertes : le panneau des notifications tient sur une ligne quand elles sont activées (« Régler › » pour déplier)"},
   {v:188, t:"Langue au scan beaucoup plus fiable : lecture ciblée du texte des attaques, du nom et du bas de carte (code « FR »/« EN »), les cartes ex holo françaises ne sortent plus en japonais"},
   {v:187, t:"Messages : bouton ☺ à côté de chaque bulle pour réagir (❤️ 😂 😆 😮 😢 😭 👍 🔥) · statut en ligne (point vert, « En ligne il y a 5 min »), masquable · photo dans les commentaires et les réponses"},
   {v:186, t:"Réactions émoticônes ❤️ 🔥 😂 😮 😢 👍 sur les publications, les commentaires et les messages (appui long ou double-toucher sur une bulle)"},
@@ -10330,7 +10341,7 @@ function arClose(forfeit){
   AR.b = null; $("#arenaView")?.remove(); if($("#soArena") && !$("#soArena").hidden) renderArenaHome();
 }
 
-window.__cote = {setTheme, dmOpen:(...a)=>dmOpen(...a), cardLang, burstAdd, ebQ:(c,o)=>ebayQuery(c,o), vint:d=>fixPricing(d), arStart:(f)=>arStart(f), renderArenaHome:()=>renderArenaHome(), rkCollection:(i)=>rkCollection(i), cmSearch:(q,t)=>cmSearch(q,t), loadCM:()=>loadCM(), petArtDemo:(k,lv)=>petArt(STARTERS.find(s=>s.k===k),lv,true), palierMsg, shareCollection, fdShareCol, teamPick, teamLeft, evoCheck, openThemes, checkSecret, verifyMatch, detectCard, findCards, parseNumber, showCard, processCard, analyzeQuality, renderDiag, openHealth, checkHealth, selectTab, openSet, showExtHome, EX, loadIndex, matchImage, CARDSIG, numCandidates};
+window.__cote = {setTheme, openSub:(v)=>openSub(v), dmOpen:(...a)=>dmOpen(...a), cardLang, burstAdd, ebQ:(c,o)=>ebayQuery(c,o), vint:d=>fixPricing(d), arStart:(f)=>arStart(f), renderArenaHome:()=>renderArenaHome(), rkCollection:(i)=>rkCollection(i), cmSearch:(q,t)=>cmSearch(q,t), loadCM:()=>loadCM(), petArtDemo:(k,lv)=>petArt(STARTERS.find(s=>s.k===k),lv,true), palierMsg, shareCollection, fdShareCol, teamPick, teamLeft, evoCheck, openThemes, checkSecret, verifyMatch, detectCard, findCards, parseNumber, showCard, processCard, analyzeQuality, renderDiag, openHealth, checkHealth, selectTab, openSet, showExtHome, EX, loadIndex, matchImage, CARDSIG, numCandidates};
 })();
 </script>
 <script>if("serviceWorker" in navigator) addEventListener("load", ()=>navigator.serviceWorker.register(window.__BETA?"beta/sw.js":"sw.js").catch(()=>{}));</script>

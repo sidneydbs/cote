@@ -231,7 +231,7 @@ html{background:var(--panel)}
 .dd{position:relative}
 .dd>summary{list-style:none;display:inline-flex;align-items:center;gap:6px;padding:7px 11px;border-radius:999px;border:1px solid var(--line);background:var(--panel);cursor:pointer;color:var(--fg);font-size:13px;white-space:nowrap}
 .dd>summary::-webkit-details-marker{display:none}
-.dd>summary small{color:var(--muted);font-size:11px}.dd>summary b{font:700 13px var(--f-mono)}.dd>summary span{color:var(--muted);font-size:12.5px}
+.dd>summary small{color:var(--muted);font-size:11px}.dd>summary .lgauto{font-style:normal;font-size:9.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--acc,#F2C230);margin-left:3px}.dd>summary b{font:700 13px var(--f-mono)}.dd>summary span{color:var(--muted);font-size:12.5px}
 .dd>summary i{font-style:normal;color:var(--muted);font-size:11px;transition:transform .15s}.dd[open]>summary i{transform:rotate(180deg)}
 .dd[open]>summary{border-color:var(--border-yellow)}
 .ddm{position:absolute;z-index:6;left:0;top:calc(100% + 6px);min-width:220px;max-height:300px;overflow:auto;padding:6px;border-radius:14px;border:1px solid var(--line);background:var(--panel-2);box-shadow:0 14px 34px rgba(0,0,0,.55);display:grid;gap:2px}
@@ -1881,7 +1881,7 @@ img.px.reveal{animation:stpRev .9s ease-out}
   }
   fit(); addEventListener("resize", fit); addEventListener("orientationchange", function(){ setTimeout(fit, 300); });
 })();</script>
-<script>window.__APPV="173";</script>
+<script>window.__APPV="174";</script>
 <div class="splash" id="splash" aria-hidden="true"><i class="hole"></i><i class="halo"></i><div class="bw"><svg class="b" viewBox="0 0 100 100"><use href="#pb"/></svg><svg class="t" viewBox="0 0 100 100"><use href="#pb"/></svg></div><i class="glow"></i></div>
 <script>setTimeout(function(){ if(window.__booted) return;
   var b=document.createElement("div"); b.setAttribute("role","alert");
@@ -1916,7 +1916,7 @@ img.px.reveal{animation:stpRev .9s ease-out}
   <!-- ===== EXTENSIONS ===== -->
   <section class="view" id="homeView">
     <div class="scroll">
-      <div class="homebar"><span class="brand">DEX<b>·</b>SCAN</span><span class="hbis"><button class="hbi" id="hSearch" aria-label="Rechercher une carte"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></button><button class="hbi" id="themeBtn" aria-label="Changer de thème"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.6-.9 1.2-1.8-.5-1.1.2-2.2 1.4-2.2H17a4 4 0 0 0 4-4c0-5.5-4-10-9-10z"/><circle cx="7.5" cy="11" r="1.2"/><circle cx="10" cy="7" r="1.2"/><circle cx="15" cy="7" r="1.2"/></svg></button><button class="hbi" id="moreBtn" aria-label="Réglages et plus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg></button></span><span class="ver" id="hVer">v173</span></div>
+      <div class="homebar"><span class="brand">DEX<b>·</b>SCAN</span><span class="hbis"><button class="hbi" id="hSearch" aria-label="Rechercher une carte"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></button><button class="hbi" id="themeBtn" aria-label="Changer de thème"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.6-.9 1.2-1.8-.5-1.1.2-2.2 1.4-2.2H17a4 4 0 0 0 4-4c0-5.5-4-10-9-10z"/><circle cx="7.5" cy="11" r="1.2"/><circle cx="10" cy="7" r="1.2"/><circle cx="15" cy="7" r="1.2"/></svg></button><button class="hbi" id="moreBtn" aria-label="Réglages et plus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg></button></span><span class="ver" id="hVer">v174</span></div>
       <button class="banner" id="pxBanner" hidden></button>
       <span class="hdate hgreet" id="hDate"></span>
       <div class="hhero"><div class="total htot" id="hTot"></div><span id="avatSlot"></span></div>
@@ -2649,6 +2649,7 @@ let currentDiag = null;
 const CARDS = new Map();   // fiches déjà ouvertes (30 dernières) : revenir en arrière n'attend plus le réseau
 async function showCard(id, alts, diag=null){
   currentAlts = alts || currentAlts; currentVariant = 0; currentDiag = diag; currentEd = null;
+  currentLg = diag?.lg || store.get("addLg", "FR");
   const memo = CARDS.get(id);
   if(memo && Date.now() - memo.t < 30*60e3){
     openSheet(); current = memo.card; renderCard(); $("#sheetBody").scrollTop = 0;
@@ -3043,7 +3044,7 @@ function renderCard(){
           <details class="dd"><summary aria-label="État de ta carte"><small>État</small><b>${esc(currentCond)}</b><span>${esc((CONDS.find(c=>c[0]===currentCond)||CONDS[1])[2])}</span><i>▾</i></summary>
             <div class="ddm" role="group" aria-label="État de la carte">${CONDS.map(([k,n,d])=>`<button data-cond="${k}" aria-pressed="${k===currentCond}"><b>${k}</b><span>${esc(n)} · ${esc(d.toLowerCase())}</span></button>`).join("")}
             <p>${currentCond!=="NM"?`Vaut environ ${Math.round((CONDF[currentCond]||1)*100)} % de la cote.`:"C'est l'état de la cote affichée."} <a href="#" id="condHelp">C'est quoi ?</a></p></div></details>
-          <details class="dd"><summary aria-label="Langue de ta carte"><small>Langue</small><b>${esc(currentLg)}</b><span>${LG_FLAG[currentLg]||""}</span><i>▾</i></summary>
+          <details class="dd"><summary aria-label="Langue de ta carte"><small>Langue${currentDiag?.lg && currentDiag.lg===currentLg?' <em class="lgauto">auto</em>':""}</small><b>${esc(currentLg)}</b><span>${LG_FLAG[currentLg]||""}</span><i>▾</i></summary>
             <div class="ddm" role="group" aria-label="Langue de la carte">${Object.entries(CARD_LG).map(([k,t])=>`<button data-lg="${k}" aria-pressed="${k===currentLg}"><b>${k} ${LG_FLAG[k]||""}</b><span>${esc(t)}</span></button>`).join("")}</div></details>
         </div>
         <div class="dcote${dBig?"":" none"}"><span class="dl">${esc(dLbl)}</span><span class="dp">${dBig?`${eur(dBig)}<small>€</small>`:"Pas de cote"}</span>${dBig?`<span class="dr">${dDelta||"<span></span>"}${dSp}</span>`:""}</div>
@@ -4539,6 +4540,73 @@ async function getWorker(){
   }
   return workerP;
 }
+/* ---------- Langue de la carte : FR / EN par les mots imprimés, JP / ZH par l'écriture ---------- */
+let cjkW = null, cjkWP = null, cjkIdle = null;
+function getCjkWorker(){
+  if(cjkW) return Promise.resolve(cjkW);
+  cjkWP ||= Tesseract.createWorker(["jpn","chi_sim"],1).then(w=>cjkW=w).catch(e=>{ cjkWP=null; throw e; });
+  return cjkWP;
+}
+function cjkRelease(){ clearTimeout(cjkIdle); cjkIdle = setTimeout(()=>{ const w = cjkW; cjkW = null; cjkWP = null; w?.terminate().catch(()=>{}); }, 120e3); }
+const LG_FR = new Set("pv talent faiblesse retraite base niveau evolue evolution dresseur objet energie adversaire votre vos lancez piece face pile degats degat actif banc chaque cette attaque inflige est maintenant paralyse endormi empoisonne brule confus carte cartes main pioche jusqu obtenir pour une les des sur son ses aux".split(" "));
+const LG_EN = new Set("ability weakness retreat basic stage evolves trainer item energy opponent your flip coin heads tails damage active bench each this attack does now paralyzed asleep poisoned burned confused card cards hand draw until get for the and from its their of to".split(" "));
+function lgLatin(text){
+  const raw = (text||"").replace(/pok[ée]mon/gi,"");
+  let fr = 0, en = 0;
+  for(const x of norm(raw).split(" ")){ if(LG_FR.has(x)) fr++; if(LG_EN.has(x)) en++; }
+  const pv = /\bP\s?V\s*\d/.test(raw), hp = /\bH\s?P\s*\d/.test(raw);
+  fr += (pv?3:0) + Math.min(4, (raw.match(/[éèêàâçù]/g)||[]).length);
+  return {fr, en, words:en, hp};
+}
+function lgCjk(text){
+  const s = text||"";
+  return {kana:(s.match(/[ぁ-ゖァ-ヺー]/g)||[]).length, han:(s.match(/[一-鿿]/g)||[]).length};
+}
+// règle de décision (testée sur des cartes nettes et floues) : renvoie FR, EN, JP, ZH ou null
+function lgDecide(L, K){
+  if(L.fr>=3 && L.fr>=L.en+2) return "FR";
+  if(L.words>=3 && L.en>=L.fr+3) return "EN";
+  if(K){
+    if(K.kana>=10 && K.kana>=K.han) return "JP";
+    if(K.han>=10 && K.han>=K.kana*2) return "ZH";
+  }
+  if(!K) return null;
+  if(L.fr>L.en) return "FR";
+  if(L.en>L.fr || L.hp) return "EN";
+  return null;
+}
+async function detectLang(src, B){
+  const w = await getWorker();
+  const sc = Math.min(2, 1100/B.h);
+  const cv = crop(src,B.x,B.y,B.w,B.h,0,0,1,1,sc,false);
+  await w.setParameters({tessedit_pageseg_mode:"3", tessedit_char_whitelist:""});
+  const a = (await withTimeout(w.recognize(cv,{},{text:true}), 12000, "langue")).data;
+  const L = lgLatin(a.text);
+  let lg = lgDecide(L, null), K = null;
+  if(!lg){
+    // pas de mots français ou anglais : on lit l'écriture (kana = japonais, idéogrammes seuls = chinois)
+    let cw = null;
+    if(!cjkW) status.textContent = "Langue : lecture japonais / chinois…";
+    try{ cw = await withTimeout(getCjkWorker(), cjkW ? 1000 : 15000, "moteur japonais"); }catch(e){}
+    if(cw){
+      await cw.setParameters({tessedit_pageseg_mode:"6"});
+      const b = (await withTimeout(cw.recognize(cv,{},{text:true}), 15000, "langue")).data;
+      K = lgCjk(b.text); cjkRelease();
+    }
+    lg = K ? lgDecide(L, K) : null;
+  }
+  return {lg, L, K};
+}
+async function cardLang(src, B, D){
+  try{
+    if(!B || !B.w || !B.h) return;
+    status.textContent = "Langue de la carte…";
+    const r = await detectLang(src, B);
+    D.lgScore = `fr ${r.L.fr} · en ${r.L.en}${r.K?` · kana ${r.K.kana} · idéogrammes ${r.K.han}`:""}`;
+    if(r.lg) D.lg = r.lg;
+  }catch(e){ D.lgScore = "non détectée ("+e.message+")"; }
+  if(!D.lg && D.otherLang) D.lg = D.otherLang==="en" ? "EN" : "FR";
+}
 function crop(src,sx,sy,sw,sh, rx,ry,rw,rh, scale=3, binarize=true){
   const c=document.createElement("canvas"); c.width=Math.round(sw*rw*scale); c.height=Math.round(sh*rh*scale);
   const g=c.getContext("2d",{willReadFrequently:true}); g.imageSmoothingQuality="high";
@@ -4925,6 +4993,7 @@ async function autoTick(){
         still.width = vr.width; still.height = vr.height; still.getContext("2d").drawImage(video,(vr.width-vw*sc)/2,(vr.height-vh*sc)/2,vw*sc,vh*sc);
         still.hidden = false; video.hidden = true;
         navigator.vibrate?.(R.D.uncertain ? [30] : [10,40,10]);
+        await cardLang(S.c, box, R.D);
         status.textContent = `Trouvée : ${R.D.name}`;
         await new Promise(r=>setTimeout(r,300));
         await showCard(R.id, R.alts, R.D);
@@ -4995,6 +5064,7 @@ async function autoTick(){
     still.width = vr.width; still.height = vr.height; still.getContext("2d").drawImage(video,(vr.width-vw*sc)/2,(vr.height-vh*sc)/2,vw*sc,vh*sc);
     still.hidden = false; video.hidden = true;
     navigator.vibrate?.(uncertain ? [30] : [10,40,10]);
+    await cardLang(S.c, box, D);
     status.textContent = `Trouvée : ${best.name}`;
     await new Promise(r=>setTimeout(r,350));
     await showCard(best.id, list, D);
@@ -5039,6 +5109,7 @@ async function processCard(src,sx,sy,sw,sh){
       const M = await verifyMatch(src, matchImage(src, [{x:sx,y:sy,w:sw,h:sh}, C.found ? C : null]));
       if(M.ok){
         const RM = await openMatched(src, C.found ? C : {x:sx,y:sy,w:sw,h:sh}, M, D.q, C, R);
+        await cardLang(src, C.found ? C : {x:sx,y:sy,w:sw,h:sh}, RM.D);
         status.textContent = "Trouvée";
         navigator.vibrate?.(RM.D.uncertain?[30]:[10,40,10]);
         await showCard(RM.id, RM.alts, RM.D);
@@ -5157,6 +5228,7 @@ async function processCard(src,sx,sy,sw,sh){
     D.uncertain = reasons.length ? reasons[0][0].toUpperCase()+reasons[0].slice(1)+"." : null;
     D.reasons = reasons;
     D.result = {id:best.id, name:best.name};
+    await cardLang(src, C, D);
     lastDiag = D; $("#lastChip").classList.add("show");
     status.textContent = "Trouvée";
     navigator.vibrate?.(D.uncertain?[30]:[10,40,10]);
@@ -5202,6 +5274,7 @@ function renderDiag(D){
       val: D.name||"—", tip: (D.nameRaw?`Texte brut « ${D.nameRaw.slice(0,50)} », confiance ${D.nameConf} %.`:"Aucun texte reconnu dans la zone du nom.") + (D.words?.length?` Mots reconnus sur la carte : ${D.words.slice(0,8).join(", ")}.`:"")});
   }
   if(D.imageMiss) checks.push({label:"Reconnaissance de l'image", state:"warn", val:"—", tip:`Pas de correspondance sûre (${D.imageMiss}). La lecture du numéro a pris le relais.`});
+  if(D.lgScore) checks.push({label:"Langue de la carte", state:D.lg?"ok":"warn", val:D.lg?(LG_FLAG[D.lg]||"")+" "+(CARD_LG[D.lg]||D.lg):"—", tip:D.lg?`Repérée sur le texte imprimé (${D.lgScore}). Tu peux la changer dans la fiche.`:`Pas assez de texte lisible pour trancher (${D.lgScore}) : choisis la langue dans la fiche.`});
   if(D.image) checks.push({label:"Reconnaissance de l'image", state:D.uncertain?"warn":"ok", val:D.how, tip:D.attempts[0]?.zone || ""});
   if(D.search && !D.image){
     const sm=D.search;
@@ -8231,6 +8304,7 @@ async function betaPublishFlow(){
 }
 /* Journal des modifications de la Bêta : la carte « Version Bêta » liste celles que les copains n'ont pas encore */
 const BETA_LOG = [
+  {v:174, t:"Le scanner reconnaît tout seul la langue de la carte : français, anglais, japonais ou chinois"},
   {v:173, t:"Arène retirée pour l'instant (gardée de côté pour plus tard)"},
   {v:172, t:"Accueil : le trophée du classement passe dans le panneau de la valeur"},
   {v:172, t:"Classeur, extension ouverte : une seule barre propre — N° / Prix · Possédées / Manquantes (retoucher = toutes) · Sélection"},
@@ -8862,6 +8936,9 @@ $("#moreBack").onclick = ()=>navBack();
    Après l'intro, une seule fois par version qui apporte quelque chose à l'utilisateur.
    Nouvelle installation : rien (tout est neuf). Les versions purement techniques n'ont pas d'entrée ici. */
 const NEWS = [
+  {v:174, items:[
+    ["M3 5h12M9 3v2m1.05 9.5A18 18 0 0 1 6.4 9m6.6 11 5-10 5 10m-8.5-3h7M11.5 5c-.6 4.2-2.9 8-6.5 10.5", "Langue reconnue au scan", "Le scanner lit le texte de la carte et règle tout seul la langue : FR, EN, JP ou CN. Tu peux toujours la changer dans la fiche."]
+  ]},
   {v:172, items:[
     ["M12 3v6M8 7l4 4 4-4M5 13a7 7 0 1 0 14 0", "Tire pour recharger", "En haut de n'importe quel onglet, tire vers le bas pour recharger l'app."]
   ]},
@@ -9448,7 +9525,7 @@ function arClose(forfeit){
   AR.b = null; $("#arenaView")?.remove(); if($("#soArena") && !$("#soArena").hidden) renderArenaHome();
 }
 
-window.__cote = {setTheme, arStart:(f)=>arStart(f), renderArenaHome:()=>renderArenaHome(), rkCollection:(i)=>rkCollection(i), cmSearch:(q,t)=>cmSearch(q,t), loadCM:()=>loadCM(), petArtDemo:(k,lv)=>petArt(STARTERS.find(s=>s.k===k),lv,true), palierMsg, shareCollection, fdShareCol, teamPick, teamLeft, evoCheck, openThemes, checkSecret, verifyMatch, detectCard, findCards, parseNumber, showCard, processCard, analyzeQuality, renderDiag, openHealth, checkHealth, selectTab, openSet, showExtHome, EX, loadIndex, matchImage, CARDSIG, numCandidates};
+window.__cote = {setTheme, cardLang, arStart:(f)=>arStart(f), renderArenaHome:()=>renderArenaHome(), rkCollection:(i)=>rkCollection(i), cmSearch:(q,t)=>cmSearch(q,t), loadCM:()=>loadCM(), petArtDemo:(k,lv)=>petArt(STARTERS.find(s=>s.k===k),lv,true), palierMsg, shareCollection, fdShareCol, teamPick, teamLeft, evoCheck, openThemes, checkSecret, verifyMatch, detectCard, findCards, parseNumber, showCard, processCard, analyzeQuality, renderDiag, openHealth, checkHealth, selectTab, openSet, showExtHome, EX, loadIndex, matchImage, CARDSIG, numCandidates};
 })();
 </script>
 <script>if("serviceWorker" in navigator) addEventListener("load", ()=>navigator.serviceWorker.register(window.__BETA?"beta/sw.js":"sw.js").catch(()=>{}));</script>

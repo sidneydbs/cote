@@ -86,18 +86,22 @@ const TAG_TXT = {talk:"💬 Discussion", re:"🔔 Réassort", new:"✨ Nouveaut�
 const DM_MAX = 400, DM_PER_HOUR = 120;
 const dmKey = (a, b) => "dm:" + [a, b].sort().join(":");
 const inboxOf = async (env, id) => (await env.FEED.get("inbox:" + id, "json")) || [];
-/* Présence « en ligne » : "pr:ID" = {t: dernière activité, hide}. Écrite au plus toutes les 2 min par profil (mémoire de l'isolat). */
-const PRES = new Map(), ONLINE_MS = 3 * 60e3;
+/* Présence « en ligne » : "pr:ID" = {t: dernière activité, hide}. Écrite au plus toutes les 15 min par profil
+   (l'offre gratuite limite les écritures KV à ~1 000/jour) ; entre deux écritures, l'activité est gardée en mémoire de l'isolat. */
+const PRES = new Map(), ONLINE_MS = 3 * 60e3, PRES_WRITE = 15 * 60e3, ONLINE_KV = PRES_WRITE + 60e3;
 const presGet = async (env, u) => { try{ return (await env.FEED.get("pr:" + u, "json")) || {t:0}; }catch(e){ return {t:0}; } };
 async function touch(env, me){
-  const now = Date.now(); if(now - (PRES.get(me) || 0) < 120e3) return;
-  PRES.set(me, now); const pr = await presGet(env, me); if(now - (pr.t || 0) < 120e3) return;
+  const now = Date.now(), w = PRES_W.get(me) || 0; PRES.set(me, now); if(now - w < PRES_WRITE) return;
+  PRES_W.set(me, now); const pr = await presGet(env, me); if(now - (pr.t || 0) < PRES_WRITE) return;
   pr.t = now; await env.FEED.put("pr:" + me, JSON.stringify(pr));
 }
-const presOf = pr => pr?.hide || !pr?.t ? {on:null, last:null} : {on: Date.now() - pr.t < ONLINE_MS, last: pr.t};
+const PRES_W = new Map();
+// en mémoire (précis) si cet isolat a vu passer la personne, sinon la dernière écriture KV (à 15 min près)
+const presOf = (pr, u) => { if(pr?.hide) return {on:null, last:null}; const m = u ? PRES.get(u) || 0 : 0, t = Math.max(pr?.t || 0, m); if(!t) return {on:null, last:null};
+  return {on: m && m >= (pr?.t || 0) ? Date.now() - m < ONLINE_MS : Date.now() - t < ONLINE_KV, last: t}; };
 async function dm(env, me, act, b){
   if(act === "list"){ const l = (await inboxOf(env, me)).sort((x, y) => y.t - x.t);
-    await Promise.all(l.slice(0, 40).map(async t => Object.assign(t, presOf(await presGet(env, t.with)))));
+    await Promise.all(l.slice(0, 40).map(async t => Object.assign(t, presOf(await presGet(env, t.with), t.with))));
     return json({threads: l, hide: !!(await presGet(env, me)).hide}); }
   const other = clean(b.with ?? b.to, 64); if(!/^[\w-]{6,64}$/.test(other) || other === me) return err("Destinataire invalide");
   if(act === "thread"){
@@ -111,7 +115,7 @@ async function dm(env, me, act, b){
       // la conversation de l'autre affiche « Vu » sans ouvrir le fil
       const ob = await inboxOf(env, other), oe = ob.find(x => x.with === me); if(oe){ oe.seenT = now; await env.FEED.put("inbox:" + other, JSON.stringify(ob)); }
     }
-    return json({msgs: l.slice(-200), seen: seen[other] || 0, ...presOf(await presGet(env, other))});
+    return json({msgs: l.slice(-200), seen: seen[other] || 0, ...presOf(await presGet(env, other), other)});
   }
   if(act === "react"){
     const k = dmKey(me, other), l = (await env.FEED.get(k, "json")) || [], m = l.find(x => x.id === b.m);

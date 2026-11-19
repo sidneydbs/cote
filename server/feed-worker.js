@@ -2,7 +2,7 @@
    Liaison KV obligatoire : nom de variable FEED.
    Routes (toutes sous /feed) :
      GET  /feed?f=all|re|new&id=ID      → {posts}
-     GET  /feed/img/POST_ID              → la photo (JPEG)
+     GET  /feed/img/POST_ID              → la photo (JPEG)   (POST_ID-COMMENTAIRE : photo d'un commentaire)
      POST /feed/post   {id,key,name,pk,lv,tag,text,img,shop,price} → {post}
      POST /feed/like   {id,key,post}     → {post}
      POST /feed/vote   {id,key,post,v}   → {post}   (v = "ok" | "ko")
@@ -67,6 +67,7 @@ function view(p, me, base){
     likes:(p.likers||[]).length, liked: !!me && (p.likers||[]).includes(me), rx:rxSum(p), mrx: me ? (p.rx?.[me] || null) : null,
     ok: vals.filter(x=>x==="ok").length, ko: vals.filter(x=>x==="ko").length, my: me ? (v[me] || null) : null,
     cm: (p.cm||[]).map(c => ({id:c.id, uid:c.uid, name:c.name, pk:c.pk, lv:c.lv, text:c.text, card:c.card, t:c.t, re:c.re, reName:c.reName,
+      img: c.img ? base + "/feed/img/" + p.id + "-" + c.id : undefined,
       likes:(c.likers||[]).length, liked: !!me && (c.likers||[]).includes(me), rx:rxSum(c), mrx: me ? (c.rx?.[me] || null) : null})),
     att:p.att, city:p.city,
     pv: p.att?.opts ? p.att.opts.map((_, i) => Object.values(p.pv||{}).filter(x => x === i).length) : undefined,
@@ -244,24 +245,27 @@ export default {
       const p = l.find(x => x.id === b.post); if(!p) return err("Ce post n'existe plus", 404);
       if(act === "like"){ p.likers ||= []; const i = p.likers.indexOf(me); i < 0 ? p.likers.push(me) : p.likers.splice(i, 1); }
       else if(act === "vote"){ if(p.tag !== "re") return err("Vote réservé aux réassorts"); const v = b.v === "ko" ? "ko" : "ok"; p.votes ||= {}; p.votes[me] === v ? delete p.votes[me] : p.votes[me] = v; }
-      else if(act === "del"){ if(p.uid !== me) return err("Ce n'est pas ton post", 403); l = l.filter(x => x !== p); if(p.img) await env.FEED.delete("img:" + p.id); await save(env, l); return json({ok:true}); }
+      else if(act === "del"){ if(p.uid !== me) return err("Ce n'est pas ton post", 403); l = l.filter(x => x !== p); if(p.img) await env.FEED.delete("img:" + p.id); for(const c of (p.cm||[])) if(c.img) await env.FEED.delete("img:" + p.id + "-" + c.id); await save(env, l); return json({ok:true}); }
       else if(act === "comment"){
-        const text = clean(b.text, 300); if(!text && !b.card) return err("Commentaire vide");
+        const text = clean(b.text, 300), cimg = typeof b.img === "string" && b.img.startsWith("data:image/") && b.img.length < 700000 ? b.img : null;
+        if(!text && !b.card && !cimg) return err("Commentaire vide");
         const now = Date.now(); let n = 0; for(const x of l) for(const c of (x.cm||[])) if(c.uid === me && now - c.t < 36e5) n++;
         if(n >= CM_PER_HOUR) return err("Trop de commentaires : réessaie dans un moment", 429);
         p.cm ||= []; if(p.cm.length >= MAX_CM) return err("Ce post a trop de commentaires");
         const to = b.re ? p.cm.find(x => x.id === b.re) : null, who = clean(b.name, 24) || "Hunter";
-        p.cm.push({id: now.toString(36) + Math.random().toString(36).slice(2, 6), uid:me, name:who, pk:clean(b.pk, 40) || undefined, lv:Math.max(1, Math.min(999, b.lv|0)), text, card:card(b.card), t:now,
-          re: to ? to.id : undefined, reName: to ? to.name : undefined});
+        const cid = now.toString(36) + Math.random().toString(36).slice(2, 6);
+        if(cimg) await env.FEED.put("img:" + p.id + "-" + cid, cimg);
+        p.cm.push({id: cid, uid:me, name:who, pk:clean(b.pk, 40) || undefined, lv:Math.max(1, Math.min(999, b.lv|0)), text, card:card(b.card), t:now,
+          re: to ? to.id : undefined, reName: to ? to.name : undefined, img: cimg ? true : undefined});
         // notifications : la personne à qui on répond, et l'auteur du post
-        const body = (text || "🃏 " + (card(b.card)?.name || "Carte")).slice(0, 200);
+        const body = (text || (cimg ? "📷 Photo" : "🃏 " + (card(b.card)?.name || "Carte"))).slice(0, 200);
         if(to && to.uid !== me) notif(env, "send", {kind:"to", to:to.uid, tag:"cm-" + p.id, title:`↩️ ${who} t'a répondu`, body, url:`app:?post=${p.id}&cm=1`});
         if(p.uid !== me && p.uid !== to?.uid) notif(env, "send", {kind:"to", to:p.uid, tag:"cm-" + p.id, title:`💬 ${who} a commenté ton post`, body, url:`app:?post=${p.id}&cm=1`});
       }
       else if(act === "react") rxSet(p, me, b.e);
       else if(act === "cmreact"){ const c = (p.cm||[]).find(x => x.id === b.c); if(!c) return err("Commentaire introuvable", 404); rxSet(c, me, b.e); }
       else if(act === "cmlike"){ const c = (p.cm||[]).find(x => x.id === b.c); if(!c) return err("Commentaire introuvable", 404); c.likers ||= []; const i = c.likers.indexOf(me); i < 0 ? c.likers.push(me) : c.likers.splice(i, 1); }
-      else if(act === "uncomment"){ const c = (p.cm||[]).find(x => x.id === b.c); if(!c) return err("Commentaire introuvable", 404); if(c.uid !== me && p.uid !== me) return err("Ce n'est pas ton commentaire", 403); p.cm = p.cm.filter(x => x !== c); }
+      else if(act === "uncomment"){ const c = (p.cm||[]).find(x => x.id === b.c); if(!c) return err("Commentaire introuvable", 404); if(c.uid !== me && p.uid !== me) return err("Ce n'est pas ton commentaire", 403); p.cm = p.cm.filter(x => x !== c); if(c.img) await env.FEED.delete("img:" + p.id + "-" + c.id); }
       else if(act === "pvote"){ const n = p.att?.opts?.length || 0, o = b.o|0; if(!n || o < 0 || o >= n) return err("Option inconnue"); p.pv ||= {}; p.pv[me] === o ? delete p.pv[me] : p.pv[me] = o; }
       else if(act === "report"){ p.reports ||= []; if(!p.reports.includes(me)) p.reports.push(me); await save(env, l); return json({ok:true}); }
       else return err("action inconnue", 404);

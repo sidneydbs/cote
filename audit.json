@@ -1,5 +1,5 @@
 {
- "built": "2026-11-18T18:23:20.129Z",
+ "built": "2026-11-19T00:43:30.625Z",
  "sets": {
   "total": 209,
   "noLogo": [],
@@ -15,11 +15,11 @@
  },
  "sealed": {
   "total": 4636,
-  "photo": 1310,
+  "photo": 1344,
   "manual": 0,
-  "tcgplayer": 694,
+  "tcgplayer": 666,
   "logo": 1808,
-  "missing": 824,
+  "missing": 818,
   "list": [
    "EX Trainer Kit",
    "EX Trainer Kit 2",
@@ -344,7 +344,6 @@
    "Intro Pack Box",
    "V & VSTAR Promo Card Pack",
    "VSTAR Special Set Box",
-   "Trick or Trade BOOster",
    "Paradigm Trigger: Mystery Box",
    "Paradigm Trigger Promo Booster",
    "Special Battle Set Charizard VSTAR vs Rayquaza VMAX",
@@ -384,7 +383,6 @@
    "Water Greninja ex Start Deck",
    "Psychic Clefable ex Start Deck",
    "Darkness Houndoom ex Start Deck",
-   "Trick or Trade 2023 BOOster",
    "World Championships 2023 Yokohama Deck -Pikachu-: Pikachu Coin",
    "The Town on No Map McDonald's Pack",
    "Wind from the Sea McDonald's Pack",
@@ -434,7 +432,6 @@
    "Battle Master Deck Tera Charizard ex: Tera Charizard Coin",
    "Battle Master Deck Chien-Pao ex: Chien-Pao Coin",
    "Battle Master Deck Tera Charizard ex",
-   "Trick or Trade 2024 BOOster",
    "Special Set Pokémon Horizons: The Series",
    "Vaporeon VMAX Advanced Gift Box",
    "Jolteon VMAX Advanced Gift Box",
@@ -753,7 +750,6 @@
    "Paldea Trainer Battle Box",
    "MEGA Dream ex Special Set",
    "MEGA Dream ex Special Set Booster",
-   "First Partner Illustration Booster Series 1",
    "M-P Promos: 2026 Event Organizer Trainer's Pack",
    "30th Anniversary Celebration Simplified Chinese: Original Partner Card Set Vol.1",
    "Void Blast Special Set Rowlet 2-Pack Blister",
@@ -765,7 +761,6 @@
    "CSVH4C: Happy Set Decidueye & Melmetal & Koraidon & Miraidon Theme Deck",
    "CBB5C: Gem Pack Vol. 5 Booster",
    "CBB5C: Gem Pack Vol. 5 Booster Box",
-   "First Partner Illustration Booster Series 2",
    "Dream Painting Collection Water Figure Set",
    "CSV9C: Stellar Crystal Booster",
    "CSV9C: Stellar Crystal Jumbo Booster",
@@ -826,7 +821,6 @@
    "MEGA Starter Set Eevee ex",
    "MEGA Starter Set Zorua & Zoroark ex",
    "MEGA Starter Set Sprigatito & Meowscarada ex",
-   "First Partner Illustration Booster Series 3",
    "CSV9C: Stellar Crystal Coin Set",
    "CSV10C: Chasing Glory Together Coin Set",
    "Lillie's Battle Kit Gift Box",
@@ -864,24 +858,24 @@
   "tk-xy-p": "tk9b",
   "tk-sm-l": "tk10a",
   "tk-sm-r": "tk10b",
-  "tk-ex-latia": "tk1a",
-  "tk-ex-p": "tk2a"
+  "tk-ex-m": "tk2b",
+  "tk-ex-p": "tk2a",
+  "tk-ex-latia": "tk1a"
  },
  "diag": {
   "assets.tcgdex.net": {
-   "404": 324,
+   "404": 321,
+   "503": 24,
    "ok": 150
   },
   "images.pokemontcg.io": {
    "404": 35,
-   "ok": 509,
-   "réseau": 3
+   "ok": 509
   },
   "images.scrydex.com": {
    "404": 16,
    "ok": 1119,
-   "absente": 202,
-   "réseau": 4
+   "absente": 202
   },
   "limitlesstcg.nyc3.cdn.digitaloceanspaces.com": {
    "403": 1,

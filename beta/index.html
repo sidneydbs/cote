@@ -1181,6 +1181,9 @@ button.fd-av{padding:0;border:0;cursor:pointer}.fd-name{cursor:pointer}
 .csum{display:flex;align-items:baseline;flex-wrap:wrap;gap:4px 8px;margin:0 2px 12px;font-size:13px;color:var(--muted)}
 .csum strong{font:800 22px/1 var(--f-display);color:var(--fg);font-variant-numeric:tabular-nums}
 .csum .up{color:var(--up);font-weight:700}.csum .down{color:var(--down);font-weight:700}
+#colList .lmini .lrow{gap:8px;flex-wrap:nowrap}#colList .lmini .lbl{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+#colList .lmini .csort{flex:none;width:auto}#colList .lmini .csort button{padding-inline:12px;white-space:nowrap}#colList .lmini .csort button::after{content:" ▾";opacity:.6;font-size:.8em}
+#colList .lbc{margin-left:auto;margin-right:8px;background:none;border:0;color:var(--muted);font:inherit;font-size:12px;padding:6px}
 #colList .tl[data-none] .sq{opacity:.5;filter:saturate(.6)}
 #colList .tl[data-none] .tv{opacity:.7}
 #colView #wallet,#colView .colmode,#colTools #colPdx,#colTools #colFlt{display:none}
@@ -2041,7 +2044,7 @@ img.px.reveal{animation:stpRev .9s ease-out}
   }
   fit(); addEventListener("resize", fit); addEventListener("orientationchange", function(){ setTimeout(fit, 300); });
 })();</script>
-<script>window.__APPV="198";</script>
+<script>window.__APPV="199";</script>
 <div class="splash" id="splash" aria-hidden="true"><i class="hole"></i><i class="halo"></i><div class="bw"><svg class="b" viewBox="0 0 100 100"><use href="#pb"/></svg><svg class="t" viewBox="0 0 100 100"><use href="#pb"/></svg></div><i class="glow"></i></div>
 <script>setTimeout(function(){ if(window.__booted) return;
   var b=document.createElement("div"); b.setAttribute("role","alert");
@@ -2076,7 +2079,7 @@ img.px.reveal{animation:stpRev .9s ease-out}
   <!-- ===== EXTENSIONS ===== -->
   <section class="view" id="homeView">
     <div class="scroll">
-      <div class="homebar"><span class="brand">DEX<b>·</b>SCAN</span><span class="hbis"><button class="hbi" id="hSearch" aria-label="Rechercher une carte"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></button><button class="hbi" id="themeBtn" aria-label="Changer de thème"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.6-.9 1.2-1.8-.5-1.1.2-2.2 1.4-2.2H17a4 4 0 0 0 4-4c0-5.5-4-10-9-10z"/><circle cx="7.5" cy="11" r="1.2"/><circle cx="10" cy="7" r="1.2"/><circle cx="15" cy="7" r="1.2"/></svg></button><button class="hbi" id="moreBtn" aria-label="Réglages et plus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg></button></span><span class="ver" id="hVer">v198</span></div>
+      <div class="homebar"><span class="brand">DEX<b>·</b>SCAN</span><span class="hbis"><button class="hbi" id="hSearch" aria-label="Rechercher une carte"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></button><button class="hbi" id="themeBtn" aria-label="Changer de thème"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.6-.9 1.2-1.8-.5-1.1.2-2.2 1.4-2.2H17a4 4 0 0 0 4-4c0-5.5-4-10-9-10z"/><circle cx="7.5" cy="11" r="1.2"/><circle cx="10" cy="7" r="1.2"/><circle cx="15" cy="7" r="1.2"/></svg></button><button class="hbi" id="moreBtn" aria-label="Réglages et plus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg></button></span><span class="ver" id="hVer">v199</span></div>
       <button class="banner" id="pxBanner" hidden></button>
       <span class="hdate hgreet" id="hDate"></span>
       <div class="hhero"><div class="total htot" id="hTot"></div><span id="avatSlot"></span></div>
@@ -3502,7 +3505,7 @@ async function renderCol(){
   const SD = store.get("setDates", {}), serDate = {}, OWNI = ownIndex();
   if(!RAR.d) loadRar().then(d=>{ if(d && gen===COLV.gen && !$("#colView").hidden) renderCol(); });
   for(const se of EX.series||[]) serDate[se.name] = se.date;
-  const cbar = `<div class="lbar"><div class="lrow"><div class="csort">${CSORT.map(([k,l])=>`<button data-csort="${k}" aria-pressed="${COLV.sort===k}">${l}</button>`).join("")}</div>${vtogHTML(COLV.view, ["folders","compact","detail"])}</div>${`<div class="lrow"><div class="csort csfull" role="group" aria-label="Extensions affichées"><button data-call="1" aria-pressed="${!!COLV.all}">Toutes les extensions</button><button data-call="0" aria-pressed="${!COLV.all}">Seulement les miennes</button></div></div>`}</div>`;
+  const cbar = !COLV.barOpen ? lbarMini() : `<div class="lbar"><div class="lrow"><div class="csort">${CSORT.map(([k,l])=>`<button data-csort="${k}" aria-pressed="${COLV.sort===k}">${l}</button>`).join("")}</div>${vtogHTML(COLV.view, ["folders","compact","detail"])}</div>${`<div class="lrow"><div class="csort csfull" role="group" aria-label="Extensions affichées"><button data-call="1" aria-pressed="${!!COLV.all}">Toutes les extensions</button><button data-call="0" aria-pressed="${!COLV.all}">Seulement les miennes</button></div></div>`}</div>`;
   if(COLV.view==="folders" && !q && !(CF.rarity || CF.type || CF.cat || CF.pmin!=null || CF.pmax!=null)){ colFolders(groups, by, OWNI, gen, list); return; }
   list.innerHTML = cbar + groups.map(g=>`<section class="serie"><h2><span>${esc(g.name)}${serDate[g.name]?` <em class="sdate">· depuis ${esc(fmtMonth(serDate[g.name]))}</em>`:""}</span><span>${g.sets.reduce((a,s)=>a+by.get(s.id).length,0)}</span></h2>${
     g.sets.map(s=>{
@@ -3512,6 +3515,7 @@ async function renderCol(){
       return setCardHTML(s, {own: OWNI.get(s.id), cls:"colset"+(open?" open":""), plus:!open, value: val?eurS(val):"", attrs:` role="button" tabindex="0" aria-expanded="${open}"`, inner:`<button class="colfold top" type="button" data-fold><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 15 6-6 6 6"/></svg>Replier</button><div class="cgrid"></div><button class="colfold" type="button" data-fold><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 15 6-6 6 6"/></svg>Replier ${esc(s.name)}</button>`});
     }).join("")}</section>`).join("");
   list.querySelectorAll("[data-csort]").forEach(b=>b.onclick=()=>{ COLV.sort = b.dataset.csort; store.set("colSort", COLV.sort); renderCol(); });
+  bindLbar(list);
   bindColAll(list);
   list.querySelectorAll("[data-view]").forEach(b=>b.onclick=()=>{ COLV.view = b.dataset.view; store.set("colViewMode2", COLV.view); renderCol(); });
   list.querySelectorAll(".colset [data-fold]").forEach(b=>b.onclick=e=>{ e.stopPropagation(); colFold(b.closest(".colset")); });
@@ -3538,6 +3542,16 @@ async function renderCol(){
     if(box.classList.contains("open") || q || narrow){ if(q || narrow) box.classList.add("open"); fillColSet(box, by.get(box.dataset.set), gen); }
   }
 }
+// barre Ranger · Disposition repliée : on ne montre que ce qui est choisi ; un appui l'ouvre, un choix la referme
+function lbarMini(){
+  const sl = (CSORT.find(x=>x[0]===COLV.sort)||CSORT[0])[1];
+  return `<div class="lbar lmini"><div class="lrow"><span class="lbl">Ranger</span><div class="csort"><button data-lbo aria-pressed="true">${COLV.all?"Toutes":"Les miennes"}</button><button data-lbo aria-pressed="true">${sl}</button></div><div class="vtog"><button data-lbo aria-pressed="true" aria-label="Changer la disposition">${VIEW_ICO[COLV.view]}</button></div></div></div>`;
+}
+function bindLbar(list){
+  list.querySelectorAll("[data-lbo]").forEach(b=>b.onclick=()=>{ COLV.barOpen = true; renderCol(); });
+  list.querySelectorAll(".lbar:not(.lmini) [data-csort],.lbar:not(.lmini) [data-call],.lbar:not(.lmini) [data-view]").forEach(b=>b.addEventListener("click", ()=>{ COLV.barOpen = false; }, true));
+  const c = list.querySelector("[data-lbc]"); if(c) c.onclick = ()=>{ COLV.barOpen = false; renderCol(); };
+}
 function bindColAll(list){ list.querySelectorAll("[data-call]").forEach(b=>b.onclick=()=>{ const v = b.dataset.call==="1"; if(v===COLV.all) return; COLV.all = v; store.set("colAll", v); COLV.fold.ser = COLV.fold.set = null; renderCol(); }); }
 // ouvrir une extension directement dans le Classeur (dossiers) ; sinon l'ancienne page d'extension
 async function colOpenSet(id){
@@ -3560,7 +3574,7 @@ function colFolders(groups, by, OWNI, gen, list){
   if(!s && COLV.sel) selEnd(false);
   const s0 = !!s;
   // rangement ET disposition toujours visibles en haut du Classeur, à tous les niveaux des dossiers
-  const vbar = `<div class="lbar"><div class="lrow"><span class="lbl">${s0?"Disposition":"Ranger · Disposition"}</span>${vtogHTML(COLV.view, ["folders","compact","detail"])}</div>${s0?"":`<div class="lrow"><div class="csort csfull" role="group" aria-label="Extensions affichées"><button data-call="1" aria-pressed="${!!COLV.all}">Toutes les extensions</button><button data-call="0" aria-pressed="${!COLV.all}">Seulement les miennes</button></div></div>`}${s0?"":`<div class="lrow"><div class="csort csfull">${CSORT.map(([k,l])=>`<button data-csort="${k}" aria-pressed="${COLV.sort===k}">${l}</button>`).join("")}</div></div>`}</div>`;
+  const vbar = !s0 && !COLV.barOpen ? lbarMini() : `<div class="lbar"><div class="lrow"><span class="lbl">${s0?"Disposition":"Ranger · Disposition"}</span>${s0?"":`<button class="lbc" data-lbc aria-label="Replier">Fermer</button>`}${vtogHTML(COLV.view, ["folders","compact","detail"])}</div>${s0?"":`<div class="lrow"><div class="csort csfull" role="group" aria-label="Extensions affichées"><button data-call="1" aria-pressed="${!!COLV.all}">Toutes les extensions</button><button data-call="0" aria-pressed="${!COLV.all}">Seulement les miennes</button></div></div>`}${s0?"":`<div class="lrow"><div class="csort csfull">${CSORT.map(([k,l])=>`<button data-csort="${k}" aria-pressed="${COLV.sort===k}">${l}</button>`).join("")}</div></div>`}</div>`;
   const xsort = vbar;
   if(s){
     // une extension ouverte : avancement, filtre Toutes / Possédées / Manquantes, puis les cartes
@@ -3593,6 +3607,7 @@ function colFolders(groups, by, OWNI, gen, list){
     if(CF.sort==="price" && typeof loadPrices==="function") loadPrices().then(()=>renderCol()); else renderCol(); });
   list.querySelectorAll("[data-csort]").forEach(b=>b.onclick=()=>{ if(COLV.sort===b.dataset.csort) return; COLV.sort = b.dataset.csort; store.set("colSort", COLV.sort); F.ser = F.set = null; renderCol(); top(); });
   list.querySelectorAll("[data-view]").forEach(b=>b.onclick=()=>{ COLV.view = b.dataset.view; store.set("colViewMode2", COLV.view); renderCol(); });
+  bindLbar(list);
   bindColAll(list);
   list.querySelectorAll("[data-upc]").forEach(b=>b.onclick=()=>showUpcoming(b.dataset.upc));
   list.querySelectorAll("[data-fxs]").forEach(b=>b.onclick=()=>{ if(COLV.sort===b.dataset.fxs) return; COLV.sort = b.dataset.fxs; store.set("colSort", COLV.sort); F.ser = F.set = null; renderCol(); top(); });
@@ -8918,6 +8933,7 @@ async function betaPublishFlow(){
 }
 /* Journal des modifications de la Bêta : la carte « Version Bêta » liste celles que les copains n'ont pas encore */
 const BETA_LOG = [
+  {v:199, t:"Mes cartes : la barre Ranger · Disposition ne montre que les choix en cours, un appui l'ouvre"},
   {v:198, t:"Mur : le compagnon reste dans sa case au lieu de déborder sur le nom et les chiffres"},
   {v:197, t:"Extensions à venir en tête de Mes cartes (Flowing Fists officielle le 5 février 2027), et la Bêta lit la liste à jour du site"},
   {v:196, t:"Image de partage : la carte s'affiche aussi pour les rééditions (Rayquaza EX 30 ans…) grâce à un relais d'image"},

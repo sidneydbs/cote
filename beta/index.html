@@ -272,6 +272,18 @@ button.wnote{color:var(--fg);border-color:color-mix(in srgb,var(--border-yellow)
 .bkoff{display:block;margin:18px auto 4px;color:var(--muted);font-size:13px;text-decoration:underline;text-underline-offset:3px}
 .bknudge{display:flex;align-items:center;gap:10px;width:100%;text-align:left;margin:0 0 12px;padding:11px 12px;border-radius:14px;background:color-mix(in srgb,#FFB020 12%,var(--panel));border:1px solid color-mix(in srgb,#FFB020 55%,var(--line))}
 .bknudge b{display:block;font-size:13.5px}.bknudge small{display:block;color:var(--muted);font-size:12px;margin-top:2px}.bknudge .x{margin-left:auto;flex:none;width:28px;height:28px;color:var(--muted);font-size:18px}
+.trbox{margin:12px 0 0;padding:13px;border-radius:16px;background:var(--panel);border:1px solid color-mix(in srgb,var(--border-yellow) 45%,var(--line))}
+.trbox.off p{margin:6px 0 10px;font-size:13.5px;line-height:1.45;color:var(--muted)}.trbox.off .btn{width:100%}.trbox .fine{margin:8px 0 0}
+.trh{display:flex;align-items:center;justify-content:space-between}.trh b{font-size:15px}.trref{width:32px;height:32px;border-radius:50%;font-size:17px;color:var(--muted)}
+.trm{margin-top:10px;padding:10px;border-radius:13px;background:var(--panel-2);border:1px solid var(--line)}.trm.both{border-color:var(--up)}
+.trw{display:flex;align-items:center;gap:10px}.trav{position:relative;flex:none;width:40px;height:40px;display:grid;place-items:center;font-size:24px}.trav .pet{position:relative;width:100%;height:100%}.trav .pet .ph{inset:-14%}.trav img{max-width:100%;max-height:100%}.trn{flex:1;min-width:0;display:flex;flex-direction:column}.trn b{font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.trn small{color:var(--muted);font-size:12px}.trn em{font-style:normal;color:var(--up);font-weight:700}
+.trgo{flex:none;padding:8px 13px;font-size:13px}
+.trl{display:flex;flex-direction:column;gap:4px;margin-top:8px}.trl>span{font-size:11.5px;color:var(--muted)}
+.trth{display:flex;gap:5px;align-items:center}.trth i{width:34px;aspect-ratio:63/88;border-radius:4px;overflow:hidden;background:var(--panel);display:grid;place-items:center}.trth img{width:100%;height:100%;object-fit:cover}.trth em{font-style:normal;font-size:9px}.trth b{font:700 12px var(--f-mono);color:var(--muted)}
+.trcol{margin-top:8px;font-size:12.5px;color:var(--border-yellow);font-weight:600}
+.rkwant{margin:14px 0 4px;padding:12px;border-radius:14px;background:var(--panel);border:1px solid var(--line)}.rkwant h4{margin:0 0 8px;font-size:14px}
+.rkwl{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;padding-bottom:2px}.rkwc{position:relative;flex:none;width:52px;aspect-ratio:63/88;border-radius:5px;overflow:hidden;background:var(--panel-2)}.rkwc img{width:100%;height:100%;object-fit:cover}.rkwc em{font-style:normal;font-size:9px}
+.rkwc b{position:absolute;right:2px;bottom:2px;font:800 10px/1 var(--f-mono);padding:3px 4px;border-radius:5px;background:var(--panel);color:var(--fg)}.rkwc.dbl{outline:2px solid var(--up);outline-offset:-2px}.rkwc.dbl b{background:var(--up);color:#06281a}
 .ctile .px.up{color:var(--up)}.ctile .px.down{color:var(--down)}
 .variant-tabs{display:flex;gap:6px;margin-top:14px;flex-wrap:wrap}
 .vt{padding:7px 12px;border-radius:9px;background:var(--panel-2);border:1px solid var(--line);font-size:12.5px;font-weight:600;color:var(--muted)}
@@ -1942,7 +1954,7 @@ img.px.reveal{animation:stpRev .9s ease-out}
   }
   fit(); addEventListener("resize", fit); addEventListener("orientationchange", function(){ setTimeout(fit, 300); });
 })();</script>
-<script>window.__APPV="178";</script>
+<script>window.__APPV="179";</script>
 <div class="splash" id="splash" aria-hidden="true"><i class="hole"></i><i class="halo"></i><div class="bw"><svg class="b" viewBox="0 0 100 100"><use href="#pb"/></svg><svg class="t" viewBox="0 0 100 100"><use href="#pb"/></svg></div><i class="glow"></i></div>
 <script>setTimeout(function(){ if(window.__booted) return;
   var b=document.createElement("div"); b.setAttribute("role","alert");
@@ -1977,7 +1989,7 @@ img.px.reveal{animation:stpRev .9s ease-out}
   <!-- ===== EXTENSIONS ===== -->
   <section class="view" id="homeView">
     <div class="scroll">
-      <div class="homebar"><span class="brand">DEX<b>·</b>SCAN</span><span class="hbis"><button class="hbi" id="hSearch" aria-label="Rechercher une carte"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></button><button class="hbi" id="themeBtn" aria-label="Changer de thème"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.6-.9 1.2-1.8-.5-1.1.2-2.2 1.4-2.2H17a4 4 0 0 0 4-4c0-5.5-4-10-9-10z"/><circle cx="7.5" cy="11" r="1.2"/><circle cx="10" cy="7" r="1.2"/><circle cx="15" cy="7" r="1.2"/></svg></button><button class="hbi" id="moreBtn" aria-label="Réglages et plus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg></button></span><span class="ver" id="hVer">v178</span></div>
+      <div class="homebar"><span class="brand">DEX<b>·</b>SCAN</span><span class="hbis"><button class="hbi" id="hSearch" aria-label="Rechercher une carte"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></button><button class="hbi" id="themeBtn" aria-label="Changer de thème"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.6-.9 1.2-1.8-.5-1.1.2-2.2 1.4-2.2H17a4 4 0 0 0 4-4c0-5.5-4-10-9-10z"/><circle cx="7.5" cy="11" r="1.2"/><circle cx="10" cy="7" r="1.2"/><circle cx="15" cy="7" r="1.2"/></svg></button><button class="hbi" id="moreBtn" aria-label="Réglages et plus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg></button></span><span class="ver" id="hVer">v179</span></div>
       <button class="banner" id="pxBanner" hidden></button>
       <span class="hdate hgreet" id="hDate"></span>
       <div class="hhero"><div class="total htot" id="hTot"></div><span id="avatSlot"></span></div>
@@ -3319,6 +3331,7 @@ function colFold(box){
 }
 async function renderCol(){
   const col = getCol(), list = $("#colList"), gen = ++COLV.gen;
+  tradeSyncSoon();
   if(col.some(x=>x.buy==null && x.price!=null)){ col.forEach(x=>{ if(x.buy==null && x.price!=null) x.buy = x.price; }); store.set("col", col); }
   const total = col.reduce((s,x)=>s+(x.price||0)*x.qty,0), n = col.reduce((s,x)=>s+x.qty,0);
   $("#colTotal").innerHTML = `${eur(total)}<small>€</small>`;
@@ -3983,7 +3996,7 @@ function setColMode(m){
 /* ---------- Liste de souhaits : les cartes que tu cherches, leur prix, et un prix cible ---------- */
 const getWish = () => store.get("wish", []);
 const wishOf = id => getWish().find(x=>x.id===id);
-function setWish(l){ store.set("wish", l); wishBadge(); wishSyncSoon(); }
+function setWish(l){ store.set("wish", l); wishBadge(); wishSyncSoon(); tradeSyncSoon(); }
 // prix cibles envoyés au guetteur (lié à l'abonnement aux notifications de ce téléphone) : il prévient même app fermée
 let wishSyncT = null;
 function wishSyncSoon(){ clearTimeout(wishSyncT); wishSyncT = setTimeout(wishSync, 3000); }
@@ -4038,6 +4051,7 @@ function renderWish(){
       <div class="pmain"><div class="pbig">${eurN(tot)}<small>€</small></div></div>
       <div class="psub">Budget pour toutes les avoir, au prix du marché${hits?` · <b class="whit">🎯 ${hits} prix cible${hits>1?"s":""} atteint${hits>1?"s":""}</b>`:""}</div></div>
     ${l.some(x=>x.max!=null) ? (store.get("pushOn") ? `<p class="wnote on">🔔 Tu reçois une notification quand une carte passe sous ton prix cible, même app fermée.</p>` : `<button class="wnote" id="wishPush">🔕 Active les notifications pour être prévenu quand une carte passe sous ton prix cible, même app fermée ›</button>`) : `<p class="wnote">Astuce : ouvre une carte et fixe un prix cible pour être prévenu quand elle baisse.</p>`}
+    <div id="tradeBox"></div>
     <div class="csort wsort">${WSORT.map(([k,t])=>`<button data-wsort="${k}" aria-pressed="${wishSort===k}">${t}</button>`).join("")}</div>
     <div class="wlist">${l.map(x=>{ const c = chg(x), hit = wishHit(x);
       return `<div class="witem${hit?" hit":""}" data-id="${esc(x.id)}" role="button" tabindex="0">
@@ -4048,12 +4062,70 @@ function renderWish(){
         <button class="wdel" data-wdel="${esc(x.id)}" aria-label="Retirer de la liste">×</button></div>`; }).join("")}</div>
     <p class="psub" style="text-align:center;margin:12px 0 4px">Une baisse de prix s'affiche en vert : c'est le bon moment pour acheter.</p>`;
   $("#wishPush") && ($("#wishPush").onclick = ()=>openSub("alertView"));
+  renderTradeBox();
   el.querySelectorAll("[data-wsort]").forEach(b=>b.onclick=()=>{ wishSort = b.dataset.wsort; store.set("wishSort", wishSort); renderWish(); });
   el.querySelectorAll(".witem").forEach(b=>b.onclick=e=>{
     const d = e.target.closest("[data-wdel]");
     if(d){ e.stopPropagation(); const x = wishOf(d.dataset.wdel); delWish(d.dataset.wdel); renderWish(); toast(`${x?.name||"Carte"} retirée de ta liste de souhaits`); return; }
     showCard(b.dataset.id, []); });
   if(!el.dataset.px || Date.now()-el.dataset.px > 600e3){ el.dataset.px = Date.now(); wishPrices().then(ch=>{ if(ch && COLM.mode==="wish" && !$("#colWish").hidden) renderWish(); }); }
+}
+/* ---------- Échanges automatiques : qui a mes souhaits en double, qui cherche mes doubles ---------- */
+const AUTOTR = {m:null, n:0, t:0, busy:false, err:null};
+const trMe = () => { const p = rkProf(); return p?.id && p?.key ? p : null; };
+const trOn = () => !!store.get("tradeOn", false) && !!trMe();
+const trCard = x => ({id:x.id, name:x.name, set:x.set, num:x.num, img:x.img, price:x.price});
+function tradePayload(){ return {give:getCol().filter(x=>(x.qty||1)>=2).map(trCard), want:getWish().map(trCard)}; }
+let trT = null;
+function tradeSyncSoon(){ if(!trOn()) return; clearTimeout(trT); trT = setTimeout(()=>tradeSync(), 30000); }
+async function tradeSync(force){
+  const me = trMe(); if(!me) return false;
+  const on = !!store.get("tradeOn", false), pl = on ? tradePayload() : null;
+  const sig = on ? rkHash(JSON.stringify(pl)) + "|" + me.name + "|" + myPk() : "off";
+  if(!force && sig===store.get("tradeSig","") && Date.now()-store.get("tradeSigT",0) < 20*864e5) return true;
+  try{ await fdApi("/trade/sync", {id:me.id, key:me.key, on, name:me.name, pk:myPk(), lv:lvOf(acctXP()), ...(pl||{})}); store.set("tradeSig", sig); store.set("tradeSigT", Date.now()); return true; }
+  catch(e){ return false; }
+}
+async function tradeMatch(force){
+  const me = trMe(); if(!me || AUTOTR.busy) return;
+  if(!force && AUTOTR.m && Date.now()-AUTOTR.t < 600e3) return;
+  AUTOTR.busy = true; AUTOTR.err = null;
+  try{ await tradeSync(); const j = await fdApi("/trade/match", {id:me.id, key:me.key}); AUTOTR.m = j.matches || []; AUTOTR.n = j.n || 0; AUTOTR.t = Date.now(); }
+  catch(e){ AUTOTR.err = e.off ? "Serveur des échanges indisponible" : e.message; }
+  AUTOTR.busy = false;
+}
+const trThumbs = l => `<span class="trth">${l.slice(0,6).map(c=>`<i title="${esc(c.name)}">${c.img?`<img src="${esc(c.img)}" alt="" loading="lazy">`:`<em>${esc((c.name||"?").slice(0,4))}</em>`}</i>`).join("")}${l.length>6?`<b>+${l.length-6}</b>`:""}</span>`;
+async function renderTradeBox(){
+  const el = $("#tradeBox"); if(!el) return;
+  const me = trMe();
+  if(!me || !store.get("tradeOn", false)){
+    el.innerHTML = `<div class="trbox off"><div class="trh"><b>⇄ Échanges automatiques</b></div>
+      <p>Dex Scan croise ta liste de souhaits et tes doubles avec ceux des autres Hunters : tu vois qui a ce que tu cherches, et qui cherche ce que tu as en trop.</p>
+      <button class="btn btn-y" id="trOn">${me ? "Activer les échanges" : "Créer mon profil de Hunter"}</button>
+      <p class="fine">Partagés sous ton pseudo : tes cartes en double et ta liste de souhaits (pas les prix d'achat). Désactivable à tout moment.</p></div>`;
+    $("#trOn").onclick = async ()=>{ if(!trMe()){ rkSetup(); return; } const b = $("#trOn"); b.disabled = true; b.innerHTML = `<span class="loader"></span> Activation…`;
+      store.set("tradeOn", true); const ok = await tradeSync(true); if(!ok){ store.set("tradeOn", false); toast("Activation impossible : réessaie plus tard"); } else toast("⇄ Échanges activés"); AUTOTR.m = null; renderTradeBox(); };
+    return;
+  }
+  if(!AUTOTR.m && !AUTOTR.err) el.innerHTML = `<div class="trbox"><div class="trh"><b>⇄ Échanges possibles</b></div><p class="fine"><span class="loader"></span> Recherche des Hunters…</p></div>`;
+  await tradeMatch(); if(!$("#tradeBox")) return;
+  const m = AUTOTR.m || [], give = getCol().filter(x=>(x.qty||1)>=2).length;
+  el.innerHTML = `<div class="trbox"><div class="trh"><b>⇄ Échanges possibles${m.length?` · ${m.length}`:""}</b><button class="trref" id="trRef" aria-label="Actualiser">↻</button></div>
+    ${AUTOTR.err ? `<p class="bkerr">${esc(AUTOTR.err)}</p>` : !m.length ? `<p class="fine">Personne pour l'instant${AUTOTR.n?` (${AUTOTR.n} autre${AUTOTR.n>1?"s":""} Hunter${AUTOTR.n>1?"s":""} participe${AUTOTR.n>1?"nt":""})`:""}. ${give?"":"Tu n'as pas encore de doubles : ajoute un 2e exemplaire d'une carte pour qu'elle soit proposée. "}Reviens plus tard, la liste se met à jour toute seule.</p>`
+    : m.map((x,i)=>{ const pt = rkPet(x.pk), both = x.give.length && x.want.length;
+      return `<div class="trm${both?" both":""}"><div class="trw"><span class="trav">${pt?petArt(pt, x.lv||1):"🙂"}</span><span class="trn"><b>${esc(x.name)}</b><small>Niv. ${x.lv||1}${both?` · <em>échange parfait</em>`:""}</small></span>
+          <button class="btn btn-y trgo" data-tri="${i}">Proposer</button></div>
+        ${x.give.length?`<div class="trl"><span>A en double, tu cherches</span>${trThumbs(x.give)}</div>`:""}
+        ${x.want.length?`<div class="trl"><span>Cherche, tu l'as en double</span>${trThumbs(x.want)}</div>`:""}
+        <button class="trcol" data-trc="${i}">Voir sa collection ›</button></div>`; }).join("")}
+    <button class="bkoff" id="trOff">Désactiver les échanges automatiques</button></div>`;
+  $("#trRef").onclick = async ()=>{ AUTOTR.m = null; await tradeSync(true); renderTradeBox(); };
+  $("#trOff").onclick = async ()=>{ const b = $("#trOff"); if(!b.dataset.ok){ b.dataset.ok = 1; b.textContent = "Sûr ? Tes doubles et souhaits ne seront plus visibles. Touche encore"; return; }
+    store.set("tradeOn", false); await tradeSync(true); AUTOTR.m = null; renderTradeBox(); toast("Échanges désactivés"); };
+  el.querySelectorAll("[data-tri]").forEach(b=>b.onclick=()=>{ const x = m[+b.dataset.tri], nm = l=>l.slice(0,4).map(c=>c.name).join(", ")+(l.length>4?"…":"");
+    const t = `Salut ${x.name} ! Dex Scan nous a mis en relation pour un échange.${x.give.length?` Tu as en double ${nm(x.give)}, que je cherche.`:""}${x.want.length?` J'ai en double ${nm(x.want)}, que tu cherches.`:""} Ça te dit ?`;
+    dmOpen(x.uid, x.name, x.pk); setTimeout(()=>{ const i = $("#dmX"); if(i && !i.value) i.value = t; }, 250); });
+  el.querySelectorAll("[data-trc]").forEach(b=>b.onclick=()=>rkCollection(m[+b.dataset.trc].uid));
 }
 // petit cœur sur les cartes de la liste, dans les grilles du Classeur et d'Explorer
 function wishMarks(root){ if(!root) return; const W = new Set(getWish().map(x=>x.id)); if(!W.size) return;
@@ -8454,6 +8526,12 @@ async function rkCollection(id, back=null){
   $("#rkcVal") && ($("#rkcVal").onchange = async e=>{ e.target.disabled = true; await rkSetVal(e.target.checked); rkCollection(id); });
   if(back){ if(back.q && $("#rkcQ")) $("#rkcQ").value = back.q; lim = back.lim || lim; }
   draw();
+  // ce que ce Hunter cherche (s'il a activé les échanges automatiques)
+  if(!mine && trMe()) fdApi("/trade/get", {id:trMe().id, key:trMe().key, uid:id}).then(j=>{
+    if(!j.want?.length || !$("#rkcGrid")) return; const own = new Map(getCol().map(x=>[x.id, x.qty||1]));
+    $("#rkcGrid").insertAdjacentHTML("beforebegin", `<div class="rkwant"><h4>♡ Cherche · ${j.want.length} carte${j.want.length>1?"s":""}</h4><div class="rkwl">${j.want.slice(0,30).map(c=>`<button class="rkwc${own.get(c.id)>=2?" dbl":own.has(c.id)?" have":""}" data-wid="${esc(c.id)}">${c.img?`<img src="${esc(c.img)}" alt="" loading="lazy">`:`<em>${esc(c.name.slice(0,5))}</em>`}${own.get(c.id)>=2?"<b>×2</b>":own.has(c.id)?"<b>✓</b>":""}</button>`).join("")}</div><p class="fine">${[...j.want].some(c=>own.get(c.id)>=2)?"<b>×2</b> : tu l'as en double, propose-lui un échange.":"Les cartes marquées ✓ sont dans ta collection."}</p></div>`);
+    document.querySelectorAll(".rkwc").forEach(b=>b.onclick=()=>{ NAV.re = ()=>rkCollection(id); showCard(b.dataset.wid); });
+  }).catch(()=>{});
   if(back) requestAnimationFrame(()=>{ $("#sheetBody").scrollTop = back.y || 0; });
 }
 // montrer / cacher la valeur de sa collection : profil du classement + cotes de la collection visible, tout de suite
@@ -8557,6 +8635,7 @@ async function betaPublishFlow(){
 }
 /* Journal des modifications de la Bêta : la carte « Version Bêta » liste celles que les copains n'ont pas encore */
 const BETA_LOG = [
+  {v:179, t:"Échanges automatiques : Dex Scan trouve les Hunters qui ont tes souhaits en double et ceux qui cherchent tes doubles · ce qu'un Hunter cherche, sur sa collection"},
   {v:178, t:"Notification quand une carte de ta liste de souhaits passe sous ton prix cible, même app fermée"},
   {v:177, t:"Sauvegarde automatique en ligne, chiffrée, avec un code pour tout retrouver sur un autre téléphone · export de la collection en tableur"},
   {v:176, t:"Scan en rafale : enchaîne les cartes sans ouvrir la fiche, vérifie le bac puis ajoute tout d'un coup"},
@@ -9193,6 +9272,9 @@ $("#moreBack").onclick = ()=>navBack();
    Après l'intro, une seule fois par version qui apporte quelque chose à l'utilisateur.
    Nouvelle installation : rien (tout est neuf). Les versions purement techniques n'ont pas d'entrée ici. */
 const NEWS = [
+  {v:179, items:[
+    ["M7 4 3 8l4 4M3 8h14M17 20l4-4-4-4M21 16H7", "Échanges automatiques", "Classeur › Souhaits : active les échanges et Dex Scan te montre les Hunters qui ont tes souhaits en double, et ceux qui cherchent tes doubles. Un toucher sur Proposer prépare le message."]
+  ]},
   {v:178, items:[
     ["M6 8a6 6 0 1 1 12 0c0 7 3 9 3 9H3s3-2 3-9M10.3 21a1.94 1.94 0 0 0 3.4 0", "Alerte prix cible", "Fixe un prix cible sur une carte de ta liste de souhaits : tu reçois une notification dès qu'elle passe dessous, même app fermée (notifications activées dans Alertes)."]
   ]},
@@ -9584,7 +9666,7 @@ async function bkPull(code){
 }
 // à chaque changement : collection & co. → envoi 20 s plus tard (3 min mini entre deux) ; le reste → toutes les 30 min au plus
 const BK_IMP = new Set(["col","graded","budget","wish","trades","starter","team","rk","burst"]);
-const BK_QUIET = new Set(["bkCloud","backupT","feedSeen","colPxT","seenNews","newsSeen","rkL","rkBy","lastTab","colOpen","burstOn"]);
+const BK_QUIET = new Set(["tradeSig","tradeSigT","wishSyncSig","wishSyncT","bkCloud","backupT","feedSeen","colPxT","seenNews","newsSeen","rkL","rkBy","lastTab","colOpen","burstOn"]);
 function bkMark(k){
   if(!bkcGet()?.code || BK_QUIET.has(k) || BK_SKIP.has(k)) return;
   BKC.dirty = true; if(BK_IMP.has(k)) BKC.imp = true;

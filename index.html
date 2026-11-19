@@ -211,6 +211,29 @@ html{background:var(--panel)}
 .mv span:last-child{font:600 11.5px/1 var(--f-mono)}
 .mv.up b,.mv.up span:last-child{color:var(--up)}.mv.down b,.mv.down span:last-child{color:var(--down)}.mv.flat b{color:var(--muted)}
 .colspark{display:block;width:100%;height:46px;margin-top:10px}
+.seg.clsw3 button .wn{font-style:normal;margin-left:3px;font-size:.85em;opacity:.8}.seg.clsw3 button .wn:empty{display:none}.seg.clsw3 button .wn.hit{opacity:1}
+.wishrow{display:flex;gap:8px;margin:10px 0 2px}
+.wishrow #wishBtn{flex:1;display:flex;align-items:center;gap:11px;text-align:left;padding:11px 14px;border-radius:14px;background:var(--panel);border:1.5px dashed color-mix(in srgb,#FF5C8A 55%,var(--line));color:var(--fg);min-width:0}
+.wishrow #wishBtn b{display:block;font-size:14px}.wishrow #wishBtn small{display:block;color:var(--muted);font-size:12px;margin-top:2px;line-height:1.3}
+.wishrow .wh{font-size:24px;line-height:1;color:#FF5C8A;flex:none}
+.wishrow.on #wishBtn{border-style:solid;background:color-mix(in srgb,#FF5C8A 13%,var(--panel))}
+.wishrow .wmax{flex:none;width:96px;display:flex;flex-direction:column;justify-content:center;gap:3px;padding:8px 10px;border-radius:14px;background:var(--panel);border:1px solid var(--line)}
+.wishrow .wmax small{color:var(--muted);font-size:11px}.wishrow .wmax span{display:flex;align-items:center;gap:4px;font-weight:700}
+.wishrow .wmax input{width:100%;min-width:0;background:transparent;border:0;color:var(--fg);font:700 16px var(--f-mono);padding:0}
+.wishtot .whit{color:var(--up)}
+.wsort{margin:12px 0 10px}
+.wlist{display:flex;flex-direction:column;gap:8px}
+.witem{position:relative;display:flex;gap:12px;align-items:center;padding:9px 40px 9px 9px;border-radius:14px;background:var(--panel);border:1px solid var(--line);cursor:pointer}
+.witem.hit{border-color:var(--up);box-shadow:0 0 0 1px var(--up) inset,0 0 18px color-mix(in srgb,var(--up) 25%,transparent)}
+.witem .wim{flex:none;width:58px;aspect-ratio:63/88;border-radius:5px;overflow:hidden;background:var(--panel-2)}.witem .wim img{width:100%;height:100%;object-fit:cover;display:block}
+.witem .wtx{min-width:0;display:flex;flex-direction:column;gap:2px}
+.witem .wtx>b{font-size:14.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.witem .wtx>small{color:var(--muted);font-size:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.witem .wpx{display:flex;align-items:baseline;gap:8px;margin-top:3px}.witem .wpx b{font:700 16px var(--f-mono)}.witem .wpx em{font-style:normal;font:700 12px var(--f-mono)}.witem .wpx .up{color:var(--up)}.witem .wpx .down{color:var(--down)}
+.witem .wtg{font-size:12px;color:var(--muted)}.witem.hit .wtg{color:var(--up);font-weight:700}.witem .wtg i{font-style:normal;opacity:.7}
+.witem .wdel{position:absolute;top:6px;right:6px;width:30px;height:30px;border-radius:50%;color:var(--muted);font-size:20px;line-height:1}
+.wishempty{text-align:center;padding:34px 18px;border-radius:18px;background:var(--panel);border:1px dashed var(--line)}
+.wishempty .wbig{font-size:46px;color:#FF5C8A;line-height:1;margin-bottom:8px}.wishempty p{color:var(--muted);font-size:13.5px;line-height:1.45;margin:8px auto 16px;max-width:320px}
+.ctile .wsh{position:absolute;right:4px;top:4px;z-index:3;width:20px;height:20px;border-radius:50%;display:grid;place-items:center;background:rgba(0,0,0,.66);color:#FF5C8A;font-size:12px;line-height:1}
 .ctile .px.up{color:var(--up)}.ctile .px.down{color:var(--down)}
 .variant-tabs{display:flex;gap:6px;margin-top:14px;flex-wrap:wrap}
 .vt{padding:7px 12px;border-radius:9px;background:var(--panel-2);border:1px solid var(--line);font-size:12.5px;font-weight:600;color:var(--muted)}
@@ -231,7 +254,7 @@ html{background:var(--panel)}
 .dd{position:relative}
 .dd>summary{list-style:none;display:inline-flex;align-items:center;gap:6px;padding:7px 11px;border-radius:999px;border:1px solid var(--line);background:var(--panel);cursor:pointer;color:var(--fg);font-size:13px;white-space:nowrap}
 .dd>summary::-webkit-details-marker{display:none}
-.dd>summary small{color:var(--muted);font-size:11px}.dd>summary b{font:700 13px var(--f-mono)}.dd>summary span{color:var(--muted);font-size:12.5px}
+.dd>summary small{color:var(--muted);font-size:11px}.dd>summary .lgauto{font-style:normal;font-size:9.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--acc,#F2C230);margin-left:3px}.dd>summary b{font:700 13px var(--f-mono)}.dd>summary span{color:var(--muted);font-size:12.5px}
 .dd>summary i{font-style:normal;color:var(--muted);font-size:11px;transition:transform .15s}.dd[open]>summary i{transform:rotate(180deg)}
 .dd[open]>summary{border-color:var(--border-yellow)}
 .ddm{position:absolute;z-index:6;left:0;top:calc(100% + 6px);min-width:220px;max-height:300px;overflow:auto;padding:6px;border-radius:14px;border:1px solid var(--line);background:var(--panel-2);box-shadow:0 14px 34px rgba(0,0,0,.55);display:grid;gap:2px}
@@ -1035,13 +1058,13 @@ html{background:var(--panel)}
 .hicon svg{width:20px;height:20px}
 .hicon[aria-pressed="true"]{background:var(--border-yellow);border-color:var(--border-yellow);color:var(--on-acc)}
 .hbadge{position:absolute;top:-3px;right:-3px;min-width:17px;height:17px;padding:0 4px;border-radius:9px;background:var(--border-yellow);color:var(--on-acc);font:800 10px/17px var(--f-mono);box-sizing:border-box;font-style:normal}
-.seg.clsw3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));width:100%;box-sizing:border-box;margin:0 0 12px}
+.seg.clsw3{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));width:100%;box-sizing:border-box;margin:0 0 12px}
 .seg.clsw3 button{padding:10px 2px;font-size:clamp(10.5px,3.1vw,13.5px);line-height:1.15;white-space:nowrap;text-align:center;letter-spacing:-.01em}
 .csum{display:flex;align-items:baseline;flex-wrap:wrap;gap:4px 8px;margin:0 2px 12px;font-size:13px;color:var(--muted)}
 .csum strong{font:800 22px/1 var(--f-display);color:var(--fg);font-variant-numeric:tabular-nums}
 .csum .up{color:var(--up);font-weight:700}.csum .down{color:var(--down);font-weight:700}
 #colView #wallet,#colView .colmode,#colTools #colPdx,#colTools #colFlt{display:none}
-#colView[data-cm="graded"] .csum{display:none}
+#colView[data-cm="graded"] .csum,#colView[data-cm="wish"] .csum,#colView[data-cm="wish"] #colExplore2{display:none}
 .fbk{display:flex;align-items:center;gap:10px;margin:2px 0 10px}
 .fbk .hicon{width:40px;height:40px}
 .fbk div{display:flex;flex-direction:column;gap:3px;min-width:0}
@@ -1881,7 +1904,7 @@ img.px.reveal{animation:stpRev .9s ease-out}
   }
   fit(); addEventListener("resize", fit); addEventListener("orientationchange", function(){ setTimeout(fit, 300); });
 })();</script>
-<script>window.__APPV="173";</script>
+<script>window.__APPV="175";</script>
 <div class="splash" id="splash" aria-hidden="true"><i class="hole"></i><i class="halo"></i><div class="bw"><svg class="b" viewBox="0 0 100 100"><use href="#pb"/></svg><svg class="t" viewBox="0 0 100 100"><use href="#pb"/></svg></div><i class="glow"></i></div>
 <script>setTimeout(function(){ if(window.__booted) return;
   var b=document.createElement("div"); b.setAttribute("role","alert");
@@ -1916,7 +1939,7 @@ img.px.reveal{animation:stpRev .9s ease-out}
   <!-- ===== EXTENSIONS ===== -->
   <section class="view" id="homeView">
     <div class="scroll">
-      <div class="homebar"><span class="brand">DEX<b>·</b>SCAN</span><span class="hbis"><button class="hbi" id="hSearch" aria-label="Rechercher une carte"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></button><button class="hbi" id="themeBtn" aria-label="Changer de thème"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.6-.9 1.2-1.8-.5-1.1.2-2.2 1.4-2.2H17a4 4 0 0 0 4-4c0-5.5-4-10-9-10z"/><circle cx="7.5" cy="11" r="1.2"/><circle cx="10" cy="7" r="1.2"/><circle cx="15" cy="7" r="1.2"/></svg></button><button class="hbi" id="moreBtn" aria-label="Réglages et plus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg></button></span><span class="ver" id="hVer">v173</span></div>
+      <div class="homebar"><span class="brand">DEX<b>·</b>SCAN</span><span class="hbis"><button class="hbi" id="hSearch" aria-label="Rechercher une carte"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></button><button class="hbi" id="themeBtn" aria-label="Changer de thème"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.6-.9 1.2-1.8-.5-1.1.2-2.2 1.4-2.2H17a4 4 0 0 0 4-4c0-5.5-4-10-9-10z"/><circle cx="7.5" cy="11" r="1.2"/><circle cx="10" cy="7" r="1.2"/><circle cx="15" cy="7" r="1.2"/></svg></button><button class="hbi" id="moreBtn" aria-label="Réglages et plus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg></button></span><span class="ver" id="hVer">v175</span></div>
       <button class="banner" id="pxBanner" hidden></button>
       <span class="hdate hgreet" id="hDate"></span>
       <div class="hhero"><div class="total htot" id="hTot"></div><span id="avatSlot"></span></div>
@@ -1971,7 +1994,7 @@ img.px.reveal{animation:stpRev .9s ease-out}
     <div class="scroll" id="extScroll">
       <div id="extHome">
         <div class="clshead"><h1 class="h1">Explorer</h1><button class="chip" id="extLang" aria-label="Langue des cartes" hidden>Cartes FR</button><button class="hicon" id="extSearchBtn" aria-label="Rechercher"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></button><button class="hicon" id="extSetBtn" aria-label="Trier et filtrer" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16M7 12h10M10 18h4"/></svg><i class="hbadge" hidden></i></button></div>
-      <div class="seg clsw3" role="group" aria-label="Classeur"><button data-cls3="graded">Mes gradées</button><button data-cls3="cards">Mes cartes</button><button data-cls3="explore">Explorer</button></div>
+      <div class="seg clsw3" role="group" aria-label="Classeur"><button data-cls3="graded">Mes gradées</button><button data-cls3="cards">Mes cartes</button><button data-cls3="wish">Souhaits<i class="wn" data-wn></i></button><button data-cls3="explore">Explorer</button></div>
       
 
         <div class="seg exmode" role="group" aria-label="Type de produits"><button data-mode="cards" aria-pressed="true">Extensions</button><button data-mode="sealed" aria-pressed="false">Scellés</button><button data-mode="graded" aria-pressed="false">Gradées</button><button data-mode="jp" aria-pressed="false">Japon</button><button data-mode="cn" aria-pressed="false">Chine</button></div>
@@ -2123,7 +2146,7 @@ img.px.reveal{animation:stpRev .9s ease-out}
   <section class="view" id="colView" hidden>
     <div class="scroll">
       <div class="clshead"><h1 class="h1">Classeur</h1><button class="hicon" id="colSearchBtn" aria-label="Rechercher"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></button><button class="hicon" id="colSetBtn" aria-label="Trier et filtrer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16M7 12h10M10 18h4"/></svg><i class="hbadge" hidden></i></button><button class="hicon" id="colShareBtn" aria-label="Partager ma collection"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="m7 8 5-5 5 5"/><path d="M5 13v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6"/></svg></button></div>
-      <div class="seg clsw3" role="group" aria-label="Classeur"><button data-cls3="graded">Mes gradées</button><button data-cls3="cards">Mes cartes</button><button data-cls3="explore">Explorer</button></div>
+      <div class="seg clsw3" role="group" aria-label="Classeur"><button data-cls3="graded">Mes gradées</button><button data-cls3="cards">Mes cartes</button><button data-cls3="wish">Souhaits<i class="wn" data-wn></i></button><button data-cls3="explore">Explorer</button></div>
       <div class="csum" id="colSum"></div>
 
       <div class="total" id="wallet">
@@ -2140,6 +2163,7 @@ img.px.reveal{animation:stpRev .9s ease-out}
       </div>
       <div class="seg colmode" role="group" aria-label="Type de cartes"><button data-cm="cards" aria-pressed="true">Cartes</button><button data-cm="graded" aria-pressed="false">Gradées <i id="cmGrN"></i></button></div>
       <div id="colGraded" hidden></div>
+      <div id="colWish" hidden></div>
       <div class="coltools" id="colTools" hidden>
         <input id="colQ" type="search" placeholder="Filtrer (nom ou numéro)" autocomplete="off" aria-label="Filtrer la collection">
         <button class="chip" id="colPdx" aria-pressed="true" title="Afficher aussi les cartes qui te manquent">Pokédex</button>
@@ -2649,6 +2673,7 @@ let currentDiag = null;
 const CARDS = new Map();   // fiches déjà ouvertes (30 dernières) : revenir en arrière n'attend plus le réseau
 async function showCard(id, alts, diag=null){
   currentAlts = alts || currentAlts; currentVariant = 0; currentDiag = diag; currentEd = null;
+  currentLg = diag?.lg || store.get("addLg", "FR");
   const memo = CARDS.get(id);
   if(memo && Date.now() - memo.t < 30*60e3){
     openSheet(); current = memo.card; renderCard(); $("#sheetBody").scrollTop = 0;
@@ -3043,7 +3068,7 @@ function renderCard(){
           <details class="dd"><summary aria-label="État de ta carte"><small>État</small><b>${esc(currentCond)}</b><span>${esc((CONDS.find(c=>c[0]===currentCond)||CONDS[1])[2])}</span><i>▾</i></summary>
             <div class="ddm" role="group" aria-label="État de la carte">${CONDS.map(([k,n,d])=>`<button data-cond="${k}" aria-pressed="${k===currentCond}"><b>${k}</b><span>${esc(n)} · ${esc(d.toLowerCase())}</span></button>`).join("")}
             <p>${currentCond!=="NM"?`Vaut environ ${Math.round((CONDF[currentCond]||1)*100)} % de la cote.`:"C'est l'état de la cote affichée."} <a href="#" id="condHelp">C'est quoi ?</a></p></div></details>
-          <details class="dd"><summary aria-label="Langue de ta carte"><small>Langue</small><b>${esc(currentLg)}</b><span>${LG_FLAG[currentLg]||""}</span><i>▾</i></summary>
+          <details class="dd"><summary aria-label="Langue de ta carte"><small>Langue${currentDiag?.lg && currentDiag.lg===currentLg?' <em class="lgauto">auto</em>':""}</small><b>${esc(currentLg)}</b><span>${LG_FLAG[currentLg]||""}</span><i>▾</i></summary>
             <div class="ddm" role="group" aria-label="Langue de la carte">${Object.entries(CARD_LG).map(([k,t])=>`<button data-lg="${k}" aria-pressed="${k===currentLg}"><b>${k} ${LG_FLAG[k]||""}</b><span>${esc(t)}</span></button>`).join("")}</div></details>
         </div>
         <div class="dcote${dBig?"":" none"}"><span class="dl">${esc(dLbl)}</span><span class="dp">${dBig?`${eur(dBig)}<small>€</small>`:"Pas de cote"}</span>${dBig?`<span class="dr">${dDelta||"<span></span>"}${dSp}</span>`:""}</div>
@@ -3059,6 +3084,9 @@ function renderCard(){
       <button class="dtile small" id="toGraded"><span class="tl">Gradées</span><b class="tv" style="font-size:14px">PSA 10 · PSA 9 ›</b></button>
       <button class="dtile small add" id="addCol"><b>＋ Ajouter à ma collection</b><span class="tv">${inCol?`×${inCol.qty}${(()=>{ const p = pnlOf(inCol); return p ? " · "+esc(pnlTxt(p)) : ""; })()}`:`${esc(currentCond)} · ${esc(CARD_LG[currentLg])}`}</span></button>
     </div>
+    ${(()=>{ const W = wishOf(c.id); return W ? `<div class="wishrow on"><button id="wishBtn" aria-pressed="true"><span class="wh">♥</span><span><b>Dans ta liste de souhaits</b><small>${W.p0&&W.price?`Ajoutée à ${eurS(W.p0)} · aujourd'hui ${eurS(W.price)}`:"Touche pour la retirer"}</small></span></button>
+      <label class="wmax"><small>Prix cible</small><span><input id="wishMax" type="text" inputmode="decimal" placeholder="—" value="${W.max!=null?String(W.max).replace(".",","):""}"> €</span></label></div>`
+      : `<div class="wishrow"><button id="wishBtn" aria-pressed="false"><span class="wh">♡</span><span><b>Je la veux</b><small>${inCol?"Ajoute-la à ta liste de souhaits (autre exemplaire, autre langue…)":"Ajoute-la à ta liste de souhaits et suis son prix"}</small></span></button></div>`; })()}
     ${inCol?`<div class="colqty"><button id="colMinus" aria-label="Retirer un exemplaire">−</button><span>Dans ta collection : <b style="color:var(--fg)">×${inCol.qty}</b>${ownEd.length?`<small class="edown">${ownEd.map(([k,n])=>`${esc(edLbl(k))} ×${n}`).join(" · ")}</small>`:""}${ownLgs(inCol).length?`<small class="edown">${ownLgs(inCol).map(([k,n])=>`${esc(CARD_LG[k]||k)} ×${n}`).join(" · ")}</small>`:""}${ownConds(inCol).length?`<small class="edown">État : ${ownConds(inCol).map(([k,n])=>`${esc(k)} ×${n}`).join(" · ")}${inCol.price?` · valeur selon l'état ≈ ${esc(eurN(condValue(inCol)))} €`:""}</small>`:""}</span><button id="colPlus" aria-label="Ajouter un exemplaire">+</button></div>
     <div class="buyrow"><label for="buyIn">Prix d'achat (par carte)</label><span class="buyin"><input id="buyIn" type="text" inputmode="decimal" value="${inCol.buy!=null?String(Math.round(inCol.buy*100)/100).replace(".",","):""}" placeholder="0,00"> €</span>${(()=>{ const p = pnlOf(inCol); return p ? `<b class="tpnl ${pnlCls(p)}">PnL ${esc(pnlTxt(p))}</b>` : ""; })()}</div>`:""}
     <div class="addrow sharerow"><button class="btn btn-g" id="rescan">Scanner une autre</button><button class="btn btn-g" id="tradeCard">⇄ Échanger</button><button class="btn btn-g" id="shareCard">${SHARE_ICO}Partager</button>${FEED.ok?`<button class="btn btn-g" id="fdCard">${FD_ICO}Sur le Fil</button>`:""}</div>
@@ -3083,6 +3111,10 @@ function renderCard(){
   $("#sheetBody").querySelectorAll(".alt").forEach(b=>b.onclick=()=>showCard(b.dataset.id));
   $("#sheetBody").querySelectorAll("[data-pid]").forEach(b=>b.onclick=()=>{ if(b.dataset.pid!==c.id) showCard(b.dataset.pid, currentAlts); });
   $("#sheetBody").querySelectorAll("[data-ed]").forEach(b=>b.onclick=()=>{ currentEd = b.dataset.ed; const y = $("#sheetBody").scrollTop; renderCard(); $("#sheetBody").scrollTop = y; });
+  $("#wishBtn") && ($("#wishBtn").onclick = ()=>{ const on = !!wishOf(c.id); if(on){ delWish(c.id); toast("Retirée de ta liste de souhaits"); } else { addWish(c); navigator.vibrate?.(8); toast("♥ Ajoutée à ta liste de souhaits"); }
+    const y = $("#sheetBody").scrollTop; renderCard(); $("#sheetBody").scrollTop = y; if(COLM.mode==="wish") renderWish(); });
+  $("#wishMax") && ($("#wishMax").onchange = e=>{ const v = parseFloat(String(e.target.value).replace(",",".").replace(/[^\d.]/g,"")); const l = getWish(), x = l.find(z=>z.id===c.id); if(!x) return;
+    x.max = isFinite(v) && v>0 ? Math.round(v*100)/100 : null; x.told = 0; setWish(l); toast(x.max!=null ? `🎯 Prix cible : ${eurS(x.max)}${wishHit(x)?" (déjà atteint !)":""}` : "Prix cible retiré"); if(COLM.mode==="wish") renderWish(); });
   $("#addCol").onclick = ()=>{ addToCol(c, currentEd, currentLg, currentCond); renderCard(); toast("Ajoutée à ta collection · "+CARD_LG[currentLg]+" · "+currentCond+(currentEd?" · "+edLbl(currentEd):"")); };
   $("#sheetBody").querySelectorAll("[data-cond]").forEach(b=>b.onclick=()=>{ currentCond = b.dataset.cond; store.set("addCond", currentCond); const y = $("#sheetBody").scrollTop; renderCard(); $("#sheetBody").scrollTop = y; });
   $("#condHelp") && ($("#condHelp").onclick = e=>{ e.preventDefault(); openLexique(); setTimeout(()=>{ const q = $("#lexQ"); if(q){ q.value = "Near Mint"; q.dispatchEvent(new Event("input")); } }, 50); });
@@ -3115,6 +3147,7 @@ function addToCol(c, ed=null, lg=null, cond=null){
   if(ex){ const p = mi.p ?? ex.price; if(ex.buy!=null && p!=null) ex.buy = (ex.buy*ex.qty + p)/(ex.qty+1); ex.qty++; bump(ex); if(mi.p) Object.assign(ex, {price:mi.p, a1:mi.a1, a7:mi.a7, a30:mi.a30, pt:Date.now()}); ex.t=Date.now(); }
   else { const p = mi.p ?? mainPrice(c); col.unshift({id:c.id, name:c.name, set:c.set?.name||"", num:c.localId, img:img(c,"low"), price:p, buy:p, a1:mi.a1, a7:mi.a7, a30:mi.a30, pt:Date.now(), qty:1, t:Date.now()}); bump(col[0]); }
   store.set("col",col); renderCol(); refreshSetTiles();
+  if(wishOf(c.id)){ delWish(c.id); setTimeout(()=>toast("Bravo ! Retirée de ta liste de souhaits"), 1400); if(COLM.mode==="wish") renderWish(); }
 }
 /* la grille de l'extension ouverte suit la collection (pastille ×N) */
 function refreshSetTiles(){ try{ if(EX.set && EX.cards?.length && document.getElementById("cgrid")) renderTiles(); }catch(e){} }
@@ -3370,7 +3403,7 @@ async function fillColSet(box, own, gen){
     cfSort(l, ownById);
     box.hidden = (!!q || cfNarrow()) && !l.length;
     const sec = box.closest(".serie"); if(sec) sec.hidden = [...sec.querySelectorAll(".colset")].every(x=>x.hidden);
-    grid.innerHTML = l.map(c=>colTile(c, ownById.get(c.id))).join("");
+    grid.innerHTML = l.map(c=>colTile(c, ownById.get(c.id))).join(""); wishMarks(grid);
     grid.querySelectorAll(".ctile").forEach(b=>{
       selMark(b);
       // mode sélection : chaque toucher ajoute un exemplaire (×1, ×2, ×3…), le « − » en retire un
@@ -3893,11 +3926,77 @@ const COLM = {mode: store.get("colMode","cards"), lg: "all"};
 function setColMode(m){
   COLM.mode = m; store.set("colMode", m);
   document.querySelectorAll("[data-cm]").forEach(b=>b.setAttribute("aria-pressed", b.dataset.cm===m));
-  const g = m==="graded";
-  ["#colTools","#colFltBar","#colList"].forEach(s=>{ const e=$(s); if(e) e.hidden = g || (s==="#colTools" && !COLV.sq); });
+  const g = m==="graded", wi = m==="wish";
+  ["#colTools","#colFltBar","#colList"].forEach(s=>{ const e=$(s); if(e) e.hidden = g || wi || (s==="#colTools" && !COLV.sq); });
   $("#colView").dataset.cm = m; syncCls3();
   $("#colGraded").hidden = !g; if(g) renderColGraded();
+  $("#colWish").hidden = !wi; if(wi) renderWish();
 }
+/* ---------- Liste de souhaits : les cartes que tu cherches, leur prix, et un prix cible ---------- */
+const getWish = () => store.get("wish", []);
+const wishOf = id => getWish().find(x=>x.id===id);
+function setWish(l){ store.set("wish", l); wishBadge(); }
+function addWish(c){
+  const l = getWish(); if(l.some(x=>x.id===c.id)) return;
+  const mi = marketInfo(c) || {}, p = mi.p ?? mainPrice(c) ?? null;
+  l.unshift({id:c.id, name:c.name, set:c.set?.name||"", num:c.localId, img:img(c,"low"), p0:p, price:p, a7:mi.a7??null, pt:Date.now(), t:Date.now(), lg:currentLg, max:null});
+  setWish(l);
+}
+function delWish(id){ setWish(getWish().filter(x=>x.id!==id)); }
+const wishHit = x => x.max!=null && x.price!=null && x.price <= x.max;
+function wishBadge(){ const l = getWish(), n = l.filter(wishHit).length;
+  document.querySelectorAll("[data-wn]").forEach(e=>{ e.textContent = n ? "🎯"+n : l.length ? l.length : ""; e.classList.toggle("hit", !!n); }); }
+// cotes du jour pour toute la liste (fichier des cotes, sinon fiche par fiche) + alerte quand un prix cible est atteint
+async function wishPrices(){
+  const l = getWish(); if(!l.length) return false;
+  await loadPrices();
+  const upd = new Map();
+  for(const x of l){ const b = bulkOf(x.id); if(b) upd.set(x.id, b); }
+  const todo = l.filter(x=>!upd.has(x.id) && Date.now()-(x.pt||0) > 6*3600e3).slice(0,12);
+  await pool(todo, 4, async x=>{ try{ const mi = marketInfo(await getCard(x.id)); if(mi?.p) upd.set(x.id, mi); }catch(e){} });
+  if(!upd.size) return false;
+  const now = Date.now(), fresh = getWish(), hits = [];
+  for(const x of fresh){ const mi = upd.get(x.id); if(!mi) continue;
+    const was = wishHit(x); Object.assign(x, {price:mi.p, a7:mi.a7??x.a7, pt:now}); if(x.p0==null) x.p0 = mi.p;
+    if(wishHit(x) && !was && !x.told){ hits.push(x); x.told = now; } if(!wishHit(x)) x.told = 0; }
+  setWish(fresh);
+  if(hits.length) toast(hits.length===1 ? `🎯 ${hits[0].name} est à ${eurS(hits[0].price)} (ta cible : ${eurS(hits[0].max)})` : `🎯 ${hits.length} cartes de ta liste de souhaits ont atteint ton prix cible`);
+  return true;
+}
+const WSORT = [["recent","Récentes"],["price","Prix"],["drop","Baisse"],["target","Cible"]];
+let wishSort = store.get("wishSort","recent");
+function renderWish(){
+  const el = $("#colWish"); if(!el) return;
+  const l = getWish().slice(), tot = l.reduce((a,x)=>a+(x.price||0),0), hits = l.filter(wishHit).length;
+  const chg = x => x.price!=null && x.p0 ? (x.price-x.p0)/x.p0 : 0;
+  if(wishSort==="price") l.sort((a,b)=>(b.price||0)-(a.price||0));
+  else if(wishSort==="drop") l.sort((a,b)=>chg(a)-chg(b));
+  else if(wishSort==="target") l.sort((a,b)=>(wishHit(b)-wishHit(a)) || ((a.max!=null?a.price/a.max:9)-(b.max!=null?b.price/b.max:9)));
+  if(!l.length){ el.innerHTML = `<div class="wishempty"><div class="wbig">♡</div><b>Ta liste de souhaits est vide</b><p>Ouvre une carte (scan, Explorer ou une extension) et touche <b>♡ Je la veux</b>. Tu suis son prix ici, et tu peux fixer un prix cible : la carte s'allume quand elle passe dessous.</p><button class="btn btn-y" id="wishGo">Explorer les cartes</button></div>`;
+    $("#wishGo").onclick = ()=>{ openExplore(); syncCls3(); }; return; }
+  el.innerHTML = `<div class="total wishtot"><div class="plabel"><span>Liste de souhaits</span><span>${l.length} carte${l.length>1?"s":""}</span></div>
+      <div class="pmain"><div class="pbig">${eurN(tot)}<small>€</small></div></div>
+      <div class="psub">Budget pour toutes les avoir, au prix du marché${hits?` · <b class="whit">🎯 ${hits} prix cible${hits>1?"s":""} atteint${hits>1?"s":""}</b>`:""}</div></div>
+    <div class="csort wsort">${WSORT.map(([k,t])=>`<button data-wsort="${k}" aria-pressed="${wishSort===k}">${t}</button>`).join("")}</div>
+    <div class="wlist">${l.map(x=>{ const c = chg(x), hit = wishHit(x);
+      return `<div class="witem${hit?" hit":""}" data-id="${esc(x.id)}" role="button" tabindex="0">
+        <span class="wim">${x.img?`<img src="${esc(x.img)}" alt="" loading="lazy">`:""}</span>
+        <span class="wtx"><b>${esc(x.name)}</b><small>${esc(x.set)}${x.num?` · n° ${esc(x.num)}`:""}${x.lg&&x.lg!=="FR"?` · ${LG_FLAG[x.lg]||x.lg}`:""}</small>
+          <span class="wpx"><b>${eurS(x.price)}</b>${x.p0 && Math.abs(c)>=.01?`<em class="${c<0?"up":"down"}">${c<0?"▼":"▲"} ${Math.abs(c*100).toFixed(0)} %</em>`:""}</span>
+          <span class="wtg">${x.max!=null?(hit?`🎯 Sous ta cible de ${eurS(x.max)}`:`Cible ${eurS(x.max)}${x.price?` · encore ${eurS(Math.max(0,x.price-x.max))}`:""}`):`<i>Pas de prix cible</i>`}</span></span>
+        <button class="wdel" data-wdel="${esc(x.id)}" aria-label="Retirer de la liste">×</button></div>`; }).join("")}</div>
+    <p class="psub" style="text-align:center;margin:12px 0 4px">Une baisse de prix s'affiche en vert : c'est le bon moment pour acheter.</p>`;
+  el.querySelectorAll("[data-wsort]").forEach(b=>b.onclick=()=>{ wishSort = b.dataset.wsort; store.set("wishSort", wishSort); renderWish(); });
+  el.querySelectorAll(".witem").forEach(b=>b.onclick=e=>{
+    const d = e.target.closest("[data-wdel]");
+    if(d){ e.stopPropagation(); const x = wishOf(d.dataset.wdel); delWish(d.dataset.wdel); renderWish(); toast(`${x?.name||"Carte"} retirée de ta liste de souhaits`); return; }
+    showCard(b.dataset.id, []); });
+  if(!el.dataset.px || Date.now()-el.dataset.px > 600e3){ el.dataset.px = Date.now(); wishPrices().then(ch=>{ if(ch && COLM.mode==="wish" && !$("#colWish").hidden) renderWish(); }); }
+}
+// petit cœur sur les cartes de la liste, dans les grilles du Classeur et d'Explorer
+function wishMarks(root){ if(!root) return; const W = new Set(getWish().map(x=>x.id)); if(!W.size) return;
+  root.querySelectorAll(".ctile[data-id]").forEach(b=>{ const im = b.querySelector(".im"); if(im && W.has(b.dataset.id) && !im.querySelector(".wsh")) im.insertAdjacentHTML("beforeend",`<span class="wsh" aria-label="Dans ta liste de souhaits">♥</span>`); }); }
+setTimeout(()=>{ wishBadge(); if(getWish().length) setTimeout(()=>wishPrices(), 4000); }, 0);
 function renderColGraded(){
   const all = getGraded(), l = COLM.lg==="all" ? all : all.filter(x=>(x.lg||"FR")===COLM.lg), el = $("#colGraded");
   $("#cmGrN").textContent = all.length ? all.length : "";
@@ -4539,6 +4638,73 @@ async function getWorker(){
   }
   return workerP;
 }
+/* ---------- Langue de la carte : FR / EN par les mots imprimés, JP / ZH par l'écriture ---------- */
+let cjkW = null, cjkWP = null, cjkIdle = null;
+function getCjkWorker(){
+  if(cjkW) return Promise.resolve(cjkW);
+  cjkWP ||= Tesseract.createWorker(["jpn","chi_sim"],1).then(w=>cjkW=w).catch(e=>{ cjkWP=null; throw e; });
+  return cjkWP;
+}
+function cjkRelease(){ clearTimeout(cjkIdle); cjkIdle = setTimeout(()=>{ const w = cjkW; cjkW = null; cjkWP = null; w?.terminate().catch(()=>{}); }, 120e3); }
+const LG_FR = new Set("pv talent faiblesse retraite base niveau evolue evolution dresseur objet energie adversaire votre vos lancez piece face pile degats degat actif banc chaque cette attaque inflige est maintenant paralyse endormi empoisonne brule confus carte cartes main pioche jusqu obtenir pour une les des sur son ses aux".split(" "));
+const LG_EN = new Set("ability weakness retreat basic stage evolves trainer item energy opponent your flip coin heads tails damage active bench each this attack does now paralyzed asleep poisoned burned confused card cards hand draw until get for the and from its their of to".split(" "));
+function lgLatin(text){
+  const raw = (text||"").replace(/pok[ée]mon/gi,"");
+  let fr = 0, en = 0;
+  for(const x of norm(raw).split(" ")){ if(LG_FR.has(x)) fr++; if(LG_EN.has(x)) en++; }
+  const pv = /\bP\s?V\s*\d/.test(raw), hp = /\bH\s?P\s*\d/.test(raw);
+  fr += (pv?3:0) + Math.min(4, (raw.match(/[éèêàâçù]/g)||[]).length);
+  return {fr, en, words:en, hp};
+}
+function lgCjk(text){
+  const s = text||"";
+  return {kana:(s.match(/[ぁ-ゖァ-ヺー]/g)||[]).length, han:(s.match(/[一-鿿]/g)||[]).length};
+}
+// règle de décision (testée sur des cartes nettes et floues) : renvoie FR, EN, JP, ZH ou null
+function lgDecide(L, K){
+  if(L.fr>=3 && L.fr>=L.en+2) return "FR";
+  if(L.words>=3 && L.en>=L.fr+3) return "EN";
+  if(K){
+    if(K.kana>=10 && K.kana>=K.han) return "JP";
+    if(K.han>=10 && K.han>=K.kana*2) return "ZH";
+  }
+  if(!K) return null;
+  if(L.fr>L.en) return "FR";
+  if(L.en>L.fr || L.hp) return "EN";
+  return null;
+}
+async function detectLang(src, B){
+  const w = await getWorker();
+  const sc = Math.min(2, 1100/B.h);
+  const cv = crop(src,B.x,B.y,B.w,B.h,0,0,1,1,sc,false);
+  await w.setParameters({tessedit_pageseg_mode:"3", tessedit_char_whitelist:""});
+  const a = (await withTimeout(w.recognize(cv,{},{text:true}), 12000, "langue")).data;
+  const L = lgLatin(a.text);
+  let lg = lgDecide(L, null), K = null;
+  if(!lg){
+    // pas de mots français ou anglais : on lit l'écriture (kana = japonais, idéogrammes seuls = chinois)
+    let cw = null;
+    if(!cjkW) status.textContent = "Langue : lecture japonais / chinois…";
+    try{ cw = await withTimeout(getCjkWorker(), cjkW ? 1000 : 15000, "moteur japonais"); }catch(e){}
+    if(cw){
+      await cw.setParameters({tessedit_pageseg_mode:"6"});
+      const b = (await withTimeout(cw.recognize(cv,{},{text:true}), 15000, "langue")).data;
+      K = lgCjk(b.text); cjkRelease();
+    }
+    lg = K ? lgDecide(L, K) : null;
+  }
+  return {lg, L, K};
+}
+async function cardLang(src, B, D){
+  try{
+    if(!B || !B.w || !B.h) return;
+    status.textContent = "Langue de la carte…";
+    const r = await detectLang(src, B);
+    D.lgScore = `fr ${r.L.fr} · en ${r.L.en}${r.K?` · kana ${r.K.kana} · idéogrammes ${r.K.han}`:""}`;
+    if(r.lg) D.lg = r.lg;
+  }catch(e){ D.lgScore = "non détectée ("+e.message+")"; }
+  if(!D.lg && D.otherLang) D.lg = D.otherLang==="en" ? "EN" : "FR";
+}
 function crop(src,sx,sy,sw,sh, rx,ry,rw,rh, scale=3, binarize=true){
   const c=document.createElement("canvas"); c.width=Math.round(sw*rw*scale); c.height=Math.round(sh*rh*scale);
   const g=c.getContext("2d",{willReadFrequently:true}); g.imageSmoothingQuality="high";
@@ -4925,6 +5091,7 @@ async function autoTick(){
         still.width = vr.width; still.height = vr.height; still.getContext("2d").drawImage(video,(vr.width-vw*sc)/2,(vr.height-vh*sc)/2,vw*sc,vh*sc);
         still.hidden = false; video.hidden = true;
         navigator.vibrate?.(R.D.uncertain ? [30] : [10,40,10]);
+        await cardLang(S.c, box, R.D);
         status.textContent = `Trouvée : ${R.D.name}`;
         await new Promise(r=>setTimeout(r,300));
         await showCard(R.id, R.alts, R.D);
@@ -4995,6 +5162,7 @@ async function autoTick(){
     still.width = vr.width; still.height = vr.height; still.getContext("2d").drawImage(video,(vr.width-vw*sc)/2,(vr.height-vh*sc)/2,vw*sc,vh*sc);
     still.hidden = false; video.hidden = true;
     navigator.vibrate?.(uncertain ? [30] : [10,40,10]);
+    await cardLang(S.c, box, D);
     status.textContent = `Trouvée : ${best.name}`;
     await new Promise(r=>setTimeout(r,350));
     await showCard(best.id, list, D);
@@ -5039,6 +5207,7 @@ async function processCard(src,sx,sy,sw,sh){
       const M = await verifyMatch(src, matchImage(src, [{x:sx,y:sy,w:sw,h:sh}, C.found ? C : null]));
       if(M.ok){
         const RM = await openMatched(src, C.found ? C : {x:sx,y:sy,w:sw,h:sh}, M, D.q, C, R);
+        await cardLang(src, C.found ? C : {x:sx,y:sy,w:sw,h:sh}, RM.D);
         status.textContent = "Trouvée";
         navigator.vibrate?.(RM.D.uncertain?[30]:[10,40,10]);
         await showCard(RM.id, RM.alts, RM.D);
@@ -5157,6 +5326,7 @@ async function processCard(src,sx,sy,sw,sh){
     D.uncertain = reasons.length ? reasons[0][0].toUpperCase()+reasons[0].slice(1)+"." : null;
     D.reasons = reasons;
     D.result = {id:best.id, name:best.name};
+    await cardLang(src, C, D);
     lastDiag = D; $("#lastChip").classList.add("show");
     status.textContent = "Trouvée";
     navigator.vibrate?.(D.uncertain?[30]:[10,40,10]);
@@ -5202,6 +5372,7 @@ function renderDiag(D){
       val: D.name||"—", tip: (D.nameRaw?`Texte brut « ${D.nameRaw.slice(0,50)} », confiance ${D.nameConf} %.`:"Aucun texte reconnu dans la zone du nom.") + (D.words?.length?` Mots reconnus sur la carte : ${D.words.slice(0,8).join(", ")}.`:"")});
   }
   if(D.imageMiss) checks.push({label:"Reconnaissance de l'image", state:"warn", val:"—", tip:`Pas de correspondance sûre (${D.imageMiss}). La lecture du numéro a pris le relais.`});
+  if(D.lgScore) checks.push({label:"Langue de la carte", state:D.lg?"ok":"warn", val:D.lg?(LG_FLAG[D.lg]||"")+" "+(CARD_LG[D.lg]||D.lg):"—", tip:D.lg?`Repérée sur le texte imprimé (${D.lgScore}). Tu peux la changer dans la fiche.`:`Pas assez de texte lisible pour trancher (${D.lgScore}) : choisis la langue dans la fiche.`});
   if(D.image) checks.push({label:"Reconnaissance de l'image", state:D.uncertain?"warn":"ok", val:D.how, tip:D.attempts[0]?.zone || ""});
   if(D.search && !D.image){
     const sm=D.search;
@@ -5748,6 +5919,7 @@ function renderTiles(){
     return `<button class="ctile" data-id="${esc(c.id)}" aria-label="${esc(c.name)}, ${esc(p.txt)}"><span class="im${tileFoil(c)}"><span class="nm0">${esc(c.name)}</span>${imgTag(c, "low", 'alt="" loading="lazy"')}${r>=0?`<span class="rk">#${r+1}</span>`:""}${(q=>q>0?`<span class="ownq" title="Tu en as ${q}">×${q}</span>`:"")(OQ.get(c.id)||0)}</span><span class="nm">${esc(c.name)}</span><span class="mt"><span class="no">${esc(c.localId)}</span><span class="px ${p.cls}">${esc(p.txt)}</span></span></button>`;
   }).join("");
   g.querySelectorAll(".ctile").forEach(b=>b.onclick=()=>showCard(b.dataset.id, []));
+  wishMarks(g);
 }
 function patchTiles(){
   const g = $("#cgrid"); if(!g) return;
@@ -6800,7 +6972,7 @@ let brandQ = false;
 new MutationObserver(()=>{ if(brandQ) return; brandQ = true; requestAnimationFrame(()=>{ brandQ = false; brandLinks(); }); }).observe(document.body, {childList:true, subtree:true});
 brandLinks();
 /* Classeur : Mes cartes / Gradées / Toutes */
-function syncCls3(){ const k = curView()==="extView" ? "explore" : COLM.mode==="graded" ? "graded" : "cards"; document.querySelectorAll("[data-cls3]").forEach(b=>b.setAttribute("aria-pressed", b.dataset.cls3===k)); }
+function syncCls3(){ const k = curView()==="extView" ? "explore" : COLM.mode==="graded" ? "graded" : COLM.mode==="wish" ? "wish" : "cards"; document.querySelectorAll("[data-cls3]").forEach(b=>b.setAttribute("aria-pressed", b.dataset.cls3===k)); }
 document.querySelectorAll("[data-cls3]").forEach(b=>b.onclick=()=>{ const k = b.dataset.cls3;
   if(k==="explore"){ openExplore(); syncCls3(); return; } if(curView()!=="colView") selectTab("colView"); setColMode(k); syncCls3(); });
 // piste B : le Classeur = ta collection ; le catalogue complet s'ouvre dans « Explorer »
@@ -8231,6 +8403,8 @@ async function betaPublishFlow(){
 }
 /* Journal des modifications de la Bêta : la carte « Version Bêta » liste celles que les copains n'ont pas encore */
 const BETA_LOG = [
+  {v:175, t:"Liste de souhaits : ♡ Je la veux sur chaque carte, onglet Souhaits dans le Classeur, prix suivi et prix cible"},
+  {v:174, t:"Le scanner reconnaît tout seul la langue de la carte : français, anglais, japonais ou chinois"},
   {v:173, t:"Arène retirée pour l'instant (gardée de côté pour plus tard)"},
   {v:172, t:"Accueil : le trophée du classement passe dans le panneau de la valeur"},
   {v:172, t:"Classeur, extension ouverte : une seule barre propre — N° / Prix · Possédées / Manquantes (retoucher = toutes) · Sélection"},
@@ -8862,6 +9036,12 @@ $("#moreBack").onclick = ()=>navBack();
    Après l'intro, une seule fois par version qui apporte quelque chose à l'utilisateur.
    Nouvelle installation : rien (tout est neuf). Les versions purement techniques n'ont pas d'entrée ici. */
 const NEWS = [
+  {v:175, items:[
+    ["M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8l1 1.1L12 21l7.8-7.5 1-1.1a5.5 5.5 0 0 0 0-7.8z", "Liste de souhaits", "Touche ♡ Je la veux sur une carte : elle rejoint l'onglet Souhaits du Classeur avec son prix du jour. Fixe un prix cible, la carte s'allume quand elle passe dessous."]
+  ]},
+  {v:174, items:[
+    ["M3 5h12M9 3v2m1.05 9.5A18 18 0 0 1 6.4 9m6.6 11 5-10 5 10m-8.5-3h7M11.5 5c-.6 4.2-2.9 8-6.5 10.5", "Langue reconnue au scan", "Le scanner lit le texte de la carte et règle tout seul la langue : FR, EN, JP ou CN. Tu peux toujours la changer dans la fiche."]
+  ]},
   {v:172, items:[
     ["M12 3v6M8 7l4 4 4-4M5 13a7 7 0 1 0 14 0", "Tire pour recharger", "En haut de n'importe quel onglet, tire vers le bas pour recharger l'app."]
   ]},
@@ -9448,7 +9628,7 @@ function arClose(forfeit){
   AR.b = null; $("#arenaView")?.remove(); if($("#soArena") && !$("#soArena").hidden) renderArenaHome();
 }
 
-window.__cote = {setTheme, arStart:(f)=>arStart(f), renderArenaHome:()=>renderArenaHome(), rkCollection:(i)=>rkCollection(i), cmSearch:(q,t)=>cmSearch(q,t), loadCM:()=>loadCM(), petArtDemo:(k,lv)=>petArt(STARTERS.find(s=>s.k===k),lv,true), palierMsg, shareCollection, fdShareCol, teamPick, teamLeft, evoCheck, openThemes, checkSecret, verifyMatch, detectCard, findCards, parseNumber, showCard, processCard, analyzeQuality, renderDiag, openHealth, checkHealth, selectTab, openSet, showExtHome, EX, loadIndex, matchImage, CARDSIG, numCandidates};
+window.__cote = {setTheme, cardLang, arStart:(f)=>arStart(f), renderArenaHome:()=>renderArenaHome(), rkCollection:(i)=>rkCollection(i), cmSearch:(q,t)=>cmSearch(q,t), loadCM:()=>loadCM(), petArtDemo:(k,lv)=>petArt(STARTERS.find(s=>s.k===k),lv,true), palierMsg, shareCollection, fdShareCol, teamPick, teamLeft, evoCheck, openThemes, checkSecret, verifyMatch, detectCard, findCards, parseNumber, showCard, processCard, analyzeQuality, renderDiag, openHealth, checkHealth, selectTab, openSet, showExtHome, EX, loadIndex, matchImage, CARDSIG, numCandidates};
 })();
 </script>
 <script>if("serviceWorker" in navigator) addEventListener("load", ()=>navigator.serviceWorker.register(window.__BETA?"beta/sw.js":"sw.js").catch(()=>{}));</script>

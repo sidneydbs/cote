@@ -5,11 +5,12 @@
 // - Les images des cartes, logos et icônes sont gardées sur le téléphone : la 2e fois elles s'affichent tout de suite,
 //   sans retélécharger (moins de réseau, moins de batterie).
 // - Les données TCGdex : extensions gardées 6 h, cartes et cotes 2 h : retour arrière et réouverture instantanés.
-const APP = "dex-app-v1", IMG = "dex-img-v1", API = "dex-api-v2", MAX_IMG = 2500, API_TTL = 6 * 3600e3;
+// - Les fichiers de données de l'app (.json) : dernière copie servie sans réseau (mode hors ligne).
+const APP = "dex-app-v1", IMG = "dex-img-v1", API = "dex-api-v2", DATA = "dex-data-v1", MAX_IMG = 2500, API_TTL = 6 * 3600e3;
 const IMG_HOSTS = /^(assets\.tcgdex\.net|images\.pokemontcg\.io|images\.scrydex\.com|limitlesstcg\.nyc3\.cdn\.digitaloceanspaces\.com|www\.google\.com|icons\.duckduckgo\.com)$/;
 self.addEventListener("install", () => self.skipWaiting());
 self.addEventListener("activate", e => e.waitUntil((async () => {
-  for (const k of await caches.keys()) if (![APP, IMG, API].includes(k)) await caches.delete(k);
+  for (const k of await caches.keys()) if (![APP, IMG, API, DATA].includes(k)) await caches.delete(k);
   // réparation : une ancienne version a pu garder une autre page (booster3d.html) à la place de l'app
   try { const c = await caches.open(APP), key = new URL("./", self.registration.scope).href, hit = await c.match(key);
     if (hit && !(await hit.clone().text()).includes("__APPV")) await c.delete(key); } catch (e) {}
@@ -47,6 +48,12 @@ async function api(req) {
   if (fresh) { net.catch(() => {}); return hit; }     // récent : réponse immédiate, mise à jour en fond
   try { return await net; } catch (e) { if (hit) return hit; throw e; }
 }
+// fichiers de données de l'app (cotes du jour, raretés, Japon, Chine…) : réseau d'abord, dernière copie sans réseau
+async function data(req) {
+  const u = new URL(req.url), key = u.origin + u.pathname, c = await caches.open(DATA);
+  try { const r = await fetch(req); if (r.ok) c.put(key, r.clone()).catch(() => {}); return r; }
+  catch (e) { const hit = await c.match(key); if (hit) return hit; throw e; }
+}
 const OFFLINE = () => new Response(
   '<!doctype html><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Dex Scan</title>' +
   '<body style="margin:0;min-height:100vh;display:grid;place-items:center;background:#0B0911;color:#F1EAFF;font:16px system-ui;text-align:center;padding:24px">' +
@@ -76,6 +83,7 @@ self.addEventListener("fetch", e => {
     return;
   }
   if (req.destination === "image" && (IMG_HOSTS.test(u.hostname) || (u.origin === location.origin && u.pathname.includes("/media/")))) { e.respondWith(image(req)); return; }
+  if (u.origin === location.origin && u.pathname.endsWith(".json") && !u.pathname.endsWith("version.json")) { e.respondWith(data(req)); return; }
   if (u.hostname === "api.tcgdex.net" && /\/v2\/\w+\/(sets|series|cards)\//.test(u.pathname)) { e.respondWith(api(req)); return; }
 });
 

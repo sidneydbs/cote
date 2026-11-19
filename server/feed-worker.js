@@ -15,6 +15,10 @@
      POST /feed/dm/send   {id,key,to,toName,toPk,name,pk,text,card} → {msg}
      POST /feed/dm/list   {id,key}            → {threads:[{with,name,pk,last,t,unread}]}
      POST /feed/dm/thread {id,key,with}       → {msgs}   (et marque la conversation comme lue)
+   Échanges automatiques (KV "tw:ID", "tw:index") :
+     POST /feed/trade/sync  {id,key,on,name,pk,lv,give[],want[]} → {ok}
+     POST /feed/trade/match {id,key}      → {matches:[{uid,name,pk,lv,give[],want[]}]}
+     POST /feed/trade/get   {id,key,uid}  → {want[],give[]}
    Sauvegarde chiffrée (KV "bk:EMPREINTE") :
      GET  /feed/bk/EMPREINTE                → le bloc chiffré
      POST /feed/bk/EMPREINTE {d,iv,z,n,app,force} → {ok,t,n}  (409 si n < moitié de l'ancienne sans force)
@@ -101,6 +105,37 @@ async function dm(env, me, act, b){
   }
   return err("action inconnue", 404);
 }
+/* Échanges automatiques : chaque Hunter qui l'active publie ses doubles (give) et sa liste de souhaits (want).
+   KV "tw:ID" = {name,pk,lv,give[],want[],t} ; "tw:index" = la liste des ID participants. */
+async function trade(env, me, act, b){
+  const idxGet = async () => { try{ return JSON.parse(await env.FEED.get("tw:index") || "[]"); }catch(e){ return []; } };
+  const twGet = async u => { try{ return JSON.parse(await env.FEED.get("tw:" + u) || "null"); }catch(e){ return null; } };
+  if(act === "sync"){
+    const idx = await idxGet();
+    if(!b.on){ await env.FEED.delete("tw:" + me); if(idx.includes(me)) await env.FEED.put("tw:index", JSON.stringify(idx.filter(x => x !== me))); return json({ok:true, on:false}); }
+    const cl = (l, n) => (Array.isArray(l) ? l : []).slice(0, n).map(card).filter(c => c && c.id);
+    const o = {name:clean(b.name, 24) || "Hunter", pk:clean(b.pk, 40), lv:num(b.lv, 999) || 1, give:cl(b.give, 400), want:cl(b.want, 300), t:Date.now()};
+    await env.FEED.put("tw:" + me, JSON.stringify(o));
+    if(!idx.includes(me)){ idx.push(me); await env.FEED.put("tw:index", JSON.stringify(idx.slice(-3000))); }
+    return json({ok:true, on:true});
+  }
+  if(act === "match"){
+    const mine = await twGet(me); if(!mine) return json({matches:[], off:true});
+    const want = new Set(mine.want.map(c => c.id)), give = new Set(mine.give.map(c => c.id));
+    const ids = (await idxGet()).filter(x => x !== me).slice(-400), now = Date.now(), out = [];
+    const all = await Promise.all(ids.map(async u => [u, await twGet(u)]));
+    for(const [u, o] of all){
+      if(!o || now - o.t > 60 * 864e5) continue;
+      const g = o.give.filter(c => want.has(c.id)), w = o.want.filter(c => give.has(c.id));
+      if(g.length || w.length) out.push({uid:u, name:o.name, pk:o.pk, lv:o.lv, give:g.slice(0, 24), want:w.slice(0, 24), t:o.t});
+    }
+    const both = m => m.give.length && m.want.length ? 1 : 0;
+    out.sort((x, y) => both(y) - both(x) || (y.give.length + y.want.length) - (x.give.length + x.want.length) || y.t - x.t);
+    return json({matches:out.slice(0, 40), n:ids.length});
+  }
+  if(act === "get"){ const o = await twGet(clean(b.uid, 64)); return json(o ? {name:o.name, want:o.want, give:o.give, t:o.t} : {want:[], give:[], off:true}); }
+  return err("action inconnue", 404);
+}
 async function backup(req, env, hid){
   if(!/^[0-9a-f]{64}$/.test(hid)) return err("code de sauvegarde invalide");
   const k = "bk:" + hid;
@@ -147,6 +182,7 @@ export default {
       const b = await req.json().catch(()=>null); if(!b) return err("requête illisible");
       const me = await auth(env, b.id, b.key), act = path.slice(6);
       if(act.startsWith("dm/")) return await dm(env, me, act.slice(3), b);
+      if(act.startsWith("trade/")) return await trade(env, me, act.slice(6), b);
       // relie l'abonnement aux notifications de ce téléphone à ce profil (pour recevoir ses messages privés)
       if(act === "pushlink"){ if(!/^https:\/\/[^\s]{10,1000}$/.test(String(b.endpoint || ""))) return err("Abonnement invalide");
         if(!env.PUSH || !env.INT_KEY) return err("Notifications indisponibles", 503);

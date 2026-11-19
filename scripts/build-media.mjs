@@ -223,22 +223,28 @@ for (const x of cm.items) { const s = findSet(x.n); if (s && x.e != null) { byEx
 // b) photos TCGplayer (tp-img.json, écrit par build-sealed.mjs : tous les produits non-cartes avec photo, cotés ou non)
 const TPI = readJSON("tp-img.json", null)?.items || readJSON("sealed.json", {items: []}).items.filter(x => x.img);
 const nk = s => s.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/pok[eé]mon|\btcg\b|\bthe\b|\band\b|&/g, " ").replace(/booster box/g, "display").replace(/booster pack/g, "booster").replace(/[^a-z0-9]+/g, " ").trim();
-const toks = s => new Set(nk(s).split(" ").filter(Boolean));
+// noms sans les mentions qui ne changent pas la boîte : « (18 Boosters) », « (6 Cards) », « US Version », « Pokémon Center Version »…
+const FILL = /\b(version|english|en|us|eu|boosters?\s*\d*|\d+\s*boosters?|edition|new|pokemon center|pc|exclusive)\b/g;
+const nk2 = s => nk(String(s).replace(/\((\d+ (boosters?|cards?)|(us|eu|en) version|v\.?\d)\)/gi, " ")).replace(FILL, " ").replace(/\s+/g, " ").trim();
+// seul un de ces mots génériques peut manquer côté TCGplayer (jamais un nom de Pokémon ni un chiffre)
+const GEN = new Set("tins tin box boxes collection collections pack packs empty special set sets series cards card challenge premium figure sidekick".split(" "));
+const toks = (s, f = nk) => new Set(f(s).split(" ").filter(w => w && w !== "s"));
 const kindOf = s => { s = nk(s); if (/\bcase\b/.test(s)) return "case"; if (/display/.test(s)) return "display"; if (/\bbooster\b|\bpack\b/.test(s) && !/box|bundle|set\b|collection/.test(s)) return "booster"; if (/\bdeck\b|starter/.test(s)) return "deck"; if (/\bcoins?\b/.test(s)) return "coin"; if (/\btins?\b/.test(s)) return "tin"; return "x"; };
 const stripCode = s => s.replace(/^[A-Za-z0-9.\-]+:\s*/, "");
-const tpIdx = TPI.filter(p => p.img && p.n).map(p => ({p, k: toks(p.n + " " + stripCode(p.g || "")), kn: toks(p.n), kd: kindOf(p.n)}));
+const tpIdx = TPI.filter(p => p.img && p.n).map(p => ({p, k: toks(p.n + " " + stripCode(p.g || ""), nk2), kn: toks(p.n, nk2), kd: kindOf(p.n)}));
 function tpPhoto(name) {
   if (/^C[A-Z0-9.]*C?:/.test(name)) return null;   // produits chinois : TCGplayer n'en vend pas, et la boîte japonaise n'est pas la même
+  if (/\bcoins?\b/i.test(name) && !/\btins?\b/i.test(name)) return null;   // pièce seule : pas la photo de la boîte d'où elle vient
   let n = stripCode(name), kd = kindOf(n);
   if (kd === "case") { n = n.replace(/\s*case\b/i, ""); kd = kindOf(n); }   // carton : photo de la boîte qu'il contient
-  const a = toks(n); if (!a.size) return null;
+  const a = toks(n, nk2); if (!a.size) return null;
   let best = null;
   for (const x of tpIdx) {
     if (kd !== "x" && x.kd !== kd) continue;
-    let hit = 0; for (const w of a) if (x.k.has(w)) hit++;
-    if (hit < a.size) continue;   // tous les mots du nom Cardmarket doivent être présents côté TCGplayer
+    let hit = 0, miss = 0; for (const w of a) if (x.k.has(w)) hit++; else if (GEN.has(w)) miss++; else { miss = 9; break; }
+    if (miss > (a.size >= 4 ? 1 : 0)) continue;   // tous les mots du nom Cardmarket présents côté TCGplayer, à un mot générique près
     const j = hit / new Set([...a, ...x.kn]).size;
-    if (j >= .7 && (!best || j > best.j || (j === best.j && x.p.lg === "JP"))) best = {p: x.p, j};
+    if (j >= (miss ? .62 : .6) && (!best || j > best.j || (j === best.j && x.p.lg === "JP"))) best = {p: x.p, j};
   }
   return best?.p.img || null;
 }

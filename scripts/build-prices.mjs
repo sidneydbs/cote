@@ -60,8 +60,21 @@ function usPricing(d){
   }
   return d;
 }
+// cartes Wizards : médiane tendance / moy. 7 j / moy. 30 j (même règle que l'app : vintagePricing)
+const VINTAGE = /^(base\d?|basep|gym\d|neo\d|si1|lc|ecard\d|wp)$/;
+function vintagePricing(d){
+  const cm = d?.pricing?.cardmarket, sid = d?.set?.id || String(d?.id||"").replace(/-[^-]+$/,"");
+  if(!cm || cm._tp || !VINTAGE.test(sid)) return d;
+  for(const s of ["", "-holo"]){
+    const t = cm["trend"+s], a7 = cm["avg7"+s], a30 = cm["avg30"+s];
+    if(!(t > 0) || !(a7 > 0) || !(a30 > 0)) continue;
+    const med = [t, a7, a30].sort((x,y)=>x-y)[1];
+    if(med > t*1.15){ (cm._vint ||= []).push({v:s||"normale", was:t, now:med}); cm["trend"+s] = Math.round(med*100)/100; }
+  }
+  return d;
+}
 function fixPricing(d){
-  sanePricing(d); usPricing(d);
+  sanePricing(d); usPricing(d); vintagePricing(d);
   const p = d?.pricing, cm = p?.cardmarket, tp = p?.tcgplayer;
   if(!cm || !tp || cm._tp) return d;
   const sid = d.set?.id || String(d.id||"").replace(/-[^-]+$/,""); if(!/^(me|sv)/.test(sid)) return d;

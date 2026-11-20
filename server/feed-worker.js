@@ -2,7 +2,6 @@
    Liaison KV obligatoire : nom de variable FEED.
    Routes (toutes sous /feed) :
      GET  /feed?f=all|re|new&id=ID      → {posts}
-     GET  /feed/px?u=URL                → image de carte relayée (sites de cartes connus)
      GET  /feed/img/POST_ID              → la photo (JPEG)   (POST_ID-COMMENTAIRE : photo d'un commentaire)
      POST /feed/post   {id,key,name,pk,lv,tag,text,img,shop,price} → {post}
      POST /feed/like   {id,key,post}     → {post}
@@ -28,7 +27,6 @@
    · open {prod,cost,cards[]} · poll {opts[]}. Une carte = {id,name,set,num,img,price,rar}.
    Identité : l'id et la clé du profil de dresseur du téléphone. La 1re fois, le serveur retient
    l'empreinte de la clé ; ensuite seule cette clé peut publier ou réagir avec cet id. */
-const PX_HOSTS = ["scrydex.com","limitlesstcg.com","digitaloceanspaces.com","pokemontcg.io","tcgplayer.com","tcgdex.net","pokecardex.com","pkmncards.com"];
 const TAGS = ["talk","re","new","trade","card","col","open","want","sell","poll"];
 const MAX_POSTS = 300, HIDE_AT = 3, PER_HOUR = 12, MAX_CM = 200, CM_PER_HOUR = 40;
 const CORS = {"access-control-allow-origin":"*", "access-control-allow-methods":"GET,POST,OPTIONS", "access-control-allow-headers":"content-type"};
@@ -204,15 +202,6 @@ export default {
         let l = (await load(env)).filter(p => (p.reports||[]).length < HIDE_AT && (f === "all" || p.tag === f));
         if(u.searchParams.get("peek")) l = l.slice(0, 1);
         return json({posts: l.slice(0, 150).map(p => view(p, me, base))});
-      }
-      // relais d'image de carte (sites de cartes connus seulement) : l'image de partage peut la dessiner même si le site refuse la copie
-      if(req.method === "GET" && path === "/feed/px"){
-        let t; try{ t = new URL(u.searchParams.get("u") || ""); }catch(e){ return new Response("adresse invalide", {status:400, headers:CORS}); }
-        if(t.protocol !== "https:" || !PX_HOSTS.some(h => t.hostname === h || t.hostname.endsWith("." + h))) return new Response("site non autorisé", {status:403, headers:CORS});
-        const r = await fetch(t.toString(), {cf:{cacheTtl:604800, cacheEverything:true}, headers:{"user-agent":"DexScan/1.0"}});
-        const ct = r.headers.get("content-type") || "";
-        if(!r.ok || !/^image\//.test(ct)) return new Response("image introuvable", {status:404, headers:CORS});
-        return new Response(r.body, {headers:{"content-type":ct, "cache-control":"public, max-age=604800", ...CORS}});
       }
       if(req.method === "GET" && path.startsWith("/feed/img/")){
         const d = await env.FEED.get("img:" + path.slice(10));

@@ -29,4 +29,4 @@ def cut(im, tol=34):
 for k, u in SRC.items():
     req = urllib.request.Request(u, headers={"User-Agent": "Mozilla/5.0"})
     im = Image.open(io.BytesIO(urllib.request.urlopen(req, timeout=30).read()))
-    cut(im).save(f"media/brand/{k}-l.png", optimize=True); print(k, "ok")
+    im2 = cut(im); im2.thumbnail((200, 360)); im2.save(f"media/brand/{k}-l.webp", quality=86, method=6); print(k, "ok")

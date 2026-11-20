@@ -77,12 +77,16 @@ function matchAll(list) {
 const items = [];
 for (const p of cat.products) {
   const t = typeOf(p.name, p.categoryName); if (!t) continue;
-  const g = pr.get(p.idProduct); if (!g || (g.avg == null && g.trend == null && g.low == null)) continue;
-  items.push({i: p.idProduct, n: p.name, t, c: p.categoryName.replace(/^Pok[eé]mon /, ""), e: p.idExpansion, d: (p.dateAdded || "").slice(0, 10),
-    a: r2(g.avg), lo: r2(g.low), tr: r2(g.trend), a1: r2(g.avg1), a7: r2(g.avg7), a30: r2(g.avg30)});
+  const g = pr.get(p.idProduct), d = (p.dateAdded || "").slice(0, 10);
+  const noPrice = !g || (g.avg == null && g.trend == null && g.low == null);
+  // produit tout juste annoncé (pas encore de vente ni d'annonce) : gardé quand même, marqué « nouveau », pour qu'il soit dans l'app dès qu'il apparaît chez Cardmarket
+  const fresh = d && (Date.now() - Date.parse(d)) < 240 * 864e5;
+  if (noPrice && !fresh) continue;
+  items.push({i: p.idProduct, n: p.name, t, c: p.categoryName.replace(/^Pok[eé]mon /, ""), e: p.idExpansion, d,
+    ...(noPrice ? {nw: 1} : {a: r2(g.avg), lo: r2(g.low), tr: r2(g.trend), a1: r2(g.avg1), a7: r2(g.avg7), a30: r2(g.avg30)})});
 }
 matchAll(items);
-console.log(`${items.length} produits cotés · ${items.filter(x => x.tp).length} reliés à TCGplayer`);
+console.log(`${items.length} produits (${items.filter(x => x.nw).length} nouveaux sans cote) · ${items.filter(x => x.tp).length} reliés à TCGplayer`);
 const prev = readJSON("cm-sealed.json", null);
 if (prev?.items?.length && items.length < prev.items.length * .8) { console.error(`Trop peu de produits (${items.length} contre ${prev.items.length}), non publié`); process.exit(1); }
 fs.writeFileSync("cm-sealed.json", JSON.stringify({v: 1, built: new Date().toISOString(), pg: pg.createdAt, source: "Cardmarket", currency: "EUR", cats, items}));

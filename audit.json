@@ -1,5 +1,5 @@
 {
- "built": "2026-11-19T22:38:48.217Z",
+ "built": "2026-11-20T02:34:36.019Z",
  "sets": {
   "total": 209,
   "noLogo": [],
@@ -849,13 +849,12 @@
   "tk-xy-p": "tk9b",
   "tk-sm-l": "tk10a",
   "tk-sm-r": "tk10b",
-  "tk-ex-p": "tk2a",
-  "tk-ex-latio": "tk1b",
-  "tk-ex-m": "tk2b"
+  "tk-ex-p": "tk2a"
  },
  "diag": {
   "assets.tcgdex.net": {
-   "404": 324,
+   "404": 323,
+   "503": 16,
    "ok": 150
   },
   "images.pokemontcg.io": {

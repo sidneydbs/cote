@@ -1,5 +1,5 @@
 {
- "built": "2026-11-20T02:34:36.019Z",
+ "built": "2026-11-20T12:08:11.641Z",
  "sets": {
   "total": 209,
   "noLogo": [],
@@ -14,10 +14,10 @@
   "bySet": {}
  },
  "sealed": {
-  "total": 4639,
-  "photo": 1345,
+  "total": 4641,
+  "photo": 1350,
   "manual": 0,
-  "tcgplayer": 938,
+  "tcgplayer": 935,
   "logo": 1547,
   "missing": 809,
   "list": [
@@ -405,7 +405,6 @@
    "Miracle Crystal Booster",
    "Holon Phantom Booster",
    "Battle Academy 2024: Pikachu, Armarouge & Darkrai Coin",
-   "Holon Research Tower Booster",
    "Mirage Forest Booster",
    "Rocket Gang Strikes Back Booster",
    "Clash of the Blue Sky Booster",
@@ -416,6 +415,7 @@
    "Psychic Quick Construction Pack",
    "Fighting Quick Construction Pack",
    "Silver Deck Kit",
+   "Black Deck Kit",
    "Rayquaza Constructed Starter Deck",
    "Venusaur Random Constructed Starter Deck",
    "Special Jumbo Card Set Ogerpon: Ogerpoin Coin",
@@ -849,12 +849,14 @@
   "tk-xy-p": "tk9b",
   "tk-sm-l": "tk10a",
   "tk-sm-r": "tk10b",
-  "tk-ex-p": "tk2a"
+  "tk-ex-p": "tk2a",
+  "tk-ex-m": "tk2b",
+  "tk-ex-latia": "tk1a",
+  "tk-ex-latio": "tk1b"
  },
  "diag": {
   "assets.tcgdex.net": {
-   "404": 323,
-   "503": 16,
+   "404": 324,
    "ok": 150
   },
   "images.pokemontcg.io": {

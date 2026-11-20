@@ -1,5 +1,5 @@
 {
- "maj": "2026-11-19",
+ "maj": "2026-11-20",
  "sets": [
   {
    "id": "me06",
@@ -21,7 +21,54 @@
    "status": "officiel",
    "src": "https://www.wargamer.com/pokemon-trading-card-game/flowing-fists",
    "note": "Annoncée par The Pokémon Company : Méga-Lucario Z-ex en tête d'affiche, avec Méga-Carchacrok Z-ex et Méga-Absol Z-ex. Environ 80 cartes, adaptation de l'extension japonaise Aura Seeker (sortie au Japon le 27 novembre 2026). Avant-premières prévues fin janvier.",
-   "until": "2027-04-30"
+   "until": "2027-04-30",
+   "products": [
+    {
+     "t": "display",
+     "n": "Flowing Fists Booster Box (display)"
+    },
+    {
+     "t": "booster",
+     "n": "Flowing Fists Booster"
+    },
+    {
+     "t": "booster",
+     "n": "Flowing Fists Sleeved Booster"
+    },
+    {
+     "t": "etb",
+     "n": "Flowing Fists Elite Trainer Box"
+    },
+    {
+     "t": "etb",
+     "n": "Flowing Fists Pokémon Center Elite Trainer Box"
+    },
+    {
+     "t": "bundle",
+     "n": "Flowing Fists Booster Bundle"
+    },
+    {
+     "t": "blister",
+     "n": "Flowing Fists 3-Pack Blister (Wimpod)"
+    },
+    {
+     "t": "blister",
+     "n": "Flowing Fists Checklane Blister (Tynamo)"
+    },
+    {
+     "t": "blister",
+     "n": "Flowing Fists Premium Checklane Blister (Bastiodon)"
+    },
+    {
+     "t": "blister",
+     "n": "Flowing Fists Premium Checklane Blister (Primarina)"
+    },
+    {
+     "t": "bnb",
+     "n": "Flowing Fists Build & Battle Box"
+    }
+   ],
+   "psrc": "https://billsarchive.com/flowing-fists.html"
   }
  ]
 }

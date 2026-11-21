@@ -1,5 +1,5 @@
 {
- "built": "2026-11-21T11:43:39.329Z",
+ "built": "2026-11-21T19:45:27.160Z",
  "sets": {
   "total": 209,
   "noLogo": [],
@@ -14,12 +14,12 @@
   "bySet": {}
  },
  "sealed": {
-  "total": 4714,
-  "photo": 1357,
+  "total": 4733,
+  "photo": 1368,
   "manual": 0,
-  "tcgplayer": 936,
+  "tcgplayer": 943,
   "logo": 1575,
-  "missing": 846,
+  "missing": 847,
   "list": [
    "HS Trainer Kit",
    "WCD 2004: Rocky Beach Deck",
@@ -866,7 +866,8 @@
    "Mega Gengar ex, Mega Dragonite ex & Mega Feraligatr ex Special Deck Set: Gengar Coin",
    "Pokémon TCG Valentine’s Box",
    "Pokémon TCG Valentine's Booster",
-   "CSVH2C: Happy Set Lucario & Greninja & Zamazenta & Mabosstiff: Happy Set Lucario & Greninja & Zamazenta & Mabosstiff: Theme Deck"
+   "CSVH2C: Happy Set Lucario & Greninja & Zamazenta & Mabosstiff: Happy Set Lucario & Greninja & Zamazenta & Mabosstiff: Theme Deck",
+   "Flowing Fists: Eevee Coin"
   ]
  },
  "tk": {
@@ -886,9 +887,10 @@
   "tk-xy-p": "tk9b",
   "tk-sm-l": "tk10a",
   "tk-sm-r": "tk10b",
-  "tk-ex-p": "tk2a",
+  "tk-ex-m": "tk2b",
   "tk-ex-latio": "tk1b",
-  "tk-ex-m": "tk2b"
+  "tk-ex-p": "tk2a",
+  "tk-ex-latia": "tk1a"
  },
  "diag": {
   "assets.tcgdex.net": {

@@ -1,5 +1,5 @@
 {
- "built": "2026-11-22T19:57:25.679Z",
+ "built": "2026-11-23T01:57:33.962Z",
  "sets": {
   "total": 209,
   "noLogo": [],
@@ -15,11 +15,11 @@
  },
  "sealed": {
   "total": 4733,
-  "photo": 1367,
+  "photo": 1357,
   "manual": 0,
-  "tcgplayer": 947,
-  "logo": 1572,
-  "missing": 847,
+  "tcgplayer": 957,
+  "logo": 1573,
+  "missing": 846,
   "list": [
    "HS Trainer Kit",
    "WCD 2004: Rocky Beach Deck",
@@ -252,7 +252,6 @@
    "Pretend Grunt Pikachu Special Box",
    "Pretend Magikarp & Pretend Gyarados Pikachu Special Box",
    "Special Deck Set Zacian Zamazenta vs Eternatus",
-   "Pikachu World Collection 2010 Blue Set",
    "Pikachu World Collection 2000 Set",
    "Movie Commemoration Random Pack Booster Box",
    "25th Anniversary Golden Box Pikachu Coin",
@@ -887,8 +886,8 @@
   "tk-xy-p": "tk9b",
   "tk-sm-l": "tk10a",
   "tk-sm-r": "tk10b",
-  "tk-ex-latio": "tk1b",
-  "tk-ex-latia": "tk1a"
+  "tk-ex-p": "tk2a",
+  "tk-ex-m": "tk2b"
  },
  "diag": {
   "assets.tcgdex.net": {

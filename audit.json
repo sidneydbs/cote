@@ -1,5 +1,5 @@
 {
- "built": "2026-11-23T01:57:33.962Z",
+ "built": "2026-11-23T13:36:39.025Z",
  "sets": {
   "total": 209,
   "noLogo": [],
@@ -886,8 +886,9 @@
   "tk-xy-p": "tk9b",
   "tk-sm-l": "tk10a",
   "tk-sm-r": "tk10b",
-  "tk-ex-p": "tk2a",
-  "tk-ex-m": "tk2b"
+  "tk-ex-m": "tk2b",
+  "tk-ex-latia": "tk1a",
+  "tk-ex-latio": "tk1b"
  },
  "diag": {
   "assets.tcgdex.net": {

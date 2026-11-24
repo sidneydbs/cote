@@ -1,5 +1,5 @@
 {
- "built": "2026-11-23T13:36:39.025Z",
+ "built": "2026-11-24T02:33:45.803Z",
  "sets": {
   "total": 209,
   "noLogo": [],
@@ -15,11 +15,11 @@
  },
  "sealed": {
   "total": 4733,
-  "photo": 1357,
+  "photo": 1359,
   "manual": 0,
   "tcgplayer": 957,
-  "logo": 1573,
-  "missing": 846,
+  "logo": 1572,
+  "missing": 845,
   "list": [
    "HS Trainer Kit",
    "WCD 2004: Rocky Beach Deck",
@@ -558,7 +558,6 @@
    "Pikachu & Eevee Quicksand Card Display Pendant Gift Box",
    "Giratina VSTAR Deck Building Advanced Gift Box",
    "WCD 2024: Jesse Parker \"\"The 'Don\"\"",
-   "WCD 2024: Evan Pavelski \"\"Regidrago VSTAR\"\"",
    "151C: Collect 151 Journey Booster",
    "151C: Collect 151 Journey Jumbo Booster",
    "151C: Collection 151 Special Event Pack",
@@ -886,8 +885,6 @@
   "tk-xy-p": "tk9b",
   "tk-sm-l": "tk10a",
   "tk-sm-r": "tk10b",
-  "tk-ex-m": "tk2b",
-  "tk-ex-latia": "tk1a",
   "tk-ex-latio": "tk1b"
  },
  "diag": {

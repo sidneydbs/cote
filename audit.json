@@ -1,5 +1,5 @@
 {
- "built": "2026-11-25T00:05:39.235Z",
+ "built": "2026-11-25T09:04:57.326Z",
  "sets": {
   "total": 209,
   "noLogo": [],
@@ -14,12 +14,12 @@
   "bySet": {}
  },
  "sealed": {
-  "total": 4740,
-  "photo": 1359,
+  "total": 4741,
+  "photo": 1362,
   "manual": 0,
-  "tcgplayer": 957,
+  "tcgplayer": 954,
   "logo": 1573,
-  "missing": 851,
+  "missing": 852,
   "list": [
    "HS Trainer Kit",
    "WCD 2004: Rocky Beach Deck",
@@ -283,6 +283,7 @@
    "Leaders' Stadium Booster",
    "Challenge from the Darkness Booster",
    "Rocket Gang Booster Box",
+   "Leaders' Stadium Booster Box",
    "Expansion Sheet Series 1: Professor Oak's Laboratory - Sheet 1",
    "Expansion Sheet Series 1: Professor Oak's Laboratory - Sheet 3",
    "Expansion Sheet Series 1: Viridian Forest - Sheet 5",
@@ -891,23 +892,27 @@
   "tk-xy-p": "tk9b",
   "tk-sm-l": "tk10a",
   "tk-sm-r": "tk10b",
+  "tk-ex-latio": "tk1b",
   "tk-ex-p": "tk2a",
-  "tk-ex-m": "tk2b",
-  "tk-ex-latio": "tk1b"
+  "tk-ex-m": "tk2b"
  },
  "diag": {
   "assets.tcgdex.net": {
-   "404": 42,
-   "ok": 291
+   "404": 18,
+   "502": 40,
+   "503": 140,
+   "ok": 286,
+   "pas-image": 3,
+   "réseau": 17
   },
   "images.pokemontcg.io": {
    "404": 33,
-   "ok": 324
+   "ok": 375
   },
   "images.scrydex.com": {
    "404": 16,
-   "ok": 1163,
-   "absente": 200
+   "ok": 1117,
+   "absente": 202
   },
   "limitlesstcg.nyc3.cdn.digitaloceanspaces.com": {
    "403": 1,

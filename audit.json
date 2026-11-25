@@ -1,5 +1,5 @@
 {
- "built": "2026-11-24T14:14:37.223Z",
+ "built": "2026-11-25T00:05:39.235Z",
  "sets": {
   "total": 209,
   "noLogo": [],
@@ -891,21 +891,23 @@
   "tk-xy-p": "tk9b",
   "tk-sm-l": "tk10a",
   "tk-sm-r": "tk10b",
-  "tk-ex-p": "tk2a"
+  "tk-ex-p": "tk2a",
+  "tk-ex-m": "tk2b",
+  "tk-ex-latio": "tk1b"
  },
  "diag": {
   "assets.tcgdex.net": {
-   "404": 324,
-   "ok": 150
+   "404": 42,
+   "ok": 291
   },
   "images.pokemontcg.io": {
-   "404": 35,
-   "ok": 272
+   "404": 33,
+   "ok": 324
   },
   "images.scrydex.com": {
    "404": 16,
-   "ok": 1356,
-   "absente": 237
+   "ok": 1163,
+   "absente": 200
   },
   "limitlesstcg.nyc3.cdn.digitaloceanspaces.com": {
    "403": 1,

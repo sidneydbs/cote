@@ -1,5 +1,5 @@
 {
- "built": "2026-11-26T03:45:39.973Z",
+ "built": "2026-11-26T17:16:51.576Z",
  "sets": {
   "total": 209,
   "noLogo": [],
@@ -14,12 +14,12 @@
   "bySet": {}
  },
  "sealed": {
-  "total": 4766,
+  "total": 4767,
   "photo": 1379,
   "manual": 0,
   "tcgplayer": 955,
   "logo": 1584,
-  "missing": 848,
+  "missing": 849,
   "list": [
    "HS Trainer Kit",
    "WCD 2004: Rocky Beach Deck",
@@ -699,6 +699,7 @@
    "CSV7C: Blade Awakening Booster",
    "CSV7C: Blade Awakening Jumbo Booster",
    "Indigo Flame Indonesian 10-Pack Set Plus",
+   "Indigo Flame Special Set Gastly 2-Pack Blister",
    "Indigo Flame Booster Box",
    "Indigo Flame Booster",
    "Stellar Lightning Collector Set",
@@ -887,12 +888,14 @@
   "tk-xy-su": "tk9a",
   "tk-xy-p": "tk9b",
   "tk-sm-l": "tk10a",
-  "tk-sm-r": "tk10b"
+  "tk-sm-r": "tk10b",
+  "tk-ex-latia": "tk1a",
+  "tk-ex-m": "tk2b",
+  "tk-ex-latio": "tk1b"
  },
  "diag": {
   "assets.tcgdex.net": {
    "404": 42,
-   "503": 12,
    "ok": 291
   },
   "images.pokemontcg.io": {

@@ -1,5 +1,5 @@
 {
- "built": "2026-11-25T19:34:17.950Z",
+ "built": "2026-11-26T03:45:39.973Z",
  "sets": {
   "total": 209,
   "noLogo": [],
@@ -14,12 +14,12 @@
   "bySet": {}
  },
  "sealed": {
-  "total": 4770,
-  "photo": 1374,
+  "total": 4766,
+  "photo": 1379,
   "manual": 0,
-  "tcgplayer": 960,
+  "tcgplayer": 955,
   "logo": 1584,
-  "missing": 852,
+  "missing": 848,
   "list": [
    "HS Trainer Kit",
    "WCD 2004: Rocky Beach Deck",
@@ -746,11 +746,7 @@
    "Void Blast Booster",
    "Void Blast Booster Box",
    "Battle Partners Promo Booster",
-   "CSVH4C: Happy Set Decidueye & Melmetal & Koraidon & Miraidon Box Set",
    "CSVH4C: Happy Set Decidueye & Melmetal & Koraidon & Miraidon Theme Deck",
-   "CSVH4aC: Transformation Pack Vol. 4",
-   "CSVH4pC: Reward Pack Vol. 4",
-   "CSVH4eC: Happy Pack",
    "CBB5C: Gem Pack Vol. 5 Booster",
    "CBB5C: Gem Pack Vol. 5 Booster Box",
    "Dream Painting Collection Water Figure Set",
@@ -891,14 +887,12 @@
   "tk-xy-su": "tk9a",
   "tk-xy-p": "tk9b",
   "tk-sm-l": "tk10a",
-  "tk-sm-r": "tk10b",
-  "tk-ex-p": "tk2a",
-  "tk-ex-m": "tk2b",
-  "tk-ex-latia": "tk1a"
+  "tk-sm-r": "tk10b"
  },
  "diag": {
   "assets.tcgdex.net": {
    "404": 42,
+   "503": 12,
    "ok": 291
   },
   "images.pokemontcg.io": {

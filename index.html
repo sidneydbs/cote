@@ -2086,7 +2086,7 @@ img.px.reveal{animation:stpRev .9s ease-out}
   }
   fit(); addEventListener("resize", fit); addEventListener("orientationchange", function(){ setTimeout(fit, 300); });
 })();</script>
-<script>window.__APPV="227";</script>
+<script>window.__APPV="228";</script>
 <div class="splash" id="splash" aria-hidden="true"><i class="hole"></i><i class="halo"></i><div class="bw"><svg class="b" viewBox="0 0 100 100"><use href="#pb"/></svg><svg class="t" viewBox="0 0 100 100"><use href="#pb"/></svg></div><i class="glow"></i></div>
 <script>setTimeout(function(){ if(window.__booted) return;
   var b=document.createElement("div"); b.setAttribute("role","alert");
@@ -2489,10 +2489,42 @@ function i18nNode(n){
       if(m){ pv.nodeValue = m[1] + usdFmt(frNum(m[2], m[3])*usdPerEur()); n.nodeValue = ""; return; } n.nodeValue = n.nodeValue.replace("€","$"); return; }
     const v = trTxt(n.nodeValue); if(v!==n.nodeValue) n.nodeValue = v; return; }
   if(n.nodeType!==1 || n.nodeName==="SCRIPT" || n.nodeName==="STYLE") return;
+  if(n.nodeName==="IMG") langImg(n); else n.querySelectorAll?.("img[src*='assets.tcgdex.net/']").forEach(langImg);
   for(const a of I18N_ATTR){ const o = n.getAttribute(a); if(o){ const v = trTxt(o); if(v!==o) n.setAttribute(a, v); } }
   if(n.nodeName==="INPUT" && /^(button|submit)$/.test(n.type) && n.value){ const v = trTxt(n.value); if(v!==n.value) n.value = v; }
   const w = document.createTreeWalker(n, NodeFilter.SHOW_TEXT|NodeFilter.SHOW_ELEMENT);
   let x; while((x = w.nextNode())){ if(x.nodeType===3) i18nNode(x); else if(x.nodeName==="SCRIPT"||x.nodeName==="STYLE") continue; else for(const a of I18N_ATTR){ const o = x.getAttribute(a); if(o){ const v = trTxt(o); if(v!==o) x.setAttribute(a, v); } } }
+}
+/* Cartes enregistrées dans l'autre langue (ajoutées quand l'app était en anglais, ou l'inverse) :
+   leur image est remplacée par celle de la langue choisie (l'originale reste en secours) */
+const TCG_IMG = /(assets\.tcgdex\.net\/)(fr|en)\//;
+function langImg(im){
+  const o = im.getAttribute("src"); if(!o || !TCG_IMG.test(o)) return;
+  const n = o.replace(TCG_IMG, `$1${LANG}/`); if(n===o) return;
+  im.dataset.alt = [o, ...(im.dataset.alt||"").split("|").filter(Boolean)].join("|");
+  if(!(im.getAttribute("onerror")||"").includes("__imgNext")) im.setAttribute("onerror", "__imgNext(this)");
+  im.src = n;
+}
+// en français : noms anglais des Pokémon (cartes ajoutées en anglais) remis en français
+function trNameFr(k){
+  const pk = store.get("pkNames", null)?.en2fr; if(!pk) return null;
+  const nz = x => x.normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase().replace(/[^a-z0-9]+/g," ").trim();
+  const m = /^(Mega )?(Alolan |Galarian |Hisuian |Paldean )?(.+?)((?: (?:ex|EX|V|VMAX|VSTAR|GX|BREAK|δ|☆|Prime|LV\.X|[XY]))*)$/.exec(k); if(!m) return null;
+  const fr = pk[nz(m[3])]; if(!fr) return null;
+  const reg = {"Alolan ":" d'Alola","Galarian ":" de Galar","Hisuian ":" de Hisui","Paldean ":" de Paldea"}[m[2]||""] || "";
+  return (m[1] ? "Méga-" : "") + fr + reg + m[4];
+}
+function frNode(n){
+  if(n.nodeType===3){ const k = n.nodeValue.trim(); if(k.length>2 && k.length<40 && /^[A-Z]/.test(k) && !n.parentNode?.closest?.(I18N_SKIP)){ const v = trNameFr(k); if(v && v!==k) n.nodeValue = n.nodeValue.replace(k, v); } return; }
+  if(n.nodeType!==1) return;
+  if(n.nodeName==="IMG") return langImg(n);
+  n.querySelectorAll?.("img[src*='assets.tcgdex.net/']").forEach(langImg);
+  const w = document.createTreeWalker(n, NodeFilter.SHOW_TEXT); let x; while((x = w.nextNode())) frNode(x);
+}
+if(LANG==="fr"){
+  const go = ()=>{ frNode(document.body); new MutationObserver(ms=>{ for(const m of ms) m.addedNodes.forEach(frNode); }).observe(document.body, {childList:true, subtree:true});
+    setTimeout(()=>{ if(store.get("pkNames", null)) return; try{ loadPkNames().then(()=>frNode(document.body)).catch(()=>{}); }catch(e){} }, 3000); };
+  document.body ? go() : document.addEventListener("DOMContentLoaded", go);
 }
 if(LANG==="en"){
   document.documentElement.lang = "en";
@@ -9326,6 +9358,7 @@ async function betaPublishFlow(){
 }
 /* Journal des modifications de la Bêta : la carte « Version Bêta » liste celles que les copains n'ont pas encore */
 const BETA_LOG = [
+{v:228, t:"Langue : en repassant en français, les cartes ajoutées en anglais reprennent leur image et leur nom français (et inversement)"},
 {v:227, t:"English : toute l'app traduite (≈ 1 600 textes : fiches, Stock, scanner, Fil, jeux, lexique…), prix en dollars, noms anglais des Pokémon et des extensions même pour les cartes ajoutées en français. Les posts et messages des Hunters ne sont pas traduits"},
 {v:226, t:"Langue de l'app : bouton 🇫🇷 / 🇬🇧🇺🇸 dans l'en-tête. En anglais : textes, noms et images des cartes, dates. Le n° de version passe dans les réglages"},
 {v:225, t:"Cartes : les images suivent la « Langue des cartes » (FR ou EN), et changent tout de suite quand tu changes de langue"},

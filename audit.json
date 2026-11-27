@@ -1,5 +1,5 @@
 {
- "built": "2026-11-26T17:16:51.576Z",
+ "built": "2026-11-27T01:55:27.758Z",
  "sets": {
   "total": 209,
   "noLogo": [],
@@ -14,11 +14,11 @@
   "bySet": {}
  },
  "sealed": {
-  "total": 4767,
+  "total": 4768,
   "photo": 1379,
   "manual": 0,
-  "tcgplayer": 955,
-  "logo": 1584,
+  "tcgplayer": 960,
+  "logo": 1580,
   "missing": 849,
   "list": [
    "HS Trainer Kit",
@@ -889,9 +889,10 @@
   "tk-xy-p": "tk9b",
   "tk-sm-l": "tk10a",
   "tk-sm-r": "tk10b",
+  "tk-ex-latio": "tk1b",
   "tk-ex-latia": "tk1a",
   "tk-ex-m": "tk2b",
-  "tk-ex-latio": "tk1b"
+  "tk-ex-p": "tk2a"
  },
  "diag": {
   "assets.tcgdex.net": {

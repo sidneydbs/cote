@@ -1,5 +1,5 @@
 {
- "built": "2026-11-27T23:42:57.589Z",
+ "built": "2026-11-28T08:24:08.998Z",
  "sets": {
   "total": 209,
   "noLogo": [],
@@ -15,11 +15,11 @@
  },
  "sealed": {
   "total": 4768,
-  "photo": 1377,
+  "photo": 1372,
   "manual": 0,
-  "tcgplayer": 960,
-  "logo": 1582,
-  "missing": 849,
+  "tcgplayer": 967,
+  "logo": 1583,
+  "missing": 846,
   "list": [
    "HS Trainer Kit",
    "WCD 2004: Rocky Beach Deck",
@@ -854,9 +854,6 @@
    "CSVH6eC: Happy Pack",
    "CBB7C: Gem Pack Vol. 7 Booster",
    "CBB7C: Gem Pack Vol. 7 Booster Box",
-   "Aura Seeker Booster Box Case",
-   "Aura Seeker Booster Box",
-   "Aura Seeker Booster",
    "Mega Gengar ex, Mega Dragonite ex & Mega Feraligatr ex Special Deck Set: Dragonite Coin",
    "Mega Gengar ex, Mega Dragonite ex & Mega Feraligatr ex Special Deck Set: Feraligatr Coin",
    "Mega Gengar ex, Mega Dragonite ex & Mega Feraligatr ex Special Deck Set: Gengar Coin",
@@ -889,8 +886,7 @@
   "tk-xy-p": "tk9b",
   "tk-sm-l": "tk10a",
   "tk-sm-r": "tk10b",
-  "tk-ex-p": "tk2a",
-  "tk-ex-latio": "tk1b"
+  "tk-ex-m": "tk2b"
  },
  "diag": {
   "assets.tcgdex.net": {
